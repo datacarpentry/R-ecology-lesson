@@ -1,0 +1,136 @@
+# R Objects / Data Structure
+
+R has many different structures for storing the data you want to
+analyze. The most commonly used are
+
+- vectors,
+- lists,
+- matrices,
+- arrays, and 
+- data frames.
+
+It can be determined with the function `class()`.
+
+The *type* or *mode* of an object defines how it is stored. It could
+be
+
+- a character,
+- a numeric value,
+- an integer,
+- a complex number, or
+- a logical value (Boolean value: TRUE/FALSE).
+
+It can be determined with the function `mode()`.
+
+Below is a short definition  and quick example of each of these data
+structures which you can use to decide which is the best for
+representing your data  in R.
+
+## Vectors
+It is the most basic data type. Vectors only have one dimension and
+all their elements must be the same mode. There are various ways to
+create vectors. The simplest one is with the `c` function.
+
+```{r}
+(v1 <- c(1, 2, 5))
+```
+
+The `c` function allows to combine its arguments. If the arguments
+are of various modes, they will be reduced to their lowest common
+type:
+
+```{r}
+(v2 <- c(1, 3, "a"))
+mode(v2)
+```
+
+Objects can be explicitly coerced with the `as.` function.
+
+```{r}
+as.character(v1)
+```
+
+You can also use the `:` operator or the `seq` function:
+
+```{r}
+1:10
+seq(from = 5, to = 25, by = 5)
+```
+
+### Factors
+Factor is a special type of vector to store categorical values.
+
+```{r}
+(breed <- factor(c("Holstein", "Holstein", "Brown Swiss", "Holstein",
+                  "Ayrshire", "Canadian", "Canadian", "Brown Swiss",
+                  "Holstein", "Brown Swiss", "Holstein")))
+```
+It stores values as a set of labeled integers. Some functions treat
+factors differently from numeric vectors.
+
+```{r}
+table(breed)
+```
+
+## Lists
+A list is an ordered collection of objects where the objects can be of
+different modes.
+
+```{r}
+(l <- list("a", "b", "c"))
+```
+
+Each element of a list can be given a name and referred to by that
+name. Elements of a list can be accessed by their number or their name.
+
+```{r}
+(cow <- list(breed = "Holstein", age = 3, last.prod = c(25, 35, 32)))
+cow$breed
+cow[[1]]
+```
+
+Lists can be used to hold together multiple values returned from a
+function. For example the elements used to create an histogram can be
+saved and returned:
+
+```{r}
+h <- hist(islands)
+str(h)
+```
+
+The function `str` is used here. It stands for *structure* and shows
+the internal structure of an R object.
+
+## Matrices
+A matrix is a rectangular array of numbers. Technically, it is a
+vector with two additional attributes: number of rows and number of
+columns. This is what you would use to analyze a spreadsheet full of
+only numbers, or only words. You can create a matrix with the `matrix`
+function:
+
+```{r}
+(m <- rbind(c(1, 4), c(2, 2)))
+(m <- matrix(data = 1:12, nrow = 4, ncol = 3,
+            dimnames = list(c("cow1", "cow2", "cow3", "cow4"),
+                c("milk", "fat", "prot"))))
+```
+
+## Arrays
+If a matrix is a two-dimensional data structure, we can add *layers*
+to the data and have further dimensions in addition to rows and
+columns. These datasets would be arrays. It can be
+created with the `array` function:
+
+```{r}
+(a <- array(data = 1:24, dim = c(3, 4, 2)))
+```
+
+## Data frames
+Data frames are used to store tabular data: multiple rows, columns and
+format.
+
+```{r}
+(df <- data.frame(cow = c("Moo-Moo", "Daisy", "Elsie"),
+                 prod = c(35, 40, 28),
+                 pregnant = c(TRUE, FALSE, TRUE)))
+```

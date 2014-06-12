@@ -1,0 +1,550 @@
+```{r, echo=FALSE}
+opts_chunk$set(results='hide')
+```
+# Analyzing Survey Data
+
+We are studying the species and weight of animals caught in plots in our study area.
+The data sets are stored in .csv each row holds information for a single animal, 
+and the columns represent record_id,month,day,year,plot,species,sex,wgt 
+The first few rows of our first file look like this:
+
+"63","8","19","1977","3","DM","M","40"
+"64","8","19","1977","7","DM","M","48"
+"65","8","19","1977","4","DM","F","29"
+"66","8","19","1977","4","DM","F","46"
+"67","8","19","1977","7","DM","M","36"
+
+### We want to:
+
+* load that data into memory,
+* calculate the average weight of the animals across all animals, and
+* plot the result.
+To do all that, we'll have to learn a little bit about programming.
+
+### Objectives
+* Explain what a library is, and what libraries are used for.
+* Load an R library and use the things it contains.
+* Read tabular data from a file into a program.
+* Assign values to variables.
+* Learn about data types
+* Select individual values and subsections from data.
+* Perform operations on arrays of data.
+* Display simple graphs.
+
+## Loading Data
+----------------
+
+Words are useful, but what's more useful are the sentences and stories we use them to build. 
+Similarly, while a lot of powerful tools are built into languages like R, 
+even more lives in the libraries they are used to build.
+Importing a library is like getting a piece of lab equipment out of a storage locker
+and setting it up on the bench. 
+Once it's done, we can ask the library to do things for us.
+
+To load our inflammation data, we need to locate our data.
+We will use `setwd()` and `read.csv()`. These are built-in functions in R. Let's check out the help screen.
+
+* download the inflammation file
+* put it in your working directory for these exercises
+
+```{r, eval=FALSE}
+setwd("pathname")
+read.csv("data/surveys.csv", header=TRUE)
+```
+
+The expression `read.csv()` is a function call that asks R to run the function read.csv that belongs to base R. 
+
+`read.csv` has many parameters including the name of the file we want to read, and the delimiter that separates values on a line. 
+These both need to be character strings (or strings for short), so we put them in quotes. 
+`header` tells the program if the first line contains column names or data.
+
+When we are finished typing and press `Control+Enter` on Windows or `Cmd + Return` on Mac, the console runs our command. 
+Since we haven't told it to do anything else with the function's output, the console displays it. 
+In this case, that output is the data we just loaded. 
+
+Our call to `read.csv` read our file, but didn't save the data in memory. 
+To do that, we need to assign the data frame to a variable. 
+A variable is just a name for a value, such as x, current_temperature, or subject_id. 
+We can create a new variable simply by assigning a value to it using `=` or `<-`
+
+```{r}
+weight_kg <- 55
+```
+
+Once a variable has a value, we can print it:
+
+```{r}
+weight_kg
+```
+
+and do arithmetic with it:
+
+```{r}
+2.2 * weight_kg
+```
+
+We can use the function `paste` to print several things at once, if we separate them with commas.
+
+```{r}
+paste('weight in pounds:', 2.2 * weight_kg)
+```
+
+We can also change a variable's value by assigning it a new one:
+
+```{r}
+weight_kg <- 57.5
+paste('weight in kilograms is now:', weight_kg)
+```
+
+If we imagine the variable as a sticky note with a name written on it, 
+assignment is like putting the sticky note on a particular value:
+
+This means that assigning a value to one variable does not change the values of other variables. 
+For example, let's store the animal's weight in pounds in a variable:
+
+```{r}
+weight_lb <- 2.2 * weight_kg
+paste('weight in kilograms:', weight_kg, 'and in pounds:', weight_lb)
+```
+
+and then change weight_kg:
+
+```{r}
+weight_kg <- 100.0
+paste('weight in kilograms is now:', weight_kg, 'and weight in pounds is still:', weight_lb)
+```
+
+__Updating a Variable__
+
+Since weight_lb doesn't "remember" where its value came from, it isn't automatically updated when weight_kg changes. 
+This is different from the way spreadsheets work.
+
+__Challenges__
+
+Draw diagrams showing what variables refer to what values after each statement in the following program:
+
+```{r}	
+mass <- 47.5
+age  <- 122
+mass <- mass * 2.0
+age  <- age - 20
+```
+
+We can also add to variable that are vectors, and update them by making them longer. 
+For example, if we are creating a vector of animal weights, we could update that vector using `append`. `append` takes two arguments, and adds the second item to the end of the first one.
+
+```{r}
+weights <- c(100)
+weights <- append(weights, 80)
+```
+
+What happens here is that we take the original vector weights, and we are adding the second item to the end of the first one. We can do this over and over again to build a vector or a dataset. As we program, this may be useful to autoupdate results that we are collecting or calculating.
+
+Now that we know how to assign things to variables, let's re-run `read.csv` and save its result:
+
+```{r}
+dat <- read.csv('data/surveys.csv', header = TRUE)
+```
+
+This statement doesn't produce any output because assignment doesn't display anything. If we want to check that our data has been loaded, we can print the variable's value:
+
+```{r}
+dat
+```
+
+__BREAK__
+* Make sure everyone has imported the data
+* tell me how many rows and columns there are
+* what kind of data is it?
+
+
+## Manipulating Data
+
+Now that our data is in memory, we can start doing things with it. 
+First, let's ask what type of thing data refers to:
+
+```{r}
+class(dat)
+str(dat)
+```
+
+The output tells us that data currently is a data.frame in R. 
+This is similar to a spreadsheet in excel, that many of us are familiar with using.
+
+### data frames
+are the de facto data structure for most tabular data and what we use for statistics. They can have a mix of data types, e.g.characters, integers, factors. 
+
+Data frames can have additional attributes such as `rownames()`, which can be useful for annotating data, like subject_id or sample_id. But most of the time they are not used.
+
+Some additional information on data frames:
+
+* Usually created by `read.csv()` and `read.table()`.
+* Can convert to matrix with `data.matrix()`
+* Coercion will be forced and not always what you expect.
+* Can also create with `data.frame()` function.
+* Find the number of rows and columns with `nrow(dat)` and `ncol(dat)`, respectively.
+* Rownames are usually 1..n.
+
+__Useful functions__
+
+* `head()` - see first 6 rows
+* `tail()` - see last 6 rows
+* `dim()` - see dimensions
+* `nrow()` - number of rows
+* `ncol()` - number of columns
+* `str()` - structure of each column
+* `names()` - will list the names attribute for a data frame (or any object really), which gives the column names.
+* A data frame is a special type of list where every element of the list has same length.
+
+`str` output tells us the dimensions and the data types (int is integer) of each column.
+
+We can see what its shape is like this:
+
+```{r}
+dim(dat)
+nrow(dat)
+ncol(dat)
+```
+
+This tells us that data has 35549 rows and 8 columns. 
+
+Let's look at the structure of the data again 
+
+```{r}
+str(dat)
+```
+
+If we look at 'plot' it says it's an integer. 
+ $ plot     : int  2 3 2 7 3 1 2 1 1 6 
+and it is an integer, but in our case we want it to be a factor. Basically it's a category. We don't want to be able to do math with it. We want to be able to ask things about that category. So we're going to change it from an integer to a factor in our data frame.
+
+```{r}
+dat$plot <- as.factor(dat$plot)
+```
+
+
+### Indexing
+
+If we want to get a single value from the data frame, 
+we must provide an index in square brackets, just as we do in math:
+
+```{r}
+paste('first value in data:', dat[1,1])
+paste('middle value in data:', dat[3,2])
+```
+
+R indexes starting at 1. Programming languages like Fortran, MATLAB, and R start counting at 1, because that's what human beings have done for thousands of years. 
+Languages in the C family (including C++, Java, Perl, and Python) count from 0 because that's simpler for computers to do. 
+
+An index like [3, 2] selects a single element of an array, 
+but we can select whole sections as well. 
+For example, we can select the month, day and year (columns) of values 
+for the first four (rows) animals like this:
+
+```{r}
+dat[1:4, 1:3]
+```
+
+The slice 1:4 means, "Start at index 1 and go to index 4." 
+We don't have to start slices at 0:
+
+```{r}
+dat[5:10, 0:3]
+```
+
+and we don't have to take all the values in the slice, we can use `c()` to select certain values or groups of values:
+
+```{r}
+dat[c(1:10, 20:30), c(1:3, 7:8)]
+```
+
+Here we have taken rows 1 through 10 and 20 through 30 and columns 1 through 3 and 7 through 8.
+
+```{r}
+dat[seq(1, 12, 3), seq(1, 8, 3)]
+```
+
+Here we have used the built-in function seq to take regularly spaced rows and columns.
+For example, we have taken rows 1, 4, 7, and 10, and columns 1, 4, and 7. 
+(Again, we always include the lower bound, but stop when we reach or cross the upper bound.)
+
+__EXERCISES__
+
+1. If data holds our array of survey data, what does `data[3:3, 4:4]` produce? 
+What about `data[3:3, 4:1]`? Explain the results to the person sitting next to you
+
+
+## Calculating statistics
+
+We've gotten our data in to R, so that we can do some analysis with it.
+First, let's get a sense of our data
+We might for instance want to know how many animals we trapped in each plot, or
+how many of each species were caught.
+
+We can look at just one column at a time in different ways. We can reference that 
+column by it's number
+
+```{r}
+# Look at the weight column, the 8th one
+dat[,8]
+```
+
+or by its name
+```{r}
+# Look at the weight column, by its name wgt
+dat$wgt
+```
+
+If you forget the column names, you can type
+
+```{r}
+colnames(dat)
+```
+
+or 
+
+```{r}
+str(dat)
+```
+
+will show you the column names and the type of data in them
+
+If we do this, we can see for instance that there are 48 species
+Factor w/ 48 levels means there are 48 different versions of that factor
+
+So, let's see how many of each species we have
+
+```{r}
+table(dat$species)
+```
+
+We could even assign it to a variable and make it a data frame to make it easier to look at
+
+```{r}
+species_table <- as.data.frame(table(dat$species))
+```
+
+Maybe we also want to see how many animals were captured in each plot
+
+```{r}
+table(dat$plot)
+```
+
+Now we want to do some actual calculations with the data though. Let's calculate the average weight of all the animals. R has a lot of built in statistical functions, like mean, median, max, min
+
+
+```{r}
+mean(dat$wgt)
+```
+
+Hmm, we just get NA. That's because we don't have the weight for every animal
+and it's recorded as NA when we don't. We can't do math on NA. Conveniently R 
+provides a function na.omit() that will omit NAs from your data.
+
+How many animals would we omit. We can look at how many animals we have overall and subtract how many we have after the NAs are omitted.
+
+Because data is in a vector, when we want to know how much of something we have
+we ask how long it is with the length() function
+
+```{r}
+length(dat$wgt)
+```
+
+```{r}
+length(na.omit(dat$wgt))
+```
+
+We can then subtract those numbers
+
+```{r}
+length(dat$wgt) - length(na.omit(dat$wgt))
+```
+
+We can see we'll be omitting 3266 animals. Bummer, but not terrible when we've sampled over 35,000 animals.
+
+Let's calculate their average weight
+
+```{r}
+mean(na.omit(dat$wgt))
+```
+
+It gets a little annoying to type na.omit(dat$wgt) each time we want to do the calculation, so we can actually create a new data frame with the rows that have 
+NA omitted with the complete.cases() command. Don't worry too much about this. You can google it to learn more about it if you need to use it.
+
+```{r}
+dat2 <- dat[complete.cases(dat$wgt),]
+```
+
+
+```{r}
+mean(dat2$wgt)
+```
+
+__EXERCISES__
+
+R has a bunch of handy statistical functions built in. Calculate the median, standard deviation, minimum and maximum weight. For bonus points calculate the standard error.
+
+
+## Statistics on subsets of data
+
+When analyzing data, though, we often want to look at partial statistics, such as the maximum value per species or the average value per plot. 
+
+One way to do this is to select the data we want to create a new temporary array, using the subset() function
+
+Let's look at just the animals of species 'DO'
+
+```{r}
+speciesDO <- subset(dat, species == 'DO')
+```
+
+We could see in our table from before that 'DO' had 3027 species. Let's check to see if that's what we have by checking the number of rows
+
+```{r}
+nrow(speciesDO)
+```
+
+__EXERCISE__
+
+Calculate the mean and standard deviation of just the DO species
+
+
+
+## FUNCTIONS - Operations Across Axes
+
+What if we need the maximum weight for all animals, or the average for each plot? 
+As the diagram below shows, we want to perform the operation across an axis:
+
+To support this, in R we can use the `apply` or 'tapply' function:
+tapply() takes a vector, so we'll use that
+
+```{r}
+help(tapply) #or ?apply
+```
+
+Apply allows us to repeat a function on all of the rows (1), columns (2), or both(1:2) of an array or matrix.
+
+What if you wanted to now go on and calculate the average weight of each species.
+You could do this one by one, but you can actually do it all at once with the tapply() function.
+
+The format is 
+
+tapply(data_you_want_to_calculate, factor_to_sort_on, function)
+
+```{r}
+tapply(dat2$wgt, dat2$species, mean)
+```
+
+Now we can put all the means into a variable
+
+```{r}
+species_means <- tapply(dat2$wgt, dat2$species, mean)
+```
+
+
+### Challenge  
+1. Find the maximum and minimum values for weight for each species
+2. Save these values to a varible.
+3. What is the length of your new variable?
+
+```{r}
+species_max <- tapply(dat2$wgt, dat2$species, max)
+species_min <- tapply(dat2$wgt, dat2$species, min)
+```
+
+Now that we have all this summary information, we can put it back together into a data frame that we can use for further analysis and plotting, provided they are the same length.
+
+
+```{r}
+d.summary = data.frame(species_means, species_min, species_max)
+```
+
+We can also do this with the aggregate function, which deals with the NA rows that we eliminated more nicely. This is a very useful function, and it puts the output in to a data frame rather than a list. 
+If you look at documentation for aggregate() there's a few different ways to write the function. This is one way.
+
+The format is 
+aggregate(what-to-plot~what-you-want-it-sorted-by, data=the-dataset, function)
+
+```{r}
+mean_species <- aggregate(wgt~species, data=dat, mean)
+```
+
+Maybe we want to look at the data average per species per plot
+
+```{r}
+aggregate(wgt~species+plot, data=dat, mean)
+```
+
+Or we just want to look at the average of particular species in each plot. Then we can subset the data within the function
+
+```{r}
+aggregate(wgt~species+plot, data=subset(dat, species == "DO"), mean)
+```
+
+__EXERCISES__
+
+1. Create a data frame with the standard deviation of weight for each species
+
+## Plotting  
+The mathematician Richard Hamming once said, "The purpose of computing is insight, not numbers," and the best way to develop insight is often to visualize data. Visualization deserves an entire lecture (or course) of its own, but we can explore a few features of R's base plotting package and ggplot2 here. 
+
+Lets use the average species data that we saved and plot it. 
+
+R has built in plotting functions
+
+```{r}
+barplot(mean_species$wgt, names.arg=mean_species$species)
+```
+
+
+The axis labels are too big though, so you can't see them all. Let's change that
+```{r}
+barplot(mean_species$wgt, names.arg=mean_species$species, cex.names=0.4)
+```
+
+and change the color
+
+```{r}
+barplot(mean_species$wgt, names.arg=mean_species$species, cex.names=0.4, col=c("blue"))
+```
+
+
+__EXERCISES__
+
+1. Create a plot showing the standard deviation of the species data 
+2. Calculate the average weight by plot id
+3. Plot the average weight by plot and make the bars red
+
+
+
+There's lots of different ways to plot things. You can use
+```{r}
+help(barplot)
+```
+or search online
+
+There's also a plotting package called ggplot that adds a lot of functionality. I'm not going to go through it, but you can see a gallery of what's possible for plotting with ggplot.
+
+Basically, you can do almost anything, and you can spend infinite time refining it.
+
+
+
+
+
+## Key Points
+
+* Import a library into a program using library libraryname.
+* What are the data types in R?
+* Use `variable = value` to assign a value to a variable in order to record it in memory.
+* Variables are created on demand whenever a value is assigned to them.
+* Use print something to display the value of something.
+* The expression `dim()` gives the dimensions of a data frame or matrix.
+* Use `object[x, y]` to select a single element from an array.
+* Array indices start at 1.
+* Use low:high to specify a slice that includes the indices from low to high.
+* Use # some kind of explanation to add comments to programs.
+* Use `mean()`, `max()`, `min()` and `sd()` to calculate simple statistics.
+* Update vectors using append
+* Write a simple for loop 
+* Use base R and the `ggplot2` library for creating simple visualizations.
+
+
