@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=9" >
+
+<title>Novice R materials - following Python examples</title>
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 12px;
+   margin: 8px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 { 
+   font-size:2.2em; 
+}
+
+h2 { 
+   font-size:1.8em; 
+}
+
+h3 { 
+   font-size:1.4em; 
+}
+
+h4 { 
+   font-size:1.0em; 
+}
+
+h5 { 
+   font-size:0.9em; 
+}
+
+h6 { 
+   font-size:0.8em; 
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre {	
+   margin-top: 0;
+   max-width: 95%;
+   border: 1px solid #ccc;
+   white-space: pre-wrap;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code.r, code.cpp {
+   background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * { 
+      background: transparent !important; 
+      color: black !important; 
+      filter:none !important; 
+      -ms-filter: none !important; 
+   }
+
+   body { 
+      font-size:12pt; 
+      max-width:100%; 
+   }
+       
+   a, a:visited { 
+      text-decoration: underline; 
+   }
+
+   hr { 
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote { 
+      padding-right: 1em; 
+      page-break-inside: avoid; 
+   }
+
+   tr, img { 
+      page-break-inside: avoid; 
+   }
+
+   img { 
+      max-width: 100% !important; 
+   }
+
+   @page :left { 
+      margin: 15mm 20mm 15mm 10mm; 
+   }
+     
+   @page :right { 
+      margin: 15mm 10mm 15mm 20mm; 
+   }
+
+   p, h2, h3 { 
+      orphans: 3; widows: 3; 
+   }
+
+   h2, h3 { 
+      page-break-after: avoid; 
+   }
+}
+
+</style>
+
+<!-- Styles for R syntax highlighter -->
+<style type="text/css">
+   pre .operator,
+   pre .paren {
+     color: rgb(104, 118, 135)
+   }
+
+   pre .literal {
+     color: rgb(88, 72, 246)
+   }
+
+   pre .number {
+     color: rgb(0, 0, 205);
+   }
+
+   pre .comment {
+     color: rgb(76, 136, 107);
+   }
+
+   pre .keyword {
+     color: rgb(0, 0, 255);
+   }
+
+   pre .identifier {
+     color: rgb(0, 0, 0);
+   }
+
+   pre .string {
+     color: rgb(3, 106, 7);
+   }
+</style>
+
+<!-- R syntax highlighter -->
+<script type="text/javascript">
+var hljs=new function(){function m(p){return p.replace(/&/gm,"&amp;").replace(/</gm,"&lt;")}function f(r,q,p){return RegExp(q,"m"+(r.cI?"i":"")+(p?"g":""))}function b(r){for(var p=0;p<r.childNodes.length;p++){var q=r.childNodes[p];if(q.nodeName=="CODE"){return q}if(!(q.nodeType==3&&q.nodeValue.match(/\s+/))){break}}}function h(t,s){var p="";for(var r=0;r<t.childNodes.length;r++){if(t.childNodes[r].nodeType==3){var q=t.childNodes[r].nodeValue;if(s){q=q.replace(/\n/g,"")}p+=q}else{if(t.childNodes[r].nodeName=="BR"){p+="\n"}else{p+=h(t.childNodes[r])}}}if(/MSIE [678]/.test(navigator.userAgent)){p=p.replace(/\r/g,"\n")}return p}function a(s){var r=s.className.split(/\s+/);r=r.concat(s.parentNode.className.split(/\s+/));for(var q=0;q<r.length;q++){var p=r[q].replace(/^language-/,"");if(e[p]){return p}}}function c(q){var p=[];(function(s,t){for(var r=0;r<s.childNodes.length;r++){if(s.childNodes[r].nodeType==3){t+=s.childNodes[r].nodeValue.length}else{if(s.childNodes[r].nodeName=="BR"){t+=1}else{if(s.childNodes[r].nodeType==1){p.push({event:"start",offset:t,node:s.childNodes[r]});t=arguments.callee(s.childNodes[r],t);p.push({event:"stop",offset:t,node:s.childNodes[r]})}}}}return t})(q,0);return p}function k(y,w,x){var q=0;var z="";var s=[];function u(){if(y.length&&w.length){if(y[0].offset!=w[0].offset){return(y[0].offset<w[0].offset)?y:w}else{return w[0].event=="start"?y:w}}else{return y.length?y:w}}function t(D){var A="<"+D.nodeName.toLowerCase();for(var B=0;B<D.attributes.length;B++){var C=D.attributes[B];A+=" "+C.nodeName.toLowerCase();if(C.value!==undefined&&C.value!==false&&C.value!==null){A+='="'+m(C.value)+'"'}}return A+">"}while(y.length||w.length){var v=u().splice(0,1)[0];z+=m(x.substr(q,v.offset-q));q=v.offset;if(v.event=="start"){z+=t(v.node);s.push(v.node)}else{if(v.event=="stop"){var p,r=s.length;do{r--;p=s[r];z+=("</"+p.nodeName.toLowerCase()+">")}while(p!=v.node);s.splice(r,1);while(r<s.length){z+=t(s[r]);r++}}}}return z+m(x.substr(q))}function j(){function q(x,y,v){if(x.compiled){return}var u;var s=[];if(x.k){x.lR=f(y,x.l||hljs.IR,true);for(var w in x.k){if(!x.k.hasOwnProperty(w)){continue}if(x.k[w] instanceof Object){u=x.k[w]}else{u=x.k;w="keyword"}for(var r in u){if(!u.hasOwnProperty(r)){continue}x.k[r]=[w,u[r]];s.push(r)}}}if(!v){if(x.bWK){x.b="\\b("+s.join("|")+")\\s"}x.bR=f(y,x.b?x.b:"\\B|\\b");if(!x.e&&!x.eW){x.e="\\B|\\b"}if(x.e){x.eR=f(y,x.e)}}if(x.i){x.iR=f(y,x.i)}if(x.r===undefined){x.r=1}if(!x.c){x.c=[]}x.compiled=true;for(var t=0;t<x.c.length;t++){if(x.c[t]=="self"){x.c[t]=x}q(x.c[t],y,false)}if(x.starts){q(x.starts,y,false)}}for(var p in e){if(!e.hasOwnProperty(p)){continue}q(e[p].dM,e[p],true)}}function d(B,C){if(!j.called){j();j.called=true}function q(r,M){for(var L=0;L<M.c.length;L++){if((M.c[L].bR.exec(r)||[null])[0]==r){return M.c[L]}}}function v(L,r){if(D[L].e&&D[L].eR.test(r)){return 1}if(D[L].eW){var M=v(L-1,r);return M?M+1:0}return 0}function w(r,L){return L.i&&L.iR.test(r)}function K(N,O){var M=[];for(var L=0;L<N.c.length;L++){M.push(N.c[L].b)}var r=D.length-1;do{if(D[r].e){M.push(D[r].e)}r--}while(D[r+1].eW);if(N.i){M.push(N.i)}return f(O,M.join("|"),true)}function p(M,L){var N=D[D.length-1];if(!N.t){N.t=K(N,E)}N.t.lastIndex=L;var r=N.t.exec(M);return r?[M.substr(L,r.index-L),r[0],false]:[M.substr(L),"",true]}function z(N,r){var L=E.cI?r[0].toLowerCase():r[0];var M=N.k[L];if(M&&M instanceof Array){return M}return false}function F(L,P){L=m(L);if(!P.k){return L}var r="";var O=0;P.lR.lastIndex=0;var M=P.lR.exec(L);while(M){r+=L.substr(O,M.index-O);var N=z(P,M);if(N){x+=N[1];r+='<span class="'+N[0]+'">'+M[0]+"</span>"}else{r+=M[0]}O=P.lR.lastIndex;M=P.lR.exec(L)}return r+L.substr(O,L.length-O)}function J(L,M){if(M.sL&&e[M.sL]){var r=d(M.sL,L);x+=r.keyword_count;return r.value}else{return F(L,M)}}function I(M,r){var L=M.cN?'<span class="'+M.cN+'">':"";if(M.rB){y+=L;M.buffer=""}else{if(M.eB){y+=m(r)+L;M.buffer=""}else{y+=L;M.buffer=r}}D.push(M);A+=M.r}function G(N,M,Q){var R=D[D.length-1];if(Q){y+=J(R.buffer+N,R);return false}var P=q(M,R);if(P){y+=J(R.buffer+N,R);I(P,M);return P.rB}var L=v(D.length-1,M);if(L){var O=R.cN?"</span>":"";if(R.rE){y+=J(R.buffer+N,R)+O}else{if(R.eE){y+=J(R.buffer+N,R)+O+m(M)}else{y+=J(R.buffer+N+M,R)+O}}while(L>1){O=D[D.length-2].cN?"</span>":"";y+=O;L--;D.length--}var r=D[D.length-1];D.length--;D[D.length-1].buffer="";if(r.starts){I(r.starts,"")}return R.rE}if(w(M,R)){throw"Illegal"}}var E=e[B];var D=[E.dM];var A=0;var x=0;var y="";try{var s,u=0;E.dM.buffer="";do{s=p(C,u);var t=G(s[0],s[1],s[2]);u+=s[0].length;if(!t){u+=s[1].length}}while(!s[2]);if(D.length>1){throw"Illegal"}return{r:A,keyword_count:x,value:y}}catch(H){if(H=="Illegal"){return{r:0,keyword_count:0,value:m(C)}}else{throw H}}}function g(t){var p={keyword_count:0,r:0,value:m(t)};var r=p;for(var q in e){if(!e.hasOwnProperty(q)){continue}var s=d(q,t);s.language=q;if(s.keyword_count+s.r>r.keyword_count+r.r){r=s}if(s.keyword_count+s.r>p.keyword_count+p.r){r=p;p=s}}if(r.language){p.second_best=r}return p}function i(r,q,p){if(q){r=r.replace(/^((<[^>]+>|\t)+)/gm,function(t,w,v,u){return w.replace(/\t/g,q)})}if(p){r=r.replace(/\n/g,"<br>")}return r}function n(t,w,r){var x=h(t,r);var v=a(t);var y,s;if(v){y=d(v,x)}else{return}var q=c(t);if(q.length){s=document.createElement("pre");s.innerHTML=y.value;y.value=k(q,c(s),x)}y.value=i(y.value,w,r);var u=t.className;if(!u.match("(\\s|^)(language-)?"+v+"(\\s|$)")){u=u?(u+" "+v):v}if(/MSIE [678]/.test(navigator.userAgent)&&t.tagName=="CODE"&&t.parentNode.tagName=="PRE"){s=t.parentNode;var p=document.createElement("div");p.innerHTML="<pre><code>"+y.value+"</code></pre>";t=p.firstChild.firstChild;p.firstChild.cN=s.cN;s.parentNode.replaceChild(p.firstChild,s)}else{t.innerHTML=y.value}t.className=u;t.result={language:v,kw:y.keyword_count,re:y.r};if(y.second_best){t.second_best={language:y.second_best.language,kw:y.second_best.keyword_count,re:y.second_best.r}}}function o(){if(o.called){return}o.called=true;var r=document.getElementsByTagName("pre");for(var p=0;p<r.length;p++){var q=b(r[p]);if(q){n(q,hljs.tabReplace)}}}function l(){if(window.addEventListener){window.addEventListener("DOMContentLoaded",o,false);window.addEventListener("load",o,false)}else{if(window.attachEvent){window.attachEvent("onload",o)}else{window.onload=o}}}var e={};this.LANGUAGES=e;this.highlight=d;this.highlightAuto=g;this.fixMarkup=i;this.highlightBlock=n;this.initHighlighting=o;this.initHighlightingOnLoad=l;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="\\b(0[xX][a-fA-F0-9]+|(\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.ER="(?![\\s\\S])";this.BE={b:"\\\\.",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE],r:0};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE],r:0};this.CLCM={cN:"comment",b:"//",e:"$"};this.CBLCLM={cN:"comment",b:"/\\*",e:"\\*/"};this.HCM={cN:"comment",b:"#",e:"$"};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.inherit=function(r,s){var p={};for(var q in r){p[q]=r[q]}if(s){for(var q in s){p[q]=s[q]}}return p}}();hljs.LANGUAGES.cpp=function(){var a={keyword:{"false":1,"int":1,"float":1,"while":1,"private":1,"char":1,"catch":1,"export":1,virtual:1,operator:2,sizeof:2,dynamic_cast:2,typedef:2,const_cast:2,"const":1,struct:1,"for":1,static_cast:2,union:1,namespace:1,unsigned:1,"long":1,"throw":1,"volatile":2,"static":1,"protected":1,bool:1,template:1,mutable:1,"if":1,"public":1,friend:2,"do":1,"return":1,"goto":1,auto:1,"void":2,"enum":1,"else":1,"break":1,"new":1,extern:1,using:1,"true":1,"class":1,asm:1,"case":1,typeid:1,"short":1,reinterpret_cast:2,"default":1,"double":1,register:1,explicit:1,signed:1,typename:1,"try":1,"this":1,"switch":1,"continue":1,wchar_t:1,inline:1,"delete":1,alignof:1,char16_t:1,char32_t:1,constexpr:1,decltype:1,noexcept:1,nullptr:1,static_assert:1,thread_local:1,restrict:1,_Bool:1,complex:1},built_in:{std:1,string:1,cin:1,cout:1,cerr:1,clog:1,stringstream:1,istringstream:1,ostringstream:1,auto_ptr:1,deque:1,list:1,queue:1,stack:1,vector:1,map:1,set:1,bitset:1,multiset:1,multimap:1,unordered_set:1,unordered_map:1,unordered_multiset:1,unordered_multimap:1,array:1,shared_ptr:1}};return{dM:{k:a,i:"</",c:[hljs.CLCM,hljs.CBLCLM,hljs.QSM,{cN:"string",b:"'\\\\?.",e:"'",i:"."},{cN:"number",b:"\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)"},hljs.CNM,{cN:"preprocessor",b:"#",e:"$"},{cN:"stl_container",b:"\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",e:">",k:a,r:10,c:["self"]}]}}}();hljs.LANGUAGES.r={dM:{c:[hljs.HCM,{cN:"number",b:"\\b0[xX][0-9a-fA-F]+[Li]?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+(?:[eE][+\\-]?\\d*)?L\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+\\.(?!\\d)(?:i\\b)?",e:hljs.IMMEDIATE_RE,r:1},{cN:"number",b:"\\b\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"keyword",b:"(?:tryCatch|library|setGeneric|setGroupGeneric)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\.",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\d+(?![\\w.])",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\b(?:function)",e:hljs.IMMEDIATE_RE,r:2},{cN:"keyword",b:"(?:if|in|break|next|repeat|else|for|return|switch|while|try|stop|warning|require|attach|detach|source|setMethod|setClass)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"literal",b:"(?:NA|NA_integer_|NA_real_|NA_character_|NA_complex_)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"literal",b:"(?:NULL|TRUE|FALSE|T|F|Inf|NaN)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"identifier",b:"[a-zA-Z.][a-zA-Z0-9._]*\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"<\\-(?!\\s*\\d)",e:hljs.IMMEDIATE_RE,r:2},{cN:"operator",b:"\\->|<\\-",e:hljs.IMMEDIATE_RE,r:1},{cN:"operator",b:"%%|~",e:hljs.IMMEDIATE_RE},{cN:"operator",b:">=|<=|==|!=|\\|\\||&&|=|\\+|\\-|\\*|/|\\^|>|<|!|&|\\||\\$|:",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"%",e:"%",i:"\\n",r:1},{cN:"identifier",b:"`",e:"`",r:0},{cN:"string",b:'"',e:'"',c:[hljs.BE],r:0},{cN:"string",b:"'",e:"'",c:[hljs.BE],r:0},{cN:"paren",b:"[[({\\])}]",e:hljs.IMMEDIATE_RE,r:0}]}};
+hljs.initHighlightingOnLoad();
+</script>
+
+
+
+
+</head>
+
+<body>
+<h1>Novice R materials - following Python examples</h1>
+
+<hr/>
+
+<ul>
+<li>Draw concept map of where we are headed towards best scientific practices, and reproducibility.</li>
+<li>Its really important that you know what you did. More journals/grants/etc. are also making it important for them to know what you did.</li>
+<li>A lot of scientific code is NOT reproducible.</li>
+<li>If you keep a lab notebook, why are we not as careful with our code. </li>
+<li>We edit each others manuscripts, but we don&#39;t edit each other&#39;s code. </li>
+<li>If you write your code with &ldquo;future you&rdquo; in mind, you will save yourself and others a lot of time.</li>
+</ul>
+
+<h1>Very basics of R</h1>
+
+<p>R is a versatile, open source programming/scripting language that&#39;s useful both for statistics but also data science. Inspired by the programming language S.  </p>
+
+<ul>
+<li>Open source software under GPL.<br/></li>
+<li>Superior (if not just comparable) to commercial alternatives. R has over 5,000 user contributed packages at this time. It&#39;s widely used both in academia and industry.<br/></li>
+<li>Available on all platforms.<br/></li>
+<li>Not just for statistics, but also general purpose programming.<br/></li>
+<li>Is object oriented and functional.<br/></li>
+<li>Large and growing community of peers.<br/></li>
+</ul>
+
+<p>Some of the same commands we learned from the command line can be used in R.
+List objects in your current environment</p>
+
+<pre><code class="r">ls()
+</code></pre>
+
+<p>Remove objects from your current environment.  </p>
+
+<pre><code class="r">x &lt;- 5
+rm(x)
+</code></pre>
+
+<p>Remove all objects from your current environment. Typing <code>x</code> on the console will give you an error.</p>
+
+<pre><code class="r">rm(list = ls())
+</code></pre>
+
+<p>Notice that we have <em>nested</em> one function inside of another.  </p>
+
+<p>Use # signs to comment. Comment liberally in your R scripts. Anything to the right of a # is ignored by R.  </p>
+
+<p><strong>Assignment operator</strong></p>
+
+<p><code>&lt;-</code> is the assignment operator. Assigns values on the right to objects on the left. Mostly similar to <code>=</code> but not always. Learn to use <code>&lt;-</code> as it is good programming practice. Using <code>=</code> in place of <code>&lt;-</code> can lead to issues down the line.</p>
+
+<p><strong>Package management</strong></p>
+
+<p><code>install.packages(&quot;package-name&quot;)</code> will download a package from one of the CRAN mirrors assuming that a binary is available for your operating system. If you have not set a preferred CRAN mirror in your options(), then a menu will pop up asking you to choose a location.</p>
+
+<p>Use <code>old.packages()</code> to list all your locally installed packages that are now out of date. <code>update.packages()</code> will update all packages in the known libraries interactively. This can take a while if you haven&#39;t done it recently. To update everything without any user intervention, use the <code>ask = FALSE</code> argument.</p>
+
+<pre><code class="r">update.packages(ask = FALSE)
+</code></pre>
+
+<h2>Introduction to R and RStudio</h2>
+
+<p>Let&#39;s start by learning about our tool.  </p>
+
+<p><em>Point out the different windows in R.</em> </p>
+
+<ul>
+<li>Console, Scripts, Environments, Plots</li>
+<li>Avoid using shortcuts. </li>
+<li>Code and workflow is more reproducible if we can document everything that we do.</li>
+<li>Our end goal is not just to &ldquo;do stuff&rdquo; but to do it in a way that anyone can easily and exactly replicate our workflow and results.</li>
+</ul>
+
+<p>You can get output from R simply by typing in math</p>
+
+<pre><code class="r">3 + 5
+12/7
+</code></pre>
+
+<p>or by typing words, with the command <code>print</code></p>
+
+<pre><code class="r">print(&quot;hello world&quot;)
+</code></pre>
+
+<p>We can annotate our code (take notes) by typing &ldquo;#&rdquo;. Everything to the right of # is ignored by R</p>
+
+<p>We can save our results to an object, if we give it a name</p>
+
+<pre><code class="r">a &lt;- 60 * 60
+hours &lt;- 365 * 24
+</code></pre>
+
+<h2>Data types and structures</h2>
+
+<p><strong>Understanding basic data types in R</strong></p>
+
+<p>To make the best of the R language, you&#39;ll need a strong understanding of the basic data types and data structures and how to operate on those.</p>
+
+<p>Very Important to understand because these are the objects you will manipulate on a day-to-day basis in R. Dealing with object conversions is one of the most common sources of frustration for beginners.</p>
+
+<p>Everything in R is an object.</p>
+
+<p>R has 6 (although we will not discuss the raw class for this workshop) atomic classes.</p>
+
+<ul>
+<li>character</li>
+<li>numeric (real or decimal)</li>
+<li>integer</li>
+<li>logical</li>
+<li>complex</li>
+</ul>
+
+<p><strong>Example   Type</strong></p>
+
+<ul>
+<li>“a”, “swc”    character</li>
+<li>2, 15.5   numeric</li>
+<li>2 (Must add a L at end to denote integer) integer</li>
+<li>TRUE, FALSE   logical</li>
+<li>1+4i  complex</li>
+</ul>
+
+<p><code>typeof()</code> - what is it?<br/>
+<code>length()</code> - how long is it? What about two dimensional objects?<br/>
+<code>attributes()</code> - does it have any metadata?  </p>
+
+<pre><code class="r"># Example
+x &lt;- &quot;dataset&quot;
+typeof(x)
+attributes(x)
+
+y &lt;- 1:10
+typeof(y)
+length(y)
+attributes(y)
+
+z &lt;- c(1L, 2L, 3L)
+typeof(z)
+</code></pre>
+
+<p>R has many <strong>data structures</strong>. These include</p>
+
+<ul>
+<li>atomic vector</li>
+<li>list</li>
+<li>matrix</li>
+<li>data frame</li>
+<li>factors</li>
+<li>tables</li>
+</ul>
+
+<h3>Vectors</h3>
+
+<p>A vector is the most common and basic data structure in <code>R</code> and is pretty much the workhorse of R. Technically, vectors can be one of two types:</p>
+
+<ul>
+<li>atomic vectors</li>
+<li>lists</li>
+</ul>
+
+<p>although the term &ldquo;vector&rdquo; most commonly refers to the atomic type not lists.</p>
+
+<p><strong>Atomic Vectors</strong></p>
+
+<p>A vector can be a vector of elements that are most commonly <code>character</code>, <code>logical</code>, <code>integer</code> or <code>numeric</code>.</p>
+
+<p>You can create an empty vector with <code>vector()</code> (By default the mode is <code>logical</code>. You can be more explicit as shown in the examples below.) It is more common to use direct constructors such as <code>character()</code>, <code>numeric()</code>, etc.</p>
+
+<pre><code class="r">x &lt;- vector()
+# with a length and type
+vector(&quot;character&quot;, length = 10)
+character(5)  ## character vector of length 5
+numeric(5)
+logical(5)
+</code></pre>
+
+<p>Various examples:</p>
+
+<pre><code class="r">x &lt;- c(1, 2, 3)
+x
+length(x)
+</code></pre>
+
+<p><code>x</code> is a numeric vector. These are the most common kind. They are numeric objects and are treated as double precision real numbers. To explicitly create integers, add an <code>L</code> at the end.</p>
+
+<pre><code class="r">x1 &lt;- c(1L, 2L, 3L)
+</code></pre>
+
+<p>You can also have logical vectors. </p>
+
+<pre><code class="r">y &lt;- c(TRUE, TRUE, FALSE, FALSE)
+</code></pre>
+
+<p>Finally you can have character vectors:</p>
+
+<pre><code class="r">z &lt;- c(&quot;Sarah&quot;, &quot;Tracy&quot;, &quot;Jon&quot;)
+</code></pre>
+
+<p><strong>Examine your vector</strong>  </p>
+
+<pre><code class="r">typeof(z)
+length(z)
+class(z)
+str(z)
+</code></pre>
+
+<p>Question: Do you see a property that&#39;s common to all these vectors above?</p>
+
+<p><strong>Add elements</strong></p>
+
+<pre><code class="r">z &lt;- c(z, &quot;Annette&quot;)
+z
+</code></pre>
+
+<p>More examples of vectors</p>
+
+<pre><code class="r">x &lt;- c(0.5, 0.7)
+x &lt;- c(TRUE, FALSE)
+x &lt;- c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;)
+x &lt;- 9:100
+x &lt;- c(1 + (0+0i), 2 + (0+4i))
+</code></pre>
+
+<p>You can also create vectors as a sequence of numbers</p>
+
+<pre><code class="r">series &lt;- 1:10
+seq(10)
+seq(1, 10, by = 0.1)
+</code></pre>
+
+<p><code>Inf</code> is infinity. You can have either positive or negative infinity.</p>
+
+<pre><code class="r">1/0
+</code></pre>
+
+<p><code>NaN</code> means Not a number. It&#39;s an undefined value.</p>
+
+<pre><code class="r">0/0
+</code></pre>
+
+<p>Each object can have <strong>attributes</strong>. Attribues can be part of an object of R. These include:</p>
+
+<ul>
+<li>names</li>
+<li>dimnames</li>
+<li>dim</li>
+<li>class</li>
+<li>attributes (contain metadata)</li>
+</ul>
+
+<p>You can also glean other attribute-like information such as length (works on vectors and lists) or number of characters (for character strings).</p>
+
+<pre><code class="r">length(1:10)
+nchar(&quot;Software Carpentry&quot;)
+</code></pre>
+
+<p>What happens when you mix types?</p>
+
+<p>R will create a resulting vector that is the least common denominator. The coercion will move towards the one that&#39;s easiest to <strong>coerce</strong> to.</p>
+
+<p>Guess what the following do without running them first</p>
+
+<pre><code class="r">xx &lt;- c(1.7, &quot;a&quot;)
+xx &lt;- c(TRUE, 2)
+xx &lt;- c(&quot;a&quot;, TRUE)
+</code></pre>
+
+<p>This is called implicit coercion. You can also coerce vectors explicitly using the <code>as.&lt;class_name&gt;</code>. Example</p>
+
+<pre><code class="r">as.numeric()
+as.character()
+</code></pre>
+
+<h3>Matrix</h3>
+
+<p>Matrices are a special vector in R. They are not a separate type of object but simply an atomic vector with dimensions added on to it. Matrices have rows and columns.</p>
+
+<pre><code class="r">m &lt;- matrix(nrow = 2, ncol = 2)
+m
+dim(m)
+</code></pre>
+
+<p>Matrices are filled column-wise.</p>
+
+<pre><code class="r">m &lt;- matrix(1:6, nrow = 2, ncol = 3)
+</code></pre>
+
+<p>Other ways to construct a matrix</p>
+
+<pre><code class="r">m &lt;- 1:10
+dim(m) &lt;- c(2, 5)
+</code></pre>
+
+<p>This takes a vector and transform into a matrix with 2 rows and 5 columns.</p>
+
+<p>Another way is to bind columns or rows using <code>cbind()</code> and <code>rbind()</code>.</p>
+
+<pre><code class="r">x &lt;- 1:3
+y &lt;- 10:12
+cbind(x, y)
+rbind(x, y)
+</code></pre>
+
+<p>You can also use the byrow argument to specify how the matrix is filled. From R&#39;s own documentation:</p>
+
+<pre><code class="r">mdat &lt;- matrix(c(1, 2, 3, 11, 12, 13), nrow = 2, ncol = 3, byrow = TRUE, dimnames = list(c(&quot;row1&quot;, 
+    &quot;row2&quot;), c(&quot;C.1&quot;, &quot;C.2&quot;, &quot;C.3&quot;)))
+mdat
+</code></pre>
+
+<h3>List</h3>
+
+<p>In R lists act as containers. Unlike atomic vectors, the contents of a list are not restricted to a single mode and can encompass any mixture of data types. Lists are sometimes called recursive vectors, because a list can contain other lists. This makes them fundamentally different from atomic vectors.</p>
+
+<p>A list is a special type of vector. Each element can be a different type.</p>
+
+<p>Create lists using <code>list()</code> or coerce other objects using <code>as.list()</code></p>
+
+<pre><code class="r">x &lt;- list(1, &quot;a&quot;, TRUE, 1 + (0+4i))
+x
+
+x &lt;- 1:10
+x &lt;- as.list(x)
+length(x)
+</code></pre>
+
+<ol>
+<li>What is the class of <code>x[1]</code>?</li>
+<li>How about <code>x[[1]]</code>?</li>
+</ol>
+
+<pre><code class="r">xlist &lt;- list(a = &quot;Karthik Ram&quot;, b = 1:10, data = head(iris))
+xlist
+</code></pre>
+
+<ol>
+<li>What is the length of this object? What about its structure?</li>
+</ol>
+
+<p>Lists can be extremely useful inside functions. You can “staple” together lots of different kinds of results into a single object that a function can return.</p>
+
+<p>A list does not print to the console like a vector. Instead, each element of the list starts on a new line.</p>
+
+<p>Elements are indexed by double brackets. Single brackets will still return a(nother) list.</p>
+
+<h3>Factors</h3>
+
+<p>Factors are special vectors that represent categorical data. Factors can be ordered or unordered and are important for modelling functions such as <code>lm()</code> and <code>glm()</code> and also in <code>plot</code> methods.</p>
+
+<p>Factors can only contain pre-defined values.</p>
+
+<p>Factors are pretty much integers that have labels on them. While factors look (and often behave) like character vectors, they are actually integers under the hood, and you need to be careful when treating them like strings. Some string methods will coerce factors to strings, while others will throw an error.</p>
+
+<p>Sometimes factors can be left unordered. Example: male, female.</p>
+
+<p>Other times you might want factors to be ordered (or ranked). Example: low, medium, high.</p>
+
+<p>Underlying it&#39;s represented by numbers 1, 2, 3.</p>
+
+<p>They are better than using simple integer labels because factors are what are called self describing. male and female is more descriptive than 1s and 2s. Helpful when there is no additional metadata.</p>
+
+<p>Which is male? 1 or 2? You wouldn&#39;t be able to tell with just integer data. Factors have this information built in.</p>
+
+<p>Factors can be created with <code>factor()</code>. Input is generally a character vector.</p>
+
+<pre><code class="r">x &lt;- factor(c(&quot;yes&quot;, &quot;no&quot;, &quot;no&quot;, &quot;yes&quot;, &quot;yes&quot;))
+x
+</code></pre>
+
+<p><code>table(x)</code> will return a frequency table.</p>
+
+<p>If you need to convert a factor to a character vector, simply use</p>
+
+<pre><code class="r">as.character(x)
+</code></pre>
+
+<p>In modeling functions, it is important to know what the baseline level is. This is the first factor but by default the ordering is determined by alphabetical order of words entered. You can change this by speciying the levels (another option is to use the function relevel).</p>
+
+<pre><code class="r">x &lt;- factor(c(&quot;yes&quot;, &quot;no&quot;, &quot;yes&quot;), levels = c(&quot;yes&quot;, &quot;no&quot;))
+x
+</code></pre>
+
+<h3>Data frame</h3>
+
+<p>A data frame is a very important data type in R. It&#39;s pretty much the de facto data structure for most tabular data and what we use for statistics.</p>
+
+<p>Data frames can have additional attributes such as <code>rownames()</code>, which can be useful for annotating data, like subject_id or sample_id. But most of the time they are not used.</p>
+
+<p>Some additional information on data frames:</p>
+
+<ul>
+<li>Usually created by <code>read.csv()</code> and <code>read.table()</code>.</li>
+<li>Can convert to matrix with <code>data.matrix()</code></li>
+<li>Coercion will be forced and not always what you expect.</li>
+<li>Can also create with <code>data.frame()</code> function.</li>
+<li>Find the number of rows and columns with <code>nrow(dat)</code> and <code>ncol(dat)</code>, respectively.</li>
+<li>Rownames are usually 1..n.</li>
+</ul>
+
+<h2><strong>Combining data frames</strong></h2>
+
+<pre><code class="r">dat &lt;- data.frame(id = letters[1:10], x = 1:10, y = 11:20)
+dat
+</code></pre>
+
+<h3><strong>Useful functions</strong></h3>
+
+<ul>
+<li><code>head()</code> - see first 6 rows</li>
+<li><code>tail()</code> - see last 6 rows</li>
+<li><code>dim()</code> - see dimensions</li>
+<li><code>nrow()</code> - number of rows</li>
+<li><code>ncol()</code> - number of columns</li>
+<li><code>str()</code> - structure of each column</li>
+<li><code>names()</code> - will list the names attribute for a data frame (or any object really), which gives the column names.</li>
+<li>A data frame is a special type of list where every element of the list has same length.</li>
+</ul>
+
+<p>See that it is actually a special list:</p>
+
+<pre><code class="r">is.list(iris)
+class(iris)
+</code></pre>
+
+<table><thead>
+<tr>
+<th>Dimensions</th>
+<th>Homogenous</th>
+<th>Heterogeneous</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1-D</td>
+<td>atomic vector</td>
+<td>list</td>
+</tr>
+<tr>
+<td>2_D</td>
+<td>matrix</td>
+<td>data frame</td>
+</tr>
+</tbody></table>
+
+<h3><strong>Indexing</strong></h3>
+
+<p>Vectors have positions, these positions are ordered and can be called using name_vector[index]</p>
+
+<pre><code class="r">letters[2]
+</code></pre>
+
+<h3><strong>Functions</strong></h3>
+
+<p>A function is a saved object that takes inputs to perform a task. 
+Functions take in information and return desired outputs.</p>
+
+<p>output = name_of_function(inputs)</p>
+
+<pre><code class="r">x &lt;- 1:10
+y &lt;- sum(x)
+</code></pre>
+
+<h3><strong>Help</strong></h3>
+
+<p>All functions come with a help screen. 
+It is critical that you learn to read the help screens since they provide important information on what the function does, 
+how it works, and usually sample examples at the very bottom.</p>
+
+<h3><strong>Install new functions</strong></h3>
+
+<p>To install any new package <code>install.packages(&#39;ggplot2&#39;)</code></p>
+
+<p>You can&#39;t ever learn all of R, but you can learn how to build a program and how to find help
+to do the things that you want to do. Let&#39;s get hands-on.</p>
+
+</body>
+
+</html>
+
