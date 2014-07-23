@@ -80,6 +80,6 @@ FAQ
 
 *   *Where can I get help?*
     <br/>
-    Mail us at [board@software-carpentry.org](mailto:board@software-carpentry.org),
+    Mail us at [board@datacarpentry.org](mailto:board@datacarpentry.org),
     come chat with us on [our IRC channel](irc://moznet/sciencelab),
     
