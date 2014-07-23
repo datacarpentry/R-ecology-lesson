@@ -32,7 +32,8 @@ Working With GitHub
 
 4.  Make your changes, commit them, and push them to your repository on GitHub.
 
-5.  Send a pull request to the `master` branch of `[datacarpentry/datacarpentry](http://github.com/datacarpentry/datacarpentry)`.
+5.  Send a pull request to the `master` branch of the main datacarpentry 
+    repository at http://github.com/datacarpentry/datacarpentry.
 
 If it is easier for you to send them to us some other way,
 please mail us at
