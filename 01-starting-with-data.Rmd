@@ -1,4 +1,5 @@
 ```{r, echo=FALSE}
+library(knitr)
 opts_chunk$set(results='hide')
 ```
 # Analyzing Survey Data

@@ -1,7 +1,8 @@
 ```{r, echo=FALSE}
+library(knitr)
 opts_chunk$set(results='hide')
 ```
-# Data Carpentry R materials - 
+Data Carpentry R materials
 --------------------------------------------------
 
 * Its really important that you know what you did. More journals/grants/etc. are also making it important for them to know what you did.
@@ -78,7 +79,7 @@ print("hello world")
 
 "hello world"
 
-```{r}
+```
 Print out hello world
 print("hello world")
 ```
