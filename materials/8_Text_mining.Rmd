@@ -1,0 +1,188 @@
+Text mining
+========================================================
+There is a lot to text mining, and we will only cover some basics.  It can be computationally very intensive, and sources require a reasonable amount of munging to be wrangled into a usable state.  So we'll start simple with how to create a corpus of text, and do some interesting vizualizations.
+
+The first task is creating a corpus.  This can be done any number of ways, but we'll load up a directory with 20 files that are full text PLOS articles.  You can also see the other valid sources with `getSources()`.  Another common method is `VectorSource()` which accepts a vector of text.  Multple readers can also be used, the default is plain text in `tm`, but you can see the supported readers with: `getReaders()`
+
+```{r Setup,  warning=FALSE, message=FALSE}
+library(tm)
+library(wordcloud)
+library(ggplot2)
+library(SnowballC)
+library(Rgraphviz)
+
+# Create a corpus of words
+fpath <- "/Users/thart/scratch/datacarpentry/data/tm/plos/"
+plos_corpus <- Corpus(DirSource(fpath))
+
+
+```
+
+Now that we've loaded the corpus we will inspect it, and begin the process of cleaning the text for analysis. `summary()` will give us the number of documents and metadata if there was any embedded in your files (this probably isn't the case unless you're parsing XML documents).
+
+Next you'll want to transform and modify the document corpus.  This mostly consists of trying get rid of all the potential variations in words, e.g. we don't want to count "Ecology" and "ecology" as different words.  We also don't want to count punctation, white space, or numbers.  Finally, we want to remove what are known as stop words.  These are common words like "the", "and", etc... that will overwhelm the analysis, but provide no real insight into most questions.  You can also add your own stop words too, which is something that can be common among our 20 ecology papers, but maybe not interesting to us.  The last operation you can do is called "stemming".  This will try and normalize words by removing "es", and "ly" from words.  The last thing we'll do is actually remove the stems, and then complete the words by "restemming" them, so they become normalized (e.g. all variations on 'ecology' will become 'ecolog', we want to stem them, then make them 'ecology' again).  
+
+```{r clean text, warning=FALSE, message=FALSE}
+
+## Get summary
+summary(plos_corpus)
+
+## inspect a specific document, given these are full text I won't execute this command
+#inspect(plos_corpus[1])
+
+
+# Here we'll lowercase everything, strip punctionation, and remove stop words
+
+plos_corpus <- tm_map(plos_corpus, tolower)
+plos_corpus <- tm_map(plos_corpus, removePunctuation)
+plos_corpus <- tm_map(plos_corpus, removeNumbers)
+plos_corpus <- tm_map(plos_corpus, stripWhitespace)
+
+
+### Create stopwords list and strip them out, see below to learn where I found my stopwords.
+myStopwords <- c(stopwords('english'), "available", "via","within","article","also","can","type","unit","table","generally","use","similar", "one", "may","using","study","oikos","far","articles","dealing")
+plos_corpus <- tm_map(plos_corpus, removeWords, myStopwords)
+
+# stem words, but then go back and complete the stem so they make sense,  I've commented this out so the analysis makes sense
+#dictCorpus <- plos_corpus
+#plos_corpus <- tm_map(plos_corpus, stemDocument)
+## This can take a long time so I've commented it out 
+# plos_corpus <- tm_map(plos_corpus, stemCompletion, dictionary = dictCorpus)
+
+```
+
+
+The next task to be able to analyze a corpus of text is to create either a matrix of documents by terms, or it's transpose.  This is called a `TermDocumentMatrix` or a `DocumentTermMatrix`.  There are many parameters that you can use to control this matrix, but a common one is excluding random characters which can sometimes be in the document from stripping out numbers and punctuation. We can begin some basic exploration by looking at frequently used words with `findFreqTerms()`.
+This also helps you find stop words.  In this example we can see that really common words are ones like "within", and we may consider going back up and reprocessing the corpus and adding in these to our stopwords.  Also it's worth noting that the stemming has truncated many words.  We can fix this by either restemming above, or by simply skipping the stemming step.  Another operation we can do is to remove the sparse terms, of which there are many, to make our matrix easier to work with.  Now we have a clean matrix to work with
+
+
+```{r creating matrices}
+plos_tdm <- TermDocumentMatrix(plos_corpus, control = list(minWordLength = 3))
+print(plos_tdm)
+
+## Find frequent terms
+findFreqTerms(plos_tdmS, lowfreq=70)
+
+## Explore the distribution of terms
+termFreq <- rowSums(as.matrix(plos_tdm))
+## Order the frequencies
+tail(termFreq[order(termFreq)])
+
+## Remove sparse terms
+
+plos_tdmS <- removeSparseTerms(plos_tdm,.9)
+print(plos_tdmS)
+
+## Find associations
+
+findAssocs(plos_tdmS,"ecology",corlimit=.95)
+
+plot(plos_tdm,term=findFreqTerms(plos_tdm,lowfreq=90)[1:20],corThreshold=.6)
+
+```
+
+
+
+### Next we create out term document matrix
+plos_tdm <- TermDocumentMatrix(plos_corpus, control = list(minWordLength = 2))
+
+### We can now do fun things
+## Check and see what frequent terms were found
+findFreqTerms(plos_tdm, lowfreq=30)
+
+
+
+### Find associations
+findAssocs(plos_tdm, 'data', 0.75)
+
+### Now let's try and make a word cloud!
+# convert
+m <- as.matrix(plos_tdm)
+
+v <- sort(rowSums(m), decreasing=TRUE)
+myNames <- names(v)
+d <- data.frame(word=myNames, freq=v)
+pal <- colorRampPalette(c("red","blue"))(10)
+wordcloud(d$word, d$freq, min.freq=10,colors=pal,random.order=FALSE)
+
+```
+
+Text can be pulled from other sources as well, let's try it with pubmed abstracts
+
+```{r pubmed mining, warning=FALSE, message=FALSE}
+pmids <- entrez_search(db="pubmed",term=c("daphnia"), mindate=2010, maxdate=2012, retmax=200)$ids
+
+out <-fetch_in_chunks(pmids)
+
+### This object structure is admittedly byzantine, but this works to get all the abstracts out
+
+abs_vec <- vector()
+for(i in 1:length(out)){
+abs_vec <- c(abs_vec,out[[i]]$MedlineCitation$Article$Abstract$AbstractText[1])}
+
+# Create a corpus of words
+pubmed_corpus <- Corpus(VectorSource(abs_vec))
+
+# Here we'll lowercase everything, strip punctionation, and remove stop words
+
+pubmed_corpus <- tm_map(pubmed_corpus, tolower)
+pubmed_corpus <- tm_map(pubmed_corpus, removePunctuation)
+pubmed_corpus <- tm_map(pubmed_corpus, removeNumbers)
+
+### Create stopwords list and strip them out
+myStopwords <- c(stopwords('english'),"within","nonprocessed")
+pubmed_corpus <- tm_map(pubmed_corpus, removeWords, myStopwords)
+
+
+### Stem the words  ### This can take a long time, and maybe you don't want to do it
+dictCorpus <- pubmed_corpus
+pubmed_corpus <- tm_map(pubmed_corpus, stemDocument)
+pubmed_corpus <- tm_map(pubmed_corpus, stemCompletion, dictionary=dictCorpus)
+
+pubmed_tdm <- TermDocumentMatrix(pubmed_corpus, control = list(minWordLength = 3))
+
+### Do this to remove sparse terms
+
+#pubmed_tdm <- removeSparseTerms(pubmed_tdm, 0.4)
+
+
+m <- as.matrix(pubmed_tdm)
+
+v <- sort(rowSums(m), decreasing=TRUE)
+myNames <- names(v)
+d <- data.frame(word=myNames, freq=v)
+pal <- colorRampPalette(c("red","blue"))(10)
+wordcloud(d$word, d$freq, scale=c(2.5,.1) , min.freq=1,colors=pal,random.order=FALSE)
+
+
+```
+
+
+We can also build on our corpus with a plot that will look like a microarray. This will allow us to visualize associations between words and documents
+
+```{r microarray , warning=FALSE, message=FALSE}
+### Create a dense matrix and melt it
+pubmed_dense <- as.matrix(pubmed_tdm)
+### In case document numbers weren't assigned
+colnames(pubmed_dense) <- 1:dim(pubmed_dense)[2]
+
+pubmed_dense = melt(pubmed_dense, value.name = "count")
+
+### The resulting plot will be unreadable so let's trim some terms out.
+## Trim out terms that are mentioned less than 10 times
+
+highF_words <- findFreqTerms(pubmed_tdm, lowfreq=70)
+
+pubmed_dense <- pubmed_dense[pubmed_dense$Terms %in% highF_words,]
+
+pubmed_dense <- pubmed_dense[pubmed_dense$Docs %in% 1:50,]
+
+ggplot(pubmed_dense, aes(x = Docs, y = Terms, fill = log10(value))) +
+     geom_tile(colour = "white") +
+     scale_fill_gradient(high="#FF0000" , low="#FFFFFF")+
+     ylab("") +
+     theme(panel.background = element_blank()) +
+     theme(axis.text.x = element_blank(), axis.ticks.x = element_blank())
+
+```
+
