@@ -14,6 +14,8 @@ Excel data is from the paper Bahlai, C.A., Schaafsma, A.W., Lagos, D., Voegtlin,
 
 http://onlinelibrary.wiley.com/doi/10.1111/afe.12051/full
 
+Master_suction_trap_data_list_uncleaned.csv is a pre-cleaning version of a publically available dataset by David Voegtlin, Doris Lagos, Douglas Landis and Christie Bahlai, available at http://lter.kbs.msu.edu/datatables/122
+
 ## Lessons
 
 ### shell
@@ -26,6 +28,6 @@ John Blischak led the continued development of materials with contributions
 from Gavin Simpson, Tracy Teal, Greg Wilson, Diego Barneche, Stephen Turner and Karthik Ram. 
 
 ### Spreadsheet Best Practices
-Original materials adapted from [Practical Data Management for Bug Counters](http://practicaldatamanagement.wordpress.com/) by Christie Bahlai
+Original materials adapted from [Practical Data Management for Bug Counters](http://practicaldatamanagement.wordpress.com/) by Christie Bahlai <br>
 Christie Bahlai and Aleksandra Pawlik led the continued development of materials with contributions
 from Jennifer Bryan, Alexander Duryee, Jeffrey Hollister,  Daisie Huang, Owen Jones, and Ben Marwick
