@@ -87,7 +87,7 @@
 # Getting the data ready for analysis
 
 # The 'plot' value says its an integer rather than a factor. Change it to a factor with
-# dat$plot <- as.factor(dat$plot)
+dat$plot <- as.factor(dat$plot)
 
 # Look at the structure of the data. Is it right now?
 
@@ -109,12 +109,63 @@
 # Get all the information for another column. If you don't remember column names, you 
 # can look at the file in RStudio or do colnames(dat) or str(dat)
 
-# Get the names of all the plots
+# Get the unique names of all the plots using unique()
+
+# Get how many animals were captured in one plot using table()
+
 
 # Exercise 7
 # Calculating statistics
 
-# Get rid of the NAs
+# Get rid of the NAs using 'complete.cases'
+# Don't worry about the function itself, we'll just use it here, but it's awesome
+dat2 <- dat[complete.cases(dat$wgt),]
+
+# Now we can do statistics on the data. There are other ways of dealing with missing data 
+# in R, but we're not going to cover it here.
+
+# Calculate the mean weight of all the animals we captured
+
+# Also calculate the median, standard deviation, minimum and maximum weight. For bonus 
+# points calculate the standard error
+
+
+# Exercise 8
+# Statistics on subsets of data
+
+# Get all the "DM" species
+
+# How many of them are there?
+
+# Calculate the mean and standar deviation of just the DM species
+
+
+# Exercise 9
+# Operations across axes
+
+# The format is
+# tapply(data_you_want_to_calculate, factor_to_sort_on, function)
+# tapply(dat2$wgt, dat2$species, mean)
+# Now we can put all the means into a variable
+
+# species_means <- tapply(dat2$wgt, dat2$species, mean)
+
+# Find the maximum and minimum values for weight for each species
+# Save these values to a varible.
+# What is the length of your new variable?
+
+# Put all the data in to one table. In R it's called a data.frame
+# d.summary = data.frame(species_means, species_min, species_max)
+
+# Using aggregate, create a data frame with the standard deviation of weight for each species
+
+# Exercise 10
+# Plotting
+
+# Create a plot showing the standard deviation of the species data
+
+
+
 
 
 
