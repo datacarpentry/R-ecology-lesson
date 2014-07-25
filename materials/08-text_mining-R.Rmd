@@ -1,0 +1,134 @@
+Text mining
+========================================================
+There is a lot to text mining, and we will only cover some basics.  It can be computationally very intensive, and sources require a reasonable amount of munging to be wrangled into a usable state.  So we'll start simple with how to create a corpus of text, and do some interesting vizualizations.
+
+The first task is creating a corpus.  This can be done any number of ways, but we'll load up a directory with 20 files that are full text PLOS articles.  You can also see the other valid sources with `getSources()`.  Another common method is `VectorSource()` which accepts a vector of text.  Multple readers can also be used, the default is plain text in `tm`, but you can see the supported readers with: `getReaders()`
+
+```{r Setup,  warning=FALSE, message=FALSE}
+library(tm)
+library(wordcloud)
+library(ggplot2)
+library(SnowballC)
+library(Rgraphviz)
+library(reshape2)
+
+# Create a corpus of words
+fpath <- "/Users/THART/scratch/datacarpentry/data/tm/plos/"
+plos_corpus <- Corpus(DirSource(fpath))
+
+
+```
+
+Now that we've loaded the corpus we will inspect it, and begin the process of cleaning the text for analysis. `summary()` will give us the number of documents and metadata if there was any embedded in your files (this probably isn't the case unless you're parsing XML documents).
+
+Next you'll want to transform and modify the document corpus.  This mostly consists of trying get rid of all the potential variations in words, e.g. we don't want to count "Ecology" and "ecology" as different words.  We also don't want to count punctation, white space, or numbers.  Finally, we want to remove what are known as stop words.  These are common words like "the", "and", etc... that will overwhelm the analysis, but provide no real insight into most questions.  You can also add your own stop words too, which is something that can be common among our 20 ecology papers, but maybe not interesting to us. 
+
+```{r clean text, warning=FALSE, message=FALSE}
+
+## Get summary
+summary(plos_corpus)
+
+## inspect a specific document, given these are full text I won't execute this command
+#inspect(plos_corpus[1])
+
+
+# Here we'll lowercase everything, strip punctionation, and remove stop words
+
+plos_corpus <- tm_map(plos_corpus, content_transformer(tolower))
+plos_corpus <- tm_map(plos_corpus, removePunctuation)
+plos_corpus <- tm_map(plos_corpus, removeNumbers)
+plos_corpus <- tm_map(plos_corpus, stripWhitespace)
+
+
+### Create stopwords list and strip them out, see below to learn where I found my stopwords.
+
+myStopwords <- c(stopwords('english'), "available", "via","within","article","also","can","type","unit","table","generally","use","similar", "one", "may","using","study","oikos","far","articles","dealing","journals","published","fields")
+plos_corpus <- tm_map(plos_corpus, removeWords, myStopwords)
+
+```
+
+
+The next task to be able to analyze a corpus of text is to create either a matrix of documents by terms, or it's transpose.  This is called a `TermDocumentMatrix` or a `DocumentTermMatrix`.  There are many parameters that you can use to control this matrix, but a common one is excluding random characters which can sometimes be in the document from stripping out numbers and punctuation. We can begin some basic exploration by looking at frequently used words with `findFreqTerms()`.
+This also helps you find stop words.  In this example we can see that really common words are ones like "within", and we may consider going back up and reprocessing the corpus and adding in these to our stopwords.  Also it's worth noting that the stemming has truncated many words.  We can fix this by either restemming above, or by simply skipping the stemming step.  Another operation we can do is to remove the sparse terms, of which there are many, to make our matrix easier to work with.  This insures that the terms you have are frequent across many documents.  Otherwise a single document could drive word count.
+
+
+
+
+```{r creating matrices}
+plos_tdm <- TermDocumentMatrix(plos_corpus, control = list(minWordLength = 3))
+print(plos_tdm)
+
+## Find frequent terms
+findFreqTerms(plos_tdm, lowfreq=70)
+
+## Explore the distribution of terms
+termFreq <- rowSums(as.matrix(plos_tdm))
+## Order the frequencies
+tail(termFreq[order(termFreq)])
+
+## Remove sparse terms
+## See how many fewer terms there are when sparse ones are removed
+plos_tdmS <- removeSparseTerms(plos_tdm,.9)
+print(plos_tdmS)
+
+## Find associations
+
+findAssocs(plos_tdm,"ecology",corlimit=.95)
+
+```
+
+
+## Vizualizations
+
+Now there are a number of ways to vizualize this data.  They all work similarly to represent freqently used words and their correlations with each other.  The first plot we'll show is a network diagagram.  This plot will show the relationsipsh between the first 20 words that appear at least 90 times.  Lines will be drawn between any words that appear together at least 70% of the time.
+
+```{r network plots}
+
+plot(plos_tdm,term=findFreqTerms(plos_tdm,lowfreq=90)[1:20],corThreshold=.7)
+
+
+```
+
+Another common plot is a word cloud.  This will show a cloud of words where their size is proportional to their frequency in the corpus.  All we need are two aligned vectors that contain the list of words and their frequency.  There are a number of options for creating word clouds such as setting a minimum frequency or a maximum number of words.
+
+```{r word clouds}
+
+termFreq <- rowSums(as.matrix(plos_tdm))
+
+pal <- colorRampPalette(c("red","blue"))(10)
+wordcloud(names(termFreq), termFreq, min.freq=10,colors=pal,random.order=TRUE, max.words=100)
+
+
+```
+
+Our last visualization is a plot that will look like a microarray. This will allow us to visualize associations between words and documents, where the color intensity in the log of the frequency count. 
+
+First we'll create a matrix out of the term document matrix.  Next we'll melt the matrix and get a dataframe with terms, and then the count of the term in each document. Next we'll subset the dataframe by trimming out low freqency words. If your matrix is too big the plot will be unreadable. Lot's of colors horizontally show a term that is common across many documents.  
+
+```{r microarray , warning=FALSE, message=FALSE}
+### Create a dense matrix and melt it
+plos_dense <- as.matrix(plos_tdm)
+### In case document numbers weren't assigned
+colnames(plos_dense) <- 1:dim(plos_dense)[2]
+
+plos_dense = melt(plos_dense, value.name = "count")
+
+### The resulting plot will be unreadable so let's trim some terms out.
+## Trim out terms that are mentioned less than 10 times
+
+highF_words <- findFreqTerms(plos_tdm, lowfreq=70)
+
+plos_dense <- plos_dense[plos_dense$Terms %in% highF_words,]
+
+## Use this if you have many documents
+#plos_dense <- plos_dense[plos_dense$Docs %in% 1:50,]
+
+ggplot(plos_dense, aes(x = Docs, y = Terms, fill = log10(count))) +
+     geom_tile(colour = "white") +
+     scale_fill_gradient(high="#FF0000" , low="#FFFFFF")+
+     ylab("") +
+     theme(panel.background = element_blank()) +
+     theme(axis.text.x = element_blank(), axis.ticks.x = element_blank())
+
+```
+
