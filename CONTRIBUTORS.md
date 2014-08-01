@@ -20,6 +20,10 @@ Master_suction_trap_data_list_uncleaned.csv is a pre-cleaning version of a publi
 
 ### shell
 
+Original materials adapted from Software Carpentry shell lessons by Greg Wilson
+with contributions from Ethan White, Jens vdL, Raniere Silva, Meg Stanton, Amy
+Brown and Doug Latornell.
+
 ### SQL
 
 Original materials adapted from Software Carpentry SQL lessons for ecologists by
