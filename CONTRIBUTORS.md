@@ -22,6 +22,9 @@ Master_suction_trap_data_list_uncleaned.csv is a pre-cleaning version of a publi
 
 ### SQL
 
+Original materials adapted from Software Carpentry SQL lessons for ecologists by
+Ethan White, which were adapted from Greg Wilson's original SQL lessons.
+
 ### R materials
 Original materials adapted from SWC Python lessons by Sarah Supp.
 John Blischak led the continued development of materials with contributions
