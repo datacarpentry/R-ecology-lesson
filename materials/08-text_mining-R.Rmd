@@ -13,7 +13,7 @@ library(Rgraphviz)
 library(reshape2)
 
 # Create a corpus of words
-fpath <- "/Users/THART/scratch/datacarpentry/data/tm/plos/"
+fpath <- "/Users/THART/scratch/datacarpentry/data/text_mining/plos/"
 plos_corpus <- Corpus(DirSource(fpath))
 
 
