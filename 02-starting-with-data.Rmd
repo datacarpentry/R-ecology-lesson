@@ -33,9 +33,8 @@ We want to:
 
 We are studying the species and weight of animals caught in plots in our study
 area.  The dataset is stored as a `.csv` file: each row holds information for a
-single animal, and the columns represent `survey_id` (represented as global
-unique identifier, GUID), `month`, `day`, `year`, `plot` (represented as a
-GUID), `species` (a 2 letter code, see the `species.csv` file for
+single animal, and the columns represent `survey_id` , `month`, `day`, `year`,
+`plot`, `species` (a 2 letter code, see the `species.csv` file for
 correspondance), `sex` ("M" for males and "F" for females), `wgt` (the weight in
 grams).
 
