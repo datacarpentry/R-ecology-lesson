@@ -1,15 +1,11 @@
-Contributing New Material
-=========================
+# Contributing New Material
 
-Data Carpentry is an open source project,
-and we welcome contributions of all kinds:
-new and improved lessons,
-bug reports,
-and small fixes to existing material are all useful.
+Data Carpentry is an open source project, and we welcome contributions of all
+kinds: new and improved lessons, bug reports, and small fixes to existing
+material are all useful.
 
-By contributing,
-you are agreeing that Data Carpentry may redistribute your work under
-[these licenses](LICENSE.md).
+By contributing, you are agreeing that Data Carpentry may redistribute your work
+under [these licenses](LICENSE.md).
 
 
 **Table of Contents**
@@ -18,8 +14,8 @@ you are agreeing that Data Carpentry may redistribute your work under
 *   [Locations and Formats](#locations-and-formats)
 *   [FAQ](#faq)
 
-Working With GitHub
--------------------
+
+## Working With GitHub
 
 1.  Fork the `datacarpentry/datacarpentry` repository on GitHub.
 
@@ -42,42 +38,28 @@ Given a choice between you creating content or wrestling with Git,
 we'd rather have you doing the former.
 
 
-Locations and Formats
----------------------
+## Locations and Formats
 
-Every lesson has a sub-directory of its own,
-while individual topics are files in that directory.
-For example,
-the `lessons/shell` directory holding our introduction to the shell
-contains the files
-`00-intro.md`,
-`01-filedir.md`
-and so on.
-(We use two digits followed by a one-word topic key
-to ensure files appear in the right order when listed.)
+Every lesson has a sub-directory of its own, while individual topics are files
+in that directory.  For example, the `lessons/shell` directory holding our
+introduction to the shell contains the files `00-intro.md`, `01-filedir.md` and
+so on.  (We use two digits followed by a one-word topic key to ensure files
+appear in the right order when listed.)
 
-Lessons may be written in Markdown,
-as IPython Notebooks,
-or in other formats.
-However,
-as explained in [the README file](README.md),
-Jekyll (the tool GitHub uses to create websites)
-only knows how to handle Markdown and HTML.
-if some other format is used,
-the author of the lesson must
-add the generated Markdown to the repository.
-This ensures that people who *aren't* familiar with some format
-don't have to install the tools needed to work with it
-(e.g.,
-R programmers don't have to install the IPython Notebook).
+Lessons may be written in Markdown, as IPython Notebooks, or in other formats.
+However, as explained in [the README file](README.md), Jekyll (the tool GitHub
+uses to create websites) only knows how to handle Markdown and HTML.  if some
+other format is used, the author of the lesson must add the generated Markdown
+to the repository.  This ensures that people who *aren't* familiar with some
+format don't have to install the tools needed to work with it (e.g., R
+programmers don't have to install the IPython Notebook).
 
-> If a lesson is in a format we don't already handle,
-> the author must also add something to the Makefile
-> to re-create the Markdown from the source.
-> Please check with us if you plan to do this.
+> If a lesson is in a format we don't already handle, the author must also add
+> something to the Makefile to re-create the Markdown from the source.  Please
+> check with us if you plan to do this.
 
 
-# Formatting of the material
+## Formatting of the material
 
 To ensure a consistent formatting of the lessons, we recommend the following
 guidelines:
@@ -85,8 +67,7 @@ guidelines:
 * Wrap lines at 80 characters (unless it breaks URLs)
 * Use unclosed atx style headers (see below)
 
-FAQ
----
+## FAQ
 
 *   *Where can I get help?*
     <br/>
