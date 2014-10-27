@@ -14,7 +14,7 @@ you are agreeing that Data Carpentry may redistribute your work under
 
 **Table of Contents**
 
-*   [Working With GitHub](#working-with-github)  
+*   [Working With GitHub](#working-with-github)
 *   [Locations and Formats](#locations-and-formats)
 *   [FAQ](#faq)
 
@@ -32,7 +32,7 @@ Working With GitHub
 
 4.  Make your changes, commit them, and push them to your repository on GitHub.
 
-5.  Send a pull request to the `master` branch of the main datacarpentry 
+5.  Send a pull request to the `master` branch of the main datacarpentry
     repository at http://github.com/datacarpentry/datacarpentry.
 
 If it is easier for you to send them to us some other way,
@@ -76,6 +76,15 @@ R programmers don't have to install the IPython Notebook).
 > to re-create the Markdown from the source.
 > Please check with us if you plan to do this.
 
+
+# Formatting of the material
+
+To ensure a consistent formatting of the lessons, we recommend the following
+guidelines:
+* No trailing white space
+* Wrap lines at 80 characters (unless it breaks URLs)
+* Use unclosed atx style headers (see below)
+
 FAQ
 ---
 
@@ -83,4 +92,3 @@ FAQ
     <br/>
     Mail us at [board@datacarpentry.org](mailto:board@datacarpentry.org),
     come chat with us on [our IRC channel](irc://moznet/sciencelab),
-    
