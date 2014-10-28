@@ -1,6 +1,5 @@
 ```{r, echo=FALSE, purl=FALSE}
-library(knitr)
-opts_chunk$set(results='hide')
+knitr::opts_chunk$set(results='hide', fig.path='img/r-lesson-')
 ```
 
 # Data Carpentry R materials - Plotting
