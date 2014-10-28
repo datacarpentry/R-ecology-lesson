@@ -1,0 +1,214 @@
+```{r, echo=FALSE, purl=FALSE}
+library(knitr)
+opts_chunk$set(results='hide')
+```
+
+# Data Carpentry R materials - Manipulating data
+
+--------------------------------------------------
+
+# Objectives
+
+* being able to subset for a level
+* being able to extract particular values from a `data.frame`
+* being able to add/remove columns and rows
+
+--------------------------------------------------
+
+# Subsetting data
+
+```{r, echo=FALSE, purl=TRUE}
+## subsetting data
+```
+
+In particular for larger datasets, it can be tricky to remember the column
+number that corresponds to a particular variable. (Are species names in column 5
+or 7? oh, right... they are in column 6). In some cases, in which column the
+variable will be can change if the script you are using adds or removes
+columns. It's therefore often better to use column names to refer to a
+particular variable, and it makes your code easier to read and your intentions
+clearer.
+
+You can do operations on a particular column, by selecting it using the `$`
+sign. In this case, the entire column is a vector. For instance, to extract all
+the weights from our datasets, we can use: `surveys$wgt`. You can use
+`names(surveys)` or `colnames(surveys)` to remind yourself of the column names.
+
+In some cases, you may way to select more than one column. You can do this using
+the square brackets: `surveys[, c("wgt", "sex")]`.
+
+When analyzing data, though, we often want to look at partial statistics, such
+as the maximum value of a variable per species or the average value per plot.
+
+One way to do this is to select the data we want, and create a new temporary
+array, using the `subset()` function. For instance, if we just want to look at
+the animals of the species "DO":
+
+```{r, purl=FALSE}
+surveys_DO <- subset(surveys, species == "DO")
+```
+
+### Challenge
+
+1. What does the following do?
+
+  ```{r, echo=FALSE, purl=TRUE}
+  ## What does the following do? (Try to guess without executing it)
+  ## surveys_DO$month[2] <- 8
+  ```
+
+1. Use the function `subset` twice to create a `data.frame` that contains all
+individuals of the species "DM" that were collected in 2002.
+  * How many individuals of the species "DM" were collected in 2002?
+
+  ```{r, echo=FALSE, purl=TRUE}
+  ##  Use the function `subset` twice to create a `data.frame` that
+  ##  contains all individuals of the species "DM" that were collected
+  ##  in 2002.
+  ##   * How many individuals of the species "DM" were collected in 2002?
+  ```
+
+## Adding a column to our dataset
+
+```{r, echo=FALSE, purl=TRUE}
+## Adding columns
+```
+
+Sometimes, you may have to add a new column to your dataset that represents a
+new variable. You can add columns to a `data.frame` using the function `cbind()`
+(__c__olumn __bind__). Beware, the additional column must have the same number
+of elements as there are rows in the `data.frame`.
+
+In our survey dataset, the species are represented by a 2-letter code (e.g.,
+"AB"), however, we would like to include the species name. The correspondance
+between the 2 letter code and the names are in the file `species.csv`. In this
+file, one column includes the genus and another includes the species. First, we
+are going to import this file in memory:
+
+```{r, echo=FALSE, purl=FALSE}
+species <- read.csv("../../data/biology/species.csv")
+```
+
+```{r, eval=FALSE, purl=TRUE}
+species <- read.csv("data/species.csv")
+```
+
+We are then going to use the function `match()` to create a vector that contains
+the genus names for all our observations. The function `match()` takes at least
+2 arguments: the values to be matched (in our case the 2 letter code from the
+`surveys` data frame held in the column `species`), and the table that contains
+the values to be matched against (in our case the 2 letter code in the `species`
+data frame held in the column `species_id`). The function returns the position
+of the matches in the table, and this can be used to retrieve the genus names:
+
+```{r, purl=TRUE}
+surveys_spid_index <- match(surveys$species, species$species_id)
+surveys_genera <- species$genus[surveys_spid_index]
+```
+
+Now that we have our vector of genus names, we can add it as a new column to our
+`surveys` object:
+
+```{r, purl=TRUE}
+surveys <- cbind(surveys, genus=surveys_genera)
+```
+
+### Challenge
+
+Use the same approach to also include the species names in the `surveys` data
+frame.
+
+```{r, echo=FALSE, purl=TRUE}
+## Use the same approach to also include the species names in the
+## `surveys` data frame.
+```
+
+
+```{r, echo=FALSE, purl=FALSE}
+surveys_species <- species$species[surveys_spid_index]
+surveys <- cbind(surveys, species_name=surveys_species)
+```
+
+```{r, results='show'}
+## and check out the result
+head(surveys)
+```
+
+<!--- should we cover merge()? --->
+
+# Adding rows
+
+<!--- Even if this is not optimal, using this approach requires to cover less   -->
+<!--- material such as logical operations on vectors. Depending on how fast the -->
+<!--- group moves, it might be better to show the correct way.                  -->
+
+```{r, echo=FALSE, purl=TRUE}
+## Adding rows
+```
+
+Let's create a `data.frame` that contains the information only for the species
+"DO" and "DM". We know how to create the data set for each species with the
+function `subset()`:
+
+```{r, purl=FALSE}
+surveys_DO <- subset(surveys, species == "DO")
+surveys_DM <- subset(surveys, species == "DM")
+```
+
+Similarly to `cbind()` for columns, there is a function `rbind()` (__r__ow
+__bind__) that puts together two `data.frame`. With `rbind()` the number of
+columns and their names must be identical between the two objects:
+
+```{r, purl=FALSE}
+surveys_DO_DM <- rbind(surveys_DO, surveys_DM)
+```
+
+### Challenge
+
+Using a similar approach, construct a new `data.frame` that only includes data
+for the years 2000 and 2001.
+
+```{r, echo=FALSE, purl=TRUE}
+## How many columns are now in (1) the `data.frame` `surveys`, (2) the `data.frame`
+## `surveys_index`?
+```
+
+# Removing columns
+
+```{r, echo=FALSE, purl=FALSE}
+## Removing columns
+```
+
+Just like you can select columns by their positions in the `data.frame` or by
+their names, you can remove them similarly.
+
+To remove it by column number:
+
+```{r, results='show', purl=FALSE}
+surveys_noDate <- surveys[, -c(2:4)]
+colnames(surveys)
+colnames(surveys_noDate)
+```
+
+The easiest way to remove by name is to use the `subset()` function. This time
+we need to specify explicitly the argument `select` as the default is to subset
+on rows (as above). The minus sign indicates the names of the columns to remove
+(note that the column names should not be quoted):
+
+```{r, results='show', purl=FALSE}
+surveys_noDate2 <- subset(surveys, select=-c(month, day, year))
+colnames(surveys_noDate2)
+```
+
+# Removing rows
+
+```{r, echo=FALSE, purl=FALSE}
+## Removing rows
+```
+
+Typically rows are not associated with names, so to remove them from the
+`data.frame`, you can do:
+
+```{r, results='show', purl=FALSE}
+surveys_missingRows <- surveys[-c(10, 50:70), ] # removing rows 10, and 50 to 70
+```
