@@ -1,8 +1,5 @@
 
 
-library(knitr)
-opts_chunk$set(results='hide')
-
 
 
 ## surveys <- read.csv(file="data/surveys.csv")
