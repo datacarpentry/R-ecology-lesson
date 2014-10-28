@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title>Data Carpentry R materials - Before we start</title>
+
+<script type="text/javascript">
+window.onload = function() {
+  var imgs = document.getElementsByTagName('img'), i, img;
+  for (i = 0; i < imgs.length; i++) {
+    img = imgs[i];
+    // center an image if it is the only element of its parent
+    if (img.parentElement.childElementCount === 1)
+      img.parentElement.style.textAlign = 'center';
+  }
+};
+</script>
+
+<!-- Styles for R syntax highlighter -->
+<style type="text/css">
+   pre .operator,
+   pre .paren {
+     color: rgb(104, 118, 135)
+   }
+
+   pre .literal {
+     color: #990073
+   }
+
+   pre .number {
+     color: #099;
+   }
+
+   pre .comment {
+     color: #998;
+     font-style: italic
+   }
+
+   pre .keyword {
+     color: #900;
+     font-weight: bold
+   }
+
+   pre .identifier {
+     color: rgb(0, 0, 0);
+   }
+
+   pre .string {
+     color: #d14;
+   }
+</style>
+
+<!-- R syntax highlighter -->
+<script type="text/javascript">
+var hljs=new function(){function m(p){return p.replace(/&/gm,"&amp;").replace(/</gm,"&lt;")}function f(r,q,p){return RegExp(q,"m"+(r.cI?"i":"")+(p?"g":""))}function b(r){for(var p=0;p<r.childNodes.length;p++){var q=r.childNodes[p];if(q.nodeName=="CODE"){return q}if(!(q.nodeType==3&&q.nodeValue.match(/\s+/))){break}}}function h(t,s){var p="";for(var r=0;r<t.childNodes.length;r++){if(t.childNodes[r].nodeType==3){var q=t.childNodes[r].nodeValue;if(s){q=q.replace(/\n/g,"")}p+=q}else{if(t.childNodes[r].nodeName=="BR"){p+="\n"}else{p+=h(t.childNodes[r])}}}if(/MSIE [678]/.test(navigator.userAgent)){p=p.replace(/\r/g,"\n")}return p}function a(s){var r=s.className.split(/\s+/);r=r.concat(s.parentNode.className.split(/\s+/));for(var q=0;q<r.length;q++){var p=r[q].replace(/^language-/,"");if(e[p]){return p}}}function c(q){var p=[];(function(s,t){for(var r=0;r<s.childNodes.length;r++){if(s.childNodes[r].nodeType==3){t+=s.childNodes[r].nodeValue.length}else{if(s.childNodes[r].nodeName=="BR"){t+=1}else{if(s.childNodes[r].nodeType==1){p.push({event:"start",offset:t,node:s.childNodes[r]});t=arguments.callee(s.childNodes[r],t);p.push({event:"stop",offset:t,node:s.childNodes[r]})}}}}return t})(q,0);return p}function k(y,w,x){var q=0;var z="";var s=[];function u(){if(y.length&&w.length){if(y[0].offset!=w[0].offset){return(y[0].offset<w[0].offset)?y:w}else{return w[0].event=="start"?y:w}}else{return y.length?y:w}}function t(D){var A="<"+D.nodeName.toLowerCase();for(var B=0;B<D.attributes.length;B++){var C=D.attributes[B];A+=" "+C.nodeName.toLowerCase();if(C.value!==undefined&&C.value!==false&&C.value!==null){A+='="'+m(C.value)+'"'}}return A+">"}while(y.length||w.length){var v=u().splice(0,1)[0];z+=m(x.substr(q,v.offset-q));q=v.offset;if(v.event=="start"){z+=t(v.node);s.push(v.node)}else{if(v.event=="stop"){var p,r=s.length;do{r--;p=s[r];z+=("</"+p.nodeName.toLowerCase()+">")}while(p!=v.node);s.splice(r,1);while(r<s.length){z+=t(s[r]);r++}}}}return z+m(x.substr(q))}function j(){function q(x,y,v){if(x.compiled){return}var u;var s=[];if(x.k){x.lR=f(y,x.l||hljs.IR,true);for(var w in x.k){if(!x.k.hasOwnProperty(w)){continue}if(x.k[w] instanceof Object){u=x.k[w]}else{u=x.k;w="keyword"}for(var r in u){if(!u.hasOwnProperty(r)){continue}x.k[r]=[w,u[r]];s.push(r)}}}if(!v){if(x.bWK){x.b="\\b("+s.join("|")+")\\s"}x.bR=f(y,x.b?x.b:"\\B|\\b");if(!x.e&&!x.eW){x.e="\\B|\\b"}if(x.e){x.eR=f(y,x.e)}}if(x.i){x.iR=f(y,x.i)}if(x.r===undefined){x.r=1}if(!x.c){x.c=[]}x.compiled=true;for(var t=0;t<x.c.length;t++){if(x.c[t]=="self"){x.c[t]=x}q(x.c[t],y,false)}if(x.starts){q(x.starts,y,false)}}for(var p in e){if(!e.hasOwnProperty(p)){continue}q(e[p].dM,e[p],true)}}function d(B,C){if(!j.called){j();j.called=true}function q(r,M){for(var L=0;L<M.c.length;L++){if((M.c[L].bR.exec(r)||[null])[0]==r){return M.c[L]}}}function v(L,r){if(D[L].e&&D[L].eR.test(r)){return 1}if(D[L].eW){var M=v(L-1,r);return M?M+1:0}return 0}function w(r,L){return L.i&&L.iR.test(r)}function K(N,O){var M=[];for(var L=0;L<N.c.length;L++){M.push(N.c[L].b)}var r=D.length-1;do{if(D[r].e){M.push(D[r].e)}r--}while(D[r+1].eW);if(N.i){M.push(N.i)}return f(O,M.join("|"),true)}function p(M,L){var N=D[D.length-1];if(!N.t){N.t=K(N,E)}N.t.lastIndex=L;var r=N.t.exec(M);return r?[M.substr(L,r.index-L),r[0],false]:[M.substr(L),"",true]}function z(N,r){var L=E.cI?r[0].toLowerCase():r[0];var M=N.k[L];if(M&&M instanceof Array){return M}return false}function F(L,P){L=m(L);if(!P.k){return L}var r="";var O=0;P.lR.lastIndex=0;var M=P.lR.exec(L);while(M){r+=L.substr(O,M.index-O);var N=z(P,M);if(N){x+=N[1];r+='<span class="'+N[0]+'">'+M[0]+"</span>"}else{r+=M[0]}O=P.lR.lastIndex;M=P.lR.exec(L)}return r+L.substr(O,L.length-O)}function J(L,M){if(M.sL&&e[M.sL]){var r=d(M.sL,L);x+=r.keyword_count;return r.value}else{return F(L,M)}}function I(M,r){var L=M.cN?'<span class="'+M.cN+'">':"";if(M.rB){y+=L;M.buffer=""}else{if(M.eB){y+=m(r)+L;M.buffer=""}else{y+=L;M.buffer=r}}D.push(M);A+=M.r}function G(N,M,Q){var R=D[D.length-1];if(Q){y+=J(R.buffer+N,R);return false}var P=q(M,R);if(P){y+=J(R.buffer+N,R);I(P,M);return P.rB}var L=v(D.length-1,M);if(L){var O=R.cN?"</span>":"";if(R.rE){y+=J(R.buffer+N,R)+O}else{if(R.eE){y+=J(R.buffer+N,R)+O+m(M)}else{y+=J(R.buffer+N+M,R)+O}}while(L>1){O=D[D.length-2].cN?"</span>":"";y+=O;L--;D.length--}var r=D[D.length-1];D.length--;D[D.length-1].buffer="";if(r.starts){I(r.starts,"")}return R.rE}if(w(M,R)){throw"Illegal"}}var E=e[B];var D=[E.dM];var A=0;var x=0;var y="";try{var s,u=0;E.dM.buffer="";do{s=p(C,u);var t=G(s[0],s[1],s[2]);u+=s[0].length;if(!t){u+=s[1].length}}while(!s[2]);if(D.length>1){throw"Illegal"}return{r:A,keyword_count:x,value:y}}catch(H){if(H=="Illegal"){return{r:0,keyword_count:0,value:m(C)}}else{throw H}}}function g(t){var p={keyword_count:0,r:0,value:m(t)};var r=p;for(var q in e){if(!e.hasOwnProperty(q)){continue}var s=d(q,t);s.language=q;if(s.keyword_count+s.r>r.keyword_count+r.r){r=s}if(s.keyword_count+s.r>p.keyword_count+p.r){r=p;p=s}}if(r.language){p.second_best=r}return p}function i(r,q,p){if(q){r=r.replace(/^((<[^>]+>|\t)+)/gm,function(t,w,v,u){return w.replace(/\t/g,q)})}if(p){r=r.replace(/\n/g,"<br>")}return r}function n(t,w,r){var x=h(t,r);var v=a(t);var y,s;if(v){y=d(v,x)}else{return}var q=c(t);if(q.length){s=document.createElement("pre");s.innerHTML=y.value;y.value=k(q,c(s),x)}y.value=i(y.value,w,r);var u=t.className;if(!u.match("(\\s|^)(language-)?"+v+"(\\s|$)")){u=u?(u+" "+v):v}if(/MSIE [678]/.test(navigator.userAgent)&&t.tagName=="CODE"&&t.parentNode.tagName=="PRE"){s=t.parentNode;var p=document.createElement("div");p.innerHTML="<pre><code>"+y.value+"</code></pre>";t=p.firstChild.firstChild;p.firstChild.cN=s.cN;s.parentNode.replaceChild(p.firstChild,s)}else{t.innerHTML=y.value}t.className=u;t.result={language:v,kw:y.keyword_count,re:y.r};if(y.second_best){t.second_best={language:y.second_best.language,kw:y.second_best.keyword_count,re:y.second_best.r}}}function o(){if(o.called){return}o.called=true;var r=document.getElementsByTagName("pre");for(var p=0;p<r.length;p++){var q=b(r[p]);if(q){n(q,hljs.tabReplace)}}}function l(){if(window.addEventListener){window.addEventListener("DOMContentLoaded",o,false);window.addEventListener("load",o,false)}else{if(window.attachEvent){window.attachEvent("onload",o)}else{window.onload=o}}}var e={};this.LANGUAGES=e;this.highlight=d;this.highlightAuto=g;this.fixMarkup=i;this.highlightBlock=n;this.initHighlighting=o;this.initHighlightingOnLoad=l;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="\\b(0[xX][a-fA-F0-9]+|(\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.ER="(?![\\s\\S])";this.BE={b:"\\\\.",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE],r:0};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE],r:0};this.CLCM={cN:"comment",b:"//",e:"$"};this.CBLCLM={cN:"comment",b:"/\\*",e:"\\*/"};this.HCM={cN:"comment",b:"#",e:"$"};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.inherit=function(r,s){var p={};for(var q in r){p[q]=r[q]}if(s){for(var q in s){p[q]=s[q]}}return p}}();hljs.LANGUAGES.cpp=function(){var a={keyword:{"false":1,"int":1,"float":1,"while":1,"private":1,"char":1,"catch":1,"export":1,virtual:1,operator:2,sizeof:2,dynamic_cast:2,typedef:2,const_cast:2,"const":1,struct:1,"for":1,static_cast:2,union:1,namespace:1,unsigned:1,"long":1,"throw":1,"volatile":2,"static":1,"protected":1,bool:1,template:1,mutable:1,"if":1,"public":1,friend:2,"do":1,"return":1,"goto":1,auto:1,"void":2,"enum":1,"else":1,"break":1,"new":1,extern:1,using:1,"true":1,"class":1,asm:1,"case":1,typeid:1,"short":1,reinterpret_cast:2,"default":1,"double":1,register:1,explicit:1,signed:1,typename:1,"try":1,"this":1,"switch":1,"continue":1,wchar_t:1,inline:1,"delete":1,alignof:1,char16_t:1,char32_t:1,constexpr:1,decltype:1,noexcept:1,nullptr:1,static_assert:1,thread_local:1,restrict:1,_Bool:1,complex:1},built_in:{std:1,string:1,cin:1,cout:1,cerr:1,clog:1,stringstream:1,istringstream:1,ostringstream:1,auto_ptr:1,deque:1,list:1,queue:1,stack:1,vector:1,map:1,set:1,bitset:1,multiset:1,multimap:1,unordered_set:1,unordered_map:1,unordered_multiset:1,unordered_multimap:1,array:1,shared_ptr:1}};return{dM:{k:a,i:"</",c:[hljs.CLCM,hljs.CBLCLM,hljs.QSM,{cN:"string",b:"'\\\\?.",e:"'",i:"."},{cN:"number",b:"\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)"},hljs.CNM,{cN:"preprocessor",b:"#",e:"$"},{cN:"stl_container",b:"\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",e:">",k:a,r:10,c:["self"]}]}}}();hljs.LANGUAGES.r={dM:{c:[hljs.HCM,{cN:"number",b:"\\b0[xX][0-9a-fA-F]+[Li]?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+(?:[eE][+\\-]?\\d*)?L\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+\\.(?!\\d)(?:i\\b)?",e:hljs.IMMEDIATE_RE,r:1},{cN:"number",b:"\\b\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"keyword",b:"(?:tryCatch|library|setGeneric|setGroupGeneric)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\.",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\d+(?![\\w.])",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\b(?:function)",e:hljs.IMMEDIATE_RE,r:2},{cN:"keyword",b:"(?:if|in|break|next|repeat|else|for|return|switch|while|try|stop|warning|require|attach|detach|source|setMethod|setClass)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"literal",b:"(?:NA|NA_integer_|NA_real_|NA_character_|NA_complex_)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"literal",b:"(?:NULL|TRUE|FALSE|T|F|Inf|NaN)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"identifier",b:"[a-zA-Z.][a-zA-Z0-9._]*\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"<\\-(?!\\s*\\d)",e:hljs.IMMEDIATE_RE,r:2},{cN:"operator",b:"\\->|<\\-",e:hljs.IMMEDIATE_RE,r:1},{cN:"operator",b:"%%|~",e:hljs.IMMEDIATE_RE},{cN:"operator",b:">=|<=|==|!=|\\|\\||&&|=|\\+|\\-|\\*|/|\\^|>|<|!|&|\\||\\$|:",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"%",e:"%",i:"\\n",r:1},{cN:"identifier",b:"`",e:"`",r:0},{cN:"string",b:'"',e:'"',c:[hljs.BE],r:0},{cN:"string",b:"'",e:"'",c:[hljs.BE],r:0},{cN:"paren",b:"[[({\\])}]",e:hljs.IMMEDIATE_RE,r:0}]}};
+hljs.initHighlightingOnLoad();
+</script>
+
+
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 13px;
+}
+
+body {
+  max-width: 800px;
+  margin: auto;
+  padding: 1em;
+  line-height: 20px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 {
+   font-size:2.2em;
+}
+
+h2 {
+   font-size:1.8em;
+}
+
+h3 {
+   font-size:1.4em;
+}
+
+h4 {
+   font-size:1.0em;
+}
+
+h5 {
+   font-size:0.9em;
+}
+
+h6 {
+   font-size:0.8em;
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre, img {
+  max-width: 100%;
+}
+pre {
+  overflow-x: auto;
+}
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code {
+  font-size: 92%;
+  border: 1px solid #ccc;
+}
+
+code[class] {
+  background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * {
+      background: transparent !important;
+      color: black !important;
+      filter:none !important;
+      -ms-filter: none !important;
+   }
+
+   body {
+      font-size:12pt;
+      max-width:100%;
+   }
+
+   a, a:visited {
+      text-decoration: underline;
+   }
+
+   hr {
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote {
+      padding-right: 1em;
+      page-break-inside: avoid;
+   }
+
+   tr, img {
+      page-break-inside: avoid;
+   }
+
+   img {
+      max-width: 100% !important;
+   }
+
+   @page :left {
+      margin: 15mm 20mm 15mm 10mm;
+   }
+
+   @page :right {
+      margin: 15mm 10mm 15mm 20mm;
+   }
+
+   p, h2, h3 {
+      orphans: 3; widows: 3;
+   }
+
+   h2, h3 {
+      page-break-after: avoid;
+   }
+}
+</style>
+
+
+
+</head>
+
+<body>
+<h1>Data Carpentry R materials - Before we start</h1>
+
+<hr/>
+
+<h1>Objectives</h1>
+
+<ul>
+<li>Articulating motivations for this lesson</li>
+<li>Introduce participants to the RStudio interface</li>
+<li>Set up participants to have a working directory with a <code>data/</code> folder inside</li>
+<li>Introduce R syntax</li>
+<li>Point to relevant information on how to get help, and understand how to ask
+well formulated questions</li>
+</ul>
+
+<hr/>
+
+<h1>Motivations for the R lesson</h1>
+
+<ul>
+<li>Its really important that you know what you did. More journals/grants/etc. are
+also making it important for them to know what you did.</li>
+<li>A lot of scientific code is NOT reproducible.</li>
+<li>If you keep a lab notebook, why are we not as careful with our code.</li>
+<li>We edit each others manuscripts, but we don&#39;t edit each other&#39;s code.</li>
+<li>If you write your code with &ldquo;future you&rdquo; in mind, you will save yourself and
+others a lot of time.</li>
+</ul>
+
+<h1>Demonstration of what we will learn to do</h1>
+
+<h1>Before we get started</h1>
+
+<ul>
+<li>Start RStudio (presentation of RStudio -below- should happen here)</li>
+<li>Under the <code>File</code> menu, click on <code>New project</code>, choose <code>New directory</code>, then
+<code>Empty project</code></li>
+<li>Enter a name for this new folder, and choose a convenient location for
+it. This will be your <strong>working directory</strong> for the rest of the day
+(e.g., <code>~/data-carpentry</code>)</li>
+<li>Click on &ldquo;Create project&rdquo;</li>
+<li>Under the <code>Files</code> tab on the right of the screen, click on <code>New Folder</code> and
+create a folder named <code>data</code> within your newly created working directory.
+(e.g., <code>~/data-carpentry/data</code>)</li>
+<li>Create a new R script (File &gt; New File &gt; R script) and save it in your working
+directory (e.g. <code>data-carpentry-script.R</code>)</li>
+</ul>
+
+<p>Your working directory should now look like this:</p>
+
+<p><img src="../../img/r_starting_how_it_should_like.png" alt="How it should look like at the beginning of this lesson"/></p>
+
+<h1>Presentation of RStudio</h1>
+
+<p>Let&#39;s start by learning about our tool.</p>
+
+<p><em>Point out the different windows in R.</em></p>
+
+<ul>
+<li>Console, Scripts, Environments, Plots</li>
+<li>Avoid using shortcuts.</li>
+<li>Code and workflow is more reproducible if we can document everything that we
+do.</li>
+<li>Our end goal is not just to &ldquo;do stuff&rdquo; but to do it in a way that anyone can
+easily and exactly replicate our workflow and results.</li>
+</ul>
+
+<h1>Basics of R</h1>
+
+<p>R is a versatile, open source programming/scripting language that&#39;s useful both
+for statistics but also data science. Inspired by the programming language S.</p>
+
+<ul>
+<li>Open source software under GPL.</li>
+<li>Superior (if not just comparable) to commercial alternatives. R has over 7,000
+user contributed packages at this time. It&#39;s widely used both in academia and
+industry.</li>
+<li>Available on all platforms.</li>
+<li>Not just for statistics, but also general purpose programming.</li>
+<li>Is object oriented and functional.</li>
+<li>Large and growing community of peers.</li>
+</ul>
+
+<h2>Commenting</h2>
+
+<p>Use <code>#</code> signs to comment. Comment liberally in your R scripts. Anything to the
+right of a <code>#</code> is ignored by R.</p>
+
+<h2>Assignment operator</h2>
+
+<p><code>&lt;-</code> is the assignment operator. Assigns values on the right to objects on the
+left, it is like an arrow that points from the value to the object. Mostly
+similar to <code>=</code> but not always. Learn to use <code>&lt;-</code> as it is good programming
+practice. Using <code>=</code> in place of <code>&lt;-</code> can lead to issues down the line.</p>
+
+<p>In RStudio, typing <code>Alt + -</code> (push <code>Alt</code>, the key next to your space bar at the
+same time as the <code>-</code> key) will write <code>&lt;-</code> in a single keystroke.</p>
+
+<p><code>=</code> should only be used to specify the values of arguments in functions for
+instance <code>read.csv(file=&quot;data/some_data.csv&quot;)</code>.</p>
+
+<h2>Functions and their arguments</h2>
+
+<p>Let&#39;s look at a simple function call:</p>
+
+<pre><code class="r">surveys &lt;- read.csv(file=&quot;data/surveys.csv&quot;)
+</code></pre>
+
+<p>The <code>file=</code> part inside the parentheses is called an argument, and most
+functions use arguments. Arguments modify the behavior of the
+function. Typically, they take some input (e.g., some data, an object) and other
+options to change what the function will return, or how to treat the data
+provided.</p>
+
+<p>Most functions can take several arguments, but most are specified by default so
+you don&#39;t have to enter them. To see these default values, you can either type
+<code>args(read.csv)</code> or look at the help for this function (e.g., <code>?read.csv</code>).</p>
+
+<pre><code class="r">args(read.csv)
+</code></pre>
+
+<pre><code>## function (file, header = TRUE, sep = &quot;,&quot;, quote = &quot;\&quot;&quot;, dec = &quot;.&quot;, 
+##     fill = TRUE, comment.char = &quot;&quot;, ...) 
+## NULL
+</code></pre>
+
+<p>If you provide the arguments in the exact same order as they are defined you
+don&#39;t have to name them:</p>
+
+<pre><code class="r">read.csv(file=&quot;data/surveys.csv&quot;, header=TRUE) # is identical to:
+read.csv(&quot;data/surveys.csv&quot;, TRUE)
+</code></pre>
+
+<p>However, it&#39;s usually not recommended practice because it&#39;s a lot of remembering
+to do, and if you share your code with others that includes less known functions
+it makes your code difficult to read. (It&#39;s however OK to not include the names
+of the arguments for basic functions like <code>mean</code>, <code>min</code>, etc&hellip;)</p>
+
+<p>Another advantage of naming arguments, is that the order doesn&#39;t matter:</p>
+
+<pre><code class="r">read.csv(file=&quot;data/surveys.csv&quot;, header=TRUE) # is identical to:
+read.csv(header=TRUE, file=&quot;data/surveys.csv&quot;)
+</code></pre>
+
+<h2>Good practices</h2>
+
+<p>There are two main ways of interacting with R: using the console or by using
+script files (plain text files that contain your code).</p>
+
+<p>The recommended approach when working on a data analysis project is dubbed &ldquo;the
+source code is real&rdquo;. The objects you are creating should be seen as disposable
+as they are the direct realization of your code. Every object in your analysis
+can be recreated from your code, and all steps are documented. Therefore, it is
+best to enter as little commands as possible in the R console. Instead, all code
+should be written in script files, and evaluated from there. That is where
+RStudio is really useful as it makes the passing of code between your script and
+the R console easy. The R console should be used to inspect objects, test a
+function or get help. With this approach, the <code>.Rhistory</code> file automatically
+created during your session should not be very useful.</p>
+
+<p>Similarly, you should separate the original data (raw data) from intermediate
+datasets that you may create for the need of a particular analysis. For
+instance, you may want to create a <code>data/</code> directory within your working
+directory that stores the raw data, and have a <code>data_output/</code> directory for
+intermediate datasets and a <code>figure_output/</code> directory for the plots you will
+generate.</p>
+
+<h2>Seeking help</h2>
+
+<h3>I know the name of the function I want to use, but I&#39;m not sure how to use it</h3>
+
+<p>If you need help with a specific function, let&#39;s say <code>barplot()</code>, you can type:</p>
+
+<pre><code class="r">?barplot
+</code></pre>
+
+<p>If you just need to remind yourself of the names of the arguments, you can use:</p>
+
+<pre><code class="r">args(lm)
+</code></pre>
+
+<p>If the function is part of a package that is installed on your computer but
+don&#39;t remember which one, you can type:</p>
+
+<pre><code class="r">??read.dna
+</code></pre>
+
+<h3>I want to use a function that does X, there must be a function or it but I don&#39;t know which one&hellip;</h3>
+
+<p>If you are looking for a function to do a particular task, you can use
+<code>help.search()</code> (but only looks through the installed packages):</p>
+
+<pre><code class="r">help.search(&quot;kruskal&quot;)
+</code></pre>
+
+<p>If you can&#39;t find what you are looking for, you can use the
+<a href="http://www.rdocumentation.org">rdocumention.org</a> website that search through
+the help files across all packages available.</p>
+
+<h3>I am stuck&hellip; I get an error message that I don&#39;t understand</h3>
+
+<p>Start by googling the error message. However, this doesn&#39;t always work very well
+because often, package developers rely on the error catching provided by R. You
+end up with general error messages that might not be very helpful to diagnose a
+problem (e.g. &ldquo;subscript out of bounds&rdquo;).</p>
+
+<p>However, you should check stackoverflow. Search using the <code>[r]</code> tag. Most
+questions have already been answered, but the challenge is to use the right
+words in the search to find the answers:
+<a href="http://stackoverflow.com/questions/tagged/r">http://stackoverflow.com/questions/tagged/r</a></p>
+
+<p>The <a href="http://cran.r-project.org/doc/manuals/R-intro.pdf">Introduction to R</a> can
+also be dense for people with little programming experience but it is a good
+place to understand the underpinnings of the R language.</p>
+
+<p>The <a href="http://cran.r-project.org/doc/FAQ/R-FAQ.html">R FAQ</a> is dense and technical
+but it is full of useful information.</p>
+
+<h3>Asking for help</h3>
+
+<p>The key to get help from someone is for them to grasp your problem rapidly. You
+should make it as easy as possible to pinpoint where the issue might be.</p>
+
+<p>Try to use the correct words to describe your problem. For instance, a package
+is not the same thing as a library. Most people will understand what you meant,
+but others have really strong feelings about the difference in meaning. The key
+point is that it can make things confusing for people trying to help you. Be as
+precise as possible when describing your problem</p>
+
+<p>If possible, try to reduce what doesn&#39;t work to a simple reproducible
+example. If you can reproduce the problem using a very small <code>data.frame</code>
+instead of your 50,000 rows and 10,000 columns one, provide the small one with
+the description of your problem. When appropriate, try to generalize what you
+are doing so even people who are not in your field can understand the question.</p>
+
+<p>To share an object with someone else, if it&#39;s relatively small, you can use the
+function <code>dput()</code>, it will output R code that can be used to recreate the exact same
+object as the one in memory:</p>
+
+<pre><code class="r">dput(head(iris)) # iris is an example data.frame that comes with R
+</code></pre>
+
+<pre><code>## structure(list(Sepal.Length = c(5.1, 4.9, 4.7, 4.6, 5, 5.4), 
+##     Sepal.Width = c(3.5, 3, 3.2, 3.1, 3.6, 3.9), Petal.Length = c(1.4, 
+##     1.4, 1.3, 1.5, 1.4, 1.7), Petal.Width = c(0.2, 0.2, 0.2, 
+##     0.2, 0.2, 0.4), Species = structure(c(1L, 1L, 1L, 1L, 1L, 
+##     1L), .Label = c(&quot;setosa&quot;, &quot;versicolor&quot;, &quot;virginica&quot;), class = &quot;factor&quot;)), .Names = c(&quot;Sepal.Length&quot;, 
+## &quot;Sepal.Width&quot;, &quot;Petal.Length&quot;, &quot;Petal.Width&quot;, &quot;Species&quot;), row.names = c(NA, 
+## 6L), class = &quot;data.frame&quot;)
+</code></pre>
+
+<p>If the object is larger, provide either the raw file (i.e., your CSV file) with
+your script up to the point of the error (and after removing everything that is
+not relevant to your issue). Alternatively, in particular if your questions is
+not related to a <code>data.frame</code>, you can save any R object to a file:</p>
+
+<pre><code class="r">saveRDS(iris, file=&quot;/tmp/iris.rds&quot;)
+</code></pre>
+
+<p>The content of this file is however not human readable and cannot be posted
+directly on stackoverflow. It can how be sent to someone by email who can read
+it with this command:</p>
+
+<pre><code class="r">some_data &lt;- readRDS(file=&quot;~/Downloads/iris.rds&quot;)
+</code></pre>
+
+<p>Last, but certainly not least, <strong>always include the output of <code>sessionInfo()</code></strong>
+as it provides critical information about your platform, the versions of R and
+the packages that you are using, and other information that can be very helpful
+to understand your problem.</p>
+
+<pre><code class="r">sessionInfo()
+</code></pre>
+
+<pre><code>## R version 3.1.1 (2014-07-10)
+## Platform: x86_64-pc-linux-gnu (64-bit)
+## 
+## locale:
+##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+##  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+##  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+##  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  base     
+## 
+## other attached packages:
+## [1] knitr_1.7
+## 
+## loaded via a namespace (and not attached):
+## [1] evaluate_0.5.5 formatR_1.0    stringr_0.6.2  tools_3.1.1
+</code></pre>
+
+<h3>Where to ask for help?</h3>
+
+<ul>
+<li>Your friendly colleagues: if you know someone with more experience than you,
+they might be able and willing to help you.</li>
+<li>Stackoverlow: if your question hasn&#39;t been answered before and is well
+crafted, chances are you will get an answer in less than 5 min.</li>
+<li>The <a href="https://stat.ethz.ch/mailman/listinfo/r-help">R-help</a>: it is read by a
+lot of people (including most of the R core team), a lot of people post to it,
+but the tone can be pretty dry, and it is not always very welcoming to new
+users. If your question is valid, you are likely to get an answer very fast
+but don&#39;t expect that it will come with smiley faces. Also, here more than
+everywhere else, be sure to use correct vocabulary (otherwise you might get an
+answer pointing to the misuse of your words rather than answering your
+question). You will also have more success if your question is about a base
+function rather than a specific package.</li>
+<li>If your question is about a specific package, see if there is a mailing list
+for it. Usually it&#39;s included in the DESCRIPTION file of the package that can
+be accessed using <code>packageDescription(&quot;name-of-package&quot;)</code>. You may also want
+to try to email the author of the package directly.</li>
+<li>There are also some topic-specific mailing lists (GIS, phylogenetics, etc&hellip;),
+the complete list is <a href="http://www.r-project.org/mail.html">here</a>.</li>
+</ul>
+
+<h3>More resources</h3>
+
+<ul>
+<li>The <a href="http://www.r-project.org/posting-guide.html">Posting Guide</a> for the R
+mailing lists.</li>
+<li><a href="http://blog.revolutionanalytics.com/2014/01/how-to-ask-for-r-help.html">How to ask for R help</a>
+useful guidelines</li>
+</ul>
+
+</body>
+
+</html>

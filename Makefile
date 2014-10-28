@@ -1,24 +1,26 @@
 
-all: index before-we-start intro-to-R starting-with-data workflows
+all: pages skeleton-lessons.R
 
-index: index.Rmd
+skeleton-%.R: %.Rmd
+	Rscript -e "knitr::purl('$<', output='$@', documentation=0L)"
+
+%.html: %.Rmd
 	Rscript -e "knitr::knit2html('$<')"
 
-before-we-start: 00-before-we-start.Rmd
-	Rscript -e "knitr::knit2html('$<')"
+skeleton-lessons.R: skeleton-00-before-we-start.R skeleton-01-intro-to-R.R skeleton-02-starting-with-data.R skeleton-03-data-frames.R skeleton-04-manipulating-data.R skeleton-05-analyzing-data.R skeleton-06-plotting.R
+	for f in $^; do cat $$f; echo "\n"; done > $@
+	make clean-skeleton
 
-intro-to-R: 01-intro-to-R.Rmd
-	Rscript -e "knitr::purl('$<', output='skeleton-intro-to-R.R', documentation=0L)"
-	Rscript -e "knitr::knit2html('$<')"
+pages: 00-before-we-start.html 01-intro-to-R.html 02-starting-with-data.html 03-data-frames.html 04-manipulating-data.html 05-analyzing-data.html 06-plotting.html
+	make clean-md
 
-starting-with-data: 02-starting-with-data.Rmd
-	Rscript -e "knitr::purl('$<', output='skeleton-starting-with-data.R', documentation=0L)"
-	Rscript -e "knitr::knit2html('$<')"
+clean-skeleton:
+	-rm skeleton-*-*.R
 
-workflows: 03-workflows.Rmd
-	Rscript -e "knitr::purl('$<', output='skeleton-workflows.R', documentation=0L)"
-	Rscript -e "knitr::knit2html('$<')"
+clean-md:
+	-rm *-*.md
 
-clean:
-	-rm skeleton-*.R
+clean-html:
 	-rm *.html
+
+clean: clean-skeleton clean-html clean-md

@@ -1,0 +1,187 @@
+```{r, echo=FALSE, purl=FALSE}
+library(knitr)
+opts_chunk$set(results='hide')
+```
+
+# Data Carpentry R materials - Analyzing data
+
+--------------------------------------------------
+
+# Objectives
+
+* understand how to deal with missing data
+* being able to generate summary statistics from the data
+* calculate basic statistics across a levels of a factor (here species)
+
+--------------------------------------------------
+
+# Calculating statistics
+
+```{r, echo=FALSE, purl=FALSE}
+## Calculating statistics
+```
+
+Let's get a closer look at our data. For instance, we might want to know how
+many animals we trapped in each plot, or how many of each species were caught.
+
+To get a `vector` of all the species, we are going to use the `unique()`
+function that tells us the unique values in a given vector:
+
+```{r, purl=FALSE}
+unique(surveys$species)
+```
+
+The function `table()`, tells us how many of each species we have:
+
+```{r, purl=FALSE}
+table(surveys$species)
+```
+
+R has a lot of built in statistical functions, like `mean()`, `median()`,
+`max()`, `min()`. Let's start by calculating the average weight of all the
+animals using the function `mean()`:
+
+```{r, results='show', purl=FALSE}
+mean(surveys$wgt)
+```
+
+Hmm, we just get `NA`. That's because we don't have the weight for every animal
+and missing data is recorded as `NA`. By default, all R functions operating on a
+vector that contains missing data will return NA. It's a way to make sure that
+users know they have missing data, and make a conscious decision on how to deal
+with it.
+
+When dealing with simple statistics like the mean, the easiest way to ignore
+`NA` (the missing data) is to use `na.rm=TRUE` (`rm` stands for remove):
+
+```{r, results='show', purl=FALSE}
+mean(surveys$wgt, na.rm=TRUE)
+```
+
+In some cases, it might be useful to remove the missing data from the
+vector. For this purpose, R comes with the function `na.omit`:
+
+```{r, purl=FALSE}
+wgt_noNA <- na.omit(surveys$wgt)
+```
+
+For some applications, it's useful to keep all observations, for others, it
+might be best to remove all observations that contain missing data. The function
+`complete.cases()` removes any rows that contain at least one missing
+observation:
+
+```{r, purl=FALSE}
+surveys_complete <- surveys[complete.cases(surveys), ]
+```
+
+<!--- need to cover negation, and vector operations for this...
+If you want to remove only the observations that are missing data for one
+variable, you can use the function `is.na()`. For instance, to create a new
+dataset that only contains individuals that have been weighted:
+
+```{r, purl=FALSE}
+surveys_with_weights <- surveys[!is.na(surveys$weight), ]
+```
+--->
+
+### Challenge
+
+1. To determine the number of elements found in a vector, we can use
+use the function `length()` (e.g., `length(surveys$wgt)`). Using `length()`, how
+many animals have not had their weights recorded?
+
+1. What is the median weight for the males?
+
+1. What is the range (minimum and maximum) weight?
+
+1. Bonus question: what is the standard error for the weight? (hints: there is
+   no built-in function to compute standard errors, and the function for the
+   square root is `sqrt()`).
+
+```{r, echo=FALSE, purl=TRUE}
+## 1. To determine the number of elements found in a vector, we can use
+## use the function `length()` (e.g., `length(surveys$wgt)`). Using `length()`, how
+## many animals have not had their weights recorded?
+
+## 2. What is the median weight for the males?
+
+## 3. What is the range (minimum and maximum) weight?
+
+## 4. Bonus question: what is the standard error for the weight? (hints: there is
+##    no built-in function to compute standard errors, and the function for the
+##    square root is `sqrt()`).
+```
+
+# Statistics across factor levels
+
+```{r, echo=FALSE, purl=TRUE}
+## Statistics across factor levels
+```
+
+What if we want the maximum weight for all animals, or the average for each
+plot?
+
+R comes with convenient functions to do this kind of operations, functions in
+the `apply` family.
+
+For instance, `tapply()` allows us to repeat a function across each level of a
+factor. The format is:
+
+```{r, eval=FALSE, purl=FALSE}
+tapply(columns_to_do_the_calculations_on, factor_to_sort_on, function)
+```
+
+If we want to calculate the mean for each species (using the complete dataset):
+
+```{r, purl=FALSE}
+tapply(surveys_complete$wgt, surveys_complete$species, mean)
+```
+
+This produces some `NA` because R "remembers" all species that were found in the
+original dataset, even if they didn't have any weight data associated with them
+in the current dataset. To remove the `NA` and make things clearer, we can
+redefine the levels for the factor "species" before calculating the means. Let's
+also create an object to store these values:
+
+```{r, purl=FALSE}
+surveys_complete$species <- factor(surveys_complete$species)
+species_mean <- tapply(surveys_complete$wgt, surveys_complete$species, mean)
+```
+
+### Challenge
+
+1. Create new objects to store: the standard deviation, the maximum and minimum
+   values for the weight of each species
+1. How many species do you have these statistics for?
+1. Create a new data frame (called `surveys_summary`) that contains as columns:
+   * `species` the 2 letter code for the species names
+   * `mean_wgt` the mean weight for each species
+   * `sd_wgt` the standard deviation for each species
+   * `min_wgt`  the minimum weight for each species
+   * `max_wgt`  the maximum weight for each species
+
+```{r, echo=FALSE, purl=TRUE}
+## 1. Create new objects to store: the standard deviation, the maximum and minimum
+##    values for the weight of each species
+## 2. How many species do you have these statistics for?
+## 3. Create a new data frame (called `surveys_summary`) that contains as columns:
+##    * `species` the 2 letter code for the species names
+##    * `mean_wgt` the mean weight for each species
+##    * `sd_wgt` the standard deviation for each species
+##    * `min_wgt`  the minimum weight for each species
+##    * `max_wgt`  the maximum weight for each species
+```
+
+**Answers**
+
+```{r, purl=FALSE}
+species_max <- tapply(surveys_complete$wgt, surveys_complete$species, max)
+species_min <- tapply(surveys_complete$wgt, surveys_complete$species, min)
+species_sd <- tapply(surveys_complete$wgt, surveys_complete$species, sd)
+nlevels(surveys_complete$species) # or length(species_mean)
+surveys_summary <- data.frame(species=levels(surveys_complete$species),
+                              mean_wgt=species_mean,
+                              sd_wgt=species_sd,
+                              min_wgt=species_min,
+                              max_wgt=species_max)
+```
