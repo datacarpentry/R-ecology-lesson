@@ -28,3 +28,10 @@ for each level and a very brief introduction to plotting.
 ## Other resources
 
 * [Motivation](motivation.html)
+
+## Old stuff (leftovers from data carpentry at NESCent May 8-9, 2014)
+
+* distributed - the files that were distributed at the workshop
+* materials - the original materials that the lessons were built on. It also includes more advanced lessons
+on functions, loops and plotting that we didn't go through
+* ref - R references, including a lesson on reshaped and ggplot (ggplot.pdf)
