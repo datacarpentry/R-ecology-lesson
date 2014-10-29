@@ -1,19 +1,21 @@
+---
+layout: topic
+title: Introduction to R
+minutes: 45
+---
+
 ```{r, echo=FALSE, purl=FALSE}
 knitr::opts_chunk$set(results='hide', fig.path='img/r-lesson-')
 ```
 
-# Data Carpentry R materials -- Introduction to R
 
---------------------------------------------------
+> ## Learning Objectives
+>
+> * Familiarize participants with R syntax
+> * Understand the concepts of objects and assignment
+> * Understand the concepts of vector and data types
+> * Get exposed to a few functions
 
-## Objectives
-
-* Familiarize participants with R syntax
-* Understand the concepts of objects and assignment
-* Understand the concepts of vector and data types
-* Get exposed to a few functions
-
----------------------------------------------------
 
 ## The R syntax
 

@@ -1,22 +1,21 @@
+---
+layout: topic
+title: Before we start
+minutes: 15
+---
 
 ```{r, echo=FALSE, purl=FALSE}
 knitr::opts_chunk$set(results='hide', fig.path='img/r-lesson-')
 ```
 
-# Data Carpentry R materials - Before we start
+> ## Learning Objectives
+>
+> * Articulating motivations for this lesson
+> * Introduce participants to the RStudio interface
+> * Set up participants to have a working directory with a `data/` folder inside
+> * Introduce R syntax
+> * Point to relevant information on how to get help, and understand how to ask well formulated questions
 
---------------------------------------------------
-
-# Objectives
-
-* Articulating motivations for this lesson
-* Introduce participants to the RStudio interface
-* Set up participants to have a working directory with a `data/` folder inside
-* Introduce R syntax
-* Point to relevant information on how to get help, and understand how to ask
-  well formulated questions
-
-----------------------------------------------------
 
 # Motivations for the R lesson
 
@@ -180,7 +179,7 @@ If the function is part of a package that is installed on your computer but
 don't remember which one, you can type:
 
 ```{r, eval=FALSE}
-??read.dna
+??geom_point
 ```
 
 ### I want to use a function that does X, there must be a function or it but I don't know which one...
