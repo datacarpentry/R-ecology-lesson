@@ -46,7 +46,7 @@ knitr::opts_chunk$set(results='hide', fig.path='img/r-lesson-')
 
 Your working directory should now look like this:
 
-![How it should look like at the beginning of this lesson](../../img/r_starting_how_it_should_like.png)
+![How it should look like at the beginning of this lesson](img/r_starting_how_it_should_like.png)
 
 # Presentation of RStudio
 
