@@ -1,11 +1,12 @@
 ---
 layout: topic
-title: Analyzing data
-minutes: 45
+title: Analyzing and Plotting Data
+minutes: 60
 ---
 
 ```{r, echo=FALSE, purl=FALSE}
 knitr::opts_chunk$set(results='hide', fig.path='img/r-lesson-')
+surveys <- read.csv(file="../../data/biology/surveys.csv")
 ```
 
 > ## Learning Objectives
@@ -13,6 +14,8 @@ knitr::opts_chunk$set(results='hide', fig.path='img/r-lesson-')
 > * understand how to deal with missing data
 > * being able to generate summary statistics from the data
 > * calculate basic statistics across a levels of a factor (here species)
+> * generate plot from the data using the average weights of the animals as an
+>   example
 
 
 # Calculating statistics
@@ -184,4 +187,89 @@ surveys_summary <- data.frame(species=levels(surveys_complete$species),
                               sd_wgt=species_sd,
                               min_wgt=species_min,
                               max_wgt=species_max)
+```
+
+```{r, echo=FALSE, purl=TRUE}
+## Plotting
+```
+
+# Creating a barplot
+
+The mathematician Richard Hamming once said, "The purpose of computing is
+insight, not numbers", and the best way to develop insight is often to visualize
+data. Visualization deserves an entire lecture (or course) of its own, but we
+can explore a few features of R's base plotting package.
+
+Let's use the `surveys_summary` data that we generated and plot it.
+
+R has built in plotting functions.
+
+```{r, purl=FALSE}
+barplot(surveys_summary$mean_wgt)
+```
+
+The axis labels are too big though, so you can't see them all. Let's change that.
+
+```{r, purl=FALSE}
+barplot(surveys_summary$mean_wgt, cex.names=0.4)
+```
+
+Alternatively, we may want to flip the axes to have more room for the species names:
+
+```{r, purl=FALSE}
+barplot(surveys_summary$mean_wgt, horiz=TRUE, las=1)
+```
+
+Let's also add some colors, and add a main title, label the axis:
+
+```{r, purl=FALSE}
+barplot(surveys_summary$mean_wgt, horiz=TRUE, las=1,
+        col=c("lavender", "lightblue"), xlab="Weight (g)",
+        main="Mean weight per species")
+```
+
+### Challenge
+
+1. Create a new plot showing the standard deviation for each species. Choose
+   one or more colors from
+   [here](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf). (If you
+   prefer, you can also specify colors using their hexadecimal values
+   `#RRGGBB`.)
+
+```{r, echo=FALSE, purl=TRUE}
+## 1. Create a new plot showing the standard deviation for each species.
+```
+
+## More about plotting
+
+There are lots of different ways to plot things. You can do `plot(object)` for
+most classes included in R base. To explore some of the possibilities:
+
+```{r, eval=FALSE, purl=FALSE}
+?barplot
+?boxplot
+?plot.default
+example(barplot)
+```
+
+There's also a plotting package called [`ggplot2`](http://docs.ggplot2.org/)
+that adds a lot of functionality. The syntax takes some getting used to but it's
+extremely powerful and flexible.
+
+If you wanted to output this plot to a pdf file rather than to the screen, you
+can specify where you want the plot to go with the `pdf()` function. If you
+wanted it to be a JPG, you would use the function `jpeg()` (other formats
+available: svg, png, ps).
+
+Be sure to add `dev.off()` at the end to finalize the file. For `pdf()`, you can
+create multiple pages to your file, by generating multiple plots before calling
+`dev.off()`.
+
+
+```{r, eval=FALSE, purl=TRUE}
+pdf("mean_per_species.pdf")
+barplot(surveys_summary$mean_wgt, horiz=TRUE, las=1,
+        col=c("lavender", "lightblue"), xlab="Weight (g)",
+        main="Mean weight per species")
+dev.off()
 ```

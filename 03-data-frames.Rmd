@@ -6,6 +6,7 @@ minutes: 30
 
 ```{r, echo=FALSE, purl=FALSE}
 knitr::opts_chunk$set(results='hide', fig.path='img/r-lesson')
+surveys <- read.csv(file="../../data/biology/surveys.csv")
 ```
 
 ```{r, echo=FALSE, purl=TRUE}
