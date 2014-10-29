@@ -28,7 +28,7 @@ args(read.csv)
 
 
 
-## ??read.dna
+## ??geom_point
 
 
 
@@ -49,6 +49,7 @@ dput(head(iris)) # iris is an example data.frame that comes with R
 
 
 sessionInfo()
+
 
 
 
@@ -77,6 +78,7 @@ sessionInfo()
 
 
 ### Vectors and data types
+
 
 
 
@@ -159,6 +161,7 @@ barplot(table(exprmt))
 
 
 
+
 ## The data.frame class
 
 
@@ -209,6 +212,7 @@ country_climate <- data.frame(country=c("Canada", "Panama", "South Africa", "Aus
 ### rows. Use it, in conjuction with `seq()` to create a new
 ### `data.frame` called `surveys_by_10` that includes every 10th row
 ### of the survey data frame starting at row 10 (10, 20, 30, ...)
+
 
 
 
@@ -309,6 +313,7 @@ head(surveys)
 
 
 
+
 ## 1. To determine the number of elements found in a vector, we can use
 ## use the function `length()` (e.g., `length(surveys$wgt)`). Using `length()`, how
 ## many animals have not had their weights recorded?
@@ -342,6 +347,7 @@ head(surveys)
 ##    * `sd_wgt` the standard deviation for each species
 ##    * `min_wgt`  the minimum weight for each species
 ##    * `max_wgt`  the maximum weight for each species
+
 
 
 
