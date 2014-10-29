@@ -22,8 +22,7 @@ for each level and a very brief introduction to plotting.
 * [Starting with data](02-starting-with-data.html)
 * [The `data.frame` class](03-data-frames.html)
 * [Manipulating data](04-manipulating-data.html)
-* [Analyzing data](05-analyzing-data.html)
-* [Plotting data](06-plotting.html)
+* [Analyzing and Plotting data](05-analyzing-data.html)
 
 ## Other resources
 
