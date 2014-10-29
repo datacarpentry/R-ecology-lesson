@@ -352,10 +352,6 @@ head(surveys)
 
 
 
-
-
-
-
 ## Plotting
 
 

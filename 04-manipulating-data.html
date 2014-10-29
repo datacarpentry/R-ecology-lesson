@@ -239,9 +239,6 @@ the animals of the species &ldquo;DO&rdquo;:</p>
 <pre><code class="r">surveys_DO &lt;- subset(surveys, species == &quot;DO&quot;)
 </code></pre>
 
-<pre><code>## Error in subset(surveys, species == &quot;DO&quot;): object &#39;surveys&#39; not found
-</code></pre>
-
 <h3>Challenge</h3>
 
 <ol>
@@ -279,15 +276,7 @@ data frame held in the column <code>species_id</code>). The function returns the
 of the matches in the table, and this can be used to retrieve the genus names:</p>
 
 <pre><code class="r">surveys_spid_index &lt;- match(surveys$species, species$species_id)
-</code></pre>
-
-<pre><code>## Error in match(surveys$species, species$species_id): object &#39;surveys&#39; not found
-</code></pre>
-
-<pre><code class="r">surveys_genera &lt;- species$genus[surveys_spid_index]
-</code></pre>
-
-<pre><code>## Error in NextMethod(&quot;[&quot;): object &#39;surveys_spid_index&#39; not found
+surveys_genera &lt;- species$genus[surveys_spid_index]
 </code></pre>
 
 <p>Now that we have our vector of genus names, we can add it as a new column to our
@@ -296,25 +285,22 @@ of the matches in the table, and this can be used to retrieve the genus names:</
 <pre><code class="r">surveys &lt;- cbind(surveys, genus=surveys_genera)
 </code></pre>
 
-<pre><code>## Error in cbind(surveys, genus = surveys_genera): object &#39;surveys&#39; not found
-</code></pre>
-
 <h3>Challenge</h3>
 
 <p>Use the same approach to also include the species names in the <code>surveys</code> data
 frame.</p>
 
-<pre><code>## Error in NextMethod(&quot;[&quot;): object &#39;surveys_spid_index&#39; not found
-</code></pre>
-
-<pre><code>## Error in cbind(surveys, species_name = surveys_species): object &#39;surveys&#39; not found
-</code></pre>
-
 <pre><code class="r">## and check out the result
 head(surveys)
 </code></pre>
 
-<pre><code>## Error in head(surveys): object &#39;surveys&#39; not found
+<pre><code>##   record_id month day year plot species sex wgt       genus species_name
+## 1         1     7  16 1977    2    &lt;NA&gt;   M  NA     Neotoma     albigula
+## 2         2     7  16 1977    3    &lt;NA&gt;   M  NA     Neotoma     albigula
+## 3         3     7  16 1977    2      DM   F  NA   Dipodomys     merriami
+## 4         4     7  16 1977    7      DM   M  NA   Dipodomys     merriami
+## 5         5     7  16 1977    3      DM   M  NA   Dipodomys     merriami
+## 6         6     7  16 1977    1      PF   M  NA Perognathus       flavus
 </code></pre>
 
 <!--- should we cover merge()? --->
@@ -332,15 +318,7 @@ head(surveys)
 function <code>subset()</code>:</p>
 
 <pre><code class="r">surveys_DO &lt;- subset(surveys, species == &quot;DO&quot;)
-</code></pre>
-
-<pre><code>## Error in subset(surveys, species == &quot;DO&quot;): object &#39;surveys&#39; not found
-</code></pre>
-
-<pre><code class="r">surveys_DM &lt;- subset(surveys, species == &quot;DM&quot;)
-</code></pre>
-
-<pre><code>## Error in subset(surveys, species == &quot;DM&quot;): object &#39;surveys&#39; not found
+surveys_DM &lt;- subset(surveys, species == &quot;DM&quot;)
 </code></pre>
 
 <p>Similarly to <code>cbind()</code> for columns, there is a function <code>rbind()</code> (<strong>r</strong>ow
@@ -348,9 +326,6 @@ function <code>subset()</code>:</p>
 columns and their names must be identical between the two objects:</p>
 
 <pre><code class="r">surveys_DO_DM &lt;- rbind(surveys_DO, surveys_DM)
-</code></pre>
-
-<pre><code>## Error in rbind(surveys_DO, surveys_DM): object &#39;surveys_DO&#39; not found
 </code></pre>
 
 <h3>Challenge</h3>
@@ -366,21 +341,19 @@ their names, you can remove them similarly.</p>
 <p>To remove it by column number:</p>
 
 <pre><code class="r">surveys_noDate &lt;- surveys[, -c(2:4)]
+colnames(surveys)
 </code></pre>
 
-<pre><code>## Error in eval(expr, envir, enclos): object &#39;surveys&#39; not found
-</code></pre>
-
-<pre><code class="r">colnames(surveys)
-</code></pre>
-
-<pre><code>## Error in is.data.frame(x): object &#39;surveys&#39; not found
+<pre><code>##  [1] &quot;record_id&quot;    &quot;month&quot;        &quot;day&quot;          &quot;year&quot;        
+##  [5] &quot;plot&quot;         &quot;species&quot;      &quot;sex&quot;          &quot;wgt&quot;         
+##  [9] &quot;genus&quot;        &quot;species_name&quot;
 </code></pre>
 
 <pre><code class="r">colnames(surveys_noDate)
 </code></pre>
 
-<pre><code>## Error in is.data.frame(x): object &#39;surveys_noDate&#39; not found
+<pre><code>## [1] &quot;record_id&quot;    &quot;plot&quot;         &quot;species&quot;      &quot;sex&quot;         
+## [5] &quot;wgt&quot;          &quot;genus&quot;        &quot;species_name&quot;
 </code></pre>
 
 <p>The easiest way to remove by name is to use the <code>subset()</code> function. This time
@@ -389,15 +362,11 @@ on rows (as above). The minus sign indicates the names of the columns to remove
 (note that the column names should not be quoted):</p>
 
 <pre><code class="r">surveys_noDate2 &lt;- subset(surveys, select=-c(month, day, year))
+colnames(surveys_noDate2)
 </code></pre>
 
-<pre><code>## Error in subset(surveys, select = -c(month, day, year)): object &#39;surveys&#39; not found
-</code></pre>
-
-<pre><code class="r">colnames(surveys_noDate2)
-</code></pre>
-
-<pre><code>## Error in is.data.frame(x): object &#39;surveys_noDate2&#39; not found
+<pre><code>## [1] &quot;record_id&quot;    &quot;plot&quot;         &quot;species&quot;      &quot;sex&quot;         
+## [5] &quot;wgt&quot;          &quot;genus&quot;        &quot;species_name&quot;
 </code></pre>
 
 <h1>Removing rows</h1>
@@ -406,9 +375,6 @@ on rows (as above). The minus sign indicates the names of the columns to remove
 <code>data.frame</code>, you can do:</p>
 
 <pre><code class="r">surveys_missingRows &lt;- surveys[-c(10, 50:70), ] # removing rows 10, and 50 to 70
-</code></pre>
-
-<pre><code>## Error in eval(expr, envir, enclos): object &#39;surveys&#39; not found
 </code></pre>
 
 </body>

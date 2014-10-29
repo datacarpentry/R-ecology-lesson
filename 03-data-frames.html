@@ -406,39 +406,11 @@ extract some specific data from it, we need to specify the &ldquo;coordinates&rd
 from it. Row numbers come first, followed by column numbers.</p>
 
 <pre><code class="r">surveys[1, 1]   # first element in the first column of the data frame
-</code></pre>
-
-<pre><code>## Error in eval(expr, envir, enclos): object &#39;surveys&#39; not found
-</code></pre>
-
-<pre><code class="r">surveys[1, 6]   # first element in the 6th column
-</code></pre>
-
-<pre><code>## Error in eval(expr, envir, enclos): object &#39;surveys&#39; not found
-</code></pre>
-
-<pre><code class="r">surveys[1:3, 7] # first three elements in the 7th column
-</code></pre>
-
-<pre><code>## Error in eval(expr, envir, enclos): object &#39;surveys&#39; not found
-</code></pre>
-
-<pre><code class="r">surveys[3, ]    # the 3rd element for all columns
-</code></pre>
-
-<pre><code>## Error in eval(expr, envir, enclos): object &#39;surveys&#39; not found
-</code></pre>
-
-<pre><code class="r">surveys[, 8]    # the entire 8th column
-</code></pre>
-
-<pre><code>## Error in eval(expr, envir, enclos): object &#39;surveys&#39; not found
-</code></pre>
-
-<pre><code class="r">head_surveys &lt;- surveys[1:6, ] # surveys[1:6, ] is equivalent to head(surveys)
-</code></pre>
-
-<pre><code>## Error in eval(expr, envir, enclos): object &#39;surveys&#39; not found
+surveys[1, 6]   # first element in the 6th column
+surveys[1:3, 7] # first three elements in the 7th column
+surveys[3, ]    # the 3rd element for all columns
+surveys[, 8]    # the entire 8th column
+head_surveys &lt;- surveys[1:6, ] # surveys[1:6, ] is equivalent to head(surveys)
 </code></pre>
 
 <h3>Challenge</h3>
@@ -454,10 +426,6 @@ starting at row 10 (10, 20, 30, &hellip;)</li>
 
 ```r
 surveys_by_10 <- surveys[seq(10, nrow(surveys), by=10), ]
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'surveys' not found
 ```
 --->
 
