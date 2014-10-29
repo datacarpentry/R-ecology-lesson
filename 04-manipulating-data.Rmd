@@ -1,18 +1,19 @@
+---
+layout: topic
+title: Manipulating data
+minutes: 45
+---
+
 ```{r, echo=FALSE, purl=FALSE}
 knitr::opts_chunk$set(results='hide', fig.path='img/r-lesson-')
 ```
 
-# Data Carpentry R materials - Manipulating data
+> ## Learning Objectives
+>
+> * being able to subset for a level
+> * being able to extract particular values from a `data.frame`
+> * being able to add/remove columns and rows
 
---------------------------------------------------
-
-# Objectives
-
-* being able to subset for a level
-* being able to extract particular values from a `data.frame`
-* being able to add/remove columns and rows
-
---------------------------------------------------
 
 # Subsetting data
 

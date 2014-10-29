@@ -1,21 +1,25 @@
+---
+layout: topic
+title: Plotting
+minutes: 20
+---
+
 ```{r, echo=FALSE, purl=FALSE}
 knitr::opts_chunk$set(results='hide', fig.path='img/r-lesson-')
 ```
 
-# Data Carpentry R materials - Plotting
 
---------------------------------------------------
+> ## Learning Objectives
+>
+> * generate plot from the data using the average weights of the animals as an
+>   example
 
-# Objectives
-
-* generate plot from the data using the average weights of the animals as an
-  example
-
---------------------------------------------------
 
 ```{r, echo=FALSE, purl=TRUE}
 ## Plotting
 ```
+
+# Creating a barplot
 
 The mathematician Richard Hamming once said, "The purpose of computing is
 insight, not numbers", and the best way to develop insight is often to visualize

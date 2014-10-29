@@ -1,22 +1,24 @@
+---
+layout: topic
+title: The `data.frame` class
+minutes: 30
+---
+
 ```{r, echo=FALSE, purl=FALSE}
 knitr::opts_chunk$set(results='hide', fig.path='img/r-lesson')
 ```
 
-# Data Carpentry R materials - The `data.frame` class
-
--------------------------------------------------
-
-# Objectives
-
-* understand the concept of a `data.frame`
-* use sequences
-* know how to access any element of a `data.frame`
-
--------------------------------------------------
-
 ```{r, echo=FALSE, purl=TRUE}
 ## The data.frame class
 ```
+
+> ## Learning Objectives
+>
+> * understand the concept of a `data.frame`
+> * use sequences
+> * know how to access any element of a `data.frame`
+
+# What are data frames?
 
 `data.frame` is the _de facto_ data structure for most tabular data and what we
 use for statistics and plotting.

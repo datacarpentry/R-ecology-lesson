@@ -1,18 +1,19 @@
+---
+layout: topic
+title: Analyzing data
+minutes: 45
+---
+
 ```{r, echo=FALSE, purl=FALSE}
 knitr::opts_chunk$set(results='hide', fig.path='img/r-lesson-')
 ```
 
-# Data Carpentry R materials - Analyzing data
+> ## Learning Objectives
+>
+> * understand how to deal with missing data
+> * being able to generate summary statistics from the data
+> * calculate basic statistics across a levels of a factor (here species)
 
---------------------------------------------------
-
-# Objectives
-
-* understand how to deal with missing data
-* being able to generate summary statistics from the data
-* calculate basic statistics across a levels of a factor (here species)
-
---------------------------------------------------
 
 # Calculating statistics
 

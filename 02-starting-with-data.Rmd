@@ -1,21 +1,20 @@
+---
+layout: topic
+title: Starting with data
+minutes: 20
+---
+
 ```{r, echo=FALSE, purl=FALSE}
 knitr::opts_chunk$set(results='hide', fig.path='img/r-lesson-')
 ```
 
-# Data Carpentry R materials - Starting with data
+> ## Learning Objectives
+>
+> * load external data (CSV files) in memory using the survey table
+>  (`surveys.csv`) as an example
+> * explore the structure and the content of the data in R
+> * understand what are factors and how to manipulate them
 
---------------------------------------------------
-
-# Objectives
-
-We want to:
-* load external data (CSV files) in memory using the survey table
-  (`surveys.csv`) as an example
-* explore the structure and the content of the data in R
-* understand what are factors and how to manipulate them
-
-
-----------------------------------------------------
 
 # Presentation of the Survey Data
 
