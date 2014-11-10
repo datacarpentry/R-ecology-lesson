@@ -17,16 +17,6 @@ knitr::opts_chunk$set(results='hide', fig.path='img/r-lesson-')
 > * Point to relevant information on how to get help, and understand how to ask well formulated questions
 
 
-# Motivations for the R lesson
-
-* Its really important that you know what you did. More journals/grants/etc. are
-  also making it important for them to know what you did.
-* A lot of scientific code is NOT reproducible.
-* If you keep a lab notebook, why are we not as careful with our code.
-* We edit each others manuscripts, but we don't edit each other's code.
-* If you write your code with "future you" in mind, you will save yourself and
-  others a lot of time.
-
 # Demonstration of what we will learn to do
 
 # Before we get started
