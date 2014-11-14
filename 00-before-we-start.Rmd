@@ -19,7 +19,7 @@ knitr::opts_chunk$set(results='hide', fig.path='img/r-lesson-')
 
 # Motivations for the R lesson
 
-* Its really important that you know what you did. More journals/grants/etc. are
+* It is really important that you know what you did. More journals/grants/etc. are
   also making it important for them to know what you did.
 * A lot of scientific code is NOT reproducible.
 * If you keep a lab notebook, why are we not as careful with our code.
