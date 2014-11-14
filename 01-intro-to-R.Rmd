@@ -27,7 +27,7 @@ _Start by showing an example of a script_
   - the `=` for arguments
   - the comments `#` and how they are used to document function and its content
   - the `$` operator
-* Point to identation and consistency in spacing to improve clarity
+* Point to indentation and consistency in spacing to improve clarity
 
 ![Example of a simple R script](img/r_starting_example_script.png)
 
