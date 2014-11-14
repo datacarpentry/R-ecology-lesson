@@ -29,7 +29,7 @@ represents a column, and each vector can be of a different data type (e.g.,
 characters, integers, factors). The `str()` function is useful to inspect the
 data types of the columns.
 
-`data.frame` can be created by the functions `read.csv()` or `read.table()`, in
+A `data.frame` can be created by the functions `read.csv()` or `read.table()`, in
 other words, when importing spreadsheets from your hard drive (or the web).
 
 By default, `data.frame` converts (= coerces) columns that contain characters
@@ -89,8 +89,8 @@ fix them? Don't hesitate to experiment!
    ```
 
    Check your guesses using `str(country_climate)`. Are they what you expected?
-   Why? why not?Check your gueses using `str(country_climate)`. Are they what you expected?
-   Why? why not?
+   Why? Why not? Check your gueses using `str(country_climate)`. Are they what you expected?
+   Why? Why not?
 
    R coerces (when possible) to the data type that is the least common
    denominator and the easiest to coerce to.
