@@ -89,11 +89,11 @@ Next we'll work with a realworld data file. We'll look at the structure of an un
 ### Examining file contents
 
 Often we won't know what's in an HDF5 file, and we will need to explore the underlying structure. So let's load up a file and examine it's contents. The file we'll be working with comes from a prototype data file from the National Ecological Observatory Network (NEON). NEON is a network of 60 sites across the USA divided into 20 different regions, each with 3 sites. This file contains temperature data and precipitation data from two observation towers located in Florida (Ordway-Swisher) and Colorado (Sterling) in two different regions.  Each tower has five arms located at different heights, and each arm has an array of sensors on it taking data every second.  These arms are called "booms", and it allows the creation of a vertical temperature and precipitation profile.  The 1 second measurements are then averaged at 1 minute and 30 minute time scales. The data is stored in in the following hierarchy:
-Domnain
+Domain
   |- Site
      |- Time interval
         |- Boom
-            |- Measurment
+            |- Measurement
 
 We can examine this test file by loading it and then using `h5ls` to list the structure.
 
