@@ -26,7 +26,7 @@ R integrates with other tools to generate manuscripts from your code. If you
 collect more data, or fix a mistake in your dataset, the figures and the
 statistical tests in your manuscript are updated automatically.
 
-An increasing number of journals and funding agencies require analyses to be
+An increasing number of journals and funding agencies expect analyses to be
 reproducible, knowing R will give you an edge with these requirements.
 
 
@@ -36,7 +36,7 @@ With 6,000+ packages that can be installed to extend its capabilities, R
 provides a framework that allows you to combine analyses across many scientific
 disciplines to best suit the analyses you want to use on your data. For
 instance, R has packages for image analysis, GIS, time series, population
-genetics, and lot more.
+genetics, and a lot more.
 
 
 ## R works on data of all shapes and size
@@ -45,9 +45,8 @@ The skills you learn with R scale easily with the size of your dataset. Whether
 your dataset has hundreds or millions of lines, it won't make much difference to
 you.
 
-R is designed for data analysis. It comes with special data structure and data
-types that makes the handling of missing data and statistical factors
-convenient.
+R is designed for data analysis. It comes with special data structures and data
+types that make handling of missing data and statistical factors convenient.
 
 R can connect to spreadsheets, databases, and many other data formats, on your
 computer or on the web.
@@ -67,6 +66,6 @@ mailing lists and stack overflow.
 
 ## Not only R is free, but it is also open-source and cross-platform
 
-There is no black magic involved, anyone can inspect the source code to see how
-R works. Because of this transparency, there is less chance for mistakes, and if
-you (or someone else) find some, you can report and fix bugs.
+Anyone can inspect the source code to see how R works. Because of this
+transparency, there is less chance for mistakes, and if you (or someone else)
+find some, you can report and fix bugs.
