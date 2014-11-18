@@ -1,7 +1,7 @@
 
 # Why learn R?
 
-## R is not a GUI, and it is a good thing
+## R is not a GUI, and that's a good thing
 
 The learning curve might be steeper than with other software, but with R, you
 can save all the steps you used to go from the data to the results. So, if you
@@ -10,7 +10,7 @@ remember which button you clicked in which order to obtain your results, you
 just have to run your script again.
 
 Working with scripts makes the steps you used in your analysis clear, and the
-code you write can be inspected by someone else that can give you feedback and
+code you write can be inspected by someone else who can give you feedback and
 spot mistakes.
 
 Working with scripts forces you to have deeper understanding of what you are
@@ -19,14 +19,14 @@ doing, and facilitates your learning and comprehension of the methods you use.
 
 ## R code is great for reproducibility
 
-Reproducibility is that someone else (including your future self) can obtain the
+Reproducibility is when someone else (including your future self) can obtain the
 same results from the same dataset when using the same analysis.
 
 R integrates with other tools to generate manuscripts from your code. If you
 collect more data, or fix a mistake in your dataset, the figures and the
 statistical tests in your manuscript are updated automatically.
 
-An increasing number of journals and granting agencies requires analyses to be
+An increasing number of journals and funding agencies require analyses to be
 reproducible, knowing R will give you an edge with these requirements.
 
 
