@@ -62,7 +62,7 @@ for statistics but also data science. Inspired by the programming language S.
   industry.
 * Available on all platforms.
 * Not just for statistics, but also general purpose programming.
-* For people who have in experience programmming: R is both an object-oriented and /functional/ language
+* For people who have in experience programmming: R is both an object-oriented and *functional* language
 * Large and growing community of peers.
 
 ## Commenting
@@ -84,11 +84,8 @@ same time as the `-` key) will write ` <- ` in a single keystroke.
 
 Functions are "canned scripts" that automate doing something complicated or convenient or both. 
 Many functions are predefined, or 
-becoming available when using a `library` (more on that later). A function usually gets one or more inputs called
-called /arguments/. Functions often (but not always) return a /value/. 
-A typical example would be the function `sqrt`. The input (the argument) must be a number, and the return value 
-(in fact, the output) is the square root of that number. Executing a function ('running it') is called /calling/ 
-the function. An example of a function call is:
+becoming available when using a `library` (more on that later). A function usually gets one or more inputs called *arguments*. Functions often (but not always) return a *value*. 
+A typical example would be the function `sqrt`. The input (the argument) must be a number, and the return value  (in fact, the output) is the square root of that number. Executing a function ('running it') is called *calling* the function. An example of a function call is:
 
 `b <- sqrt(a)`
 
@@ -103,16 +100,13 @@ surveys <- read.csv(file="data/surveys.csv")
 
 Arguments can be anything, not only numbers or filenames, but also other objects. Exactly what each argument means differs
 per function, and must be looked up in the documentation (see below). If an argument alters the
-way the function operates, such as whether to ignore 'bad values', such an argument sometimes called an /option/. 
+way the function operates, such as whether to ignore 'bad values', such an argument is sometimes called an *option*. 
 
-Most functions can take several arguments, but many have so-called /defaults/. 
+Most functions can take several arguments, but many have so-called *defaults*. 
 If you don't specify such an argument when calling the function, the function itself will 
-fall back on using the /default/. This is a standard value that the author of the function specified as
-being 'good enough in standard cases'. An example would be what symbol to use in a plot. However, if you want
-something specific, simply specify the argument yourself with a value of your choice.
+fall back on using the *default*. This is a standard value that the author of the function specified as being 'good enough in standard cases'. An example would be what symbol to use in a plot. However, if you want something specific, simply specify the argument yourself with a value of your choice.
 
-To see these default values, you can either type
-`args(read.csv)` or look at the help for this function (e.g., `?read.csv`).
+To see these default values, you can either type `args(read.csv)` or look at the help for this function (e.g., `?read.csv`).
 
 ```{r, results='show'}
 args(read.csv)
