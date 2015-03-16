@@ -6,6 +6,51 @@ minutes:  1h
 ---
 
 ```r
+library(ggplot2)
+library(magrittr)
+library(dplyr)
+
 surveys <- read.csv("http://files.figshare.com/1919744/surveys.csv")
 
+plot(x=surveys$weight, y=surveys$hindfoot_length)
+
+surveys %>% ggplot(aes(weight, hindfoot_length)) +
+            geom_point()
+
+surveys %>% ggplot(aes(weight, hindfoot_length)) +
+            stat_binhex(bins=50) +
+            scale_fill_gradientn(trans="log10",
+                                 colours = heat.colors(10, alpha=0.5))
+# there are a lot of species with low counts,
+# lets make a barpolot and see
+species_counts <- surveys %>% 
+                  filter(!is.na(weight)) %>%
+                  group_by(species_id) %>%
+                  summarise(n=n())
+                  
+surveys %>% ggplot(aes(factor(species_id))) +
+                   geom_bar() +
+                   scale_y_continuous(trans = 'log10')
+
+
+high_counts <- species_counts %>%
+                      filter(n > 10) %>%
+                      select(species_id)
+                      
+surveys_subset <- surveys %>%
+                  filter(species_id %in% high_counts$species_id)
+
+surveys_subset %>% ggplot(aes(factor(species_id), weight)) +
+                   geom_boxplot()
+
+# add jitter to see how many points are per boxplot
+surveys_subset %>% ggplot(aes(factor(species_id), weight)) +
+                   geom_boxplot() +                  
+                   geom_jitter(alpha=0.1)
+                   
+# different way to look at it is violoin plot                 
+surveys_subset %>% ggplot(aes(factor(species_id), weight)) +
+                   geom_violin()        
+                   
+# challange would be do the same for length         
 ```
