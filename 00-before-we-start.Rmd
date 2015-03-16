@@ -62,7 +62,7 @@ for statistics but also data science. Inspired by the programming language S.
   industry.
 * Available on all platforms.
 * Not just for statistics, but also general purpose programming.
-* Is object oriented and functional.
+* For people who have in experience programmming: R is both an object-oriented and /functional/ language
 * Large and growing community of peers.
 
 ## Commenting
@@ -72,33 +72,46 @@ right of a `#` is ignored by R.
 
 ## Assignment operator
 
-`<-` is the assignment operator. Assigns values on the right to objects on the
-left, it is like an arrow that points from the value to the object. Mostly
-similar to `=` but not always. Learn to use `<-` as it is good programming
-practice. Using `=` in place of `<-` can lead to issues down the line.
+`<-` is the assignment operator. It assigns values on the right to objects on the
+left. So, after executing  `x <- 3`, the value of `x` is `3`. The arrow can be read as 3 *goes into* `x`. 
+(You can also use `=`, but not in all contexts so it is good practice to use `<-` for assignments. `=` should 
+only be used to specify the values of arguments in functions, see below).
 
 In RStudio, typing `Alt + -` (push `Alt`, the key next to your space bar at the
 same time as the `-` key) will write ` <- ` in a single keystroke.
 
-`=` should only be used to specify the values of arguments in functions for
-instance `read.csv(file="data/some_data.csv")`.
-
 ## Functions and their arguments
 
-Let's look at a simple function call:
+Functions are "canned scripts" that automate doing something complicated or convenient or both. 
+Many functions are predefined, or 
+becoming available when using a `library` (more on that later). A function usually gets one or more inputs called
+called /arguments/. Functions often (but not always) return a /value/. 
+A typical example would be the function `sqrt`. The input (the argument) must be a number, and the return value 
+(in fact, the output) is the square root of that number. Executing a function ('running it') is called /calling/ 
+the function. An example of a function call is:
+
+`b <- sqrt(a)`
+
+Here, the value of `b` is given to the `sqrt`-function, the `sqrt`-function calculates the square root, and returns 
+he value which is then assigned to variable `b`. This function is very simple, because it takes just one argument.
+It is useful to specify the arguments by their name, especially if the function can takes several arguments. An example
+(using just one argument) is shown here:
 
 ```{r, eval=FALSE}
 surveys <- read.csv(file="data/surveys.csv")
 ```
 
-The `file=` part inside the parentheses is called an argument, and most
-functions use arguments. Arguments modify the behavior of the
-function. Typically, they take some input (e.g., some data, an object) and other
-options to change what the function will return, or how to treat the data
-provided.
+Arguments can be anything, not only numbers or filenames, but also other objects. Exactly what each argument means differs
+per function, and must be looked up in the documentation (see below). If an argument alters the
+way the function operates, such as whether to ignore 'bad values', such an argument sometimes called an /option/. 
 
-Most functions can take several arguments, but most are specified by default so
-you don't have to enter them. To see these default values, you can either type
+Most functions can take several arguments, but many have so-called /defaults/. 
+If you don't specify such an argument when calling the function, the function itself will 
+fall back on using the /default/. This is a standard value that the author of the function specified as
+being 'good enough in standard cases'. An example would be what symbol to use in a plot. However, if you want
+something specific, simply specify the argument yourself with a value of your choice.
+
+To see these default values, you can either type
 `args(read.csv)` or look at the help for this function (e.g., `?read.csv`).
 
 ```{r, results='show'}
