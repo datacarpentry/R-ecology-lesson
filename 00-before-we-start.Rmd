@@ -89,7 +89,7 @@ A typical example would be the function `sqrt`. The input (the argument) must be
 
 `b <- sqrt(a)`
 
-Here, the value of `b` is given to the `sqrt`-function, the `sqrt`-function calculates the square root, and returns 
+Here, the value of `a` is given to the `sqrt`-function, the `sqrt`-function calculates the square root, and returns 
 he value which is then assigned to variable `b`. This function is very simple, because it takes just one argument.
 It is useful to specify the arguments by their name, especially if the function can takes several arguments. An example
 (using just one argument) is shown here:
