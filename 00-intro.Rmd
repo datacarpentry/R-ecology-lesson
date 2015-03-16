@@ -1,0 +1,11 @@
+---
+layout: page
+title: Visalizing data with R
+subtitle: subtitle
+minutes:  1h
+---
+
+```r
+surveys <- read.csv("http://files.figshare.com/1919744/surveys.csv")
+
+```
