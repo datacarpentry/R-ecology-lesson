@@ -73,7 +73,7 @@ right of a `#` is ignored by R.
 ## Assignment operator
 
 `<-` is the assignment operator. It assigns values on the right to objects on the
-left. So, after executing  `x <- 3`, the value of `x` is `3`. The arrow can be read as 3 *goes into* `x`. 
+left. So, after executing  `x <- 3`, the value of `x` is `3`. The arrow can be read as 3 **goes into** `x`. 
 (You can also use `=`, but not in all contexts so it is good practice to use `<-` for assignments. `=` should 
 only be used to specify the values of arguments in functions, see below).
 
