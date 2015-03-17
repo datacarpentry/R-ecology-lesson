@@ -1,22 +1,53 @@
 ---
-layout: page
-title: Visalizing data with R
-subtitle: subtitle
-minutes:  1h
+layout: topic
+title: Data visualisation with R 
+minutes: 60
 ---
 
+```{r, echo=FALSE, purl=FALSE}
+knitr::opts_chunk$set(fig.keep='none')
+```
+
+Visualising data in R with ggplot2 package
+
+#### Disclaimer
+
+We will here using functions of ggplot2 package. There are basic ploting capabilities
+in basic R, but ggplot2 adds more powerful plotting capabilities.
+
+> ## Learning Objectives
+>
+> * Visualise some of the [mammals data](http://figshare.com/articles/Portal_Project_Teaching_Database/1314459) from Figshare [surveys.csv](http://files.figshare.com/1919744/surveys.csv)
+> * Understand how to plot these data using R ggplot2 package. For more details on using ggplot2 see [official documentation](http://docs.ggplot2.org/current/).
+> * Building step by step complex plots with ggplot2 package
+
+Load required packages
 ```r
+# plotting package
 library(ggplot2)
+# piping / chaining
 library(magrittr)
+# modern dataframe manipulations
 library(dplyr)
+```
 
+Load data directly from figshare.
+```r
 surveys <- read.csv("http://files.figshare.com/1919744/surveys.csv")
-
+```
+`surveys.csv` data contains some measurements of the animals caught in plots.
+Make simple scatter plot of `hindfoot_length` (in millimeters) as a function of `weight`
+(in grams), using basic R plotting capabilities.
+```r
 plot(x=surveys$weight, y=surveys$hindfoot_length)
-
-surveys %>% ggplot(aes(weight, hindfoot_length)) +
+```
+Make the same plot using `ggplot2` package
+```r
+ggplot(surveys, aes(weight, hindfoot_length)) +
             geom_point()
-
+```
+In ggplot first 
+```r
 surveys %>% ggplot(aes(weight, hindfoot_length)) +
             stat_binhex(bins=50) +
             scale_fill_gradientn(trans="log10",
