@@ -52,5 +52,32 @@ surveys_subset %>% ggplot(aes(factor(species_id), weight)) +
 surveys_subset %>% ggplot(aes(factor(species_id), weight)) +
                    geom_violin()        
                    
-# challange would be do the same for length         
+# challange would be do the same for length  
+
+# counts in time per species
+
+# remove unannotated species
+surveys_subset %<>% filter(species_id != "")
+# summarise counts per year per species
+yearly_counts <- surveys_subset %>%
+                 group_by(year, species_id) %>%
+                 summarise(count=n())
+
+yearly_counts %>% ggplot(aes(x=year,
+                             y=count,
+                             group=species_id,
+                             color=species_id)) +
+                  geom_line()
+                  
+yearly_counts %>% ggplot(aes(x=year,
+                             y=count,
+                             color=species_id)) +
+                  geom_line()
+
+yearly_counts %>% ggplot(aes(x=year,
+                             y=count,
+                             color=species_id)) +
+                  geom_line() +
+                  facet_wrap(~species_id)
+
 ```
