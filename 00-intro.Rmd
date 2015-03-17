@@ -5,7 +5,7 @@ minutes: 60
 ---
 
 ```{r, echo=FALSE, purl=FALSE}
-knitr::opts_chunk$set(fig.keep='none')
+knitr::opts_chunk$set(fig.keep='last')
 ```
 
 Visualising data in R with ggplot2 package
@@ -33,82 +33,174 @@ library(dplyr)
 
 Load data directly from figshare.
 ```r
-surveys <- read.csv("http://files.figshare.com/1919744/surveys.csv")
+surveys_raw <- read.csv("http://files.figshare.com/1919744/surveys.csv")
 ```
 `surveys.csv` data contains some measurements of the animals caught in plots.
-Make simple scatter plot of `hindfoot_length` (in millimeters) as a function of `weight`
-(in grams), using basic R plotting capabilities.
+
+# Data cleaning and preparing for plotting
+
+Lets look at the summary
 ```r
-plot(x=surveys$weight, y=surveys$hindfoot_length)
+summary(surveys_raw)
 ```
-Make the same plot using `ggplot2` package
+There are few things we need to clean in the dataset.
+
+There is missing species_id in some records.
+Lets remove those.
 ```r
-ggplot(surveys, aes(weight, hindfoot_length)) +
+surveys <- surveys_raw %>%
+           filter(species_id != "")
+```
+
+There are a lot of species with low counts, lets remove the ones below 10 counts      
+```r
+# count records per species
+species_counts <- surveys %>% 
+                  group_by(species_id) %>%
+                  summarise(n=n())
+
+# get names of those frequent species
+frequent_species <- species_counts %>%
+                    filter(n >= 10) %>%
+                    select(species_id)
+                      
+surveys <- surveys %>%
+           filter(species_id %in% frequent_species$species_id)
+```
+
+We saw in summary, there were NA's in weight and hindfoot_length.
+Lets remove rows with missing weights.
+```r
+surveys_weight_present <- surveys %>%
+                      filter(!is.na(weight))
+```
+### Challenge
+
+* Do the same to remove rows without hindfoot_length.
+Save results in the new dataframe.
+```r
+# Solution #
+surveys_length_present <- surveys %>%
+                      filter(!is.na(hindfoot_length))
+```
+
+* How would you get the dataframe without missing values?
+```r
+# Solution #
+surveys_complete <- surveys_weight_present %>%
+                    filter(!is.na(hindfoot_length))
+```
+
+We can chain filtering together using pipe operator (`%>%`)
+introduced earlier.
+```r
+surveys_complete <- surveys %>%
+                    filter(!is.na(weight)) %>%
+                    filter(!is.na(hindfoot_length))
+```
+
+Make simple scatter plot of `hindfoot_length` (in millimeters)
+as a function of `weight` (in grams), using basic R plotting capabilities.
+```r
+plot(x=surveys_complete$weight, y=surveys_complete$hindfoot_length)
+```
+Make the same plot using `ggplot2` package. `ggplot2` is a widely used R package that extends R's visualization capabilities. It takes simplifies things like creating legends, mapping other variables to scales like color, or faceting plots into small multiples. We'll learn about what all these things mean shortly.
+To build a ggplot we:
+
+* bind plot to a specific data frame
+
+* define aestetics (`aes`), that maps variables in the data to axes on the plot or to plotting size, shape color, etc.,
+
+* add `geoms` -- graphical representation of the plot (points, lines, bars)
+
+We use `+` operator to add all those to plot
+
+```r
+ggplot(surveys_complete, aes(x=weight, y=hindfoot_length)) +
             geom_point()
 ```
-In ggplot first 
+
 ```r
-surveys %>% ggplot(aes(weight, hindfoot_length)) +
+            
+# add transparency to points (alpha)
+ggplot(surveys_complete, aes(weight, hindfoot_length)) +
+            geom_point(alpha=0.1)
+# add color to points
+ggplot(surveys_complete, aes(weight, hindfoot_length)) +
+            geom_point(alpha=0.1, color="blue")
+
+ggplot(surveys_complete, aes(weight, hindfoot_length)) +
             stat_binhex(bins=50) +
             scale_fill_gradientn(trans="log10",
                                  colours = heat.colors(10, alpha=0.5))
-# there are a lot of species with low counts,
-# lets make a barpolot and see
-species_counts <- surveys %>% 
-                  filter(!is.na(weight)) %>%
-                  group_by(species_id) %>%
-                  summarise(n=n())
-                  
-surveys %>% ggplot(aes(factor(species_id))) +
-                   geom_bar() +
-                   scale_y_continuous(trans = 'log10')
 
-
-high_counts <- species_counts %>%
-                      filter(n > 10) %>%
-                      select(species_id)
-                      
-surveys_subset <- surveys %>%
-                  filter(species_id %in% high_counts$species_id)
-
-surveys_subset %>% ggplot(aes(factor(species_id), weight)) +
+ggplot(surveys_weight_present, aes(factor(species_id), weight)) +
                    geom_boxplot()
 
 # add jitter to see how many points are per boxplot
-surveys_subset %>% ggplot(aes(factor(species_id), weight)) +
-                   geom_boxplot() +                  
-                   geom_jitter(alpha=0.1)
-                   
-# different way to look at it is violoin plot                 
-surveys_subset %>% ggplot(aes(factor(species_id), weight)) +
-                   geom_violin()        
-                   
-# challange would be do the same for length  
+ggplot(surveys_weight_present, aes(factor(species_id), weight)) +
+                   geom_jitter(alpha=0.3, color="tomato") +
+                   geom_boxplot(alpha=0)             
+
+# challange: would be do the same for length
+# (remember to also do the fitering by nubmer of counts)
 
 # counts in time per species
 
-# remove unannotated species
-surveys_subset %<>% filter(species_id != "")
 # summarise counts per year per species
-yearly_counts <- surveys_subset %>%
+yearly_counts <- surveys %>%
                  group_by(year, species_id) %>%
                  summarise(count=n())
 
-yearly_counts %>% ggplot(aes(x=year,
+ggplot(yearly_counts, aes(x=year, y=count)) +
+                  geom_line()
+
+ggplot(yearly_counts, aes(x=year, y=count,
+                          group=species_id)) +
+                  geom_line()
+                  
+ggplot(yearly_counts, aes(x=year,
                              y=count,
                              group=species_id,
                              color=species_id)) +
-                  geom_line()
-                  
-yearly_counts %>% ggplot(aes(x=year,
-                             y=count,
-                             color=species_id)) +
-                  geom_line()
+                  geom_line()            
 
-yearly_counts %>% ggplot(aes(x=year,
+ggplot(yearly_counts, aes(x=year,
                              y=count,
                              color=species_id)) +
                   geom_line() +
                   facet_wrap(~species_id)
+                  
+# we wuld like to split those plot further by sex,
+# we would like keep only F or M
+# challange: are there any other sex values?
+# challange: use the example with filtering frequent species to filer on sex
+# answer:
+sex_values = c("F", "M")
+surveys <- surveys %>%
+           filter(sex %in% sex_values)
+# challange: group by year, species_id, sex
+# hint: look at grouping done before
+# answer
+yearly_sex_counts <- surveys %>%
+                 group_by(year, species_id, sex) %>%
+                 summarise(count=n())
 
+# challange: make the faceted plot spliting further by sex
+# hint use group (like group per species)
+# answer:
+ggplot(yearly_sex_counts, aes(x=year,
+                             y=count,
+                             color=species_id,
+                             group=sex)) +
+                  geom_line() +
+                  facet_wrap(~species_id)
+
+ggplot(yearly_sex_counts, aes(x=year,
+                             y=count,
+                             color=sex,
+                             group=sex)) +
+                  geom_line() +
+                  facet_wrap(~species_id)
 ```
+
