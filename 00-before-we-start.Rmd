@@ -63,7 +63,7 @@ for statistics but also data science. Inspired by the programming language S.
 * Available on all platforms.
 * Not just for statistics, but also general purpose programming.
 * For people who have experience in programmming: R is both an object-oriented
-  and a *functional* language.
+  and a so-called [functional language](http://adv-r.had.co.nz/Functional-programming.html)
 * Large and growing community of peers.
 
 ## Commenting
@@ -75,8 +75,8 @@ right of a `#` is ignored by R.
 
 `<-` is the assignment operator. It assigns values on the right to objects on the
 left. So, after executing  `x <- 3`, the value of `x` is `3`. The arrow can be read as 3 **goes into** `x`.
-(You can also use `=`, but not in all contexts so it is good practice to use `<-` for assignments. `=` should
-only be used to specify the values of arguments in functions, see below).
+You can also use `=` for assignments but not in all contexts so it is good practice to use `<-` for assignments. `=` should
+only be used to specify the values of arguments in functions, see below.
 
 In RStudio, typing `Alt + -` (push `Alt`, the key next to your space bar at the
 same time as the `-` key) will write ` <- ` in a single keystroke.
@@ -159,9 +159,9 @@ The recommended approach when working on a data analysis project is dubbed "the
 source code is real". The objects you are creating should be seen as disposable
 as they are the direct realization of your code. Every object in your analysis
 can be recreated from your code, and all steps are documented. Therefore, it is
-best to enter as little commands as possible in the R console. Instead, all code
+best to enter as few commands as possible in the R console. Instead, all code
 should be written in script files, and evaluated from there. That is where
-RStudio is really useful as it makes the passing of code between your script and
+RStudio is really useful, as it makes the passing of code between your script and
 the R console easy. The R console should be used to inspect objects, test a
 function or get help. With this approach, the `.Rhistory` file automatically
 created during your session should not be very useful.
@@ -246,7 +246,7 @@ the description of your problem. When appropriate, try to generalize what you
 are doing so even people who are not in your field can understand the question.
 
 To share an object with someone else, if it's relatively small, you can use the
-function `dput()`, it will output R code that can be used to recreate the exact same
+function `dput()`. It will output R code that can be used to recreate the exact same
 object as the one in memory:
 
 ```{r, results='show'}
@@ -263,7 +263,7 @@ saveRDS(iris, file="/tmp/iris.rds")
 ```
 
 The content of this file is however not human readable and cannot be posted
-directly on stackoverflow. It can how be sent to someone by email who can read
+directly on stackoverflow. It can however be sent to someone by email who can read
 it with this command:
 
 ```{r, eval=FALSE}
