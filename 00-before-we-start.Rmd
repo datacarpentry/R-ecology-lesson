@@ -56,8 +56,10 @@ _Point out the different windows in R._
 The console window (in R studio, the bottom left panel) is the place where R is waiting for you to tell it what to do, and where it will show the results of a command. 
 You can type commands directly into the console, but they will be forgotten when you close the session. It is better to enter the commands in the script editor, and save the script. This way, you have a complete record of what you did, you can easily show others how you did it and you can do it again later on if needed. 
 You can copy-paste into the R console, but the Rstudio script editor allows you to 'send' the current line or the currently selected text to the R console using the `Ctrl-Enter` shortcut.
+
 If R is ready to accept commands, the R console shows a `>` prompt. If it receives a command (by typing, copy-pasting or sent from the script editor using `ctrl-Entr`), R will try to execute it, and when ready, show the results and come back with a new `>`-prompt to wait for new commands.
-If R is still waiting for you to enter more data because it isn't complete yet, the console will show a `+` prompt. It means that you haven't finished entering a complete command. This is because you have not 'closed' a parenthesis or quotation. If this happens, fix it by entering the approriate closing character. If it is difficult to spot the right 'closing character', try each of the following single characters in turn until the '>'- prompt returns (often with an error).
+
+If R is still waiting for you to enter more data because it isn't complete yet, the console will show a `+` prompt. It means that you haven't finished entering a complete command. This is because you have not 'closed' a parenthesis or quotation. If this happens, fix it by entering the approriate closing character. If it is difficult to spot the right 'closing character', try each of the following single characters in turn until the `>`- prompt returns (often with an error).
 `"` ,   `)`,  `}`,   `]`   or `'`.
 
 
