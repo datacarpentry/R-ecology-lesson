@@ -12,14 +12,15 @@ div.hidecode + pre {display: none}
 </style>
 <script>
 doclick=function(e){
-e.nextSibling.nextSibling.style.display = e.nextSibling.nextSibling.style.display == "none" ? "block" : "none";
-// e.nextSibling.nextSibling.style.display="block";
+e.nextSibling.nextSibling.style.display = e.nextSibling.nextSibling.style.display === "none" ? "block" : "none";
 }
 </script>
 
 ```{r, echo=FALSE, purl=FALSE}
 knitr::opts_chunk$set(fig.keep='last')
 ```
+
+Authors: **Mateusz Kuzak**, **Diana Marek**, **Hedi Peterson**
 
 Visualising data in R with ggplot2 package
 
