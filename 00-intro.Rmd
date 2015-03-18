@@ -50,7 +50,7 @@ surveys_raw <- read.csv("http://files.figshare.com/1919744/surveys.csv")
 ```
 `surveys.csv` data contains some measurements of the animals caught in plots.
 
-# Data cleaning and preparing for plotting
+## Data cleaning and preparing for plotting
 
 Lets look at the summary
 ```r
@@ -146,7 +146,7 @@ ggplot(surveys_complete, aes(x=weight, y=hindfoot_length)) +
             geom_point()
 ```
 
-### Modyfying plots
+## Modyfying plots
 
 * adding transparency (alpha)
 ```r
@@ -169,7 +169,7 @@ ggplot(surveys_complete, aes(weight, hindfoot_length)) +
                                  colours = heat.colors(10, alpha=0.5))
 ```
 
-#### Boxplot
+## Boxplot
 Visualizing the distribution of weight within each species.
 ```r
 ggplot(surveys_weight_present, aes(factor(species_id), weight)) +
@@ -187,7 +187,7 @@ ggplot(surveys_weight_present, aes(factor(species_id), weight)) +
 ### Challenge
 Create boxplot for `hindfoot_length`.
 
-#### Plotting time series data
+## Plotting time series data
 Lets calculate number of counts per year for each species.
 To do that we need to group data first and count records within each group.
 
@@ -217,6 +217,8 @@ ggplot(yearly_counts, aes(x=year,
                              color=species_id)) +
                   geom_line()            
 ```
+
+## Faceting
 ggplot has a special technique called *faceting* that allows to split one plot into mutliple plots based on some factor. We will use it to plot one time series for each species separately.
 ```r
 ggplot(yearly_counts, aes(x=year,
