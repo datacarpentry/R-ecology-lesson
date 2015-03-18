@@ -91,17 +91,15 @@ surveys_weight_present <- surveys %>%
 
 * Do the same to remove rows without hindfoot_length.
 Save results in the new dataframe.
-
 <div class="hidecode" onclick="doclick(this);">[Solution]</div>
 ```r
-# Solution #
 surveys_length_present <- surveys %>%
                       filter(!is.na(hindfoot_length))
 ```
 
 * How would you get the dataframe without missing values?
+<div class="hidecode" onclick="doclick(this);">[Solution]</div>
 ```r
-# Solution #
 surveys_complete <- surveys_weight_present %>%
                     filter(!is.na(hindfoot_length))
 ```
@@ -231,35 +229,26 @@ ggplot(yearly_counts, aes(x=year,
 Now we wuld like to split line in each plot by sex of each individual measured.
 To do that we need to make counts in dataframe grouped by sex.
 
-### Challenge:
-* filter the dataframe so that we only keep records with sex "F" or "M";
-
-hint: look at example where we remove species with lower than 10 counts.
-
-answer:
+### Challenges:
+* filter the dataframe so that we only keep records with sex "F" or "M"s
+<div class="hidecode" onclick="doclick(this);">[Solution]</div>
 ```r
 sex_values = c("F", "M")
 surveys <- surveys %>%
            filter(sex %in% sex_values)
 ```
-### Challenge:
+
 * group by year, species_id, sex
-
-hint: look at grouping done before
-
-answer:
+<div class="hidecode" onclick="doclick(this);">[Solution]</div>
 ```r
 yearly_sex_counts <- surveys %>%
                  group_by(year, species_id, sex) %>%
                  summarise(count=n())
 ```
-### Challenge:
+
 * make the faceted plot spliting further by sex
 (within single plot)
-
-hint: use group (like in the plot where we group per species)
-
-answer:
+<div class="hidecode" onclick="doclick(this);">[Solution]</div>
 ```r
 ggplot(yearly_sex_counts, aes(x=year,
                              y=count,
