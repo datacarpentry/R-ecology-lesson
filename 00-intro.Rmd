@@ -4,6 +4,19 @@ title: Data visualisation with R
 minutes: 60
 ---
 
+<!---
+show hide magic
+-->
+<style>
+div.hidecode + pre {display: none}
+</style>
+<script>
+doclick=function(e){
+e.nextSibling.nextSibling.style.display = e.nextSibling.nextSibling.style.display == "none" ? "block" : "none";
+// e.nextSibling.nextSibling.style.display="block";
+}
+</script>
+
 ```{r, echo=FALSE, purl=FALSE}
 knitr::opts_chunk$set(fig.keep='last')
 ```
@@ -78,6 +91,8 @@ surveys_weight_present <- surveys %>%
 
 * Do the same to remove rows without hindfoot_length.
 Save results in the new dataframe.
+
+<div class="hidecode" onclick="doclick(this);">[Solution]</div>
 ```r
 # Solution #
 surveys_length_present <- surveys %>%
@@ -171,7 +186,7 @@ ggplot(surveys_weight_present, aes(factor(species_id), weight)) +
                    geom_boxplot(alpha=0)             
 ```
 
-### Challange
+### Challenge
 Create boxplot for `hindfoot_length`.
 
 #### Plotting time series data
@@ -227,7 +242,7 @@ sex_values = c("F", "M")
 surveys <- surveys %>%
            filter(sex %in% sex_values)
 ```
-### challange:
+### Challenge:
 * group by year, species_id, sex
 
 hint: look at grouping done before
@@ -238,7 +253,7 @@ yearly_sex_counts <- surveys %>%
                  group_by(year, species_id, sex) %>%
                  summarise(count=n())
 ```
-### challange:
+### Challenge:
 * make the faceted plot spliting further by sex
 (within single plot)
 
@@ -264,4 +279,3 @@ ggplot(yearly_sex_counts, aes(x=year,
                   geom_line() +
                   facet_wrap(~species_id)
 ```
-
