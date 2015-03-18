@@ -53,20 +53,20 @@ surveys_raw <- read.csv("http://files.figshare.com/1919744/surveys.csv")
 
 ## Data cleaning and preparing for plotting
 
-Lets look at the summary
+Let's look at the summary
 ```r
 summary(surveys_raw)
 ```
 There are few things we need to clean in the dataset.
 
 There is missing species_id in some records.
-Lets remove those.
+Let's remove those.
 ```r
 surveys <- surveys_raw %>%
            filter(species_id != "")
 ```
 
-There are a lot of species with low counts, lets remove the ones below 10 counts      
+There are a lot of species with low counts, let's remove the ones below 10 counts      
 ```r
 # count records per species
 species_counts <- surveys %>% 
@@ -83,7 +83,7 @@ surveys <- surveys %>%
 ```
 
 We saw in summary, there were NA's in weight and hindfoot_length.
-Lets remove rows with missing weights.
+Let's remove rows with missing weights.
 ```r
 surveys_weight_present <- surveys %>%
                       filter(!is.na(weight))
@@ -147,7 +147,7 @@ ggplot(surveys_complete, aes(x=weight, y=hindfoot_length)) +
             geom_point()
 ```
 
-## Modyfying plots
+## Modefying plots
 
 * adding transparency (alpha)
 ```r
@@ -171,7 +171,7 @@ ggplot(surveys_complete, aes(weight, hindfoot_length)) +
 ```
 
 ## Boxplot
-Visualizing the distribution of weight within each species.
+Visualising the distribution of weight within each species.
 ```r
 ggplot(surveys_weight_present, aes(factor(species_id), weight)) +
                    geom_boxplot()
@@ -189,7 +189,7 @@ ggplot(surveys_weight_present, aes(factor(species_id), weight)) +
 Create boxplot for `hindfoot_length`.
 
 ## Plotting time series data
-Lets calculate number of counts per year for each species.
+Let's calculate number of counts per year for each species.
 To do that we need to group data first and count records within each group.
 
 ```r
@@ -198,12 +198,12 @@ yearly_counts <- surveys %>%
                  summarise(count=n())
 ```
 
-Timelapse data can be visualized as a line plot with years on x axis and counts on y axis.
+Timelapse data can be visualised as a line plot with years on x axis and counts on y axis.
 ```r
 ggplot(yearly_counts, aes(x=year, y=count)) +
                   geom_line()
 ```
-Unfortunatelly this does not work, because we plot data for all the species together. We need to tell ggplot to split graphed data by `species_id`
+Unfortunately this does not work, because we plot data for all the species together. We need to tell ggplot to split graphed data by `species_id`
 ```r
 ggplot(yearly_counts, aes(x=year, y=count,
                           group=species_id)) +
