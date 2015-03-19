@@ -66,7 +66,10 @@ dots (`.`) within a variable name as in `my.dataset`. There are many functions
 in R with dots in their names for historical reasons, but because dots have a
 special meaning in R (for methods) and other programming languages, it's best to
 avoid them. It is also recommended to use nouns for variable names, and verbs
-for function names.
+for function names. It's important to be consistent in the styling of your code
+(where you put spaces, how you name variable, etc.). In R, two popular style
+guides are [Hadley Wickham's](http://adv-r.had.co.nz/Style.html) and
+[Google's](https://google-styleguide.googlecode.com/svn/trunk/Rguide.xml).
 
 When assigning a value to an object, R does not print anything. You can force to
 print the value by using parentheses or by typing the name:
