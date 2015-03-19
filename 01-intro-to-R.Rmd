@@ -62,8 +62,11 @@ cannot be used because they represent the names of fundamental functions in R
 for a complete list). In general, even if it's allowed, it's best to not use
 other function names (e.g., `c`, `T`, `mean`, `data`, `df`, `weights`). In doubt
 check the help to see if the name is already in use. It's also best to avoid
-dots (`.`) within a variable name as in `my.dataset`. It is also recommended to
-use nouns for variable names, and verbs for function names.
+dots (`.`) within a variable name as in `my.dataset`. There are many functions
+in R with dots in their names for historical reasons, but because dots have a
+special meaning in R (for methods) and other programming languages, it's best to
+avoid them. It is also recommended to use nouns for variable names, and verbs
+for function names.
 
 When assigning a value to an object, R does not print anything. You can force to
 print the value by using parentheses or by typing the name:
