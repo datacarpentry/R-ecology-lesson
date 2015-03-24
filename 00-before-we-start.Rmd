@@ -43,22 +43,46 @@ Your working directory should now look like this:
 Let's start by learning about our tool.
 
 * Console, Scripts, Environments, Plots
-* Avoid using shortcuts.
-* Code and workflow is more reproducible if we can document everything that we
+* Code and workflow are more reproducible if we can document everything that we
   do.
 * Our end goal is not just to "do stuff" but to do it in a way that anyone can
   easily and exactly replicate our workflow and results.
 
 # Interacting with R
 
-The console window (in R studio, the bottom left panel) is the place where R is waiting for you to tell it what to do, and where it will show the results of a command. 
-You can type commands directly into the console, but they will be forgotten when you close the session. It is better to enter the commands in the script editor, and save the script. This way, you have a complete record of what you did, you can easily show others how you did it and you can do it again later on if needed. 
-You can copy-paste into the R console, but the Rstudio script editor allows you to 'send' the current line or the currently selected text to the R console using the `Ctrl-Enter` shortcut.
+There are two main ways of interacting with R: using the console or by using
+script files (plain text files that contain your code).
 
-If R is ready to accept commands, the R console shows a `>` prompt. If it receives a command (by typing, copy-pasting or sent from the script editor using `ctrl-Entr`), R will try to execute it, and when ready, show the results and come back with a new `>`-prompt to wait for new commands.
+The console window (in RStudio, the bottom left panel) is the place where R is
+waiting for you to tell it what to do, and where it will show the results of a
+command.  You can type commands directly into the console, but they will be
+forgotten when you close the session. It is better to enter the commands in the
+script editor, and save the script. This way, you have a complete record of what
+you did, you can easily show others how you did it and you can do it again later
+on if needed. You can copy-paste into the R console, but the Rstudio script
+editor allows you to 'send' the current line or the currently selected text to
+the R console using the `Ctrl-Enter` shortcut.
 
-If R is still waiting for you to enter more data because it isn't complete yet, the console will show a `+` prompt. It means that you haven't finished entering a complete command. This is because you have not 'closed' a parenthesis or quotation. If you're in Rstudio and this happens, click inside the console window and pres `Esc`; this should help you out of trouble. When using plain R (i.e. outside Rstudio), you have to fix it by entering the approriate closing character. If it is difficult to spot the right 'closing character', try each of the following single characters in turn until the `>`- prompt returns: `"` ,   `)`,  `}`,   `]`   or `'`.
+At some point in your analysis you may want to check the content of variable or
+the structure of an object, without necessarily keep a record of it in your
+script. You can type these commands directly in the console. RStudio provides
+the `Ctrl-1` and `Ctrl-2` shortcuts allow you to jump between the script and the
+console windows.
 
+If R is ready to accept commands, the R console shows a `>` prompt. If it
+receives a command (by typing, copy-pasting or sent from the script editor using
+`Ctrl-Enter`), R will try to execute it, and when ready, show the results and
+come back with a new `>`-prompt to wait for new commands.
+
+If R is still waiting for you to enter more data because it isn't complete yet,
+the console will show a `+` prompt. It means that you haven't finished entering
+a complete command. This is because you have not 'closed' a parenthesis or
+quotation. If you're in Rstudio and this happens, click inside the console
+window and pres `Esc`; this should help you out of trouble. When using plain R
+(i.e. outside Rstudio), you have to fix it by entering the approriate closing
+character. If it is difficult to spot the right 'closing character', try each of
+the following single characters in turn until the `>`- prompt returns: `"` ,
+`)`, `}`, `]` or `'`.
 
 # Basics of R
 
@@ -160,28 +184,14 @@ read.csv(header=TRUE, file="data/surveys.csv")
 ```
 
 
-## Good practices
+## Organizing your working directory
 
-There are two main ways of interacting with R: using the console or by using
-script files (plain text files that contain your code).
+You should separate the original data (raw data) from intermediate datasets that
+you may create for the need of a particular analysis. For instance, you may want
+to create a `data/` directory within your working directory that stores the raw
+data, and have a `data_output/` directory for intermediate datasets and a
+`figure_output/` directory for the plots you will generate.
 
-The recommended approach when working on a data analysis project is dubbed "the
-source code is real". The objects you are creating should be seen as disposable
-as they are the direct realization of your code. Every object in your analysis
-can be recreated from your code, and all steps are documented. Therefore, it is
-best to enter as few commands as possible in the R console. Instead, all code
-should be written in script files, and evaluated from there. That is where
-RStudio is really useful, as it makes the passing of code between your script and
-the R console easy. The R console should be used to inspect objects, test a
-function or get help. With this approach, the `.Rhistory` file automatically
-created during your session should not be very useful.
-
-Similarly, you should separate the original data (raw data) from intermediate
-datasets that you may create for the need of a particular analysis. For
-instance, you may want to create a `data/` directory within your working
-directory that stores the raw data, and have a `data_output/` directory for
-intermediate datasets and a `figure_output/` directory for the plots you will
-generate.
 
 ## Seeking help
 
