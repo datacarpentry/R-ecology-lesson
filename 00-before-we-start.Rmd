@@ -78,11 +78,7 @@ If R is still waiting for you to enter more data because it isn't complete yet,
 the console will show a `+` prompt. It means that you haven't finished entering
 a complete command. This is because you have not 'closed' a parenthesis or
 quotation. If you're in Rstudio and this happens, click inside the console
-window and pres `Esc`; this should help you out of trouble. When using plain R
-(i.e. outside Rstudio), you have to fix it by entering the approriate closing
-character. If it is difficult to spot the right 'closing character', try each of
-the following single characters in turn until the `>`- prompt returns: `"` ,
-`)`, `}`, `]` or `'`.
+window and press `Esc`; this should help you out of trouble.
 
 # Basics of R
 
