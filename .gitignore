@@ -14,3 +14,4 @@
 
 # vim backup files
 *.swp
+/data/
