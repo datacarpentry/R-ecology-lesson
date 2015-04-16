@@ -1,0 +1,223 @@
+<h3>Overview</h3>
+
+<div class="row-fluid">
+  <div class="span6">
+    <h4>Editor</h4>
+    <p>
+      When you're writing scripts or text, it's nice to have a text
+      editor that is optimized for writing code, with features
+      like automatic color-coding of key words.
+      The default text editor on Mac OS X and Linux is usually set to Vim,
+      which is not famous for being intuitive.
+      if you accidentally find yourself stuck in it,
+      try typing the escape key,
+      followed by ':q!' (colon, lower-case 'q', exclamation mark),
+      then hitting Return
+      to return to the shell. (This will lose any unsaved changes to the file.)
+    </p>
+    <h4>The Bash Shell</h4>
+    <p>
+      Bash is a commonly-used shell. Using a shell gives you
+      more power to do more tasks more quickly with your
+      computer.
+    </p>
+  </div>
+  <div class="span6">
+    <h4>R</h4>
+    <p>
+      R is a programming language that specializes in statistical
+      computing. It is a powerful tool for exploratory data analysis. To
+      interact with R, we will
+      use <a href="http://www.rstudio.com/">RStudio</a>, an interactive
+      development environment (IDE).
+    </p>
+    <h4>SQL</h4>
+    <p>
+      SQL is a specialized programming language used with databases.
+      We use a simple database manager called <a href="http://www.sqlite.org/">SQLite</a>,
+      either directly or through a browser plugin.
+    </p>
+	<h4>OpenRefine</h4>
+    <p>
+      <a href="http://openrefine.org/">OpenRefine</a> (formerly Google Refine) is a powerful tool for exploring and working with messy data.
+      
+    </p>
+  </div>
+</div>
+
+<h3>Windows</h3>
+
+<div class="row-fluid">
+  <div class="span6">
+    <h4>Editor</h4>
+    <p>
+      <a href="http://notepad-plus-plus.org/">Notepad++</a> is a
+      popular free code editor for Windows.
+      Be aware that you must add its installation directory to your system path
+      in order to launch it from the command line
+      (or have other tools like Git launch it for you).
+      Please ask your instructor to help you do this.
+    </p>
+    <h4>Git Bash</h4>
+    <p>
+      Install Git (version control) and a Bash shell for Windows from 
+      <a href="http://msysgit.github.io/">the msysGit project's homepage</a>.
+      This will provide you with Bash in the Git Bash program.
+    </p>
+    <h4>Software Carpentry Installer</h4>
+      <p>Other tools used in Data Carpentry have been packaged up by
+  Software Carpentry in an installer. This installer requires an active internet connection.</p>
+      <ul>
+        <li>
+          Download the <a href="https://dl.dropboxusercontent.com/u/177341/SWCarpentryInstaller.exe">installer</a>.
+        </li>
+      <li>
+        Double click on the file to run it.
+      </li>
+      <li>
+        Accept all defaults.
+      </li>
+    </ul>
+  </div>
+  <div class="span6">
+    <h4>R</h4>
+    <p>
+      Install R by downloading and running
+      <a href="http://cran.r-project.org/bin/windows/base/release.htm">this .exe file</a>
+      from <a href="http://cran.r-project.org/index.html">CRAN</a>.
+      Also, please install the
+      <a href="http://www.rstudio.com/ide/download/desktop">RStudio IDE</a>.
+    </p>
+    <h4>SQLite</h4>
+    <p>
+      Install the Firefox SQLite browser plugin described <a href="#firefox-sqlite">below</a>.
+    </p>
+	<h4>OpenRefine</h4>
+    <p>
+      Download the OpenRefine software described <a href="#openrefine">below</a>.
+    </p>
+  </div>
+</div>
+
+<h3>Mac OS X</h3>
+
+<div class="row-fluid">
+  <div class="span6">
+    <h4>Bash</h4>
+    <p>
+      The default shell in all versions of Mac OS X is bash,
+      so no need to install anything.  You access bash from
+      the Terminal (found
+      in <code>/Applications/Utilities</code>).  You may want
+      to keep Terminal in your dock for this workshop.
+    </p>
+    <h4>Editor</h4>
+    <p>
+      We recommend
+      <a href="http://www.barebones.com/products/textwrangler/">Text Wrangler</a> or
+      <a href="http://www.sublimetext.com/">Sublime Text</a>.
+      In a pinch, you can use <code>nano</code>,
+      which should be pre-installed.
+    </p>
+  </div>
+  <div class="span6">
+    <h4>R</h4>
+    <p>
+      Install R by downloading and running
+      <a href="http://cran.r-project.org/bin/macosx/R-latest.pkg">this .pkg file</a>
+      from <a href="http://cran.r-project.org/index.html">CRAN</a>.
+      Also, please install the
+      <a href="http://www.rstudio.com/ide/download/desktop">RStudio IDE</a>.
+    </p>
+    <h4>SQLite</h4>
+    <p>
+      <code>sqlite3</code> comes pre-installed on Mac OS X.
+      Also install the Firefox SQLite browser plugin described <a href="#firefox-sqlite">below</a>.
+    </p>
+	<h4>OpenRefine</h4>
+    <p>
+      Download the OpenRefine software described <a href="#openrefine">below</a>.
+    </p>
+  </div>
+</div>
+
+<h3>Linux</h3>
+
+<div class="row-fluid">
+  <div class="span6">
+    <h4>Bash</h4>
+    <p>
+      The default shell is usually <code>bash</code>,
+      but if your machine is set up differently
+      you can run it by opening a terminal and typing <code>bash</code>.
+      There is no need to install anything.
+    </p>
+    <h4>Editor</h4>
+    <p>
+      <a href="http://kate-editor.org/">Kate</a> is one option for Linux users.
+      In a pinch, you can use <code>nano</code>,
+      which should be pre-installed.
+    </p>
+  </div>
+  <div class="span6">
+    <h4>R</h4>
+    <p>
+      You can download the binary files for your distribution
+      from <a href="http://cran.r-project.org/index.html">CRAN</a>. Or
+      you can use your package manager, e.g. for Debian/Ubuntu
+      run <code>apt-get install r-base</code>. Also, please install
+      the
+      <a href="http://www.rstudio.com/ide/download/desktop">RStudio IDE</a>.
+    </p>
+    <h4>SQLite</h4>
+    <p>
+      <code>sqlite3</code> comes pre-installed on Linux.
+      Also install the Firefox SQLite browser plugin described <a href="#firefox-sqlite">below</a>.
+    </p>
+	<h4>OpenRefine</h4>
+    <p>
+      Download the OpenRefine software described <a href="#openrefine">below</a>.
+    </p>
+  </div>
+</div>
+
+<h3>Miscellaneous</h3>
+
+<div class="row-fluid">
+  <div class="span6">
+    <h4 id="firefox-sqlite">Firefox SQLite Plugin</h4>
+    <p>
+      Instead of using <code>sqlite3</code> from the command line,
+      you may use <a href="https://addons.mozilla.org/en-US/firefox/addon/sqlite-manager/">this plugin</a>
+      for Firefox instead.
+      To install it:
+    </p>
+    <ul>
+      <li>
+	Start Firefox.
+      </li>
+      <li>
+	Go to the <a href="https://addons.mozilla.org/en-US/firefox/addon/sqlite-manager/">plugin homepage</a>.
+      </li>
+      <li>
+	Click the "Add Now" button.
+      </li>
+      <li>
+	Click "Install Now" on the dialog that appears after the download completes.
+      </li>
+      <li>
+	Restart Firefox when prompted.
+      </li>
+      <li>
+	Select "SQLite Manager" from the "Tools" menu.
+      </li>
+    </ul>
+  </div>
+  <div class="span6">
+    <h4 id="openrefine">OpenRefine</h4>
+    <p>
+      Head to the OpenRefine <a href="http://openrefine.org/download.html">download page</a> for information on how to install it. It will run through a browser, but will not need to use an internet connection, and your data will also be securely stored on your own computer. 
+	</p>
+  </div>
+ </div>
+ 

@@ -1,0 +1,42 @@
+---
+---
+<!DOCTYPE html>
+<html>
+  <head>
+    {% if page.title %}
+      <title>{{ page.title }}</title>
+    {% else %}
+      <title>{{ page.venue }}</title>
+    {% endif %}
+    {% include header.html %}
+    <meta name="venue" content="{{page.venue}}" />
+    <meta name="date" content="{{page.humandate}}" />
+    <meta name="startdate" content="{{page.startdate}}" />
+    <meta name="enddate" content="{{page.enddate}}" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="span10 offset1">
+        {% include banner.html %}
+
+        <div class="hero-unit">
+          <div class="row-fluid">
+            <div class="span10">
+	      <h2>A Data Carpentry Workshop</h2>
+	      <h4>Organized by Stanford Libraries </h4>
+              <h2>{{page.venue}}</h2>
+              {% if page.address %}{{page.address}}<br/>{% endif %}
+              {{page.humandate}}
+              {% if page.humantime %}<br/>{{page.humantime}}{% endif %}
+	    </div>
+          </div>
+        </div>
+
+        {{content}}
+
+        {% include footer.html %}
+      </div>
+    </div>
+    {% include javascript.html %}
+  </body>
+</html>
