@@ -45,6 +45,7 @@ array, using the `subset()` function. For instance, if we just want to look at
 the animals of the species "DO":
 
 ```{r, purl=FALSE}
+surveys <- read.csv(file = "data/surveys.csv")
 surveys_DO <- subset(surveys, species_id == "DO")
 ```
 

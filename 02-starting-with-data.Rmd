@@ -54,7 +54,7 @@ download.file("http://files.figshare.com/1919744/surveys.csv",
 
 You are now ready to load the data:
 
-```{r, eval=FALSE,  purl=FALSE}
+```{r, eval=TRUE,  purl=FALSE}
 surveys <- read.csv('data/surveys.csv')
 ```
 
