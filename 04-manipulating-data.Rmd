@@ -45,7 +45,7 @@ array, using the `subset()` function. For instance, if we just want to look at
 the animals of the species "DO":
 
 ```{r, purl=FALSE}
-surveys_DO <- subset(surveys, species == "DO")
+surveys_DO <- subset(surveys, species_id == "DO")
 ```
 
 ### Challenge
@@ -85,11 +85,7 @@ between the 2 letter code and the names are in the file `species.csv`. In this
 file, one column includes the genus and another includes the species. First, we
 are going to import this file in memory:
 
-```{r, echo=FALSE, purl=FALSE}
-species <- read.csv("../../data/biology/species.csv")
-```
-
-```{r, eval=FALSE, purl=TRUE}
+```{r, purl=TRUE}
 species <- read.csv("data/species.csv")
 ```
 
@@ -102,7 +98,7 @@ data frame held in the column `species_id`). The function returns the position
 of the matches in the table, and this can be used to retrieve the genus names:
 
 ```{r, purl=TRUE}
-surveys_spid_index <- match(surveys$species, species$species_id)
+surveys_spid_index <- match(surveys$species_id, species$species_id)
 surveys_genera <- species$genus[surveys_spid_index]
 ```
 
