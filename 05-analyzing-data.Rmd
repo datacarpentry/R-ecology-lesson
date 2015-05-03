@@ -20,6 +20,10 @@ source("setup.R")
 # Calculating statistics
 
 ```{r, echo=FALSE, purl=FALSE}
+surveys <- read.csv(file = "data/surveys.csv")
+```
+
+```{r, echo=FALSE, purl=FALSE}
 ## Calculating statistics
 ```
 
