@@ -85,16 +85,16 @@ img {
 </div>
 <div id="introduction" class="section level2">
 <h2>Introduction</h2>
-<p>Interacting with databases through scripted languages can offer advantages over querying databases via a GUI interface. A GUI interfaces for your database is easier to use and allows the quick viewing of adhoc queries. Querying a database with a programatic intreface (in this case R, but it could be any language) are slightly more complicated. However the trade-off is that data manipulations are preserved in the code. Aggregations, summaries and other database operations are preserved. Therefore those pre-analysis data manipulation steps are not lost.</p>
+<p>Interacting with databases through scripted languages can offer advantages over querying databases via a GUI interface. A GUI interface for your database is easier to use and allows the quick viewing of adhoc queries. Querying a database with a programatic interface (in this case R, but it could be any language) are slightly more complicated. However the trade-off is that data manipulations are preserved in the code. Aggregations, summaries and other database operations are preserved. Therefore those pre-analysis data manipulation steps are not lost and can be reproduced later by yourself or others.</p>
 </div>
 <div id="connecting-r-to-sqlite-databases" class="section level2">
 <h2>Connecting R to sqlite databases</h2>
-<p>R can connect to databases through a number of libraries. In our case we we will use <a href="http://cran.r-project.org/web/packages/RSQLite/index.html">RSQLite</a> to connect to existing SQLite3 databases. However you should be able to connect on almost any database in R via JDBC<a href="http://cran.r-project.org/web/packages/RJDBC/index.html"><a href="http://cran.r-project.org/web/packages/RJDBC/index.html" class="uri">http://cran.r-project.org/web/packages/RJDBC/index.html</a></a> or <a href="http://cran.r-project.org/web/packages/RODBC/index.html">ODBC</a>, or specific database libraries (such as we are doing, or <a href="http://cran.r-project.org/web/packages/RMySQL/index.html">MySQL</a> ).</p>
+<p>R can connect to databases through a number of packages. In our case we we will use <a href="http://cran.r-project.org/web/packages/RSQLite/index.html">RSQLite</a> to connect to existing SQLite3 databases. However you should be able to connect on almost any database in R via JDBC<a href="http://cran.r-project.org/web/packages/RJDBC/index.html"><a href="http://cran.r-project.org/web/packages/RJDBC/index.html" class="uri">http://cran.r-project.org/web/packages/RJDBC/index.html</a></a> or <a href="http://cran.r-project.org/web/packages/RODBC/index.html">ODBC</a>, or specific database packages (such as we are doing, or <a href="http://cran.r-project.org/web/packages/RMySQL/index.html">MySQL</a> ).</p>
 <p>To begin these exercises we’ll connect to the mammal database you’ve just created.</p>
 <pre class="r"><code>library(RSQLite)</code></pre>
 <pre><code>## Loading required package: DBI</code></pre>
 <pre class="r"><code>## Set dbname and driver out of convenience
-myDB &lt;- &quot;~/Downloads/portal_mammals.sqlite&quot;
+myDB &lt;- &quot;portal_mammals.sqlite&quot;
 conn &lt;- dbConnect(drv = SQLite(), dbname= myDB)</code></pre>
 <p>Now you’re connected to your database, you can get information about the tables in the database. While SQLite manager will provide this for you, you’ll need to get it yourself with some basic SQL commands</p>
 </div>
@@ -129,7 +129,7 @@ head(result)</code></pre>
 ## 6 1977         PP</code></pre>
 <blockquote>
 <p><strong>Challenge</strong></p>
-<p>Write a query that gets counts of genus by plot type. If this seems to advanaced, then get counts of genus by plot_id (eliminates of of the joins)</p>
+<p>Write a query that gets counts of genus by plot type. If this seems to advanced, then get counts of genus by plot_id (eliminates one of the joins)</p>
 </blockquote>
 <p><em>Answer</em></p>
 <pre class="r"><code>q &lt;- &quot;SELECT d.plot_type , c.genus, count(*)
@@ -151,8 +151,9 @@ head(result)</code></pre>
 ## 4     Control          Baiomys        1
 ## 5     Control      Calamospiza        2
 ## 6     Control       Callipepla        2</code></pre>
-<p>All we’ve done so far is execute the same sorts of queries that can easily be made with a GUI. Now let’s try leveraging some of the power scripted queries. Imagine you want to know how many rodents were found every other year. To get this we’ll get the range of dates from the database, sequence them by two and make new queries.</p>
-<pre class="r"><code>yearRange &lt;- dbGetQuery(conn,&quot;SELECT min(year),max(year) from surveys&quot;)
+<p>In the above answer you’ll note that I use a common technique in SQL queries called aliasing. Aliasing is simply a way to reference a table or sub query, usually within a join. In the above answer aliases allow an easy way to give a shorthand name to a table, e.g. <code>plots d</code>. Sub queries also require an alias if you want to use them in a join.</p>
+<p>All we’ve done so far is execute the same sorts of queries that can easily be made with a GUI. Now let’s try leveraging the power of scripted queries. Imagine you want to know how many rodents were found every other year. To get this we’ll get the range of dates from the database, sequence them by two and make new queries.</p>
+<pre class="r"><code>yearRange &lt;- dbGetQuery(conn,&quot;SELECT min(year),max(year) FROM surveys&quot;)
 years &lt;- seq(yearRange[,1],yearRange[,2],by=2)</code></pre>
 <p>Next we’ll build our query string using the <code>paste()</code> function.</p>
 <pre class="r"><code>q &lt;- paste(&quot;
@@ -179,35 +180,40 @@ head(rCount)</code></pre>
 </div>
 <div id="building-your-workflow" class="section level2">
 <h2>Building your workflow</h2>
-<p>Up until now we been working with an existing data. However we can use R as way to build up databases from existing flat files. We’ll use data we generate, but you could easily do this with flat files that you read into R. Here we’ll simulate a simple file of ‘sites’ where you’ve measured snout vent lengths (svn) of lizards.</p>
-<pre class="r"><code>svn_lengths &lt;- cbind(data.frame(sample(letters[1:5],500,replace=T)),data.frame(rnorm(500,15,6)))
-colnames(svn_lengths) &lt;- c(&quot;site&quot;,&quot;length&quot;)</code></pre>
-<p>We have some data now. Next we’ll need to create a database and add it as a table.</p>
-<pre class="r"><code>myDB &lt;- &quot;~/wkspace/test.db&quot;
+<p>Up until now we been working with an existing data. However we can use R as a way to build up databases from existing flat files. We’ll use the flat files that make up the mammals database to recreate it. First let’s read in the files.</p>
+<pre class="r"><code>species &lt;- read.csv(&quot;species.csv&quot;)
+surveys &lt;- read.csv(&quot;surveys.csv&quot;)
+plots &lt;- read.csv(&quot;plots.csv&quot;)</code></pre>
+<p>We have some data now. Next we’ll need to create a database and add our tables.</p>
+<pre class="r"><code>myDB &lt;- &quot;portalR.db&quot;
 myConn &lt;- dbConnect(drv = SQLite(), dbname= myDB)
 dbListTables(myConn)</code></pre>
 <pre><code>## character(0)</code></pre>
-<p>By opening up a connection, you’ve created a new database. If you list the tables you’ll see that the database is empty. Next we’ll add the dataframe we just created to the database.</p>
-<pre class="r"><code>dbWriteTable(myConn,&quot;svn&quot;,svn_lengths)</code></pre>
+<p>By opening up a connection, you’ve created a new database. If you list the tables you’ll see that the database is empty. Next we’ll add the dataframes we just read in to the database.</p>
+<pre class="r"><code>dbWriteTable(myConn,&quot;species&quot;,species)</code></pre>
 <pre><code>## [1] TRUE</code></pre>
 <pre class="r"><code>dbListTables(myConn)</code></pre>
-<pre><code>## [1] &quot;svn&quot;</code></pre>
-<pre class="r"><code>dbGetQuery(myConn,&quot;SELECT * from svn limit 10&quot;)</code></pre>
-<pre><code>##    site   length
-## 1     a 23.37987
-## 2     a 16.34301
-## 3     c 19.15496
-## 4     d 10.85527
-## 5     e 17.62157
-## 6     a 18.74765
-## 7     d 23.66984
-## 8     e 19.15365
-## 9     d 16.97072
-## 10    b 10.91608</code></pre>
-<p>If you check the location of your database you’ll see that data is automatically being written to disk. Not only does R and RSQLite provide easy ways to query existing databases, it also allows you to easily create your own databases from raw data. Using this method, you can not only store raw data but create linked tables of derived metrics or data from external sources.</p>
+<pre><code>## [1] &quot;species&quot;</code></pre>
+<pre class="r"><code>dbGetQuery(myConn,&quot;SELECT * from species limit 10&quot;)</code></pre>
+<pre><code>##    species_id            genus         species    taxa
+## 1          AB       Amphispiza       bilineata    Bird
+## 2          AH Ammospermophilus         harrisi  Rodent
+## 3          AS       Ammodramus      savannarum    Bird
+## 4          BA          Baiomys         taylori  Rodent
+## 5          CB  Campylorhynchus brunneicapillus    Bird
+## 6          CM      Calamospiza     melanocorys    Bird
+## 7          CQ       Callipepla        squamata    Bird
+## 8          CS         Crotalus      scutalatus Reptile
+## 9          CT    Cnemidophorus          tigris Reptile
+## 10         CU    Cnemidophorus       uniparens Reptile</code></pre>
+<p>If you check the location of your database you’ll see that data is automatically being written to disk. Not only does R and RSQLite provide easy ways to query existing databases, it also allows you to easily create your own databases from flat files.</p>
 <blockquote>
 <p><strong>Challenge</strong></p>
-<p>Add a new table to the existing database. Perhaps it’s data about the five different sites, or any other table you’d like. Query your database from SQLite manager just to verify that you’re adding data.</p>
+<p>Add the remaining tables to the existing database. Query your database from SQLite manager just to verify that you’re adding data.</p>
+</blockquote>
+<blockquote>
+<p><strong>Extra Challenge</strong></p>
+<p>Run some of your queries from earlier in the lesson to verify that you have faithfully recreated the mammals database.</p>
 </blockquote>
 </div>
 
