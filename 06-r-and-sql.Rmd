@@ -66,7 +66,7 @@ head(result)
 
 >  **Challenge**
 >
-> Write a query that gets counts of genus by plot type. If this seems to advanaced, then get counts of genus by plot_id (eliminates of of the joins)
+> Write a query that gets counts of genus by plot type. If this seems to advanced, then get counts of genus by plot_id (eliminates one of the joins)
 
 *Answer*
 ```{r genus by type}
@@ -85,10 +85,10 @@ head(result)
 
 ```
 
-All we've done so far is execute the same sorts of queries that can easily be made with a GUI.  Now let's try leveraging some of the power scripted queries.  Imagine you want to know how many rodents were found every other year.  To get this we'll get the range of dates from the database, sequence them by two and make new queries.
+All we've done so far is execute the same sorts of queries that can easily be made with a GUI.  Now let's try leveraging the power of scripted queries.  Imagine you want to know how many rodents were found every other year.  To get this we'll get the range of dates from the database, sequence them by two and make new queries.
 
 ```{r Get years of data}
-yearRange <- dbGetQuery(conn,"SELECT min(year),max(year) from surveys")
+yearRange <- dbGetQuery(conn,"SELECT min(year),max(year) FROM surveys")
 years <- seq(yearRange[,1],yearRange[,2],by=2)
 ```
 
@@ -142,3 +142,4 @@ If you check the location of your database you'll see that data is automatically
 >  **Challenge**
 >
 > Add a new table to the existing database.  Perhaps it's data about the five different sites, or any other table you'd like. Query your database from SQLite manager just to verify that you're adding data.
+
