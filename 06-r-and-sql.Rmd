@@ -27,7 +27,9 @@ Connecting R to sqlite databases
 
 R can connect to databases through a number of packages.  In our case we we will use [RSQLite](http://cran.r-project.org/web/packages/RSQLite/index.html) to connect to existing SQLite3 databases.  However you should be able to connect on almost any database in R via JDBC[http://cran.r-project.org/web/packages/RJDBC/index.html](http://cran.r-project.org/web/packages/RJDBC/index.html) or [ODBC](http://cran.r-project.org/web/packages/RODBC/index.html), or specific database packages (such as we are doing, or [MySQL](http://cran.r-project.org/web/packages/RMySQL/index.html) ).  
 
-To begin these exercises we'll connect to the mammal database you've just created.
+To begin these exercises we'll connect to the mammal database you've just created. We'll need the RSQLite library to be sure to install it first. `install.packages('RSQLite')`.
+
+It's also important that your working directory is set properly. Check it first `getwd()`. Set your working directory if it's not set to the same data directory in your data-carpentry folder that we've been working with.
 
 ```{r connect}
 library(RSQLite)
@@ -36,25 +38,49 @@ myDB <- "portal_mammals.sqlite"
 conn <- dbConnect(drv = SQLite(), dbname= myDB)
 ```
 
-Now you're connected to your database, you can get information about the tables in the database.  While SQLite manager will provide this for you, you'll need to get it yourself with some basic SQL commands
+Now we're connected to our database, let's explore the table structure in the database.  Remember we could see the list of tables in the SQLite Firefox gui. In R, we'll need to use SQL commands.
 
-Basic queries
+Running SQL queries from R
 ----
-You can grab information about all tables like this:
+We can view information about the database structure which includes a list of all tables like this:
+
 
 ```{r Get Table information}
 dbGetQuery(conn,"SELECT type, tbl_name  FROM sqlite_master")
 ```
 
-`RSQLite` has some functions that easily list basic information about your database and tables. Here you can see the types and names of fields and get a count of records.
+The `RSQLite` library also has functions that can be used to list both tables and fields within a table. Here you can see the types and names of fields and get a count of records.
 
 ```{r table details}
 dbListTables(conn)
+#get list of fields in the surveys table
 dbListFields(conn,"surveys")
 dbGetQuery(conn,"SELECT count(*) FROM surveys")
 ```
 
-Great!  That's all there is to it. You are now connected to your database and know something about the tables in it.  From here you can manipulate it the exact same way you can from SQLite Manager except in a scripted manner. Let's try some basic queries from the previous lesson.  Querying simply takes a connection to a database and query as inputs and returns a dataframe with the results.
+It's good practice to always close a connection that you open in R. Let's do that next.
+Note that once you've closed a connection, you will have to open a new connection to 
+query and import the data again.
+
+```{r close Connection}
+dbDisconnect(conn)
+```
+
+We've now covered the basics of connecting to a database and exploring its basic structure. From here we can write queries to access subsets of the data within our database, using the same methods that we used in SQLite. 
+
+Let's try some basic queries from the previous lesson.  Querying simply takes a connection to a database and query as inputs and returns a dataframe with the results.
+
+Before we can do this, we need to re-establish a database connection.
+
+```{r connect}
+library(RSQLite)
+## Set dbname and driver out of convenience
+myDB <- "portal_mammals.sqlite"
+conn <- dbConnect(drv = SQLite(), dbname= myDB)
+```
+
+Next, we build our query. We can use the `dbGetQuery` function to run the query and access data returned in a `data.frame` object.
+
 
 ```{r basic queries}
 q <- 'SELECT DISTINCT year, species_id FROM surveys'
@@ -66,7 +92,15 @@ head(result)
 
 >  **Challenge**
 >
-> Write a query that gets counts of genus by plot type. If this seems to advanced, then get counts of genus by plot_id (eliminates one of the joins)
+>  1. Write a query that returns counts of genus by plot_id
+>  2. You can join multiple tables together in SQL using the following syntax where foreign key refers to your unique id (eg species_id):
+ SELECT table.col, table.col 
+ FROM table1 JOIN table2 
+ ON table1.key = table2.key
+ JOIN table3 ON table2.key = table3.key
+ 
+> Write a query that joins the species, plot and survey tables together. The query should return counts of genus by plot type. Then create a bar plot of your results in R.
+
 
 *Answer*
 ```{r genus by type}
@@ -85,6 +119,10 @@ head(result)
 
 ```
 
+
+Field Aliases in SQL
+----
+********** ALIASING IS UNECCESARY HERE BUT IS A GOOD TOPIC TO KNOW ********
 In the above answer you'll note that I use a common technique in SQL queries called aliasing.  Aliasing is simply a way to reference a table or sub query, usually within a join. In the above answer aliases allow an easy way to give a shorthand name to a table, e.g. `plots d`. Sub queries also require an alias if you want to use them in a join. 
 
 
@@ -115,10 +153,10 @@ head(rCount)
 
 With the nested paste commands we were able to construct a query programatically, without having to type out all the years.  This could also be done with a for loop, especially if the query to be constructed is more complicated.
 
-Building your workflow
+Creating a SQLite DB using R
 ------
 
-Up until now we been working with an existing data. However we can use R as a way to build up databases from existing flat files.  We'll use the flat files that make up the mammals database to recreate it.  First let's read in the files.
+We can use R to create a new database and associated structure (also known as the schema) databases from existing `csv` files.  Let's recreate the mammals database that we've been working with, in R. First let's read in the `csv` files.
 
 ```{r Generate a dataframe}
 species <- read.csv("species.csv")
@@ -126,7 +164,7 @@ surveys <- read.csv("surveys.csv")
 plots <- read.csv("plots.csv")
 ```
 
-We have some data now. Next we'll need to create a database and add our tables.
+Next we'll need to create a database and add our tables.
 
 ```{r create database}
 myDB <- "portalR.db"
@@ -141,12 +179,15 @@ dbListTables(myConn)
 dbGetQuery(myConn,"SELECT * from species limit 10")
 ```
   
-If you check the location of your database you'll see that data is automatically being written to disk. Not only does R and RSQLite provide easy ways to query existing databases, it also allows you to easily create your own databases from flat files.
+If you check the location of our database you'll see that data is automatically being written to disk. Not only does R and RSQLite provide easy ways to query existing databases, it also allows you to easily create your own databases from flat files.
+
 
 >  **Challenge**
 >
-> Add the remaining tables to the existing database. Query your database from SQLite manager just to verify that you're adding data.
+> Add the remaining tables to the existing database. Open the new database using the Firefox SQLite manager to verify that the database was built successfully.
 
 > **Extra Challenge**
 >
 > Run some of your queries from earlier in the lesson to verify that you have faithfully recreated the mammals database.
+
+Don't forget to close your database connection when you are done with it!
