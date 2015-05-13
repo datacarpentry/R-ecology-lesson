@@ -5,8 +5,7 @@ minutes: 30
 ---
 
 ```{r, echo=FALSE, purl=FALSE}
-knitr::opts_chunk$set(results='hide', fig.path='img/r-lesson')
-surveys <- read.csv(file="../../data/biology/surveys.csv")
+source("setup.R")
 ```
 
 ```{r, echo=FALSE, purl=TRUE}
@@ -46,7 +45,8 @@ some_data <- read.csv("data/some_file.csv", stringsAsFactors=FALSE)
 
 You can also create `data.frame` manually with the function `data.frame()`. This
 function can also take the argument `stringsAsFactors`. Compare the output of
-these examples:
+these examples, and compare the difference between when the data are being read
+as `character` and when they are being as `factor`.
 
 ```{r, results='show', purl=TRUE}
 example_data <- data.frame(animal=c("dog", "cat", "sea cucumber", "sea urchin"),
@@ -58,9 +58,6 @@ example_data <- data.frame(animal=c("dog", "cat", "sea cucumber", "sea urchin"),
                            weight=c(45, 8, 1.1, 0.8), stringsAsFactors=FALSE)
 str(example_data)
 ```
-
-__Point to the differences between character and factor output with str()__
-
 
 ### Challenge
 
@@ -77,7 +74,7 @@ fix them? Don't hesitate to experiment!
 
 1. Can you predict the class for each of the columns in the following example?
 
-   ```{r, purl=TRUE}
+   ```{r, eval=FALSE, purl=TRUE}
    ## Can you predict the class for each of the columns in the following example?
    ## Check your guesses using `str(country_climate)`. Are they what you expected?
    ##  Why? why not?
