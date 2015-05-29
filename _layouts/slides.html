@@ -1,0 +1,60 @@
+---
+cdn: http://files.software-carpentry.org/cdn
+---
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>{{page.title}}</title>
+    <meta name="description" content="{{page.title}}" />
+    <meta name="author" content="{{page.author}}" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="{{page.cdn}}/reveal.js/css/reveal.min.css" />
+    <link rel="stylesheet" href="{{page.cdn}}/reveal.js/css/theme/default.css" id="theme" />
+    <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="{{page.cdn}}/bootstrap/bootstrap.css" />
+  </head>
+  <body>
+
+    <div class="reveal">
+      <div class="slides">
+{{content}}
+      </div>
+    </div>
+
+    <script src="{{page.cdn}}/reveal.js/lib/js/head.min.js"></script>
+    <script src="{{page.cdn}}/reveal.js/js/reveal.min.js"></script>
+
+    <script>
+      // Full list of configuration options available at http://github.com/hakimel/reveal.js#configuration.
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: 'sky',
+        transition: 'none',
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: '{{page.cdn}}/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: '{{page.cdn}}/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '{{page.cdn}}/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '{{page.cdn}}/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: '{{page.cdn}}/reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: '{{page.cdn}}/reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
+    </script>
+
+  </body>
+</html>
