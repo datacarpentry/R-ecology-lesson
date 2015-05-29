@@ -19,6 +19,8 @@ sessionInfo()
 
 
 # Presentation of the survey data
+## download.file("http://files.figshare.com/1919744/surveys.csv",
+##               "data/surveys.csv")
 ## Exercise
 ## Based on the output of `str(surveys)`, can you answer the following questions?
 ## * What is the class of the object `surveys`?
@@ -60,14 +62,14 @@ str(example_data)
 ## author_book <- data.frame(author_first=c("Charles", "Ernst", "Theodosius"),
 ##                              author_last=c(Darwin, Mayr, Dobzhansky),
 ##                              year=c(1942, 1970))
-## Can you predict the class for each of the columns in the following example?
-## Check your guesses using `str(country_climate)`. Are they what you expected?
-##  Why? why not?
-country_climate <- data.frame(country=c("Canada", "Panama", "South Africa", "Australia"),
-                               climate=c("cold", "hot", "temperate", "hot/temperate"),
-                               temperature=c(10, 30, 18, "15"),
-                               north_hemisphere=c(TRUE, TRUE, FALSE, "FALSE"),
-                               has_kangaroo=c(FALSE, FALSE, FALSE, 1))
+## ## Can you predict the class for each of the columns in the following example?
+## ## Check your guesses using `str(country_climate)`. Are they what you expected?
+## ##  Why? why not?
+## country_climate <- data.frame(country=c("Canada", "Panama", "South Africa", "Australia"),
+##                                climate=c("cold", "hot", "temperate", "hot/temperate"),
+##                                temperature=c(10, 30, 18, "15"),
+##                                north_hemisphere=c(TRUE, TRUE, FALSE, "FALSE"),
+##                                has_kangaroo=c(FALSE, FALSE, FALSE, 1))
 ## Indexing and sequences
 ### The function `nrow()` on a `data.frame` returns the number of
 ### rows. Use it, in conjuction with `seq()` to create a new
@@ -83,8 +85,8 @@ country_climate <- data.frame(country=c("Canada", "Panama", "South Africa", "Aus
 ##  in 2002.
 ##   * How many individuals of the species "DM" were collected in 2002?
 ## Adding columns
-## species <- read.csv("data/species.csv")
-surveys_spid_index <- match(surveys$species, species$species_id)
+species <- read.csv("data/species.csv")
+surveys_spid_index <- match(surveys$species_id, species$species_id)
 surveys_genera <- species$genus[surveys_spid_index]
 surveys <- cbind(surveys, genus=surveys_genera)
 ## Use the same approach to also include the species names in the
@@ -97,7 +99,7 @@ head(surveys)
 
 
 ## 1. To determine the number of elements found in a vector, we can use
-## use the function `length()` (e.g., `length(surveys$wgt)`). Using `length()`, how
+## use the function `length()` (e.g., `length(surveys$weight)`). Using `length()`, how
 ## many animals have not had their weights recorded?
 
 ## 2. What is the median weight for the males?
@@ -113,14 +115,14 @@ head(surveys)
 ## 2. How many species do you have these statistics for?
 ## 3. Create a new data frame (called `surveys_summary`) that contains as columns:
 ##    * `species` the 2 letter code for the species names
-##    * `mean_wgt` the mean weight for each species
-##    * `sd_wgt` the standard deviation for each species
-##    * `min_wgt`  the minimum weight for each species
-##    * `max_wgt`  the maximum weight for each species
+##    * `mean_weight` the mean weight for each species
+##    * `sd_weight` the standard deviation for each species
+##    * `min_weight`  the minimum weight for each species
+##    * `max_weight`  the maximum weight for each species
 ## Plotting
 ## 1. Create a new plot showing the standard deviation for each species.
 ## pdf("mean_per_species.pdf")
-## barplot(surveys_summary$mean_wgt, horiz=TRUE, las=1,
+## barplot(surveys_summary$mean_weight, horiz=TRUE, las=1,
 ##         col=c("lavender", "lightblue"), xlab="Weight (g)",
 ##         main="Mean weight per species")
 ## dev.off()

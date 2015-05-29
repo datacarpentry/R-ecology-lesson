@@ -5,8 +5,7 @@ minutes: 60
 ---
 
 ```{r, echo=FALSE, purl=FALSE}
-knitr::opts_chunk$set(results='hide', fig.path='img/r-lesson-')
-surveys <- read.csv(file="../../data/biology/surveys.csv")
+source("setup.R")
 ```
 
 > ## Learning Objectives
@@ -21,6 +20,10 @@ surveys <- read.csv(file="../../data/biology/surveys.csv")
 # Calculating statistics
 
 ```{r, echo=FALSE, purl=FALSE}
+surveys <- read.csv(file = "data/surveys.csv")
+```
+
+```{r, echo=FALSE, purl=FALSE}
 ## Calculating statistics
 ```
 
@@ -31,13 +34,13 @@ To get a `vector` of all the species, we are going to use the `unique()`
 function that tells us the unique values in a given vector:
 
 ```{r, purl=FALSE}
-unique(surveys$species)
+unique(surveys$species_id)
 ```
 
 The function `table()`, tells us how many of each species we have:
 
 ```{r, purl=FALSE}
-table(surveys$species)
+table(surveys$species_id)
 ```
 
 R has a lot of built in statistical functions, like `mean()`, `median()`,
@@ -45,7 +48,7 @@ R has a lot of built in statistical functions, like `mean()`, `median()`,
 animals using the function `mean()`:
 
 ```{r, results='show', purl=FALSE}
-mean(surveys$wgt)
+mean(surveys$weight)
 ```
 
 Hmm, we just get `NA`. That's because we don't have the weight for every animal
@@ -58,14 +61,14 @@ When dealing with simple statistics like the mean, the easiest way to ignore
 `NA` (the missing data) is to use `na.rm=TRUE` (`rm` stands for remove):
 
 ```{r, results='show', purl=FALSE}
-mean(surveys$wgt, na.rm=TRUE)
+mean(surveys$weight, na.rm=TRUE)
 ```
 
 In some cases, it might be useful to remove the missing data from the
 vector. For this purpose, R comes with the function `na.omit`:
 
 ```{r, purl=FALSE}
-wgt_noNA <- na.omit(surveys$wgt)
+weight_noNA <- na.omit(surveys$weight)
 ```
 
 For some applications, it's useful to keep all observations, for others, it
@@ -90,7 +93,7 @@ surveys_with_weights <- surveys[!is.na(surveys$weight), ]
 ### Challenge
 
 1. To determine the number of elements found in a vector, we can use
-use the function `length()` (e.g., `length(surveys$wgt)`). Using `length()`, how
+use the function `length()` (e.g., `length(surveys$weight)`). Using `length()`, how
 many animals have not had their weights recorded?
 
 1. What is the median weight for the males?
@@ -103,7 +106,7 @@ many animals have not had their weights recorded?
 
 ```{r, echo=FALSE, purl=TRUE}
 ## 1. To determine the number of elements found in a vector, we can use
-## use the function `length()` (e.g., `length(surveys$wgt)`). Using `length()`, how
+## use the function `length()` (e.g., `length(surveys$weight)`). Using `length()`, how
 ## many animals have not had their weights recorded?
 
 ## 2. What is the median weight for the males?
@@ -137,7 +140,7 @@ tapply(columns_to_do_the_calculations_on, factor_to_sort_on, function)
 If we want to calculate the mean for each species (using the complete dataset):
 
 ```{r, purl=FALSE}
-tapply(surveys_complete$wgt, surveys_complete$species, mean)
+tapply(surveys_complete$weight, surveys_complete$species_id, mean)
 ```
 
 This produces some `NA` because R "remembers" all species that were found in the
@@ -147,8 +150,8 @@ redefine the levels for the factor "species" before calculating the means. Let's
 also create an object to store these values:
 
 ```{r, purl=FALSE}
-surveys_complete$species <- factor(surveys_complete$species)
-species_mean <- tapply(surveys_complete$wgt, surveys_complete$species, mean)
+surveys_complete$species_id <- factor(surveys_complete$species_id)
+species_mean <- tapply(surveys_complete$weight, surveys_complete$species_id, mean)
 ```
 
 ### Challenge
@@ -158,10 +161,10 @@ species_mean <- tapply(surveys_complete$wgt, surveys_complete$species, mean)
 1. How many species do you have these statistics for?
 1. Create a new data frame (called `surveys_summary`) that contains as columns:
    * `species` the 2 letter code for the species names
-   * `mean_wgt` the mean weight for each species
-   * `sd_wgt` the standard deviation for each species
-   * `min_wgt`  the minimum weight for each species
-   * `max_wgt`  the maximum weight for each species
+   * `mean_weight` the mean weight for each species
+   * `sd_weight` the standard deviation for each species
+   * `min_weight`  the minimum weight for each species
+   * `max_weight`  the maximum weight for each species
 
 ```{r, echo=FALSE, purl=TRUE}
 ## 1. Create new objects to store: the standard deviation, the maximum and minimum
@@ -169,24 +172,24 @@ species_mean <- tapply(surveys_complete$wgt, surveys_complete$species, mean)
 ## 2. How many species do you have these statistics for?
 ## 3. Create a new data frame (called `surveys_summary`) that contains as columns:
 ##    * `species` the 2 letter code for the species names
-##    * `mean_wgt` the mean weight for each species
-##    * `sd_wgt` the standard deviation for each species
-##    * `min_wgt`  the minimum weight for each species
-##    * `max_wgt`  the maximum weight for each species
+##    * `mean_weight` the mean weight for each species
+##    * `sd_weight` the standard deviation for each species
+##    * `min_weight`  the minimum weight for each species
+##    * `max_weight`  the maximum weight for each species
 ```
 
 **Answers**
 
 ```{r, purl=FALSE}
-species_max <- tapply(surveys_complete$wgt, surveys_complete$species, max)
-species_min <- tapply(surveys_complete$wgt, surveys_complete$species, min)
-species_sd <- tapply(surveys_complete$wgt, surveys_complete$species, sd)
-nlevels(surveys_complete$species) # or length(species_mean)
-surveys_summary <- data.frame(species=levels(surveys_complete$species),
-                              mean_wgt=species_mean,
-                              sd_wgt=species_sd,
-                              min_wgt=species_min,
-                              max_wgt=species_max)
+species_max <- tapply(surveys_complete$weight, surveys_complete$species_id, max)
+species_min <- tapply(surveys_complete$weight, surveys_complete$species_id, min)
+species_sd <- tapply(surveys_complete$weight, surveys_complete$species_id, sd)
+nlevels(surveys_complete$species_id) # or length(species_mean)
+surveys_summary <- data.frame(species_id = levels(surveys_complete$species_id),
+                              mean_weight = species_mean,
+                              sd_weight = species_sd,
+                              min_weight = species_min,
+                              max_weight = species_max)
 ```
 
 ```{r, echo=FALSE, purl=TRUE}
@@ -205,25 +208,25 @@ Let's use the `surveys_summary` data that we generated and plot it.
 R has built in plotting functions.
 
 ```{r, purl=FALSE}
-barplot(surveys_summary$mean_wgt)
+barplot(surveys_summary$mean_weight)
 ```
 
 The axis labels are too big though, so you can't see them all. Let's change that.
 
 ```{r, purl=FALSE}
-barplot(surveys_summary$mean_wgt, cex.names=0.4)
+barplot(surveys_summary$mean_weight, cex.names=0.4)
 ```
 
 Alternatively, we may want to flip the axes to have more room for the species names:
 
 ```{r, purl=FALSE}
-barplot(surveys_summary$mean_wgt, horiz=TRUE, las=1)
+barplot(surveys_summary$mean_weight, horiz=TRUE, las=1)
 ```
 
 Let's also add some colors, and add a main title, label the axis:
 
 ```{r, purl=FALSE}
-barplot(surveys_summary$mean_wgt, horiz=TRUE, las=1,
+barplot(surveys_summary$mean_weight, horiz=TRUE, las=1,
         col=c("lavender", "lightblue"), xlab="Weight (g)",
         main="Mean weight per species")
 ```
@@ -268,7 +271,7 @@ create multiple pages to your file, by generating multiple plots before calling
 
 ```{r, eval=FALSE, purl=TRUE}
 pdf("mean_per_species.pdf")
-barplot(surveys_summary$mean_wgt, horiz=TRUE, las=1,
+barplot(surveys_summary$mean_weight, horiz=TRUE, las=1,
         col=c("lavender", "lightblue"), xlab="Weight (g)",
         main="Mean weight per species")
 dev.off()
