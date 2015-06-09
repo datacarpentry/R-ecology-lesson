@@ -55,7 +55,7 @@ download.file("http://files.figshare.com/1919744/surveys.csv",
 You are now ready to load the data:
 
 ```{r, eval=TRUE,  purl=FALSE}
-surveys <- read.csv('data/surveys.csv')
+surveys <- read.csv('portal_data_joined.csv')
 ```
 
 This statement doesn't produce any output because assignment doesn't display
