@@ -6,6 +6,7 @@ minutes: 30
 
 ```{r, echo=FALSE, purl=FALSE}
 source("setup.R")
+surveys <- read.csv("portal_data_joined.csv")
 ```
 
 ```{r, echo=FALSE, purl=TRUE}
