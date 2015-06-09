@@ -215,20 +215,12 @@ hr {
 <h1>Presentation of the Survey Data</h1>
 
 <p>We are studying the species and weight of animals caught in plots in our study
-area.  The dataset is stored as a <code>.csv</code> file: each row holds information for a
+area. The dataset is stored as a <code>.csv</code> file: each row holds information for a
 single animal, and the columns represent <code>record_id</code> , <code>month</code>, <code>day</code>, <code>year</code>,
 <code>plot_id</code>, <code>species_id</code> (a 2 letter code, see the <code>species.csv</code> file for
 correspondance), <code>sex</code> (&ldquo;M&rdquo; for males and &ldquo;F&rdquo; for females), <code>hindfood_length</code>
-(the length of the hindfoot in millimeters),<code>weight</code> (the weight in grams).</p>
-
-<p>The survey dataset looks like this:</p>
-
-<pre><code>&quot;63&quot;,&quot;8&quot;,&quot;19&quot;,&quot;1977&quot;,&quot;3&quot;,&quot;DM&quot;,&quot;M&quot;,&quot;35&quot;,&quot;40&quot;
-&quot;64&quot;,&quot;8&quot;,&quot;19&quot;,&quot;1977&quot;,&quot;7&quot;,&quot;DM&quot;,&quot;M&quot;,&quot;35&quot;,&quot;48&quot;
-&quot;65&quot;,&quot;8&quot;,&quot;19&quot;,&quot;1977&quot;,&quot;4&quot;,&quot;DM&quot;,&quot;F&quot;,&quot;37&quot;,&quot;29&quot;
-&quot;66&quot;,&quot;8&quot;,&quot;19&quot;,&quot;1977&quot;,&quot;4&quot;,&quot;DM&quot;,&quot;F&quot;,&quot;34&quot;,&quot;46&quot;
-&quot;67&quot;,&quot;8&quot;,&quot;19&quot;,&quot;1977&quot;,&quot;7&quot;,&quot;DM&quot;,&quot;M&quot;,&quot;35&quot;,&quot;36&quot;
-</code></pre>
+(the length of the hindfoot in millimeters),<code>weight</code> (the weight in grams),
+<code>genus</code>, <code>species</code>, <code>taxa</code>, and <code>plot_type</code>.</p>
 
 <p>We are going to use the R function <code>download.file()</code> to download the CSV file
 that contains the survey data from figshare, and we will use <code>read.csv()</code> to
