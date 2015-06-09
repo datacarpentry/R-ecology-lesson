@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-<title>Learning Objectives</title>
+<title>Data manipulation using dplyr</title>
 
 <script type="text/javascript">
 window.onload = function() {
@@ -201,247 +201,221 @@ hr {
 </head>
 
 <body>
-<blockquote>
-<h2>Learning Objectives</h2>
+<h1>Data manipulation using dplyr</h1>
 
-<ul>
-<li>understand the concept of a <code>data.frame</code></li>
-<li>use sequences</li>
-<li>know how to access any element of a <code>data.frame</code></li>
-</ul>
+<p>Bracket subsetting is handy, but it can be cumbersome and difficult to read,
+especially for complicated operations. Enter <code>dplyr</code>. <code>dplyr</code> is a package for
+making data manipulation easier.</p>
+
+<p>Packages in R are basically sets of additional functions that let you do more
+stuff in R. The functions we&#39;ve been using, like <code>str()</code>, come built into R;
+packages give you access to more functions. You need to install a package and
+then load it to be able to use it.</p>
+
+<pre><code class="r">install.packages(&quot;dplyr&quot;) ## install
+</code></pre>
+
+<p>You might get asked to choose a CRAN mirror &ndash; this is basically asking you to
+choose a site to download the package from. The choice doesn&#39;t matter too much;
+I&#39;d recommend choosing the RStudio mirror.</p>
+
+<pre><code class="r">library(&quot;dplyr&quot;)          ## load
+</code></pre>
+
+<p>You only need to install a package once per computer, but you need to load it
+every time you open a new R session and want to use that package.</p>
+
+<h2>What is dplyr?</h2>
+
+<p>The package <code>dplyr</code> is a fairly new (2014) package that tries to provide easy
+tools for the most common data manipulation tasks. It is built to work directly
+with data frames. The thinking behind it was largely inspired by the package
+<code>plyr</code> which has been in use for some time but suffered from being slow in some
+cases.<code>dplyr</code> addresses this by porting much of the computation to C++. An
+additional feature is the ability to work with data stored directly in an
+external database. The benefits of doing this are that the data can be managed
+natively in a relational database, queries can be conducted on that database,
+and only the results of the query returned.</p>
+
+<p>This addresses a common problem with R in that all operations are conducted in
+memory and thus the amount of data you can work with is limited by available
+memory. The database connections essentially remove that limitation in that you
+can have a database of many 100s GB, conduct queries on it directly and pull
+back just what you need for analysis in R.</p>
+
+<h3>Selecting columns and filtering rows</h3>
+
+<p>We&#39;re going to learn some of the most common <code>dplyr</code> functions: <code>select()</code>,
+<code>filter()</code>, <code>mutate()</code>, <code>group_by()</code>, and <code>summarize()</code>. To select columns of a
+data frame, use <code>select()</code>. The first argument to this function is the data
+frame (<code>surveys</code>), and the subsequent arguments are the columns to keep.</p>
+
+<pre><code class="r">## Keep columns &quot;plot&quot;, &quot;species_id&quot;, and &quot;weight&quot;
+select(surveys, plot_id, species_id, weight)
+</code></pre>
+
+<p>To choose rows, use <code>filter()</code>:</p>
+
+<pre><code class="r">## All data for year 1995
+filter(surveys, year == 1995)
+</code></pre>
+
+<h3>Pipes</h3>
+
+<p>But what if you wanted to select and filter? There are three ways to do this:
+use intermediate steps, nested functions, or pipes. With the intermediate steps,
+you essentially create a temporary data frame and use that as input to the next
+function. This can clutter up your workspace with lots of objects. You can also
+nest functions (i.e. one function inside of another).  This is handy, but can be
+difficult to read if too many functions are nested as the process from inside
+out. The last option, pipes, are a fairly recent addition to R. Pipes let you
+take the output of one function and send it directly to the next, which is
+useful when you need to many things to the same data set.  Pipes in R look like
+<code>%&gt;%</code> and are made available via the <code>magrittr</code> package installed as
+part of <code>dplyr</code>.</p>
+
+<pre><code class="r">### Species, sex, and weight where weight &lt;5
+surveys %&gt;%
+  filter(weight &lt; 5) %&gt;%
+  select(species_id, sex, weight)
+</code></pre>
+
+<p>In the above we use the pipe to send the <code>surveys</code> data set first through
+<code>filter</code>, to keep rows where <code>wgt</code> was less than 5, and then through <code>select</code> to
+keep the <code>species</code> and <code>sex</code> columns. When the data frame is being passed to the
+<code>filter()</code> and <code>select()</code> functions through a pipe, we don&#39;t need to include it
+as an argument to these functions anymore.</p>
+
+<p>If we wanted to create a new object with this smaller version of the data we
+could do so by assigning it a new name:</p>
+
+<pre><code class="r">## Assign a new object called surveys_sml
+surveys_sml &lt;- surveys %&gt;%
+  filter(weight &lt; 5) %&gt;%
+  select(species_id, sex, weight)
+
+surveys_sml
+</code></pre>
+
+<blockquote>
+<h3>Challenge {.challenge}</h3>
+
+<p>Using pipes, subset the data to include rows before 1995. Retain columns
+<code>year</code>, <code>sex</code>, and <code>weight.</code></p>
 </blockquote>
 
-<h1>What are data frames?</h1>
+<h3>Mutate</h3>
 
-<p><code>data.frame</code> is the <em>de facto</em> data structure for most tabular data and what we
-use for statistics and plotting.</p>
+<p>Frequently you&#39;ll want to create new columns based on the values in existing
+columns, for example to do unit conversions or find the ratio of values in two
+columns. For this we&#39;ll use <code>mutate()</code>.</p>
 
-<p>A <code>data.frame</code> is a collection of vectors of identical lengths. Each vector
-represents a column, and each vector can be of a different data type (e.g.,
-characters, integers, factors). The <code>str()</code> function is useful to inspect the
-data types of the columns.</p>
+<p>To create a new column of weight in kg:</p>
 
-<p>A <code>data.frame</code> can be created by the functions <code>read.csv()</code> or <code>read.table()</code>, in
-other words, when importing spreadsheets from your hard drive (or the web).</p>
-
-<p>By default, <code>data.frame</code> converts (= coerces) columns that contain characters
-(i.e., text) into the <code>factor</code> data type. Depending on what you want to do with
-the data, you may want to keep these columns as <code>character</code>. To do so,
-<code>read.csv()</code> and <code>read.table()</code> have an argument called <code>stringsAsFactors</code> which
-can be set to <code>FALSE</code>:</p>
-
-<pre><code class="r">some_data &lt;- read.csv(&quot;data/some_file.csv&quot;, stringsAsFactors=FALSE)
+<pre><code class="r">## Add a coumn of weight in kg
+surveys %&gt;%
+  mutate(weight_kg = weight / 1000)
 </code></pre>
 
-<!--- talk about colClasses argument?, row names?  --->
+<p>If this runs off your screen and you just want to see the first few rows, you
+can use a pipe to view the <code>head()</code> of the data (pipes work with non-dplyr
+functions too, as long as the <code>dplyr</code> or <code>magrittr</code> packages are loaded).</p>
 
-<p>You can also create <code>data.frame</code> manually with the function <code>data.frame()</code>. This
-function can also take the argument <code>stringsAsFactors</code>. Compare the output of
-these examples, and compare the difference between when the data are being read
-as <code>character</code> and when they are being as <code>factor</code>.</p>
-
-<pre><code class="r">example_data &lt;- data.frame(animal=c(&quot;dog&quot;, &quot;cat&quot;, &quot;sea cucumber&quot;, &quot;sea urchin&quot;),
-                           feel=c(&quot;furry&quot;, &quot;furry&quot;, &quot;squishy&quot;, &quot;spiny&quot;),
-                           weight=c(45, 8, 1.1, 0.8))
-str(example_data)
+<pre><code class="r">## Pipe the data to head so it doesn&#39;t run off the screen
+surveys %&gt;%
+  mutate(weight_kg = weight / 1000) %&gt;%
+  head
 </code></pre>
 
-<pre><code>## &#39;data.frame&#39;:    4 obs. of  3 variables:
-##  $ animal: Factor w/ 4 levels &quot;cat&quot;,&quot;dog&quot;,&quot;sea cucumber&quot;,..: 2 1 3 4
-##  $ feel  : Factor w/ 3 levels &quot;furry&quot;,&quot;spiny&quot;,..: 1 1 3 2
-##  $ weight: num  45 8 1.1 0.8
+<p>The first few rows are full of NAs, so if we wanted to remove those we could
+insert a <code>filter()</code> in this chain:</p>
+
+<pre><code class="r">## Data with a weight_kg column, removing rows where weight is NA
+surveys %&gt;%
+  mutate(weight_kg = weight / 1000) %&gt;%
+  filter(!is.na(weight)) %&gt;%
+  head
 </code></pre>
 
-<pre><code class="r">example_data &lt;- data.frame(animal=c(&quot;dog&quot;, &quot;cat&quot;, &quot;sea cucumber&quot;, &quot;sea urchin&quot;),
-                           feel=c(&quot;furry&quot;, &quot;furry&quot;, &quot;squishy&quot;, &quot;spiny&quot;),
-                           weight=c(45, 8, 1.1, 0.8), stringsAsFactors=FALSE)
-str(example_data)
+<p><code>is.na()</code> is a function that determines whether something is or is not an <code>NA</code>.
+The <code>!</code> symbol negates it, so we&#39;re asking for everything that is not an <code>NA</code>.</p>
+
+<h3>Split-apply-combine data analysis and the summarize() function</h3>
+
+<p>Many data analysis tasks can be approached using the &ldquo;split-apply-combine&rdquo;
+paradigm: split the data into groups, apply some analysis to each group, and
+then combine the results. <code>dplyr</code> makes this very easy through the use of the
+<code>group_by()</code> function. <code>group_by()</code> splits the data into groups upon which some
+operations can be run. For example, if we wanted to group by sex and find the
+number of rows of data for each sex, we would do:</p>
+
+<pre><code class="r">## Number of rows of data for each sex
+surveys %&gt;%
+  group_by(sex) %&gt;%
+  tally()
 </code></pre>
 
-<pre><code>## &#39;data.frame&#39;:    4 obs. of  3 variables:
-##  $ animal: chr  &quot;dog&quot; &quot;cat&quot; &quot;sea cucumber&quot; &quot;sea urchin&quot;
-##  $ feel  : chr  &quot;furry&quot; &quot;furry&quot; &quot;squishy&quot; &quot;spiny&quot;
-##  $ weight: num  45 8 1.1 0.8
+<p><code>group_by()</code> is often used together with <code>summarize()</code> which collapses each
+group into a single-row summary of that group. So to view mean <code>weight</code> by sex:</p>
+
+<pre><code class="r">## Mean weight by sex
+surveys %&gt;%
+  group_by(sex) %&gt;%
+  summarize(mean_weight = mean(weight, na.rm = TRUE))
 </code></pre>
 
-<h3>Challenge</h3>
+<p>You can group by multiple columns too:</p>
 
-<ol>
-<li><p>There are a few mistakes in this hand crafted <code>data.frame</code>, can you spot and
-fix them? Don&#39;t hesitate to experiment!</p>
-
-<pre><code class="r">##  There are a few mistakes in this hand crafted `data.frame`,
-##  can you spot and fix them? Don&#39;t hesitate to experiment!
-author_book &lt;- data.frame(author_first=c(&quot;Charles&quot;, &quot;Ernst&quot;, &quot;Theodosius&quot;),
-                            author_last=c(Darwin, Mayr, Dobzhansky),
-                            year=c(1942, 1970))
-</code></pre></li>
-<li><p>Can you predict the class for each of the columns in the following example?</p>
-
-<pre><code class="r">## Can you predict the class for each of the columns in the following example?
-## Check your guesses using `str(country_climate)`. Are they what you expected?
-##  Why? why not?
-country_climate &lt;- data.frame(country=c(&quot;Canada&quot;, &quot;Panama&quot;, &quot;South Africa&quot;, &quot;Australia&quot;),
-                              climate=c(&quot;cold&quot;, &quot;hot&quot;, &quot;temperate&quot;, &quot;hot/temperate&quot;),
-                              temperature=c(10, 30, 18, &quot;15&quot;),
-                              north_hemisphere=c(TRUE, TRUE, FALSE, &quot;FALSE&quot;),
-                              has_kangaroo=c(FALSE, FALSE, FALSE, 1))
+<pre><code class="r">## Mean weight by sex and species
+surveys %&gt;%
+  group_by(sex, species_id) %&gt;%
+  summarize(mean_weight = mean(weight, na.rm = TRUE))
 </code></pre>
 
-<p>Check your guesses using <code>str(country_climate)</code>. Are they what you expected?
-Why? Why not? Check your gueses using <code>str(country_climate)</code>. Are they what you expected?
-Why? Why not?</p>
+<p>Looks like most of these species were never weighed. We could then discard rows
+where <code>mean_weight</code> is <code>NaN</code> (<code>NaN</code> refers to &ldquo;Not a Number&rdquo;) using <code>filter()</code>:</p>
 
-<p>R coerces (when possible) to the data type that is the least common
-denominator and the easiest to coerce to.</p></li>
-</ol>
-
-<h1>Inspecting <code>data.frame</code> objects</h1>
-
-<p>We already saw how the functions <code>head()</code> and <code>str()</code> can be useful to check the
-content and the structure of a <code>data.frame</code>. Here is a non-exhaustive list of
-functions to get a sense of the content/structure of the data.</p>
-
-<ul>
-<li>Size:
-
-<ul>
-<li><code>dim()</code> - returns a vector with the number of rows in the first element, and
-the number of columns as the second element (the <strong>dim</strong>ensions of the object)</li>
-<li><code>nrow()</code> - returns the number of rows</li>
-<li><code>ncol()</code> - returns the number of columns</li>
-</ul></li>
-<li>Content:
-
-<ul>
-<li><code>head()</code> - shows the first 6 rows</li>
-<li><code>tail()</code> - shows the last 6 rows</li>
-</ul></li>
-<li>Names:
-
-<ul>
-<li><code>names()</code> - returns the column names (synonym of <code>colnames()</code> for <code>data.frame</code>
-objects)</li>
-<li><code>rownames()</code> - returns the row names</li>
-</ul></li>
-<li>Summary:
-
-<ul>
-<li><code>str()</code> - structure of the object and information about the class, length and
-content of  each column</li>
-<li><code>summary()</code> - summary statistics for each column</li>
-</ul></li>
-</ul>
-
-<p>Note: most of these functions are &ldquo;generic&rdquo;, they can be used on other types of
-objects besides <code>data.frame</code>.</p>
-
-<h1>Indexing and sequences</h1>
-
-<p>If we want to extract one or several values from a vector, we must provide one
-or several indices in square brackets, just as we do in math. For instance:</p>
-
-<pre><code class="r">animals &lt;- c(&quot;mouse&quot;, &quot;rat&quot;, &quot;dog&quot;, &quot;cat&quot;)
-animals[2]
+<pre><code class="r">## Mean weight by sex and species where mean weight is not NaN
+surveys %&gt;%
+  group_by(sex, species_id) %&gt;%
+  summarize(mean_weight = mean(weight, na.rm = TRUE)) %&gt;%
+  filter(!is.nan(mean_weight))
 </code></pre>
 
-<pre><code>## [1] &quot;rat&quot;
+<p>All of a sudden this isn&#39;t running of the screen anymore. That&#39;s because <code>dplyr</code>
+has changed our <code>data.frame</code> to a <code>tbl_df</code>. This is a data structure that&#39;s very
+similar to a data frame; for our purposes the only difference is that it won&#39;t
+automatically show tons of data going off the screen.</p>
+
+<p>You can also summarize multiple variables at the same time:</p>
+
+<pre><code class="r">## Summarize multiple variables at once
+surveys %&gt;%
+  group_by(sex, species_id) %&gt;%
+  summarize(mean_weight = mean(weight, na.rm = TRUE),
+            min_weight = min(weight, na.rm = TRUE)) %&gt;%
+  filter(!is.nan(mean_weight))
 </code></pre>
 
-<pre><code class="r">animals[c(3, 2)]
-</code></pre>
+<blockquote>
+<h3>Challenge {.challenge}</h3>
 
-<pre><code>## [1] &quot;dog&quot; &quot;rat&quot;
-</code></pre>
+<p>How many times was each <code>plot_type</code> surveyed?</p>
 
-<pre><code class="r">animals[2:4]
-</code></pre>
+<h3>Challenge {.challenge}</h3>
 
-<pre><code>## [1] &quot;rat&quot; &quot;dog&quot; &quot;cat&quot;
-</code></pre>
+<p>Use <code>group_by()</code> and <code>summarize()</code> to find the mean, min, and max hindfoot
+length for each species.</p>
 
-<pre><code class="r">more_animals &lt;- animals[c(1:3, 2:4)]
-more_animals
-</code></pre>
+<h3>Challenge {.challenge}</h3>
 
-<pre><code>## [1] &quot;mouse&quot; &quot;rat&quot;   &quot;dog&quot;   &quot;rat&quot;   &quot;dog&quot;   &quot;cat&quot;
-</code></pre>
+<p>What was the heaviest animal measured in each year? Return the columns <code>year</code>,
+<code>genus</code>, <code>species</code>, and <code>weight</code>.</p>
+</blockquote>
 
-<p>R indexes start at 1. Programming languages like Fortran, MATLAB, and R start
-counting at 1, because that&#39;s what human beings typically do. Languages in the C
-family (including C++, Java, Perl, and Python) count from 0 because that&#39;s
-simpler for computers to do.</p>
+<p><a href="http://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">Handy dplyr cheatsheet</a></p>
 
-<p><code>:</code> is a special function that creates numeric vectors of integer in increasing
-or decreasing order, test <code>1:10</code> and <code>10:1</code> for instance. The function <code>seq()</code>
-(for <strong>seq</strong>uence) can be used to create more complex patterns:</p>
-
-<pre><code class="r">seq(1, 10, by=2)
-</code></pre>
-
-<pre><code>## [1] 1 3 5 7 9
-</code></pre>
-
-<pre><code class="r">seq(5, 10, length.out=3)
-</code></pre>
-
-<pre><code>## [1]  5.0  7.5 10.0
-</code></pre>
-
-<pre><code class="r">seq(50, by=5, length.out=10)
-</code></pre>
-
-<pre><code>##  [1] 50 55 60 65 70 75 80 85 90 95
-</code></pre>
-
-<pre><code class="r">seq(1, 8, by=3) # sequence stops to stay below upper limit
-</code></pre>
-
-<pre><code>## [1] 1 4 7
-</code></pre>
-
-<p>Our survey data frame has rows and columns (it has 2 dimensions), if we want to
-extract some specific data from it, we need to specify the &ldquo;coordinates&rdquo; we want
-from it. Row numbers come first, followed by column numbers.</p>
-
-<pre><code class="r">surveys[1, 1]   # first element in the first column of the data frame
-surveys[1, 6]   # first element in the 6th column
-surveys[1:3, 7] # first three elements in the 7th column
-surveys[3, ]    # the 3rd element for all columns
-surveys[, 8]    # the entire 8th column
-head_surveys &lt;- surveys[1:6, ] # surveys[1:6, ] is equivalent to head(surveys)
-</code></pre>
-
-<h3>Challenge</h3>
-
-<ol>
-<li>The function <code>nrow()</code> on a <code>data.frame</code> returns the number of rows. Use it,
-in conjuction with <code>seq()</code> to create a new <code>data.frame</code> called
-<code>surveys_by_10</code> that includes every 10th row of the survey data frame
-starting at row 10 (10, 20, 30, &hellip;)</li>
-</ol>
-
-<!---
-
-```r
-surveys_by_10 <- surveys[seq(10, nrow(surveys), by=10), ]
-```
---->
-
-<p>For larger datasets, it can be tricky to remember the column number that
-corresponds to a particular variable. (Are species names in column 5 or 7? oh,
-right&hellip; they are in column 6). In some cases, in which column the variable will
-be can change if the script you are using adds or removes columns. It&#39;s
-therefore often better to use column names to refer to a particular variable,
-and it makes your code easier to read and your intentions clearer.</p>
-
-<p>You can do operations on a particular column, by selecting it using the <code>$</code>
-sign. In this case, the entire column is a vector. For instance, to extract all
-the weights from our datasets, we can use: <code>surveys$wgt</code>. You can use
-<code>names(surveys)</code> or <code>colnames(surveys)</code> to remind yourself of the column names.</p>
-
-<p>In some cases, you may way to select more than one column. You can do this using
-the square brackets: <code>surveys[, c(&quot;wgt&quot;, &quot;sex&quot;)]</code>.</p>
+<p><em>Much of this lesson was copied or adapted from Jeff Hollister&#39;s <a href="http://usepa.github.io/introR/2015/01/14/03-Clean/">materials</a></em></p>
 
 </body>
 

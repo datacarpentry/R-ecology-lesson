@@ -216,35 +216,40 @@ hr {
 
 <p>We are studying the species and weight of animals caught in plots in our study
 area.  The dataset is stored as a <code>.csv</code> file: each row holds information for a
-single animal, and the columns represent <code>survey_id</code> , <code>month</code>, <code>day</code>, <code>year</code>,
-<code>plot</code>, <code>species</code> (a 2 letter code, see the <code>species.csv</code> file for
-correspondance), <code>sex</code> (&ldquo;M&rdquo; for males and &ldquo;F&rdquo; for females), <code>wgt</code> (the weight in
-grams).</p>
+single animal, and the columns represent <code>record_id</code> , <code>month</code>, <code>day</code>, <code>year</code>,
+<code>plot_id</code>, <code>species_id</code> (a 2 letter code, see the <code>species.csv</code> file for
+correspondance), <code>sex</code> (&ldquo;M&rdquo; for males and &ldquo;F&rdquo; for females), <code>hindfood_length</code>
+(the length of the hindfoot in millimeters),<code>weight</code> (the weight in grams).</p>
 
-<p>The first few rows of the survey dataset look like this:</p>
+<p>The survey dataset looks like this:</p>
 
-<pre><code>&quot;63&quot;,&quot;8&quot;,&quot;19&quot;,&quot;1977&quot;,&quot;3&quot;,&quot;DM&quot;,&quot;M&quot;,&quot;40&quot;
-&quot;64&quot;,&quot;8&quot;,&quot;19&quot;,&quot;1977&quot;,&quot;7&quot;,&quot;DM&quot;,&quot;M&quot;,&quot;48&quot;
-&quot;65&quot;,&quot;8&quot;,&quot;19&quot;,&quot;1977&quot;,&quot;4&quot;,&quot;DM&quot;,&quot;F&quot;,&quot;29&quot;
-&quot;66&quot;,&quot;8&quot;,&quot;19&quot;,&quot;1977&quot;,&quot;4&quot;,&quot;DM&quot;,&quot;F&quot;,&quot;46&quot;
-&quot;67&quot;,&quot;8&quot;,&quot;19&quot;,&quot;1977&quot;,&quot;7&quot;,&quot;DM&quot;,&quot;M&quot;,&quot;36&quot;
+<pre><code>&quot;63&quot;,&quot;8&quot;,&quot;19&quot;,&quot;1977&quot;,&quot;3&quot;,&quot;DM&quot;,&quot;M&quot;,&quot;35&quot;,&quot;40&quot;
+&quot;64&quot;,&quot;8&quot;,&quot;19&quot;,&quot;1977&quot;,&quot;7&quot;,&quot;DM&quot;,&quot;M&quot;,&quot;35&quot;,&quot;48&quot;
+&quot;65&quot;,&quot;8&quot;,&quot;19&quot;,&quot;1977&quot;,&quot;4&quot;,&quot;DM&quot;,&quot;F&quot;,&quot;37&quot;,&quot;29&quot;
+&quot;66&quot;,&quot;8&quot;,&quot;19&quot;,&quot;1977&quot;,&quot;4&quot;,&quot;DM&quot;,&quot;F&quot;,&quot;34&quot;,&quot;46&quot;
+&quot;67&quot;,&quot;8&quot;,&quot;19&quot;,&quot;1977&quot;,&quot;7&quot;,&quot;DM&quot;,&quot;M&quot;,&quot;35&quot;,&quot;36&quot;
 </code></pre>
 
-<p>To load our survey data, we need to locate the <code>surveys.csv</code> file. We will use
-<code>read.csv()</code> to load into memory (as a <code>data.frame</code>) the content of the CSV
-file.</p>
+<p>We are going to use the R function <code>download.file()</code> to download the CSV file
+that contains the survey data from figshare, and we will use <code>read.csv()</code> to
+load into memory (as a <code>data.frame</code>) the content of the CSV file:</p>
 
 <ul>
-<li><a href="https://github.com/datacarpentry/datacarpentry/raw/master/data/biology/surveys.csv">download the data file</a></li>
-<li>put it in directory <code>&quot;data&quot;</code> within your working directory for these exercises</li>
+<li>First, make sure you are in the correct working directory by typing <code>getwd()</code>.</li>
+<li>Second, create a new directory within this working directory called <code>data</code>. You
+can do this by clicking on the new folder icon in RStudio under the file tab, or
+by typing <code>dir.create(&quot;data&quot;)</code> at the terminal.</li>
+<li>Third, download the data:</li>
 </ul>
 
-<pre><code class="r">surveys &lt;- read.csv(&#39;data/surveys.csv&#39;)
+<pre><code class="r">download.file(&quot;http://files.figshare.com/1919744/surveys.csv&quot;,
+              &quot;data/surveys.csv&quot;)
 </code></pre>
 
-<!--- this chunk if for internal use so code in this lesson can be evaluated --->
+<p>You are now ready to load the data:</p>
 
-<p><strong>At this point, make sure all participants have the data loaded</strong></p>
+<pre><code class="r">surveys &lt;- read.csv(&#39;portal_data_joined.csv&#39;)
+</code></pre>
 
 <p>This statement doesn&#39;t produce any output because assignment doesn&#39;t display
 anything. If we want to check that our data has been loaded, we can print the
@@ -257,13 +262,20 @@ function <code>head()</code>:</p>
 <pre><code class="r">head(surveys)
 </code></pre>
 
-<pre><code>##   record_id month day year plot species sex wgt
-## 1         1     7  16 1977    2    &lt;NA&gt;   M  NA
-## 2         2     7  16 1977    3    &lt;NA&gt;   M  NA
-## 3         3     7  16 1977    2      DM   F  NA
-## 4         4     7  16 1977    7      DM   M  NA
-## 5         5     7  16 1977    3      DM   M  NA
-## 6         6     7  16 1977    1      PF   M  NA
+<pre><code>##   record_id month day year plot_id species_id sex hindfoot_length weight
+## 1         1     7  16 1977       2         NL   M              32     NA
+## 2         2     7  16 1977       3         NL   M              33     NA
+## 3         3     7  16 1977       2         DM   F              37     NA
+## 4         4     7  16 1977       7         DM   M              36     NA
+## 5         5     7  16 1977       3         DM   M              35     NA
+## 6         6     7  16 1977       1         PF   M              14     NA
+##         genus  species   taxa                plot_type
+## 1     Neotoma albigula Rodent                  Control
+## 2     Neotoma albigula Rodent Long-term Krat Exclosure
+## 3   Dipodomys merriami Rodent                  Control
+## 4   Dipodomys merriami Rodent         Rodent Exclosure
+## 5   Dipodomys merriami Rodent Long-term Krat Exclosure
+## 6 Perognathus   flavus Rodent        Spectab exclosure
 </code></pre>
 
 <p>Let&#39;s now check the <strong>str</strong>ucture of this <code>data.frame</code> in more details with the
@@ -271,8 +283,6 @@ function <code>str()</code>:</p>
 
 <pre><code class="r">str(surveys)
 </code></pre>
-
-<p><strong>Also, show how to get this information from the &ldquo;Environment&rdquo; tab in RStudio.</strong></p>
 
 <h3>Challenge</h3>
 
@@ -327,7 +337,7 @@ levels(food)
 min(food) ## doesn&#39;t work
 </code></pre>
 
-<pre><code>## Error in Summary.factor(structure(c(1L, 3L, 2L, 3L, 1L, 2L, 3L), .Label = c(&quot;low&quot;, : min not meaningful for factors
+<pre><code>## Error in Summary.factor(structure(c(1L, 3L, 2L, 3L, 1L, 2L, 3L), .Label = c(&quot;low&quot;, : &#39;min&#39; not meaningful for factors
 </code></pre>
 
 <pre><code class="r">food &lt;- factor(food, levels=c(&quot;low&quot;, &quot;medium&quot;, &quot;high&quot;), ordered=TRUE)
@@ -376,7 +386,7 @@ table(exprmt)
 <pre><code class="r">barplot(table(exprmt))
 </code></pre>
 
-<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-13"/> </p>
+<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-13"/> </p>
 
 <!---
 
@@ -385,7 +395,7 @@ exprmt <- factor(exprmt, levels=c("treat1", "treat2", "treat3", "control"))
 barplot(table(exprmt))
 ```
 
-![plot of chunk unnamed-chunk-14](img/r-lesson-unnamed-chunk-14-1.png) 
+![plot of chunk unnamed-chunk-14](img/R-ecology-unnamed-chunk-14-1.png) 
 --->
 
 </body>
