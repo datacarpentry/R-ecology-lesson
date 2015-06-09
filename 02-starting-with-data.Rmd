@@ -23,19 +23,12 @@ source("setup.R")
 ```
 
 We are studying the species and weight of animals caught in plots in our study
-area.  The dataset is stored as a `.csv` file: each row holds information for a
-single animal, and the columns represent ``record_id` , `month`, `day`, `year`,
+area. The dataset is stored as a `.csv` file: each row holds information for a
+single animal, and the columns represent `record_id` , `month`, `day`, `year`,
 `plot_id`, `species_id` (a 2 letter code, see the `species.csv` file for
 correspondance), `sex` ("M" for males and "F" for females), `hindfood_length`
-(the length of the hindfoot in millimeters),`weight` (the weight in grams).
-
-The survey dataset looks like this:
-
-    "63","8","19","1977","3","DM","M","35","40"
-    "64","8","19","1977","7","DM","M","35","48"
-    "65","8","19","1977","4","DM","F","37","29"
-    "66","8","19","1977","4","DM","F","34","46"
-    "67","8","19","1977","7","DM","M","35","36"
+(the length of the hindfoot in millimeters),`weight` (the weight in grams),
+`genus`, `species`, `taxa`, and `plot_type`.
 
 We are going to use the R function `download.file()` to download the CSV file
 that contains the survey data from figshare, and we will use `read.csv()` to
