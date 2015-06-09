@@ -21,8 +21,7 @@ for each level and a very brief introduction to plotting.
 * [Introduction to R](01-intro-to-R.html)
 * [Starting with data](02-starting-with-data.html)
 * [The `data.frame` class](03-data-frames.html)
-* [Manipulating data](04-manipulating-data.html)
-* [Analyzing and Plotting data](05-analyzing-data.html)
+* [Aggregating and analyzing data with dplyr](04-dplyr.html)
 
 ## Other resources
 
