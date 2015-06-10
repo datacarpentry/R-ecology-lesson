@@ -212,7 +212,7 @@ don't remember which one, you can type:
 ??geom_point
 ```
 
-### I want to use a function that does X, there must be a function or it but I don't know which one...
+### I want to use a function that does X, there must be a function for it but I don't know which one...
 
 If you are looking for a function to do a particular task, you can use
 `help.search()` (but only looks through the installed packages):
