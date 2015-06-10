@@ -296,7 +296,7 @@ by typing <code>dir.create(&quot;data&quot;)</code> at the terminal.</li>
 
 <p>You are now ready to load the data:</p>
 
-<pre><code class="r">surveys &lt;- read.csv(&#39;portal_data_joined.csv&#39;)
+<pre><code class="r">surveys &lt;- read.csv(&#39;portal_data_joined.csv&#39;, stringsAsFactors = FALSE)
 </code></pre>
 
 <p>This statement doesn&#39;t produce any output because assignment doesn&#39;t display
@@ -306,7 +306,7 @@ variable&#39;s value: <code>surveys</code></p>
 <p>Alternatively, wrapping an assignment in parentheses will perform the assignment
 and display it at the same time.</p>
 
-<pre><code class="r">(surveys &lt;- read.csv(&#39;portal_data_joined.csv&#39;))
+<pre><code class="r">(surveys &lt;- read.csv(&#39;portal_data_joined.csv&#39;, stringsAsFactors = FALSE))
 </code></pre>
 
 <p>Wow&hellip; that was a lot of output. At least it means the data loaded
