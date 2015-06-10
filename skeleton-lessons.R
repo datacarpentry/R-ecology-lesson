@@ -77,68 +77,6 @@ str(example_data)
 ### of the survey data frame starting at row 10 (10, 20, 30, ...)
 
 
-## install.packages("dplyr") ## install
-library("dplyr")          ## load
-## Keep columns "plot", "species_id", and "weight"
-select(surveys, plot_id, species_id, weight)
-
-## All data for year 1995
-filter(surveys, year == 1995)
-
-### Species, sex, and weight where weight <5
-surveys %>%
-  filter(weight < 5) %>%
-  select(species_id, sex, weight)
-
-## Assign a new object called surveys_sml
-surveys_sml <- surveys %>%
-  filter(weight < 5) %>%
-  select(species_id, sex, weight)
-
-surveys_sml
-
-## Add a coumn of weight in kg
-surveys %>%
-  mutate(weight_kg = weight / 1000)
-
-## Pipe the data to head so it doesn't run off the screen
-surveys %>%
-  mutate(weight_kg = weight / 1000) %>%
-  head
-
-## Data with a weight_kg column, removing rows where weight is NA
-surveys %>%
-  mutate(weight_kg = weight / 1000) %>%
-  filter(!is.na(weight)) %>%
-  head
-
-## Number of rows of data for each sex
-surveys %>%
-  group_by(sex) %>%
-  tally()
-
-## Mean weight by sex
-surveys %>%
-  group_by(sex) %>%
-  summarize(mean_weight = mean(weight, na.rm = TRUE))
-
-## Mean weight by sex and species
-surveys %>%
-  group_by(sex, species_id) %>%
-  summarize(mean_weight = mean(weight, na.rm = TRUE))
-
-## Mean weight by sex and species where mean weight is not NaN
-surveys %>%
-  group_by(sex, species_id) %>%
-  summarize(mean_weight = mean(weight, na.rm = TRUE)) %>%
-  filter(!is.nan(mean_weight))
-
-## Summarize multiple variables at once
-surveys %>%
-  group_by(sex, species_id) %>%
-  summarize(mean_weight = mean(weight, na.rm = TRUE),
-            min_weight = min(weight, na.rm = TRUE)) %>%
-  filter(!is.nan(mean_weight))
 
 
 
