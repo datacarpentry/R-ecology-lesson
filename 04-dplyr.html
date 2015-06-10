@@ -250,14 +250,12 @@ back just what you need for analysis in R.</p>
 data frame, use <code>select()</code>. The first argument to this function is the data
 frame (<code>surveys</code>), and the subsequent arguments are the columns to keep.</p>
 
-<pre><code class="r">## Keep columns &quot;plot&quot;, &quot;species_id&quot;, and &quot;weight&quot;
-select(surveys, plot_id, species_id, weight)
+<pre><code class="r">select(surveys, plot_id, species_id, weight)
 </code></pre>
 
 <p>To choose rows, use <code>filter()</code>:</p>
 
-<pre><code class="r">## All data for year 1995
-filter(surveys, year == 1995)
+<pre><code class="r">filter(surveys, year == 1995)
 </code></pre>
 
 <h3>Pipes</h3>
@@ -274,8 +272,7 @@ useful when you need to many things to the same data set.  Pipes in R look like
 <code>%&gt;%</code> and are made available via the <code>magrittr</code> package installed as
 part of <code>dplyr</code>.</p>
 
-<pre><code class="r">### Species, sex, and weight where weight &lt;5
-surveys %&gt;%
+<pre><code class="r">surveys %&gt;%
   filter(weight &lt; 5) %&gt;%
   select(species_id, sex, weight)
 </code></pre>
@@ -289,8 +286,7 @@ as an argument to these functions anymore.</p>
 <p>If we wanted to create a new object with this smaller version of the data we
 could do so by assigning it a new name:</p>
 
-<pre><code class="r">## Assign a new object called surveys_sml
-surveys_sml &lt;- surveys %&gt;%
+<pre><code class="r">surveys_sml &lt;- surveys %&gt;%
   filter(weight &lt; 5) %&gt;%
   select(species_id, sex, weight)
 
@@ -312,8 +308,7 @@ columns. For this we&#39;ll use <code>mutate()</code>.</p>
 
 <p>To create a new column of weight in kg:</p>
 
-<pre><code class="r">## Add a coumn of weight in kg
-surveys %&gt;%
+<pre><code class="r">surveys %&gt;%
   mutate(weight_kg = weight / 1000)
 </code></pre>
 
@@ -321,8 +316,7 @@ surveys %&gt;%
 can use a pipe to view the <code>head()</code> of the data (pipes work with non-dplyr
 functions too, as long as the <code>dplyr</code> or <code>magrittr</code> packages are loaded).</p>
 
-<pre><code class="r">## Pipe the data to head so it doesn&#39;t run off the screen
-surveys %&gt;%
+<pre><code class="r">surveys %&gt;%
   mutate(weight_kg = weight / 1000) %&gt;%
   head
 </code></pre>
@@ -330,8 +324,7 @@ surveys %&gt;%
 <p>The first few rows are full of NAs, so if we wanted to remove those we could
 insert a <code>filter()</code> in this chain:</p>
 
-<pre><code class="r">## Data with a weight_kg column, removing rows where weight is NA
-surveys %&gt;%
+<pre><code class="r">surveys %&gt;%
   mutate(weight_kg = weight / 1000) %&gt;%
   filter(!is.na(weight)) %&gt;%
   head
@@ -349,8 +342,7 @@ then combine the results. <code>dplyr</code> makes this very easy through the us
 operations can be run. For example, if we wanted to group by sex and find the
 number of rows of data for each sex, we would do:</p>
 
-<pre><code class="r">## Number of rows of data for each sex
-surveys %&gt;%
+<pre><code class="r">surveys %&gt;%
   group_by(sex) %&gt;%
   tally()
 </code></pre>
@@ -358,16 +350,14 @@ surveys %&gt;%
 <p><code>group_by()</code> is often used together with <code>summarize()</code> which collapses each
 group into a single-row summary of that group. So to view mean <code>weight</code> by sex:</p>
 
-<pre><code class="r">## Mean weight by sex
-surveys %&gt;%
+<pre><code class="r">surveys %&gt;%
   group_by(sex) %&gt;%
   summarize(mean_weight = mean(weight, na.rm = TRUE))
 </code></pre>
 
 <p>You can group by multiple columns too:</p>
 
-<pre><code class="r">## Mean weight by sex and species
-surveys %&gt;%
+<pre><code class="r">surveys %&gt;%
   group_by(sex, species_id) %&gt;%
   summarize(mean_weight = mean(weight, na.rm = TRUE))
 </code></pre>
@@ -375,8 +365,7 @@ surveys %&gt;%
 <p>Looks like most of these species were never weighed. We could then discard rows
 where <code>mean_weight</code> is <code>NaN</code> (<code>NaN</code> refers to &ldquo;Not a Number&rdquo;) using <code>filter()</code>:</p>
 
-<pre><code class="r">## Mean weight by sex and species where mean weight is not NaN
-surveys %&gt;%
+<pre><code class="r">surveys %&gt;%
   group_by(sex, species_id) %&gt;%
   summarize(mean_weight = mean(weight, na.rm = TRUE)) %&gt;%
   filter(!is.nan(mean_weight))
@@ -389,8 +378,7 @@ automatically show tons of data going off the screen.</p>
 
 <p>You can also summarize multiple variables at the same time:</p>
 
-<pre><code class="r">## Summarize multiple variables at once
-surveys %&gt;%
+<pre><code class="r">surveys %&gt;%
   group_by(sex, species_id) %&gt;%
   summarize(mean_weight = mean(weight, na.rm = TRUE),
             min_weight = min(weight, na.rm = TRUE)) %&gt;%
