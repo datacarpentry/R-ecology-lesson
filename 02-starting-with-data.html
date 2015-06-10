@@ -215,12 +215,68 @@ hr {
 <h1>Presentation of the Survey Data</h1>
 
 <p>We are studying the species and weight of animals caught in plots in our study
-area. The dataset is stored as a <code>.csv</code> file: each row holds information for a
-single animal, and the columns represent <code>record_id</code> , <code>month</code>, <code>day</code>, <code>year</code>,
-<code>plot_id</code>, <code>species_id</code> (a 2 letter code, see the <code>species.csv</code> file for
-correspondance), <code>sex</code> (&ldquo;M&rdquo; for males and &ldquo;F&rdquo; for females), <code>hindfood_length</code>
-(the length of the hindfoot in millimeters),<code>weight</code> (the weight in grams),
-<code>genus</code>, <code>species</code>, <code>taxa</code>, and <code>plot_type</code>.</p>
+area. The dataset is stored as a <code>csv</code> file: each row holds information for a
+single animal, and the columns represent:</p>
+
+<table><thead>
+<tr>
+<th>Column</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>record_id</td>
+<td>Unique id for the observation</td>
+</tr>
+<tr>
+<td>month</td>
+<td>month of observation</td>
+</tr>
+<tr>
+<td>day</td>
+<td>day of observation</td>
+</tr>
+<tr>
+<td>year</td>
+<td>year of observation</td>
+</tr>
+<tr>
+<td>plot_id</td>
+<td>ID of a particular plot</td>
+</tr>
+<tr>
+<td>species_id</td>
+<td>2-letter code</td>
+</tr>
+<tr>
+<td>sex</td>
+<td>sex of animal (&ldquo;M&rdquo;, &ldquo;F&rdquo;)</td>
+</tr>
+<tr>
+<td>hindfoot_length</td>
+<td>length of the hindfoot in mm</td>
+</tr>
+<tr>
+<td>weight</td>
+<td>weight of the animal in grams</td>
+</tr>
+<tr>
+<td>genus</td>
+<td>genus of animal</td>
+</tr>
+<tr>
+<td>specie s</td>
+<td>species of animal</td>
+</tr>
+<tr>
+<td>taxa</td>
+<td>e.g. Rodent, Reptile, Bird, Rabbit</td>
+</tr>
+<tr>
+<td>plot_type</td>
+<td>type of plot</td>
+</tr>
+</tbody></table>
 
 <p>We are going to use the R function <code>download.file()</code> to download the CSV file
 that contains the survey data from figshare, and we will use <code>read.csv()</code> to
@@ -246,6 +302,12 @@ by typing <code>dir.create(&quot;data&quot;)</code> at the terminal.</li>
 <p>This statement doesn&#39;t produce any output because assignment doesn&#39;t display
 anything. If we want to check that our data has been loaded, we can print the
 variable&#39;s value: <code>surveys</code></p>
+
+<p>Alternatively, wrapping an assignment in parentheses will perform the assignment
+and display it at the same time.</p>
+
+<pre><code class="r">(surveys &lt;- read.csv(&#39;portal_data_joined.csv&#39;))
+</code></pre>
 
 <p>Wow&hellip; that was a lot of output. At least it means the data loaded
 properly. Let&#39;s check the top (the first 6 lines) of this <code>data.frame</code> using the
@@ -378,7 +440,7 @@ table(exprmt)
 <pre><code class="r">barplot(table(exprmt))
 </code></pre>
 
-<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfgAAAH4CAMAAACR9g9NAAACZ1BMVEUAAAABAQECAgIDAwMEBAQGBgYICAgJCQkKCgoLCwsMDAwNDQ0ODg4PDw8QEBARERESEhITExMUFBQXFxcYGBgZGRkaGhobGxseHh4fHx8gICAhISEiIiIkJCQlJSUmJiYnJycpKSkqKiorKyssLCwtLS0vLy8wMDAxMTEyMjIzMzM0NDQ3Nzc4ODg5OTk7Ozs8PDw9PT0+Pj4/Pz9AQEBBQUFCQkJDQ0NFRUVGRkZHR0dISEhJSUlLS0tNTU1OTk5PT09QUFBRUVFSUlJTU1NVVVVWVlZXV1dYWFhZWVlaWlpcXFxdXV1fX19gYGBiYmJjY2NkZGRlZWVmZmZnZ2dqampra2ttbW1vb29xcXFycnJ1dXV2dnZ3d3d5eXl6enp7e3t8fHx9fX1+fn5/f3+AgICCgoKDg4OFhYWGhoaHh4eIiIiLi4uMjIyOjo6Pj4+RkZGSkpKTk5OUlJSVlZWWlpaZmZmbm5uenp6fn5+goKChoaGioqKjo6OkpKSnp6eoqKipqamqqqqsrKyurq6vr6+wsLCxsbGysrKzs7O0tLS1tbW2tra7u7u8vLy9vb2+vr6/v7/AwMDBwcHCwsLExMTFxcXGxsbHx8fIyMjJycnKysrLy8vMzMzOzs7Pz8/Q0NDR0dHS0tLT09PW1tbX19fY2NjZ2dna2trb29vc3Nzd3d3e3t7f39/g4ODi4uLj4+Pk5OTl5eXm5ubn5+fo6Ojp6enq6urr6+vs7Ozt7e3u7u7v7+/w8PDx8fHy8vLz8/P09PT19fX29vb39/f4+Pj5+fn6+vr7+/v8/Pz9/f3+/v7///+wPUugAAAACXBIWXMAAAsSAAALEgHS3X78AAALPElEQVR4nO3b+5fUdR3H8TEoLut2oRChuFSKRAGbkpFaIhaGtSQGFKkJQZLtGt24FJUrBamJF8gyAyllVdawVFh2WRM1Ftndzx/V7LjugWG+zefV9/MdePt+Pn+YPec9c77v78yD+Z6ZPUspkMtK5/sE6PwEvNOAdxrwTgPeacA7DXinAe804J0GvNOAdxrwTgPeacA7DXinAe804J0GvNOAdxrwTgPeacA7DXinAe804J0GvNOAdxrwTgPeacA7DXinAe804J0GvNOAdxrwTgPeacA7DXinAe804J0GvNOAdxrwTgPeacA7DXinAe804J0GvNOAdxrwTgPeacA7DXinxcI/0V/oaVCji4X/0L8KPQ1qdPXhJ4wZrvSeMaOTZ7dU+tFTRZ5Y7R7fkb6XGv80LoDqwx+c/5UXeno+8Pee0cnTb8N/c2ORJ1a7Bd9J3pd+0vincQEUcakf2DTrD7Uu9ff9vIDzqdPCR5P3feAz61r4tSbg313Ffbgb3HJT7zlD4C2X43s88JYDHng14C0HPPBqwFsOeODVgLcc8MCrAW854IFXA95ywAOvBrzlgAdeDXjLAQ+8GvCWAx54NeAtBzzwasBbDnjg1YC3HPDAqwFvOeCBVwPecsADrwa85YAHXg14ywEPvBrwlgMeeDXgLQc88GrAWw544NWAtxzwwKsBbznggVcD3nLAA68GvOWAB14NeMsBD7wa8JYDHng14C0HPPBqwFsOeODVgLcc8MCrAW854IFXA95ywAOvBrzlgAdeDXjLAQ+8GvCWAx54NeAtBzzwasBbDnjg1YC3HPDAqwFvOeCBVwPecsADrwa85YAHXg14ywEPvBrwlgMeeDXgLQc88GrAWy4Wvv/cEfCWqw9/bFXLbUdnlz59qPoO4C1XH/76aztumdzWt/ba0ckzWyrdeleRJ1Y74FNVH37Cv0Nv6Xg40TQ66dxRac3GIk+sdsCnqj78pfvCUEdZ+yPVd3Cpt1x9+G3NiwdC2D5jXfUdwFsu4lP9oe2DIWzdOVQ9B95yfI8HXg14ywEPvBrwlgMeeDXgLQc88GrAWw544NWAtxzwwKsBbznggVcD3nLAA68GvOWAB14NeMsBD7wa8JYDHng14C0HPPBqwFsOeODVgLcc8MCrAW854IFXA95ywAOvBrzlgAdeDXjLAQ+8GvCWAx54NeAtBzzwasBbDnjg1YC3HPDAqwFvOeCBVwPecsADrwa85YAHXg14ywEPvBrwlgMeeDXgLQc88GrAWw544NWAtxzwwKsBbznggVcD3nLAA68GvOWAB14NeMsBD7wa8JYDHng14C0HPPBqwFsOeODVgLcc8MCrAW854IFXA95ywAOvBrzlgAdeDXjLAQ+8GvCWi4HvGyrfDPRUj4G3XH34g5+86GMPhHD4nEcCb7n68Fd+79TeKfuAf5dVH37ciRB2zR04A/5AW6Wb7yryxGrXCPjH29L3l6odzxWw4wHplawPP/PBEIZuuPMM+EM7Kq1pkzYlqRHwrd/ekLrVK6t2tC9LvmPDldIrWR9+58SW7tAz5wo3l/rWe5Pv2H4O/A+S73h0ofRKRnyqP7KzfLHv77i9eg58dDbhswI+OuDzBnx2wGsBrwZ8dMDnDfjsgNcCXg346IDPG/DZAa8FvBrw0QGfN+CzA14LeDXgowM+b8BnB7wW8GrARwd83oDPDngt4NWAjw74vAGfHfBawKsBHx3weQM+O+C1gFcDPjrg8wZ8dsBrAa8GfHTA5w347IDXAl4N+OiAzxvw2QGvBbwa8NEBnzfgswNeC3g14KMDPm/AZwe8FvBqwEcHfN6Azw54LeDVgI8O+LwBnx3wWsCrAR8d8HkDPjvgtYBXAz464PMGfHbAawGvBnx0wOcN+OyA1wJeDfjogM8b8NkBrwW8GvDRAZ834LMDXgt4NeCjAz5vwGcHvBbwasBHB3zegM8OeC3g1YCPDvi8AZ8d8FrAqwEfHfB5Az474LWAVwM+OuDzBnx2wGsBrwZ8dMDnDfjsgNcCXg346IDPG/DZAa8FvBrw0QGfN+CzA14LeDXgowM+b8BnB7wW8Bl1vlP1HcBHZxL+utL4KZVGJ0+2Vbp5/dkP/Flb+nqqTgb47JJf6lesrhq8uLvSurazx9Pbk7fosarVwGeXHP7h9trz6kv9FemfSyvw8Z23D3fAZwa8GPBCwGsBrwZ8dMCLAS8EvBbwasBHB7wY8ELAawGvBnx0wIsBLwS8FvBqwEcHvBjwQsBrAa8GfHTAiwEvBLwW8GrARwe8GPBCwGsBrwZ8dMCLAS8EvBbwasBHB7wY8ELAawGvBnx0wIsBLwS8FvBqwEcHvBjwQsBrAa8GfHTAiwEvBLwW8GrARwe8GPBCwGsBrwZ8dMCLAS8EvBbwasBHB7wY8ELAawGvBnx0wIsBLwS8FvBqwEcHvBjwQsBrAa8GfHTAiwEvBLwW8GrARwe8GPBCwGsBrwZ8dMCLAS8EvBbwasBHB7wY8ELAawGvBnx0wIsBLwS8FvBqwEcHvBjwQsBrAa8GfHTAiwEvBLwW8GrARwe8GPBCwGsBrwZ8dMCLAS8EvBbwasBHB7wY8ELAawGvBnx0wIsBLwS8FvBqwEcHvBjwQgXAD742WGMKfHQm4U+unzG2NGb6hv7qO4CPziT81xft6X3r+J+WfKP6DuCjMwnf/Erlx5uTRid776i0eO3ZD5y8LHmX7ak6mfnpd7T8tGpH6/XJd3yxGv6eq5LvWPbZOPGR6sPP3lb58bs5o5Oj+yv98cWzH/j0/vSdrDqZQwXs6Kva8VIBO16u2nG8gB1dceIj1YffN/kTS29Zevkl+6Xj0gVexKf607u3tG3Zfbr4c6EGluN7PFkOeKcB7zTgnQa804B3GvBOA95pwDsNeKcB7zTgnQa804B3GvBOA95pwDvtfMGPOfMveg7MTn7Is4bXdaY4/v/asWvW+IUHC97xi2kTb+hJtMMF/MMrSkXDH2l68LV1lxW7o6v5r33XrEq0ozHwHdOblr8Vfjvz4iXdoXNB+yXTHgmLSpfuv2rj5SPDJPDvHHLv7PHXvBLC5invm/f88PCN9tXjU8Fn7fhNSwinLqr+c920OzYvLr+SLUlWDNcA+GcnPdE1Z/MLzbuPL18aOifc/ebt84f/BXc23/rUyDDVO374kL0f/H3fqs+H7vfu6WldOfL2mZLwHV9zx4nuEPZ+dKjQHYMDQ6+uuC3NitAQ+I3fCmHf7k2tIRwbO9DZdDo8M6vy7CaeCiPDZPDlQ/7yyyGcnDD4n3+E/u/eVAR87R1Du6bcX/SOjtLk7kQ7GgK/8p7h2zs2lG/GH+mcGULn2/DTR4fJ4MuH3Ng0derU9x8ZvHvegqsLga+5o3fJ3H1F7wih94dJXqhKDYBfvyaEv+3ctLx84mNPD6OPwJdvR4bJ4MuH3Fq+iAweHrpvbnf4VSHwtXb0f+rOgVQrsnZs3R5CX+mc/7r6/9YA+AOTnvxnS3tX8yN9y28Mo/B9w7cjw0TwlUO+POmxVzd8Jvx4/rE/z100UB6GpPC1d3TMPlwukX3Gjp0znnt93dw0K0JjPtVvm3bx8v6wY0bT4qOj8F9t2l++HRmmgR855EMfH/e5rtB39bh5D039dXn4Rkr4jB2rS8Ml+pKdseP1tR+e+IXn06wI/ObObcA7DXinAe804J0GvNOAdxrwTgPeacA7DXinAe804J0GvNOAdxrwTgPeacA7DXinAe804J0GvNOAdxrwTgPeacA7DXinAe804J0GvNOAdxrwTgPeacA7DXinAe804J0GvNOAdxrwTgPeacA7DXinAe804J0GvNOAdxrwTvsvJ12SU9i2eJwAAAAASUVORK5CYII=" alt="plot of chunk unnamed-chunk-13"/> </p>
+<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-14"/> </p>
 
 <!---
 
@@ -387,7 +449,7 @@ exprmt <- factor(exprmt, levels=c("treat1", "treat2", "treat3", "control"))
 barplot(table(exprmt))
 ```
 
-![plot of chunk unnamed-chunk-14](img/R-ecology-unnamed-chunk-14-1.png) 
+![plot of chunk unnamed-chunk-15](img/R-ecology-unnamed-chunk-15-1.png) 
 --->
 
 </body>
