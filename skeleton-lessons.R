@@ -19,8 +19,12 @@ sessionInfo()
 
 
 # Presentation of the survey data
-## download.file("http://files.figshare.com/1919744/surveys.csv",
-##               "data/surveys.csv")
+## if (!require("curl")) {
+##   install.packages("curl")
+## }
+## library("curl")
+## curl_download("https://dl.dropboxusercontent.com/u/22808457/portal_data_joined.csv",
+##               "data/portal_data_joined.csv")
 ## Exercise
 ## Based on the output of `str(surveys)`, can you answer the following questions?
 ## * What is the class of the object `surveys`?

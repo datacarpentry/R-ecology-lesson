@@ -3,9 +3,9 @@ layout: topic
 title: Aggregating and analyzing data with dplyr
 ---
 
-```{r, echo=FALSE, purl=FALSE}
+```{r, echo=FALSE, purl=FALSE, message = FALSE}
 source("setup.R")
-surveys <- read.csv("portal_data_joined.csv")
+surveys <- read.csv("data/portal_data_joined.csv")
 ```
 
 # Data manipulation using dplyr
