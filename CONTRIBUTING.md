@@ -21,7 +21,7 @@ under [these licenses](LICENSE.md).
 
 1.  Fork the `datacarpentry/R-ecology` repository on GitHub.
 
-2.  Clone that repository to your own machine.
+2.  Clone that repository to your own machine. (It is also possible to make minor edits right on GitHub.)
 
 3.  Create a branch from `gh-pages` for your changes.
     Give your branch a meaningful name,
