@@ -60,7 +60,7 @@ download.file("http://files.figshare.com/1919744/surveys.csv",
 You are now ready to load the data:
 
 ```{r, eval=TRUE,  purl=FALSE}
-surveys <- read.csv('portal_data_joined.csv', stringsAsFactors = FALSE)
+surveys <- read.csv('portal_data_joined.csv')
 ```
 
 This statement doesn't produce any output because assignment doesn't display
@@ -71,7 +71,7 @@ Alternatively, wrapping an assignment in parentheses will perform the assignment
 and display it at the same time.
 
 ```{r, eval = TRUE, purl = FALSE}
-(surveys <- read.csv('portal_data_joined.csv', stringsAsFactors = FALSE))
+(surveys <- read.csv('portal_data_joined.csv'))
 ```
 
 Wow... that was a lot of output. At least it means the data loaded
