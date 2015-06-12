@@ -4,7 +4,7 @@ title: Starting with data
 minutes: 20
 ---
 
-```{r, echo=FALSE, purl=FALSE}
+```{r, echo=FALSE, purl=FALSE, message = FALSE}
 source("setup.R")
 ```
 
@@ -53,14 +53,18 @@ by typing `dir.create("data")` at the terminal.
 - Third, download the data:
 
 ```{r, eval=FALSE, purl=TRUE}
-download.file("http://files.figshare.com/1919744/surveys.csv",
-              "data/surveys.csv")
+if (!require("curl")) {
+  install.packages("curl")
+}
+library("curl")
+curl_download("https://dl.dropboxusercontent.com/u/22808457/portal_data_joined.csv",
+              "data/portal_data_joined.csv")
 ```
 
 You are now ready to load the data:
 
 ```{r, eval=TRUE,  purl=FALSE}
-surveys <- read.csv('portal_data_joined.csv')
+surveys <- read.csv('data/portal_data_joined.csv')
 ```
 
 This statement doesn't produce any output because assignment doesn't display
@@ -71,7 +75,7 @@ Alternatively, wrapping an assignment in parentheses will perform the assignment
 and display it at the same time.
 
 ```{r, eval = TRUE, purl = FALSE}
-(surveys <- read.csv('portal_data_joined.csv'))
+(surveys <- read.csv('data/portal_data_joined.csv'))
 ```
 
 Wow... that was a lot of output. At least it means the data loaded
