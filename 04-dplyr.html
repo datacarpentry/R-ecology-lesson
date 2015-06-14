@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-<title>Learning Objectives</title>
+<title>Data manipulation using dplyr</title>
 
 <script type="text/javascript">
 window.onload = function() {
@@ -201,181 +201,209 @@ hr {
 </head>
 
 <body>
-<blockquote>
-<h2>Learning Objectives</h2>
+<h1>Data manipulation using dplyr</h1>
 
-<ul>
-<li>being able to subset for a level</li>
-<li>being able to extract particular values from a <code>data.frame</code></li>
-<li>being able to add/remove columns and rows</li>
-</ul>
+<p>Bracket subsetting is handy, but it can be cumbersome and difficult to read,
+especially for complicated operations. Enter <code>dplyr</code>. <code>dplyr</code> is a package for
+making data manipulation easier.</p>
+
+<p>Packages in R are basically sets of additional functions that let you do more
+stuff in R. The functions we&#39;ve been using, like <code>str()</code>, come built into R;
+packages give you access to more functions. You need to install a package and
+then load it to be able to use it.</p>
+
+<pre><code class="r">install.packages(&quot;dplyr&quot;) ## install
+</code></pre>
+
+<p>You might get asked to choose a CRAN mirror &ndash; this is basically asking you to
+choose a site to download the package from. The choice doesn&#39;t matter too much;
+I&#39;d recommend choosing the RStudio mirror.</p>
+
+<pre><code class="r">library(&quot;dplyr&quot;)          ## load
+</code></pre>
+
+<p>You only need to install a package once per computer, but you need to load it
+every time you open a new R session and want to use that package.</p>
+
+<h2>What is dplyr?</h2>
+
+<p>The package <code>dplyr</code> is a fairly new (2014) package that tries to provide easy
+tools for the most common data manipulation tasks. It is built to work directly
+with data frames. The thinking behind it was largely inspired by the package
+<code>plyr</code> which has been in use for some time but suffered from being slow in some
+cases.<code>dplyr</code> addresses this by porting much of the computation to C++. An
+additional feature is the ability to work with data stored directly in an
+external database. The benefits of doing this are that the data can be managed
+natively in a relational database, queries can be conducted on that database,
+and only the results of the query returned.</p>
+
+<p>This addresses a common problem with R in that all operations are conducted in
+memory and thus the amount of data you can work with is limited by available
+memory. The database connections essentially remove that limitation in that you
+can have a database of many 100s GB, conduct queries on it directly and pull
+back just what you need for analysis in R.</p>
+
+<h3>Selecting columns and filtering rows</h3>
+
+<p>We&#39;re going to learn some of the most common <code>dplyr</code> functions: <code>select()</code>,
+<code>filter()</code>, <code>mutate()</code>, <code>group_by()</code>, and <code>summarize()</code>. To select columns of a
+data frame, use <code>select()</code>. The first argument to this function is the data
+frame (<code>surveys</code>), and the subsequent arguments are the columns to keep.</p>
+
+<pre><code class="r">select(surveys, plot_id, species_id, weight)
+</code></pre>
+
+<p>To choose rows, use <code>filter()</code>:</p>
+
+<pre><code class="r">filter(surveys, year == 1995)
+</code></pre>
+
+<h3>Pipes</h3>
+
+<p>But what if you wanted to select and filter? There are three ways to do this:
+use intermediate steps, nested functions, or pipes. With the intermediate steps,
+you essentially create a temporary data frame and use that as input to the next
+function. This can clutter up your workspace with lots of objects. You can also
+nest functions (i.e. one function inside of another).  This is handy, but can be
+difficult to read if too many functions are nested as the process from inside
+out. The last option, pipes, are a fairly recent addition to R. Pipes let you
+take the output of one function and send it directly to the next, which is
+useful when you need to many things to the same data set.  Pipes in R look like
+<code>%&gt;%</code> and are made available via the <code>magrittr</code> package installed as
+part of <code>dplyr</code>.</p>
+
+<pre><code class="r">surveys %&gt;%
+  filter(weight &lt; 5) %&gt;%
+  select(species_id, sex, weight)
+</code></pre>
+
+<p>In the above we use the pipe to send the <code>surveys</code> data set first through
+<code>filter</code>, to keep rows where <code>wgt</code> was less than 5, and then through <code>select</code> to
+keep the <code>species</code> and <code>sex</code> columns. When the data frame is being passed to the
+<code>filter()</code> and <code>select()</code> functions through a pipe, we don&#39;t need to include it
+as an argument to these functions anymore.</p>
+
+<p>If we wanted to create a new object with this smaller version of the data we
+could do so by assigning it a new name:</p>
+
+<pre><code class="r">surveys_sml &lt;- surveys %&gt;%
+  filter(weight &lt; 5) %&gt;%
+  select(species_id, sex, weight)
+
+surveys_sml
+</code></pre>
+
+<blockquote>
+<h3>Challenge {.challenge}</h3>
+
+<p>Using pipes, subset the data to include rows before 1995. Retain columns
+<code>year</code>, <code>sex</code>, and <code>weight.</code></p>
 </blockquote>
 
-<h1>Subsetting data</h1>
+<h3>Mutate</h3>
 
-<p>In particular for larger datasets, it can be tricky to remember the column
-number that corresponds to a particular variable. (Are species names in column 5
-or 7? oh, right&hellip; they are in column 6). In some cases, in which column the
-variable will be can change if the script you are using adds or removes
-columns. It&#39;s therefore often better to use column names to refer to a
-particular variable, and it makes your code easier to read and your intentions
-clearer.</p>
+<p>Frequently you&#39;ll want to create new columns based on the values in existing
+columns, for example to do unit conversions or find the ratio of values in two
+columns. For this we&#39;ll use <code>mutate()</code>.</p>
 
-<p>You can do operations on a particular column, by selecting it using the <code>$</code>
-sign. In this case, the entire column is a vector. For instance, to extract all
-the weights from our datasets, we can use: <code>surveys$wgt</code>. You can use
-<code>names(surveys)</code> or <code>colnames(surveys)</code> to remind yourself of the column names.</p>
+<p>To create a new column of weight in kg:</p>
 
-<p>In some cases, you may way to select more than one column. You can do this using
-the square brackets: <code>surveys[, c(&quot;wgt&quot;, &quot;sex&quot;)]</code>.</p>
-
-<p>When analyzing data, though, we often want to look at partial statistics, such
-as the maximum value of a variable per species or the average value per plot.</p>
-
-<p>One way to do this is to select the data we want, and create a new temporary
-array, using the <code>subset()</code> function. For instance, if we just want to look at
-the animals of the species &ldquo;DO&rdquo;:</p>
-
-<pre><code class="r">surveys_DO &lt;- subset(surveys, species == &quot;DO&quot;)
+<pre><code class="r">surveys %&gt;%
+  mutate(weight_kg = weight / 1000)
 </code></pre>
 
-<h3>Challenge</h3>
+<p>If this runs off your screen and you just want to see the first few rows, you
+can use a pipe to view the <code>head()</code> of the data (pipes work with non-dplyr
+functions too, as long as the <code>dplyr</code> or <code>magrittr</code> packages are loaded).</p>
 
-<ol>
-<li><p>What does the following do?</p></li>
-<li><p>Use the function <code>subset</code> twice to create a <code>data.frame</code> that contains all
-individuals of the species &ldquo;DM&rdquo; that were collected in 2002.</p>
-
-<ul>
-<li>How many individuals of the species &ldquo;DM&rdquo; were collected in 2002?</li>
-</ul></li>
-</ol>
-
-<h2>Adding a column to our dataset</h2>
-
-<p>Sometimes, you may have to add a new column to your dataset that represents a
-new variable. You can add columns to a <code>data.frame</code> using the function <code>cbind()</code>
-(<strong>c</strong>olumn <strong>bind</strong>). Beware, the additional column must have the same number
-of elements as there are rows in the <code>data.frame</code>.</p>
-
-<p>In our survey dataset, the species are represented by a 2-letter code (e.g.,
-&ldquo;AB&rdquo;), however, we would like to include the species name. The correspondance
-between the 2 letter code and the names are in the file <code>species.csv</code>. In this
-file, one column includes the genus and another includes the species. First, we
-are going to import this file in memory:</p>
-
-<pre><code class="r">species &lt;- read.csv(&quot;data/species.csv&quot;)
+<pre><code class="r">surveys %&gt;%
+  mutate(weight_kg = weight / 1000) %&gt;%
+  head
 </code></pre>
 
-<p>We are then going to use the function <code>match()</code> to create a vector that contains
-the genus names for all our observations. The function <code>match()</code> takes at least
-2 arguments: the values to be matched (in our case the 2 letter code from the
-<code>surveys</code> data frame held in the column <code>species</code>), and the table that contains
-the values to be matched against (in our case the 2 letter code in the <code>species</code>
-data frame held in the column <code>species_id</code>). The function returns the position
-of the matches in the table, and this can be used to retrieve the genus names:</p>
+<p>The first few rows are full of NAs, so if we wanted to remove those we could
+insert a <code>filter()</code> in this chain:</p>
 
-<pre><code class="r">surveys_spid_index &lt;- match(surveys$species, species$species_id)
-surveys_genera &lt;- species$genus[surveys_spid_index]
+<pre><code class="r">surveys %&gt;%
+  mutate(weight_kg = weight / 1000) %&gt;%
+  filter(!is.na(weight)) %&gt;%
+  head
 </code></pre>
 
-<p>Now that we have our vector of genus names, we can add it as a new column to our
-<code>surveys</code> object:</p>
+<p><code>is.na()</code> is a function that determines whether something is or is not an <code>NA</code>.
+The <code>!</code> symbol negates it, so we&#39;re asking for everything that is not an <code>NA</code>.</p>
 
-<pre><code class="r">surveys &lt;- cbind(surveys, genus=surveys_genera)
+<h3>Split-apply-combine data analysis and the summarize() function</h3>
+
+<p>Many data analysis tasks can be approached using the &ldquo;split-apply-combine&rdquo;
+paradigm: split the data into groups, apply some analysis to each group, and
+then combine the results. <code>dplyr</code> makes this very easy through the use of the
+<code>group_by()</code> function. <code>group_by()</code> splits the data into groups upon which some
+operations can be run. For example, if we wanted to group by sex and find the
+number of rows of data for each sex, we would do:</p>
+
+<pre><code class="r">surveys %&gt;%
+  group_by(sex) %&gt;%
+  tally()
 </code></pre>
 
-<h3>Challenge</h3>
+<p><code>group_by()</code> is often used together with <code>summarize()</code> which collapses each
+group into a single-row summary of that group. So to view mean <code>weight</code> by sex:</p>
 
-<p>Use the same approach to also include the species names in the <code>surveys</code> data
-frame.</p>
-
-<pre><code class="r">## and check out the result
-head(surveys)
+<pre><code class="r">surveys %&gt;%
+  group_by(sex) %&gt;%
+  summarize(mean_weight = mean(weight, na.rm = TRUE))
 </code></pre>
 
-<pre><code>##   record_id month day year plot species sex wgt       genus species_name
-## 1         1     7  16 1977    2    &lt;NA&gt;   M  NA     Neotoma     albigula
-## 2         2     7  16 1977    3    &lt;NA&gt;   M  NA     Neotoma     albigula
-## 3         3     7  16 1977    2      DM   F  NA   Dipodomys     merriami
-## 4         4     7  16 1977    7      DM   M  NA   Dipodomys     merriami
-## 5         5     7  16 1977    3      DM   M  NA   Dipodomys     merriami
-## 6         6     7  16 1977    1      PF   M  NA Perognathus       flavus
+<p>You can group by multiple columns too:</p>
+
+<pre><code class="r">surveys %&gt;%
+  group_by(sex, species_id) %&gt;%
+  summarize(mean_weight = mean(weight, na.rm = TRUE))
 </code></pre>
 
-<!--- should we cover merge()? --->
+<p>Looks like most of these species were never weighed. We could then discard rows
+where <code>mean_weight</code> is <code>NaN</code> (<code>NaN</code> refers to &ldquo;Not a Number&rdquo;) using <code>filter()</code>:</p>
 
-<h1>Adding rows</h1>
-
-<!--- Even if this is not optimal, using this approach requires to cover less   -->
-
-<!--- material such as logical operations on vectors. Depending on how fast the -->
-
-<!--- group moves, it might be better to show the correct way.                  -->
-
-<p>Let&#39;s create a <code>data.frame</code> that contains the information only for the species
-&ldquo;DO&rdquo; and &ldquo;DM&rdquo;. We know how to create the data set for each species with the
-function <code>subset()</code>:</p>
-
-<pre><code class="r">surveys_DO &lt;- subset(surveys, species == &quot;DO&quot;)
-surveys_DM &lt;- subset(surveys, species == &quot;DM&quot;)
+<pre><code class="r">surveys %&gt;%
+  group_by(sex, species_id) %&gt;%
+  summarize(mean_weight = mean(weight, na.rm = TRUE)) %&gt;%
+  filter(!is.nan(mean_weight))
 </code></pre>
 
-<p>Similarly to <code>cbind()</code> for columns, there is a function <code>rbind()</code> (<strong>r</strong>ow
-<strong>bind</strong>) that puts together two <code>data.frame</code>. With <code>rbind()</code> the number of
-columns and their names must be identical between the two objects:</p>
+<p>All of a sudden this isn&#39;t running of the screen anymore. That&#39;s because <code>dplyr</code>
+has changed our <code>data.frame</code> to a <code>tbl_df</code>. This is a data structure that&#39;s very
+similar to a data frame; for our purposes the only difference is that it won&#39;t
+automatically show tons of data going off the screen.</p>
 
-<pre><code class="r">surveys_DO_DM &lt;- rbind(surveys_DO, surveys_DM)
+<p>You can also summarize multiple variables at the same time:</p>
+
+<pre><code class="r">surveys %&gt;%
+  group_by(sex, species_id) %&gt;%
+  summarize(mean_weight = mean(weight, na.rm = TRUE),
+            min_weight = min(weight, na.rm = TRUE)) %&gt;%
+  filter(!is.nan(mean_weight))
 </code></pre>
 
-<h3>Challenge</h3>
+<blockquote>
+<h3>Challenge {.challenge}</h3>
 
-<p>Using a similar approach, construct a new <code>data.frame</code> that only includes data
-for the years 2000 and 2001.</p>
+<p>How many times was each <code>plot_type</code> surveyed?</p>
 
-<h1>Removing columns</h1>
+<h3>Challenge {.challenge}</h3>
 
-<p>Just like you can select columns by their positions in the <code>data.frame</code> or by
-their names, you can remove them similarly.</p>
+<p>Use <code>group_by()</code> and <code>summarize()</code> to find the mean, min, and max hindfoot
+length for each species.</p>
 
-<p>To remove it by column number:</p>
+<h3>Challenge {.challenge}</h3>
 
-<pre><code class="r">surveys_noDate &lt;- surveys[, -c(2:4)]
-colnames(surveys)
-</code></pre>
+<p>What was the heaviest animal measured in each year? Return the columns <code>year</code>,
+<code>genus</code>, <code>species</code>, and <code>weight</code>.</p>
+</blockquote>
 
-<pre><code>##  [1] &quot;record_id&quot;    &quot;month&quot;        &quot;day&quot;          &quot;year&quot;        
-##  [5] &quot;plot&quot;         &quot;species&quot;      &quot;sex&quot;          &quot;wgt&quot;         
-##  [9] &quot;genus&quot;        &quot;species_name&quot;
-</code></pre>
+<p><a href="http://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">Handy dplyr cheatsheet</a></p>
 
-<pre><code class="r">colnames(surveys_noDate)
-</code></pre>
-
-<pre><code>## [1] &quot;record_id&quot;    &quot;plot&quot;         &quot;species&quot;      &quot;sex&quot;         
-## [5] &quot;wgt&quot;          &quot;genus&quot;        &quot;species_name&quot;
-</code></pre>
-
-<p>The easiest way to remove by name is to use the <code>subset()</code> function. This time
-we need to specify explicitly the argument <code>select</code> as the default is to subset
-on rows (as above). The minus sign indicates the names of the columns to remove
-(note that the column names should not be quoted):</p>
-
-<pre><code class="r">surveys_noDate2 &lt;- subset(surveys, select=-c(month, day, year))
-colnames(surveys_noDate2)
-</code></pre>
-
-<pre><code>## [1] &quot;record_id&quot;    &quot;plot&quot;         &quot;species&quot;      &quot;sex&quot;         
-## [5] &quot;wgt&quot;          &quot;genus&quot;        &quot;species_name&quot;
-</code></pre>
-
-<h1>Removing rows</h1>
-
-<p>Typically rows are not associated with names, so to remove them from the
-<code>data.frame</code>, you can do:</p>
-
-<pre><code class="r">surveys_missingRows &lt;- surveys[-c(10, 50:70), ] # removing rows 10, and 50 to 70
-</code></pre>
+<p><em>Much of this lesson was copied or adapted from Jeff Hollister&#39;s <a href="http://usepa.github.io/introR/2015/01/14/03-Clean/">materials</a></em></p>
 
 </body>
 

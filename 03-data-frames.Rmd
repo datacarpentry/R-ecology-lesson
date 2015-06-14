@@ -4,8 +4,9 @@ title: The `data.frame` class
 minutes: 30
 ---
 
-```{r, echo=FALSE, purl=FALSE}
+```{r, echo=FALSE, purl=FALSE, message = FALSE}
 source("setup.R")
+surveys <- read.csv("data/portal_data_joined.csv")
 ```
 
 ```{r, echo=FALSE, purl=TRUE}
@@ -185,3 +186,18 @@ head_surveys <- surveys[1:6, ] # surveys[1:6, ] is equivalent to head(surveys)
 surveys_by_10 <- surveys[seq(10, nrow(surveys), by=10), ]
 ```
 --->
+
+For larger datasets, it can be tricky to remember the column number that
+corresponds to a particular variable. (Are species names in column 5 or 7? oh,
+right... they are in column 6). In some cases, in which column the variable will
+be can change if the script you are using adds or removes columns. It's
+therefore often better to use column names to refer to a particular variable,
+and it makes your code easier to read and your intentions clearer.
+
+You can do operations on a particular column, by selecting it using the `$`
+sign. In this case, the entire column is a vector. For instance, to extract all
+the weights from our datasets, we can use: `surveys$wgt`. You can use
+`names(surveys)` or `colnames(surveys)` to remind yourself of the column names.
+
+In some cases, you may way to select more than one column. You can do this using
+the square brackets: `surveys[, c("wgt", "sex")]`.
