@@ -5,7 +5,7 @@ lastupdated: June 23, 2015
 contributors: ["Sarah Supp", "John Blischak","Gavin Simpson","Tracy Teal","Greg Wilson","Diego Barneche"," Stephen Turner","Francois Michonneau"]
 maintainers: [""]
 domain: Ecology
-topic: Starting with R for data analysis
+topic: R for data analysis
 software: R
 dataurl:
 status: Teaching
@@ -43,18 +43,13 @@ for each level and a very brief introduction to plotting.
 
 ## Lessons:
 
-
-
-
-* [Before we start](00-before-we-start.html)
-* [Introduction to R](01-intro-to-R.html)
-* [Starting with data](02-starting-with-data.html)
-* [The `data.frame` class](03-data-frames.html)
-* [Aggregating and analyzing data with dplyr](04-dplyr.html)
-
-
-1. [Lesson 00 Name](00-lesson-00-name.html)
-2. [Lesson 01 Name](01-lesson-01-name.html)
+1. [Lesson 00 Before we start](00-before-we-start.html)
+2. [Lesson 01 Introduction to R](01-intro-to-R.html)
+3. [Lesson 02 Starting with data](02-starting-with-data.html)
+4. [Lesson 03 Introducing `data.frame`](03-data-frames.html)
+5. [Lesson 04 Aggregating and analyzing data with dplyr](04-dplyr.html)
+6. [Lesson 07 Data visualisation with ggplot2](05-visualisation-ggplot2.html) 
+7. [Lesson 06 R and SQL](06-r-and-sql.html)
 
 
 ## Data
