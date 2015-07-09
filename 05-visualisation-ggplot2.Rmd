@@ -1,0 +1,294 @@
+---
+layout: topic
+title: Data visualisation with ggplot2
+subtitle: Visualising data in R with ggplot2 package
+minutes: 60
+---
+
+<!---
+show hide magic
+
+<style> div.hidecode + pre {display: none} div.hidecode {color: #337ab7}</style><script> doclick=function(e){ e.nextSibling.nextSibling.style.display = e.nextSibling.nextSibling.style.display === "block" ? "none" : "block"; }</script>
+-->
+
+```{r}
+knitr::opts_chunk$set(fig.keep='last')
+```
+
+```{r setup, echo=FALSE, purl=FALSE}
+source("setup.R")
+```
+
+Authors: **Mateusz Kuzak**, **Diana Marek**, **Hedi Peterson**
+
+
+
+#### Disclaimer
+
+We will here using functions of ggplot2 package. There are basic ploting
+capabilities in basic R, but ggplot2 adds more powerful plotting capabilities.
+
+> ### Learning Objectives
+>
+> -	Visualise some of the
+>[mammals data](http://figshare.com/articles/Portal_Project_Teaching_Database/1314459)
+>from Figshare [surveys.csv](http://files.figshare.com/1919744/surveys.csv)
+> -	Understand how to plot these data using R ggplot2 package. For more details
+>on using ggplot2 see
+>[official documentation](http://docs.ggplot2.org/current/).
+> -	Building step by step complex plots with ggplot2 package
+
+Load required packages
+
+```{r}
+# plotting package
+library(ggplot2)
+# piping / chaining
+library(magrittr)
+# modern dataframe manipulations
+library(dplyr)
+```
+
+Load data directly from figshare.
+
+```{r}
+surveys_raw <- read.csv("http://files.figshare.com/1919744/surveys.csv")
+```
+
+`surveys.csv` data contains some measurements of the animals caught in plots.
+
+## Data cleaning and preparing for plotting
+
+Let's look at the summary
+
+```{r}
+summary(surveys_raw)
+```
+
+There are few things we need to clean in the dataset.
+
+There is missing species_id in some records. Let's remove those.
+
+```{r}
+surveys <- surveys_raw %>%
+           filter(species_id != "")
+```
+
+There are a lot of species with low counts, let's remove the ones below 10 counts
+
+```{r}
+# count records per species
+species_counts <- surveys %>%
+                  group_by(species_id) %>%
+                  summarise(n=n())
+
+# get names of those frequent species
+frequent_species <- species_counts %>%
+                    filter(n >= 10) %>%
+                    select(species_id)
+
+surveys <- surveys %>%
+           filter(species_id %in% frequent_species$species_id)
+```
+
+We saw in summary, there were NA's in weight and hindfoot_length. Let's remove
+rows with missing weights.
+
+```{r}
+surveys_weight_present <- surveys %>%
+                      filter(!is.na(weight))
+```
+
+> ### Challenge
+>
+> - Do the same to remove rows without `hindfoot_length`. Save results in the new dataframe.
+
+
+```{r}
+surveys_length_present <- surveys %>%
+                      filter(!is.na(hindfoot_length))
+```
+
+- How would you get the dataframe without missing values?
+
+```{r}
+surveys_complete <- surveys_weight_present %>%
+                    filter(!is.na(hindfoot_length))
+```
+
+> We can chain filtering together using pipe operator (`%>%`) introduced earlier.
+
+```{r}
+surveys_complete <- surveys %>%
+                    filter(!is.na(weight)) %>%
+                    filter(!is.na(hindfoot_length))
+```
+
+> Make simple scatter plot of `hindfoot_length` (in millimeters) as a function of
+> `weight` (in grams), using basic R plotting capabilities.
+
+```{r}
+plot(x=surveys_complete$weight, y=surveys_complete$hindfoot_length)
+```
+
+## Plotting with ggplot2
+
+We will make the same plot using `ggplot2` package.
+
+`ggplot2` is a plotting package that makes it sipmple to create complex plots
+from data in a dataframe. It uses default settings, which help creating
+publication quality plotts with minimal amount of settings and tweaking.
+
+With ggplot graphics are build step by step by adding new elements.
+
+To build a ggplot we need to:
+
+- bind plot to a specific data frame
+
+```{r, eval=FALSE}
+ggplot(surveys_complete)
+```
+
+- define aestetics (`aes`), that maps variables in the data to axes on the plot
+     or to plotting size, shape color, etc.,
+
+```{r}
+ggplot(surveys_complete, aes(x = weight, y = hindfoot_length))
+```
+
+- add `geoms` -- graphical representation of the data in the plot (points,
+     lines, bars). To add a geom to the plot use `+` operator:
+
+```{r}
+ggplot(surveys_complete, aes(x = weight, y = hindfoot_length)) +
+  geom_point()
+```
+
+## Modifying plots
+
+- adding transparency (alpha)
+
+```{r}
+ggplot(surveys_complete, aes(x = weight, y = hindfoot_length)) +
+  geom_point(alpha=0.1)
+```
+
+- adding colors
+
+```{r}
+ggplot(surveys_complete, aes(x = weight, y = hindfoot_length)) +
+  geom_point(alpha=0.1, color="blue")
+```
+
+Example of complex visualisation in which plot area is divided into hexagonal
+sections and points are counted wihin hexagons. The number of points per hexagon
+is encoded by color.
+
+```{r}
+ggplot(surveys_complete, aes(x = weight, y = hindfoot_length)) + stat_binhex(bins=50) +
+  scale_fill_gradientn(trans="log10", colours = heat.colors(10, alpha=0.5))
+```
+
+## Boxplot
+
+Visualising the distribution of weight within each species.
+
+```{r}
+ggplot(surveys_weight_present, aes(factor(species_id), weight)) +
+                   geom_boxplot()
+```
+
+By adding points to boxplot, we can see particular measurements and the
+abundance of measurements.
+
+```{r}
+ggplot(surveys_weight_present, aes(factor(species_id), weight)) +
+                   geom_jitter(alpha=0.3, color="tomato") +
+                   geom_boxplot(alpha=0)
+```
+
+> ### Challenge
+>
+> Create boxplot for `hindfoot_length`.
+
+## Plotting time series data
+
+Let's calculate number of counts per year for each species. To do that we need
+to group data first and count records within each group.
+
+```{r}
+yearly_counts <- surveys %>%
+                 group_by(year, species_id) %>%
+                 summarise(count=n())
+```
+
+Timelapse data can be visualised as a line plot with years on x axis and counts
+on y axis.
+
+```{r}
+ggplot(yearly_counts, aes(x=year, y=count)) +
+                  geom_line()
+```
+
+Unfortunately this does not work, because we plot data for all the species
+together. We need to tell ggplot to split graphed data by `species_id`
+
+```{r}
+ggplot(yearly_counts, aes(x=year, y=count, group=species_id)) +
+  geom_line()
+```
+
+We will be able to distiguish species in the plot if we add colors.
+
+```{r}
+ggplot(yearly_counts, aes(x=year, y=count, group=species_id, color=species_id)) +
+  geom_line()
+```
+
+## Faceting
+
+ggplot has a special technique called *faceting* that allows to split one plot
+into mutliple plots based on some factor. We will use it to plot one time series
+for each species separately.
+
+```{r}
+ggplot(yearly_counts, aes(x=year, y=count, color=species_id)) +
+  geom_line() + facet_wrap(~species_id)
+```
+
+Now we wuld like to split line in each plot by sex of each individual
+measured. To do that we need to make counts in dataframe grouped by sex.
+
+> ### Challenges:
+>
+> - filter the dataframe so that we only keep records with sex "F" or "M"s
+>
+
+```{r}
+sex_values = c("F", "M")
+surveys <- surveys %>%
+           filter(sex %in% sex_values)
+```
+
+> - group by year, species_id, sex
+
+```{r}
+yearly_sex_counts <- surveys %>%
+                     group_by(year, species_id, sex) %>%
+                     summarise(count=n())
+```
+
+> - make the faceted plot spliting further by sex (within single plot)
+
+```{r}
+ggplot(yearly_sex_counts, aes(x=year, y=count, color=species_id, group=sex)) +
+  geom_line() + facet_wrap(~ species_id)
+```
+
+> We can improve the plot by coloring by sex instead of species (species are
+> already in separate plots, so we don't need to distinguish them better)
+
+```{r}
+ggplot(yearly_sex_counts, aes(x=year, y=count, color=sex, group=sex)) +
+  geom_line() + facet_wrap(~ species_id)
+```
