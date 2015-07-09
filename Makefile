@@ -18,7 +18,11 @@ skeleton-lessons.R: skeleton-00-before-we-start.R skeleton-01-intro-to-R.R skele
 	for f in $^; do cat $$f; echo "\n"; done > $@
 	make clean-skeleton
 
+<<<<<<< HEAD
 pages: index.html motivation.html 00-before-we-start.html 01-intro-to-R.html 02-starting-with-data.html 03-data-frames.html 04-dplyr.html 05-visualisation-ggplot2.html 
+=======
+pages: index.html motivation.html 00-before-we-start.html 01-intro-to-R.html 02-starting-with-data.html 03-data-frames.html 04-dplyr.html 05-visualisation-ggplot2.html 06-r-and-sql.html 
+>>>>>>> adding_ggplot2
 	make clean-md
 
 clean-skeleton:
