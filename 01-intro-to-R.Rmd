@@ -1,13 +1,16 @@
 ---
 layout: topic
 title: Introduction to R
+author: Data Carpentry contributors
 minutes: 45
 ---
 
-```{r, echo=FALSE, purl=FALSE}
-knitr::opts_chunk$set(results='hide', fig.path='img/r-lesson-')
+
+```{r, echo=FALSE, purl=FALSE, message = FALSE}
+source("setup.R")
 ```
 
+------------
 
 > ## Learning Objectives
 >
@@ -16,6 +19,7 @@ knitr::opts_chunk$set(results='hide', fig.path='img/r-lesson-')
 > * Understand the concepts of vector and data types
 > * Get exposed to a few functions
 
+------------
 
 ## The R syntax
 
