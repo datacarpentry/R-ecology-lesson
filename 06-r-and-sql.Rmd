@@ -7,27 +7,41 @@ output:
 ---
 
 
-Learning goals
-------
-Students should finish the lesson with the following skills.
+> ## Learning Objectives
+>
+> * Students will be able to connect to an existing database using R
+> * Query an existing database through R using queries constructed with
+>   variables
+> * Create a database and populate it from R
+> * Understand that scripted database interactions enhance reproducibility of
+>   analysis
 
-* Students will be able to connect to an existing database using R
-* Query an existing database through R using queries constructed with variables
-* Create a database and populate it from R
-* Understand that scripted database interactions enhance reproducibility of analysis
 
+# Introduction
 
-Introduction
----------
+Interacting with databases through scripted languages can offer advantages over
+querying databases via a GUI interface.  A GUI interface for your database is
+easier to use and allows the quick viewing of adhoc queries.  Querying a
+database with a programatic interface (in this case R, but it could be any
+language) are slightly more complicated.  However the trade-off is that data
+manipulations are preserved in the code.  Aggregations, summaries and other
+database operations are preserved.  Therefore those pre-analysis data
+manipulation steps are not lost and can be reproduced later by yourself or
+others.
 
-Interacting with databases through scripted languages can offer advantages over querying databases via a GUI interface.  A GUI interface for your database is easier to use and allows the quick viewing of adhoc queries.  Querying a database with a programatic interface (in this case R, but it could be any language) are slightly more complicated.  However the trade-off is that data manipulations are preserved in the code.  Aggregations, summaries and other database operations are preserved.  Therefore those pre-analysis data manipulation steps are not lost and can be reproduced later by yourself or others.
+# Connecting R to sqlite databases
 
-Connecting R to sqlite databases
----------
+R can connect to databases through a number of packages.  In our case we we will
+use [RSQLite](http://cran.r-project.org/web/packages/RSQLite/index.html) to
+connect to existing SQLite3 databases.  However you should be able to connect on
+almost any database in R via
+JDBC[http://cran.r-project.org/web/packages/RJDBC/index.html](http://cran.r-project.org/web/packages/RJDBC/index.html)
+or [ODBC](http://cran.r-project.org/web/packages/RODBC/index.html), or specific
+database packages (such as we are doing, or
+[MySQL](http://cran.r-project.org/web/packages/RMySQL/index.html) ).
 
-R can connect to databases through a number of packages.  In our case we we will use [RSQLite](http://cran.r-project.org/web/packages/RSQLite/index.html) to connect to existing SQLite3 databases.  However you should be able to connect on almost any database in R via JDBC[http://cran.r-project.org/web/packages/RJDBC/index.html](http://cran.r-project.org/web/packages/RJDBC/index.html) or [ODBC](http://cran.r-project.org/web/packages/RODBC/index.html), or specific database packages (such as we are doing, or [MySQL](http://cran.r-project.org/web/packages/RMySQL/index.html) ).  
-
-To begin these exercises we'll connect to the mammal database you've just created.
+To begin these exercises we'll connect to the mammal database you've just
+created.
 
 ```{r connect}
 library(RSQLite)
@@ -36,17 +50,21 @@ myDB <- "portal_mammals.sqlite"
 conn <- dbConnect(drv = SQLite(), dbname= myDB)
 ```
 
-Now you're connected to your database, you can get information about the tables in the database.  While SQLite manager will provide this for you, you'll need to get it yourself with some basic SQL commands
+Now you're connected to your database, you can get information about the tables
+in the database.  While SQLite manager will provide this for you, you'll need to
+get it yourself with some basic SQL commands
 
-Basic queries
-----
+# Basic queries
+
 You can grab information about all tables like this:
 
 ```{r Get Table information}
 dbGetQuery(conn,"SELECT type, tbl_name  FROM sqlite_master")
 ```
 
-`RSQLite` has some functions that easily list basic information about your database and tables. Here you can see the types and names of fields and get a count of records.
+`RSQLite` has some functions that easily list basic information about your
+database and tables. Here you can see the types and names of fields and get a
+count of records.
 
 ```{r table details}
 dbListTables(conn)
@@ -54,7 +72,12 @@ dbListFields(conn,"surveys")
 dbGetQuery(conn,"SELECT count(*) FROM surveys")
 ```
 
-Great!  That's all there is to it. You are now connected to your database and know something about the tables in it.  From here you can manipulate it the exact same way you can from SQLite Manager except in a scripted manner. Let's try some basic queries from the previous lesson.  Querying simply takes a connection to a database and query as inputs and returns a dataframe with the results.
+Great!  That's all there is to it. You are now connected to your database and
+know something about the tables in it.  From here you can manipulate it the
+exact same way you can from SQLite Manager except in a scripted manner. Let's
+try some basic queries from the previous lesson.  Querying simply takes a
+connection to a database and query as inputs and returns a dataframe with the
+results.
 
 ```{r basic queries}
 q <- 'SELECT DISTINCT year, species_id FROM surveys'
@@ -63,12 +86,13 @@ head(result)
 ```
 
 
-
->  **Challenge**
+> ## Challenge
 >
-> Write a query that gets counts of genus by plot type. If this seems to advanced, then get counts of genus by plot_id (eliminates one of the joins)
+> Write a query that gets counts of genus by plot type. If this seems to
+> advanced, then get counts of genus by plot_id (eliminates one of the >joins)
 
-*Answer*
+### Answer
+
 ```{r genus by type}
 q <- "SELECT d.plot_type , c.genus, count(*)
 FROM
@@ -85,10 +109,18 @@ head(result)
 
 ```
 
-In the above answer you'll note that I use a common technique in SQL queries called aliasing.  Aliasing is simply a way to reference a table or sub query, usually within a join. In the above answer aliases allow an easy way to give a shorthand name to a table, e.g. `plots d`. Sub queries also require an alias if you want to use them in a join. 
+In the above answer you'll note that I use a common technique in SQL queries
+called aliasing.  Aliasing is simply a way to reference a table or sub query,
+usually within a join. In the above answer aliases allow an easy way to give a
+shorthand name to a table, e.g. `plots d`. Sub queries also require an alias if
+you want to use them in a join.
 
 
-All we've done so far is execute the same sorts of queries that can easily be made with a GUI.  Now let's try leveraging the power of scripted queries.  Imagine you want to know how many rodents were found every other year.  To get this we'll get the range of dates from the database, sequence them by two and make new queries.
+All we've done so far is execute the same sorts of queries that can easily be
+made with a GUI.  Now let's try leveraging the power of scripted queries.
+Imagine you want to know how many rodents were found every other year.  To get
+this we'll get the range of dates from the database, sequence them by two and
+make new queries.
 
 ```{r Get years of data}
 yearRange <- dbGetQuery(conn,"SELECT min(year),max(year) FROM surveys")
@@ -113,12 +145,18 @@ rCount <- dbGetQuery(conn,q)
 head(rCount)
 ```
 
-With the nested paste commands we were able to construct a query programatically, without having to type out all the years.  This could also be done with a for loop, especially if the query to be constructed is more complicated.
+With the nested paste commands we were able to construct a query
+programatically, without having to type out all the years.  This could also be
+done with a for loop, especially if the query to be constructed is more
+complicated.
 
-Building your workflow
-------
+# Building your workflow
 
-Up until now we been working with an existing data. However we can use R as a way to build up databases from existing flat files.  We'll use the flat files that make up the mammals database to recreate it.  First let's read in the files.
+
+Up until now we been working with an existing data. However we can use R as a
+way to build up databases from existing flat files.  We'll use the flat files
+that make up the mammals database to recreate it.  First let's read in the
+files.
 
 ```{r Generate a dataframe}
 species <- read.csv("species.csv")
@@ -133,20 +171,28 @@ myDB <- "portalR.db"
 myConn <- dbConnect(drv = SQLite(), dbname= myDB)
 dbListTables(myConn)
 ```
-By opening up a connection, you've created a new database.  If you list the tables you'll see that the database is empty. Next we'll add the dataframes we just read in to the database.
+
+By opening up a connection, you've created a new database.  If you list the
+tables you'll see that the database is empty. Next we'll add the dataframes we
+just read in to the database.
 
 ```{r add data}
 dbWriteTable(myConn,"species",species)
 dbListTables(myConn)
 dbGetQuery(myConn,"SELECT * from species limit 10")
 ```
-  
-If you check the location of your database you'll see that data is automatically being written to disk. Not only does R and RSQLite provide easy ways to query existing databases, it also allows you to easily create your own databases from flat files.
 
->  **Challenge**
->
-> Add the remaining tables to the existing database. Query your database from SQLite manager just to verify that you're adding data.
+If you check the location of your database you'll see that data is automatically
+being written to disk. Not only does R and RSQLite provide easy ways to query
+existing databases, it also allows you to easily create your own databases from
+flat files.
 
-> **Extra Challenge**
+> ## Challenge
 >
-> Run some of your queries from earlier in the lesson to verify that you have faithfully recreated the mammals database.
+> Add the remaining tables to the existing database. Query your database from
+> SQLite manager just to verify that you're adding data.
+
+> ## Extra Challenge
+>
+> Run some of your queries from earlier in the lesson to verify that you have
+> faithfully recreated the mammals database.
