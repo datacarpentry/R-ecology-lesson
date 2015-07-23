@@ -1,12 +1,15 @@
 ---
 layout: topic
 title: Starting with data
+author: Data Carpentry contributors
 minutes: 20
 ---
 
 ```{r, echo=FALSE, purl=FALSE, message = FALSE}
 source("setup.R")
 ```
+
+------------
 
 > ## Learning Objectives
 >
@@ -15,6 +18,7 @@ source("setup.R")
 > * explore the structure and the content of the data in R
 > * understand what are factors and how to manipulate them
 
+------------
 
 # Presentation of the Survey Data
 

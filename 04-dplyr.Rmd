@@ -1,12 +1,15 @@
 ---
 layout: topic
 title: Aggregating and analyzing data with dplyr
+author: Data Carpentry contributors
 ---
 
 ```{r, echo=FALSE, purl=FALSE, message = FALSE}
 source("setup.R")
 surveys <- read.csv("data/portal_data_joined.csv")
 ```
+
+------------
 
 # Data manipulation using dplyr
 
@@ -173,7 +176,7 @@ surveys %>%
 
 You can group by multiple columns too:
 
-```{r, purl = FALSE} 
+```{r, purl = FALSE}
 surveys %>%
   group_by(sex, species_id) %>%
   summarize(mean_weight = mean(weight, na.rm = TRUE))

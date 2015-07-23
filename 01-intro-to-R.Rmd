@@ -1,6 +1,7 @@
 ---
 layout: topic
 title: Introduction to R
+author: Data Carpentry contributors
 minutes: 45
 ---
 
@@ -9,6 +10,7 @@ minutes: 45
 source("setup.R")
 ```
 
+------------
 
 > ## Learning Objectives
 >
@@ -17,6 +19,7 @@ source("setup.R")
 > * Understand the concepts of vector and data types
 > * Get exposed to a few functions
 
+------------
 
 ## The R syntax
 
