@@ -5,6 +5,11 @@ minutes: 45
 ---
 
 
+```{r, echo=FALSE, purl=FALSE, message = FALSE}
+source("setup.R")
+```
+
+
 > ## Learning Objectives
 >
 > * Familiarize participants with R syntax
