@@ -135,18 +135,18 @@ img {
                            <span class="dt">feel=</span><span class="kw">c</span>(<span class="st">&quot;furry&quot;</span>, <span class="st">&quot;furry&quot;</span>, <span class="st">&quot;squishy&quot;</span>, <span class="st">&quot;spiny&quot;</span>),
                            <span class="dt">weight=</span><span class="kw">c</span>(<span class="dv">45</span>, <span class="dv">8</span>, <span class="fl">1.1</span>, <span class="fl">0.8</span>))
 <span class="kw">str</span>(example_data)</code></pre></div>
-<pre><code>## 'data.frame':    4 obs. of  3 variables:
-##  $ animal: Factor w/ 4 levels &quot;cat&quot;,&quot;dog&quot;,&quot;sea cucumber&quot;,..: 2 1 3 4
-##  $ feel  : Factor w/ 3 levels &quot;furry&quot;,&quot;spiny&quot;,..: 1 1 3 2
-##  $ weight: num  45 8 1.1 0.8</code></pre>
+<pre><code>#&gt; 'data.frame':    4 obs. of  3 variables:
+#&gt;  $ animal: Factor w/ 4 levels &quot;cat&quot;,&quot;dog&quot;,&quot;sea cucumber&quot;,..: 2 1 3 4
+#&gt;  $ feel  : Factor w/ 3 levels &quot;furry&quot;,&quot;spiny&quot;,..: 1 1 3 2
+#&gt;  $ weight: num  45 8 1.1 0.8</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">example_data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">animal=</span><span class="kw">c</span>(<span class="st">&quot;dog&quot;</span>, <span class="st">&quot;cat&quot;</span>, <span class="st">&quot;sea cucumber&quot;</span>, <span class="st">&quot;sea urchin&quot;</span>),
                            <span class="dt">feel=</span><span class="kw">c</span>(<span class="st">&quot;furry&quot;</span>, <span class="st">&quot;furry&quot;</span>, <span class="st">&quot;squishy&quot;</span>, <span class="st">&quot;spiny&quot;</span>),
                            <span class="dt">weight=</span><span class="kw">c</span>(<span class="dv">45</span>, <span class="dv">8</span>, <span class="fl">1.1</span>, <span class="fl">0.8</span>), <span class="dt">stringsAsFactors=</span><span class="ot">FALSE</span>)
 <span class="kw">str</span>(example_data)</code></pre></div>
-<pre><code>## 'data.frame':    4 obs. of  3 variables:
-##  $ animal: chr  &quot;dog&quot; &quot;cat&quot; &quot;sea cucumber&quot; &quot;sea urchin&quot;
-##  $ feel  : chr  &quot;furry&quot; &quot;furry&quot; &quot;squishy&quot; &quot;spiny&quot;
-##  $ weight: num  45 8 1.1 0.8</code></pre>
+<pre><code>#&gt; 'data.frame':    4 obs. of  3 variables:
+#&gt;  $ animal: chr  &quot;dog&quot; &quot;cat&quot; &quot;sea cucumber&quot; &quot;sea urchin&quot;
+#&gt;  $ feel  : chr  &quot;furry&quot; &quot;furry&quot; &quot;squishy&quot; &quot;spiny&quot;
+#&gt;  $ weight: num  45 8 1.1 0.8</code></pre>
 <div id="challenge" class="section level3">
 <h3>Challenge</h3>
 <ol style="list-style-type: decimal">
@@ -192,24 +192,24 @@ img {
 <p>If we want to extract one or several values from a vector, we must provide one or several indices in square brackets, just as we do in math. For instance:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">animals &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;mouse&quot;</span>, <span class="st">&quot;rat&quot;</span>, <span class="st">&quot;dog&quot;</span>, <span class="st">&quot;cat&quot;</span>)
 animals[<span class="dv">2</span>]</code></pre></div>
-<pre><code>## [1] &quot;rat&quot;</code></pre>
+<pre><code>#&gt; [1] &quot;rat&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">animals[<span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>)]</code></pre></div>
-<pre><code>## [1] &quot;dog&quot; &quot;rat&quot;</code></pre>
+<pre><code>#&gt; [1] &quot;dog&quot; &quot;rat&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">animals[<span class="dv">2</span>:<span class="dv">4</span>]</code></pre></div>
-<pre><code>## [1] &quot;rat&quot; &quot;dog&quot; &quot;cat&quot;</code></pre>
+<pre><code>#&gt; [1] &quot;rat&quot; &quot;dog&quot; &quot;cat&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">more_animals &lt;-<span class="st"> </span>animals[<span class="kw">c</span>(<span class="dv">1</span>:<span class="dv">3</span>, <span class="dv">2</span>:<span class="dv">4</span>)]
 more_animals</code></pre></div>
-<pre><code>## [1] &quot;mouse&quot; &quot;rat&quot;   &quot;dog&quot;   &quot;rat&quot;   &quot;dog&quot;   &quot;cat&quot;</code></pre>
+<pre><code>#&gt; [1] &quot;mouse&quot; &quot;rat&quot;   &quot;dog&quot;   &quot;rat&quot;   &quot;dog&quot;   &quot;cat&quot;</code></pre>
 <p>R indexes start at 1. Programming languages like Fortran, MATLAB, and R start counting at 1, because that’s what human beings typically do. Languages in the C family (including C++, Java, Perl, and Python) count from 0 because that’s simpler for computers to do.</p>
 <p><code>:</code> is a special function that creates numeric vectors of integer in increasing or decreasing order, test <code>1:10</code> and <code>10:1</code> for instance. The function <code>seq()</code> (for __seq__uence) can be used to create more complex patterns:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dt">by=</span><span class="dv">2</span>)</code></pre></div>
-<pre><code>## [1] 1 3 5 7 9</code></pre>
+<pre><code>#&gt; [1] 1 3 5 7 9</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">seq</span>(<span class="dv">5</span>, <span class="dv">10</span>, <span class="dt">length.out=</span><span class="dv">3</span>)</code></pre></div>
-<pre><code>## [1]  5.0  7.5 10.0</code></pre>
+<pre><code>#&gt; [1]  5.0  7.5 10.0</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">seq</span>(<span class="dv">50</span>, <span class="dt">by=</span><span class="dv">5</span>, <span class="dt">length.out=</span><span class="dv">10</span>)</code></pre></div>
-<pre><code>##  [1] 50 55 60 65 70 75 80 85 90 95</code></pre>
+<pre><code>#&gt;  [1] 50 55 60 65 70 75 80 85 90 95</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">8</span>, <span class="dt">by=</span><span class="dv">3</span>) <span class="co"># sequence stops to stay below upper limit</span></code></pre></div>
-<pre><code>## [1] 1 4 7</code></pre>
+<pre><code>#&gt; [1] 1 4 7</code></pre>
 <p>Our survey data frame has rows and columns (it has 2 dimensions), if we want to extract some specific data from it, we need to specify the “coordinates” we want from it. Row numbers come first, followed by column numbers.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys[<span class="dv">1</span>, <span class="dv">1</span>]   <span class="co"># first element in the first column of the data frame</span>
 surveys[<span class="dv">1</span>, <span class="dv">6</span>]   <span class="co"># first element in the 6th column</span>
