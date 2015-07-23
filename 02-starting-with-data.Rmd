@@ -1,12 +1,15 @@
 ---
 layout: topic
 title: Starting with data
+author: Data Carpentry contributors
 minutes: 20
 ---
 
-```{r, echo=FALSE, purl=FALSE}
+```{r, echo=FALSE, purl=FALSE, message = FALSE}
 source("setup.R")
 ```
+
+------------
 
 > ## Learning Objectives
 >
@@ -15,6 +18,7 @@ source("setup.R")
 > * explore the structure and the content of the data in R
 > * understand what are factors and how to manipulate them
 
+------------
 
 # Presentation of the Survey Data
 
@@ -23,19 +27,24 @@ source("setup.R")
 ```
 
 We are studying the species and weight of animals caught in plots in our study
-area.  The dataset is stored as a `.csv` file: each row holds information for a
-single animal, and the columns represent ``record_id` , `month`, `day`, `year`,
-`plot_id`, `species_id` (a 2 letter code, see the `species.csv` file for
-correspondance), `sex` ("M" for males and "F" for females), `hindfood_length`
-(the length of the hindfoot in millimeters),`weight` (the weight in grams).
+area. The dataset is stored as a `csv` file: each row holds information for a
+single animal, and the columns represent:
 
-The survey dataset looks like this:
-
-    "63","8","19","1977","3","DM","M","35","40"
-    "64","8","19","1977","7","DM","M","35","48"
-    "65","8","19","1977","4","DM","F","37","29"
-    "66","8","19","1977","4","DM","F","34","46"
-    "67","8","19","1977","7","DM","M","35","36"
+| Column           | Description                        |
+|------------------|------------------------------------|
+| record\_id       | Unique id for the observation      |
+| month            | month of observation               |
+| day              | day of observation                 |
+| year             | year of observation                |
+| plot\_id         | ID of a particular plot            |
+| species\_id      | 2-letter code                      |
+| sex              | sex of animal ("M", "F")           |
+| hindfoot\_length | length of the hindfoot in mm       |
+| weight           | weight of the animal in grams      |
+| genus            | genus of animal                    |
+| specie s         | species of animal                  |
+| taxa             | e.g. Rodent, Reptile, Bird, Rabbit |
+| plot\_type       | type of plot                       |
 
 We are going to use the R function `download.file()` to download the CSV file
 that contains the survey data from figshare, and we will use `read.csv()` to
@@ -48,19 +57,30 @@ by typing `dir.create("data")` at the terminal.
 - Third, download the data:
 
 ```{r, eval=FALSE, purl=TRUE}
-download.file("http://files.figshare.com/1919744/surveys.csv",
-              "data/surveys.csv")
+if (!require("curl")) {
+  install.packages("curl")
+}
+library("curl")
+curl_download("https://dl.dropboxusercontent.com/u/22808457/portal_data_joined.csv",
+              "data/portal_data_joined.csv")
 ```
 
 You are now ready to load the data:
 
 ```{r, eval=TRUE,  purl=FALSE}
-surveys <- read.csv('data/surveys.csv')
+surveys <- read.csv('data/portal_data_joined.csv')
 ```
 
 This statement doesn't produce any output because assignment doesn't display
 anything. If we want to check that our data has been loaded, we can print the
 variable's value: `surveys`
+
+Alternatively, wrapping an assignment in parentheses will perform the assignment
+and display it at the same time.
+
+```{r, eval = TRUE, purl = FALSE}
+(surveys <- read.csv('data/portal_data_joined.csv'))
+```
 
 Wow... that was a lot of output. At least it means the data loaded
 properly. Let's check the top (the first 6 lines) of this `data.frame` using the

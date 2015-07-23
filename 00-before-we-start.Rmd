@@ -1,12 +1,15 @@
 ---
 layout: topic
 title: Before we start
+author: Data Carpentry contributors
 minutes: 15
 ---
 
 ```{r, echo=FALSE, purl=FALSE}
 knitr::opts_chunk$set(results='hide', fig.path='img/r-lesson-')
 ```
+
+------------
 
 > ## Learning Objectives
 >
@@ -16,8 +19,7 @@ knitr::opts_chunk$set(results='hide', fig.path='img/r-lesson-')
 > * Introduce R syntax
 > * Point to relevant information on how to get help, and understand how to ask well formulated questions
 
-
-# Demonstration of what we will learn to do
+------------
 
 # Before we get started
 
