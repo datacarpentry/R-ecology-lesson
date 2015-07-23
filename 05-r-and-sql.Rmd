@@ -1,15 +1,15 @@
 ---
 title: "SQL databases and R"
-output:
-  html_document:
-    toc: true
-    theme: united
+author: Data Carpentry contributors
 ---
 
 
-```{r, echo=FALSE, purl=FALSE, message = FALSE}
+```{r, echo=FALSE, purl=FALSE, message = FALSE, results='hide'}
 source("setup.R")
+if (file.exists("portalR.db")) file.remove("portalR.db")
 ```
+
+------------
 
 > ## Learning Objectives
 >
@@ -20,6 +20,7 @@ source("setup.R")
 > * Understand that scripted database interactions enhance reproducibility of
 >   analysis
 
+------------
 
 # Introduction
 
