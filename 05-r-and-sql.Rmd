@@ -47,7 +47,7 @@ database packages (such as we are doing, or
 To begin these exercises we'll connect to the mammal database you've just
 created.
 
-```{r connect}
+```{r connect, purl=FALSE}
 library(RSQLite)
 ## Set dbname and driver out of convenience
 myDB <- "data/portal_mammals.sqlite"
@@ -62,18 +62,18 @@ get it yourself with some basic SQL commands
 
 You can grab information about all tables like this:
 
-```{r Get Table information}
-dbGetQuery(conn,"SELECT type, tbl_name  FROM sqlite_master")
+```{r Get Table information, eval=FALSE}
+dbGetQuery(conn, "SELECT type, tbl_name  FROM sqlite_master")
 ```
 
 `RSQLite` has some functions that easily list basic information about your
 database and tables. Here you can see the types and names of fields and get a
 count of records.
 
-```{r table details}
+```{r table details, purl=FALSE}
 dbListTables(conn)
-dbListFields(conn,"surveys")
-dbGetQuery(conn,"SELECT count(*) FROM surveys")
+dbListFields(conn, "surveys")
+dbGetQuery(conn, "SELECT count(*) FROM surveys")
 ```
 
 Great!  That's all there is to it. You are now connected to your database and
@@ -83,9 +83,9 @@ try some basic queries from the previous lesson.  Querying simply takes a
 connection to a database and query as inputs and returns a dataframe with the
 results.
 
-```{r basic queries}
+```{r basic queries, purl=FALSE}
 q <- 'SELECT DISTINCT year, species_id FROM surveys'
-result <-  dbGetQuery(conn,q)
+result <-  dbGetQuery(conn, q)
 head(result)
 ```
 
@@ -97,7 +97,7 @@ head(result)
 
 ### Answer
 
-```{r genus by type}
+```{r genus by type, purl=FALSE}
 q <- "SELECT d.plot_type , c.genus, count(*)
 FROM
 (SELECT a.genus, b.plot
@@ -126,14 +126,14 @@ Imagine you want to know how many rodents were found every other year.  To get
 this we'll get the range of dates from the database, sequence them by two and
 make new queries.
 
-```{r Get years of data}
+```{r Get years of data, purl=FALSE}
 yearRange <- dbGetQuery(conn,"SELECT min(year),max(year) FROM surveys")
 years <- seq(yearRange[,1],yearRange[,2],by=2)
 ```
 
 Next we'll build our query string using the `paste()` function.
 
-```{r creating query}
+```{r creating query, purl=FALSE}
 q <- paste("
 SELECT a.year,b.taxa,count(*) as count
 FROM surveys a
@@ -162,15 +162,15 @@ way to build up databases from existing flat files.  We'll use the flat files
 that make up the mammals database to recreate it.  First let's read in the
 files.
 
-```{r Generate a dataframe}
-species <- read.csv("species.csv")
-surveys <- read.csv("surveys.csv")
-plots <- read.csv("plots.csv")
+```{r Generate a dataframe, purl=FALSE}
+species <- read.csv("data/species.csv")
+surveys <- read.csv("data/surveys.csv")
+plots <- read.csv("data/plots.csv")
 ```
 
 We have some data now. Next we'll need to create a database and add our tables.
 
-```{r create database}
+```{r create database, purl=FALSE}
 myDB <- "portalR.db"
 myConn <- dbConnect(drv = SQLite(), dbname= myDB)
 dbListTables(myConn)
@@ -180,7 +180,7 @@ By opening up a connection, you've created a new database.  If you list the
 tables you'll see that the database is empty. Next we'll add the dataframes we
 just read in to the database.
 
-```{r add data}
+```{r add data, purl=FALSE}
 dbWriteTable(myConn,"species",species)
 dbListTables(myConn)
 dbGetQuery(myConn,"SELECT * from species limit 10")
