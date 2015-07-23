@@ -7,6 +7,10 @@ output:
 ---
 
 
+```{r, echo=FALSE, purl=FALSE, message = FALSE}
+source("setup.R")
+```
+
 > ## Learning Objectives
 >
 > * Students will be able to connect to an existing database using R
@@ -46,7 +50,7 @@ created.
 ```{r connect}
 library(RSQLite)
 ## Set dbname and driver out of convenience
-myDB <- "portal_mammals.sqlite"
+myDB <- "data/portal_mammals.sqlite"
 conn <- dbConnect(drv = SQLite(), dbname= myDB)
 ```
 
