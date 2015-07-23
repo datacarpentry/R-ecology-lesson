@@ -4,10 +4,6 @@ title: Introduction to R
 minutes: 45
 ---
 
-```{r, echo=FALSE, purl=FALSE}
-knitr::opts_chunk$set(results='hide', fig.path='img/r-lesson-')
-```
-
 
 > ## Learning Objectives
 >
