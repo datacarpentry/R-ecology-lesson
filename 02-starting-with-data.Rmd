@@ -1,12 +1,15 @@
 ---
 layout: topic
 title: Starting with data
+author: Data Carpentry contributors
 minutes: 20
 ---
 
 ```{r, echo=FALSE, purl=FALSE, message = FALSE}
 source("setup.R")
 ```
+
+------------
 
 > ## Learning Objectives
 >
@@ -15,6 +18,7 @@ source("setup.R")
 > * explore the structure and the content of the data in R
 > * understand what are factors and how to manipulate them
 
+------------
 
 # Presentation of the Survey Data
 
@@ -190,7 +194,7 @@ as.numeric(levels(f))[f]    ## The recommended way.
 The function `table()` tabulates observations and can be used to create
 bar plots quickly. For instance:
 
-```{r, results='show', purl=TRUE}
+```{r wrong-order, results='show', purl=TRUE}
 ## Question: How can you recreate this plot but by having "control"
 ## being listed last instead of first?
 exprmt <- factor(c("treat1", "treat2", "treat1", "treat3", "treat1", "control",
@@ -200,7 +204,7 @@ barplot(table(exprmt))
 ```
 
 <!---
-```{r, purl=FALSE}
+```{r correct-order, purl=FALSE}
 exprmt <- factor(exprmt, levels=c("treat1", "treat2", "treat3", "control"))
 barplot(table(exprmt))
 ```
