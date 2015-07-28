@@ -1,6 +1,7 @@
 ---
 layout: topic
 title: The `data.frame` class
+author: Data Carpentry contributors
 minutes: 30
 ---
 
@@ -13,11 +14,15 @@ surveys <- read.csv("data/portal_data_joined.csv")
 ## The data.frame class
 ```
 
+------------
+
 > ## Learning Objectives
 >
 > * understand the concept of a `data.frame`
 > * use sequences
 > * know how to access any element of a `data.frame`
+
+------------
 
 # What are data frames?
 
