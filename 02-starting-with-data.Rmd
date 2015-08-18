@@ -57,11 +57,7 @@ by typing `dir.create("data")` at the terminal.
 - Third, download the data:
 
 ```{r, eval=FALSE, purl=TRUE}
-if (!require("curl")) {
-  install.packages("curl")
-}
-library("curl")
-curl_download("https://dl.dropboxusercontent.com/u/22808457/portal_data_joined.csv",
+download.file("http://datacarpentry.github.io/dc_zurich/data/portal_data_joined.csv",
               "data/portal_data_joined.csv")
 ```
 
