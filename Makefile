@@ -13,7 +13,7 @@ index.html: index.md
 motivation.html: motivation.md
 	pandoc -o $@ $^
 
-skeleton-lessons.R: skeleton-00-before-we-start.R skeleton-01-intro-to-R.R skeleton-02-starting-with-data.R skeleton-03-data-frames.R skeleton-04-dplyr.R
+handout-script.R: skeleton-00-before-we-start.R skeleton-01-intro-to-R.R skeleton-02-starting-with-data.R skeleton-03-data-frames.R skeleton-04-dplyr.R
 	for f in $^; do cat $$f; echo "\n"; done > $@
 	make clean-skeleton
 

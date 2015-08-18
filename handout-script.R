@@ -1,31 +1,17 @@
-## surveys <- read.csv(file="data/surveys.csv")
-args(read.csv)
-## read.csv(file="data/surveys.csv", header=TRUE) # is identical to:
-## read.csv("data/surveys.csv", TRUE)
-## read.csv(file="data/surveys.csv", header=TRUE) # is identical to:
-## read.csv(header=TRUE, file="data/surveys.csv")
-## ?barplot
-## args(lm)
-## ??geom_point
-## help.search("kruskal")
-dput(head(iris)) # iris is an example data.frame that comes with R
-## saveRDS(iris, file="/tmp/iris.rds")
-## some_data <- readRDS(file="~/Downloads/iris.rds")
-sessionInfo()
 
 
-### Creating objects (assignments)
+
+### Creating objects in R
+
 ### Vectors and data types
 
 
-# Presentation of the survey data
-## if (!require("curl")) {
-##   install.packages("curl")
-## }
-## library("curl")
-## curl_download("https://dl.dropboxusercontent.com/u/22808457/portal_data_joined.csv",
+
+### Presentation of the survey data
+## download.file("http://datacarpentry.github.io/dc_zurich/data/portal_data_joined.csv",
 ##               "data/portal_data_joined.csv")
-## Exercise
+
+## Challenge
 ## Based on the output of `str(surveys)`, can you answer the following questions?
 ## * What is the class of the object `surveys`?
 ## * How many rows and how many columns are in this object?
@@ -72,7 +58,7 @@ str(example_data)
 ## country_climate <- data.frame(country=c("Canada", "Panama", "South Africa", "Australia"),
 ##                                climate=c("cold", "hot", "temperate", "hot/temperate"),
 ##                                temperature=c(10, 30, 18, "15"),
-##                                north_hemisphere=c(TRUE, TRUE, FALSE, "FALSE"),
+##                                northern_hemisphere=c(TRUE, TRUE, FALSE, "FALSE"),
 ##                                has_kangaroo=c(FALSE, FALSE, FALSE, 1))
 ## Indexing and sequences
 ### The function `nrow()` on a `data.frame` returns the number of

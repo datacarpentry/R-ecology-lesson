@@ -38,7 +38,8 @@ _Start by showing an example of a script_
 ## Creating objects
 
 ```{r, echo=FALSE, purl=TRUE}
-### Creating objects (assignments)
+### Creating objects in R
+
 ```
 
 You can get output from R simply by typing in math in the console
@@ -131,6 +132,7 @@ mass_index <- mass/age  # mass_index?
 
 ```{r, echo=FALSE, purl=TRUE}
 ### Vectors and data types
+
 ```
 
 A vector is the most common and basic data structure in R, and is pretty much
