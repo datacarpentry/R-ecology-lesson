@@ -9,7 +9,6 @@ skeleton-%.R: %.Rmd
 
 index.html: index.md
 	pandoc -o $@ $^
-	cp index.md README.md
 
 motivation.html: motivation.md
 	pandoc -o $@ $^
