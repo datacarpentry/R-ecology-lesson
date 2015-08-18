@@ -159,11 +159,11 @@ weight_kg</code></pre></div>
 <div id="exercise" class="section level3">
 <h3>Exercise</h3>
 <p>What are the values after each statement in the following?</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mass &lt;-<span class="st"> </span><span class="fl">47.5</span>           <span class="co"># mass?</span>
-age  &lt;-<span class="st"> </span><span class="dv">122</span>            <span class="co"># age?</span>
-mass &lt;-<span class="st"> </span>mass *<span class="st"> </span><span class="fl">2.0</span>     <span class="co"># mass?</span>
-age  &lt;-<span class="st"> </span>age -<span class="st"> </span><span class="dv">20</span>       <span class="co"># age?</span>
-massIndex &lt;-<span class="st"> </span>mass/age  <span class="co"># massIndex?</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mass &lt;-<span class="st"> </span><span class="fl">47.5</span>            <span class="co"># mass?</span>
+age  &lt;-<span class="st"> </span><span class="dv">122</span>             <span class="co"># age?</span>
+mass &lt;-<span class="st"> </span>mass *<span class="st"> </span><span class="fl">2.0</span>      <span class="co"># mass?</span>
+age  &lt;-<span class="st"> </span>age -<span class="st"> </span><span class="dv">20</span>        <span class="co"># age?</span>
+mass_index &lt;-<span class="st"> </span>mass/age  <span class="co"># mass_index?</span></code></pre></div>
 </div>
 </div>
 <div id="vectors-and-data-types" class="section level2">
@@ -188,7 +188,13 @@ animals</code></pre></div>
 weights &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">30</span>, weights) <span class="co"># adding at the beginning</span>
 weights</code></pre></div>
 <p>What happens here is that we take the original vector <code>weights</code>, and we are adding another item first to the end of the other ones, and then another item at the beginning. We can do this over and over again to build a vector or a dataset. As we program, this may be useful to autoupdate results that we are collecting or calculating.</p>
-<p>We just saw 2 of the 6 <strong>data types</strong> that R uses: <code>&quot;character&quot;</code> and <code>&quot;numeric&quot;</code>. The other 4 are: * <code>&quot;logical&quot;</code> for <code>TRUE</code> and <code>FALSE</code> (the boolean data type) * <code>&quot;integer&quot;</code> for integer numbers (e.g., <code>2L</code>, the <code>L</code> indicates to R that it’s an integer) * <code>&quot;complex&quot;</code> to represent complex numbers with real and imaginary parts (e.g., <code>1+4i</code>) and that’s all we’re going to say about them * <code>&quot;raw&quot;</code> that we won’t discuss further</p>
+<p>We just saw 2 of the 6 <strong>data types</strong> that R uses: <code>&quot;character&quot;</code> and <code>&quot;numeric&quot;</code>. The other 4 are:</p>
+<ul>
+<li><code>&quot;logical&quot;</code> for <code>TRUE</code> and <code>FALSE</code> (the boolean data type)</li>
+<li><code>&quot;integer&quot;</code> for integer numbers (e.g., <code>2L</code>, the <code>L</code> indicates to R that it’s an integer)</li>
+<li><code>&quot;complex&quot;</code> to represent complex numbers with real and imaginary parts (e.g., <code>1+4i</code>) and that’s all we’re going to say about them</li>
+<li><code>&quot;raw&quot;</code> that we won’t discuss further</li>
+</ul>
 <p>Vectors are one of the many <strong>data structures</strong> that R uses. Other important ones are lists (<code>list</code>), matrices (<code>matrix</code>), data frames (<code>data.frame</code>) and factors (<code>factor</code>).</p>
 <p>We are now going to use our “surveys” dataset to explore the <code>data.frame</code> data structure.</p>
 </div>

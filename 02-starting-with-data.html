@@ -174,7 +174,7 @@ img {
 <td align="left">genus of animal</td>
 </tr>
 <tr class="odd">
-<td align="left">specie s</td>
+<td align="left">species</td>
 <td align="left">species of animal</td>
 </tr>
 <tr class="even">
@@ -193,11 +193,7 @@ img {
 <li>Second, create a new directory within this working directory called <code>data</code>. You can do this by clicking on the new folder icon in RStudio under the file tab, or by typing <code>dir.create(&quot;data&quot;)</code> at the terminal.</li>
 <li>Third, download the data:</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">if (!<span class="kw">require</span>(<span class="st">&quot;curl&quot;</span>)) {
-  <span class="kw">install.packages</span>(<span class="st">&quot;curl&quot;</span>)
-}
-<span class="kw">library</span>(<span class="st">&quot;curl&quot;</span>)
-<span class="kw">curl_download</span>(<span class="st">&quot;https://dl.dropboxusercontent.com/u/22808457/portal_data_joined.csv&quot;</span>,
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">download.file</span>(<span class="st">&quot;http://datacarpentry.github.io/dc_zurich/data/portal_data_joined.csv&quot;</span>,
               <span class="st">&quot;data/portal_data_joined.csv&quot;</span>)</code></pre></div>
 <p>You are now ready to load the data:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">'data/portal_data_joined.csv'</span>)</code></pre></div>
@@ -264,8 +260,10 @@ food &lt;-<span class="st"> </span><span class="kw">factor</span>(food, <span cl
 <div id="challenge-1" class="section level3">
 <h3>Challenge</h3>
 <p>The function <code>table()</code> tabulates observations and can be used to create bar plots quickly. For instance:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Question: How can you recreate this plot but by having &quot;control&quot;
-## being listed last instead of first?
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Challenge
+
+## How can you recreate this plot but by having &quot;control&quot; being listed
+##last instead of first?
 exprmt &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;treat1&quot;</span>, <span class="st">&quot;treat2&quot;</span>, <span class="st">&quot;treat1&quot;</span>, <span class="st">&quot;treat3&quot;</span>, <span class="st">&quot;treat1&quot;</span>, <span class="st">&quot;control&quot;</span>,
                    <span class="st">&quot;treat1&quot;</span>, <span class="st">&quot;treat2&quot;</span>, <span class="st">&quot;treat3&quot;</span>))
 <span class="kw">table</span>(exprmt)</code></pre></div>

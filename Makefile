@@ -1,5 +1,5 @@
 
-all: pages skeleton-lessons.R
+all: pages handout-script.R
 
 skeleton-%.R: %.Rmd
 	Rscript -e "knitr::purl('$<', output='$@', documentation=0L)"
@@ -9,12 +9,11 @@ skeleton-%.R: %.Rmd
 
 index.html: index.md
 	pandoc -o $@ $^
-	cp index.md README.md
 
 motivation.html: motivation.md
 	pandoc -o $@ $^
 
-skeleton-lessons.R: skeleton-00-before-we-start.R skeleton-01-intro-to-R.R skeleton-02-starting-with-data.R skeleton-03-data-frames.R skeleton-04-dplyr.R
+handout-script.R: skeleton-00-before-we-start.R skeleton-01-intro-to-R.R skeleton-02-starting-with-data.R skeleton-03-data-frames.R skeleton-04-dplyr.R
 	for f in $^; do cat $$f; echo "\n"; done > $@
 	make clean-skeleton
 

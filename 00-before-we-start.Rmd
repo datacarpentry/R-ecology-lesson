@@ -129,11 +129,11 @@ example of a function call is:
 Here, the value of `a` is given to the `sqrt()` function, the `sqrt()` function
 calculates the square root, and returns the value which is then assigned to
 variable `b`. This function is very simple, because it takes just one
-argument. 
+argument.
 
 The return 'value' of a function need not be numerical (like that of `sqrt()`),
 and it also does not need to be a single item: it can be a set of things, or
-even a data set. We'll see that when we read data files in to R. 
+even a data set. We'll see that when we read data files in to R.
 
 Arguments can be anything, not only numbers or filenames, but also other
 objects. Exactly what each argument means differs per function, and must be
@@ -150,35 +150,35 @@ specific, simply change the argument yourself with a value of your choice.
 
 Let's try a function that can take multiple arguments `round`.
 
-```{r, results='show'}
+```{r, results='show', purl=FALSE}
 round(3.14159)
 ```
 
 We can see that we get `3`. That's because the default is to round
-to the nearest whole number. If we want more digits we can see 
+to the nearest whole number. If we want more digits we can see
 how to do that by getting information about the `round` function.
 We can use `args(round)` or look at the
 help for this function using `?round`.
 
-```{r, results='show'}
+```{r, results='show', purl=FALSE}
 args(round)
 ```
 
-```{r, eval=FALSE}
+```{r, eval=FALSE, purl=FALSE}
 ?round
 ```
 
 
-We see that if we want a different number of digits, we can 
+We see that if we want a different number of digits, we can
 type `digits=2` or however many we want.
 
-```{r, results='show'}
+```{r, results='show', purl=FALSE}
 round(3.14159, digits=2)
 ```
 
 If you provide the arguments in the exact same order as they are defined you don't have to name them:
 
-```{r, results='show'}
+```{r, results='show', purl=FALSE}
 round(3.14159, 2)
 ```
 
@@ -188,7 +188,7 @@ it makes your code difficult to read. (It's however OK to not include the names
 of the arguments for basic functions like `mean`, `min`, etc...)
 
 Another advantage of naming arguments, is that the order doesn't matter.
-This is useful when there start to be more arguments. 
+This is useful when there start to be more arguments.
 
 
 ## Organizing your working directory
@@ -206,20 +206,20 @@ data, and have a `data_output/` directory for intermediate datasets and a
 
 If you need help with a specific function, let's say `barplot()`, you can type:
 
-```{r, eval=FALSE}
+```{r, eval=FALSE, purl=FALSE}
 ?barplot
 ```
 
 If you just need to remind yourself of the names of the arguments, you can use:
 
-```{r, eval=FALSE}
+```{r, eval=FALSE, purl=FALSE}
 args(lm)
 ```
 
 If the function is part of a package that is installed on your computer but
 don't remember which one, you can type:
 
-```{r, eval=FALSE}
+```{r, eval=FALSE, purl=FALSE}
 ??geom_point
 ```
 
@@ -228,7 +228,7 @@ don't remember which one, you can type:
 If you are looking for a function to do a particular task, you can use
 `help.search()` (but only looks through the installed packages):
 
-```{r, eval=FALSE}
+```{r, eval=FALSE, purl=FALSE}
 help.search("kruskal")
 ```
 
@@ -276,7 +276,7 @@ To share an object with someone else, if it's relatively small, you can use the
 function `dput()`. It will output R code that can be used to recreate the exact same
 object as the one in memory:
 
-```{r, results='show'}
+```{r, results='show', purl=FALSE}
 dput(head(iris)) # iris is an example data.frame that comes with R
 ```
 
@@ -285,7 +285,7 @@ your script up to the point of the error (and after removing everything that is
 not relevant to your issue). Alternatively, in particular if your questions is
 not related to a `data.frame`, you can save any R object to a file:
 
-```{r, eval=FALSE}
+```{r, eval=FALSE, purl=FALSE}
 saveRDS(iris, file="/tmp/iris.rds")
 ```
 
@@ -293,7 +293,7 @@ The content of this file is however not human readable and cannot be posted
 directly on stackoverflow. It can however be sent to someone by email who can read
 it with this command:
 
-```{r, eval=FALSE}
+```{r, eval=FALSE, purl=FALSE}
 some_data <- readRDS(file="~/Downloads/iris.rds")
 ```
 
@@ -302,7 +302,7 @@ as it provides critical information about your platform, the versions of R and
 the packages that you are using, and other information that can be very helpful
 to understand your problem.
 
-```{r, results='show'}
+```{r, results='show', purl=FALSE}
 sessionInfo()
 ```
 

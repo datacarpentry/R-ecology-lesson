@@ -70,7 +70,8 @@ str(example_data)
 1. There are a few mistakes in this hand crafted `data.frame`, can you spot and
 fix them? Don't hesitate to experiment!
 
-   ```{r, eval=FALSE, purl=TRUE}
+   ```{r, eval=FALSE, purl=TRUE, echo=FALSE}
+   ## Challenge
    ##  There are a few mistakes in this hand crafted `data.frame`,
    ##  can you spot and fix them? Don't hesitate to experiment!
    author_book <- data.frame(author_first=c("Charles", "Ernst", "Theodosius"),
@@ -80,14 +81,15 @@ fix them? Don't hesitate to experiment!
 
 1. Can you predict the class for each of the columns in the following example?
 
-   ```{r, eval=FALSE, purl=TRUE}
-   ## Can you predict the class for each of the columns in the following example?
-   ## Check your guesses using `str(country_climate)`. Are they what you expected?
-   ##  Why? why not?
+   ```{r, eval=FALSE, purl=TRUE, echo=FALSE}
+   ## Challenge:
+   ##   Can you predict the class for each of the columns in the following example?
+   ##   Check your guesses using `str(country_climate)`. Are they what you expected?
+   ##   Why? why not?
    country_climate <- data.frame(country=c("Canada", "Panama", "South Africa", "Australia"),
                                   climate=c("cold", "hot", "temperate", "hot/temperate"),
                                   temperature=c(10, 30, 18, "15"),
-                                  north_hemisphere=c(TRUE, TRUE, FALSE, "FALSE"),
+                                  northern_hemisphere=c(TRUE, TRUE, FALSE, "FALSE"),
                                   has_kangaroo=c(FALSE, FALSE, FALSE, 1))
    ```
 
@@ -128,7 +130,9 @@ objects besides `data.frame`.
 # Indexing and sequences
 
 ```{r, echo=FALSE, purl=TRUE}
+
 ## Indexing and sequences
+
 ```
 
 If we want to extract one or several values from a vector, we must provide one
