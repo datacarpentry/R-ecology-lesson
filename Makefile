@@ -1,5 +1,5 @@
 
-all: pages skeleton-lessons.R
+all: pages handout-script.R
 
 skeleton-%.R: %.Rmd
 	Rscript -e "knitr::purl('$<', output='$@', documentation=0L)"
