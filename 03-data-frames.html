@@ -150,13 +150,9 @@ img {
 <div id="challenge" class="section level3">
 <h3>Challenge</h3>
 <ol style="list-style-type: decimal">
-<li>There are a few mistakes in this hand crafted <code>data.frame</code>, can you spot and fix them? Don’t hesitate to experiment!</li>
+<li><p>There are a few mistakes in this hand crafted <code>data.frame</code>, can you spot and fix them? Don’t hesitate to experiment!</p></li>
+<li><p>Can you predict the class for each of the columns in the following example?</p></li>
 </ol>
-<p><code>r    ##  There are a few mistakes in this hand crafted `data.frame`,    ##  can you spot and fix them? Don't hesitate to experiment!    author_book &lt;- data.frame(author_first=c(&quot;Charles&quot;, &quot;Ernst&quot;, &quot;Theodosius&quot;),                                 author_last=c(Darwin, Mayr, Dobzhansky),                                 year=c(1942, 1970))</code></p>
-<ol style="list-style-type: decimal">
-<li>Can you predict the class for each of the columns in the following example?</li>
-</ol>
-<p><code>r    ## Can you predict the class for each of the columns in the following example?    ## Check your guesses using `str(country_climate)`. Are they what you expected?    ##  Why? why not?    country_climate &lt;- data.frame(country=c(&quot;Canada&quot;, &quot;Panama&quot;, &quot;South Africa&quot;, &quot;Australia&quot;),                                   climate=c(&quot;cold&quot;, &quot;hot&quot;, &quot;temperate&quot;, &quot;hot/temperate&quot;),                                   temperature=c(10, 30, 18, &quot;15&quot;),                                   north_hemisphere=c(TRUE, TRUE, FALSE, &quot;FALSE&quot;),                                   has_kangaroo=c(FALSE, FALSE, FALSE, 1))</code></p>
 <p>Check your guesses using <code>str(country_climate)</code>. Are they what you expected? Why? Why not? Check your gueses using <code>str(country_climate)</code>. Are they what you expected? Why? Why not?</p>
 <p>R coerces (when possible) to the data type that is the least common denominator and the easiest to coerce to.</p>
 </div>
