@@ -120,11 +120,11 @@ What do you think is the current content of the object `weight_lb`? 126.5 or 200
 What are the values after each statement in the following?
 
 ```{r, purl=FALSE}
-mass <- 47.5           # mass?
-age  <- 122            # age?
-mass <- mass * 2.0     # mass?
-age  <- age - 20       # age?
-massIndex <- mass/age  # massIndex?
+mass <- 47.5            # mass?
+age  <- 122             # age?
+mass <- mass * 2.0      # mass?
+age  <- age - 20        # age?
+mass_index <- mass/age  # mass_index?
 ```
 
 ## Vectors and data types
