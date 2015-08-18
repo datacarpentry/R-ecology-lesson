@@ -9,7 +9,7 @@ if (!file.exists("data/species.csv")) {
     download.file("http://files.figshare.com/1919741/species.csv",
                   "data/species.csv")
 }
-if (!file.exists("data/plot.csv")) {
+if (!file.exists("data/plots.csv")) {
     download.file("http://files.figshare.com/1919738/plots.csv",
                   "data/plots.csv")
 }

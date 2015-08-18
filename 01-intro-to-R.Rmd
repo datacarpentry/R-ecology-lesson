@@ -38,7 +38,8 @@ _Start by showing an example of a script_
 ## Creating objects
 
 ```{r, echo=FALSE, purl=TRUE}
-### Creating objects (assignments)
+### Creating objects in R
+
 ```
 
 You can get output from R simply by typing in math in the console
@@ -120,17 +121,18 @@ What do you think is the current content of the object `weight_lb`? 126.5 or 200
 What are the values after each statement in the following?
 
 ```{r, purl=FALSE}
-mass <- 47.5           # mass?
-age  <- 122            # age?
-mass <- mass * 2.0     # mass?
-age  <- age - 20       # age?
-massIndex <- mass/age  # massIndex?
+mass <- 47.5            # mass?
+age  <- 122             # age?
+mass <- mass * 2.0      # mass?
+age  <- age - 20        # age?
+mass_index <- mass/age  # mass_index?
 ```
 
 ## Vectors and data types
 
 ```{r, echo=FALSE, purl=TRUE}
 ### Vectors and data types
+
 ```
 
 A vector is the most common and basic data structure in R, and is pretty much
@@ -190,6 +192,7 @@ collecting or calculating.
 
 We just saw 2 of the 6 **data types** that R uses: `"character"` and
 `"numeric"`. The other 4 are:
+
 * `"logical"` for `TRUE` and `FALSE` (the boolean data type)
 * `"integer"` for integer numbers (e.g., `2L`, the `L` indicates to R that it's an integer)
 * `"complex"` to represent complex numbers with real and imaginary parts (e.g.,

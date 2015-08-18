@@ -23,7 +23,7 @@ source("setup.R")
 # Presentation of the Survey Data
 
 ```{r, echo=FALSE, purl=TRUE}
-# Presentation of the survey data
+### Presentation of the survey data
 ```
 
 We are studying the species and weight of animals caught in plots in our study
@@ -42,7 +42,7 @@ single animal, and the columns represent:
 | hindfoot\_length | length of the hindfoot in mm       |
 | weight           | weight of the animal in grams      |
 | genus            | genus of animal                    |
-| specie s         | species of animal                  |
+| species          | species of animal                  |
 | taxa             | e.g. Rodent, Reptile, Bird, Rabbit |
 | plot\_type       | type of plot                       |
 
@@ -57,11 +57,7 @@ by typing `dir.create("data")` at the terminal.
 - Third, download the data:
 
 ```{r, eval=FALSE, purl=TRUE}
-if (!require("curl")) {
-  install.packages("curl")
-}
-library("curl")
-curl_download("https://dl.dropboxusercontent.com/u/22808457/portal_data_joined.csv",
+download.file("http://datacarpentry.github.io/dc_zurich/data/portal_data_joined.csv",
               "data/portal_data_joined.csv")
 ```
 
@@ -106,11 +102,13 @@ Based on the output of `str(surveys)`, can you answer the following questions?
 * How many species have been recorded during these surveys?
 
 ```{r, echo=FALSE, purl=TRUE}
-## Exercise
+
+## Challenge
 ## Based on the output of `str(surveys)`, can you answer the following questions?
 ## * What is the class of the object `surveys`?
 ## * How many rows and how many columns are in this object?
 ## * How many species have been recorded during these surveys?
+
 ```
 
 As you can see, the columns `species` and `sex` are of a special class called
@@ -195,8 +193,10 @@ The function `table()` tabulates observations and can be used to create
 bar plots quickly. For instance:
 
 ```{r wrong-order, results='show', purl=TRUE}
-## Question: How can you recreate this plot but by having "control"
-## being listed last instead of first?
+## Challenge
+
+## How can you recreate this plot but by having "control" being listed
+##last instead of first?
 exprmt <- factor(c("treat1", "treat2", "treat1", "treat3", "treat1", "control",
                    "treat1", "treat2", "treat3"))
 table(exprmt)
