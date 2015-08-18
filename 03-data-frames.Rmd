@@ -87,7 +87,7 @@ fix them? Don't hesitate to experiment!
    country_climate <- data.frame(country=c("Canada", "Panama", "South Africa", "Australia"),
                                   climate=c("cold", "hot", "temperate", "hot/temperate"),
                                   temperature=c(10, 30, 18, "15"),
-                                  north_hemisphere=c(TRUE, TRUE, FALSE, "FALSE"),
+                                  northern_hemisphere=c(TRUE, TRUE, FALSE, "FALSE"),
                                   has_kangaroo=c(FALSE, FALSE, FALSE, 1))
    ```
 
