@@ -51,7 +51,7 @@ for each level and a very brief introduction to plotting.
 6. [Lesson 05 Data visualisation with ggplot2](05-visualisation-ggplot2.html) 
 
 **Optional**  
-[Lesson 06 R and SQL](06-r-and-sql.html)
+[Lesson 06 R and SQL](05-r-and-sql.html)
 
 
 ## Data
