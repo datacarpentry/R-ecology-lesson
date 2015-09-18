@@ -152,7 +152,7 @@ nlevels(sex)
 Sometimes, the order of the factors does not matter, other times you might want
 to specify the order because it is meaningful (e.g., "low", "medium", "high") or
 it is required by particular type of analysis. Additionally, specifying the
-order of the levels allows to compare levels:
+order of the levels allows us to compare levels:
 
 ```{r, purl=TRUE, error=TRUE}
 food <- factor(c("low", "high", "medium", "high", "low", "medium", "high"))
@@ -167,7 +167,7 @@ min(food) ## works!
 
 In R's memory, these factors are represented by numbers (1, 2, 3). They are
 better than using simple integer labels because factors are self describing:
-`"low"`, `"medium"`, and `"high"`" is more descriptive than `1`, `2`, `3`. Which
+`"low"`, `"medium"`, `"high"`" is more descriptive than `1`, `2`, `3`. Which
 is low?  You wouldn't be able to tell with just integer data. Factors have this
 information built in. It is particularly helpful when there are many levels
 (like the species in our example data set).
