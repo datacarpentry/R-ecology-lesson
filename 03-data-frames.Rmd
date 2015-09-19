@@ -1,22 +1,28 @@
 ---
 layout: topic
 title: The `data.frame` class
+author: Data Carpentry contributors
 minutes: 30
 ---
 
-```{r, echo=FALSE, purl=FALSE}
+```{r, echo=FALSE, purl=FALSE, message = FALSE}
 source("setup.R")
+surveys <- read.csv("data/portal_data_joined.csv")
 ```
 
 ```{r, echo=FALSE, purl=TRUE}
 ## The data.frame class
 ```
 
+------------
+
 > ## Learning Objectives
 >
 > * understand the concept of a `data.frame`
 > * use sequences
 > * know how to access any element of a `data.frame`
+
+------------
 
 # What are data frames?
 
@@ -64,7 +70,8 @@ str(example_data)
 1. There are a few mistakes in this hand crafted `data.frame`, can you spot and
 fix them? Don't hesitate to experiment!
 
-   ```{r, eval=FALSE, purl=TRUE}
+   ```{r, eval=FALSE, purl=TRUE, echo=FALSE}
+   ## Challenge
    ##  There are a few mistakes in this hand crafted `data.frame`,
    ##  can you spot and fix them? Don't hesitate to experiment!
    author_book <- data.frame(author_first=c("Charles", "Ernst", "Theodosius"),
@@ -74,14 +81,15 @@ fix them? Don't hesitate to experiment!
 
 1. Can you predict the class for each of the columns in the following example?
 
-   ```{r, eval=FALSE, purl=TRUE}
-   ## Can you predict the class for each of the columns in the following example?
-   ## Check your guesses using `str(country_climate)`. Are they what you expected?
-   ##  Why? why not?
+   ```{r, eval=FALSE, purl=TRUE, echo=FALSE}
+   ## Challenge:
+   ##   Can you predict the class for each of the columns in the following example?
+   ##   Check your guesses using `str(country_climate)`. Are they what you expected?
+   ##   Why? why not?
    country_climate <- data.frame(country=c("Canada", "Panama", "South Africa", "Australia"),
                                   climate=c("cold", "hot", "temperate", "hot/temperate"),
                                   temperature=c(10, 30, 18, "15"),
-                                  north_hemisphere=c(TRUE, TRUE, FALSE, "FALSE"),
+                                  northern_hemisphere=c(TRUE, TRUE, FALSE, "FALSE"),
                                   has_kangaroo=c(FALSE, FALSE, FALSE, 1))
    ```
 
@@ -122,7 +130,9 @@ objects besides `data.frame`.
 # Indexing and sequences
 
 ```{r, echo=FALSE, purl=TRUE}
+
 ## Indexing and sequences
+
 ```
 
 If we want to extract one or several values from a vector, we must provide one
@@ -185,3 +195,18 @@ head_surveys <- surveys[1:6, ] # surveys[1:6, ] is equivalent to head(surveys)
 surveys_by_10 <- surveys[seq(10, nrow(surveys), by=10), ]
 ```
 --->
+
+For larger datasets, it can be tricky to remember the column number that
+corresponds to a particular variable. (Are species names in column 5 or 7? oh,
+right... they are in column 6). In some cases, in which column the variable will
+be can change if the script you are using adds or removes columns. It's
+therefore often better to use column names to refer to a particular variable,
+and it makes your code easier to read and your intentions clearer.
+
+You can do operations on a particular column, by selecting it using the `$`
+sign. In this case, the entire column is a vector. For instance, to extract all
+the weights from our datasets, we can use: `surveys$wgt`. You can use
+`names(surveys)` or `colnames(surveys)` to remind yourself of the column names.
+
+In some cases, you may way to select more than one column. You can do this using
+the square brackets: `surveys[, c("wgt", "sex")]`.
