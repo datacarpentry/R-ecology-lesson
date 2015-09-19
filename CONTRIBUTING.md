@@ -21,7 +21,7 @@ under [these licenses](LICENSE.md).
 
 1.  Fork the `datacarpentry/R-ecology` repository on GitHub.
 
-2.  Clone that repository to your own machine.
+2.  Clone that repository to your own machine. (It is also possible to make minor edits right on GitHub.)
 
 3.  Create a branch from `gh-pages` for your changes.
     Give your branch a meaningful name,
@@ -55,6 +55,18 @@ Currently, the Makefile also generates the README file from `index.md`.
 We use the `purl()` function from `knitr` to generate a skeleton file that
 contains code to be distributed to the workshop participants. It's useful in
 particular for error-prone pieces of code (e.g., if it contains long URLs).
+
+## Datasets
+
+We don't store data for lessons inside the lesson repositories. For completed
+lessons the data should be publicly available in a data repository appropriate
+to the data type. For lesson development the data may be provided in any way
+that is convenient including posting to a website, on
+[figshare](http://figshare.com/), a public dropbox link, a
+[GitHub gist](https://gist.github.com), or even included in the PR. Once the PR
+is ready to merge the data should be placed in the
+[official data repository](http://figshare.com/articles/Portal_Project_Teaching_Database/1314459)
+and all links to the data updated.
 
 ## Formatting of the material
 

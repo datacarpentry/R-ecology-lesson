@@ -1,24 +1,23 @@
 
-all: pages skeleton-lessons.R
+all: pages handout-script.R
 
 skeleton-%.R: %.Rmd
 	Rscript -e "knitr::purl('$<', output='$@', documentation=0L)"
 
 %.html: %.Rmd
-	Rscript -e "knitr::knit2html('$<')"
+	Rscript -e "rmarkdown::render('$<', output_format=rmarkdown::html_document(toc=TRUE, highlight='tango'))"
 
 index.html: index.md
 	pandoc -o $@ $^
-	cp index.md README.md
 
 motivation.html: motivation.md
 	pandoc -o $@ $^
 
-skeleton-lessons.R: skeleton-00-before-we-start.R skeleton-01-intro-to-R.R skeleton-02-starting-with-data.R skeleton-03-data-frames.R skeleton-04-manipulating-data.R skeleton-05-analyzing-data.R
+handout-script.R: skeleton-00-before-we-start.R skeleton-01-intro-to-R.R skeleton-02-starting-with-data.R skeleton-03-data-frames.R skeleton-04-dplyr.R
 	for f in $^; do cat $$f; echo "\n"; done > $@
 	make clean-skeleton
 
-pages: index.html motivation.html 00-before-we-start.html 01-intro-to-R.html 02-starting-with-data.html 03-data-frames.html 04-manipulating-data.html 05-analyzing-data.html
+pages: index.html motivation.html 00-before-we-start.html 01-intro-to-R.html 02-starting-with-data.html 03-data-frames.html 04-dplyr.html 05-visualisation-ggplot2.html 06-r-and-sql.html
 	make clean-md
 
 clean-skeleton:
