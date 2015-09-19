@@ -152,7 +152,7 @@ ggplot(surveys_complete)
 - define aestetics (`aes`), that maps variables in the data to axes on the plot
      or to plotting size, shape color, etc.,
 
-```{r}
+```{r, eval=FALSE}
 ggplot(surveys_complete, aes(x = weight, y = hindfoot_length))
 ```
 
@@ -178,15 +178,6 @@ ggplot(surveys_complete, aes(x = weight, y = hindfoot_length)) +
 ```{r}
 ggplot(surveys_complete, aes(x = weight, y = hindfoot_length)) +
   geom_point(alpha=0.1, color="blue")
-```
-
-Example of complex visualisation in which plot area is divided into hexagonal
-sections and points are counted wihin hexagons. The number of points per hexagon
-is encoded by color.
-
-```{r}
-ggplot(surveys_complete, aes(x = weight, y = hindfoot_length)) + stat_binhex(bins=50) +
-  scale_fill_gradientn(trans="log10", colours = heat.colors(10, alpha=0.5))
 ```
 
 ## Boxplot
