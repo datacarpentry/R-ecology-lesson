@@ -8,7 +8,7 @@
 
 
 ### Presentation of the survey data
-## download.file("http://datacarpentry.github.io/dc_zurich/data/portal_data_joined.csv",
+## download.file("http://files.figshare.com/2236372/combined.csv",
 ##               "data/portal_data_joined.csv")
 
 ## Challenge
