@@ -14,12 +14,8 @@ if (!file.exists("data/plots.csv")) {
                   "data/plots.csv")
 }
 if (!file.exists("data/portal_data_joined.csv")) {
-    if (!require("curl")) {
-      install.packages("curl")
-    }
-  library("curl")
-  curl_download("https://dl.dropboxusercontent.com/u/22808457/portal_data_joined.csv",
-                "data/portal_data_joined.csv")
+    download.file("http://files.figshare.com/2236372/combined.csv",
+                  "data/portal_data_joined.csv")
 }
 
 if (!file.exists("data/portal_mammals.sqlite")) {
