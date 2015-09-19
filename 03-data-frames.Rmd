@@ -52,7 +52,7 @@ some_data <- read.csv("data/some_file.csv", stringsAsFactors=FALSE)
 You can also create `data.frame` manually with the function `data.frame()`. This
 function can also take the argument `stringsAsFactors`. Compare the output of
 these examples, and compare the difference between when the data are being read
-as `character` and when they are being as `factor`.
+as `character` and when they are being read as `factor`.
 
 ```{r, results='show', purl=TRUE}
 example_data <- data.frame(animal=c("dog", "cat", "sea cucumber", "sea urchin"),
@@ -152,7 +152,7 @@ counting at 1, because that's what human beings typically do. Languages in the C
 family (including C++, Java, Perl, and Python) count from 0 because that's
 simpler for computers to do.
 
-`:` is a special function that creates numeric vectors of integer in increasing
+`:` is a special function that creates numeric vectors of integers in increasing
 or decreasing order, test `1:10` and `10:1` for instance. The function `seq()`
 (for __seq__uence) can be used to create more complex patterns:
 
