@@ -70,6 +70,12 @@ str(example_data)
 1. There are a few mistakes in this hand crafted `data.frame`, can you spot and
 fix them? Don't hesitate to experiment!
 
+    ```
+    author_book <- data.frame(author_first=c("Charles", "Ernst", "Theodosius"),
+                              author_last=c(Darwin, Mayr, Dobzhansky),
+                              year=c(1942, 1970))
+    ```
+
    ```{r, eval=FALSE, purl=TRUE, echo=FALSE}
    ## Challenge
    ##  There are a few mistakes in this hand crafted `data.frame`,
@@ -80,6 +86,15 @@ fix them? Don't hesitate to experiment!
    ```
 
 1. Can you predict the class for each of the columns in the following example?
+
+    ```
+    country_climate <- data.frame(country=c("Canada", "Panama", "South Africa", "Australia"),
+                                   climate=c("cold", "hot", "temperate", "hot/temperate"),
+                                   temperature=c(10, 30, 18, "15"),
+                                   northern_hemisphere=c(TRUE, TRUE, FALSE, "FALSE"),
+                                   has_kangaroo=c(FALSE, FALSE, FALSE, 1))
+    ```
+
 
    ```{r, eval=FALSE, purl=TRUE, echo=FALSE}
    ## Challenge:
