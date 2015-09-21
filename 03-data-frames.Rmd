@@ -109,8 +109,7 @@ fix them? Don't hesitate to experiment!
    ```
 
      Check your guesses using `str(country_climate)`. Are they what you expected?
-     Why? Why not? Check your gueses using `str(country_climate)`. Are they what you expected?
-     Why? Why not?
+     Why? Why not? 
 
      R coerces (when possible) to the data type that is the least common
      denominator and the easiest to coerce to.
