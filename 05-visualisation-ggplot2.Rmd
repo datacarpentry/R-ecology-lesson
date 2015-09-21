@@ -11,7 +11,7 @@ show hide magic
 <style> div.hidecode + pre {display: none} div.hidecode {color: #337ab7}</style><script> doclick=function(e){ e.nextSibling.nextSibling.style.display = e.nextSibling.nextSibling.style.display === "block" ? "none" : "block"; }</script>
 -->
 
-```{r}
+```{r, echo=FALSE, purl=FALSE}
 knitr::opts_chunk$set(fig.keep='last')
 ```
 
@@ -80,7 +80,7 @@ There are a lot of species with low counts, let's remove the ones below 10 count
 # count records per species
 species_counts <- surveys %>%
                   group_by(species_id) %>%
-                  summarise(n=n())
+                  tally
 
 # get names of those frequent species
 frequent_species <- species_counts %>%
@@ -152,7 +152,7 @@ ggplot(surveys_complete)
 - define aestetics (`aes`), that maps variables in the data to axes on the plot
      or to plotting size, shape color, etc.,
 
-```{r}
+```{r, eval=FALSE}
 ggplot(surveys_complete, aes(x = weight, y = hindfoot_length))
 ```
 
@@ -178,15 +178,6 @@ ggplot(surveys_complete, aes(x = weight, y = hindfoot_length)) +
 ```{r}
 ggplot(surveys_complete, aes(x = weight, y = hindfoot_length)) +
   geom_point(alpha=0.1, color="blue")
-```
-
-Example of complex visualisation in which plot area is divided into hexagonal
-sections and points are counted wihin hexagons. The number of points per hexagon
-is encoded by color.
-
-```{r}
-ggplot(surveys_complete, aes(x = weight, y = hindfoot_length)) + stat_binhex(bins=50) +
-  scale_fill_gradientn(trans="log10", colours = heat.colors(10, alpha=0.5))
 ```
 
 ## Boxplot
@@ -219,14 +210,14 @@ to group data first and count records within each group.
 ```{r}
 yearly_counts <- surveys %>%
                  group_by(year, species_id) %>%
-                 summarise(count=n())
+                 tally
 ```
 
 Timelapse data can be visualised as a line plot with years on x axis and counts
 on y axis.
 
 ```{r}
-ggplot(yearly_counts, aes(x=year, y=count)) +
+ggplot(yearly_counts, aes(x=year, y=n)) +
                   geom_line()
 ```
 
@@ -234,14 +225,14 @@ Unfortunately this does not work, because we plot data for all the species
 together. We need to tell ggplot to split graphed data by `species_id`
 
 ```{r}
-ggplot(yearly_counts, aes(x=year, y=count, group=species_id)) +
+ggplot(yearly_counts, aes(x=year, y=n, group=species_id)) +
   geom_line()
 ```
 
 We will be able to distiguish species in the plot if we add colors.
 
 ```{r}
-ggplot(yearly_counts, aes(x=year, y=count, group=species_id, color=species_id)) +
+ggplot(yearly_counts, aes(x=year, y=n, group=species_id, color=species_id)) +
   geom_line()
 ```
 
@@ -252,7 +243,7 @@ into mutliple plots based on some factor. We will use it to plot one time series
 for each species separately.
 
 ```{r}
-ggplot(yearly_counts, aes(x=year, y=count, color=species_id)) +
+ggplot(yearly_counts, aes(x=year, y=n, color=species_id)) +
   geom_line() + facet_wrap(~species_id)
 ```
 
@@ -275,13 +266,13 @@ surveys <- surveys %>%
 ```{r}
 yearly_sex_counts <- surveys %>%
                      group_by(year, species_id, sex) %>%
-                     summarise(count=n())
+                     tally
 ```
 
 > - make the faceted plot spliting further by sex (within single plot)
 
 ```{r}
-ggplot(yearly_sex_counts, aes(x=year, y=count, color=species_id, group=sex)) +
+ggplot(yearly_sex_counts, aes(x=year, y=n, color=species_id, group=sex)) +
   geom_line() + facet_wrap(~ species_id)
 ```
 
@@ -289,6 +280,6 @@ ggplot(yearly_sex_counts, aes(x=year, y=count, color=species_id, group=sex)) +
 > already in separate plots, so we don't need to distinguish them better)
 
 ```{r}
-ggplot(yearly_sex_counts, aes(x=year, y=count, color=sex, group=sex)) +
+ggplot(yearly_sex_counts, aes(x=year, y=n, color=sex, group=sex)) +
   geom_line() + facet_wrap(~ species_id)
 ```
