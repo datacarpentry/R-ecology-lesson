@@ -1,0 +1,149 @@
+---
+layout: topic
+title: Working With Vectors
+author: Steve Pederson
+minutes: 10
+---
+
+Before moving onto the `survey` data we saw in yesterday's SQL session, let's spend 10 more minutes on vectors.
+We'll look at:
+
+- Vector types
+- Coercion
+- Subsetting vectors
+
+We know the four most common atomic vector types:
+
+1. logical  
+2. integer  
+3. double  
+4. character  
+
+Let's create a few, using the `c()` command we've just seen:
+
+---
+
+# Vector Types
+
+## A Logical Vector
+```{r, eval=TRUE,  purl=FALSE}
+logi_vec  <- c(TRUE, TRUE, FALSE)
+class(logi_vec)
+typeof(logi_vec)
+```
+
+---
+
+## An Integer Vector
+```{r, eval=TRUE,  purl=FALSE}
+int_vec <- 1:5
+class(int_vec)
+typeof(int_vec)
+```
+
+---
+
+## A Double Vector
+
+These are often **lazily** referred to as numeric vectors.
+Both `double` and `integer` vectors are numeric.
+
+```{r, eval=TRUE,  purl=FALSE}
+dbl_vec <- c(0.618, 1.414, 2)
+class(dbl_vec)
+typeof(dbl_vec)
+```
+
+This is why `typeof()` is preferable for checking vectors.
+
+---
+
+## A Character Vector
+```{r, eval=TRUE,  purl=FALSE}
+char_vec <- c("a", "cat", "video")
+class(char_vec)
+typeof(char_vec)
+```
+
+---
+# Coersion
+
+Can we convert these vectors into another type of value?
+There are a series of functions `as.logical()`, `as.integer()`, `as.double()` and `as.character()`
+
+```{r}
+as.integer(logi_vec)
+as.logical(int_vec)
+as.character(logi_vec)
+```
+
+---
+
+# Questions
+What do you think will happen if you try?
+```{r, eval=FALSE}
+as.integer(char_vec)
+```
+
+What type of vector is this?
+```{r, echo=FALSE, include=FALSE}
+sim_vec <- c(742, "Evergreen", "Tce")
+```
+
+
+```{r, eval=FALSE}
+sim_vec <- c(742, "Evergreen", "Tce")
+```
+
+What would happen if we tried to convert this to a numeric vector?
+```{r, eval=FALSE}
+as.numeric(sim_vec)
+```
+
+## Combining Vectors of different types
+```{r}
+new_vec <- c(dbl_vec, int_vec)
+typeof(new_vec)
+```
+
+### More questions
+What would happen if combining the following vectors?
+```{r, eval=FALSE}
+logi_int_vec  <- c(logi_vec, int_vec)
+typeof(what_vec)
+int_char_vec  <- c(int_vec, char_vec)
+typeof(int_char_vec)
+```
+
+
+# Subsetting vectors
+In R we use square brackets to extract single values, or a **subset** of the values
+```{r}
+char_vec[2]
+```
+
+We can use the `minus` sign to extract all values, *except* a given value
+```{r}
+char_vec[-2]
+```
+
+We can also use a vector to do this
+```{r}
+char_vec[c(1, 3)]
+```
+
+And we can also rearrange a vector
+```{r}
+char_vec[c(3, 1, 2)]
+```
+
+## Subsetting a vector using logical values
+```{r}
+sim_vec[logi_vec]
+```
+
+## A common error 
+What is wrong with this?
+```{r, eval=FALSE}
+sim_vec[int_vec]
+```
