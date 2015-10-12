@@ -110,7 +110,7 @@ Make simple scatter plot of `hindfoot_length` (in millimeters) as a function of
 `weight` (in grams), using basic R plotting capabilities.
 
 ```{r}
-plot(x=surveys_complete$weight, y=surveys_complete$hindfoot_length)
+plot(x = surveys_complete$weight, y = surveys_complete$hindfoot_length)
 ```
 
 ## Plotting with ggplot2
@@ -128,21 +128,21 @@ To build a ggplot we need to:
 - bind plot to a specific data frame
 
 ```{r, eval=FALSE}
-ggplot(surveys_complete)
+ggplot(data = surveys_complete)
 ```
 
 - define aestetics (`aes`), that maps variables in the data to axes on the plot
      or to plotting size, shape color, etc.,
 
 ```{r, eval=FALSE}
-ggplot(surveys_complete, aes(x = weight, y = hindfoot_length))
+ggplot(data = surveys_complete, aes(x = weight, y = hindfoot_length))
 ```
 
 - add `geoms` -- graphical representation of the data in the plot (points,
      lines, bars). To add a geom to the plot use `+` operator:
 
 ```{r}
-ggplot(surveys_complete, aes(x = weight, y = hindfoot_length)) +
+ggplot(data = surveys_complete, aes(x = weight, y = hindfoot_length)) +
   geom_point()
 ```
 
@@ -151,15 +151,15 @@ ggplot(surveys_complete, aes(x = weight, y = hindfoot_length)) +
 - adding transparency (alpha)
 
 ```{r}
-ggplot(surveys_complete, aes(x = weight, y = hindfoot_length)) +
-  geom_point(alpha=0.1)
+ggplot(data = surveys_complete, aes(x = weight, y = hindfoot_length)) +
+  geom_point(alpha = 0.1)
 ```
 
 - adding colors
 
 ```{r}
-ggplot(surveys_complete, aes(x = weight, y = hindfoot_length)) +
-  geom_point(alpha=0.1, color="blue")
+ggplot(data = surveys_complete, aes(x = weight, y = hindfoot_length)) +
+  geom_point(alpha = 0.1, color = "blue")
 ```
 
 ## Boxplot
@@ -167,7 +167,7 @@ ggplot(surveys_complete, aes(x = weight, y = hindfoot_length)) +
 Visualising the distribution of weight within each species.
 
 ```{r}
-ggplot(surveys_complete, aes(factor(species_id), weight)) +
+ggplot(data = surveys_complete, aes(x = species_id,  y = weight)) +
                    geom_boxplot()
 ```
 
@@ -175,9 +175,9 @@ By adding points to boxplot, we can see particular measurements and the
 abundance of measurements.
 
 ```{r}
-ggplot(surveys_complete, aes(factor(species_id), weight)) +
-                   geom_jitter(alpha=0.3, color="tomato") +
-                   geom_boxplot(alpha=0)
+ggplot(data = surveys_complete, aes(x = species_id, y = weight)) +
+                   geom_jitter(alpha = 0.3, color = "tomato") +
+                   geom_boxplot(alpha = 0)
 ```
 
 > ### Challenge
@@ -199,7 +199,7 @@ Timelapse data can be visualised as a line plot with years on x axis and counts
 on y axis.
 
 ```{r}
-ggplot(yearly_counts, aes(x=year, y=n)) +
+ggplot(data = yearly_counts, aes(x = year, y = n)) +
                   geom_line()
 ```
 
@@ -207,14 +207,14 @@ Unfortunately this does not work, because we plot data for all the species
 together. We need to tell ggplot to split graphed data by `species_id`
 
 ```{r}
-ggplot(yearly_counts, aes(x=year, y=n, group=species_id)) +
+ggplot(data = yearly_counts, aes(x = year, y = n, group = species_id)) +
   geom_line()
 ```
 
 We will be able to distiguish species in the plot if we add colors.
 
 ```{r}
-ggplot(yearly_counts, aes(x=year, y=n, group=species_id, color=species_id)) +
+ggplot(data = yearly_counts, aes(x = year, y = n, group = species_id, color = species_id)) +
   geom_line()
 ```
 
@@ -225,7 +225,7 @@ into mutliple plots based on some factor. We will use it to plot one time series
 for each species separately.
 
 ```{r}
-ggplot(yearly_counts, aes(x=year, y=n, color=species_id)) +
+ggplot(data = yearly_counts, aes(x = year, y = n, color = species_id)) +
   geom_line() + facet_wrap(~species_id)
 ```
 
@@ -254,7 +254,7 @@ yearly_sex_counts <- surveys_complete %>%
 > - make the faceted plot spliting further by sex (within single plot)
 
 ```{r}
-ggplot(yearly_sex_counts, aes(x=year, y=n, color=species_id, group=sex)) +
+ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = species_id, group = sex)) +
   geom_line() + facet_wrap(~ species_id)
 ```
 
@@ -262,6 +262,6 @@ ggplot(yearly_sex_counts, aes(x=year, y=n, color=species_id, group=sex)) +
 > already in separate plots, so we don't need to distinguish them better)
 
 ```{r}
-ggplot(yearly_sex_counts, aes(x=year, y=n, color=sex, group=sex)) +
+ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex, group = sex)) +
   geom_line() + facet_wrap(~ species_id)
 ```
