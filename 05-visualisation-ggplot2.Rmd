@@ -125,7 +125,7 @@ With ggplot graphics are build step by step by adding new elements.
 
 To build a ggplot we need to:
 
-- bind plot to a specific data frame
+- bind the plot to a specific data frame using the `data` argument
 
 ```{r, eval=FALSE}
 ggplot(data = surveys_complete)
@@ -145,6 +145,12 @@ ggplot(data = surveys_complete, aes(x = weight, y = hindfoot_length))
 ggplot(data = surveys_complete, aes(x = weight, y = hindfoot_length)) +
   geom_point()
 ```
+
+Notes:
+
+- Anything you put in the `ggplot()` function can be seen by any geom layers that you add.
+i.e. these are universal plot settings
+- This includes the x and y axis you set up in `aes()`
 
 ## Modifying plots
 
@@ -179,6 +185,9 @@ ggplot(data = surveys_complete, aes(x = species_id, y = weight)) +
                    geom_jitter(alpha = 0.3, color = "tomato") +
                    geom_boxplot(alpha = 0)
 ```
+
+Notice how the boxplot layer is on top of the jitter layer?
+Play around with the order of geoms and adjust transparency to see how to build up your plot in layers.
 
 > ### Challenge
 >
