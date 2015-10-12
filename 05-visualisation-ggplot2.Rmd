@@ -67,36 +67,43 @@ summary(surveys_raw)
 
 There are few things we need to clean in the dataset.
 
-There is missing species_id in some records. Let's remove those.
+There are missing values for species_id in some records. Let's remove those.
 
 ```{r}
-surveys <- surveys_raw %>%
-           filter(species_id != "")
+surveys_complete <- surveys_raw %>%
+                    filter(species_id != "")
 ```
 
-There are a lot of species with low counts, let's remove the ones below 10 counts
+We saw in summary, there were NA's in weight and hindfoot_length. Let's remove
+rows with missing values in weight and hindfoot_length.
+In fact, let's combine this with removing empty species_id,
+so we have one command and don't make lots of intermediate variable names.
+This is where piping becomes really handy!
+
+```{r}
+surveys_complete <- surveys_raw %>%
+                    filter(species_id != "") %>%        # remove missing species_id
+                    filter(!is.na(weight)) %>%          # remove missing weight
+                    filter(!is.na(hindfoot_length))     # remove missing hindfoot_length
+```
+
+There are a lot of species with low counts, let's remove the species with less than 10 counts.
 
 ```{r}
 # count records per species
-species_counts <- surveys %>%
+species_counts <- surveys_complete %>%
                   group_by(species_id) %>%
                   tally
+
+head(species_counts)
 
 # get names of those frequent species
 frequent_species <- species_counts %>%
                     filter(n >= 10) %>%
                     select(species_id)
 
-surveys <- surveys %>%
+surveys_complete <- surveys_complete %>%
            filter(species_id %in% frequent_species$species_id)
-```
-
-We saw in summary, there were NA's in weight and hindfoot_length. Let's remove
-rows with missing weights.
-
-```{r}
-surveys_weight_present <- surveys %>%
-                      filter(!is.na(weight))
 ```
 
 Make simple scatter plot of `hindfoot_length` (in millimeters) as a function of
@@ -160,7 +167,7 @@ ggplot(surveys_complete, aes(x = weight, y = hindfoot_length)) +
 Visualising the distribution of weight within each species.
 
 ```{r}
-ggplot(surveys_weight_present, aes(factor(species_id), weight)) +
+ggplot(surveys_complete, aes(factor(species_id), weight)) +
                    geom_boxplot()
 ```
 
@@ -168,7 +175,7 @@ By adding points to boxplot, we can see particular measurements and the
 abundance of measurements.
 
 ```{r}
-ggplot(surveys_weight_present, aes(factor(species_id), weight)) +
+ggplot(surveys_complete, aes(factor(species_id), weight)) +
                    geom_jitter(alpha=0.3, color="tomato") +
                    geom_boxplot(alpha=0)
 ```
@@ -183,7 +190,7 @@ Let's calculate number of counts per year for each species. To do that we need
 to group data first and count records within each group.
 
 ```{r}
-yearly_counts <- surveys %>%
+yearly_counts <- surveys_complete %>%
                  group_by(year, species_id) %>%
                  tally
 ```
@@ -232,14 +239,14 @@ measured. To do that we need to make counts in dataframe grouped by sex.
 
 ```{r}
 sex_values = c("F", "M")
-surveys <- surveys %>%
+surveys_complete <- surveys_complete %>%
            filter(sex %in% sex_values)
 ```
 
 > - group by year, species_id, sex
 
 ```{r}
-yearly_sex_counts <- surveys %>%
+yearly_sex_counts <- surveys_complete %>%
                      group_by(year, species_id, sex) %>%
                      tally
 ```
