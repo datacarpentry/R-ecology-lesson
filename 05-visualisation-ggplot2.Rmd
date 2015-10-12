@@ -99,33 +99,8 @@ surveys_weight_present <- surveys %>%
                       filter(!is.na(weight))
 ```
 
-> ### Challenge
->
-> - Do the same to remove rows without `hindfoot_length`. Save results in the new dataframe.
-
-
-```{r}
-surveys_length_present <- surveys %>%
-                      filter(!is.na(hindfoot_length))
-```
-
-- How would you get the dataframe without missing values?
-
-```{r}
-surveys_complete <- surveys_weight_present %>%
-                    filter(!is.na(hindfoot_length))
-```
-
-> We can chain filtering together using pipe operator (`%>%`) introduced earlier.
-
-```{r}
-surveys_complete <- surveys %>%
-                    filter(!is.na(weight)) %>%
-                    filter(!is.na(hindfoot_length))
-```
-
-> Make simple scatter plot of `hindfoot_length` (in millimeters) as a function of
-> `weight` (in grams), using basic R plotting capabilities.
+Make simple scatter plot of `hindfoot_length` (in millimeters) as a function of
+`weight` (in grams), using basic R plotting capabilities.
 
 ```{r}
 plot(x=surveys_complete$weight, y=surveys_complete$hindfoot_length)
