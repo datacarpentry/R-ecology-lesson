@@ -117,9 +117,9 @@ plot(x = surveys_complete$weight, y = surveys_complete$hindfoot_length)
 
 We will make the same plot using `ggplot2` package.
 
-`ggplot2` is a plotting package that makes it sipmple to create complex plots
+`ggplot2` is a plotting package that makes it simple to create complex plots
 from data in a dataframe. It uses default settings, which help creating
-publication quality plotts with minimal amount of settings and tweaking.
+publication quality plots with minimal amount of settings and tweaking.
 
 With ggplot graphics are build step by step by adding new elements.
 
@@ -131,7 +131,7 @@ To build a ggplot we need to:
 ggplot(data = surveys_complete)
 ```
 
-- define aestetics (`aes`), that maps variables in the data to axes on the plot
+- define aesthetics (`aes`), that maps variables in the data to axes on the plot
      or to plotting size, shape color, etc.,
 
 ```{r, eval=FALSE}
@@ -220,7 +220,7 @@ ggplot(data = yearly_counts, aes(x = year, y = n, group = species_id)) +
   geom_line()
 ```
 
-We will be able to distiguish species in the plot if we add colors.
+We will be able to distinguish species in the plot if we add colors.
 
 ```{r}
 ggplot(data = yearly_counts, aes(x = year, y = n, group = species_id, color = species_id)) +
@@ -230,7 +230,7 @@ ggplot(data = yearly_counts, aes(x = year, y = n, group = species_id, color = sp
 ## Faceting
 
 ggplot has a special technique called *faceting* that allows to split one plot
-into mutliple plots based on some factor. We will use it to plot one time series
+into multiple plots based on some factor. We will use it to plot one time series
 for each species separately.
 
 ```{r}
@@ -238,7 +238,7 @@ ggplot(data = yearly_counts, aes(x = year, y = n, color = species_id)) +
   geom_line() + facet_wrap(~species_id)
 ```
 
-Now we wuld like to split line in each plot by sex of each individual
+Now we would like to split line in each plot by sex of each individual
 measured. To do that we need to make counts in dataframe grouped by sex.
 
 > ### Challenges:
@@ -260,7 +260,7 @@ yearly_sex_counts <- surveys_complete %>%
                      tally
 ```
 
-> - make the faceted plot spliting further by sex (within single plot)
+> - make the faceted plot splitting further by sex (within single plot)
 
 ```{r}
 ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = species_id, group = sex)) +
