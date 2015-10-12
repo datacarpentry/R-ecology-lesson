@@ -5,11 +5,6 @@ subtitle: Visualising data in R with ggplot2 package
 minutes: 60
 ---
 
-<!---
-show hide magic
-
-<style> div.hidecode + pre {display: none} div.hidecode {color: #337ab7}</style><script> doclick=function(e){ e.nextSibling.nextSibling.style.display = e.nextSibling.nextSibling.style.display === "block" ? "none" : "block"; }</script>
--->
 
 ```{r, echo=FALSE, purl=FALSE}
 knitr::opts_chunk$set(fig.keep='last')
