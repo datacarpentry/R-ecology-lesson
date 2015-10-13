@@ -216,20 +216,14 @@ If you just need to remind yourself of the names of the arguments, you can use:
 args(lm)
 ```
 
-If the function is part of a package that is installed on your computer but
-don't remember which one, you can type:
-
-```{r, eval=FALSE, purl=FALSE}
-??geom_point
-```
-
 ### I want to use a function that does X, there must be a function for it but I don't know which one...
 
 If you are looking for a function to do a particular task, you can use
-`help.search()` (but only looks through the installed packages):
+`help.search()` function, which is called by the double question mark `??`.
+However, this only looks through the installed packages for help pages with a match to your search request
 
 ```{r, eval=FALSE, purl=FALSE}
-help.search("kruskal")
+??kruskal
 ```
 
 If you can't find what you are looking for, you can use the
