@@ -86,7 +86,8 @@ function `head()`:
 head(surveys)
 ```
 
-Let's now check the __str__ucture of this `data.frame` in more details with the
+An important feature of a `data.frame`is that each column is a vector, with the same type of data.
+We can see this when inspecting the __str__ucture of a `data.frame` with the
 function `str()`:
 
 ```{r, purl=FALSE}
@@ -111,10 +112,9 @@ Based on the output of `str(surveys)`, can you answer the following questions?
 
 ```
 
-As you can see, the columns `species` and `sex` are of a special class called
-`factor`. Before we learn more about the `data.frame` class, we are going to
-talk about factors. They are very useful but not necessarily intuitive, and
-therefore require some attention.
+As you can see, many of the columns consist of integers, however, the columns `species` and `sex` are of a special class called a `factor`. 
+Before we learn more about the `data.frame` class, we are going to talk about factors. 
+They are very useful but not necessarily intuitive, and therefore require some attention.
 
 
 ## Factors
@@ -177,7 +177,7 @@ information built in. It is particularly helpful when there are many levels
 If you need to convert a factor to a character vector, simply use
 `as.character(x)`.
 
-Converting a factor to a numeric vector is however a little trickier, and you
+Converting a factors where the levels appear as numbers (such as in concentration levels) to a numeric vector is however a little trickier, and you
 have to go via a character vector. Compare:
 
 ```{r, purl=TRUE}
@@ -186,6 +186,11 @@ as.numeric(f)               ## wrong! and there is no warning...
 as.numeric(as.character(f)) ## works...
 as.numeric(levels(f))[f]    ## The recommended way.
 ```
+
+Notice that in this last approach, three important steps have happened  
+* We have obtained the factor levels using `levels(f)`  
+* We have converted these levels to numeric values using `as.numeric(levels(f))`  
+* We have then accessed these numeric values using the underlying integers of the vector `f` inside the square brackets  
 
 ### Challenge
 

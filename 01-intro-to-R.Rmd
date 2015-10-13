@@ -160,7 +160,8 @@ length(weights)
 length(animals)
 ```
 
-`class()` indicates the class (the type of element) of an object:
+An important feature of a vector, is that all of the elements are the same type of data.
+The function `class()` indicates the class (the type of element) of an object:
 
 ```{r, purl=FALSE}
 class(weights)
@@ -190,8 +191,10 @@ the beginning. We can do this over and over again to build a vector or a
 dataset. As we program, this may be useful to autoupdate results that we are
 collecting or calculating.
 
-We just saw 2 of the 6 **data types** that R uses: `"character"` and
-`"numeric"`. The other 4 are:
+We just saw 2 of the 6 **atomic vector** types that R uses: `"character"` and
+`"numeric"`. 
+These are the basic building blocks that all R objects are built from.
+The other 4 are:
 
 * `"logical"` for `TRUE` and `FALSE` (the boolean data type)
 * `"integer"` for integer numbers (e.g., `2L`, the `L` indicates to R that it's an integer)
@@ -199,9 +202,22 @@ We just saw 2 of the 6 **data types** that R uses: `"character"` and
   `1+4i`) and that's all we're going to say about them
 * `"raw"` that we won't discuss further
 
+## Subsetting Vectors
+
+If we want to extract individual values from within a vector, we can use the square brackets `[]` with the position number inside the brackets.
+
+```{r, purl=FALSE}
+animals[2]
+```
+
+We can also extract multiple values using the combine `c()` function within the square brackets
+
+```{r, purl=FALSE}
+weights[c(1, 3)]
+```
+
 Vectors are one of the many **data structures** that R uses. Other important
 ones are lists (`list`), matrices (`matrix`), data frames (`data.frame`) and
 factors (`factor`).
-
 We are now going to use our "surveys" dataset to explore the `data.frame` data
-structure.
+structure, which is one of the most common types of R objects we will see.
