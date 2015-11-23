@@ -185,7 +185,7 @@ surveys %>%
   filter(!is.nan(mean_weight))
 ```
 
-All of a sudden this isn't running of the screen anymore. That's because `dplyr`
+All of a sudden this isn't running off the screen anymore. That's because `dplyr`
 has changed our `data.frame` to a `tbl_df`. This is a data structure that's very
 similar to a data frame; for our purposes the only difference is that it won't
 automatically show tons of data going off the screen.
