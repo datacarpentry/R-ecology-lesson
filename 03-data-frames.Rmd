@@ -191,6 +191,21 @@ surveys[, 8]    # the entire 8th column
 head_surveys <- surveys[1:6, ] # surveys[1:6, ] is equivalent to head(surveys)
 ```
 
+### A Special Feature of Data Frames
+As well as using numeric values to subset a `data.frame` (or `matrix`), columns can be called by name.
+```{r, eval = FALSE, purl=FALSE}
+surveys[,"species_id"]
+```
+
+The `data.frame` object was originally created to store statistical variables, so it treats each column in this way.
+We could also extract a single column using a `$` symbol after the object name.
+The auto-complete feature of RStudio is also very helpful here.
+This will give that single column of the `data.frame` as a vector.
+```{r, eval=FALSE, purl=FALSE}
+surveys$species_id
+```
+
+
 ### Challenge
 
 1. The function `nrow()` on a `data.frame` returns the number of rows. Use it,
