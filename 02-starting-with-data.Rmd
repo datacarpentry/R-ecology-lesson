@@ -48,13 +48,9 @@ single animal, and the columns represent:
 
 We are going to use the R function `download.file()` to download the CSV file
 that contains the survey data from figshare, and we will use `read.csv()` to
-load into memory (as a `data.frame`) the content of the CSV file:
+load into memory (as a `data.frame`) the content of the CSV file.
 
-- First, make sure you are in the correct working directory by typing `getwd()`.
-- Second, create a new directory within this working directory called `data`. You
-can do this by clicking on the new folder icon in RStudio under the file tab, or
-by typing `dir.create("data")` at the terminal.
-- Third, download the data:
+To download the data into the `data/` subdirectory, do:
 
 ```{r, eval=FALSE, purl=TRUE}
 download.file("http://files.figshare.com/2236372/combined.csv",
@@ -193,15 +189,15 @@ The function `table()` tabulates observations and can be used to create
 bar plots quickly. For instance:
 
 ```{r wrong-order, results='show', purl=TRUE}
-## Challenge
-
-## How can you recreate this plot but by having "control" being listed
-##last instead of first?
 exprmt <- factor(c("treat1", "treat2", "treat1", "treat3", "treat1", "control",
                    "treat1", "treat2", "treat3"))
 table(exprmt)
 barplot(table(exprmt))
 ```
+gives you a barplot of the number of observations.
+
+How can you recreate this plot with "control" listed
+last instead of first?
 
 <!---
 ```{r correct-order, purl=FALSE}
