@@ -1,6 +1,7 @@
 ---
 layout: topic
 title: The `data.frame` class
+author: Data Carpentry contributors
 minutes: 30
 ---
 
@@ -13,11 +14,15 @@ surveys <- read.csv("data/portal_data_joined.csv")
 ## The data.frame class
 ```
 
+------------
+
 > ## Learning Objectives
 >
 > * understand the concept of a `data.frame`
 > * use sequences
 > * know how to access any element of a `data.frame`
+
+------------
 
 # What are data frames?
 
@@ -47,7 +52,7 @@ some_data <- read.csv("data/some_file.csv", stringsAsFactors=FALSE)
 You can also create `data.frame` manually with the function `data.frame()`. This
 function can also take the argument `stringsAsFactors`. Compare the output of
 these examples, and compare the difference between when the data are being read
-as `character` and when they are being as `factor`.
+as `character` and when they are being read as `factor`.
 
 ```{r, results='show', purl=TRUE}
 example_data <- data.frame(animal=c("dog", "cat", "sea cucumber", "sea urchin"),
@@ -65,7 +70,14 @@ str(example_data)
 1. There are a few mistakes in this hand crafted `data.frame`, can you spot and
 fix them? Don't hesitate to experiment!
 
-   ```{r, eval=FALSE, purl=TRUE}
+    ```
+    author_book <- data.frame(author_first=c("Charles", "Ernst", "Theodosius"),
+                              author_last=c(Darwin, Mayr, Dobzhansky),
+                              year=c(1942, 1970))
+    ```
+
+   ```{r, eval=FALSE, purl=TRUE, echo=FALSE}
+   ## Challenge
    ##  There are a few mistakes in this hand crafted `data.frame`,
    ##  can you spot and fix them? Don't hesitate to experiment!
    author_book <- data.frame(author_first=c("Charles", "Ernst", "Theodosius"),
@@ -75,23 +87,32 @@ fix them? Don't hesitate to experiment!
 
 1. Can you predict the class for each of the columns in the following example?
 
-   ```{r, eval=FALSE, purl=TRUE}
-   ## Can you predict the class for each of the columns in the following example?
-   ## Check your guesses using `str(country_climate)`. Are they what you expected?
-   ##  Why? why not?
+    ```
+    country_climate <- data.frame(country=c("Canada", "Panama", "South Africa", "Australia"),
+                                   climate=c("cold", "hot", "temperate", "hot/temperate"),
+                                   temperature=c(10, 30, 18, "15"),
+                                   northern_hemisphere=c(TRUE, TRUE, FALSE, "FALSE"),
+                                   has_kangaroo=c(FALSE, FALSE, FALSE, 1))
+    ```
+
+
+   ```{r, eval=FALSE, purl=TRUE, echo=FALSE}
+   ## Challenge:
+   ##   Can you predict the class for each of the columns in the following example?
+   ##   Check your guesses using `str(country_climate)`. Are they what you expected?
+   ##   Why? why not?
    country_climate <- data.frame(country=c("Canada", "Panama", "South Africa", "Australia"),
                                   climate=c("cold", "hot", "temperate", "hot/temperate"),
                                   temperature=c(10, 30, 18, "15"),
-                                  north_hemisphere=c(TRUE, TRUE, FALSE, "FALSE"),
+                                  northern_hemisphere=c(TRUE, TRUE, FALSE, "FALSE"),
                                   has_kangaroo=c(FALSE, FALSE, FALSE, 1))
    ```
 
-   Check your guesses using `str(country_climate)`. Are they what you expected?
-   Why? Why not? Check your gueses using `str(country_climate)`. Are they what you expected?
-   Why? Why not?
+     Check your guesses using `str(country_climate)`. Are they what you expected?
+     Why? Why not? 
 
-   R coerces (when possible) to the data type that is the least common
-   denominator and the easiest to coerce to.
+     R coerces (when possible) to the data type that is the least common
+     denominator and is the easiest to coerce to.
 
 
 # Inspecting `data.frame` objects
@@ -123,7 +144,9 @@ objects besides `data.frame`.
 # Indexing and sequences
 
 ```{r, echo=FALSE, purl=TRUE}
+
 ## Indexing and sequences
+
 ```
 
 If we want to extract one or several values from a vector, we must provide one
@@ -143,7 +166,7 @@ counting at 1, because that's what human beings typically do. Languages in the C
 family (including C++, Java, Perl, and Python) count from 0 because that's
 simpler for computers to do.
 
-`:` is a special function that creates numeric vectors of integer in increasing
+`:` is a special function that creates numeric vectors of integers in increasing
 or decreasing order, test `1:10` and `10:1` for instance. The function `seq()`
 (for __seq__uence) can be used to create more complex patterns:
 
@@ -159,6 +182,7 @@ extract some specific data from it, we need to specify the "coordinates" we want
 from it. Row numbers come first, followed by column numbers.
 
 ```{r, purl=FALSE}
+surveys[1]      # first row in the data frame
 surveys[1, 1]   # first element in the first column of the data frame
 surveys[1, 6]   # first element in the 6th column
 surveys[1:3, 7] # first three elements in the 7th column
@@ -166,6 +190,21 @@ surveys[3, ]    # the 3rd element for all columns
 surveys[, 8]    # the entire 8th column
 head_surveys <- surveys[1:6, ] # surveys[1:6, ] is equivalent to head(surveys)
 ```
+
+### A Special Feature of Data Frames
+As well as using numeric values to subset a `data.frame` (or `matrix`), columns can be called by name.
+```{r, eval = FALSE, purl=FALSE}
+surveys[,"species_id"]
+```
+
+The `data.frame` object was originally created to store statistical variables, so it treats each column in this way.
+We could also extract a single column using a `$` symbol after the object name.
+The auto-complete feature of RStudio is also very helpful here.
+This will give that single column of the `data.frame` as a vector.
+```{r, eval=FALSE, purl=FALSE}
+surveys$species_id
+```
+
 
 ### Challenge
 
@@ -186,18 +225,3 @@ head_surveys <- surveys[1:6, ] # surveys[1:6, ] is equivalent to head(surveys)
 surveys_by_10 <- surveys[seq(10, nrow(surveys), by=10), ]
 ```
 --->
-
-For larger datasets, it can be tricky to remember the column number that
-corresponds to a particular variable. (Are species names in column 5 or 7? oh,
-right... they are in column 6). In some cases, in which column the variable will
-be can change if the script you are using adds or removes columns. It's
-therefore often better to use column names to refer to a particular variable,
-and it makes your code easier to read and your intentions clearer.
-
-You can do operations on a particular column, by selecting it using the `$`
-sign. In this case, the entire column is a vector. For instance, to extract all
-the weights from our datasets, we can use: `surveys$wgt`. You can use
-`names(surveys)` or `colnames(surveys)` to remind yourself of the column names.
-
-In some cases, you may way to select more than one column. You can do this using
-the square brackets: `surveys[, c("wgt", "sex")]`.

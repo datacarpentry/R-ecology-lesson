@@ -1,12 +1,15 @@
 ---
 layout: topic
 title: Starting with data
+author: Data Carpentry contributors
 minutes: 20
 ---
 
 ```{r, echo=FALSE, purl=FALSE, message = FALSE}
 source("setup.R")
 ```
+
+------------
 
 > ## Learning Objectives
 >
@@ -15,11 +18,12 @@ source("setup.R")
 > * explore the structure and the content of the data in R
 > * understand what are factors and how to manipulate them
 
+------------
 
 # Presentation of the Survey Data
 
 ```{r, echo=FALSE, purl=TRUE}
-# Presentation of the survey data
+### Presentation of the survey data
 ```
 
 We are studying the species and weight of animals caught in plots in our study
@@ -38,26 +42,18 @@ single animal, and the columns represent:
 | hindfoot\_length | length of the hindfoot in mm       |
 | weight           | weight of the animal in grams      |
 | genus            | genus of animal                    |
-| specie s         | species of animal                  |
+| species          | species of animal                  |
 | taxa             | e.g. Rodent, Reptile, Bird, Rabbit |
 | plot\_type       | type of plot                       |
 
 We are going to use the R function `download.file()` to download the CSV file
 that contains the survey data from figshare, and we will use `read.csv()` to
-load into memory (as a `data.frame`) the content of the CSV file:
+load into memory (as a `data.frame`) the content of the CSV file.
 
-- First, make sure you are in the correct working directory by typing `getwd()`.
-- Second, create a new directory within this working directory called `data`. You
-can do this by clicking on the new folder icon in RStudio under the file tab, or
-by typing `dir.create("data")` at the terminal.
-- Third, download the data:
+To download the data into the `data/` subdirectory, do:
 
 ```{r, eval=FALSE, purl=TRUE}
-if (!require("curl")) {
-  install.packages("curl")
-}
-library("curl")
-curl_download("https://dl.dropboxusercontent.com/u/22808457/portal_data_joined.csv",
+download.file("http://files.figshare.com/2236372/combined.csv",
               "data/portal_data_joined.csv")
 ```
 
@@ -86,7 +82,8 @@ function `head()`:
 head(surveys)
 ```
 
-Let's now check the __str__ucture of this `data.frame` in more details with the
+An important feature of a `data.frame`is that each column is a vector, with the same type of data.
+We can see this when inspecting the __str__ucture of a `data.frame` with the
 function `str()`:
 
 ```{r, purl=FALSE}
@@ -102,17 +99,18 @@ Based on the output of `str(surveys)`, can you answer the following questions?
 * How many species have been recorded during these surveys?
 
 ```{r, echo=FALSE, purl=TRUE}
-## Exercise
+
+## Challenge
 ## Based on the output of `str(surveys)`, can you answer the following questions?
 ## * What is the class of the object `surveys`?
 ## * How many rows and how many columns are in this object?
 ## * How many species have been recorded during these surveys?
+
 ```
 
-As you can see, the columns `species` and `sex` are of a special class called
-`factor`. Before we learn more about the `data.frame` class, we are going to
-talk about factors. They are very useful but not necessarily intuitive, and
-therefore require some attention.
+As you can see, many of the columns consist of integers, however, the columns `species` and `sex` are of a special class called a `factor`. 
+Before we learn more about the `data.frame` class, we are going to talk about factors. 
+They are very useful but not necessarily intuitive, and therefore require some attention.
 
 
 ## Factors
@@ -150,7 +148,7 @@ nlevels(sex)
 Sometimes, the order of the factors does not matter, other times you might want
 to specify the order because it is meaningful (e.g., "low", "medium", "high") or
 it is required by particular type of analysis. Additionally, specifying the
-order of the levels allows to compare levels:
+order of the levels allows us to compare levels:
 
 ```{r, purl=TRUE, error=TRUE}
 food <- factor(c("low", "high", "medium", "high", "low", "medium", "high"))
@@ -165,7 +163,7 @@ min(food) ## works!
 
 In R's memory, these factors are represented by numbers (1, 2, 3). They are
 better than using simple integer labels because factors are self describing:
-`"low"`, `"medium"`, and `"high"`" is more descriptive than `1`, `2`, `3`. Which
+`"low"`, `"medium"`, `"high"`" is more descriptive than `1`, `2`, `3`. Which
 is low?  You wouldn't be able to tell with just integer data. Factors have this
 information built in. It is particularly helpful when there are many levels
 (like the species in our example data set).
@@ -175,7 +173,7 @@ information built in. It is particularly helpful when there are many levels
 If you need to convert a factor to a character vector, simply use
 `as.character(x)`.
 
-Converting a factor to a numeric vector is however a little trickier, and you
+Converting a factors where the levels appear as numbers (such as in concentration levels) to a numeric vector is however a little trickier, and you
 have to go via a character vector. Compare:
 
 ```{r, purl=TRUE}
@@ -185,22 +183,29 @@ as.numeric(as.character(f)) ## works...
 as.numeric(levels(f))[f]    ## The recommended way.
 ```
 
+Notice that in this last approach, three important steps have happened  
+* We have obtained the factor levels using `levels(f)`  
+* We have converted these levels to numeric values using `as.numeric(levels(f))`  
+* We have then accessed these numeric values using the underlying integers of the vector `f` inside the square brackets  
+
 ### Challenge
 
 The function `table()` tabulates observations and can be used to create
 bar plots quickly. For instance:
 
-```{r, results='show', purl=TRUE}
-## Question: How can you recreate this plot but by having "control"
-## being listed last instead of first?
+```{r wrong-order, results='show', purl=TRUE}
 exprmt <- factor(c("treat1", "treat2", "treat1", "treat3", "treat1", "control",
                    "treat1", "treat2", "treat3"))
 table(exprmt)
 barplot(table(exprmt))
 ```
+gives you a barplot of the number of observations.
+
+How can you recreate this plot with "control" listed
+last instead of first?
 
 <!---
-```{r, purl=FALSE}
+```{r correct-order, purl=FALSE}
 exprmt <- factor(exprmt, levels=c("treat1", "treat2", "treat3", "control"))
 barplot(table(exprmt))
 ```
