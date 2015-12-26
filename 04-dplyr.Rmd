@@ -1,12 +1,15 @@
 ---
 layout: topic
 title: Aggregating and analyzing data with dplyr
+author: Data Carpentry contributors
 ---
 
 ```{r, echo=FALSE, purl=FALSE, message = FALSE}
 source("setup.R")
 surveys <- read.csv("data/portal_data_joined.csv")
 ```
+
+------------
 
 # Data manipulation using dplyr
 
@@ -25,7 +28,7 @@ install.packages("dplyr") ## install
 
 You might get asked to choose a CRAN mirror -- this is basically asking you to
 choose a site to download the package from. The choice doesn't matter too much;
-I'd recommend choosing the RStudio mirror.
+We recommend the RStudio mirror.
 
 ```{r, message = FALSE, purl = FALSE}
 library("dplyr")          ## load
@@ -34,17 +37,9 @@ library("dplyr")          ## load
 You only need to install a package once per computer, but you need to load it
 every time you open a new R session and want to use that package.
 
-## What is dplyr?
+## What is `dplyr`?
 
-The package `dplyr` is a fairly new (2014) package that tries to provide easy
-tools for the most common data manipulation tasks. It is built to work directly
-with data frames. The thinking behind it was largely inspired by the package
-`plyr` which has been in use for some time but suffered from being slow in some
-cases.` dplyr` addresses this by porting much of the computation to C++. An
-additional feature is the ability to work with data stored directly in an
-external database. The benefits of doing this are that the data can be managed
-natively in a relational database, queries can be conducted on that database,
-and only the results of the query returned.
+The package `dplyr` provides easy tools for the most common data manipulation tasks. It is built to work directly with data frames. The thinking behind it was largely inspired by the package `plyr` which has been in use for some time but suffered from being slow in some cases.` dplyr` addresses this by porting much of the computation to C++. An additional feature is the ability to work with data stored directly in an external database. The benefits of doing this are that the data can be managed natively in a relational database, queries can be conducted on that database, and only the results of the query returned.
 
 This addresses a common problem with R in that all operations are conducted in
 memory and thus the amount of data you can work with is limited by available
@@ -173,7 +168,7 @@ surveys %>%
 
 You can group by multiple columns too:
 
-```{r, purl = FALSE} 
+```{r, purl = FALSE}
 surveys %>%
   group_by(sex, species_id) %>%
   summarize(mean_weight = mean(weight, na.rm = TRUE))
@@ -190,7 +185,7 @@ surveys %>%
   filter(!is.nan(mean_weight))
 ```
 
-All of a sudden this isn't running of the screen anymore. That's because `dplyr`
+All of a sudden this isn't running off the screen anymore. That's because `dplyr`
 has changed our `data.frame` to a `tbl_df`. This is a data structure that's very
 similar to a data frame; for our purposes the only difference is that it won't
 automatically show tons of data going off the screen.
