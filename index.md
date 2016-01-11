@@ -57,7 +57,7 @@ for each level and a very brief introduction to plotting.
 Data files for the lesson are available here: 
 [{{page.dataurl %}}]({{page.dataurl %}})
 
-Please download the **.csv* (Comma Separated Value) files: *species.csv*, *plots.csv*, *surveys.csv*, and *combined.csv*.
+Please download the *\*.csv* (Comma Separated Value) files: *species.csv*, *plots.csv*, *surveys.csv*, and *combined.csv*.
 
 ### Requirements
 
