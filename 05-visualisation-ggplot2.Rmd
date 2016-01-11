@@ -269,3 +269,20 @@ ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = species_id, group 
 ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex, group = sex)) +
   geom_line() + facet_wrap(~ species_id)
 ```
+> 
+> - plot average weight of each species over the course of the years
+
+```{r average-weight-timeseries}
+yearly_weight <- surveys_complete %>%
+                 group_by(year, species_id, sex) %>%
+                 summarise(avg_weight = mean(weight, na.rm = TRUE))
+ggplot(data = yearly_weight, aes(x=year, y=avg_weight, color = species_id, group = species_id)) +
+  geom_line()
+```
+> - why do you think we see those steps in the plot?
+> - make separate plots per sex since weight of males and females can differ a lot
+
+```{r average-weight-time-facet_sex}
+ggplot(data = yearly_weight, aes(x=year, y=avg_weight, color = species_id, group = species_id)) +
+  geom_line() + facet_wrap(~ sex)
+```
