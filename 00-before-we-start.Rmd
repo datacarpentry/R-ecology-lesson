@@ -152,7 +152,7 @@ author of the function specified as being "good enough in standard cases". An
 example would be what symbol to use in a plot. However, if you want something
 specific, simply change the argument yourself with a value of your choice.
 
-Let's try a function that can take multiple arguments - `round`.
+Let's try a function that can take multiple arguments: `round`.
 
 ```{r, results='show', purl=FALSE}
 round(3.14159)
