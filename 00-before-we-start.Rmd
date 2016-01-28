@@ -181,13 +181,17 @@ If you provide the arguments in the exact same order as they are defined you don
 round(3.14159, 2)
 ```
 
-However, it's usually not recommended practice because it's a lot of remembering
-to do, and if you share your code with others that includes less known functions
-it makes your code difficult to read. (It's however OK to not include the names
-of the arguments for basic functions like `mean`, `min`, etc...)
+And if you do name the arguments, you can switch their order:
 
-Another advantage of naming arguments, is that the order doesn't matter.
-This is useful when there start to be more arguments.
+```{r, results='show', purl=FALSE}
+round(digits=2, x=3.14159)
+```
+
+It's good practice to put the non-optional arguments (like the number you're rounding) 
+first in your function call, and to specify the names of all optional arguments.
+If you don't, someone reading your code might have to look up definition of a 
+function with unfamiliar arguments to understand what you're doing.
+
 
 
 ## Organizing your working directory
