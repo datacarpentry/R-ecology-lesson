@@ -310,7 +310,7 @@ sessionInfo()
 
 * Your friendly colleagues: if you know someone with more experience than you,
   they might be able and willing to help you.
-* StackOverflow: if your question hasn't been answered before and is well
+* [StackOverflow](http://stackoverflow.com/questions/tagged/r): if your question hasn't been answered before and is well
   crafted, chances are you will get an answer in less than 5 min.
 * The [R-help](https://stat.ethz.ch/mailman/listinfo/r-help): it is read by a
   lot of people (including most of the R core team), a lot of people post to it,
