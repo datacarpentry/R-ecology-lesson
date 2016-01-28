@@ -113,8 +113,8 @@ but not in every context. Because of the [slight](http://blog.revolutionanalytic
 it is good practice to use always `<-` for assignments, except when specifying the values of
 arguments in functions, when only `=` should be used, see below.
 
-In RStudio, typing `Alt + -` (push `Alt`, the key next to your space bar at the
-same time as the `-` key) will write ` <- ` in a single keystroke.
+In RStudio, typing <kbd>Alt</kbd> + <kbd>-</kbd> (push <kbd>Alt</kbd> at the
+same time as the <kbd>-</kbd> key) will write ` <- ` in a single keystroke.
 
 ## Functions and their arguments
 
