@@ -89,7 +89,7 @@ window and press `Esc`; this will cancel the incomplete command and return you t
 R is a versatile, open source programming/scripting language that's useful both
 for statistics but also data science. Inspired by the programming language S.
 
-* Open source software under GPL.
+* Free/Libre/Open Source Software under the GPL.
 * Superior (if not just comparable) to commercial alternatives. R has over 7,000
   user contributed packages at this time. It's widely used both in academia and
   industry.
