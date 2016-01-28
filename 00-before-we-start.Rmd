@@ -119,8 +119,8 @@ same time as the <kbd>-</kbd> key) will write ` <- ` in a single keystroke.
 ## Functions and their arguments
 
 Functions are "canned scripts" that automate something complicated or convenient
-or both.  Many functions are predefined, or become available when using the
-function `library()` (more on that later). A function usually gets one or more
+or both.  Many functions are predefined, or can be made available by importing R *packages*
+(more on that later). A function usually gets one or more
 inputs called *arguments*. Functions often (but not always) return a *value*. A
 typical example would be the function `sqrt()`. The input (the argument) must be
 a number, and the return value (in fact, the output) is the square root of that
