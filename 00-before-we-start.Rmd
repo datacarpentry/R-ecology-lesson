@@ -304,8 +304,6 @@ to understand your problem.
 sessionInfo()
 ```
 
-[This blog post by Jon Skeet](http://codeblog.jonskeet.uk/2010/08/29/writing-the-perfect-question/) has quite comprehensive advice on how to ask programming questions.
-
 ### Where to ask for help?
 
 * Your friendly colleagues: if you know someone with more experience than you,
@@ -334,3 +332,4 @@ sessionInfo()
   mailing lists.
 * [How to ask for R help](http://blog.revolutionanalytics.com/2014/01/how-to-ask-for-r-help.html)
   useful guidelines
+* [This blog post by Jon Skeet](http://codeblog.jonskeet.uk/2010/08/29/writing-the-perfect-question/) has quite comprehensive advice on how to ask programming questions.
