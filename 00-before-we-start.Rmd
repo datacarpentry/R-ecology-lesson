@@ -241,7 +241,7 @@ end up with general error messages that might not be very helpful to diagnose a
 problem (e.g. "subscript out of bounds"). If the message is very generic, you might
 also include the name of the function or package you're using in your query.
 
-However, you should check stackoverflow. Search using the `[r]` tag. Most
+However, you should check StackOverflow. Search using the `[r]` tag. Most
 questions have already been answered, but the challenge is to use the right
 words in the search to find the answers:
 [http://stackoverflow.com/questions/tagged/r](http://stackoverflow.com/questions/tagged/r)
