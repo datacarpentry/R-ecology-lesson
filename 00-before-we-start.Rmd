@@ -96,7 +96,7 @@ for statistics but also data science. Inspired by the programming language S.
 * Available on all platforms.
 * Not just for statistics, but also general purpose programming.
 * For people who have experience in programmming: R is both an object-oriented
-  and a so-called [functional language](http://adv-r.had.co.nz/Functional-programming.html)
+  and a so-called [functional language](http://adv-r.had.co.nz/Functional-programming.html).
 * Large and growing community of peers.
 
 ## Commenting
