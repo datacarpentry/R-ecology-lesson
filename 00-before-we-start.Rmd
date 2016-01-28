@@ -79,7 +79,8 @@ come back with a new `>`-prompt to wait for new commands.
 If R is still waiting for you to enter more data because it isn't complete yet,
 the console will show a `+` prompt. It means that you haven't finished entering
 a complete command. This is because you have not 'closed' a parenthesis or
-quotation. If you're in Rstudio and this happens, click inside the console
+quotation, i.e. you don't have the same number of left-parentheses as right-parentheses, or
+the same number of opening and closing quotation marks. If you're in Rstudio and this happens, click inside the console
 window and press `Esc`; this should help you out of trouble.
 
 # Basics of R
