@@ -262,7 +262,7 @@ Try to use the correct words to describe your problem. For instance, a package
 is not the same thing as a library. Most people will understand what you meant,
 but others have really strong feelings about the difference in meaning. The key
 point is that it can make things confusing for people trying to help you. Be as
-precise as possible when describing your problem
+precise as possible when describing your problem.
 
 If possible, try to reduce what doesn't work to a simple reproducible
 example. If you can reproduce the problem using a very small `data.frame`
