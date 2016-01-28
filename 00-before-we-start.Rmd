@@ -238,7 +238,8 @@ the help files across all packages available.
 Start by googling the error message. However, this doesn't always work very well
 because often, package developers rely on the error catching provided by R. You
 end up with general error messages that might not be very helpful to diagnose a
-problem (e.g. "subscript out of bounds").
+problem (e.g. "subscript out of bounds"). If the message is very generic, you might
+also include the name of the function or package you're using in your query.
 
 However, you should check stackoverflow. Search using the `[r]` tag. Most
 questions have already been answered, but the challenge is to use the right
