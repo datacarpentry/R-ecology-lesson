@@ -98,6 +98,15 @@ surveys_sml <- surveys %>%
 surveys_sml
 ```
 
+Note that the final dataframe is the leftmost part of this expression. If you find that
+confusing, you can use the `->` operator, which might make it easier to envision the
+data "flowing" from left to right:
+
+```{r, purl = FALSE}
+surveys %>%
+  filter(weight < 5) %>%
+  select(species_id, sex, weight) -> surveys_sml
+```
 > ### Challenge {.challenge}
 >
 > Using pipes, subset the data to include rows before 1995. Retain columns
