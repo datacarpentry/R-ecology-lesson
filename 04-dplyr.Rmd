@@ -66,7 +66,7 @@ filter(surveys, year == 1995)
 
 ### Pipes
 
-But what if you wanted to select and filter? There are three ways to do this:
+But what if you wanted to select and filter at the same time? There are three ways to do this:
 use intermediate steps, nested functions, or pipes. With the intermediate steps,
 you essentially create a temporary data frame and use that as input to the next
 function. This can clutter up your workspace with lots of objects. You can also
