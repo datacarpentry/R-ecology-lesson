@@ -221,3 +221,7 @@ ones are lists (`list`), matrices (`matrix`), data frames (`data.frame`) and
 factors (`factor`).
 We are now going to use our "surveys" dataset to explore the `data.frame` data
 structure, which is one of the most common types of R objects we will see.
+
+> ## Last value {.challenge}
+> How would you display the *last* element of `animals`?
+> Hint: a vector has as many elements as its length.
