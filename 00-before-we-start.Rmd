@@ -79,22 +79,24 @@ come back with a new `>`-prompt to wait for new commands.
 If R is still waiting for you to enter more data because it isn't complete yet,
 the console will show a `+` prompt. It means that you haven't finished entering
 a complete command. This is because you have not 'closed' a parenthesis or
-quotation. If you're in Rstudio and this happens, click inside the console
-window and press `Esc`; this should help you out of trouble.
+quotation, i.e. you don't have the same number of left-parentheses as right-parentheses, or
+the same number of opening and closing quotation marks. If you're in Rstudio and this happens, click inside the console
+window and press `Esc`; this will cancel the incomplete command and return you to the
+`>` prompt.
 
 # Basics of R
 
 R is a versatile, open source programming/scripting language that's useful both
 for statistics but also data science. Inspired by the programming language S.
 
-* Open source software under GPL.
+* Free/Libre/Open Source Software under the GPL.
 * Superior (if not just comparable) to commercial alternatives. R has over 7,000
   user contributed packages at this time. It's widely used both in academia and
   industry.
 * Available on all platforms.
 * Not just for statistics, but also general purpose programming.
 * For people who have experience in programmming: R is both an object-oriented
-  and a so-called [functional language](http://adv-r.had.co.nz/Functional-programming.html)
+  and a so-called [functional language](http://adv-r.had.co.nz/Functional-programming.html).
 * Large and growing community of peers.
 
 ## Commenting
@@ -106,18 +108,19 @@ right of a `#` is ignored by R.
 
 `<-` is the assignment operator. It assigns values on the right to objects on
 the left. So, after executing `x <- 3`, the value of `x` is `3`. The arrow can
-be read as 3 **goes into** `x`.  You can also use `=` for assignments but not in
-all contexts so it is good practice to use `<-` for assignments. `=` should only
-be used to specify the values of arguments in functions, see below.
+be read as 3 **goes into** `x`.  For historical reasons, you can also use `=` for assignments,
+but not in every context. Because of the [slight](http://blog.revolutionanalytics.com/2008/12/use-equals-or-arrow-for-assignment.html) [differences](https://web.archive.org/web/20130610005305/https://stat.ethz.ch/pipermail/r-help/2009-March/191462.html) in syntax, 
+it is good practice to use always `<-` for assignments, except when specifying the values of
+arguments in functions, when only `=` should be used, see below.
 
-In RStudio, typing `Alt + -` (push `Alt`, the key next to your space bar at the
-same time as the `-` key) will write ` <- ` in a single keystroke.
+In RStudio, typing <kbd>Alt</kbd> + <kbd>-</kbd> (push <kbd>Alt</kbd> at the
+same time as the <kbd>-</kbd> key) will write ` <- ` in a single keystroke.
 
 ## Functions and their arguments
 
 Functions are "canned scripts" that automate something complicated or convenient
-or both.  Many functions are predefined, or become available when using the
-function `library()` (more on that later). A function usually gets one or more
+or both.  Many functions are predefined, or can be made available by importing R *packages*
+(more on that later). A function usually gets one or more
 inputs called *arguments*. Functions often (but not always) return a *value*. A
 typical example would be the function `sqrt()`. The input (the argument) must be
 a number, and the return value (in fact, the output) is the square root of that
@@ -137,25 +140,21 @@ even a data set. We'll see that when we read data files in to R.
 
 Arguments can be anything, not only numbers or filenames, but also other
 objects. Exactly what each argument means differs per function, and must be
-looked up in the documentation (see below). If an argument alters the way the
-function operates, such as whether to ignore 'bad values', such an argument is
-sometimes called an *option*.
+looked up in the documentation (see below). Some functions take arguments which 
+may either be specified by the user, or if left out, take on a *default* value: these
+are called *options*. Options are typically used to alter the way the
+function operates, such as whether it ignores 'bad values', or what symbol to use in a plot.
+However, if you want something
+specific, you can specify a value of your choice which will be used instead of the default.
 
-Most functions can take several arguments, but many have so-called *defaults*.
-If you don't specify such an argument when calling the function, the function
-itself will fall back on using the *default*. This is a standard value that the
-author of the function specified as being "good enough in standard cases". An
-example would be what symbol to use in a plot. However, if you want something
-specific, simply change the argument yourself with a value of your choice.
-
-Let's try a function that can take multiple arguments - `round`.
+Let's try a function that can take multiple arguments: `round`.
 
 ```{r, results='show', purl=FALSE}
 round(3.14159)
 ```
 
-We can see that we get `3`. That's because the default is to round
-to the nearest whole number. If we want more digits we can see
+Here, we've called `round` with just one argument, `3.14159`, and it has returned the value `3`. 
+That's because the default is to round to the nearest whole number. If we want more digits we can see
 how to do that by getting information about the `round` function.
 We can use `args(round)` or look at the
 help for this function using `?round`.
@@ -182,13 +181,17 @@ If you provide the arguments in the exact same order as they are defined you don
 round(3.14159, 2)
 ```
 
-However, it's usually not recommended practice because it's a lot of remembering
-to do, and if you share your code with others that includes less known functions
-it makes your code difficult to read. (It's however OK to not include the names
-of the arguments for basic functions like `mean`, `min`, etc...)
+And if you do name the arguments, you can switch their order:
 
-Another advantage of naming arguments, is that the order doesn't matter.
-This is useful when there start to be more arguments.
+```{r, results='show', purl=FALSE}
+round(digits=2, x=3.14159)
+```
+
+It's good practice to put the non-optional arguments (like the number you're rounding) 
+first in your function call, and to specify the names of all optional arguments.
+If you don't, someone reading your code might have to look up definition of a 
+function with unfamiliar arguments to understand what you're doing.
+
 
 
 ## Organizing your working directory
@@ -235,9 +238,10 @@ the help files across all packages available.
 Start by googling the error message. However, this doesn't always work very well
 because often, package developers rely on the error catching provided by R. You
 end up with general error messages that might not be very helpful to diagnose a
-problem (e.g. "subscript out of bounds").
+problem (e.g. "subscript out of bounds"). If the message is very generic, you might
+also include the name of the function or package you're using in your query.
 
-However, you should check stackoverflow. Search using the `[r]` tag. Most
+However, you should check StackOverflow. Search using the `[r]` tag. Most
 questions have already been answered, but the challenge is to use the right
 words in the search to find the answers:
 [http://stackoverflow.com/questions/tagged/r](http://stackoverflow.com/questions/tagged/r)
@@ -258,7 +262,7 @@ Try to use the correct words to describe your problem. For instance, a package
 is not the same thing as a library. Most people will understand what you meant,
 but others have really strong feelings about the difference in meaning. The key
 point is that it can make things confusing for people trying to help you. Be as
-precise as possible when describing your problem
+precise as possible when describing your problem.
 
 If possible, try to reduce what doesn't work to a simple reproducible
 example. If you can reproduce the problem using a very small `data.frame`
@@ -304,9 +308,9 @@ sessionInfo()
 
 * Your friendly colleagues: if you know someone with more experience than you,
   they might be able and willing to help you.
-* StackOverflow: if your question hasn't been answered before and is well
+* [StackOverflow](http://stackoverflow.com/questions/tagged/r): if your question hasn't been answered before and is well
   crafted, chances are you will get an answer in less than 5 min.
-* The [R-help](https://stat.ethz.ch/mailman/listinfo/r-help): it is read by a
+* The [R-help mailing list](https://stat.ethz.ch/mailman/listinfo/r-help): it is read by a
   lot of people (including most of the R core team), a lot of people post to it,
   but the tone can be pretty dry, and it is not always very welcoming to new
   users. If your question is valid, you are likely to get an answer very fast
@@ -328,3 +332,4 @@ sessionInfo()
   mailing lists.
 * [How to ask for R help](http://blog.revolutionanalytics.com/2014/01/how-to-ask-for-r-help.html)
   useful guidelines
+* [This blog post by Jon Skeet](http://codeblog.jonskeet.uk/2010/08/29/writing-the-perfect-question/) has quite comprehensive advice on how to ask programming questions.
