@@ -18,24 +18,21 @@ especially for complicated operations. Enter `dplyr`. `dplyr` is a package for
 making data manipulation easier.
 
 Packages in R are basically sets of additional functions that let you do more
-stuff in R. The functions we've been using, like `str()`, come built into R;
-packages give you access to more functions. You need to install a package and
-then load it to be able to use it.
+stuff. The functions we've been using so far, like `str()` or `data.frame()`, come built into R;
+packages give you access to more of them. Before you use a package for the first time you need
+to install it on your machine, and then you should to import it in every subsequent R session when you'll need it.
 
 ```{r, eval = FALSE, purl = FALSE}
-install.packages("dplyr") ## install
+install.packages("dplyr")
 ```
 
 You might get asked to choose a CRAN mirror -- this is basically asking you to
 choose a site to download the package from. The choice doesn't matter too much;
-We recommend the RStudio mirror.
+we recommend the RStudio mirror.
 
 ```{r, message = FALSE, purl = FALSE}
 library("dplyr")          ## load
 ```
-
-You only need to install a package once per computer, but you need to load it
-every time you open a new R session and want to use that package.
 
 ## What is `dplyr`?
 
@@ -66,7 +63,7 @@ filter(surveys, year == 1995)
 
 ### Pipes
 
-But what if you wanted to select and filter? There are three ways to do this:
+But what if you wanted to select and filter at the same time? There are three ways to do this:
 use intermediate steps, nested functions, or pipes. With the intermediate steps,
 you essentially create a temporary data frame and use that as input to the next
 function. This can clutter up your workspace with lots of objects. You can also
@@ -101,6 +98,15 @@ surveys_sml <- surveys %>%
 surveys_sml
 ```
 
+Note that the final dataframe is the leftmost part of this expression. If you find that
+confusing, you can use the `->` operator, which might make it easier to envision the
+data "flowing" from left to right:
+
+```{r, purl = FALSE}
+surveys %>%
+  filter(weight < 5) %>%
+  select(species_id, sex, weight) -> surveys_sml
+```
 > ### Challenge {.challenge}
 >
 > Using pipes, subset the data to include rows before 1995. Retain columns
