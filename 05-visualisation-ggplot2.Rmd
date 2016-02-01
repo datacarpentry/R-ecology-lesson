@@ -1,7 +1,7 @@
 ---
 layout: topic
-title: Data visualisation with ggplot2
-subtitle: Visualising data in R with ggplot2 package
+title: Data visualization with ggplot2
+subtitle: Visualizing data in R with the ggplot2 package
 minutes: 60
 ---
 
@@ -20,18 +20,18 @@ Authors: **Mateusz Kuzak**, **Diana Marek**, **Hedi Peterson**
 
 #### Disclaimer
 
-We will here using functions of ggplot2 package. There are basic ploting
+We will be using the functions in the ggplot2 package. There are basic plotting
 capabilities in basic R, but ggplot2 adds more powerful plotting capabilities.
 
 > ### Learning Objectives
 >
-> -	Visualise some of the
+> -	Visualize some of the
 >[mammals data](http://figshare.com/articles/Portal_Project_Teaching_Database/1314459)
 >from Figshare [surveys.csv](http://files.figshare.com/1919744/surveys.csv)
 > -	Understand how to plot these data using R ggplot2 package. For more details
 >on using ggplot2 see
 >[official documentation](http://docs.ggplot2.org/current/).
-> -	Building step by step complex plots with ggplot2 package
+> -	Building step by step complex plots with the ggplot2 package
 
 Load required packages
 
@@ -110,13 +110,13 @@ plot(x = surveys_complete$weight, y = surveys_complete$hindfoot_length)
 
 ## Plotting with ggplot2
 
-We will make the same plot using `ggplot2` package.
+We will make the same plot using the `ggplot2` package.
 
 `ggplot2` is a plotting package that makes it simple to create complex plots
 from data in a dataframe. It uses default settings, which help creating
-publication quality plots with minimal amount of settings and tweaking.
+publication quality plots with a minimal amount of settings and tweaking.
 
-With ggplot graphics are build step by step by adding new elements.
+ggplot graphics are built step by step by adding new elements.
 
 To build a ggplot we need to:
 
