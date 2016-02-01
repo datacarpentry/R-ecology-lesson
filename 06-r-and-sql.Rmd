@@ -95,10 +95,10 @@ results.
 
 Before we can do this, we need to re-establish a database connection.
 
-```{r connect}
+```{r reconnect}
 library(RSQLite)
 ## Set dbname and driver out of convenience
-myDB <- "portal_mammals.sqlite"
+myDB <- "data/portal_mammals.sqlite"
 conn <- dbConnect(drv = SQLite(), dbname= myDB)
 ```
 
@@ -211,7 +211,7 @@ dbWriteTable(myConn,"species",species)
 dbListTables(myConn)
 dbGetQuery(myConn,"SELECT * from species limit 10")
 ```
-  
+
 If you check the location of our database you'll see that data is automatically
 being written to disk. Not only does R and RSQLite provide easy ways to query
 existing databases, it also allows you to easily create your own databases from
