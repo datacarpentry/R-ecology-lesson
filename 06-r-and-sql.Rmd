@@ -78,7 +78,7 @@ dbGetQuery(conn,"SELECT count(*) FROM surveys")
 ```
 
 It's good practice to always close a connection that you open in R. Let's do that next.
-Note that once you've closed a connection, you will have to open a new connection to 
+Note that once you've closed a connection, you will have to open a new connection to
 query and import the data again.
 
 ```{r close Connection}
@@ -117,11 +117,11 @@ head(result)
 >
 >  1. Write a query that returns counts of genus by plot_id
 >  2. You can join multiple tables together in SQL using the following syntax where foreign key refers to your unique id (eg species_id):
- SELECT table.col, table.col 
- FROM table1 JOIN table2 
+ SELECT table.col, table.col
+ FROM table1 JOIN table2
  ON table1.key = table2.key
  JOIN table3 ON table2.key = table3.key
- 
+
 > Write a query that joins the species, plot and survey tables together. The query should return counts of genus by plot type. Then create a bar plot of your results in R.
 
 
