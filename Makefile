@@ -5,7 +5,7 @@ skeleton-%.R: %.Rmd
 	Rscript -e "knitr::purl('$<', output='$@', documentation=0L)"
 
 %.html: %.Rmd
-	Rscript -e "rmarkdown::render('$<', output_format=rmarkdown::html_document(toc=TRUE, highlight='tango'))"
+	Rscript -e "rmarkdown::render('$<', output_format=rmarkdown::html_document(toc=TRUE, highlight='tango', self_contained=FALSE, lib_dir='libs'))"
 
 index.html: index.md
 	pandoc -o $@ $^
