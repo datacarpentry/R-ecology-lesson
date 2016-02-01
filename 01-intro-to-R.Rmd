@@ -224,33 +224,40 @@ structure, which is one of the most common types of R objects we will see.
 
 > ### Challenge
 
-Question: We’ve seen that atomic vectors be of type character, numeric, integer, logical, and complex. But what happens if we try to mix these types in a single vector?
+Question: We’ve seen that atomic vectors be of type character, numeric,
+integer, logical, and complex. But what happens if we try to mix these types in
+a single vector?  
 Answer: R implicitly converts them to all be the same type
 
-Question: What do you think the type of each of these vectors will be?
+Question: What will happen in each of these examples?  
+Answer: Vectors of class character, numeric, character, character (last one is
+the same as the first, a trick question).
 
-```{r, purl=FALSE}
+Question: Why do you think that R behaves like this?  
+Answer: from the docs: “The output type is determined from the highest type of
+the components in the hierarchy NULL < raw < logical < integer <  double <
+complex < character < list < expression.” More informatively, R tries not to
+lose any information, so it converts e.g. numerics into characters because
+every numeric can be represented as a character, but not vice-versa.
+
+```{r, echo=FALSE, purl=TRUE}
+# We’ve seen that atomic vectors be of type character, numeric, integer,
+# logical, and complex. But what happens if we try to mix these types in a single
+# vector?
+
+
+# What will happen in each of these examples?
 mixed <- c(1, 2, 3, 'a')
 class(mixed)
-# Answer: character
 
 mixed <- c(1, 2, 3, TRUE)
 class(mixed)
-# Answer: numeric
 
-mixed <- c(1, 2, 3, 1L)
+mixed <- c('a', 'b', 'c', TRUE)
 class(mixed)
-# Answer: numeric
-
-mixed <- c(1, 2, 3, 1+2i)
-class(mixed)
-# Answer: complex
 
 mixed <- c(1, 2, 3, '4')
 class(mixed)
-# Answer: still character
+
+# Why do you think that R behaves like this?
 ```
-
-Question: Can you work out what the rule is?
-Answer: from the docs: “The output type is determined from the highest type of the components in the hierarchy NULL < raw < logical < integer <  double < complex < character < list < expression.” More informatively, R tries not to lose any information, so it converts e.g. numerics into characters because every numeric can be represented as a character, but not vice-versa.
-
