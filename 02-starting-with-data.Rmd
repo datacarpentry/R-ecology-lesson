@@ -108,8 +108,8 @@ Based on the output of `str(surveys)`, can you answer the following questions?
 
 ```
 
-As you can see, many of the columns consist of integers, however, the columns `species` and `sex` are of a special class called a `factor`. 
-Before we learn more about the `data.frame` class, we are going to talk about factors. 
+As you can see, many of the columns consist of integers, however, the columns `species` and `sex` are of a special class called a `factor`.
+Before we learn more about the `data.frame` class, we are going to talk about factors.
 They are very useful but not necessarily intuitive, and therefore require some attention.
 
 
@@ -183,26 +183,30 @@ as.numeric(as.character(f)) ## works...
 as.numeric(levels(f))[f]    ## The recommended way.
 ```
 
-Notice that in this last approach, three important steps have happened  
-* We have obtained the factor levels using `levels(f)`  
-* We have converted these levels to numeric values using `as.numeric(levels(f))`  
-* We have then accessed these numeric values using the underlying integers of the vector `f` inside the square brackets  
+Notice that in this last approach, three important steps have happened
+* We have obtained the factor levels using `levels(f)`
+* We have converted these levels to numeric values using `as.numeric(levels(f))`
+* We have then accessed these numeric values using the underlying integers of the vector `f` inside the square brackets
 
 ### Challenge
 
-The function `table()` tabulates observations and can be used to create
-bar plots quickly. For instance:
+The function `table()` tabulates observations and can be used to create bar
+plots quickly. For instance, the code below gives you a barplot of the number of
+observations. How can you recreate this plot with "control" listed last instead
+of first?
+
 
 ```{r wrong-order, results='show', purl=TRUE}
+## Challenge
+##
+## How can you recreate this plot with "control" listed
+## last instead of first?
 exprmt <- factor(c("treat1", "treat2", "treat1", "treat3", "treat1", "control",
                    "treat1", "treat2", "treat3"))
 table(exprmt)
 barplot(table(exprmt))
 ```
-gives you a barplot of the number of observations.
 
-How can you recreate this plot with "control" listed
-last instead of first?
 
 <!---
 ```{r correct-order, purl=FALSE}
