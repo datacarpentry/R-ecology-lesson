@@ -286,3 +286,35 @@ ggplot(data = yearly_weight, aes(x=year, y=avg_weight, color = species_id, group
 ggplot(data = yearly_weight, aes(x=year, y=avg_weight, color = species_id, group = species_id)) +
   geom_line() + facet_wrap(~ sex)
 ```
+
+So far our result looks quite good, but it is yet far from being publishable. What are other ways one can improve it? Take a look at the ggplot2 cheat sheet (https://www.rstudio.com/wp-content/uploads/2015/08/ggplot2-cheatsheet.pdf), and write down at least three more ideas (can leave them as comments to Etherpad.
+
+Now, let's change names of axes to something more informative than 'year' and 'n' and add title to this figure:
+```{r number_spicies_year_with_right_labels}
+ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex, group = sex)) +
+  geom_line() + 
+  facet_wrap(~ species_id) + 
+  labs(title = 'Observed species in time', 
+       x = 'Year of observation', 
+       y = 'Number of species')
+```
+
+Now, thanks to our efforts, axes have much more informative names, yet quite small so it could be hard to read them. Let's change their size (and font just in sake of fun):
+```{r number_spicies_year_with_right_labels_xfont_size}
+ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex, group = sex)) +
+  geom_line() + 
+  facet_wrap(~ species_id) + 
+  labs(title = 'Observed species in time', 
+       x = 'Year of observation', 
+       y = 'Number of species') + 
+  theme(text=element_text(size=16, family="Arial"))
+```
+
+Now, labels became bigger, but there are still few things that one could be improved. Please, take another five minutes and try to add another one or two things, to make it look even more beautiful. Use ggplot2 cheat sheet, which we linked earlier for inspiration.
+
+Here are some ideas from me:
+
+* See if you can change thickness of the lines.
+* Can you find a way to change the name of the legend? What about its labels?
+* Using different colour palette improve the look? (http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/)
+* Advanced: Can you turn x-axis labels by some degree so that they won't overlap? Try 90 degrees angel and then experiment more to get nicely looking diagonally placed labels.
