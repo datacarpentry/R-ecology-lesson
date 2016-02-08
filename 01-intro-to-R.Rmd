@@ -192,7 +192,7 @@ dataset. As we program, this may be useful to autoupdate results that we are
 collecting or calculating.
 
 We just saw 2 of the 6 **atomic vector** types that R uses: `"character"` and
-`"numeric"`. 
+`"numeric"`.
 These are the basic building blocks that all R objects are built from.
 The other 4 are:
 
@@ -222,23 +222,23 @@ factors (`factor`).
 We are now going to use our "surveys" dataset to explore the `data.frame` data
 structure, which is one of the most common types of R objects we will see.
 
-> ### Challenge
+### Challenge
 
-Question: We’ve seen that atomic vectors be of type character, numeric,
+* **Question**: We’ve seen that atomic vectors be of type character, numeric,
 integer, logical, and complex. But what happens if we try to mix these types in
-a single vector?  
-Answer: R implicitly converts them to all be the same type
+a single vector?
+* _Answer_: R implicitly converts them to all be the same type
 
-Question: What will happen in each of these examples?  
-Answer: Vectors of class character, numeric, character, character (last one is
-the same as the first, a trick question).
+* **Question**: What will happen in each of these examples?
+* _Answer_: Vectors of class character, numeric, character, character (last one
+is the same as the first, a trick question).
 
-Question: Why do you think that R behaves like this?  
-Answer: from the docs: “The output type is determined from the highest type of
-the components in the hierarchy NULL < raw < logical < integer <  double <
+* **Question**: Why do you think that R behaves like this?
+* _Answer_: from the docs: “The output type is determined from the highest type
+of the components in the hierarchy NULL < raw < logical < integer < double <
 complex < character < list < expression.” More informatively, R tries not to
-lose any information, so it converts e.g. numerics into characters because
-every numeric can be represented as a character, but not vice-versa.
+lose any information, so it converts e.g. numerics into characters because every
+numeric can be represented as a character, but not vice-versa.
 
 ```{r, echo=FALSE, purl=TRUE}
 # We’ve seen that atomic vectors be of type character, numeric, integer,

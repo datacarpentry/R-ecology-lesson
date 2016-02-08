@@ -5,6 +5,25 @@
 
 ### Vectors and data types
 
+# We’ve seen that atomic vectors be of type character, numeric, integer,
+# logical, and complex. But what happens if we try to mix these types in a single
+# vector?
+
+
+# What will happen in each of these examples?
+mixed <- c(1, 2, 3, 'a')
+class(mixed)
+
+mixed <- c(1, 2, 3, TRUE)
+class(mixed)
+
+mixed <- c('a', 'b', 'c', TRUE)
+class(mixed)
+
+mixed <- c(1, 2, 3, '4')
+class(mixed)
+
+# Why do you think that R behaves like this?
 
 
 ### Presentation of the survey data
@@ -32,9 +51,9 @@ as.numeric(f)               ## wrong! and there is no warning...
 as.numeric(as.character(f)) ## works...
 as.numeric(levels(f))[f]    ## The recommended way.
 ## Challenge
-
-## How can you recreate this plot but by having "control" being listed
-##last instead of first?
+##
+## How can you recreate this plot with "control" listed
+## last instead of first?
 exprmt <- factor(c("treat1", "treat2", "treat1", "treat3", "treat1", "control",
                    "treat1", "treat2", "treat3"))
 table(exprmt)

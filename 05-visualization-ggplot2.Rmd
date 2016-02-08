@@ -24,13 +24,10 @@ capabilities in basic R, but ggplot2 adds more powerful plotting capabilities.
 
 > ### Learning Objectives
 >
-> -	Visualize some of the
->[mammals
-data](http://figshare.com/articles/Portal_Project_Teaching_Database/1314459)
->from Figshare [surveys.csv](http://files.figshare.com/1919744/surveys.csv)
+> -	Visualize some of the [mammals data](http://figshare.com/articles/Portal_Project_Teaching_Database/1314459)
+> from Figshare [surveys.csv](http://files.figshare.com/1919744/surveys.csv)
 > -	Understand how to plot these data using R ggplot2 package. For more details
->on using ggplot2 see >[official
-documentation](http://docs.ggplot2.org/current/).
+> on using ggplot2 see [official documentation](http://docs.ggplot2.org/current/).
 > -	Building step by step complex plots with the ggplot2 package
 
 Load required packages
@@ -270,7 +267,7 @@ ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = species_id, group 
 ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex, group = sex)) +
   geom_line() + facet_wrap(~ species_id)
 ```
->
+
 > - plot average weight of each species over the course of the years
 
 ```{r average-weight-timeseries}
@@ -280,6 +277,7 @@ yearly_weight <- surveys_complete %>%
 ggplot(data = yearly_weight, aes(x=year, y=avg_weight, color = species_id, group = species_id)) +
   geom_line()
 ```
+
 > - why do you think we see those steps in the plot?
 > - make separate plots per sex since weight of males and females can differ a lot
 
@@ -288,49 +286,49 @@ ggplot(data = yearly_weight, aes(x=year, y=avg_weight, color = species_id, group
   geom_line() + facet_wrap(~ sex)
 ```
 
-So far our result looks quite good, but it is yet far from being publishable. 
-What are other ways one can improve it? Take a look at the ggplot2 cheat sheet (https://www.rstudio.com/wp-content/uploads/2015/08/ggplot2-cheatsheet.pdf), 
-and write down at least three more ideas (can leave them as comments 
+So far our result looks quite good, but it is yet far from being publishable.
+What are other ways one can improve it? Take a look at the ggplot2 cheat sheet (https://www.rstudio.com/wp-content/uploads/2015/08/ggplot2-cheatsheet.pdf),
+and write down at least three more ideas (can leave them as comments
 to Etherpad).
 
-Now, let's change names of axes to something more informative than 'year' 
+Now, let's change names of axes to something more informative than 'year'
 and 'n' and add title to this figure:
 
-```{r number_spicies_year_with_right_labels}
+```{r number_species_year_with_right_labels}
 ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex, group = sex)) +
-  geom_line() + 
-  facet_wrap(~ species_id) + 
-  labs(title = 'Observed species in time', 
-       x = 'Year of observation', 
+  geom_line() +
+  facet_wrap(~ species_id) +
+  labs(title = 'Observed species in time',
+       x = 'Year of observation',
        y = 'Number of species')
 ```
 
-Now, thanks to our efforts, axes have much more informative names, 
-yet quite small so it could be hard to read them. 
+Now, thanks to our efforts, axes have much more informative names,
+yet quite small so it could be hard to read them.
 Let's change their size (and font just in sake of fun):
 
-```{r number_spicies_year_with_right_labels_xfont_size}
+```{r number_species_year_with_right_labels_xfont_size}
 ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex, group = sex)) +
-  geom_line() + 
-  facet_wrap(~ species_id) + 
-  labs(title = 'Observed species in time', 
-       x = 'Year of observation', 
-       y = 'Number of species') + 
+  geom_line() +
+  facet_wrap(~ species_id) +
+  labs(title = 'Observed species in time',
+       x = 'Year of observation',
+       y = 'Number of species') +
   theme(text=element_text(size=16, family="Arial"))
 ```
 
-Now, labels became bigger, but there are still few things 
-that one could be improved. Please, take another five minutes and try to 
-add another one or two things, to make it look even more beautiful. 
+Now, labels became bigger, but there are still few things
+that one could be improved. Please, take another five minutes and try to
+add another one or two things, to make it look even more beautiful.
 Use ggplot2 cheat sheet, which we linked earlier for inspiration.
 
 Here are some ideas:
 
 * See if you can change thickness of the lines.
-* Can you find a way to change the name of the legend? 
+* Can you find a way to change the name of the legend?
 What about its labels?
-* Use different color palette to improve the look 
+* Use different color palette to improve the look
 (http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/)
-* Bonus: Let's change the orientation of the labels 
-so they don't overlap. You can use a 90 degree angle, 
+* Bonus: Let's change the orientation of the labels
+so they don't overlap. You can use a 90 degree angle,
 or experiment to find the appropriate angle for diagonally oriented labels.
