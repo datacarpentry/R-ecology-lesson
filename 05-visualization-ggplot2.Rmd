@@ -5,7 +5,6 @@ subtitle: Visualizing data in R with the ggplot2 package
 minutes: 60
 ---
 
-
 ```{r, echo=FALSE, purl=FALSE}
 knitr::opts_chunk$set(fig.keep='last')
 ```
@@ -25,12 +24,10 @@ capabilities in basic R, but ggplot2 adds more powerful plotting capabilities.
 
 > ### Learning Objectives
 >
-> -	Visualize some of the
->[mammals data](http://figshare.com/articles/Portal_Project_Teaching_Database/1314459)
->from Figshare [surveys.csv](http://files.figshare.com/1919744/surveys.csv)
+> -	Visualize some of the [mammals data](http://figshare.com/articles/Portal_Project_Teaching_Database/1314459)
+> from Figshare [surveys.csv](http://files.figshare.com/1919744/surveys.csv)
 > -	Understand how to plot these data using R ggplot2 package. For more details
->on using ggplot2 see
->[official documentation](http://docs.ggplot2.org/current/).
+> on using ggplot2 see [official documentation](http://docs.ggplot2.org/current/).
 > -	Building step by step complex plots with the ggplot2 package
 
 Load required packages
@@ -70,10 +67,9 @@ surveys_complete <- surveys_raw %>%
 ```
 
 We saw in summary, there were NA's in weight and hindfoot_length. Let's remove
-rows with missing values in weight and hindfoot_length.
-In fact, let's combine this with removing empty species_id,
-so we have one command and don't make lots of intermediate variable names.
-This is where piping becomes really handy!
+rows with missing values in weight and hindfoot_length. In fact, let's combine
+this with removing empty species_id, so we have one command and don't make lots
+of intermediate variable names. This is where piping becomes really handy!
 
 ```{r}
 surveys_complete <- surveys_raw %>%
@@ -82,7 +78,8 @@ surveys_complete <- surveys_raw %>%
                     filter(!is.na(hindfoot_length))     # remove missing hindfoot_length
 ```
 
-There are a lot of species with low counts, let's remove the species with less than 10 counts.
+There are a lot of species with low counts, let's remove the species with less
+than 10 counts.
 
 ```{r}
 # count records per species
@@ -181,8 +178,9 @@ ggplot(data = surveys_complete, aes(x = species_id, y = weight)) +
                    geom_boxplot(alpha = 0)
 ```
 
-Notice how the boxplot layer is on top of the jitter layer?
-Play around with the order of geoms and adjust transparency to see how to build up your plot in layers.
+Notice how the boxplot layer is on top of the jitter layer? Play around with
+the order of geoms and adjust transparency to see how to build up your plot in
+layers.
 
 > ### Challenge
 >
@@ -225,8 +223,8 @@ ggplot(data = yearly_counts, aes(x = year, y = n, group = species_id, color = sp
 ## Faceting
 
 ggplot has a special technique called *faceting* that allows to split one plot
-into multiple plots based on some factor. We will use it to plot one time series
-for each species separately.
+into multiple plots based on some factor. We will use it to plot one time
+series for each species separately.
 
 ```{r first-facet}
 ggplot(data = yearly_counts, aes(x = year, y = n, color = species_id)) +
@@ -287,3 +285,50 @@ ggplot(data = yearly_weight, aes(x=year, y=avg_weight, color = species_id, group
 ggplot(data = yearly_weight, aes(x=year, y=avg_weight, color = species_id, group = species_id)) +
   geom_line() + facet_wrap(~ sex)
 ```
+
+So far our result looks quite good, but it is yet far from being publishable.
+What are other ways one can improve it? Take a look at the ggplot2 cheat sheet (https://www.rstudio.com/wp-content/uploads/2015/08/ggplot2-cheatsheet.pdf),
+and write down at least three more ideas (can leave them as comments
+to Etherpad).
+
+Now, let's change names of axes to something more informative than 'year'
+and 'n' and add title to this figure:
+
+```{r number_species_year_with_right_labels}
+ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex, group = sex)) +
+  geom_line() +
+  facet_wrap(~ species_id) +
+  labs(title = 'Observed species in time',
+       x = 'Year of observation',
+       y = 'Number of species')
+```
+
+Now, thanks to our efforts, axes have much more informative names,
+yet quite small so it could be hard to read them.
+Let's change their size (and font just in sake of fun):
+
+```{r number_species_year_with_right_labels_xfont_size}
+ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex, group = sex)) +
+  geom_line() +
+  facet_wrap(~ species_id) +
+  labs(title = 'Observed species in time',
+       x = 'Year of observation',
+       y = 'Number of species') +
+  theme(text=element_text(size=16, family="Arial"))
+```
+
+Now, labels became bigger, but there are still few things
+that one could be improved. Please, take another five minutes and try to
+add another one or two things, to make it look even more beautiful.
+Use ggplot2 cheat sheet, which we linked earlier for inspiration.
+
+Here are some ideas:
+
+* See if you can change thickness of the lines.
+* Can you find a way to change the name of the legend?
+What about its labels?
+* Use different color palette to improve the look
+(http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/)
+* Bonus: Let's change the orientation of the labels
+so they don't overlap. You can use a 90 degree angle,
+or experiment to find the appropriate angle for diagonally oriented labels.
