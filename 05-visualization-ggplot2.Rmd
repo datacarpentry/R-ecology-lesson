@@ -260,12 +260,20 @@ ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = species_id, group 
   geom_line() + facet_wrap(~ species_id)
 ```
 
+Usually plots with white background looks more readable in the publications.
+We can set the background to white using function theme_bw().
+
+```{r facet-by-species-and-sex}
+ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = species_id, group = sex)) +
+  geom_line() + facet_wrap(~ species_id) + theme_bw()
+```
+
 > We can improve the plot by coloring by sex instead of species (species are
 > already in separate plots, so we don't need to distinguish them better)
 
 ```{r facet-by-species-and-sex-colored}
 ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex, group = sex)) +
-  geom_line() + facet_wrap(~ species_id)
+  geom_line() + facet_wrap(~ species_id) + theme_bw()
 ```
 
 > - plot average weight of each species over the course of the years
@@ -275,7 +283,7 @@ yearly_weight <- surveys_complete %>%
                  group_by(year, species_id, sex) %>%
                  summarise(avg_weight = mean(weight, na.rm = TRUE))
 ggplot(data = yearly_weight, aes(x=year, y=avg_weight, color = species_id, group = species_id)) +
-  geom_line()
+  geom_line() + theme_bw()
 ```
 
 > - why do you think we see those steps in the plot?
@@ -283,7 +291,7 @@ ggplot(data = yearly_weight, aes(x=year, y=avg_weight, color = species_id, group
 
 ```{r average-weight-time-facet_sex}
 ggplot(data = yearly_weight, aes(x=year, y=avg_weight, color = species_id, group = species_id)) +
-  geom_line() + facet_wrap(~ sex)
+  geom_line() + facet_wrap(~ sex) + theme_bw()
 ```
 
 So far our result looks quite good, but it is yet far from being publishable.
@@ -300,7 +308,7 @@ ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex, group = sex))
   facet_wrap(~ species_id) +
   labs(title = 'Observed species in time',
        x = 'Year of observation',
-       y = 'Number of species')
+       y = 'Number of species') + theme_bw()
 ```
 
 Now, thanks to our efforts, axes have much more informative names,
@@ -314,10 +322,29 @@ ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex, group = sex))
   labs(title = 'Observed species in time',
        x = 'Year of observation',
        y = 'Number of species') +
-  theme(text=element_text(size=16, family="Arial"))
+  theme(text=element_text(size=16, family="Arial")) + theme_bw()
 ```
 
-Now, labels became bigger, but there are still few things
+After our manipulations we notice that the values on the x-axis are still not properly readable.
+Let's change the orientation of the labels and adjust them vertically and horizontally so they don’t overlap.
+You can use a 90 degree angle, or experiment to find the appropriate angle for diagonally oriented labels.
+
+```{r number_species_year_with_right_labels_xfont_size}
+ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex, group = sex)) +
+  geom_line() +
+  facet_wrap(~ species_id) +
+  theme_bw() + 
+  theme( 
+        axis.text.x = element_text(colour="grey20",size=12,angle=90,hjust=.5,vjust=.5),
+        axis.text.y = element_text(colour="grey20",size=12),
+        text=element_text(size=16, family="Arial")) + 
+  labs(title = 'Observed species in time',
+       x = 'Year of observation',
+       y = 'Number of species') 
+  
+```
+
+Now, labels became bigger and readable, but there are still few things
 that one could be improved. Please, take another five minutes and try to
 add another one or two things, to make it look even more beautiful.
 Use ggplot2 cheat sheet, which we linked earlier for inspiration.
@@ -329,6 +356,13 @@ Here are some ideas:
 What about its labels?
 * Use different color palette to improve the look
 (http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/)
-* Bonus: Let's change the orientation of the labels
-so they don't overlap. You can use a 90 degree angle,
-or experiment to find the appropriate angle for diagonally oriented labels.
+
+When you created your perfect plot. You can save it to the file in your favourite format.
+You can easily change the size by specifying the width and height of your plot.
+
+```{r number_species_year_with_right_labels_xfont_size}
+ggsave("observed_species_in_time.png", width=15, height=10)
+
+```
+
+Enjoy plotting with ggplot2!
