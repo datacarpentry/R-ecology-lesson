@@ -276,11 +276,15 @@ surveys_complete &lt;-<span class="st"> </span>surveys_complete %&gt;%
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> yearly_sex_counts, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> n, <span class="dt">color =</span> species_id, <span class="dt">group =</span> sex)) +
 <span class="st">  </span><span class="kw">geom_line</span>() +<span class="st"> </span><span class="kw">facet_wrap</span>(~<span class="st"> </span>species_id)</code></pre></div>
 <p><img src="img/R-ecology-facet-by-species-and-sex-1.png" title="" alt="" width="672" /></p>
+<p>Usually plots with white background looks more readable in the publications. We can set the background to white using function theme_bw().</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> yearly_sex_counts, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> n, <span class="dt">color =</span> species_id, <span class="dt">group =</span> sex)) +
+<span class="st">  </span><span class="kw">geom_line</span>() +<span class="st"> </span><span class="kw">facet_wrap</span>(~<span class="st"> </span>species_id) +<span class="st"> </span><span class="kw">theme_bw</span>()</code></pre></div>
+<p><img src="img/R-ecology-facet-by-species-and-sex-white-bg-1.png" title="" alt="" width="672" /></p>
 <blockquote>
 <p>We can improve the plot by coloring by sex instead of species (species are already in separate plots, so we don’t need to distinguish them better)</p>
 </blockquote>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> yearly_sex_counts, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> n, <span class="dt">color =</span> sex, <span class="dt">group =</span> sex)) +
-<span class="st">  </span><span class="kw">geom_line</span>() +<span class="st"> </span><span class="kw">facet_wrap</span>(~<span class="st"> </span>species_id)</code></pre></div>
+<span class="st">  </span><span class="kw">geom_line</span>() +<span class="st"> </span><span class="kw">facet_wrap</span>(~<span class="st"> </span>species_id) +<span class="st"> </span><span class="kw">theme_bw</span>()</code></pre></div>
 <p><img src="img/R-ecology-facet-by-species-and-sex-colored-1.png" title="" alt="" width="672" /></p>
 <blockquote>
 <ul>
@@ -291,7 +295,7 @@ surveys_complete &lt;-<span class="st"> </span>surveys_complete %&gt;%
 <span class="st">                 </span><span class="kw">group_by</span>(year, species_id, sex) %&gt;%
 <span class="st">                 </span><span class="kw">summarise</span>(<span class="dt">avg_weight =</span> <span class="kw">mean</span>(weight, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))
 <span class="kw">ggplot</span>(<span class="dt">data =</span> yearly_weight, <span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>avg_weight, <span class="dt">color =</span> species_id, <span class="dt">group =</span> species_id)) +
-<span class="st">  </span><span class="kw">geom_line</span>()</code></pre></div>
+<span class="st">  </span><span class="kw">geom_line</span>() +<span class="st"> </span><span class="kw">theme_bw</span>()</code></pre></div>
 <p><img src="img/R-ecology-average-weight-timeseries-1.png" title="" alt="" width="672" /></p>
 <blockquote>
 <ul>
@@ -300,7 +304,7 @@ surveys_complete &lt;-<span class="st"> </span>surveys_complete %&gt;%
 </ul>
 </blockquote>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> yearly_weight, <span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>avg_weight, <span class="dt">color =</span> species_id, <span class="dt">group =</span> species_id)) +
-<span class="st">  </span><span class="kw">geom_line</span>() +<span class="st"> </span><span class="kw">facet_wrap</span>(~<span class="st"> </span>sex)</code></pre></div>
+<span class="st">  </span><span class="kw">geom_line</span>() +<span class="st"> </span><span class="kw">facet_wrap</span>(~<span class="st"> </span>sex) +<span class="st"> </span><span class="kw">theme_bw</span>()</code></pre></div>
 <p><img src="img/R-ecology-average-weight-time-facet_sex-1.png" title="" alt="" width="672" /></p>
 <p>So far our result looks quite good, but it is yet far from being publishable. What are other ways one can improve it? Take a look at the ggplot2 cheat sheet (<a href="https://www.rstudio.com/wp-content/uploads/2015/08/ggplot2-cheatsheet.pdf" class="uri">https://www.rstudio.com/wp-content/uploads/2015/08/ggplot2-cheatsheet.pdf</a>), and write down at least three more ideas (can leave them as comments to Etherpad).</p>
 <p>Now, let’s change names of axes to something more informative than ‘year’ and ‘n’ and add title to this figure:</p>
@@ -309,7 +313,7 @@ surveys_complete &lt;-<span class="st"> </span>surveys_complete %&gt;%
 <span class="st">  </span><span class="kw">facet_wrap</span>(~<span class="st"> </span>species_id) +
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Observed species in time&#39;</span>,
        <span class="dt">x =</span> <span class="st">&#39;Year of observation&#39;</span>,
-       <span class="dt">y =</span> <span class="st">&#39;Number of species&#39;</span>)</code></pre></div>
+       <span class="dt">y =</span> <span class="st">&#39;Number of species&#39;</span>) +<span class="st"> </span><span class="kw">theme_bw</span>()</code></pre></div>
 <p><img src="img/R-ecology-number_species_year_with_right_labels-1.png" title="" alt="" width="672" /></p>
 <p>Now, thanks to our efforts, axes have much more informative names, yet quite small so it could be hard to read them. Let’s change their size (and font just in sake of fun):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> yearly_sex_counts, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> n, <span class="dt">color =</span> sex, <span class="dt">group =</span> sex)) +
@@ -318,16 +322,30 @@ surveys_complete &lt;-<span class="st"> </span>surveys_complete %&gt;%
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Observed species in time&#39;</span>,
        <span class="dt">x =</span> <span class="st">&#39;Year of observation&#39;</span>,
        <span class="dt">y =</span> <span class="st">&#39;Number of species&#39;</span>) +
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">text=</span><span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">16</span>, <span class="dt">family=</span><span class="st">&quot;Arial&quot;</span>))</code></pre></div>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">text=</span><span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">16</span>, <span class="dt">family=</span><span class="st">&quot;Arial&quot;</span>)) +<span class="st"> </span><span class="kw">theme_bw</span>()</code></pre></div>
 <p><img src="img/R-ecology-number_species_year_with_right_labels_xfont_size-1.png" title="" alt="" width="672" /></p>
-<p>Now, labels became bigger, but there are still few things that one could be improved. Please, take another five minutes and try to add another one or two things, to make it look even more beautiful. Use ggplot2 cheat sheet, which we linked earlier for inspiration.</p>
+<p>After our manipulations we notice that the values on the x-axis are still not properly readable. Let’s change the orientation of the labels and adjust them vertically and horizontally so they don’t overlap. You can use a 90 degree angle, or experiment to find the appropriate angle for diagonally oriented labels.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> yearly_sex_counts, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> n, <span class="dt">color =</span> sex, <span class="dt">group =</span> sex)) +
+<span class="st">    </span><span class="kw">geom_line</span>() +
+<span class="st">    </span><span class="kw">facet_wrap</span>(~<span class="st"> </span>species_id) +
+<span class="st">    </span><span class="kw">theme_bw</span>() +
+<span class="st">    </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">colour=</span><span class="st">&quot;grey20&quot;</span>, <span class="dt">size=</span><span class="dv">12</span>, <span class="dt">angle=</span><span class="dv">90</span>, <span class="dt">hjust=</span>.<span class="dv">5</span>, <span class="dt">vjust=</span>.<span class="dv">5</span>),
+          <span class="dt">axis.text.y =</span> <span class="kw">element_text</span>(<span class="dt">colour=</span><span class="st">&quot;grey20&quot;</span>, <span class="dt">size=</span><span class="dv">12</span>),
+          <span class="dt">text=</span><span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">16</span>, <span class="dt">family=</span><span class="st">&quot;Arial&quot;</span>)) +
+<span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Observed species in time&#39;</span>,
+         <span class="dt">x =</span> <span class="st">&#39;Year of observation&#39;</span>,
+         <span class="dt">y =</span> <span class="st">&#39;Number of species&#39;</span>)</code></pre></div>
+<p><img src="img/R-ecology-number_species_year_with_right_labels_xfont_orientation-1.png" title="" alt="" width="672" /></p>
+<p>Now, labels became bigger and readable, but there are still few things that one could be improved. Please, take another five minutes and try to add another one or two things, to make it look even more beautiful. Use ggplot2 cheat sheet, which we linked earlier for inspiration.</p>
 <p>Here are some ideas:</p>
 <ul>
 <li>See if you can change thickness of the lines.</li>
 <li>Can you find a way to change the name of the legend? What about its labels?</li>
 <li>Use different color palette to improve the look (<a href="http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/" class="uri">http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/</a>)</li>
-<li>Bonus: Let’s change the orientation of the labels so they don’t overlap. You can use a 90 degree angle, or experiment to find the appropriate angle for diagonally oriented labels.</li>
 </ul>
+<p>When you created your perfect plot. You can save it to the file in your favourite format. You can easily change the size by specifying the width and height of your plot.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggsave</span>(<span class="st">&quot;observed_species_in_time.png&quot;</span>, <span class="dt">width=</span><span class="dv">15</span>, <span class="dt">height=</span><span class="dv">10</span>)</code></pre></div>
+<p>Enjoy plotting with ggplot2!</p>
 </div>
 
 
