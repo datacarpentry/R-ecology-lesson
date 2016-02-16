@@ -263,7 +263,7 @@ ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = species_id, group 
 Usually plots with white background looks more readable in the publications.
 We can set the background to white using function theme_bw().
 
-```{r facet-by-species-and-sex}
+```{r facet-by-species-and-sex-white-bg}
 ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = species_id, group = sex)) +
   geom_line() + facet_wrap(~ species_id) + theme_bw()
 ```
@@ -325,23 +325,23 @@ ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex, group = sex))
   theme(text=element_text(size=16, family="Arial")) + theme_bw()
 ```
 
-After our manipulations we notice that the values on the x-axis are still not properly readable.
-Let's change the orientation of the labels and adjust them vertically and horizontally so they don’t overlap.
-You can use a 90 degree angle, or experiment to find the appropriate angle for diagonally oriented labels.
+After our manipulations we notice that the values on the x-axis are still not
+properly readable.  Let's change the orientation of the labels and adjust them
+vertically and horizontally so they don’t overlap.  You can use a 90 degree
+angle, or experiment to find the appropriate angle for diagonally oriented
+labels.
 
-```{r number_species_year_with_right_labels_xfont_size}
+```{r number_species_year_with_right_labels_xfont_orientation}
 ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex, group = sex)) +
-  geom_line() +
-  facet_wrap(~ species_id) +
-  theme_bw() + 
-  theme( 
-        axis.text.x = element_text(colour="grey20",size=12,angle=90,hjust=.5,vjust=.5),
-        axis.text.y = element_text(colour="grey20",size=12),
-        text=element_text(size=16, family="Arial")) + 
-  labs(title = 'Observed species in time',
-       x = 'Year of observation',
-       y = 'Number of species') 
-  
+    geom_line() +
+    facet_wrap(~ species_id) +
+    theme_bw() +
+    theme(axis.text.x = element_text(colour="grey20", size=12, angle=90, hjust=.5, vjust=.5),
+          axis.text.y = element_text(colour="grey20", size=12),
+          text=element_text(size=16, family="Arial")) +
+    labs(title = 'Observed species in time',
+         x = 'Year of observation',
+         y = 'Number of species')
 ```
 
 Now, labels became bigger and readable, but there are still few things
@@ -360,9 +360,8 @@ What about its labels?
 When you created your perfect plot. You can save it to the file in your favourite format.
 You can easily change the size by specifying the width and height of your plot.
 
-```{r number_species_year_with_right_labels_xfont_size}
+```{r number_species_year_with_right_labels_xfont_save, eval=FALSE}
 ggsave("observed_species_in_time.png", width=15, height=10)
-
 ```
 
 Enjoy plotting with ggplot2!
