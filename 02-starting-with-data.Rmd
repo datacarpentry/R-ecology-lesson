@@ -15,19 +15,19 @@ source("setup.R")
 >
 > * load external data (CSV files) in memory using the survey table
 >  (`surveys.csv`) as an example
-> * explore the structure and the content of the data in R
-> * understand what are factors and how to manipulate them
+> * explore the structure and the content of a data frame in R
+> * understand what factors are and how to manipulate them
 
 ------------
 
-# Presentation of the Survey Data
+## Presentation of the Survey Data
 
 ```{r, echo=FALSE, purl=TRUE}
 ### Presentation of the survey data
 ```
 
 We are studying the species and weight of animals caught in plots in our study
-area. The dataset is stored as a `csv` file: each row holds information for a
+area. The dataset is stored as a CSV file: each row holds information for a
 single animal, and the columns represent:
 
 | Column           | Description                        |
@@ -63,12 +63,11 @@ You are now ready to load the data:
 surveys <- read.csv('data/portal_data_joined.csv')
 ```
 
-This statement doesn't produce any output because assignment doesn't display
-anything. If we want to check that our data has been loaded, we can print the
-variable's value: `surveys`
-
-Alternatively, wrapping an assignment in parentheses will perform the assignment
-and display it at the same time.
+This statement doesn't produce any output because, as you might recall,
+assignment doesn't display anything. If we want to check that our data has been
+loaded, we can print the variable's value: `surveys`. Alternatively, wrapping an
+assignment in parentheses will perform the assignment and display it at the same
+time.
 
 ```{r, eval = TRUE, purl = FALSE}
 (surveys <- read.csv('data/portal_data_joined.csv'))
@@ -82,9 +81,10 @@ function `head()`:
 head(surveys)
 ```
 
-An important feature of a `data.frame`is that each column is a vector, with the same type of data.
-We can see this when inspecting the __str__ucture of a `data.frame` with the
-function `str()`:
+A `data.frame` is the representation of data in the format of a table where the
+columns are vectors that all have the same length. Because each column is a
+vector, they all contain the same type of data. We can see this when inspecting
+the __str__ucture of a `data.frame` with the function `str()`:
 
 ```{r, purl=FALSE}
 str(surveys)
@@ -108,9 +108,20 @@ Based on the output of `str(surveys)`, can you answer the following questions?
 
 ```
 
-As you can see, many of the columns consist of integers, however, the columns `species` and `sex` are of a special class called a `factor`.
-Before we learn more about the `data.frame` class, we are going to talk about factors.
-They are very useful but not necessarily intuitive, and therefore require some attention.
+<!---
+```{r, echo=FALSE, purl=FALSE}
+## Answers
+##
+## * class: data frame
+## * how many rows: 34786,  how many columns: 13
+## * how many species: 48
+```
+--->
+
+As you can see, many of the columns consist of integers, however, the columns
+`species` and `sex` are of a special class called a `factor`. Before we learn
+more about the `data.frame` class, let's talk about factors. They are very
+useful but not necessarily intuitive, and therefore require some attention.
 
 
 ## Factors
@@ -120,14 +131,15 @@ They are very useful but not necessarily intuitive, and therefore require some a
 ```
 
 Factors are used to represent categorical data. Factors can be ordered or
-unordered and are an important class for statistical analysis and for plotting.
+unordered, and understanding them is necessary for statistical analysis and for
+plotting.
 
 Factors are stored as integers, and have labels associated with these unique
 integers. While factors look (and often behave) like character vectors, they are
 actually integers under the hood, and you need to be careful when treating them
 like strings.
 
-Once created, factors can only contain a pre-defined set values, known as
+Once created, factors can only contain a pre-defined set of values, known as
 *levels*. By default, R always sorts *levels* in alphabetical order. For
 instance, if you have a factor with 2 levels:
 
@@ -147,8 +159,8 @@ nlevels(sex)
 
 Sometimes, the order of the factors does not matter, other times you might want
 to specify the order because it is meaningful (e.g., "low", "medium", "high") or
-it is required by particular type of analysis. Additionally, specifying the
-order of the levels allows us to compare levels:
+it is required by a particular type of analysis. Additionally, specifying the
+order of the levels allows for level comparison:
 
 ```{r, purl=TRUE, error=TRUE}
 food <- factor(c("low", "high", "medium", "high", "low", "medium", "high"))
@@ -161,19 +173,20 @@ levels(food)
 min(food) ## works!
 ```
 
-In R's memory, these factors are represented by numbers (1, 2, 3). They are
-better than using simple integer labels because factors are self describing:
-`"low"`, `"medium"`, `"high"`" is more descriptive than `1`, `2`, `3`. Which
-is low?  You wouldn't be able to tell with just integer data. Factors have this
-information built in. It is particularly helpful when there are many levels
-(like the species in our example data set).
+In R's memory, these factors are represented by integers (1, 2, 3), but are more
+informative than integers because factors are self describing: `"low"`,
+`"medium"`, `"high"`" is more descriptive than `1`, `2`, `3`. Which is low?  You
+wouldn't be able to tell just from the integer data. Factors, on the other hand,
+have this information built in. It is particularly helpful when there are many
+levels (like the species in our example data set).
 
 ### Converting factors
 
-If you need to convert a factor to a character vector, simply use
+If you need to convert a factor to a character vector, you simply use
 `as.character(x)`.
 
-Converting a factors where the levels appear as numbers (such as in concentration levels) to a numeric vector is however a little trickier, and you
+Converting a factors where the levels appear as numbers (such as in
+concentration levels) to a numeric vector is however a little trickier, and you
 have to go via a character vector. Compare:
 
 ```{r, purl=TRUE}
@@ -183,23 +196,29 @@ as.numeric(as.character(f)) ## works...
 as.numeric(levels(f))[f]    ## The recommended way.
 ```
 
-Notice that in this last approach, three important steps have happened
-* We have obtained the factor levels using `levels(f)`
-* We have converted these levels to numeric values using `as.numeric(levels(f))`
-* We have then accessed these numeric values using the underlying integers of the vector `f` inside the square brackets
+Notice that in this last approach, three important steps occur:
+* We obtain all the factor levels using `levels(f)`
+* We convert these levels to numeric values using `as.numeric(levels(f))`
+* We then access these numeric values using the underlying integers of the
+  vector `f` inside the square brackets
 
 ### Challenge
 
 The function `table()` tabulates observations and can be used to create bar
 plots quickly. For instance, the code below gives you a barplot of the number of
-observations. How can you recreate this plot with "control" listed last instead
+observations.
+
+* In which order are the treatments listed?
+* How can you recreate this plot with "control" listed last instead
 of first?
 
 
 ```{r wrong-order, results='show', purl=TRUE}
 ## Challenge
 ##
-## How can you recreate this plot with "control" listed
+## * In which order are the treatments listed?
+##
+## * How can you recreate this plot with "control" listed
 ## last instead of first?
 exprmt <- factor(c("treat1", "treat2", "treat1", "treat3", "treat1", "control",
                    "treat1", "treat2", "treat3"))
@@ -210,6 +229,10 @@ barplot(table(exprmt))
 
 <!---
 ```{r correct-order, purl=FALSE}
+## Answers
+##
+## * The treatments are listed in alphabetical order because they are factors.
+## * By redefining the order of the levels
 exprmt <- factor(exprmt, levels=c("treat1", "treat2", "treat3", "control"))
 barplot(table(exprmt))
 ```
