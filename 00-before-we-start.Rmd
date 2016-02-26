@@ -52,24 +52,33 @@ Let's start by learning about our tool.
 
 # Interacting with R
 
+The basis of programming is that we write down instructions for the computer to
+follow, and then we tell the computer to follow those instructions. We write, or
+*code*, instructions in R because it is a common language that both the computer 
+and we can understand. We call the instructions *commands* and we tell the 
+computer to follow the instructions by *executing* (also called *running*) those
+commands.
+
 There are two main ways of interacting with R: using the console or by using
 script files (plain text files that contain your code).
 
 The console window (in RStudio, the bottom left panel) is the place where R is
 waiting for you to tell it what to do, and where it will show the results of a
-command.  You can type commands directly into the console, but they will be
-forgotten when you close the session. It is better to enter the commands in the
-script editor, and save the script. This way, you have a complete record of what
-you did, you can easily show others how you did it and you can do it again later
-on if needed. You can copy-paste into the R console, but the Rstudio script
-editor allows you to 'send' the current line or the currently selected text to
-the R console using the `Ctrl-Enter` shortcut.
+command that has been executed.  You can type commands directly into the console
+and press `Enter` to execute those commands, but they will be forgotten when you
+close the session. It is better to enter the commands in the script editor, and 
+save the script. This way, you have a complete record of what you did, you can 
+easily show others how you did it and you can do it again later on if needed. 
+Rstudio allows you to execute commands directly from the script editor by using 
+the `Ctrl-Enter` shortcut. The command on the current line in the script or all 
+of the commands in the currently selected text will be sent to the console and 
+executed when you press `Ctrl-Enter`.
 
 At some point in your analysis you may want to check the content of variable or
 the structure of an object, without necessarily keep a record of it in your
-script. You can type these commands directly in the console. RStudio provides
-the `Ctrl-1` and `Ctrl-2` shortcuts allow you to jump between the script and the
-console windows.
+script. You can type these commands and execute them directly in the console. 
+RStudio provides the `Ctrl-1` and `Ctrl-2` shortcuts allow you to jump between 
+the script and the console windows.
 
 If R is ready to accept commands, the R console shows a `>` prompt. If it
 receives a command (by typing, copy-pasting or sent from the script editor using
@@ -102,7 +111,7 @@ for statistics but also data science. Inspired by the programming language S.
 ## Commenting
 
 Use `#` signs to comment. Comment liberally in your R scripts. Anything to the
-right of a `#` is ignored by R.
+right of a `#` is ignored by R, meaning it won't be executed.
 
 ## Assignment operator
 
