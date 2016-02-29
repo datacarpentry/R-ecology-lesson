@@ -183,10 +183,9 @@ the order of geoms and adjust transparency to see how to build up your plot in
 layers.
 
 > ### Challenges
->
-> - Replace the box plot with a violin plot (`geom_violin`)
+> - Replace the box plot with a violin plot (see `geom_violin`)
 > - Represent weight on the log10 scale (see `scale_y_log10`)
-> - Modify the orientation of the x-axis labels (here, species_id)
+> - Modify the orientation of the x-axis labels (here, species_id) to be turned by 90 degrees 
 
 > - Create boxplot for `hindfoot_length`.
 
