@@ -40,6 +40,19 @@ Your working directory should now look like this:
 
 ![How it should look like at the beginning of this lesson](img/r_starting_how_it_should_like.png)
 
+## Organizing your working directory
+
+Using the same folder structure within your project (working directory) will help keep things organized, and will also make it easy find/file things in the future. This can be especially helpful when you have multiple projects. In general, you may create directories (folders) for **scripts**, **data**, and **documents**.  
+
+ - **`data/`** You should separate the original data (raw data) from intermediate datasets that
+you may create for the need of a particular analysis. For instance, you may want to create a `data/` directory within your working directory that stores the raw data, and have a `data_output/` directory for intermediate datasets and a `figure_output/` directory for the plots you will generate.  
+ - **`documents/` ** This would be a place to keep outlines, drafts, text.
+ - **`scripts/`** This would be the location to keep your R scripts for different analyses or plotting, and potentially a separate folder for your functions (more on that later!)
+
+You may want additional directories or subdirectories depending on your project needs, but these should form the backbone of your working directory. For this workshop, you only need a `data/` folder.
+
+![Example of a working directory structure](img/R-ecology-work_dir_structure.png)
+
 # Presentation of RStudio
 
 Let's start by learning about our tool.
@@ -54,8 +67,8 @@ Let's start by learning about our tool.
 
 The basis of programming is that we write down instructions for the computer to
 follow, and then we tell the computer to follow those instructions. We write, or
-*code*, instructions in R because it is a common language that both the computer 
-and we can understand. We call the instructions *commands* and we tell the 
+*code*, instructions in R because it is a common language that both the computer
+and we can understand. We call the instructions *commands* and we tell the
 computer to follow the instructions by *executing* (also called *running*) those
 commands.
 
@@ -66,18 +79,18 @@ The console window (in RStudio, the bottom left panel) is the place where R is
 waiting for you to tell it what to do, and where it will show the results of a
 command that has been executed.  You can type commands directly into the console
 and press `Enter` to execute those commands, but they will be forgotten when you
-close the session. It is better to enter the commands in the script editor, and 
-save the script. This way, you have a complete record of what you did, you can 
-easily show others how you did it and you can do it again later on if needed. 
-Rstudio allows you to execute commands directly from the script editor by using 
-the `Ctrl-Enter` shortcut. The command on the current line in the script or all 
-of the commands in the currently selected text will be sent to the console and 
+close the session. It is better to enter the commands in the script editor, and
+save the script. This way, you have a complete record of what you did, you can
+easily show others how you did it and you can do it again later on if needed.
+Rstudio allows you to execute commands directly from the script editor by using
+the `Ctrl-Enter` shortcut. The command on the current line in the script or all
+of the commands in the currently selected text will be sent to the console and
 executed when you press `Ctrl-Enter`.
 
 At some point in your analysis you may want to check the content of variable or
 the structure of an object, without necessarily keep a record of it in your
-script. You can type these commands and execute them directly in the console. 
-RStudio provides the `Ctrl-1` and `Ctrl-2` shortcuts allow you to jump between 
+script. You can type these commands and execute them directly in the console.
+RStudio provides the `Ctrl-1` and `Ctrl-2` shortcuts allow you to jump between
 the script and the console windows.
 
 If R is ready to accept commands, the R console shows a `>` prompt. If it
@@ -118,7 +131,7 @@ right of a `#` is ignored by R, meaning it won't be executed.
 `<-` is the assignment operator. It assigns values on the right to objects on
 the left. So, after executing `x <- 3`, the value of `x` is `3`. The arrow can
 be read as 3 **goes into** `x`.  For historical reasons, you can also use `=` for assignments,
-but not in every context. Because of the [slight](http://blog.revolutionanalytics.com/2008/12/use-equals-or-arrow-for-assignment.html) [differences](https://web.archive.org/web/20130610005305/https://stat.ethz.ch/pipermail/r-help/2009-March/191462.html) in syntax, 
+but not in every context. Because of the [slight](http://blog.revolutionanalytics.com/2008/12/use-equals-or-arrow-for-assignment.html) [differences](https://web.archive.org/web/20130610005305/https://stat.ethz.ch/pipermail/r-help/2009-March/191462.html) in syntax,
 it is good practice to use always `<-` for assignments, except when specifying the values of
 arguments in functions, when only `=` should be used, see below.
 
@@ -149,7 +162,7 @@ even a data set. We'll see that when we read data files in to R.
 
 Arguments can be anything, not only numbers or filenames, but also other
 objects. Exactly what each argument means differs per function, and must be
-looked up in the documentation (see below). Some functions take arguments which 
+looked up in the documentation (see below). Some functions take arguments which
 may either be specified by the user, or if left out, take on a *default* value: these
 are called *options*. Options are typically used to alter the way the
 function operates, such as whether it ignores 'bad values', or what symbol to use in a plot.
@@ -162,7 +175,7 @@ Let's try a function that can take multiple arguments: `round`.
 round(3.14159)
 ```
 
-Here, we've called `round` with just one argument, `3.14159`, and it has returned the value `3`. 
+Here, we've called `round` with just one argument, `3.14159`, and it has returned the value `3`.
 That's because the default is to round to the nearest whole number. If we want more digits we can see
 how to do that by getting information about the `round` function.
 We can use `args(round)` or look at the
@@ -196,20 +209,10 @@ And if you do name the arguments, you can switch their order:
 round(digits=2, x=3.14159)
 ```
 
-It's good practice to put the non-optional arguments (like the number you're rounding) 
+It's good practice to put the non-optional arguments (like the number you're rounding)
 first in your function call, and to specify the names of all optional arguments.
-If you don't, someone reading your code might have to look up definition of a 
+If you don't, someone reading your code might have to look up definition of a
 function with unfamiliar arguments to understand what you're doing.
-
-
-
-## Organizing your working directory
-
-You should separate the original data (raw data) from intermediate datasets that
-you may create for the need of a particular analysis. For instance, you may want
-to create a `data/` directory within your working directory that stores the raw
-data, and have a `data_output/` directory for intermediate datasets and a
-`figure_output/` directory for the plots you will generate.
 
 
 ## Seeking help
