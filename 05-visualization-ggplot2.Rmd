@@ -182,9 +182,14 @@ Notice how the boxplot layer is on top of the jitter layer? Play around with
 the order of geoms and adjust transparency to see how to build up your plot in
 layers.
 
-> ### Challenge
+> ### Challenges
 >
+> Replace the box plot with a violin plot (`geom_violin`)
+> Represent weight on the log10 scale (see `scale_y_log10`)
+> Modify the orientation of the x-axis labels (here, species_id)
+
 > Create boxplot for `hindfoot_length`.
+
 
 ## Plotting time series data
 
