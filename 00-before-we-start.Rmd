@@ -17,7 +17,8 @@ knitr::opts_chunk$set(results='hide', fig.path='img/r-lesson-')
 > * Introduce participants to the RStudio interface
 > * Set up participants to have a working directory with a `data/` folder inside
 > * Introduce R syntax
-> * Point to relevant information on how to get help, and understand how to ask well formulated questions
+> * Point to relevant information on how to get help, and understand how to ask
+    well formulated questions
 
 ------------
 
@@ -88,10 +89,10 @@ come back with a new `>`-prompt to wait for new commands.
 If R is still waiting for you to enter more data because it isn't complete yet,
 the console will show a `+` prompt. It means that you haven't finished entering
 a complete command. This is because you have not 'closed' a parenthesis or
-quotation, i.e. you don't have the same number of left-parentheses as right-parentheses, or
-the same number of opening and closing quotation marks. If you're in Rstudio and this happens, click inside the console
-window and press `Esc`; this will cancel the incomplete command and return you to the
-`>` prompt.
+quotation, i.e. you don't have the same number of left-parentheses as
+right-parentheses, or the same number of opening and closing quotation marks. If
+you're in Rstudio and this happens, click inside the console window and press
+`Esc`; this will cancel the incomplete command and return you to the `>` prompt.
 
 # Basics of R
 
@@ -118,7 +119,7 @@ right of a `#` is ignored by R, meaning it won't be executed.
 `<-` is the assignment operator. It assigns values on the right to objects on
 the left. So, after executing `x <- 3`, the value of `x` is `3`. The arrow can
 be read as 3 **goes into** `x`.  For historical reasons, you can also use `=` for assignments,
-but not in every context. Because of the [slight](http://blog.revolutionanalytics.com/2008/12/use-equals-or-arrow-for-assignment.html) [differences](https://web.archive.org/web/20130610005305/https://stat.ethz.ch/pipermail/r-help/2009-March/191462.html) in syntax, 
+but not in every context. Because of the [slight](http://blog.revolutionanalytics.com/2008/12/use-equals-or-arrow-for-assignment.html) [differences](https://web.archive.org/web/20130610005305/https://stat.ethz.ch/pipermail/r-help/2009-March/191462.html) in syntax,
 it is good practice to use always `<-` for assignments, except when specifying the values of
 arguments in functions, when only `=` should be used, see below.
 
@@ -128,11 +129,11 @@ same time as the <kbd>-</kbd> key) will write ` <- ` in a single keystroke.
 ## Functions and their arguments
 
 Functions are "canned scripts" that automate something complicated or convenient
-or both.  Many functions are predefined, or can be made available by importing R *packages*
-(more on that later). A function usually gets one or more
-inputs called *arguments*. Functions often (but not always) return a *value*. A
-typical example would be the function `sqrt()`. The input (the argument) must be
-a number, and the return value (in fact, the output) is the square root of that
+or both.  Many functions are predefined, or can be made available by importing R
+*packages* (more on that later). A function usually gets one or more inputs
+called *arguments*. Functions often (but not always) return a *value*. A typical
+example would be the function `sqrt()`. The input (the argument) must be a
+number, and the return value (in fact, the output) is the square root of that
 number. Executing a function ('running it') is called *calling* the function. An
 example of a function call is:
 
@@ -140,8 +141,7 @@ example of a function call is:
 
 Here, the value of `a` is given to the `sqrt()` function, the `sqrt()` function
 calculates the square root, and returns the value which is then assigned to
-variable `b`. This function is very simple, because it takes just one
-argument.
+variable `b`. This function is very simple, because it takes just one argument.
 
 The return 'value' of a function need not be numerical (like that of `sqrt()`),
 and it also does not need to be a single item: it can be a set of things, or
@@ -149,12 +149,12 @@ even a data set. We'll see that when we read data files in to R.
 
 Arguments can be anything, not only numbers or filenames, but also other
 objects. Exactly what each argument means differs per function, and must be
-looked up in the documentation (see below). Some functions take arguments which 
-may either be specified by the user, or if left out, take on a *default* value: these
-are called *options*. Options are typically used to alter the way the
-function operates, such as whether it ignores 'bad values', or what symbol to use in a plot.
-However, if you want something
-specific, you can specify a value of your choice which will be used instead of the default.
+looked up in the documentation (see below). Some functions take arguments which
+may either be specified by the user, or if left out, take on a *default* value:
+these are called *options*. Options are typically used to alter the way the
+function operates, such as whether it ignores 'bad values', or what symbol to
+use in a plot.  However, if you want something specific, you can specify a value
+of your choice which will be used instead of the default.
 
 Let's try a function that can take multiple arguments: `round`.
 
@@ -162,10 +162,10 @@ Let's try a function that can take multiple arguments: `round`.
 round(3.14159)
 ```
 
-Here, we've called `round` with just one argument, `3.14159`, and it has returned the value `3`. 
-That's because the default is to round to the nearest whole number. If we want more digits we can see
-how to do that by getting information about the `round` function.
-We can use `args(round)` or look at the
+Here, we've called `round` with just one argument, `3.14159`, and it has
+returned the value `3`.  That's because the default is to round to the nearest
+whole number. If we want more digits we can see how to do that by getting
+information about the `round` function.  We can use `args(round)` or look at the
 help for this function using `?round`.
 
 ```{r, results='show', purl=FALSE}
@@ -184,7 +184,8 @@ type `digits=2` or however many we want.
 round(3.14159, digits=2)
 ```
 
-If you provide the arguments in the exact same order as they are defined you don't have to name them:
+If you provide the arguments in the exact same order as they are defined you
+don't have to name them:
 
 ```{r, results='show', purl=FALSE}
 round(3.14159, 2)
@@ -196,10 +197,11 @@ And if you do name the arguments, you can switch their order:
 round(digits=2, x=3.14159)
 ```
 
-It's good practice to put the non-optional arguments (like the number you're rounding) 
-first in your function call, and to specify the names of all optional arguments.
-If you don't, someone reading your code might have to look up definition of a 
-function with unfamiliar arguments to understand what you're doing.
+It's good practice to put the non-optional arguments (like the number you're
+rounding) first in your function call, and to specify the names of all optional
+arguments.  If you don't, someone reading your code might have to look up
+definition of a function with unfamiliar arguments to understand what you're
+doing.
 
 
 
@@ -232,7 +234,8 @@ args(lm)
 
 If you are looking for a function to do a particular task, you can use
 `help.search()` function, which is called by the double question mark `??`.
-However, this only looks through the installed packages for help pages with a match to your search request
+However, this only looks through the installed packages for help pages with a
+match to your search request
 
 ```{r, eval=FALSE, purl=FALSE}
 ??kruskal
@@ -280,8 +283,8 @@ the description of your problem. When appropriate, try to generalize what you
 are doing so even people who are not in your field can understand the question.
 
 To share an object with someone else, if it's relatively small, you can use the
-function `dput()`. It will output R code that can be used to recreate the exact same
-object as the one in memory:
+function `dput()`. It will output R code that can be used to recreate the exact
+same object as the one in memory:
 
 ```{r, results='show', purl=FALSE}
 dput(head(iris)) # iris is an example data.frame that comes with R
@@ -297,8 +300,8 @@ saveRDS(iris, file="/tmp/iris.rds")
 ```
 
 The content of this file is however not human readable and cannot be posted
-directly on stackoverflow. It can however be sent to someone by email who can read
-it with this command:
+directly on stackoverflow. It can however be sent to someone by email who can
+read it with this command:
 
 ```{r, eval=FALSE, purl=FALSE}
 some_data <- readRDS(file="~/Downloads/iris.rds")
@@ -317,17 +320,18 @@ sessionInfo()
 
 * Your friendly colleagues: if you know someone with more experience than you,
   they might be able and willing to help you.
-* [StackOverflow](http://stackoverflow.com/questions/tagged/r): if your question hasn't been answered before and is well
-  crafted, chances are you will get an answer in less than 5 min.
-* The [R-help mailing list](https://stat.ethz.ch/mailman/listinfo/r-help): it is read by a
-  lot of people (including most of the R core team), a lot of people post to it,
-  but the tone can be pretty dry, and it is not always very welcoming to new
-  users. If your question is valid, you are likely to get an answer very fast
-  but don't expect that it will come with smiley faces. Also, here more than
-  everywhere else, be sure to use correct vocabulary (otherwise you might get an
-  answer pointing to the misuse of your words rather than answering your
-  question). You will also have more success if your question is about a base
-  function rather than a specific package.
+* [StackOverflow](http://stackoverflow.com/questions/tagged/r): if your question
+  hasn't been answered before and is well crafted, chances are you will get an
+  answer in less than 5 min.
+* The [R-help mailing list](https://stat.ethz.ch/mailman/listinfo/r-help): it is
+  read by a lot of people (including most of the R core team), a lot of people
+  post to it, but the tone can be pretty dry, and it is not always very
+  welcoming to new users. If your question is valid, you are likely to get an
+  answer very fast but don't expect that it will come with smiley faces. Also,
+  here more than everywhere else, be sure to use correct vocabulary (otherwise
+  you might get an answer pointing to the misuse of your words rather than
+  answering your question). You will also have more success if your question is
+  about a base function rather than a specific package.
 * If your question is about a specific package, see if there is a mailing list
   for it. Usually it's included in the DESCRIPTION file of the package that can
   be accessed using `packageDescription("name-of-package")`. You may also want
@@ -341,4 +345,5 @@ sessionInfo()
   mailing lists.
 * [How to ask for R help](http://blog.revolutionanalytics.com/2014/01/how-to-ask-for-r-help.html)
   useful guidelines
-* [This blog post by Jon Skeet](http://codeblog.jonskeet.uk/2010/08/29/writing-the-perfect-question/) has quite comprehensive advice on how to ask programming questions.
+* [This blog post by Jon Skeet](http://codeblog.jonskeet.uk/2010/08/29/writing-the-perfect-question/)
+  has quite comprehensive advice on how to ask programming questions.

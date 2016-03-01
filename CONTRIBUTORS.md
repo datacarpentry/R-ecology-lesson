@@ -16,7 +16,7 @@ Chihuahuan Desert ecosystem near Portal, Arizona, USA. Ecology 90:1708.
 http://esapubs.org/archive/ecol/E090/118/
 
 A simplified version of this data, suitable for teaching is available on
-[figshare](http://figshare.com/articles/Portal_Project_Teaching_Database/1314459).
+[figshare](https://dx.doi.org/10.6084/m9.figshare.1314459.v5).
 
 ### R materials
 
