@@ -53,7 +53,7 @@ load into memory (as a `data.frame`) the content of the CSV file.
 To download the data into the `data/` subdirectory, do:
 
 ```{r, eval=FALSE, purl=TRUE}
-download.file("http://files.figshare.com/2236372/combined.csv",
+download.file("https://ndownloader.figshare.com/files/2292169",
               "data/portal_data_joined.csv")
 ```
 
