@@ -38,13 +38,13 @@ R can connect to databases through a number of packages.  In our case we we will
 use [RSQLite](http://cran.r-project.org/web/packages/RSQLite/index.html) to
 connect to existing SQLite3 databases.  However you should be able to connect on
 almost any database in R via
-JDBC[http://cran.r-project.org/web/packages/RJDBC/index.html](http://cran.r-project.org/web/packages/RJDBC/index.html)
+[JDBC](http://cran.r-project.org/web/packages/RJDBC/index.html)
 or [ODBC](http://cran.r-project.org/web/packages/RODBC/index.html), or specific
 database packages (such as we are doing, or
 [MySQL](http://cran.r-project.org/web/packages/RMySQL/index.html) ).
 
 To begin these exercises we'll connect to the mammal database you've just
-created. We'll need the RSQLite library to be sure to install it
+created. We'll need the RSQLite package so be sure to install it
 first. `install.packages('RSQLite')`.
 
 ```{r connect, purl=FALSE}
@@ -58,15 +58,16 @@ Now we're connected to our database, let's explore the table structure in the
 database.  Remember we could see the list of tables in the SQLite Firefox
 gui. In R, we'll need to use SQL commands.
 
-Running SQL queries from R
-----
-We can view information about the database structure which includes a list of all tables like this:
+# Running SQL queries from R
+
+We can view information about the database structure which includes a list of
+all tables like this:
 
 ```{r Get Table information, eval=FALSE}
 dbGetQuery(conn, "SELECT type, tbl_name  FROM sqlite_master")
 ```
 
-The `RSQLite` library also has functions that can be used to list both tables
+The `RSQLite` package also has functions that can be used to list both tables
 and fields within a table. Here you can see the types and names of fields and
 get a count of records.
 
@@ -77,26 +78,25 @@ dbListFields(conn,"surveys")
 dbGetQuery(conn,"SELECT count(*) FROM surveys")
 ```
 
-It's good practice to always close a connection that you open in R. Let's do that next.
-Note that once you've closed a connection, you will have to open a new connection to
-query and import the data again.
+It's good practice to always close a connection that you open in R. Let's do
+that next. Note that once you've closed a connection, you will have to open
+a new connection to query and import the data again.
 
-```{r close Connection}
+```{r close Connection, purl=FALSE}
 dbDisconnect(conn)
 ```
 
-We've now covered the basics of connecting to a database and exploring its basic
-structure. From here we can write queries to access subsets of the data within
-our database, using the same methods that we used in SQLite.
+We've now covered the basics of connecting to a database and exploring its
+basic structure. From here we can write queries to access subsets of the data
+within our database, using the same methods that we used in SQLite.
 
-Let's try some basic queries from the previous lesson.  Querying simply takes a
-connection to a database and query as inputs and returns a dataframe with the
+Let's try some basic queries from the previous lesson.  Querying simply takes
+a connection to a database and query as inputs and returns a dataframe with the
 results.
 
 Before we can do this, we need to re-establish a database connection.
 
-```{r reconnect}
-library(RSQLite)
+```{r reconnect, purl=FALSE}
 ## Set dbname and driver out of convenience
 myDB <- "data/portal_mammals.sqlite"
 conn <- dbConnect(drv = SQLite(), dbname= myDB)
@@ -105,35 +105,37 @@ conn <- dbConnect(drv = SQLite(), dbname= myDB)
 Next, we build our query. We can use the `dbGetQuery` function to run the query
 and access data returned in a `data.frame` object.
 
-
 ```{r basic queries, purl=FALSE}
 q <- 'SELECT DISTINCT year, species_id FROM surveys'
 result <-  dbGetQuery(conn, q)
 head(result)
 ```
 
-
 > ## Challenge
 >
->  1. Write a query that returns counts of genus by plot_id
->  2. You can join multiple tables together in SQL using the following syntax where foreign key refers to your unique id (eg species_id):
- SELECT table.col, table.col
- FROM table1 JOIN table2
- ON table1.key = table2.key
- JOIN table3 ON table2.key = table3.key
-
-> Write a query that joins the species, plot and survey tables together. The query should return counts of genus by plot type. Then create a bar plot of your results in R.
+>  1. Write a query that returns counts of genus by `plot_id`
+>  2. You can join multiple tables together in SQL using the following syntax
+>     where foreign key refers to your unique id (e.g., `species_id`):
+>
+>     SELECT table.col, table.col
+>     FROM table1 JOIN table2  
+>     ON table1.key = table2.key  
+>     JOIN table3 ON table2.key = table3.key
+>
+> Write a query that joins the species, plot, and survey tables together. The
+> query should return counts of genus by plot type. Then create a bar plot of
+> your results in R.
 
 
 ```{r genus by type, purl=FALSE}
 q <- "SELECT d.plot_type , c.genus, count(*)
 FROM
-(SELECT a.genus, b.plot
+(SELECT a.genus, b.plot_id
 FROM species a
 JOIN surveys b
 ON a.species_id = b.species_id) c
 JOIN plots d
-ON c.plot = d.plot_id
+ON c.plot_id = d.plot_id
 GROUP BY d.plot_type,c.genus"
 
 result <- dbGetQuery(conn,q)
@@ -224,11 +226,14 @@ flat files.
 
 > ## Challenge
 >
-> Add the remaining tables to the existing database. Open the new database using the Firefox SQLite manager to verify that the database was built successfully.
+> Add the remaining tables to the existing database. Open the new database
+> using the Firefox SQLite manager to verify that the database was built
+> successfully.
 
 
 > ## Extra Challenge
 >
-> Run some of your queries from earlier in the lesson to verify that you have faithfully recreated the mammals database.
+> Run some of your queries from earlier in the lesson to verify that you have
+> faithfully recreated the mammals database.
 
 Don't forget to close your database connection when you are done with it!
