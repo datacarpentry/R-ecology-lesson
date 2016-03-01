@@ -50,8 +50,8 @@ You can get output from R simply by typing in math in the console
 ```
 
 However, to do useful and interesting things, we need to assign _values_ to
-_objects_. To create objects, we need to give it a name followed by the
-assignment operator `<-` and the value we want to give it:
+_objects_. To create an object, we need to give it a name followed by the
+assignment operator `<-`, and the value we want to give it:
 
 ```{r, purl=FALSE}
 weight_kg <- 55
@@ -59,10 +59,10 @@ weight_kg <- 55
 
 Objects can be given any name such as `x`, `current_temperature`, or
 `subject_id`. You want your object names to be explicit and not too long. They
-cannot start with a number (`2x` is not valid but `x2` is). R is case sensitive
+cannot start with a number (`2x` is not valid, but `x2` is). R is case sensitive
 (e.g., `weight_kg` is different from `Weight_kg`). There are some names that
-cannot be used because they represent the names of fundamental functions in R
-(e.g., `if`, `else`, `for`, see
+cannot be used because they are the names of fundamental functions in R (e.g.,
+`if`, `else`, `for`, see
 [here](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Reserved.html)
 for a complete list). In general, even if it's allowed, it's best to not use
 other function names (e.g., `c`, `T`, `mean`, `data`, `df`, `weights`). In doubt
@@ -80,8 +80,9 @@ When assigning a value to an object, R does not print anything. You can force to
 print the value by using parentheses or by typing the name:
 
 ```{r, purl=FALSE}
-(weight_kg <- 55)
-weight_kg
+weight_kg <- 55    # doesn't print anything
+(weight_kg <- 55)  # but putting parenthesis around the call prints the value of `weight_kg`
+weight_kg          # and so does typing the name of the object
 ```
 
 Now that R has `weight_kg` in memory, we can do arithmetic with it. For
@@ -94,15 +95,14 @@ times the weight in kg):
 
 We can also change a variable's value by assigning it a new one:
 
-
 ```{r, purl=FALSE}
 weight_kg <- 57.5
 2.2 * weight_kg
 ```
 
 This means that assigning a value to one variable does not change the values of
-other variables.  For example, let's store the animal's weight in pounds in a
-variable.
+other variables.  For example, let's store the animal's weight in pounds in a new
+variable, `weight_lb`:
 
 ```{r, purl=FALSE}
 weight_lb <- 2.2 * weight_kg
@@ -116,7 +116,7 @@ weight_kg <- 100
 
 What do you think is the current content of the object `weight_lb`? 126.5 or 200?
 
-### Exercise
+### Challenge
 
 What are the values after each statement in the following?
 
@@ -132,7 +132,6 @@ mass_index <- mass/age  # mass_index?
 
 ```{r, echo=FALSE, purl=TRUE}
 ### Vectors and data types
-
 ```
 
 A vector is the most common and basic data structure in R, and is pretty much
@@ -177,24 +176,23 @@ str(weights)
 str(animals)
 ```
 
-You can add elements to your vector simply by using the `c()` function:
+You can add elements to your vector by using the `c()` function:
 
 ```{r, purl=FALSE}
-weights <- c(weights, 90) # adding at the end
-weights <- c(30, weights) # adding at the beginning
+weights <- c(weights, 90) # adding at the end of the vector
+weights <- c(30, weights) # adding at the beginning of the vector
 weights
 ```
 
 What happens here is that we take the original vector `weights`, and we are
 adding another item first to the end of the other ones, and then another item at
-the beginning. We can do this over and over again to build a vector or a
-dataset. As we program, this may be useful to autoupdate results that we are
+the beginning. We can do this over and over again to grow a vector, or assemble
+a dataset. As we program, this may be useful to add results that we are
 collecting or calculating.
 
 We just saw 2 of the 6 **atomic vector** types that R uses: `"character"` and
-`"numeric"`.
-These are the basic building blocks that all R objects are built from.
-The other 4 are:
+`"numeric"`. These are the basic building blocks that all R objects are built
+from. The other 4 are:
 
 * `"logical"` for `TRUE` and `FALSE` (the boolean data type)
 * `"integer"` for integer numbers (e.g., `2L`, the `L` indicates to R that it's an integer)
@@ -204,13 +202,15 @@ The other 4 are:
 
 ## Subsetting Vectors
 
-If we want to extract individual values from within a vector, we can use the square brackets `[]` with the position number inside the brackets.
+If we want to extract individual values from within a vector, we can use the
+square brackets `[]` with the position number inside the brackets:
 
 ```{r, purl=FALSE}
 animals[2]
 ```
 
-We can also extract multiple values using the combine `c()` function within the square brackets
+We can also extract multiple values using the combine `c()` function within the
+square brackets:
 
 ```{r, purl=FALSE}
 weights[c(1, 3)]
@@ -219,45 +219,42 @@ weights[c(1, 3)]
 Vectors are one of the many **data structures** that R uses. Other important
 ones are lists (`list`), matrices (`matrix`), data frames (`data.frame`) and
 factors (`factor`).
-We are now going to use our "surveys" dataset to explore the `data.frame` data
-structure, which is one of the most common types of R objects we will see.
+
+Next, we will use the "surveys" dataset to explore the
+`data.frame` data structure, which is one of the most common types of R objects.
 
 ### Challenge
 
-* **Question**: We’ve seen that atomic vectors be of type character, numeric,
-integer, logical, and complex. But what happens if we try to mix these types in
-a single vector?
+* **Question**: We’ve seen that atomic vectors can be of type character,
+  numeric, integer, and logical. But what happens if we try to mix these types in
+  a single vector?
 * _Answer_: R implicitly converts them to all be the same type
 
-* **Question**: What will happen in each of these examples?
-* _Answer_: Vectors of class character, numeric, character, character (last one
-is the same as the first, a trick question).
+* **Question**: Why do you think it happens?
+* _Answer_: Vectors can be of only one data type. R tries to convert (=coerce)
+  the content of this vector to find a "common denominator".
 
-* **Question**: Why do you think that R behaves like this?
-* _Answer_: from the docs: “The output type is determined from the highest type
-of the components in the hierarchy NULL < raw < logical < integer < double <
-complex < character < list < expression.” More informatively, R tries not to
-lose any information, so it converts e.g. numerics into characters because every
-numeric can be represented as a character, but not vice-versa.
+* **Question**: Can you draw a diagram that represents the hierarchy of the data
+  types?
+* _Answer_: `logical --> numeric --> character <-- logical`
 
-```{r, echo=FALSE, purl=TRUE}
-# We’ve seen that atomic vectors be of type character, numeric, integer,
-# logical, and complex. But what happens if we try to mix these types in a single
-# vector?
+```{r, echo=TRUE, eval=FALSE, purl=TRUE}
+## We’ve seen that atomic vectors can be of type character, numeric, integer, and
+## logical. But what happens if we try to mix these types in a single
+## vector?
 
+## What will happen in each of these examples? (hint: use `class()` to
+## check the data type of your object)
+num_char <- c(1, 2, 3, 'a')
 
-# What will happen in each of these examples?
-mixed <- c(1, 2, 3, 'a')
-class(mixed)
+num_logical <- c(1, 2, 3, TRUE)
 
-mixed <- c(1, 2, 3, TRUE)
-class(mixed)
+char_logical <- c('a', 'b', 'c', TRUE)
 
-mixed <- c('a', 'b', 'c', TRUE)
-class(mixed)
+tricky <- c(1, 2, 3, '4')
 
-mixed <- c(1, 2, 3, '4')
-class(mixed)
+## Why do you think it happens?
 
-# Why do you think that R behaves like this?
+## Can you draw a diagram that represents the hierarchy of the data
+## types?
 ```

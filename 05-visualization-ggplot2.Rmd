@@ -24,8 +24,8 @@ capabilities in basic R, but ggplot2 adds more powerful plotting capabilities.
 
 > ### Learning Objectives
 >
-> -	Visualize some of the [mammals data](http://figshare.com/articles/Portal_Project_Teaching_Database/1314459)
-> from Figshare [surveys.csv](http://files.figshare.com/1919744/surveys.csv)
+> -	Visualize some of the [mammals data](https://dx.doi.org/10.6084/m9.figshare.1314459.v5)
+> from Figshare [surveys.csv](https://ndownloader.figshare.com/files/2292172)
 > -	Understand how to plot these data using R ggplot2 package. For more details
 > on using ggplot2 see [official documentation](http://docs.ggplot2.org/current/).
 > -	Building step by step complex plots with the ggplot2 package
@@ -44,7 +44,7 @@ library(dplyr)
 Load data directly from figshare.
 
 ```{r}
-surveys_raw <- read.csv("http://files.figshare.com/1919744/surveys.csv")
+surveys_raw <- read.csv("https://ndownloader.figshare.com/files/2292172")
 ```
 
 `surveys.csv` data contains some measurements of the animals caught in plots.
