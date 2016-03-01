@@ -183,9 +183,19 @@ the order of geoms and adjust transparency to see how to build up your plot in
 layers.
 
 > ### Challenges
-> - Replace the box plot with a violin plot (see `geom_violin`)
-> - Represent weight on the log10 scale (see `scale_y_log10`)
-> - Modify the orientation of the x-axis labels (here, species_id) to be turned by 90 degrees 
+
+Boxplots are useful summaries, but hide the *shape* of the distribution. For example, if
+there is a bimodal distribution, this would not be observed with a boxplot.  An alternative is
+a violin plot (sometimes known as a beanplot), where the shape (of the density of points) is 
+drawn.
+
+> - Replace the box plot with a violin plot; see `geom_violin()`
+
+In many types of data, it is important to consider the *scale* of the observations.  For example, it may be
+worth changing the scale of the axis to better distribute the observations in the space of the plot.
+In ggplot2, changing the scale of the axes is done similarly as other components (i.e., by incrementally adding them).
+
+> - Represent weight on the log10 scale; see `scale_y_log10()`
 
 > - Create boxplot for `hindfoot_length`.
 
