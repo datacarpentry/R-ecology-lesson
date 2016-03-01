@@ -182,9 +182,24 @@ Notice how the boxplot layer is on top of the jitter layer? Play around with
 the order of geoms and adjust transparency to see how to build up your plot in
 layers.
 
-> ### Challenge
->
-> Create boxplot for `hindfoot_length`.
+> ### Challenges
+
+Boxplots are useful summaries, but hide the *shape* of the distribution. For example, if
+there is a bimodal distribution, this would not be observed with a boxplot.  An alternative is
+a violin plot (sometimes known as a beanplot), where the shape (of the density of points) is 
+drawn.
+
+> - Replace the box plot with a violin plot; see `geom_violin()`
+
+In many types of data, it is important to consider the *scale* of the observations.  For example, it may be
+worth changing the scale of the axis to better distribute the observations in the space of the plot.
+Changing the scale of the axes is done similarly to adding/modifying other components
+(i.e., by incrementally adding commands).
+
+> - Represent weight on the log10 scale; see `scale_y_log10()`
+
+> - Create boxplot for `hindfoot_length`.
+
 
 ## Plotting time series data
 
