@@ -4,30 +4,28 @@
 ### Creating objects in R
 
 ### Vectors and data types
-
-# We’ve seen that atomic vectors be of type character, numeric, integer,
-# logical, and complex. But what happens if we try to mix these types in a single
-# vector?
-
-
-# What will happen in each of these examples?
-mixed <- c(1, 2, 3, 'a')
-class(mixed)
-
-mixed <- c(1, 2, 3, TRUE)
-class(mixed)
-
-mixed <- c('a', 'b', 'c', TRUE)
-class(mixed)
-
-mixed <- c(1, 2, 3, '4')
-class(mixed)
-
-# Why do you think that R behaves like this?
+## ## We’ve seen that atomic vectors can be of type character, numeric, integer, and
+## ## logical. But what happens if we try to mix these types in a single
+## ## vector?
+## 
+## ## What will happen in each of these examples? (hint: use `class()` to
+## ## check the data type of your object)
+## num_char <- c(1, 2, 3, 'a')
+## 
+## num_logical <- c(1, 2, 3, TRUE)
+## 
+## char_logical <- c('a', 'b', 'c', TRUE)
+## 
+## tricky <- c(1, 2, 3, '4')
+## 
+## ## Why do you think it happens?
+## 
+## ## Can you draw a diagram that represents the hierarchy of the data
+## ## types?
 
 
 ### Presentation of the survey data
-## download.file("http://files.figshare.com/2236372/combined.csv",
+## download.file("https://ndownloader.figshare.com/files/2292169",
 ##               "data/portal_data_joined.csv")
 
 ## Challenge
@@ -52,7 +50,9 @@ as.numeric(as.character(f)) ## works...
 as.numeric(levels(f))[f]    ## The recommended way.
 ## Challenge
 ##
-## How can you recreate this plot with "control" listed
+## * In which order are the treatments listed?
+##
+## * How can you recreate this plot with "control" listed
 ## last instead of first?
 exprmt <- factor(c("treat1", "treat2", "treat1", "treat3", "treat1", "control",
                    "treat1", "treat2", "treat3"))
@@ -61,6 +61,9 @@ barplot(table(exprmt))
 
 
 ## The data.frame class
+## Compare the output of these examples, and compare the difference between when
+## the data are being read as `character`, and when they are being read as
+## `factor`.
 example_data <- data.frame(animal=c("dog", "cat", "sea cucumber", "sea urchin"),
                            feel=c("furry", "furry", "squishy", "spiny"),
                            weight=c(45, 8, 1.1, 0.8))
@@ -73,19 +76,24 @@ str(example_data)
 ## ##  There are a few mistakes in this hand crafted `data.frame`,
 ## ##  can you spot and fix them? Don't hesitate to experiment!
 ## author_book <- data.frame(author_first=c("Charles", "Ernst", "Theodosius"),
-##                              author_last=c(Darwin, Mayr, Dobzhansky),
-##                              year=c(1942, 1970))
+##                               author_last=c(Darwin, Mayr, Dobzhansky),
+##                               year=c(1942, 1970))
 ## ## Challenge:
-## ##   Can you predict the class for each of the columns in the following example?
-## ##   Check your guesses using `str(country_climate)`. Are they what you expected?
-## ##   Why? why not?
+## ##   Can you predict the class for each of the columns in the following
+## ##   example?
+## ##   Check your guesses using `str(country_climate)`:
+## ##   * Are they what you expected? Why? why not?
+## ##   * What would have been different if we had added `stringsAsFactors = FALSE`
+## ##     to this call?
+## ##   * What would you need to change to ensure that each column had the
+## ##     accurate data type?
 ## country_climate <- data.frame(country=c("Canada", "Panama", "South Africa", "Australia"),
 ##                                climate=c("cold", "hot", "temperate", "hot/temperate"),
 ##                                temperature=c(10, 30, 18, "15"),
 ##                                northern_hemisphere=c(TRUE, TRUE, FALSE, "FALSE"),
 ##                                has_kangaroo=c(FALSE, FALSE, FALSE, 1))
 
-## Indexing and sequences
+## Indexing and Sequences
 
 ### The function `nrow()` on a `data.frame` returns the number of
 ### rows. Use it, in conjuction with `seq()` to create a new

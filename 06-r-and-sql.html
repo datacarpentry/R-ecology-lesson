@@ -7,18 +7,19 @@
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <meta name="author" content="Data Carpentry contributors" />
 
 
 <title>SQL databases and R</title>
 
-<script src="libs/jquery-1.11.0/jquery.min.js"></script>
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="libs/bootstrap-3.3.1/css/bootstrap.min.css" rel="stylesheet" />
-<script src="libs/bootstrap-3.3.1/js/bootstrap.min.js"></script>
-<script src="libs/bootstrap-3.3.1/shim/html5shiv.min.js"></script>
-<script src="libs/bootstrap-3.3.1/shim/respond.min.js"></script>
+<link href="libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
 
 
 <style type="text/css">code{white-space: pre;}</style>
@@ -81,24 +82,70 @@ code {
   color: inherit;
   background-color: rgba(0, 0, 0, 0.04);
 }
-img { 
-  max-width:100%; 
-  height: auto; 
+img {
+  max-width:100%;
+  height: auto;
+}
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
 }
 </style>
+
+
 <div class="container-fluid main-container">
 
+<!-- tabsets -->
+<script src="libs/navigation-1.0/tabsets.js"></script>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
 
-<div id="header">
+<!-- code folding -->
+
+
+
+
+
+
+<div class="fluid-row" id="header">
+
+
 <h1 class="title">SQL databases and R</h1>
 <h4 class="author"><em>Data Carpentry contributors</em></h4>
+
 </div>
 
 <div id="TOC">
 <ul>
 <li><a href="#introduction">Introduction</a></li>
-<li><a href="#connecting-r-to-sqlite-databases">Connecting R to sqlite databases</a><ul>
-<li><a href="#running-sql-queries-from-r">Running SQL queries from R</a></li>
+<li><a href="#connecting-r-to-sqlite-databases">Connecting R to sqlite databases</a></li>
+<li><a href="#running-sql-queries-from-r">Running SQL queries from R</a><ul>
 <li><a href="#creating-a-sqlite-db-using-r">Creating a SQLite DB using R</a></li>
 </ul></li>
 </ul>
@@ -120,8 +167,8 @@ img {
 </div>
 <div id="connecting-r-to-sqlite-databases" class="section level1">
 <h1>Connecting R to sqlite databases</h1>
-<p>R can connect to databases through a number of packages. In our case we we will use <a href="http://cran.r-project.org/web/packages/RSQLite/index.html">RSQLite</a> to connect to existing SQLite3 databases. However you should be able to connect on almost any database in R via JDBC<a href="http://cran.r-project.org/web/packages/RJDBC/index.html"><a href="http://cran.r-project.org/web/packages/RJDBC/index.html" class="uri">http://cran.r-project.org/web/packages/RJDBC/index.html</a></a> or <a href="http://cran.r-project.org/web/packages/RODBC/index.html">ODBC</a>, or specific database packages (such as we are doing, or <a href="http://cran.r-project.org/web/packages/RMySQL/index.html">MySQL</a> ).</p>
-<p>To begin these exercises we’ll connect to the mammal database you’ve just created. We’ll need the RSQLite library to be sure to install it first. <code>install.packages('RSQLite')</code>.</p>
+<p>R can connect to databases through a number of packages. In our case we we will use <a href="http://cran.r-project.org/web/packages/RSQLite/index.html">RSQLite</a> to connect to existing SQLite3 databases. However you should be able to connect on almost any database in R via <a href="http://cran.r-project.org/web/packages/RJDBC/index.html">JDBC</a> or <a href="http://cran.r-project.org/web/packages/RODBC/index.html">ODBC</a>, or specific database packages (such as we are doing, or <a href="http://cran.r-project.org/web/packages/RMySQL/index.html">MySQL</a> ).</p>
+<p>To begin these exercises we’ll connect to the mammal database you’ve just created. We’ll need the RSQLite package so be sure to install it first. <code>install.packages('RSQLite')</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(RSQLite)</code></pre></div>
 <pre><code>#&gt; Loading required package: DBI</code></pre>
 <pre><code>#&gt; Loading required package: methods</code></pre>
@@ -129,11 +176,12 @@ img {
 myDB &lt;-<span class="st"> &quot;data/portal_mammals.sqlite&quot;</span>
 conn &lt;-<span class="st"> </span><span class="kw">dbConnect</span>(<span class="dt">drv =</span> <span class="kw">SQLite</span>(), <span class="dt">dbname=</span> myDB)</code></pre></div>
 <p>Now we’re connected to our database, let’s explore the table structure in the database. Remember we could see the list of tables in the SQLite Firefox gui. In R, we’ll need to use SQL commands.</p>
-<div id="running-sql-queries-from-r" class="section level2">
-<h2>Running SQL queries from R</h2>
+</div>
+<div id="running-sql-queries-from-r" class="section level1">
+<h1>Running SQL queries from R</h1>
 <p>We can view information about the database structure which includes a list of all tables like this:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dbGetQuery</span>(conn, <span class="st">&quot;SELECT type, tbl_name  FROM sqlite_master&quot;</span>)</code></pre></div>
-<p>The <code>RSQLite</code> library also has functions that can be used to list both tables and fields within a table. Here you can see the types and names of fields and get a count of records.</p>
+<p>The <code>RSQLite</code> package also has functions that can be used to list both tables and fields within a table. Here you can see the types and names of fields and get a count of records.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dbListTables</span>(conn)
 <span class="co">#get list of fields in the surveys table</span>
 <span class="kw">dbListFields</span>(conn,<span class="st">&quot;surveys&quot;</span>)
@@ -143,8 +191,7 @@ conn &lt;-<span class="st"> </span><span class="kw">dbConnect</span>(<span class
 <p>We’ve now covered the basics of connecting to a database and exploring its basic structure. From here we can write queries to access subsets of the data within our database, using the same methods that we used in SQLite.</p>
 <p>Let’s try some basic queries from the previous lesson. Querying simply takes a connection to a database and query as inputs and returns a dataframe with the results.</p>
 <p>Before we can do this, we need to re-establish a database connection.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(RSQLite)
-## Set dbname and driver out of convenience
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Set dbname and driver out of convenience
 myDB &lt;-<span class="st"> &quot;data/portal_mammals.sqlite&quot;</span>
 conn &lt;-<span class="st"> </span><span class="kw">dbConnect</span>(<span class="dt">drv =</span> <span class="kw">SQLite</span>(), <span class="dt">dbname=</span> myDB)</code></pre></div>
 <p>Next, we build our query. We can use the <code>dbGetQuery</code> function to run the query and access data returned in a <code>data.frame</code> object.</p>
@@ -154,21 +201,22 @@ result &lt;-<span class="st">  </span><span class="kw">dbGetQuery</span>(conn, q
 <blockquote>
 <h2 id="challenge">Challenge</h2>
 <ol style="list-style-type: decimal">
-<li>Write a query that returns counts of genus by plot_id</li>
-<li>You can join multiple tables together in SQL using the following syntax where foreign key refers to your unique id (eg species_id): SELECT table.col, table.col FROM table1 JOIN table2 ON table1.key = table2.key JOIN table3 ON table2.key = table3.key</li>
+<li>Write a query that returns counts of genus by <code>plot_id</code></li>
+<li><p>You can join multiple tables together in SQL using the following syntax where foreign key refers to your unique id (e.g., <code>species_id</code>):</p>
+<p>SELECT table.col, table.col FROM table1 JOIN table2<br />
+ON table1.key = table2.key<br />
+JOIN table3 ON table2.key = table3.key</p></li>
 </ol>
-</blockquote>
-<blockquote>
-<p>Write a query that joins the species, plot and survey tables together. The query should return counts of genus by plot type. Then create a bar plot of your results in R.</p>
+<p>Write a query that joins the species, plot, and survey tables together. The query should return counts of genus by plot type. Then create a bar plot of your results in R.</p>
 </blockquote>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">q &lt;-<span class="st"> &quot;SELECT d.plot_type , c.genus, count(*)</span>
 <span class="st">FROM</span>
-<span class="st">(SELECT a.genus, b.plot</span>
+<span class="st">(SELECT a.genus, b.plot_id</span>
 <span class="st">FROM species a</span>
 <span class="st">JOIN surveys b</span>
 <span class="st">ON a.species_id = b.species_id) c</span>
 <span class="st">JOIN plots d</span>
-<span class="st">ON c.plot = d.plot_id</span>
+<span class="st">ON c.plot_id = d.plot_id</span>
 <span class="st">GROUP BY d.plot_type,c.genus&quot;</span>
 
 result &lt;-<span class="st"> </span><span class="kw">dbGetQuery</span>(conn,q)
@@ -191,7 +239,6 @@ years &lt;-<span class="st"> </span><span class="kw">seq</span>(yearRange[,<span
 rCount &lt;-<span class="st"> </span><span class="kw">dbGetQuery</span>(conn,q)
 <span class="kw">head</span>(rCount)</code></pre></div>
 <p>With the nested paste commands we were able to construct a query programatically, without having to type out all the years. This could also be done with a for loop, especially if the query to be constructed is more complicated.</p>
-</div>
 <div id="creating-a-sqlite-db-using-r" class="section level2">
 <h2>Creating a SQLite DB using R</h2>
 <p>We can use R to create a new database and associated structure (also known as the schema) databases from existing <code>csv</code> files. Let’s recreate the mammals database that we’ve been working with, in R. First let’s read in the <code>csv</code> files.</p>
@@ -220,6 +267,8 @@ myConn &lt;-<span class="st"> </span><span class="kw">dbConnect</span>(<span cla
 <p>Don’t forget to close your database connection when you are done with it!</p>
 </div>
 </div>
+
+
 
 
 </div>

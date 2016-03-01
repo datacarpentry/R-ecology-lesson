@@ -7,18 +7,19 @@
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <meta name="author" content="Data Carpentry contributors" />
 
 
 <title>Aggregating and analyzing data with dplyr</title>
 
-<script src="libs/jquery-1.11.0/jquery.min.js"></script>
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="libs/bootstrap-3.3.1/css/bootstrap.min.css" rel="stylesheet" />
-<script src="libs/bootstrap-3.3.1/js/bootstrap.min.js"></script>
-<script src="libs/bootstrap-3.3.1/shim/html5shiv.min.js"></script>
-<script src="libs/bootstrap-3.3.1/shim/respond.min.js"></script>
+<link href="libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
 
 
 <style type="text/css">code{white-space: pre;}</style>
@@ -81,22 +82,68 @@ code {
   color: inherit;
   background-color: rgba(0, 0, 0, 0.04);
 }
-img { 
-  max-width:100%; 
-  height: auto; 
+img {
+  max-width:100%;
+  height: auto;
+}
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
 }
 </style>
+
+
 <div class="container-fluid main-container">
 
+<!-- tabsets -->
+<script src="libs/navigation-1.0/tabsets.js"></script>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
 
-<div id="header">
+<!-- code folding -->
+
+
+
+
+
+
+<div class="fluid-row" id="header">
+
+
 <h1 class="title">Aggregating and analyzing data with dplyr</h1>
 <h4 class="author"><em>Data Carpentry contributors</em></h4>
+
 </div>
 
 <div id="TOC">
 <ul>
-<li><a href="#data-manipulation-using-dplyr">Data manipulation using dplyr</a><ul>
+<li><a href="#data-manipulation-using-dplyr">Data Manipulation using dplyr</a><ul>
 <li><a href="#what-is-dplyr">What is <code>dplyr</code>?</a><ul>
 <li><a href="#selecting-columns-and-filtering-rows">Selecting columns and filtering rows</a></li>
 <li><a href="#pipes">Pipes</a></li>
@@ -109,16 +156,16 @@ img {
 
 <hr />
 <div id="data-manipulation-using-dplyr" class="section level1">
-<h1>Data manipulation using dplyr</h1>
+<h1>Data Manipulation using dplyr</h1>
 <p>Bracket subsetting is handy, but it can be cumbersome and difficult to read, especially for complicated operations. Enter <code>dplyr</code>. <code>dplyr</code> is a package for making data manipulation easier.</p>
 <p>Packages in R are basically sets of additional functions that let you do more stuff. The functions we’ve been using so far, like <code>str()</code> or <code>data.frame()</code>, come built into R; packages give you access to more of them. Before you use a package for the first time you need to install it on your machine, and then you should to import it in every subsequent R session when you’ll need it.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;dplyr&quot;</span>)</code></pre></div>
 <p>You might get asked to choose a CRAN mirror – this is basically asking you to choose a site to download the package from. The choice doesn’t matter too much; we recommend the RStudio mirror.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;dplyr&quot;</span>)          ## load</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;dplyr&quot;</span>)    ## load the package</code></pre></div>
 <div id="what-is-dplyr" class="section level2">
 <h2>What is <code>dplyr</code>?</h2>
 <p>The package <code>dplyr</code> provides easy tools for the most common data manipulation tasks. It is built to work directly with data frames. The thinking behind it was largely inspired by the package <code>plyr</code> which has been in use for some time but suffered from being slow in some cases.<code>dplyr</code> addresses this by porting much of the computation to C++. An additional feature is the ability to work with data stored directly in an external database. The benefits of doing this are that the data can be managed natively in a relational database, queries can be conducted on that database, and only the results of the query returned.</p>
-<p>This addresses a common problem with R in that all operations are conducted in memory and thus the amount of data you can work with is limited by available memory. The database connections essentially remove that limitation in that you can have a database of many 100s GB, conduct queries on it directly and pull back just what you need for analysis in R.</p>
+<p>This addresses a common problem with R in that all operations are conducted in memory and thus the amount of data you can work with is limited by available memory. The database connections essentially remove that limitation in that you can have a database of many 100s GB, conduct queries on it directly, and pull back just what you need for analysis in R.</p>
 <div id="selecting-columns-and-filtering-rows" class="section level3">
 <h3>Selecting columns and filtering rows</h3>
 <p>We’re going to learn some of the most common <code>dplyr</code> functions: <code>select()</code>, <code>filter()</code>, <code>mutate()</code>, <code>group_by()</code>, and <code>summarize()</code>. To select columns of a data frame, use <code>select()</code>. The first argument to this function is the data frame (<code>surveys</code>), and the subsequent arguments are the columns to keep.</p>
@@ -139,18 +186,24 @@ img {
 <span class="st">  </span><span class="kw">select</span>(species_id, sex, weight)
 
 surveys_sml</code></pre></div>
-<p>Note that the final dataframe is the leftmost part of this expression. If you find that confusing, you can use the <code>-&gt;</code> operator, which might make it easier to envision the data “flowing” from left to right:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys %&gt;%
-<span class="st">  </span><span class="kw">filter</span>(weight &lt;<span class="st"> </span><span class="dv">5</span>) %&gt;%
-<span class="st">  </span><span class="kw">select</span>(species_id, sex, weight) -&gt;<span class="st"> </span>surveys_sml</code></pre></div>
+<p>Note that the final data frame is the leftmost part of this expression.</p>
 <blockquote>
 <h3 id="challenge" class="challenge">Challenge</h3>
 <p>Using pipes, subset the data to include rows before 1995. Retain columns <code>year</code>, <code>sex</code>, and <code>weight.</code></p>
 </blockquote>
+<!---
+
+```r
+## Answer
+surveys %>%
+    filter(year < 1995) %>%
+    select(year, sex, weight)
+```
+--->
 </div>
 <div id="mutate" class="section level3">
 <h3>Mutate</h3>
-<p>Frequently you’ll want to create new columns based on the values in existing columns, for example to do unit conversions or find the ratio of values in two columns. For this we’ll use <code>mutate()</code>.</p>
+<p>Frequently you’ll want to create new columns based on the values in existing columns, for example to do unit conversions, or find the ratio of values in two columns. For this we’ll use <code>mutate()</code>.</p>
 <p>To create a new column of weight in kg:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys %&gt;%
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">weight_kg =</span> weight /<span class="st"> </span><span class="dv">1000</span>)</code></pre></div>
@@ -160,8 +213,8 @@ surveys_sml</code></pre></div>
 <span class="st">  </span>head</code></pre></div>
 <p>The first few rows are full of NAs, so if we wanted to remove those we could insert a <code>filter()</code> in this chain:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys %&gt;%
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">weight_kg =</span> weight /<span class="st"> </span><span class="dv">1000</span>) %&gt;%
 <span class="st">  </span><span class="kw">filter</span>(!<span class="kw">is.na</span>(weight)) %&gt;%
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">weight_kg =</span> weight /<span class="st"> </span><span class="dv">1000</span>) %&gt;%
 <span class="st">  </span>head</code></pre></div>
 <p><code>is.na()</code> is a function that determines whether something is or is not an <code>NA</code>. The <code>!</code> symbol negates it, so we’re asking for everything that is not an <code>NA</code>.</p>
 </div>
@@ -179,7 +232,7 @@ surveys_sml</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys %&gt;%
 <span class="st">  </span><span class="kw">group_by</span>(sex, species_id) %&gt;%
 <span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_weight =</span> <span class="kw">mean</span>(weight, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</code></pre></div>
-<p>Looks like most of these species were never weighed. We could then discard rows where <code>mean_weight</code> is <code>NaN</code> (<code>NaN</code> refers to “Not a Number”) using <code>filter()</code>:</p>
+<p>It looks like most of these species were never weighed. We could then discard rows where <code>mean_weight</code> is <code>NaN</code> (<code>NaN</code> refers to “Not a Number”) using <code>filter()</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys %&gt;%
 <span class="st">  </span><span class="kw">group_by</span>(sex, species_id) %&gt;%
 <span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_weight =</span> <span class="kw">mean</span>(weight, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) %&gt;%
@@ -195,19 +248,30 @@ surveys_sml</code></pre></div>
 <h3 id="challenge-1" class="challenge">Challenge</h3>
 <p>How many times was each <code>plot_type</code> surveyed?</p>
 </blockquote>
+<!---
+
+--->
 <blockquote>
 <h3 id="challenge-2" class="challenge">Challenge</h3>
 <p>Use <code>group_by()</code> and <code>summarize()</code> to find the mean, min, and max hindfoot length for each species.</p>
 </blockquote>
+<!---
+
+--->
 <blockquote>
 <h3 id="challenge-3" class="challenge">Challenge</h3>
 <p>What was the heaviest animal measured in each year? Return the columns <code>year</code>, <code>genus</code>, <code>species</code>, and <code>weight</code>.</p>
 </blockquote>
+<!---
+
+--->
 <p><a href="http://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">Handy dplyr cheatsheet</a></p>
 <p><em>Much of this lesson was copied or adapted from Jeff Hollister’s <a href="http://usepa.github.io/introR/2015/01/14/03-Clean/">materials</a></em></p>
 </div>
 </div>
 </div>
+
+
 
 
 </div>

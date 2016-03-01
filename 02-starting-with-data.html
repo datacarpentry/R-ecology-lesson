@@ -7,18 +7,19 @@
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <meta name="author" content="Data Carpentry contributors" />
 
 
 <title>Starting with data</title>
 
-<script src="libs/jquery-1.11.0/jquery.min.js"></script>
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="libs/bootstrap-3.3.1/css/bootstrap.min.css" rel="stylesheet" />
-<script src="libs/bootstrap-3.3.1/js/bootstrap.min.js"></script>
-<script src="libs/bootstrap-3.3.1/shim/html5shiv.min.js"></script>
-<script src="libs/bootstrap-3.3.1/shim/respond.min.js"></script>
+<link href="libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
 
 
 <style type="text/css">code{white-space: pre;}</style>
@@ -81,27 +82,73 @@ code {
   color: inherit;
   background-color: rgba(0, 0, 0, 0.04);
 }
-img { 
-  max-width:100%; 
-  height: auto; 
+img {
+  max-width:100%;
+  height: auto;
+}
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
 }
 </style>
+
+
 <div class="container-fluid main-container">
 
+<!-- tabsets -->
+<script src="libs/navigation-1.0/tabsets.js"></script>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
 
-<div id="header">
+<!-- code folding -->
+
+
+
+
+
+
+<div class="fluid-row" id="header">
+
+
 <h1 class="title">Starting with data</h1>
 <h4 class="author"><em>Data Carpentry contributors</em></h4>
+
 </div>
 
 <div id="TOC">
 <ul>
 <li><a href="#presentation-of-the-survey-data">Presentation of the Survey Data</a><ul>
 <li><a href="#challenge">Challenge</a></li>
+</ul></li>
 <li><a href="#factors">Factors</a><ul>
 <li><a href="#converting-factors">Converting factors</a></li>
 <li><a href="#challenge-1">Challenge</a></li>
-</ul></li>
 </ul></li>
 </ul>
 </div>
@@ -111,14 +158,14 @@ img {
 <h2 id="learning-objectives">Learning Objectives</h2>
 <ul>
 <li>load external data (CSV files) in memory using the survey table (<code>surveys.csv</code>) as an example</li>
-<li>explore the structure and the content of the data in R</li>
-<li>understand what are factors and how to manipulate them</li>
+<li>explore the structure and the content of a data frame in R</li>
+<li>understand what factors are and how to manipulate them</li>
 </ul>
 </blockquote>
 <hr />
-<div id="presentation-of-the-survey-data" class="section level1">
-<h1>Presentation of the Survey Data</h1>
-<p>We are studying the species and weight of animals caught in plots in our study area. The dataset is stored as a <code>csv</code> file: each row holds information for a single animal, and the columns represent:</p>
+<div id="presentation-of-the-survey-data" class="section level2">
+<h2>Presentation of the Survey Data</h2>
+<p>We are studying the species and weight of animals caught in plots in our study area. The dataset is stored as a CSV file: each row holds information for a single animal, and the columns represent:</p>
 <table>
 <thead>
 <tr class="header">
@@ -183,12 +230,11 @@ img {
 </table>
 <p>We are going to use the R function <code>download.file()</code> to download the CSV file that contains the survey data from figshare, and we will use <code>read.csv()</code> to load into memory (as a <code>data.frame</code>) the content of the CSV file.</p>
 <p>To download the data into the <code>data/</code> subdirectory, do:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">download.file</span>(<span class="st">&quot;http://files.figshare.com/2236372/combined.csv&quot;</span>,
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">download.file</span>(<span class="st">&quot;https://ndownloader.figshare.com/files/2292169&quot;</span>,
               <span class="st">&quot;data/portal_data_joined.csv&quot;</span>)</code></pre></div>
 <p>You are now ready to load the data:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;data/portal_data_joined.csv&#39;</span>)</code></pre></div>
-<p>This statement doesn’t produce any output because assignment doesn’t display anything. If we want to check that our data has been loaded, we can print the variable’s value: <code>surveys</code></p>
-<p>Alternatively, wrapping an assignment in parentheses will perform the assignment and display it at the same time.</p>
+<p>This statement doesn’t produce any output because, as you might recall, assignment doesn’t display anything. If we want to check that our data has been loaded, we can print the variable’s value: <code>surveys</code>. Alternatively, wrapping an assignment in parentheses will perform the assignment and display it at the same time.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(surveys &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;data/portal_data_joined.csv&#39;</span>))</code></pre></div>
 <p>Wow… that was a lot of output. At least it means the data loaded properly. Let’s check the top (the first 6 lines) of this <code>data.frame</code> using the function <code>head()</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(surveys)</code></pre></div>
@@ -206,7 +252,7 @@ img {
 #&gt; 4 Neotoma albigula Rodent   Control
 #&gt; 5 Neotoma albigula Rodent   Control
 #&gt; 6 Neotoma albigula Rodent   Control</code></pre>
-<p>An important feature of a <code>data.frame</code>is that each column is a vector, with the same type of data. We can see this when inspecting the __str__ucture of a <code>data.frame</code> with the function <code>str()</code>:</p>
+<p>A <code>data.frame</code> is the representation of data in the format of a table where the columns are vectors that all have the same length. Because each column is a vector, they all contain the same type of data. We can see this when inspecting the __str__ucture of a <code>data.frame</code> with the function <code>str()</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(surveys)</code></pre></div>
 <div id="challenge" class="section level3">
 <h3>Challenge</h3>
@@ -216,18 +262,22 @@ img {
 <li>How many rows and how many columns are in this object?</li>
 <li>How many species have been recorded during these surveys?</li>
 </ul>
-<p>As you can see, many of the columns consist of integers, however, the columns <code>species</code> and <code>sex</code> are of a special class called a <code>factor</code>. Before we learn more about the <code>data.frame</code> class, we are going to talk about factors. They are very useful but not necessarily intuitive, and therefore require some attention.</p>
+<!---
+
+--->
+<p>As you can see, many of the columns consist of integers, however, the columns <code>species</code> and <code>sex</code> are of a special class called a <code>factor</code>. Before we learn more about the <code>data.frame</code> class, let’s talk about factors. They are very useful but not necessarily intuitive, and therefore require some attention.</p>
+</div>
 </div>
 <div id="factors" class="section level2">
 <h2>Factors</h2>
-<p>Factors are used to represent categorical data. Factors can be ordered or unordered and are an important class for statistical analysis and for plotting.</p>
+<p>Factors are used to represent categorical data. Factors can be ordered or unordered, and understanding them is necessary for statistical analysis and for plotting.</p>
 <p>Factors are stored as integers, and have labels associated with these unique integers. While factors look (and often behave) like character vectors, they are actually integers under the hood, and you need to be careful when treating them like strings.</p>
-<p>Once created, factors can only contain a pre-defined set values, known as <em>levels</em>. By default, R always sorts <em>levels</em> in alphabetical order. For instance, if you have a factor with 2 levels:</p>
+<p>Once created, factors can only contain a pre-defined set of values, known as <em>levels</em>. By default, R always sorts <em>levels</em> in alphabetical order. For instance, if you have a factor with 2 levels:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sex &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;male&quot;</span>, <span class="st">&quot;female&quot;</span>, <span class="st">&quot;female&quot;</span>, <span class="st">&quot;male&quot;</span>))</code></pre></div>
 <p>R will assign <code>1</code> to the level <code>&quot;female&quot;</code> and <code>2</code> to the level <code>&quot;male&quot;</code> (because <code>f</code> comes before <code>m</code>, even though the first element in this vector is <code>&quot;male&quot;</code>). You can check this by using the function <code>levels()</code>, and check the number of levels using <code>nlevels()</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">levels</span>(sex)
 <span class="kw">nlevels</span>(sex)</code></pre></div>
-<p>Sometimes, the order of the factors does not matter, other times you might want to specify the order because it is meaningful (e.g., “low”, “medium”, “high”) or it is required by particular type of analysis. Additionally, specifying the order of the levels allows us to compare levels:</p>
+<p>Sometimes, the order of the factors does not matter, other times you might want to specify the order because it is meaningful (e.g., “low”, “medium”, “high”) or it is required by a particular type of analysis. Additionally, specifying the order of the levels allows for level comparison:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">food &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;low&quot;</span>, <span class="st">&quot;high&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;high&quot;</span>, <span class="st">&quot;low&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;high&quot;</span>))
 <span class="kw">levels</span>(food)
 food &lt;-<span class="st"> </span><span class="kw">factor</span>(food, <span class="dt">levels=</span><span class="kw">c</span>(<span class="st">&quot;low&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;high&quot;</span>))
@@ -237,23 +287,29 @@ food &lt;-<span class="st"> </span><span class="kw">factor</span>(food, <span cl
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">food &lt;-<span class="st"> </span><span class="kw">factor</span>(food, <span class="dt">levels=</span><span class="kw">c</span>(<span class="st">&quot;low&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;high&quot;</span>), <span class="dt">ordered=</span><span class="ot">TRUE</span>)
 <span class="kw">levels</span>(food)
 <span class="kw">min</span>(food) ## works!</code></pre></div>
-<p>In R’s memory, these factors are represented by numbers (1, 2, 3). They are better than using simple integer labels because factors are self describing: <code>&quot;low&quot;</code>, <code>&quot;medium&quot;</code>, <code>&quot;high&quot;</code>&quot; is more descriptive than <code>1</code>, <code>2</code>, <code>3</code>. Which is low? You wouldn’t be able to tell with just integer data. Factors have this information built in. It is particularly helpful when there are many levels (like the species in our example data set).</p>
+<p>In R’s memory, these factors are represented by integers (1, 2, 3), but are more informative than integers because factors are self describing: <code>&quot;low&quot;</code>, <code>&quot;medium&quot;</code>, <code>&quot;high&quot;</code>&quot; is more descriptive than <code>1</code>, <code>2</code>, <code>3</code>. Which is low? You wouldn’t be able to tell just from the integer data. Factors, on the other hand, have this information built in. It is particularly helpful when there are many levels (like the species in our example data set).</p>
 <div id="converting-factors" class="section level3">
 <h3>Converting factors</h3>
-<p>If you need to convert a factor to a character vector, simply use <code>as.character(x)</code>.</p>
+<p>If you need to convert a factor to a character vector, you simply use <code>as.character(x)</code>.</p>
 <p>Converting a factors where the levels appear as numbers (such as in concentration levels) to a numeric vector is however a little trickier, and you have to go via a character vector. Compare:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">f &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">2</span>))
 <span class="kw">as.numeric</span>(f)               ## wrong! and there is no warning...
 <span class="kw">as.numeric</span>(<span class="kw">as.character</span>(f)) ## works...
 <span class="kw">as.numeric</span>(<span class="kw">levels</span>(f))[f]    ## The recommended way.</code></pre></div>
-<p>Notice that in this last approach, three important steps have happened * We have obtained the factor levels using <code>levels(f)</code> * We have converted these levels to numeric values using <code>as.numeric(levels(f))</code> * We have then accessed these numeric values using the underlying integers of the vector <code>f</code> inside the square brackets</p>
+<p>Notice that in this last approach, three important steps occur: * We obtain all the factor levels using <code>levels(f)</code> * We convert these levels to numeric values using <code>as.numeric(levels(f))</code> * We then access these numeric values using the underlying integers of the vector <code>f</code> inside the square brackets</p>
 </div>
 <div id="challenge-1" class="section level3">
 <h3>Challenge</h3>
-<p>The function <code>table()</code> tabulates observations and can be used to create bar plots quickly. For instance, the code below gives you a barplot of the number of observations. How can you recreate this plot with “control” listed last instead of first?</p>
+<p>The function <code>table()</code> tabulates observations and can be used to create bar plots quickly. For instance, the code below gives you a barplot of the number of observations.</p>
+<ul>
+<li>In which order are the treatments listed?</li>
+<li>How can you recreate this plot with “control” listed last instead of first?</li>
+</ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Challenge
 ##
-## How can you recreate this plot with &quot;control&quot; listed
+## * In which order are the treatments listed?
+##
+## * How can you recreate this plot with &quot;control&quot; listed
 ## last instead of first?
 exprmt &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;treat1&quot;</span>, <span class="st">&quot;treat2&quot;</span>, <span class="st">&quot;treat1&quot;</span>, <span class="st">&quot;treat3&quot;</span>, <span class="st">&quot;treat1&quot;</span>, <span class="st">&quot;control&quot;</span>,
                    <span class="st">&quot;treat1&quot;</span>, <span class="st">&quot;treat2&quot;</span>, <span class="st">&quot;treat3&quot;</span>))
@@ -266,6 +322,10 @@ exprmt &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class=
 <!---
 
 ```r
+## Answers
+##
+## * The treatments are listed in alphabetical order because they are factors.
+## * By redefining the order of the levels
 exprmt <- factor(exprmt, levels=c("treat1", "treat2", "treat3", "control"))
 barplot(table(exprmt))
 ```
@@ -274,7 +334,8 @@ barplot(table(exprmt))
 --->
 </div>
 </div>
-</div>
+
+
 
 
 </div>
