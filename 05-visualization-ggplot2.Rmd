@@ -193,7 +193,8 @@ drawn.
 
 In many types of data, it is important to consider the *scale* of the observations.  For example, it may be
 worth changing the scale of the axis to better distribute the observations in the space of the plot.
-In ggplot2, changing the scale of the axes is done similarly as other components (i.e., by incrementally adding them).
+Changing the scale of the axes is done similarly to adding/modifying other components
+(i.e., by incrementally adding commands).
 
 > - Represent weight on the log10 scale; see `scale_y_log10()`
 
