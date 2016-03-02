@@ -13,10 +13,6 @@ knitr::opts_chunk$set(fig.keep='last')
 source("setup.R")
 ```
 
-Authors: **Mateusz Kuzak**, **Diana Marek**, **Hedi Peterson**
-
-
-
 #### Disclaimer
 
 We will be using the functions in the ggplot2 package. There are basic plotting
