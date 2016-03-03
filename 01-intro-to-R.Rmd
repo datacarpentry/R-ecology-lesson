@@ -200,22 +200,6 @@ from. The other 4 are:
   `1+4i`) and that's all we're going to say about them
 * `"raw"` that we won't discuss further
 
-## Subsetting Vectors
-
-If we want to extract individual values from within a vector, we can use the
-square brackets `[]` with the position number inside the brackets:
-
-```{r, purl=FALSE}
-animals[2]
-```
-
-We can also extract multiple values using the combine `c()` function within the
-square brackets:
-
-```{r, purl=FALSE}
-weights[c(1, 3)]
-```
-
 Vectors are one of the many **data structures** that R uses. Other important
 ones are lists (`list`), matrices (`matrix`), data frames (`data.frame`) and
 factors (`factor`).
