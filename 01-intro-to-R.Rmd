@@ -204,8 +204,6 @@ Vectors are one of the many **data structures** that R uses. Other important
 ones are lists (`list`), matrices (`matrix`), data frames (`data.frame`) and
 factors (`factor`).
 
-Next, we will use the "surveys" dataset to explore the
-`data.frame` data structure, which is one of the most common types of R objects.
 
 ### Challenge
 
@@ -242,3 +240,33 @@ tricky <- c(1, 2, 3, '4')
 ## Can you draw a diagram that represents the hierarchy of the data
 ## types?
 ```
+
+## Missing data
+
+As R was designed to work with data, it includes the concept of missing data
+(which is uncommon in other programming languages). Missing data are represented
+as `NA`.
+
+```{r, purl=FALSE}
+planets <- c("Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus",
+             "Neptune", NA)
+```
+
+When doing operations on numbers, most functions will return `NA` if the data
+you are working with include missing values. It is a safer behavior as otherwise
+you may overlook that you are dealing with missing data. You can add the
+argument `na.rm=TRUE` to calculate the result while ignoring the missing values.
+
+```{r, purl=FALSE}
+heights <- c(2, 4, 4, NA, 6)
+mean(heights)
+max(heights)
+mean(heights, na.rm = TRUE)
+max(heights, na.rm = TRUE)
+```
+
+If your data include missing values, you may want to become familiar with the
+functions `is.na()`, `na.omit()`, and `complete.cases()`.
+
+Next, we will use the "surveys" dataset to explore the `data.frame` data
+structure, which is one of the most common types of R objects. But first,
