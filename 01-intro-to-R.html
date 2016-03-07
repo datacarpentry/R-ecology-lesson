@@ -147,10 +147,10 @@ $(document).ready(function () {
 <li><a href="#creating-objects">Creating objects</a><ul>
 <li><a href="#challenge">Challenge</a></li>
 </ul></li>
-<li><a href="#vectors-and-data-types">Vectors and data types</a></li>
-<li><a href="#subsetting-vectors">Subsetting Vectors</a><ul>
+<li><a href="#vectors-and-data-types">Vectors and data types</a><ul>
 <li><a href="#challenge-1">Challenge</a></li>
 </ul></li>
+<li><a href="#missing-data">Missing data</a></li>
 </ul>
 </div>
 
@@ -240,15 +240,7 @@ weights</code></pre></div>
 <li><code>&quot;complex&quot;</code> to represent complex numbers with real and imaginary parts (e.g., <code>1+4i</code>) and that’s all we’re going to say about them</li>
 <li><code>&quot;raw&quot;</code> that we won’t discuss further</li>
 </ul>
-</div>
-<div id="subsetting-vectors" class="section level2">
-<h2>Subsetting Vectors</h2>
-<p>If we want to extract individual values from within a vector, we can use the square brackets <code>[]</code> with the position number inside the brackets:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">animals[<span class="dv">2</span>]</code></pre></div>
-<p>We can also extract multiple values using the combine <code>c()</code> function within the square brackets:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">weights[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>)]</code></pre></div>
 <p>Vectors are one of the many <strong>data structures</strong> that R uses. Other important ones are lists (<code>list</code>), matrices (<code>matrix</code>), data frames (<code>data.frame</code>) and factors (<code>factor</code>).</p>
-<p>Next, we will use the “surveys” dataset to explore the <code>data.frame</code> data structure, which is one of the most common types of R objects.</p>
 <div id="challenge-1" class="section level3">
 <h3>Challenge</h3>
 <ul>
@@ -278,6 +270,20 @@ tricky &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">
 ## Can you draw a diagram that represents the hierarchy of the data
 ## types?</code></pre></div>
 </div>
+</div>
+<div id="missing-data" class="section level2">
+<h2>Missing data</h2>
+<p>As R was designed to work with data, it includes the concept of missing data (which is uncommon in other programming languages). Missing data are represented as <code>NA</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">planets &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Mercury&quot;</span>, <span class="st">&quot;Venus&quot;</span>, <span class="st">&quot;Earth&quot;</span>, <span class="st">&quot;Mars&quot;</span>, <span class="st">&quot;Jupiter&quot;</span>, <span class="st">&quot;Saturn&quot;</span>, <span class="st">&quot;Uranus&quot;</span>,
+             <span class="st">&quot;Neptune&quot;</span>, <span class="ot">NA</span>)</code></pre></div>
+<p>When doing operations on numbers, most functions will return <code>NA</code> if the data you are working with include missing values. It is a safer behavior as otherwise you may overlook that you are dealing with missing data. You can add the argument <code>na.rm=TRUE</code> to calculate the result while ignoring the missing values.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">heights &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="ot">NA</span>, <span class="dv">6</span>)
+<span class="kw">mean</span>(heights)
+<span class="kw">max</span>(heights)
+<span class="kw">mean</span>(heights, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
+<span class="kw">max</span>(heights, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<p>If your data include missing values, you may want to become familiar with the functions <code>is.na()</code>, <code>na.omit()</code>, and <code>complete.cases()</code>.</p>
+<p>Next, we will use the “surveys” dataset to explore the <code>data.frame</code> data structure, which is one of the most common types of R objects. But first,</p>
 </div>
 
 

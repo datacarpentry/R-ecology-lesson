@@ -147,8 +147,9 @@ $(document).ready(function () {
 <li><a href="#challenge">Challenge</a></li>
 </ul></li>
 <li><a href="#inspecting-data.frame-objects">Inspecting <code>data.frame</code> Objects</a></li>
-<li><a href="#indexing-and-sequences">Indexing and Sequences</a><ul>
+<li><a href="#indexing-sequences-and-subsetting">Indexing, Sequences, and Subsetting</a><ul>
 <li><a href="#challenge-1">Challenge</a></li>
+<li><a href="#conditional-subsetting">Conditional subsetting</a></li>
 </ul></li>
 </ul>
 </div>
@@ -245,8 +246,8 @@ example_data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<s
 </ul>
 <p>Note: most of these functions are “generic”, they can be used on other types of objects besides <code>data.frame</code>.</p>
 </div>
-<div id="indexing-and-sequences" class="section level2">
-<h2>Indexing and Sequences</h2>
+<div id="indexing-sequences-and-subsetting" class="section level2">
+<h2>Indexing, Sequences, and Subsetting</h2>
 <p>If we want to extract one or several values from a vector, we must provide one or several indices in square brackets. For instance:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">animals &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;mouse&quot;</span>, <span class="st">&quot;rat&quot;</span>, <span class="st">&quot;dog&quot;</span>, <span class="st">&quot;cat&quot;</span>)
 animals[<span class="dv">2</span>]</code></pre></div>
@@ -289,9 +290,47 @@ surveys$species_id</code></pre></div>
 <!---
 
 ```r
+## Answer
 surveys_by_10 <- surveys[seq(10, nrow(surveys), by=10), ]
 ```
 --->
+</div>
+<div id="conditional-subsetting" class="section level3">
+<h3>Conditional subsetting</h3>
+<p>Besides using the index position of an element in a vector to extract its value as we saw earlier, we can also use logical vectors:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">animals &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;mouse&quot;</span>, <span class="st">&quot;rat&quot;</span>, <span class="st">&quot;dog&quot;</span>, <span class="st">&quot;cat&quot;</span>)
+animals[<span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">TRUE</span>)]</code></pre></div>
+<p>But typically, those logical vectors are not typed by hand but the result of a logical test:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">animals !=<span class="st"> &quot;rat&quot;</span>
+animals[animals !=<span class="st"> &quot;rat&quot;</span>]
+animals[animals ==<span class="st"> &quot;cat&quot;</span>]</code></pre></div>
+<p>If you can combine multiple tests using <code>&amp;</code> (both conditions are true, AND) or <code>|</code> (at least one of the conditions if true, OR):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">animals[animals ==<span class="st"> &quot;cat&quot;</span> &amp;<span class="st"> </span>animals ==<span class="st"> &quot;rat&quot;</span>] <span class="co"># returns nothing</span>
+animals[animals ==<span class="st"> &quot;cat&quot;</span> |<span class="st"> </span>animals ==<span class="st"> &quot;rat&quot;</span>] <span class="co"># returns both rat and cat</span></code></pre></div>
+<p>If you are trying to combine many conditions, it can become tedious to type. The function <code>%in%</code> allows you to test if a value if found in a vector:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">animals %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;rat&quot;</span>, <span class="st">&quot;cat&quot;</span>, <span class="st">&quot;dog&quot;</span>, <span class="st">&quot;duck&quot;</span>)
+animals[animals %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;rat&quot;</span>, <span class="st">&quot;cat&quot;</span>, <span class="st">&quot;dog&quot;</span>, <span class="st">&quot;duck&quot;</span>)]</code></pre></div>
+<p>In addition to testing equalities, you can also test whether the elements of your vector are less than or greater than a given value:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dates &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1960</span>, <span class="dv">1963</span>, <span class="dv">1974</span>, <span class="dv">2015</span>, <span class="dv">2016</span>)
+dates &gt;=<span class="st"> </span><span class="dv">1974</span>
+dates[dates &gt;=<span class="st"> </span><span class="dv">1974</span>]
+dates[dates &gt;<span class="st"> </span><span class="dv">1970</span> &amp;<span class="st"> </span>dates &lt;=<span class="st"> </span><span class="dv">2015</span>]
+dates[dates &lt;<span class="st"> </span><span class="dv">1975</span> |<span class="st"> </span>dates &gt;<span class="st"> </span><span class="dv">2016</span>]</code></pre></div>
+<blockquote>
+<h3 id="challenge-2" class="challenge">Challenge</h3>
+<ul>
+<li>Can you figure out why <code>&quot;four&quot; &gt; &quot;five&quot;</code> returns <code>TRUE</code>?</li>
+</ul>
+</blockquote>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># * Can you figure out why `&quot;four&quot; &gt; &quot;five&quot;` returns `TRUE`?</span></code></pre></div>
+<!--
+
+```r
+## Answers
+## * When using ">" or "<" on strings, R compares their alphabetical order. Here
+##   "four" comes after "five", and therefore is "greater than" it.
+```
+-->
 </div>
 </div>
 
