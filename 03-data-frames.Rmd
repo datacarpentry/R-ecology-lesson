@@ -176,11 +176,11 @@ functions to get a sense of the content/structure of the data.
 Note: most of these functions are "generic", they can be used on other types of
 objects besides `data.frame`.
 
-## Indexing and Sequences
+## Indexing, Sequences, and Subsetting
 
 ```{r, echo=FALSE, purl=TRUE}
 
-## Indexing and Sequences
+## Indexing, Sequences, and Subsetting
 
 ```
 
@@ -258,6 +258,69 @@ to get the full and correct column name.
 
 <!---
 ```{r, purl=FALSE}
+## Answer
 surveys_by_10 <- surveys[seq(10, nrow(surveys), by=10), ]
 ```
 --->
+
+### Conditional subsetting
+
+Besides using the index position of an element in a vector to extract its value
+as we saw earlier, we can also use logical vectors:
+
+```{r, purl=FALSE}
+animals <- c("mouse", "rat", "dog", "cat")
+animals[c(TRUE, FALSE, TRUE, TRUE)]
+```
+
+But typically, those logical vectors are not typed by hand but the result of a
+logical test:
+
+```{r, purl=FALSE}
+animals != "rat"
+animals[animals != "rat"]
+animals[animals == "cat"]
+```
+
+If you can combine multiple tests using `&` (both conditions are true, AND) or `|`
+(at least one of the conditions if true, OR):
+
+```{r, purl=FALSE}
+animals[animals == "cat" & animals == "rat"] # returns nothing
+animals[animals == "cat" | animals == "rat"] # returns both rat and cat
+```
+
+If you are trying to combine many conditions, it can become tedious to type. The
+function `%in%` allows you to test if a value if found in a vector:
+
+```{r, purl=FALSE}
+animals %in% c("rat", "cat", "dog", "duck")
+animals[animals %in% c("rat", "cat", "dog", "duck")]
+```
+
+In addition to testing equalities, you can also test whether the elements of
+your vector are less than or greater than a given value:
+
+```{r, purl=FALSE}
+dates <- c(1960, 1963, 1974, 2015, 2016)
+dates >= 1974
+dates[dates >= 1974]
+dates[dates > 1970 & dates <= 2015]
+dates[dates < 1975 | dates > 2016]
+```
+
+> ### Challenge {.challenge}
+>
+> * Can you figure out why `"four" > "five"` returns `TRUE`?
+
+```{r, purl=TRUE}
+# * Can you figure out why `"four" > "five"` returns `TRUE`?
+```
+
+<!--
+```{r, purl=FALSE}
+## Answers
+## * When using ">" or "<" on strings, R compares their alphabetical order. Here
+##   "four" comes after "five", and therefore is "greater than" it.
+```
+-->

@@ -11,7 +11,7 @@ dataurl: http://dx.doi.org/10.6084/m9.figshare.1314459
 status: Teaching
 ---
 
-#Data Carpentry {{ page.topic }} for {{ page.domain }}
+# Data Carpentry {{ page.topic }} for {{ page.domain }}
 
 
 Data Carpentry's aim is to teach researchers basic concepts, skills,
@@ -54,7 +54,7 @@ for each level and a very brief introduction to plotting.
 
 ## Data
 
-Data files for the lesson are available here: 
+Data files for the lesson are available here:
 [{{page.dataurl %}}]({{page.dataurl %}})
 
 Please download the *\*.csv* (Comma Separated Value) files: *species.csv*, *plots.csv*, *surveys.csv*, and *combined.csv*.
@@ -79,7 +79,3 @@ To most effectively use these materials, please make sure to install everything
 {% endif %}
 
 <p><strong>Twitter</strong>: @datacarpentry</p>
-
-
-
-
