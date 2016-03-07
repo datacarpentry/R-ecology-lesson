@@ -27,3 +27,6 @@ clean-html:
 	-rm *.html
 
 clean: clean-skeleton clean-html clean-md
+
+clean-data:
+	-rm -rf data
