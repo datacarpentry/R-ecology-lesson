@@ -174,7 +174,7 @@ surveys %>%
   tally()
 ```
 
-`group_by()` is often used together with `summarize()` which collapses each
+Here, `tally()` is the action applied to the groups created to `group_by()` and counts the total number of records for each category. `group_by()` is often used together with `summarize()` which collapses each
 group into a single-row summary of that group. So to view mean `weight` by sex:
 
 ```{r, purl = FALSE}

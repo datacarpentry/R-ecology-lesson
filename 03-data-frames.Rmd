@@ -217,7 +217,7 @@ extract some specific data from it, we need to specify the "coordinates" we want
 from it. Row numbers come first, followed by column numbers.
 
 ```{r, purl=FALSE}
-surveys[1]      # first row in the data frame
+surveys[1]      # first column in the data frame
 surveys[1, 1]   # first element in the first column of the data frame
 surveys[1, 6]   # first element in the 6th column
 surveys[1:3, 7] # first three elements in the 7th column

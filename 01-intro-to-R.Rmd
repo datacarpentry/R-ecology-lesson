@@ -269,4 +269,4 @@ If your data include missing values, you may want to become familiar with the
 functions `is.na()`, `na.omit()`, and `complete.cases()`.
 
 Next, we will use the "surveys" dataset to explore the `data.frame` data
-structure, which is one of the most common types of R objects. But first,
+structure, which is one of the most common types of R objects.
