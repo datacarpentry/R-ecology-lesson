@@ -276,7 +276,7 @@ ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = species_id, group 
 ```
 
 Usually plots with white background looks more readable in the publications.
-We can set the background to white using function theme_bw().
+We can set the background to white using the function `theme_bw()`.
 
 ```{r facet-by-species-and-sex-white-bg}
 ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = species_id, group = sex)) +
