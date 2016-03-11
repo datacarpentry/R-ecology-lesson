@@ -41,6 +41,32 @@ Your working directory should now look like this:
 
 ![How it should look like at the beginning of this lesson](img/r_starting_how_it_should_like.png)
 
+## Organizing your working directory
+
+Using the same folder structure across your projects (working directory) will
+help keep things organized, and will also make it easy find/file things in the
+future. This can be especially helpful when you have multiple projects. In
+general, you may create directories (folders) for **scripts**, **data**, and
+**documents**.
+
+ - **`data/`** You should separate the original data (raw data) from
+  intermediate datasets that you may create for the need of a particular
+  analysis. For instance, you may want to create a `data/` directory within your
+  working directory that stores the raw data, and have a `data_output/`
+  directory for intermediate datasets and a `figure_output/` directory for the
+  plots you will generate.
+ - **`documents/`** This would be a place to keep outlines, drafts, text.
+ - **`scripts/`** This would be the location to keep your R scripts for
+   different analyses or plotting, and potentially a separate folder for your
+   functions (more on that later!)
+
+You may want additional directories or subdirectories depending on your project
+needs, but these should form the backbone of your working directory. For this
+workshop, you only need a `data/` folder.
+
+![Example of a working directory structure](img/R-ecology-work_dir_structure.png)
+
+
 # Presentation of RStudio
 
 Let's start by learning about our tool.
@@ -55,8 +81,8 @@ Let's start by learning about our tool.
 
 The basis of programming is that we write down instructions for the computer to
 follow, and then we tell the computer to follow those instructions. We write, or
-*code*, instructions in R because it is a common language that both the computer 
-and we can understand. We call the instructions *commands* and we tell the 
+*code*, instructions in R because it is a common language that both the computer
+and we can understand. We call the instructions *commands* and we tell the
 computer to follow the instructions by *executing* (also called *running*) those
 commands.
 
@@ -67,18 +93,18 @@ The console window (in RStudio, the bottom left panel) is the place where R is
 waiting for you to tell it what to do, and where it will show the results of a
 command that has been executed.  You can type commands directly into the console
 and press `Enter` to execute those commands, but they will be forgotten when you
-close the session. It is better to enter the commands in the script editor, and 
-save the script. This way, you have a complete record of what you did, you can 
-easily show others how you did it and you can do it again later on if needed. 
-Rstudio allows you to execute commands directly from the script editor by using 
-the `Ctrl-Enter` shortcut. The command on the current line in the script or all 
-of the commands in the currently selected text will be sent to the console and 
+close the session. It is better to enter the commands in the script editor, and
+save the script. This way, you have a complete record of what you did, you can
+easily show others how you did it and you can do it again later on if needed.
+Rstudio allows you to execute commands directly from the script editor by using
+the `Ctrl-Enter` shortcut. The command on the current line in the script or all
+of the commands in the currently selected text will be sent to the console and
 executed when you press `Ctrl-Enter`.
 
 At some point in your analysis you may want to check the content of variable or
 the structure of an object, without necessarily keep a record of it in your
-script. You can type these commands and execute them directly in the console. 
-RStudio provides the `Ctrl-1` and `Ctrl-2` shortcuts allow you to jump between 
+script. You can type these commands and execute them directly in the console.
+RStudio provides the `Ctrl-1` and `Ctrl-2` shortcuts allow you to jump between
 the script and the console windows.
 
 If R is ready to accept commands, the R console shows a `>` prompt. If it
@@ -203,15 +229,6 @@ arguments.  If you don't, someone reading your code might have to look up
 definition of a function with unfamiliar arguments to understand what you're
 doing.
 
-
-
-## Organizing your working directory
-
-You should separate the original data (raw data) from intermediate datasets that
-you may create for the need of a particular analysis. For instance, you may want
-to create a `data/` directory within your working directory that stores the raw
-data, and have a `data_output/` directory for intermediate datasets and a
-`figure_output/` directory for the plots you will generate.
 
 
 ## Seeking help
