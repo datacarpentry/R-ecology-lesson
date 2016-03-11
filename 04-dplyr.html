@@ -224,7 +224,7 @@ surveys %>%
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys %&gt;%
 <span class="st">  </span><span class="kw">group_by</span>(sex) %&gt;%
 <span class="st">  </span><span class="kw">tally</span>()</code></pre></div>
-<p><code>group_by()</code> is often used together with <code>summarize()</code> which collapses each group into a single-row summary of that group. So to view mean <code>weight</code> by sex:</p>
+<p>Here, <code>tally()</code> is the action applied to the groups created to <code>group_by()</code> and counts the total number of records for each category. <code>group_by()</code> is often used together with <code>summarize()</code> which collapses each group into a single-row summary of that group. So to view mean <code>weight</code> by sex:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys %&gt;%
 <span class="st">  </span><span class="kw">group_by</span>(sex) %&gt;%
 <span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_weight =</span> <span class="kw">mean</span>(weight, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</code></pre></div>

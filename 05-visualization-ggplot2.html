@@ -339,7 +339,7 @@ surveys_complete &lt;-<span class="st"> </span>surveys_complete %&gt;%
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> yearly_sex_counts, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> n, <span class="dt">color =</span> species_id, <span class="dt">group =</span> sex)) +
 <span class="st">  </span><span class="kw">geom_line</span>() +<span class="st"> </span><span class="kw">facet_wrap</span>(~<span class="st"> </span>species_id)</code></pre></div>
 <p><img src="img/R-ecology-facet-by-species-and-sex-1.png" title="" alt="" width="672" /></p>
-<p>Usually plots with white background looks more readable in the publications. We can set the background to white using function theme_bw().</p>
+<p>Usually plots with white background looks more readable in the publications. We can set the background to white using the function <code>theme_bw()</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> yearly_sex_counts, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> n, <span class="dt">color =</span> species_id, <span class="dt">group =</span> sex)) +
 <span class="st">  </span><span class="kw">geom_line</span>() +<span class="st"> </span><span class="kw">facet_wrap</span>(~<span class="st"> </span>species_id) +<span class="st"> </span><span class="kw">theme_bw</span>()</code></pre></div>
 <p><img src="img/R-ecology-facet-by-species-and-sex-white-bg-1.png" title="" alt="" width="672" /></p>
