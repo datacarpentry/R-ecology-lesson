@@ -169,6 +169,17 @@ The `!` symbol negates it, so we're asking for everything that is not an `NA`.
 >
 >  **Hint**: think about how the commands should be ordered to produce this data frame!
 
+<!---
+```{r, eval=FALSE, purl=FALSE}
+## Answer
+surveys_hindfoot_half %>%
+    filter(!is.na(hindfoot_length)) %>%
+    mutate(hindfoot_half = hindfoot_length / 2) %>%
+    filter(hindfoot_half < 30) %>%
+    select(species_id, hindfoot_half)
+```
+--->
+
 ### Split-apply-combine data analysis and the summarize() function
 
 Many data analysis tasks can be approached using the "split-apply-combine"
