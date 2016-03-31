@@ -220,6 +220,8 @@ of first?
 ##
 ## * How can you recreate this plot with "control" listed
 ## last instead of first?
+##
+## * How an you create a similar plot for the first 5 treatments and exclude the "control" from the plot?
 exprmt <- factor(c("treat1", "treat2", "treat1", "treat3", "treat1", "control",
                    "treat1", "treat2", "treat3"))
 table(exprmt)
@@ -235,5 +237,8 @@ barplot(table(exprmt))
 ## * By redefining the order of the levels
 exprmt <- factor(exprmt, levels=c("treat1", "treat2", "treat3", "control"))
 barplot(table(exprmt))
+## * By subseting the values of a factor and creating a new factor using the function factor().
+barplot(table(factor(exprmt[1:5])))
 ```
---->
+-->
+
