@@ -7,6 +7,8 @@ author: Data Carpentry contributors
 ```{r, echo=FALSE, purl=FALSE, message = FALSE}
 source("setup.R")
 surveys <- read.csv("data/portal_data_joined.csv")
+surveys2<- read.csv("data/surveys.csv")
+species <- read.csv("data/species.csv")
 ```
 
 ------------
@@ -179,6 +181,26 @@ surveys_hindfoot_half %>%
     select(species_id, hindfoot_half)
 ```
 --->
+
+
+### Combining data frames
+
+If you have multiple data frames that have similar columns but not necessarily similar rows, you can combine them with dplyr and select the rows you want to keep. This is done using functions called joins.
+To keep the excess rows from one data frame you can use `left_join()` or `right_join()`. To keep the excess rows in both data frames you use `inner_join()`. To add all rows into a new data frame, you use `full_join()`.
+
+> ### Challenge {.challenge}
+>
+> Select the first 20 rows of species and surveys and combine all rows by `species_id`. Save the `species_id`, `genus`, `species`, `taxa` and `sex` while removing all rows that contain NA values. 
+
+<!---
+```{r, echo=FALSE, purl=FALSE}
+## Answer
+full_join(surveys2[1:20,], species[1:20,], by="species_id") %>%     
+      select(species_id, species, genus, taxa, sex) %>% 
+      na.omit()
+```
+--->
+
 
 ### Split-apply-combine data analysis and the summarize() function
 
