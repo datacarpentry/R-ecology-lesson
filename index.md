@@ -1,9 +1,9 @@
 ---
 layout: lesson
 root: .
-lastupdated: June 23, 2015
+lastupdated: March 21, 2016
 contributors: ["Sarah Supp", "John Blischak","Gavin Simpson","Tracy Teal","Greg Wilson","Diego Barneche"," Stephen Turner","Francois Michonneau"]
-maintainers: [""]
+maintainers: ["Francois Michonneau", "Auriel Fournier"]
 domain: Ecology
 topic: R for data analysis
 software: R

@@ -290,13 +290,18 @@ food &lt;-<span class="st"> </span><span class="kw">factor</span>(food, <span cl
 <p>In R’s memory, these factors are represented by integers (1, 2, 3), but are more informative than integers because factors are self describing: <code>&quot;low&quot;</code>, <code>&quot;medium&quot;</code>, <code>&quot;high&quot;</code>&quot; is more descriptive than <code>1</code>, <code>2</code>, <code>3</code>. Which is low? You wouldn’t be able to tell just from the integer data. Factors, on the other hand, have this information built in. It is particularly helpful when there are many levels (like the species in our example data set).</p>
 <div id="converting-factors" class="section level3">
 <h3>Converting factors</h3>
-<p>If you need to convert a factor to a character vector, you simply use <code>as.character(x)</code>.</p>
-<p>Converting a factors where the levels appear as numbers (such as in concentration levels) to a numeric vector is however a little trickier, and you have to go via a character vector. Compare:</p>
+<p>If you need to convert a factor to a character vector, you use <code>as.character(x)</code>.</p>
+<p>Converting factors where the levels appear as numbers (such as concentration levels) to a numeric vector is a little trickier. One method is to convert factors to characters and then numbers. Another method is to use the <code>levels()</code> function. Compare:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">f &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">2</span>))
 <span class="kw">as.numeric</span>(f)               ## wrong! and there is no warning...
 <span class="kw">as.numeric</span>(<span class="kw">as.character</span>(f)) ## works...
 <span class="kw">as.numeric</span>(<span class="kw">levels</span>(f))[f]    ## The recommended way.</code></pre></div>
-<p>Notice that in this last approach, three important steps occur: * We obtain all the factor levels using <code>levels(f)</code> * We convert these levels to numeric values using <code>as.numeric(levels(f))</code> * We then access these numeric values using the underlying integers of the vector <code>f</code> inside the square brackets</p>
+<p>Notice that in the <code>levels()</code> approach, three important steps occur:</p>
+<ul>
+<li>We obtain all the factor levels using <code>levels(f)</code></li>
+<li>We convert these levels to numeric values using <code>as.numeric(levels(f))</code></li>
+<li>We then access these numeric values using the underlying integers of the vector <code>f</code> inside the square brackets</li>
+</ul>
 </div>
 <div id="challenge-1" class="section level3">
 <h3>Challenge</h3>

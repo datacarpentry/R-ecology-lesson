@@ -217,6 +217,22 @@ surveys %>%
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">weight_kg =</span> weight /<span class="st"> </span><span class="dv">1000</span>) %&gt;%
 <span class="st">  </span>head</code></pre></div>
 <p><code>is.na()</code> is a function that determines whether something is or is not an <code>NA</code>. The <code>!</code> symbol negates it, so we’re asking for everything that is not an <code>NA</code>.</p>
+<blockquote>
+<h3 id="challenge-1" class="challenge">Challenge</h3>
+<p>Create a new dataframe from the survey data that meets the following criteria: contains only the <code>species_id</code> column and a column that contains values that are half the <code>hindfoot_length</code> values (e.g. a new column <code>hindfoot_half</code>). In this <code>hindfoot_half</code> column, there are no NA values and all values are &lt; 30.</p>
+<p><strong>Hint</strong>: think about how the commands should be ordered to produce this data frame!</p>
+</blockquote>
+<!---
+
+```r
+## Answer
+surveys_hindfoot_half %>%
+    filter(!is.na(hindfoot_length)) %>%
+    mutate(hindfoot_half = hindfoot_length / 2) %>%
+    filter(hindfoot_half < 30) %>%
+    select(species_id, hindfoot_half)
+```
+--->
 </div>
 <div id="split-apply-combine-data-analysis-and-the-summarize-function" class="section level3">
 <h3>Split-apply-combine data analysis and the summarize() function</h3>
@@ -224,7 +240,7 @@ surveys %>%
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys %&gt;%
 <span class="st">  </span><span class="kw">group_by</span>(sex) %&gt;%
 <span class="st">  </span><span class="kw">tally</span>()</code></pre></div>
-<p><code>group_by()</code> is often used together with <code>summarize()</code> which collapses each group into a single-row summary of that group. So to view mean <code>weight</code> by sex:</p>
+<p>Here, <code>tally()</code> is the action applied to the groups created to <code>group_by()</code> and counts the total number of records for each category. <code>group_by()</code> is often used together with <code>summarize()</code> which collapses each group into a single-row summary of that group. So to view mean <code>weight</code> by sex:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys %&gt;%
 <span class="st">  </span><span class="kw">group_by</span>(sex) %&gt;%
 <span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_weight =</span> <span class="kw">mean</span>(weight, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</code></pre></div>
@@ -245,21 +261,21 @@ surveys %>%
             <span class="dt">min_weight =</span> <span class="kw">min</span>(weight, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) %&gt;%
 <span class="st">  </span><span class="kw">filter</span>(!<span class="kw">is.nan</span>(mean_weight))</code></pre></div>
 <blockquote>
-<h3 id="challenge-1" class="challenge">Challenge</h3>
+<h3 id="challenge-2" class="challenge">Challenge</h3>
 <p>How many times was each <code>plot_type</code> surveyed?</p>
 </blockquote>
 <!---
 
 --->
 <blockquote>
-<h3 id="challenge-2" class="challenge">Challenge</h3>
+<h3 id="challenge-3" class="challenge">Challenge</h3>
 <p>Use <code>group_by()</code> and <code>summarize()</code> to find the mean, min, and max hindfoot length for each species.</p>
 </blockquote>
 <!---
 
 --->
 <blockquote>
-<h3 id="challenge-3" class="challenge">Challenge</h3>
+<h3 id="challenge-4" class="challenge">Challenge</h3>
 <p>What was the heaviest animal measured in each year? Return the columns <code>year</code>, <code>genus</code>, <code>species</code>, and <code>weight</code>.</p>
 </blockquote>
 <!---
