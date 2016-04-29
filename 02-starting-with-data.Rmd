@@ -81,6 +81,23 @@ function `head()`:
 head(surveys)
 ```
 
+###Logger Data
+Loggers are deployed to record environmental variables such as temperature for ecological studies.  The files downloaded from loggers often have metadata at the top file.  There are two options for loading data with metadata at the top of the file into R.
+
+One option is to use `fill=TRUE` argument in the `read.table()` function. 
+
+```{r, eval=TRUE,  purl=FALSE}
+temperatures <- read.table('data/loggerdata.txt', fill=TRUE)
+```
+Another option is to use the `skip=#` argument in the `read.table()` function.  
+
+```{r, eval=TRUE,  purl=FALSE}
+temperatures <- read.table('data/loggerdata.txt', skip=99)
+```
+The first option is the best if the metadata are needed for the analysis.
+
+### Challenge
+
 A `data.frame` is the representation of data in the format of a table where the
 columns are vectors that all have the same length. Because each column is a
 vector, they all contain the same type of data. We can see this when inspecting
@@ -89,9 +106,6 @@ the __str__ucture of a `data.frame` with the function `str()`:
 ```{r, purl=FALSE}
 str(surveys)
 ```
-
-### Challenge
-
 Based on the output of `str(surveys)`, can you answer the following questions?
 
 * What is the class of the object `surveys`?
@@ -122,7 +136,6 @@ As you can see, many of the columns consist of integers, however, the columns
 `species` and `sex` are of a special class called a `factor`. Before we learn
 more about the `data.frame` class, let's talk about factors. They are very
 useful but not necessarily intuitive, and therefore require some attention.
-
 
 ## Factors
 
