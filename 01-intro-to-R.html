@@ -222,6 +222,9 @@ animals</code></pre></div>
 <p>There are many functions that allow you to inspect the content of a vector. <code>length()</code> tells you how many elements are in a particular vector:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>(weights)
 <span class="kw">length</span>(animals)</code></pre></div>
+<p>Many standard R functions operate directly on vectors, either treating its elements as a whole (such as <code>mean()</code>) or acting element by element, for example:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">v &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2.3</span>, <span class="dv">-1.1</span>, <span class="dv">0.5</span>)
+(sin(v))</code></pre></div>
 <p>An important feature of a vector, is that all of the elements are the same type of data. The function <code>class()</code> indicates the class (the type of element) of an object:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(weights)
 <span class="kw">class</span>(animals)</code></pre></div>
