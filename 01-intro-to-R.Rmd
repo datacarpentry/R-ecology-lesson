@@ -266,7 +266,14 @@ max(heights, na.rm = TRUE)
 ```
 
 If your data include missing values, you may want to become familiar with the
-functions `is.na()`, `na.omit()`, and `complete.cases()`.
+functions `is.na()`, `na.omit()`, and `complete.cases()`. See below for examples.
+```{r, purl=FALSE}
+heights[!is.na(heights)] #extract those elements which are not missing values
+na.omit(heights) #returns the object with incomplete cases removed. the returned object is atomic
+heights[complete.cases(heights)] #extract those elements which are complete cases
+```
+
+
 
 Next, we will use the "surveys" dataset to explore the `data.frame` data
 structure, which is one of the most common types of R objects.
