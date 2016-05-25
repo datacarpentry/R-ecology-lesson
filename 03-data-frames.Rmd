@@ -324,3 +324,19 @@ dates[dates < 1975 | dates > 2016]
 ##   "four" comes after "five", and therefore is "greater than" it.
 ```
 -->
+
+>
+> * Can you figure out why `"four" > "five"` returns `TRUE`?
+
+```{r, purl=TRUE}
+# * Can you think of 3 ways of indexing the 'animals' data frame to output both "mouse" and "dog"?
+```
+
+<!--
+```{r, purl=FALSE}
+## Answers
+## * animals[animals != "rat" & animals != "cat"]
+## * animals[animals == "mouse" | animals == "dog"]
+## * animals[animals %in% c("dog", "mouse")]
+```
+-->
