@@ -326,7 +326,7 @@ dates[dates < 1975 | dates > 2016]
 -->
 
 >
-> * Can you figure out why `"four" > "five"` returns `TRUE`?
+> * Can you think of 3 ways of indexing the 'animals' data frame to output both "mouse" and "dog"?
 
 ```{r, purl=TRUE}
 # * Can you think of 3 ways of indexing the 'animals' data frame to output both "mouse" and "dog"?
