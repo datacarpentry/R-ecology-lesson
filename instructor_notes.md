@@ -4,9 +4,38 @@ title: Instructor notes
 root: .
 ---
 
-## Learning Objectives
-
-
+-----------
+> ## Learning Objectives
+> ### 00
+> - Introduce Participants to the RStudio Interface
+> - Introduce R syntax
+> - Point to relevant information on how to get help
+> - Understand how to as well formulated questions
+> - Set up participants to have a working directory with a data/ folder inside
+> ### 01
+> - Familurize participants with R syntax
+> - Understand concepts of objects and assignment
+> - Understand concenpts of vector and data types
+> - Be introduced to functions
+> ### 02
+> - Load external data (CSV) into memory
+> - Explore the structure and content of a data.frame
+> - Understand what factors are and how to manipulate them
+> ### 03
+> - Understand the concept of a data.frame
+> - Use sequences
+> - Know how to access any element of a data.frame
+> ### 04 
+> ### 05
+> - Visualize data
+> - Understand how to plot data using ggplot2
+> - Build step by step complex plots using ggplot2
+> ### 06
+> - Connect to an exisiting database using R
+> - Query an exisiting datbase through R
+> - Create a database and populate it from R
+> - Understand that scripted database interactions enhance reproducibility 
+-----------
 ## Dataset
 
 
