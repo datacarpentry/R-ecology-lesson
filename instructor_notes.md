@@ -41,9 +41,9 @@ root: .
 
 ### Narrative
 
-The narrative of this lesson is to 
-
 **In 00-before-we-start.Rmd**
+
+Help the learners be comfortable with the Rstudio interface. We use RStudio because it helps make using R more organized and user friendly but RStudio is just a wrapper for R. 
 
 **In 01-intro-to-R.Rmd**
 
@@ -62,6 +62,14 @@ The narrative of this lesson is to
 ### Potential issues & solutions
 
 ### Technical Tips and Tricks
+
+Show how to use the 'zoom' button to blow up graphs without constantly resizing windows
+
+Sometimes a package will not install, try a different CRAN mirror 
+- Tools > Global Options > Packages > CRAN Mirror   
+
+Alternatively you can go to CRAN and download the package and install from ZIP file
+-   Tools > Install Packages > set ti 'from Zip/TAR'
 
 ### Other Resources
 
