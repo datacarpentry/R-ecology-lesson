@@ -242,11 +242,92 @@ tricky <- c(1, 2, 3, '4')
 * _Answer_: `logical --> numeric --> character <-- logical`
 
 
+## Subsetting vectors
+
+If we want to extract one or several values from a vector, we must provide one
+or several indices in square brackets. For instance:
+
+```{r, results='show', purl=FALSE}
+animals <- c("mouse", "rat", "dog", "cat")
+animals[2]
+animals[c(3, 2)]
+```
+
+We can also repeat the indices to create an object with more elements than the
+original one:
+
+```{r, results='show', purl=FALSE}
+more_animals <- animals[c(1, 2, 3, 2, 1, 4)]
+more_animals
+```
+
+R indexes start at 1. Programming languages like Fortran, MATLAB, and R start
+counting at 1, because that's what human beings typically do. Languages in the C
+family (including C++, Java, Perl, and Python) count from 0 because that's
+simpler for computers to do.
+
+### Conditional subsetting
+
+Another common way of subsetting is by using a logical vector: `TRUE` will
+select the element with the same index, while `FALSE` will not:
+
+```{r, results='show', purl=FALSE}
+weight_g <- c(21, 34, 39, 54, 55)
+weight_g[c(TRUE, FALSE, TRUE, TRUE, FALSE)]
+```
+
+Typically, these logical vectors are not typed by hand, but are the output of
+other functions or logical tests. For instance, if you wanted to select only the
+values above 50:
+
+```{r, results='show', purl=FALSE}
+weight_g > 50    # will return logicals with TRUE for the indices that meet the condition
+## so we can use this to select only the values above 50
+weight_g[weight_g > 50]
+```
+
+You can combine multiple tests using `&` (both conditions are true, AND) or `|`
+(at least one of the conditions is true, OR):
+
+```{r, results='show', purl=FALSE}
+weight_g[weight_g < 30 | weight_g > 50]
+weight_g[weight_g >= 30 & weight_g == 21]
+```
+
+When working with vectors of characters, if you are trying to combine many
+conditions it can become tedious to type. The function `%in%` allows you to test
+if a value if found in a vector:
+
+```{r, results='show', purl=FALSE}
+animals <- c("mouse", "rat", "dog", "cat")
+animals[animals == "cat" | animals == "rat"] # returns both rat and cat
+animals %in% c("rat", "cat", "dog", "duck")
+animals[animals %in% c("rat", "cat", "dog", "duck")]
+```
+
+> ### Challenge {.challenge}
+>
+> * Can you figure out why `"four" > "five"` returns `TRUE`?
+
+```{r, purl=TRUE}
+# * Can you figure out why `"four" > "five"` returns `TRUE`?
+```
+
+<!--
+```{r, purl=FALSE}
+## Answers
+## * When using ">" or "<" on strings, R compares their alphabetical order. Here
+##   "four" comes after "five", and therefore is "greater than" it.
+```
+-->
+
+
+
 ## Missing data
 
-As R was designed to work with data, it includes the concept of missing data
+As R was designed to analyze datasets, it includes the concept of missing data
 (which is uncommon in other programming languages). Missing data are represented
-as `NA`.
+in vectors as `NA`.
 
 ```{r, purl=FALSE}
 planets <- c("Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus",
@@ -267,13 +348,20 @@ max(heights, na.rm = TRUE)
 ```
 
 If your data include missing values, you may want to become familiar with the
-functions `is.na()`, `na.omit()`, and `complete.cases()`. See below for examples.
-```{r, purl=FALSE}
-heights[!is.na(heights)] #extract those elements which are not missing values
-na.omit(heights) #returns the object with incomplete cases removed. the returned object is atomic
-heights[complete.cases(heights)] #extract those elements which are complete cases
-```
+functions `is.na()`, `na.omit()`, and `complete.cases()`. See below for
+examples.
 
+
+```{r, purl=FALSE}
+## Extract those elements which are not missing values.
+heights[!is.na(heights)]
+
+## Returns the object with incomplete cases removed. The returned object is atomic.
+na.omit(heights)
+
+## Extract those elements which are complete cases.
+heights[complete.cases(heights)]
+```
 
 
 ### Challenge
@@ -283,7 +371,7 @@ heights[complete.cases(heights)] #extract those elements which are complete case
 sample <- c(2, 4, 4, "NA", 6)
 mean(sample, na.rm = TRUE)
 ```
-* _Answer_: Because R recognizes the NA in quotes as a character.  
+* _Answer_: Because R recognizes the NA in quotes as a character.
 
 * **Question**: Why does the error message say the argument is not numeric?
 * _Answer_: R converts the entire vector to character because of the "NA", and doesn't recognize it as numeric.
