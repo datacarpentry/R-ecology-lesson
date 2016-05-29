@@ -191,23 +191,6 @@ objects besides `data.frame`.
 
 ```
 
-If we want to extract one or several values from a vector, we must provide one
-or several indices in square brackets. For instance:
-
-```{r, results='show', purl=FALSE}
-animals <- c("mouse", "rat", "dog", "cat")
-animals[2]
-animals[c(3, 2)]
-animals[2:4]
-more_animals <- animals[c(1:3, 2:4)]
-more_animals
-```
-
-R indexes start at 1. Programming languages like Fortran, MATLAB, and R start
-counting at 1, because that's what human beings typically do. Languages in the C
-family (including C++, Java, Perl, and Python) count from 0 because that's
-simpler for computers to do.
-
 `:` is a special function that creates numeric vectors of integers in increasing
 or decreasing order, test `1:10` and `10:1` for instance. The function `seq()`
 (for __seq__uence) can be used to create more complex patterns:
@@ -269,65 +252,3 @@ to get the full and correct column name.
 surveys_by_10 <- surveys[seq(10, nrow(surveys), by=10), ]
 ```
 --->
-
-### Conditional subsetting
-
-Besides using the index position of an element in a vector to extract its value
-as we saw earlier, we can also use logical vectors:
-
-```{r, purl=FALSE}
-animals <- c("mouse", "rat", "dog", "cat")
-animals[c(TRUE, FALSE, TRUE, TRUE)]
-```
-
-But typically, those logical vectors are not typed by hand but the result of a
-logical test:
-
-```{r, purl=FALSE}
-animals != "rat"
-animals[animals != "rat"]
-animals[animals == "cat"]
-```
-
-If you can combine multiple tests using `&` (both conditions are true, AND) or `|`
-(at least one of the conditions if true, OR):
-
-```{r, purl=FALSE}
-animals[animals == "cat" & animals == "rat"] # returns nothing
-animals[animals == "cat" | animals == "rat"] # returns both rat and cat
-```
-
-If you are trying to combine many conditions, it can become tedious to type. The
-function `%in%` allows you to test if a value if found in a vector:
-
-```{r, purl=FALSE}
-animals %in% c("rat", "cat", "dog", "duck")
-animals[animals %in% c("rat", "cat", "dog", "duck")]
-```
-
-In addition to testing equalities, you can also test whether the elements of
-your vector are less than or greater than a given value:
-
-```{r, purl=FALSE}
-dates <- c(1960, 1963, 1974, 2015, 2016)
-dates >= 1974
-dates[dates >= 1974]
-dates[dates > 1970 & dates <= 2015]
-dates[dates < 1975 | dates > 2016]
-```
-
-> ### Challenge {.challenge}
->
-> * Can you figure out why `"four" > "five"` returns `TRUE`?
-
-```{r, purl=TRUE}
-# * Can you figure out why `"four" > "five"` returns `TRUE`?
-```
-
-<!--
-```{r, purl=FALSE}
-## Answers
-## * When using ">" or "<" on strings, R compares their alphabetical order. Here
-##   "four" comes after "five", and therefore is "greater than" it.
-```
--->
