@@ -91,13 +91,17 @@ workshop, you only need a `data/` folder.
 
 # Presentation of RStudio
 
-Let's start by learning about our tool.
+Let's start by learning about RStudio, the Integrated Development Environment
+(IDE) that we will use to write code, navigate the files found on our computer,
+inspect the variables we are going to create, and visualize the plots we will
+generate. RStudio can also be used for other things (e.g., version control,
+developing packages) that we will not cover during the workshop.
 
-* Console, Scripts, Environments, Plots
-* Code and workflow are more reproducible if we can document everything that we
-  do.
-* Our end goal is not just to "do stuff" but to do it in a way that anyone can
-  easily and exactly replicate our workflow and results.
+RStudio is divided into 4 "Panes": the editor for your scripts and documents
+(top-left), the R console (bottom-left), your environment/history (top-right),
+and your files/plots/packages/help/viewer (bottom-right). The placement of these
+panes and their content can be customized. One of the advantages of using
+RStudio is that
 
 # Interacting with R
 
