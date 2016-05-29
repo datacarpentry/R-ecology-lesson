@@ -15,13 +15,18 @@ knitr::opts_chunk$set(results='hide', fig.path='img/r-lesson-')
 >
 > After completing this module, the learner should be able to:
 >
-> * Organize files and directories related to a particular set of analyses in an R Project within Rstudio
-> * Define the following (as they apply to R): Script, function, working directory, assign, object, variable
-> * Describe the purpose of the Rstudio script, console, environment, and plot windows
+> * Organize files and directories related to a particular set of analyses in an
+>   R Project within RStudio
+> * Define the following (as they apply to R): Script, function, working
+>   directory, assign, object, variable
+> * Describe the purpose of the RStudio script, console, environment, and plot
+>   windows
 > * Assign values to variables
 > * Call functions with zero or more named or unnamed arguments
-> * Use the built-in Rstudio help interface to search for more information on R functions 
-> * Ask for help from the R user community, providing sufficient information for the problem to be reproduced and troubleshooted
+> * Use the built-in RStudio help interface to search for more information on R
+>   functions
+> * Ask for help from the R user community, providing sufficient information for
+>   the problem to be reproduced and troubleshooted
 
 ------------
 
@@ -113,7 +118,10 @@ computer to follow the instructions by *executing* (also called *running*) those
 commands.
 
 There are two main ways of interacting with R: using the console or by using
-script files (plain text files that contain your code).
+script files (plain text files that contain your code). We want our code and
+workflow to be reproducible. In other words, we want to write code in a way that
+anyone can easily replicate, such they can obtain the same results from our code
+on their computer.
 
 The console window (in RStudio, the bottom left panel) is the place where R is
 waiting for you to tell it what to do, and where it will show the results of a
@@ -122,28 +130,31 @@ and press `Enter` to execute those commands, but they will be forgotten when you
 close the session. It is better to enter the commands in the script editor, and
 save the script. This way, you have a complete record of what you did, you can
 easily show others how you did it and you can do it again later on if needed.
-Rstudio allows you to execute commands directly from the script editor by using
-the `Ctrl-Enter` shortcut. The command on the current line in the script or all
-of the commands in the currently selected text will be sent to the console and
-executed when you press `Ctrl-Enter`.
+RStudio allows you to execute commands directly from the script editor by using
+the <kbd>`Ctrl`</kbd> + <kbd>`Enter`</kbd> shortcut. The command on the current
+line in the script or all of the commands in the currently selected text will be
+sent to the console and executed when you press <kbd>`Ctrl`</kbd> +
+<kbd>`Enter`</kbd>.
 
 At some point in your analysis you may want to check the content of variable or
 the structure of an object, without necessarily keep a record of it in your
 script. You can type these commands and execute them directly in the console.
-RStudio provides the `Ctrl-1` and `Ctrl-2` shortcuts allow you to jump between
-the script and the console windows.
+RStudio provides the <kbd>`Ctrl`</kbd> + <kbd>`1`</kbd> and <kbd>`Ctrl`</kbd> +
+<kbd>`2`</kbd> shortcuts allow you to jump between the script and the console
+windows.
 
 If R is ready to accept commands, the R console shows a `>` prompt. If it
 receives a command (by typing, copy-pasting or sent from the script editor using
-`Ctrl-Enter`), R will try to execute it, and when ready, show the results and
-come back with a new `>`-prompt to wait for new commands.
+<kbd>`Ctrl`</kbd> + <kbd>`Enter`</kbd>), R will try to execute it, and when
+ready, show the results and come back with a new `>`-prompt to wait for new
+commands.
 
 If R is still waiting for you to enter more data because it isn't complete yet,
 the console will show a `+` prompt. It means that you haven't finished entering
 a complete command. This is because you have not 'closed' a parenthesis or
 quotation, i.e. you don't have the same number of left-parentheses as
 right-parentheses, or the same number of opening and closing quotation marks. If
-you're in Rstudio and this happens, click inside the console window and press
+you're in RStudio and this happens, click inside the console window and press
 `Esc`; this will cancel the incomplete command and return you to the `>` prompt.
 
 # Basics of R
@@ -209,13 +220,13 @@ function operates, such as whether it ignores 'bad values', or what symbol to
 use in a plot.  However, if you want something specific, you can specify a value
 of your choice which will be used instead of the default.
 
-Let's try a function that can take multiple arguments: `round`.
+Let's try a function that can take multiple arguments: `round()`.
 
 ```{r, results='show', purl=FALSE}
 round(3.14159)
 ```
 
-Here, we've called `round` with just one argument, `3.14159`, and it has
+Here, we've called `round()` with just one argument, `3.14159`, and it has
 returned the value `3`.  That's because the default is to round to the nearest
 whole number. If we want more digits we can see how to do that by getting
 information about the `round` function.  We can use `args(round)` or look at the
@@ -228,7 +239,6 @@ args(round)
 ```{r, eval=FALSE, purl=FALSE}
 ?round
 ```
-
 
 We see that if we want a different number of digits, we can
 type `digits=2` or however many we want.
