@@ -140,8 +140,8 @@ characters. You can assign this list of values to a variable, just like you
 would for one item. For example we can create a vector of animal weights:
 
 ```{r, purl=FALSE}
-weights <- c(50, 60, 65, 82)
-weights
+weight_g <- c(50, 60, 65, 82)
+weight_g
 ```
 
 A vector can also contain characters:
@@ -155,7 +155,7 @@ There are many functions that allow you to inspect the content of a
 vector. `length()` tells you how many elements are in a particular vector:
 
 ```{r, purl=FALSE}
-length(weights)
+length(weight_g)
 length(animals)
 ```
 
@@ -163,7 +163,7 @@ An important feature of a vector, is that all of the elements are the same type 
 The function `class()` indicates the class (the type of element) of an object:
 
 ```{r, purl=FALSE}
-class(weights)
+class(weight_g)
 class(animals)
 ```
 
@@ -172,19 +172,19 @@ contains. It is a really useful function when working with large and complex
 objects:
 
 ```{r, purl=FALSE}
-str(weights)
+str(weight_g)
 str(animals)
 ```
 
 You can add elements to your vector by using the `c()` function:
 
 ```{r, purl=FALSE}
-weights <- c(weights, 90) # adding at the end of the vector
-weights <- c(30, weights) # adding at the beginning of the vector
-weights
+weight_g <- c(weight_g, 90) # adding at the end of the vector
+weight_g <- c(30, weight_g) # adding at the beginning of the vector
+weight_g
 ```
 
-What happens here is that we take the original vector `weights`, and we are
+What happens here is that we take the original vector `weight_g`, and we are
 adding another item first to the end of the other ones, and then another item at
 the beginning. We can do this over and over again to grow a vector, or assemble
 a dataset. As we program, this may be useful to add results that we are
