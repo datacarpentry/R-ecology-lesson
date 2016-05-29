@@ -185,8 +185,10 @@ levels (like the species in our example data set).
 If you need to convert a factor to a character vector, you use
 `as.character(x)`.
 
-Converting factors where the levels appear as numbers (such as 
-concentration levels) to a numeric vector is a little trickier.  One method is to convert factors to characters and then numbers.  Another method is to use the `levels()` function. Compare:
+Converting factors where the levels appear as numbers (such as concentration
+levels) to a numeric vector is a little trickier.  One method is to convert
+factors to characters and then numbers.  Another method is to use the `levels()`
+function. Compare:
 
 ```{r, purl=TRUE}
 f <- factor(c(1, 5, 10, 2))
