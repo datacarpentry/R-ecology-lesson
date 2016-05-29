@@ -22,6 +22,7 @@
 ## 
 ## ## Can you draw a diagram that represents the hierarchy of the data
 ## ## types?
+# * Can you figure out why `"four" > "five"` returns `TRUE`?
 
 
 ### Presentation of the survey data
@@ -95,11 +96,6 @@ str(example_data)
 
 ## Indexing, Sequences, and Subsetting
 
-### The function `nrow()` on a `data.frame` returns the number of
-### rows. Use it, in conjuction with `seq()` to create a new
-### `data.frame` called `surveys_by_10` that includes every 10th row
-### of the survey data frame starting at row 10 (10, 20, 30, ...)
-# * Can you figure out why `"four" > "five"` returns `TRUE`?
 
 
 
