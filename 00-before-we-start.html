@@ -7,7 +7,7 @@
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
+
 
 <meta name="author" content="Data Carpentry contributors" />
 
@@ -67,25 +67,7 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 </style>
 
 
-
-</head>
-
-<body>
-
-<style type = "text/css">
-.main-container {
-  max-width: 940px;
-  margin-left: auto;
-  margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
-}
-img {
-  max-width:100%;
-  height: auto;
-}
+<style type="text/css">
 h1 {
   font-size: 34px;
 }
@@ -106,6 +88,30 @@ h5 {
 }
 h6 {
   font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -136,7 +142,8 @@ $(document).ready(function () {
 <div class="fluid-row" id="header">
 
 
-<h1 class="title">Before we start</h1>
+
+<h1 class="title toc-ignore">Before we start</h1>
 <h4 class="author"><em>Data Carpentry contributors</em></h4>
 
 </div>
@@ -167,37 +174,48 @@ $(document).ready(function () {
 <hr />
 <blockquote>
 <h2 id="learning-objectives">Learning Objectives</h2>
+<p>After completing this module, the learner should be able to:</p>
 <ul>
-<li>Articulating motivations for this lesson</li>
-<li>Introduce participants to the RStudio interface</li>
-<li>Set up participants to have a working directory with a <code>data/</code> folder inside</li>
-<li>Introduce R syntax</li>
-<li>Point to relevant information on how to get help, and understand how to ask well formulated questions</li>
+<li>Organize files and directories related to a particular set of analyses in an R Project within Rstudio</li>
+<li>Define the following (as they apply to R): Script, function, working directory, assign, object, variable</li>
+<li>Describe the purpose of the Rstudio script, console, environment, and plot windows</li>
+<li>Assign values to variables</li>
+<li>Call functions with zero or more named or unnamed arguments</li>
+<li>Use the built-in Rstudio help interface to search for more information on R functions</li>
+<li>Ask for help from the R user community, providing sufficient information for the problem to be reproduced and troubleshooted</li>
 </ul>
 </blockquote>
 <hr />
 <div id="before-we-get-started" class="section level1">
 <h1>Before we get started</h1>
+<p>It is good practice to keep a set of related data, analyses, and text self-contained in a single folder, called the <strong>working directory</strong>. All of the scripts within this folder can then use <em>relative paths</em> to files that indicate where inside the project a file is located (as opposed to absolute paths, which point to where a file is on a specific computer). Working this way makes it a lot easier to move your project around on your computer and share it with others without worrying about whether or not the underlying scripts will still work.</p>
+<p>RStudio provides a helpful set of tools to do this through its “Projects” interface, which not only creates a working directory for you but also remembers its location (allowing you to quickly navigate to it) and optonally preserves custom settings and open files to make it easier to resume work after a break. Below, we will go through the steps for creating an RProject for this tutorial.</p>
 <ul>
 <li>Start RStudio (presentation of RStudio -below- should happen here)</li>
 <li>Under the <code>File</code> menu, click on <code>New project</code>, choose <code>New directory</code>, then <code>Empty project</code></li>
-<li>Enter a name for this new folder, and choose a convenient location for it. This will be your <strong>working directory</strong> for the rest of the day (e.g., <code>~/data-carpentry</code>)</li>
+<li>Enter a name for this new folder (or “directory”, in computer science), and choose a convenient location for it. This will be your <strong>working directory</strong> for the rest of the day (e.g., <code>~/data-carpentry</code>)</li>
 <li>Click on “Create project”</li>
 <li>Under the <code>Files</code> tab on the right of the screen, click on <code>New Folder</code> and create a folder named <code>data</code> within your newly created working directory. (e.g., <code>~/data-carpentry/data</code>)</li>
 <li>Create a new R script (File &gt; New File &gt; R script) and save it in your working directory (e.g. <code>data-carpentry-script.R</code>)</li>
 </ul>
 <p>Your working directory should now look like this:</p>
-<p><img src="img/r_starting_how_it_should_like.png" alt="How it should look like at the beginning of this lesson" /></p>
+<div class="figure">
+<img src="img/r_starting_how_it_should_like.png" alt="How it should look like at the beginning of this lesson" />
+<p class="caption">How it should look like at the beginning of this lesson</p>
+</div>
 <div id="organizing-your-working-directory" class="section level2">
 <h2>Organizing your working directory</h2>
-<p>Using the same folder structure across your projects (working directory) will help keep things organized, and will also make it easy find/file things in the future. This can be especially helpful when you have multiple projects. In general, you may create directories (folders) for <strong>scripts</strong>, <strong>data</strong>, and <strong>documents</strong>.</p>
+<p>Using a consistent folder structure across your projects will help keep things organized, and will also make it easy find/file things in the future. This can be especially helpful when you have multiple projects. In general, you may create directories (folders) for <strong>scripts</strong>, <strong>data</strong>, and <strong>documents</strong>.</p>
 <ul>
-<li><strong><code>data/</code></strong> You should separate the original data (raw data) from intermediate datasets that you may create for the need of a particular analysis. For instance, you may want to create a <code>data/</code> directory within your working directory that stores the raw data, and have a <code>data_output/</code> directory for intermediate datasets and a <code>figure_output/</code> directory for the plots you will generate.</li>
-<li><strong><code>documents/</code></strong> This would be a place to keep outlines, drafts, text.</li>
-<li><strong><code>scripts/</code></strong> This would be the location to keep your R scripts for different analyses or plotting, and potentially a separate folder for your functions (more on that later!)</li>
+<li><strong><code>data/</code></strong> Use this folder to store your raw data and intermediate datasets you may create for the need of a particular analysis. For the sake of transparency and <a href="https://en.wikipedia.org/wiki/Provenance">provenance</a>, you should <em>always</em> keep a copy of your raw data accessible and do as much of your data cleanup and preprocessing programmatically (i.e. with scripts, rather than manually) as possible. Separating raw data from processed data is also a good idea. For example, you could have files <code>data/raw/tree_survey.plot1.txt</code> and <code>...plot2.txt</code> kept separate from a <code>data/processed/tree.survey.csv</code> file generated by the <code>scripts/01.preprocess.tree_survey.R</code> script.</li>
+<li><strong><code>documents/</code></strong> This would be a place to keep outlines, drafts, and other text.</li>
+<li><strong><code>scripts/</code></strong> This would be the location to keep your R scripts for different analyses or plotting, and potentially a separate folder for your functions (more on that later).</li>
 </ul>
 <p>You may want additional directories or subdirectories depending on your project needs, but these should form the backbone of your working directory. For this workshop, you only need a <code>data/</code> folder.</p>
-<p><img src="img/R-ecology-work_dir_structure.png" alt="Example of a working directory structure" /></p>
+<div class="figure">
+<img src="img/R-ecology-work_dir_structure.png" alt="Example of a working directory structure" />
+<p class="caption">Example of a working directory structure</p>
+</div>
 </div>
 </div>
 <div id="presentation-of-rstudio" class="section level1">
@@ -231,7 +249,7 @@ $(document).ready(function () {
 </ul>
 <div id="commenting" class="section level2">
 <h2>Commenting</h2>
-<p>Use <code>#</code> signs to comment. Comment liberally in your R scripts. Anything to the right of a <code>#</code> is ignored by R, meaning it won’t be executed.</p>
+<p>Use <code>#</code> signs to comment. Anything to the right of a <code>#</code> is ignored by R, meaning it won’t be executed. Comments are a great way to describe what your code does within the code itself, so comment liberally in your R scripts.</p>
 </div>
 <div id="assignment-operator" class="section level2">
 <h2>Assignment operator</h2>
@@ -282,7 +300,7 @@ $(document).ready(function () {
 <div id="i-am-stuck-i-get-an-error-message-that-i-dont-understand" class="section level3">
 <h3>I am stuck… I get an error message that I don’t understand</h3>
 <p>Start by googling the error message. However, this doesn’t always work very well because often, package developers rely on the error catching provided by R. You end up with general error messages that might not be very helpful to diagnose a problem (e.g. “subscript out of bounds”). If the message is very generic, you might also include the name of the function or package you’re using in your query.</p>
-<p>However, you should check StackOverflow. Search using the <code>[r]</code> tag. Most questions have already been answered, but the challenge is to use the right words in the search to find the answers: <a href="http://stackoverflow.com/questions/tagged/r"><a href="http://stackoverflow.com/questions/tagged/r" class="uri">http://stackoverflow.com/questions/tagged/r</a></a></p>
+<p>However, you should check StackOverflow. Search using the <code>[r]</code> tag. Most questions have already been answered, but the challenge is to use the right words in the search to find the answers: <a href="http://stackoverflow.com/questions/tagged/r" class="uri">http://stackoverflow.com/questions/tagged/r</a></p>
 <p>The <a href="http://cran.r-project.org/doc/manuals/R-intro.pdf">Introduction to R</a> can also be dense for people with little programming experience but it is a good place to understand the underpinnings of the R language.</p>
 <p>The <a href="http://cran.r-project.org/doc/FAQ/R-FAQ.html">R FAQ</a> is dense and technical but it is full of useful information.</p>
 </div>
@@ -306,9 +324,9 @@ $(document).ready(function () {
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">some_data &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="dt">file=</span><span class="st">&quot;~/Downloads/iris.rds&quot;</span>)</code></pre></div>
 <p>Last, but certainly not least, <strong>always include the output of <code>sessionInfo()</code></strong> as it provides critical information about your platform, the versions of R and the packages that you are using, and other information that can be very helpful to understand your problem.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sessionInfo</span>()</code></pre></div>
-<pre><code>## R version 3.2.3 (2015-12-10)
+<pre><code>## R version 3.3.0 (2016-05-03)
 ## Platform: x86_64-pc-linux-gnu (64-bit)
-## Running under: Ubuntu 15.10
+## Running under: Ubuntu 16.04 LTS
 ## 
 ## locale:
 ##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
@@ -321,13 +339,11 @@ $(document).ready(function () {
 ## attached base packages:
 ## [1] stats     graphics  grDevices utils     datasets  base     
 ## 
-## other attached packages:
-## [1] BiocInstaller_1.20.1
-## 
 ## loaded via a namespace (and not attached):
-##  [1] magrittr_1.5    formatR_1.3     tools_3.2.3     htmltools_0.3  
-##  [5] yaml_2.1.13     stringi_1.0-1   rmarkdown_0.9.5 knitr_1.12.3   
-##  [9] methods_3.2.3   stringr_1.0.0   digest_0.6.9    evaluate_0.8.3</code></pre>
+##  [1] magrittr_1.5    formatR_1.3     tools_3.3.0     htmltools_0.3.5
+##  [5] yaml_2.1.13     Rcpp_0.12.4     stringi_1.0-1   rmarkdown_0.9.6
+##  [9] knitr_1.12.3    methods_3.3.0   stringr_1.0.0   digest_0.6.9   
+## [13] evaluate_0.9</code></pre>
 </div>
 <div id="where-to-ask-for-help" class="section level3">
 <h3>Where to ask for help?</h3>
