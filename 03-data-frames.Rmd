@@ -117,7 +117,14 @@ fix them? Don't hesitate to experiment!
                                   northern_hemisphere=c(TRUE, TRUE, FALSE, "FALSE"),
                                   has_kangaroo=c(FALSE, FALSE, FALSE, 1))
    ```
-1. We introduced you to the `data.frame()` function and `read.csv()`, but what if we are starting with some vectors? We can "bind" vectors together using `cbind()` (bind by columns) and `rbind()` (bind by rows) and use `as.data.frame()` to build a data frame as well. Look how we can do this below. Try making your own new data frame from some vectors. You can check the data type of the new object using `class()`.
+
+1. We introduced you to the `data.frame()` function and `read.csv()`, but what
+   if we are starting with some vectors? We can "bind" vectors together using
+   `cbind()` (bind by columns) and `rbind()` (bind by rows) and use
+   `as.data.frame()` to build a data frame as well. Look how we can do this
+   below. Try making your own new data frame from some vectors. You can check
+   the data type of the new object using `class()`.
+
 
     ```{r, eval=FALSE, purl=FALSE}
     colors <- c("red", "green", "blue", "yellow")
@@ -239,16 +246,23 @@ to get the full and correct column name.
    `surveys_by_10` that includes every 10th row of the survey data frame
    starting at row 10 (10, 20, 30, ...)
 
-```{r, echo=FALSE, purl=TRUE}
-### The function `nrow()` on a `data.frame` returns the number of
+1. Create a `data.frame` containing only the observations from 1999 of the
+   `surveys` dataset.
+
+``{r, echo=FALSE, purl=TRUE}
+### 1. The function `nrow()` on a `data.frame` returns the number of
 ### rows. Use it, in conjuction with `seq()` to create a new
 ### `data.frame` called `surveys_by_10` that includes every 10th row
 ### of the survey data frame starting at row 10 (10, 20, 30, ...)
+###
+### 2. Create a data.frame containing only the observation from 1999 of the -->
+### surveys dataset.
 ```
 
 <!---
 ```{r, purl=FALSE}
-## Answer
+## Answers
 surveys_by_10 <- surveys[seq(10, nrow(surveys), by=10), ]
+surveys_1999 <- surveys[surveys$year == 1999, ]
 ```
 --->
