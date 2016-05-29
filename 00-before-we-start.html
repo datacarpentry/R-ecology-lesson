@@ -176,12 +176,12 @@ $(document).ready(function () {
 <h2 id="learning-objectives">Learning Objectives</h2>
 <p>After completing this module, the learner should be able to:</p>
 <ul>
-<li>Organize files and directories related to a particular set of analyses in an R Project within Rstudio</li>
+<li>Organize files and directories related to a particular set of analyses in an R Project within RStudio</li>
 <li>Define the following (as they apply to R): Script, function, working directory, assign, object, variable</li>
-<li>Describe the purpose of the Rstudio script, console, environment, and plot windows</li>
+<li>Describe the purpose of the RStudio script, console, environment, and plot windows</li>
 <li>Assign values to variables</li>
 <li>Call functions with zero or more named or unnamed arguments</li>
-<li>Use the built-in Rstudio help interface to search for more information on R functions</li>
+<li>Use the built-in RStudio help interface to search for more information on R functions</li>
 <li>Ask for help from the R user community, providing sufficient information for the problem to be reproduced and troubleshooted</li>
 </ul>
 </blockquote>
@@ -220,21 +220,17 @@ $(document).ready(function () {
 </div>
 <div id="presentation-of-rstudio" class="section level1">
 <h1>Presentation of RStudio</h1>
-<p>Let’s start by learning about our tool.</p>
-<ul>
-<li>Console, Scripts, Environments, Plots</li>
-<li>Code and workflow are more reproducible if we can document everything that we do.</li>
-<li>Our end goal is not just to “do stuff” but to do it in a way that anyone can easily and exactly replicate our workflow and results.</li>
-</ul>
+<p>Let’s start by learning about RStudio, the Integrated Development Environment (IDE) that we will use to write code, navigate the files found on our computer, inspect the variables we are going to create, and visualize the plots we will generate. RStudio can also be used for other things (e.g., version control, developing packages) that we will not cover during the workshop.</p>
+<p>RStudio is divided into 4 “Panes”: the editor for your scripts and documents (top-left), the R console (bottom-left), your environment/history (top-right), and your files/plots/packages/help/viewer (bottom-right). The placement of these panes and their content can be customized. One of the advantages of using RStudio is that</p>
 </div>
 <div id="interacting-with-r" class="section level1">
 <h1>Interacting with R</h1>
 <p>The basis of programming is that we write down instructions for the computer to follow, and then we tell the computer to follow those instructions. We write, or <em>code</em>, instructions in R because it is a common language that both the computer and we can understand. We call the instructions <em>commands</em> and we tell the computer to follow the instructions by <em>executing</em> (also called <em>running</em>) those commands.</p>
-<p>There are two main ways of interacting with R: using the console or by using script files (plain text files that contain your code).</p>
-<p>The console window (in RStudio, the bottom left panel) is the place where R is waiting for you to tell it what to do, and where it will show the results of a command that has been executed. You can type commands directly into the console and press <code>Enter</code> to execute those commands, but they will be forgotten when you close the session. It is better to enter the commands in the script editor, and save the script. This way, you have a complete record of what you did, you can easily show others how you did it and you can do it again later on if needed. Rstudio allows you to execute commands directly from the script editor by using the <code>Ctrl-Enter</code> shortcut. The command on the current line in the script or all of the commands in the currently selected text will be sent to the console and executed when you press <code>Ctrl-Enter</code>.</p>
-<p>At some point in your analysis you may want to check the content of variable or the structure of an object, without necessarily keep a record of it in your script. You can type these commands and execute them directly in the console. RStudio provides the <code>Ctrl-1</code> and <code>Ctrl-2</code> shortcuts allow you to jump between the script and the console windows.</p>
-<p>If R is ready to accept commands, the R console shows a <code>&gt;</code> prompt. If it receives a command (by typing, copy-pasting or sent from the script editor using <code>Ctrl-Enter</code>), R will try to execute it, and when ready, show the results and come back with a new <code>&gt;</code>-prompt to wait for new commands.</p>
-<p>If R is still waiting for you to enter more data because it isn’t complete yet, the console will show a <code>+</code> prompt. It means that you haven’t finished entering a complete command. This is because you have not ‘closed’ a parenthesis or quotation, i.e. you don’t have the same number of left-parentheses as right-parentheses, or the same number of opening and closing quotation marks. If you’re in Rstudio and this happens, click inside the console window and press <code>Esc</code>; this will cancel the incomplete command and return you to the <code>&gt;</code> prompt.</p>
+<p>There are two main ways of interacting with R: using the console or by using script files (plain text files that contain your code). We want our code and workflow to be reproducible. In other words, we want to write code in a way that anyone can easily replicate, such they can obtain the same results from our code on their computer.</p>
+<p>The console window (in RStudio, the bottom left panel) is the place where R is waiting for you to tell it what to do, and where it will show the results of a command that has been executed. You can type commands directly into the console and press <code>Enter</code> to execute those commands, but they will be forgotten when you close the session. It is better to enter the commands in the script editor, and save the script. This way, you have a complete record of what you did, you can easily show others how you did it and you can do it again later on if needed. RStudio allows you to execute commands directly from the script editor by using the <kbd><code>Ctrl</code></kbd> + <kbd><code>Enter</code></kbd> shortcut. The command on the current line in the script or all of the commands in the currently selected text will be sent to the console and executed when you press <kbd><code>Ctrl</code></kbd> + <kbd><code>Enter</code></kbd>.</p>
+<p>At some point in your analysis you may want to check the content of variable or the structure of an object, without necessarily keep a record of it in your script. You can type these commands and execute them directly in the console. RStudio provides the <kbd><code>Ctrl</code></kbd> + <kbd><code>1</code></kbd> and <kbd><code>Ctrl</code></kbd> + <kbd><code>2</code></kbd> shortcuts allow you to jump between the script and the console windows.</p>
+<p>If R is ready to accept commands, the R console shows a <code>&gt;</code> prompt. If it receives a command (by typing, copy-pasting or sent from the script editor using <kbd><code>Ctrl</code></kbd> + <kbd><code>Enter</code></kbd>), R will try to execute it, and when ready, show the results and come back with a new <code>&gt;</code>-prompt to wait for new commands.</p>
+<p>If R is still waiting for you to enter more data because it isn’t complete yet, the console will show a <code>+</code> prompt. It means that you haven’t finished entering a complete command. This is because you have not ‘closed’ a parenthesis or quotation, i.e. you don’t have the same number of left-parentheses as right-parentheses, or the same number of opening and closing quotation marks. If you’re in RStudio and this happens, click inside the console window and press <code>Esc</code>; this will cancel the incomplete command and return you to the <code>&gt;</code> prompt.</p>
 </div>
 <div id="basics-of-r" class="section level1">
 <h1>Basics of R</h1>
@@ -263,10 +259,10 @@ $(document).ready(function () {
 <p>Here, the value of <code>a</code> is given to the <code>sqrt()</code> function, the <code>sqrt()</code> function calculates the square root, and returns the value which is then assigned to variable <code>b</code>. This function is very simple, because it takes just one argument.</p>
 <p>The return ‘value’ of a function need not be numerical (like that of <code>sqrt()</code>), and it also does not need to be a single item: it can be a set of things, or even a data set. We’ll see that when we read data files in to R.</p>
 <p>Arguments can be anything, not only numbers or filenames, but also other objects. Exactly what each argument means differs per function, and must be looked up in the documentation (see below). Some functions take arguments which may either be specified by the user, or if left out, take on a <em>default</em> value: these are called <em>options</em>. Options are typically used to alter the way the function operates, such as whether it ignores ‘bad values’, or what symbol to use in a plot. However, if you want something specific, you can specify a value of your choice which will be used instead of the default.</p>
-<p>Let’s try a function that can take multiple arguments: <code>round</code>.</p>
+<p>Let’s try a function that can take multiple arguments: <code>round()</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">round</span>(<span class="fl">3.14159</span>)</code></pre></div>
 <pre><code>## [1] 3</code></pre>
-<p>Here, we’ve called <code>round</code> with just one argument, <code>3.14159</code>, and it has returned the value <code>3</code>. That’s because the default is to round to the nearest whole number. If we want more digits we can see how to do that by getting information about the <code>round</code> function. We can use <code>args(round)</code> or look at the help for this function using <code>?round</code>.</p>
+<p>Here, we’ve called <code>round()</code> with just one argument, <code>3.14159</code>, and it has returned the value <code>3</code>. That’s because the default is to round to the nearest whole number. If we want more digits we can see how to do that by getting information about the <code>round</code> function. We can use <code>args(round)</code> or look at the help for this function using <code>?round</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">args</span>(round)</code></pre></div>
 <pre><code>## function (x, digits = 0) 
 ## NULL</code></pre>
@@ -329,20 +325,23 @@ $(document).ready(function () {
 ## Running under: Ubuntu 16.04 LTS
 ## 
 ## locale:
-##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
-##  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
-##  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
-##  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
-##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
-## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+##  [1] LC_CTYPE=en_US.UTF-8      LC_NUMERIC=C             
+##  [3] LC_TIME=en_US.utf8        LC_COLLATE=en_US.UTF-8   
+##  [5] LC_MONETARY=en_US.utf8    LC_MESSAGES=en_US.UTF-8  
+##  [7] LC_PAPER=en_US.utf8       LC_NAME=C                
+##  [9] LC_ADDRESS=C              LC_TELEPHONE=C           
+## [11] LC_MEASUREMENT=en_US.utf8 LC_IDENTIFICATION=C      
 ## 
 ## attached base packages:
 ## [1] stats     graphics  grDevices utils     datasets  base     
 ## 
+## other attached packages:
+## [1] BiocInstaller_1.22.2
+## 
 ## loaded via a namespace (and not attached):
-##  [1] magrittr_1.5    formatR_1.3     tools_3.3.0     htmltools_0.3.5
-##  [5] yaml_2.1.13     Rcpp_0.12.4     stringi_1.0-1   rmarkdown_0.9.6
-##  [9] knitr_1.12.3    methods_3.3.0   stringr_1.0.0   digest_0.6.9   
+##  [1] magrittr_1.5    formatR_1.4     tools_3.3.0     htmltools_0.3.5
+##  [5] yaml_2.1.13     Rcpp_0.12.5     stringi_1.1.1   rmarkdown_0.9.6
+##  [9] knitr_1.13      methods_3.3.0   stringr_1.0.0   digest_0.6.9   
 ## [13] evaluate_0.9</code></pre>
 </div>
 <div id="where-to-ask-for-help" class="section level3">

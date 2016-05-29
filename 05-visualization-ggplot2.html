@@ -158,7 +158,6 @@ $(document).ready(function () {
 </ul>
 </div>
 
-<p>Authors: <strong>Mateusz Kuzak</strong>, <strong>Diana Marek</strong>, <strong>Hedi Peterson</strong></p>
 <div id="disclaimer" class="section level4">
 <h4>Disclaimer</h4>
 <p>We will be using the functions in the ggplot2 package. R has powerful built-in plotting capabilities, but for this exercise, we will be using the ggplot2 package, which facilitates the creation of highly-informative plots of structured data.</p>
@@ -219,7 +218,7 @@ surveys_complete &lt;-<span class="st"> </span>surveys_complete %&gt;%
 <span class="st">           </span><span class="kw">filter</span>(species_id %in%<span class="st"> </span>frequent_species$species_id)</code></pre></div>
 <p>Make simple scatter plot of <code>hindfoot_length</code> (in millimeters) as a function of <code>weight</code> (in grams), using basic R plotting capabilities.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="dt">x =</span> surveys_complete$weight, <span class="dt">y =</span> surveys_complete$hindfoot_length)</code></pre></div>
-<p><img src="img/R-ecology-base-plot-1.png" title="" alt="" width="672" /></p>
+<p><img src="img/R-ecology-base-plot-1.png" width="672" /></p>
 </div>
 <div id="plotting-with-ggplot2" class="section level2">
 <h2>Plotting with ggplot2</h2>
@@ -240,22 +239,18 @@ surveys_complete &lt;-<span class="st"> </span>surveys_complete %&gt;%
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> surveys_complete, <span class="kw">aes</span>(<span class="dt">x =</span> weight, <span class="dt">y =</span> hindfoot_length)) +
 <span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
-<p><img src="img/R-ecology-first-ggplot-1.png" title="" alt="" width="672" /></p>
+<p><img src="img/R-ecology-first-ggplot-1.png" width="672" /></p>
 <p>The <code>+</code> in the <code>ggplot2</code> package is particularly useful because it allows you to modify existing <code>ggplot</code> objects. This means you can easily set up plot “templates” and conveniently explore different types of plots, so the above plot can also be generated with code like this:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create</span>
 surveys_plot &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> surveys_complete, <span class="kw">aes</span>(<span class="dt">x =</span> weight, <span class="dt">y =</span> hindfoot_length))
 
 <span class="co"># Draw the plot</span>
 surveys_plot +<span class="st"> </span><span class="kw">geom_point</span>()</code></pre></div>
 <p>Notes:</p>
 <ul>
-<li>Anything you put in the <code>ggplot()</code> function can be seen by any geom layers that you add. i.e. these are universal plot settings</li>
-<li>This includes the x and y axis you set up in <code>aes()</code></li>
-<li>Aesthetics (<code>aes()</code>) can also be added separately from the <code>ggplot()</code> function. In other words, the last plot above can also be achieved with the following code:</li>
+<li>Anything you put in the <code>ggplot()</code> function can be seen by any geom layers that you add. i.e. these are universal plot settings. This includes the x and y axis you set up in <code>aes()</code>.</li>
+<li>You can also specify aesthetics for a given geom independently of the aesthetics defined globally in the <code>ggplot()</code> function.</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> surveys_complete) +<span class="st"> </span>
-<span class="st">    </span><span class="kw">aes</span>(<span class="dt">x =</span> weight, <span class="dt">y =</span> hindfoot_length) +
-<span class="st">    </span><span class="kw">geom_point</span>()</code></pre></div>
 </div>
 <div id="modifying-plots" class="section level2">
 <h2>Modifying plots</h2>
@@ -265,42 +260,35 @@ surveys_plot +<span class="st"> </span><span class="kw">geom_point</span>()</cod
 <li>adding transparency (alpha)</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys_plot +<span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.1</span>)</code></pre></div>
-<p><img src="img/R-ecology-adding-transparency-1.png" title="" alt="" width="672" /></p>
+<p><img src="img/R-ecology-adding-transparency-1.png" width="672" /></p>
 <ul>
 <li>adding colors</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys_plot +<span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.1</span>, <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>)</code></pre></div>
-<p><img src="img/R-ecology-adding-colors-1.png" title="" alt="" width="672" /></p>
+<p><img src="img/R-ecology-adding-colors-1.png" width="672" /></p>
 </div>
 <div id="boxplot" class="section level2">
 <h2>Boxplot</h2>
 <p>Visualising the distribution of weight within each species.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys_box &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> surveys_complete) +<span class="st"> </span>
-<span class="st">    </span><span class="kw">aes</span>(<span class="dt">x =</span> species_id, <span class="dt">y =</span> hindfoot_length)
-surveys_box +<span class="st"> </span><span class="kw">geom_boxplot</span>()</code></pre></div>
-<p><img src="img/R-ecology-boxplot-1.png" title="" alt="" width="672" /></p>
-<p>By adding points to boxplot, we can see particular measurements and the abundance of measurements.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys_box +<span class="st"> </span><span class="kw">geom_jitter</span>(<span class="dt">alpha =</span> <span class="fl">0.3</span>, <span class="dt">color =</span> <span class="st">&quot;tomato&quot;</span>) +<span class="st"> </span><span class="kw">geom_boxplot</span>(<span class="dt">alpha =</span> <span class="dv">0</span>)</code></pre></div>
-<p><img src="img/R-ecology-boxplot-with-points-1.png" title="" alt="" width="672" /></p>
-<p>Notice how the boxplot layer is on top of the jitter layer? Play around with the order of geoms and adjust transparency to see how to build up your plot in layers.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> surveys_complete, <span class="kw">aes</span>(<span class="dt">x =</span> species_id, <span class="dt">y =</span> hindfoot_length)) +
+<span class="st">    </span><span class="kw">geom_boxplot</span>()</code></pre></div>
+<p><img src="img/R-ecology-boxplot-1.png" width="672" /></p>
+<p>By adding points to boxplot, we can have a better idea of the number of measurements and of their distribution:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> surveys_complete, <span class="kw">aes</span>(<span class="dt">x =</span> species_id, <span class="dt">y =</span> hindfoot_length)) +
+<span class="st">    </span><span class="kw">geom_boxplot</span>(<span class="dt">alpha =</span> <span class="dv">0</span>) +
+<span class="st">    </span><span class="kw">geom_jitter</span>(<span class="dt">alpha =</span> <span class="fl">0.3</span>, <span class="dt">color =</span> <span class="st">&quot;tomato&quot;</span>)</code></pre></div>
+<p><img src="img/R-ecology-boxplot-with-points-1.png" width="672" /></p>
+<p>Notice how the boxplot layer is behind the jitter layer? What do you need to change in the code to put the boxplot in front of the points such that it’s not hidden.</p>
 <blockquote>
 <h3 id="challenges">Challenges</h3>
-</blockquote>
-<p>Boxplots are useful summaries, but hide the <em>shape</em> of the distribution. For example, if there is a bimodal distribution, this would not be observed with a boxplot. An alternative is a violin plot (sometimes known as a beanplot), where the shape (of the density of points) is drawn.</p>
-<blockquote>
+<p>Boxplots are useful summaries, but hide the <em>shape</em> of the distribution. For example, if there is a bimodal distribution, this would not be observed with a boxplot. An alternative to the boxplot is the violin plot (sometimes known as a beanplot), where the shape (of the density of points) is drawn.</p>
 <ul>
 <li>Replace the box plot with a violin plot; see <code>geom_violin()</code></li>
 </ul>
-</blockquote>
 <p>In many types of data, it is important to consider the <em>scale</em> of the observations. For example, it may be worth changing the scale of the axis to better distribute the observations in the space of the plot. Changing the scale of the axes is done similarly to adding/modifying other components (i.e., by incrementally adding commands).</p>
-<blockquote>
 <ul>
-<li>Represent weight on the log10 scale; see <code>scale_y_log10()</code></li>
-</ul>
-</blockquote>
-<blockquote>
-<ul>
-<li>Create boxplot for <code>hindfoot_length</code>.</li>
+<li><p>Represent weight on the log10 scale; see <code>scale_y_log10()</code></p></li>
+<li><p>Create boxplot for <code>hindfoot_length</code>.</p></li>
 </ul>
 </blockquote>
 </div>
@@ -309,132 +297,137 @@ surveys_box +<span class="st"> </span><span class="kw">geom_boxplot</span>()</co
 <p>Let’s calculate number of counts per year for each species. To do that we need to group data first and count records within each group.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">yearly_counts &lt;-<span class="st"> </span>surveys_complete %&gt;%
 <span class="st">                 </span><span class="kw">group_by</span>(year, species_id) %&gt;%
-<span class="st">                 </span>tally
-yearly_counts_plot &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> yearly_counts, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> n))</code></pre></div>
+<span class="st">                 </span>tally</code></pre></div>
 <p>Timelapse data can be visualised as a line plot with years on x axis and counts on y axis.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">yearly_counts_plot +<span class="st"> </span><span class="kw">geom_line</span>()</code></pre></div>
-<p><img src="img/R-ecology-first-time-series-1.png" title="" alt="" width="672" /></p>
-<p>Unfortunately this does not work, because we plot data for all the species together. We need to tell ggplot to split graphed data by <code>species_id</code>. Notice that <code>+</code> can be conveniently used to modify the default aesthetic mappings (currently set to <code>x = year, y = n</code>).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">yearly_counts_plot +<span class="st"> </span><span class="kw">aes</span>(<span class="dt">group =</span> species_id) +<span class="st"> </span><span class="kw">geom_line</span>()</code></pre></div>
-<p><img src="img/R-ecology-time-series-by-species-1.png" title="" alt="" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> yearly_counts, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> n)) +
+<span class="st">     </span><span class="kw">geom_line</span>()</code></pre></div>
+<p><img src="img/R-ecology-first-time-series-1.png" width="672" /></p>
+<p>Unfortunately this does not work, because we plot data for all the species together. We need to tell ggplot to draw a line for each species by modifying the aesthetic function to include <code>group = species_id</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> yearly_counts, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> n, <span class="dt">group =</span> species_id)) +
+<span class="st">    </span><span class="kw">geom_line</span>()</code></pre></div>
+<p><img src="img/R-ecology-time-series-by-species-1.png" width="672" /></p>
 <p>We will be able to distinguish species in the plot if we add colors.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">yearly_counts_plot +<span class="st"> </span><span class="kw">aes</span>(<span class="dt">color =</span> species_id) +<span class="st"> </span><span class="kw">geom_line</span>()</code></pre></div>
-<p><img src="img/R-ecology-time-series-with-colors-1.png" title="" alt="" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> yearly_counts, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> n, <span class="dt">group =</span> species_id, <span class="dt">colour =</span> species_id)) +
+<span class="st">    </span><span class="kw">geom_line</span>()</code></pre></div>
+<p><img src="img/R-ecology-time-series-with-colors-1.png" width="672" /></p>
 </div>
 <div id="faceting" class="section level2">
 <h2>Faceting</h2>
-<p>ggplot has a special technique called <em>faceting</em> that allows to split one plot into multiple plots based on some factor. We will use it to plot one time series for each species separately.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">yearly_counts_color &lt;-<span class="st"> </span>yearly_counts_plot +<span class="st"> </span>
-<span class="st">    </span><span class="kw">aes</span>(<span class="dt">group =</span> species_id, <span class="dt">color =</span> species_id)
-yearly_counts_color +<span class="st"> </span><span class="kw">geom_line</span>() +<span class="st"> </span><span class="kw">facet_wrap</span>(~species_id)</code></pre></div>
-<p><img src="img/R-ecology-first-facet-1.png" title="" alt="" width="672" /></p>
-<p>Now we would like to split line in each plot by sex of each individual measured. To do that we need to make counts in dataframe grouped by sex.</p>
+<p>ggplot has a special technique called <em>faceting</em> that allows to split one plot into multiple plots based on a factor included in the dataset. We will use it to make one plot for a time series for each species.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> yearly_counts, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> n, <span class="dt">group =</span> species_id, <span class="dt">colour =</span> species_id)) +
+<span class="st">    </span><span class="kw">geom_line</span>() +
+<span class="st">    </span><span class="kw">facet_wrap</span>(~<span class="st"> </span>species_id)</code></pre></div>
+<p><img src="img/R-ecology-first-facet-1.png" width="672" /></p>
+<p>Now we would like to split line in each plot by sex of each individual measured. To do that we need to make counts in data frame grouped by sex.</p>
 <blockquote>
 <h3 id="challenges-1">Challenges:</h3>
 <ul>
 <li>filter the dataframe so that we only keep records with sex “F” or “M”s</li>
 </ul>
-</blockquote>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sex_values =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;F&quot;</span>, <span class="st">&quot;M&quot;</span>)
-surveys_complete &lt;-<span class="st"> </span>surveys_complete %&gt;%
-<span class="st">           </span><span class="kw">filter</span>(sex %in%<span class="st"> </span>sex_values)</code></pre></div>
-<blockquote>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys_complete &lt;-<span class="st"> </span>surveys_complete %&gt;%
+<span class="st">          </span><span class="kw">filter</span>(sex %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;F&quot;</span>, <span class="st">&quot;M&quot;</span>))</code></pre></div>
 <ul>
 <li>group by year, species_id, sex</li>
 </ul>
 </blockquote>
+<blockquote>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">yearly_sex_counts &lt;-<span class="st"> </span>surveys_complete %&gt;%
 <span class="st">                     </span><span class="kw">group_by</span>(year, species_id, sex) %&gt;%
 <span class="st">                     </span>tally</code></pre></div>
-<blockquote>
 <ul>
 <li>make the faceted plot splitting further by sex (within single plot)</li>
 </ul>
 </blockquote>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">yearly_sex_gender_plot &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> yearly_sex_counts) +<span class="st"> </span>
+<blockquote>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> yearly_sex_counts) +
 <span class="st">    </span><span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> n, <span class="dt">color =</span> species_id, <span class="dt">group =</span> sex) +
-<span class="st">    </span><span class="kw">geom_line</span>() +<span class="st"> </span>
-<span class="st">    </span><span class="kw">facet_wrap</span>(~<span class="st"> </span>species_id)
-
-<span class="co"># Draw plot</span>
-yearly_sex_gender_plot</code></pre></div>
-<p><img src="img/R-ecology-facet-by-species-and-sex-1.png" title="" alt="" width="672" /></p>
+<span class="st">    </span><span class="kw">geom_line</span>() +
+<span class="st">    </span><span class="kw">facet_wrap</span>(~<span class="st"> </span>species_id)</code></pre></div>
+<p><img src="img/R-ecology-facet-by-species-and-sex-1.png" width="672" /></p>
 <p>Usually plots with white background looks more readable in the publications. We can set the background to white using the function <code>theme_bw()</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">yearly_sex_gender_plot +<span class="st"> </span><span class="kw">theme_bw</span>()</code></pre></div>
-<p><img src="img/R-ecology-facet-by-species-and-sex-white-bg-1.png" title="" alt="" width="672" /></p>
-<blockquote>
-<p>We can improve the plot by coloring by sex instead of species (species are already in separate plots, so we don’t need to distinguish them further).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> yearly_sex_counts) +
+<span class="st">    </span><span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> n, <span class="dt">color =</span> species_id, <span class="dt">group =</span> sex) +
+<span class="st">    </span><span class="kw">geom_line</span>() +
+<span class="st">    </span><span class="kw">facet_wrap</span>(~<span class="st"> </span>species_id) +
+<span class="st">    </span><span class="kw">theme_bw</span>()</code></pre></div>
+<p><img src="img/R-ecology-facet-by-species-and-sex-white-bg-1.png" width="672" /> We can improve the plot by coloring by sex instead of species (species are already in separate plots, so we don’t need to distinguish them further).</p>
 </blockquote>
+<blockquote>
 <p>Note that even though the <code>color</code> and <code>group</code> aesthetic mappings are set, I can <em>redefine them</em> via the <code>+</code> operator.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">yearly_sex_gender_plot +<span class="st"> </span><span class="kw">aes</span>(<span class="dt">color=</span>sex, <span class="dt">group=</span>sex) +<span class="st"> </span><span class="kw">theme_bw</span>()</code></pre></div>
-<p><img src="img/R-ecology-facet-by-species-and-sex-colored-1.png" title="" alt="" width="672" /></p>
-<blockquote>
-<ul>
-<li>plot average weight of each species over the course of the years</li>
-</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> yearly_sex_counts) +
+<span class="st">    </span><span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> n, <span class="dt">color =</span> sex, <span class="dt">group =</span> sex) +
+<span class="st">    </span><span class="kw">geom_line</span>() +
+<span class="st">    </span><span class="kw">facet_wrap</span>(~<span class="st"> </span>species_id) +
+<span class="st">    </span><span class="kw">theme_bw</span>()</code></pre></div>
+<p><img src="img/R-ecology-facet-by-species-and-sex-colored-1.png" width="672" /> - plot average weight of each species over the course of the years</p>
 </blockquote>
+<blockquote>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">yearly_weight &lt;-<span class="st"> </span>surveys_complete %&gt;%
 <span class="st">                 </span><span class="kw">group_by</span>(year, species_id, sex) %&gt;%
 <span class="st">                 </span><span class="kw">summarise</span>(<span class="dt">avg_weight =</span> <span class="kw">mean</span>(weight, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))
-yearly_weight_plot &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> yearly_weight) +<span class="st"> </span>
-<span class="st">    </span><span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>avg_weight, <span class="dt">color =</span> species_id, <span class="dt">group =</span> species_id) +
-<span class="st">    </span><span class="kw">geom_line</span>() +<span class="st"> </span><span class="kw">theme_bw</span>()
-yearly_weight_plot</code></pre></div>
-<p><img src="img/R-ecology-average-weight-timeseries-1.png" title="" alt="" width="672" /></p>
-<blockquote>
-<ul>
-<li>why do you think we see those steps in the plot?</li>
-</ul>
-</blockquote>
+<span class="kw">ggplot</span>(<span class="dt">data =</span> yearly_weight, <span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>avg_weight, <span class="dt">color =</span> species_id, <span class="dt">group =</span> species_id)) +
+<span class="st">    </span><span class="kw">geom_line</span>() +
+<span class="st">    </span><span class="kw">facet_wrap</span>(~<span class="st"> </span>species_id) +
+<span class="st">    </span><span class="kw">theme_bw</span>()</code></pre></div>
+<p><img src="img/R-ecology-average-weight-timeseries-1.png" width="672" /> - why do you think we see those steps in the plot?</p>
 <p>The <code>facet_wrap</code> geometry extracts plots into an arbitrary number of dimensions to allow them to cleanly fit on one page. On the other hand, the <code>facet_grid</code> geometry allows you to explicitly specify how you want your plots to be arranged via formula notation (<code>rows ~ columns</code>; a <code>.</code> can be used as a placeholder that indicates only one row or column).</p>
-<blockquote>
 <ul>
 <li>make separate plots per sex since weight of males and females can differ a lot</li>
 </ul>
 </blockquote>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># One column, facet by rows </span>
-yearly_weight_plot +<span class="st"> </span><span class="kw">facet_grid</span>(sex ~<span class="st"> </span>.)</code></pre></div>
-<p><img src="img/R-ecology-average-weight-time-facet_sex_rows-1.png" title="" alt="" width="672" /></p>
+<blockquote>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## One column, facet by rows
+<span class="kw">ggplot</span>(<span class="dt">data =</span> yearly_weight, <span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>avg_weight, <span class="dt">color =</span> species_id, <span class="dt">group =</span> species_id)) +
+<span class="st">    </span><span class="kw">geom_line</span>() +
+<span class="st">    </span><span class="kw">facet_grid</span>(sex ~<span class="st"> </span>.)</code></pre></div>
+<p><img src="img/R-ecology-average-weight-time-facet_sex_rows-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># One row, facet by column</span>
-yearly_weight_plot +<span class="st"> </span><span class="kw">facet_grid</span>(. ~<span class="st"> </span>sex)</code></pre></div>
-<p><img src="img/R-ecology-average-weight-time-facet_sex_columns-1.png" title="" alt="" width="672" /></p>
-<p>So far our result looks quite good, but is far from being publishable. What are other ways one can improve it? Take a look at the ggplot2 cheat sheet (<a href="https://www.rstudio.com/wp-content/uploads/2015/08/ggplot2-cheatsheet.pdf" class="uri">https://www.rstudio.com/wp-content/uploads/2015/08/ggplot2-cheatsheet.pdf</a>), and write down at least three more ideas (you can leave them as comments to the Etherpad).</p>
+<span class="kw">ggplot</span>(<span class="dt">data =</span> yearly_weight, <span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>avg_weight, <span class="dt">color =</span> species_id, <span class="dt">group =</span> species_id)) +
+<span class="st">    </span><span class="kw">geom_line</span>() +
+<span class="st">    </span><span class="kw">facet_grid</span>(. ~<span class="st"> </span>sex)</code></pre></div>
+<p><img src="img/R-ecology-average-weight-time-facet_sex_columns-1.png" width="672" /></p>
+</blockquote>
+<p>Take a look at the ggplot2 cheat sheet (<a href="https://www.rstudio.com/wp-content/uploads/2015/08/ggplot2-cheatsheet.pdf" class="uri">https://www.rstudio.com/wp-content/uploads/2015/08/ggplot2-cheatsheet.pdf</a>), and think of ways to improve the plot. You can write down some of your ideas as comments in the Etherpad.</p>
 <p>Now, let’s change names of axes to something more informative than ‘year’ and ‘n’ and add a title to this figure:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">plt_with_labels &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> yearly_sex_counts) +<span class="st"> </span>
-<span class="st">    </span><span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> n, <span class="dt">color =</span> sex, <span class="dt">group =</span> sex) +
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> yearly_sex_counts, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> n, <span class="dt">color =</span> sex, <span class="dt">group =</span> sex)) +
+<span class="st">    </span><span class="kw">geom_line</span>() +
+<span class="st">    </span><span class="kw">facet_wrap</span>(~<span class="st"> </span>species_id) +
+<span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Observed species in time&#39;</span>,
+         <span class="dt">x =</span> <span class="st">&#39;Year of observation&#39;</span>,
+         <span class="dt">y =</span> <span class="st">&#39;Number of species&#39;</span>) +
+<span class="st">    </span><span class="kw">theme_bw</span>()</code></pre></div>
+<p><img src="img/R-ecology-number_species_year_with_right_labels-1.png" width="672" /></p>
+<p>The axes have more informative names, but their readibility can be improved by increasing the font size. While we are at it, we’ll also change the font family:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> yearly_sex_counts, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> n, <span class="dt">color =</span> sex, <span class="dt">group =</span> sex)) +
 <span class="st">    </span><span class="kw">geom_line</span>() +
 <span class="st">    </span><span class="kw">facet_wrap</span>(~<span class="st"> </span>species_id) +
 <span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Observed species in time&#39;</span>,
         <span class="dt">x =</span> <span class="st">&#39;Year of observation&#39;</span>,
-        <span class="dt">y =</span> <span class="st">&#39;Number of species&#39;</span>) +<span class="st"> </span><span class="kw">theme_bw</span>()
-
-plt_with_labels</code></pre></div>
-<p><img src="img/R-ecology-number_species_year_with_right_labels-1.png" title="" alt="" width="672" /></p>
-<p>Thanks to our efforts, the axes have much more informative names, but are still quite small and hard to read. Let’s change their size (and font just for fun):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">plt_with_labels +<span class="st"> </span><span class="kw">theme</span>(<span class="dt">text=</span><span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">16</span>, <span class="dt">family=</span><span class="st">&quot;Arial&quot;</span>))</code></pre></div>
-<p><img src="img/R-ecology-number_species_year_with_right_labels_xfont_size-1.png" title="" alt="" width="672" /></p>
+        <span class="dt">y =</span> <span class="st">&#39;Number of species&#39;</span>) +
+<span class="st">    </span><span class="kw">theme_bw</span>() +
+<span class="st">    </span><span class="kw">theme</span>(<span class="dt">text=</span><span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">16</span>, <span class="dt">family=</span><span class="st">&quot;Arial&quot;</span>))</code></pre></div>
+<p><img src="img/R-ecology-number_species_year_with_right_labels_xfont_size-1.png" width="672" /></p>
 <p>After our manipulations we notice that the values on the x-axis are still not properly readable. Let’s change the orientation of the labels and adjust them vertically and horizontally so they don’t overlap. You can use a 90 degree angle, or experiment to find the appropriate angle for diagonally oriented labels.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">arial_grey_theme &lt;-<span class="st"> </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">colour=</span><span class="st">&quot;grey20&quot;</span>, <span class="dt">size=</span><span class="dv">12</span>, <span class="dt">angle=</span><span class="dv">90</span>, <span class="dt">hjust=</span>.<span class="dv">5</span>, <span class="dt">vjust=</span>.<span class="dv">5</span>),
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> yearly_sex_counts, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> n, <span class="dt">color =</span> sex, <span class="dt">group =</span> sex)) +
+<span class="st">    </span><span class="kw">geom_line</span>() +
+<span class="st">    </span><span class="kw">facet_wrap</span>(~<span class="st"> </span>species_id) +
+<span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Observed species in time&#39;</span>,
+        <span class="dt">x =</span> <span class="st">&#39;Year of observation&#39;</span>,
+        <span class="dt">y =</span> <span class="st">&#39;Number of species&#39;</span>) +
+<span class="st">    </span><span class="kw">theme_bw</span>() +
+<span class="st">    </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">colour=</span><span class="st">&quot;grey20&quot;</span>, <span class="dt">size=</span><span class="dv">12</span>, <span class="dt">angle=</span><span class="dv">90</span>, <span class="dt">hjust=</span>.<span class="dv">5</span>, <span class="dt">vjust=</span>.<span class="dv">5</span>),
                         <span class="dt">axis.text.y =</span> <span class="kw">element_text</span>(<span class="dt">colour=</span><span class="st">&quot;grey20&quot;</span>, <span class="dt">size=</span><span class="dv">12</span>),
-                        <span class="dt">text=</span><span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">16</span>, <span class="dt">family=</span><span class="st">&quot;Arial&quot;</span>))
-plt_with_labels +<span class="st"> </span>arial_grey_theme</code></pre></div>
-<p><img src="img/R-ecology-number_species_year_with_right_labels_xfont_orientation-1.png" title="" alt="" width="672" /></p>
-<p>Note that themes (and any other individual components of ggplot-based objects) can be saved to variables for convenient access, as the previous code block demonstrates. A useful application of this is that you can define a global theme that contains text fonts and sizes, plot margins, etc. that you’d like to apply to all of your plots and then selectively modify this theme for individual plots without having to type out every setting each time.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Setup plots</span>
-global_theme &lt;-<span class="st"> </span><span class="kw">theme</span>(...)
-plot1_theme &lt;-<span class="st"> </span><span class="kw">theme</span>(...)
-plot2_theme &lt;-<span class="st"> </span><span class="kw">theme</span>(...)
-plot_template &lt;-<span class="st"> </span><span class="kw">ggplot</span>() +<span class="st"> </span><span class="kw">aes</span>(...)
-plot1_aes &lt;-<span class="st"> </span><span class="kw">aes</span>(...)   ## Additional custom aesthetic mappings for plot1
-plot2_aes &lt;-<span class="st"> </span><span class="kw">aes</span>(...)   ## Additional custom aesthetic mappings for plot2
-plot1 &lt;-<span class="st"> </span>plot_template +<span class="st"> </span>plot1_aes +<span class="st"> </span><span class="kw">geom_point</span>(...) +<span class="st"> </span>global_theme +<span class="st"> </span>plot1_theme
-plot2 &lt;-<span class="st"> </span>plot_template +<span class="st"> </span>plot2_aes +<span class="st"> </span><span class="kw">geom_line</span>(...) +<span class="st"> </span>global_theme +<span class="st"> </span>plot2_theme
-
-<span class="co"># Draw plots</span>
-plot1
-plot2</code></pre></div>
-<p>Be aware that when overwriting settings via the <code>+</code> operator, order matters. That is, <code>global_theme + plot1_theme</code> will overwrite any settings in <code>global_theme</code> with those in <code>plot1_theme</code>, whereas <code>plot1_theme + global_theme</code> will overwrite any settings in <code>plot1_theme</code> with those in <code>global_theme</code>. This only applies to settings that you set, however – if the <code>plot1</code> and <code>global</code> themes don’t share any common settings (i.e. are mutually exclusive), neither will be affected by the other.</p>
-<p>With all of this information in hand, please take another five minutes to either improve one of the plots generated in this exercise or create a beautiful graph of your own. Use the ggplot2 cheat sheet, which we linked earlier for inspiration.</p>
+          <span class="dt">text=</span><span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">16</span>, <span class="dt">family=</span><span class="st">&quot;Arial&quot;</span>))</code></pre></div>
+<p><img src="img/R-ecology-number_species_year_with_theme-1.png" width="672" /></p>
+<p>If you like the changes you created to the default theme, you can save them as an object to easily apply them to other plots you may create:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">arial_grey_theme &lt;-<span class="st"> </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">colour=</span><span class="st">&quot;grey20&quot;</span>, <span class="dt">size=</span><span class="dv">12</span>, <span class="dt">angle=</span><span class="dv">90</span>, <span class="dt">hjust=</span>.<span class="dv">5</span>, <span class="dt">vjust=</span>.<span class="dv">5</span>),
+                          <span class="dt">axis.text.y =</span> <span class="kw">element_text</span>(<span class="dt">colour=</span><span class="st">&quot;grey20&quot;</span>, <span class="dt">size=</span><span class="dv">12</span>),
+                          <span class="dt">text=</span><span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">16</span>, <span class="dt">family=</span><span class="st">&quot;Arial&quot;</span>))
+<span class="kw">ggplot</span>(surveys_complete, <span class="kw">aes</span>(<span class="dt">x =</span> species_id, <span class="dt">y =</span> hindfoot_length)) +
+<span class="st">    </span><span class="kw">geom_boxplot</span>() +
+<span class="st">    </span>arial_grey_theme</code></pre></div>
+<p><img src="img/R-ecology-number_species_year_with_right_labels_xfont_orientation-1.png" width="672" /></p>
+<p>With all of this information in hand, please take another five minutes to either improve one of the plots generated in this exercise or create a beautiful graph of your own. Use the RStudio ggplot2 cheat sheet, which we linked earlier for inspiration.</p>
 <p>Here are some ideas:</p>
 <ul>
 <li>See if you can change thickness of the lines.</li>

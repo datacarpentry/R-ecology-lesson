@@ -7,7 +7,7 @@
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
+
 
 <meta name="author" content="Data Carpentry contributors" />
 
@@ -67,25 +67,7 @@ code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Inf
 </style>
 
 
-
-</head>
-
-<body>
-
-<style type = "text/css">
-.main-container {
-  max-width: 940px;
-  margin-left: auto;
-  margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
-}
-img {
-  max-width:100%;
-  height: auto;
-}
+<style type="text/css">
 h1 {
   font-size: 34px;
 }
@@ -106,6 +88,30 @@ h5 {
 }
 h6 {
   font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -136,7 +142,8 @@ $(document).ready(function () {
 <div class="fluid-row" id="header">
 
 
-<h1 class="title">The <code>data.frame</code> class</h1>
+
+<h1 class="title toc-ignore">The <code>data.frame</code> class</h1>
 <h4 class="author"><em>Data Carpentry contributors</em></h4>
 
 </div>
@@ -149,7 +156,6 @@ $(document).ready(function () {
 <li><a href="#inspecting-data.frame-objects">Inspecting <code>data.frame</code> Objects</a></li>
 <li><a href="#indexing-sequences-and-subsetting">Indexing, Sequences, and Subsetting</a><ul>
 <li><a href="#challenge-1">Challenge</a></li>
-<li><a href="#conditional-subsetting">Conditional subsetting</a></li>
 </ul></li>
 </ul>
 </div>
@@ -209,12 +215,14 @@ example_data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<s
                                <span class="dt">temperature=</span><span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">30</span>, <span class="dv">18</span>, <span class="st">&quot;15&quot;</span>),
                                <span class="dt">northern_hemisphere=</span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="st">&quot;FALSE&quot;</span>),
                                <span class="dt">has_kangaroo=</span><span class="kw">c</span>(<span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="dv">1</span>))</code></pre></div></li>
+<li><p>We introduced you to the <code>data.frame()</code> function and <code>read.csv()</code>, but what if we are starting with some vectors? We can “bind” vectors together using <code>cbind()</code> (bind by columns) and <code>rbind()</code> (bind by rows) and use <code>as.data.frame()</code> to build a data frame as well. Look how we can do this below. Try making your own new data frame from some vectors. You can check the data type of the new object using <code>class()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">colors &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;yellow&quot;</span>)
+counts &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">65</span>, <span class="dv">82</span>)
+new_dataframe &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw">cbind</span>(colors, weights))
+<span class="kw">class</span>(new_dataframe)</code></pre></div>
+<p>&lt;!—</p></li>
 </ol>
-<p><!---
-
-
-
-   ---></p>
+<p>—&gt;</p>
 <p>The automatic conversion of data type is sometimes a blessing, sometimes an annoyance. Be aware that it exists, learn the rules, and double check that data you import in R are of the correct type within your data frame. If not, use it to your advantage to detect mistakes that might have been introduced during data entry (a letter in a column that should only contain numbers for instance.).</p>
 </div>
 </div>
@@ -248,18 +256,6 @@ example_data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<s
 </div>
 <div id="indexing-sequences-and-subsetting" class="section level2">
 <h2>Indexing, Sequences, and Subsetting</h2>
-<p>If we want to extract one or several values from a vector, we must provide one or several indices in square brackets. For instance:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">animals &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;mouse&quot;</span>, <span class="st">&quot;rat&quot;</span>, <span class="st">&quot;dog&quot;</span>, <span class="st">&quot;cat&quot;</span>)
-animals[<span class="dv">2</span>]</code></pre></div>
-<pre><code>#&gt; [1] &quot;rat&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">animals[<span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>)]</code></pre></div>
-<pre><code>#&gt; [1] &quot;dog&quot; &quot;rat&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">animals[<span class="dv">2</span>:<span class="dv">4</span>]</code></pre></div>
-<pre><code>#&gt; [1] &quot;rat&quot; &quot;dog&quot; &quot;cat&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">more_animals &lt;-<span class="st"> </span>animals[<span class="kw">c</span>(<span class="dv">1</span>:<span class="dv">3</span>, <span class="dv">2</span>:<span class="dv">4</span>)]
-more_animals</code></pre></div>
-<pre><code>#&gt; [1] &quot;mouse&quot; &quot;rat&quot;   &quot;dog&quot;   &quot;rat&quot;   &quot;dog&quot;   &quot;cat&quot;</code></pre>
-<p>R indexes start at 1. Programming languages like Fortran, MATLAB, and R start counting at 1, because that’s what human beings typically do. Languages in the C family (including C++, Java, Perl, and Python) count from 0 because that’s simpler for computers to do.</p>
 <p><code>:</code> is a special function that creates numeric vectors of integers in increasing or decreasing order, test <code>1:10</code> and <code>10:1</code> for instance. The function <code>seq()</code> (for __seq__uence) can be used to create more complex patterns:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dt">by=</span><span class="dv">2</span>)</code></pre></div>
 <pre><code>#&gt; [1] 1 3 5 7 9</code></pre>
@@ -285,52 +281,18 @@ surveys$species_id</code></pre></div>
 <div id="challenge-1" class="section level3">
 <h3>Challenge</h3>
 <ol style="list-style-type: decimal">
-<li>The function <code>nrow()</code> on a <code>data.frame</code> returns the number of rows. Use it, in conjuction with <code>seq()</code> to create a new <code>data.frame</code> called <code>surveys_by_10</code> that includes every 10th row of the survey data frame starting at row 10 (10, 20, 30, …)</li>
+<li><p>The function <code>nrow()</code> on a <code>data.frame</code> returns the number of rows. Use it, in conjuction with <code>seq()</code> to create a new <code>data.frame</code> called <code>surveys_by_10</code> that includes every 10th row of the survey data frame starting at row 10 (10, 20, 30, …)</p></li>
+<li><p>Create a <code>data.frame</code> containing only the observations from 1999 of the <code>surveys</code> dataset.</p></li>
 </ol>
+<p>`<code>{r, echo=FALSE, purl=TRUE} ### 1. The function</code>nrow()<code>on a</code>data.frame<code>returns the number of ### rows. Use it, in conjuction with</code>seq()<code>to create a new ###</code>data.frame<code>called</code>surveys_by_10` that includes every 10th row ### of the survey data frame starting at row 10 (10, 20, 30, …) ### ### 2. Create a data.frame containing only the observation from 1999 of the –&gt; ### surveys dataset. ```</p>
 <!---
 
 ```r
-## Answer
+## Answers
 surveys_by_10 <- surveys[seq(10, nrow(surveys), by=10), ]
+surveys_1999 <- surveys[surveys$year == 1999, ]
 ```
 --->
-</div>
-<div id="conditional-subsetting" class="section level3">
-<h3>Conditional subsetting</h3>
-<p>Besides using the index position of an element in a vector to extract its value as we saw earlier, we can also use logical vectors:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">animals &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;mouse&quot;</span>, <span class="st">&quot;rat&quot;</span>, <span class="st">&quot;dog&quot;</span>, <span class="st">&quot;cat&quot;</span>)
-animals[<span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">TRUE</span>)]</code></pre></div>
-<p>But typically, those logical vectors are not typed by hand but the result of a logical test:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">animals !=<span class="st"> &quot;rat&quot;</span>
-animals[animals !=<span class="st"> &quot;rat&quot;</span>]
-animals[animals ==<span class="st"> &quot;cat&quot;</span>]</code></pre></div>
-<p>If you can combine multiple tests using <code>&amp;</code> (both conditions are true, AND) or <code>|</code> (at least one of the conditions if true, OR):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">animals[animals ==<span class="st"> &quot;cat&quot;</span> &amp;<span class="st"> </span>animals ==<span class="st"> &quot;rat&quot;</span>] <span class="co"># returns nothing</span>
-animals[animals ==<span class="st"> &quot;cat&quot;</span> |<span class="st"> </span>animals ==<span class="st"> &quot;rat&quot;</span>] <span class="co"># returns both rat and cat</span></code></pre></div>
-<p>If you are trying to combine many conditions, it can become tedious to type. The function <code>%in%</code> allows you to test if a value if found in a vector:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">animals %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;rat&quot;</span>, <span class="st">&quot;cat&quot;</span>, <span class="st">&quot;dog&quot;</span>, <span class="st">&quot;duck&quot;</span>)
-animals[animals %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;rat&quot;</span>, <span class="st">&quot;cat&quot;</span>, <span class="st">&quot;dog&quot;</span>, <span class="st">&quot;duck&quot;</span>)]</code></pre></div>
-<p>In addition to testing equalities, you can also test whether the elements of your vector are less than or greater than a given value:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dates &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1960</span>, <span class="dv">1963</span>, <span class="dv">1974</span>, <span class="dv">2015</span>, <span class="dv">2016</span>)
-dates &gt;=<span class="st"> </span><span class="dv">1974</span>
-dates[dates &gt;=<span class="st"> </span><span class="dv">1974</span>]
-dates[dates &gt;<span class="st"> </span><span class="dv">1970</span> &amp;<span class="st"> </span>dates &lt;=<span class="st"> </span><span class="dv">2015</span>]
-dates[dates &lt;<span class="st"> </span><span class="dv">1975</span> |<span class="st"> </span>dates &gt;<span class="st"> </span><span class="dv">2016</span>]</code></pre></div>
-<blockquote>
-<h3 id="challenge-2" class="challenge">Challenge</h3>
-<ul>
-<li>Can you figure out why <code>&quot;four&quot; &gt; &quot;five&quot;</code> returns <code>TRUE</code>?</li>
-</ul>
-</blockquote>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># * Can you figure out why `&quot;four&quot; &gt; &quot;five&quot;` returns `TRUE`?</span></code></pre></div>
-<!--
-
-```r
-## Answers
-## * When using ">" or "<" on strings, R compares their alphabetical order. Here
-##   "four" comes after "five", and therefore is "greater than" it.
-```
--->
 </div>
 </div>
 
