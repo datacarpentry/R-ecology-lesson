@@ -142,7 +142,7 @@ to modify existing `ggplot` objects. This means you can easily set up plot
 plot can also be generated with code like this:
 
 ```{r, first-ggplot-with-plus, eval=FALSE}
-# Create 
+# Create
 surveys_plot <- ggplot(data = surveys_complete, aes(x = weight, y = hindfoot_length))
 
 # Draw the plot
@@ -151,18 +151,12 @@ surveys_plot + geom_point()
 
 Notes:
 
-- Anything you put in the `ggplot()` function can be seen by any geom layers that you add.
-i.e. these are universal plot settings
-- This includes the x and y axis you set up in `aes()`
-- Aesthetics (`aes()`) can also be added separately from the `ggplot()`
-  function. In other words, the last plot above can also be achieved with the
-  following code:
+- Anything you put in the `ggplot()` function can be seen by any geom layers
+  that you add.  i.e. these are universal plot settings. This includes the x and
+  y axis you set up in `aes()`.
+- You can also specify aesthetics for a given geom independently of the
+  aesthetics defined globally in the `ggplot()` function.
 
-```{r first-ggplot-alt, eval=FALSE}
-ggplot(data = surveys_complete) + 
-    aes(x = weight, y = hindfoot_length) +
-    geom_point()
-```
 
 ## Modifying plots
 
@@ -190,38 +184,40 @@ surveys_plot + geom_point(alpha = 0.1, color = "blue")
 Visualising the distribution of weight within each species.
 
 ```{r boxplot}
-surveys_box <- ggplot(data = surveys_complete) + 
-    aes(x = species_id, y = hindfoot_length)
-surveys_box + geom_boxplot()
+ggplot(data = surveys_complete, aes(x = species_id, y = hindfoot_length)) +
+    geom_boxplot()
 ```
 
-By adding points to boxplot, we can see particular measurements and the
-abundance of measurements.
+By adding points to boxplot, we can have a better idea of the number of
+measurements and of their distribution:
 
 ```{r boxplot-with-points}
-surveys_box + geom_jitter(alpha = 0.3, color = "tomato") + geom_boxplot(alpha = 0)
+ggplot(data = surveys_complete, aes(x = species_id, y = hindfoot_length)) +
+    geom_boxplot(alpha = 0) +
+    geom_jitter(alpha = 0.3, color = "tomato")
 ```
 
-Notice how the boxplot layer is on top of the jitter layer? Play around with
-the order of geoms and adjust transparency to see how to build up your plot in
-layers.
+Notice how the boxplot layer is behind the jitter layer? What do you need to
+change in the code to put the boxplot in front of the points such that it's not
+hidden.
 
 > ### Challenges
-
-Boxplots are useful summaries, but hide the *shape* of the distribution. For example, if
-there is a bimodal distribution, this would not be observed with a boxplot.  An alternative is
-a violin plot (sometimes known as a beanplot), where the shape (of the density of points) is 
-drawn.
-
+>
+> Boxplots are useful summaries, but hide the *shape* of the distribution. For
+> example, if there is a bimodal distribution, this would not be observed with a
+> boxplot. An alternative to the boxplot is the violin plot (sometimes known as a
+> beanplot), where the shape (of the density of points) is drawn.
+>
 > - Replace the box plot with a violin plot; see `geom_violin()`
-
-In many types of data, it is important to consider the *scale* of the observations.  For example, it may be
-worth changing the scale of the axis to better distribute the observations in the space of the plot.
-Changing the scale of the axes is done similarly to adding/modifying other components
-(i.e., by incrementally adding commands).
-
+>
+> In many types of data, it is important to consider the *scale* of the
+> observations.  For example, it may be worth changing the scale of the axis to
+> better distribute the observations in the space of the plot.  Changing the scale
+> of the axes is done similarly to adding/modifying other components (i.e., by
+> incrementally adding commands).
+>
 > - Represent weight on the log10 scale; see `scale_y_log10()`
-
+>
 > - Create boxplot for `hindfoot_length`.
 
 
@@ -234,203 +230,199 @@ to group data first and count records within each group.
 yearly_counts <- surveys_complete %>%
                  group_by(year, species_id) %>%
                  tally
-yearly_counts_plot <- ggplot(data = yearly_counts, aes(x = year, y = n))
 ```
 
 Timelapse data can be visualised as a line plot with years on x axis and counts
 on y axis.
 
 ```{r first-time-series}
-yearly_counts_plot + geom_line()
+ggplot(data = yearly_counts, aes(x = year, y = n)) +
+     geom_line()
 ```
 
 Unfortunately this does not work, because we plot data for all the species
-together. We need to tell ggplot to split graphed data by `species_id`. Notice
-that `+` can be conveniently used to modify the default aesthetic mappings
-(currently set to `x = year, y = n`).
+together. We need to tell ggplot to draw a line for each species by modifying
+the aesthetic function to include `group = species_id`.
 
 ```{r time-series-by-species}
-yearly_counts_plot + aes(group = species_id) + geom_line()
+ggplot(data = yearly_counts, aes(x = year, y = n, group = species_id)) +
+    geom_line()
 ```
 
-We will be able to distinguish species in the plot if we add colors. 
+We will be able to distinguish species in the plot if we add colors.
 
 ```{r time-series-with-colors}
-yearly_counts_plot + aes(color = species_id) + geom_line()
+ggplot(data = yearly_counts, aes(x = year, y = n, group = species_id, colour = species_id)) +
+    geom_line()
 ```
 
 ## Faceting
 
 ggplot has a special technique called *faceting* that allows to split one plot
-into multiple plots based on some factor. We will use it to plot one time
-series for each species separately.
+into multiple plots based on a factor included in the dataset. We will use it to
+make one plot for a time series for each species.
 
 ```{r first-facet}
-yearly_counts_color <- yearly_counts_plot + 
-    aes(group = species_id, color = species_id)
-yearly_counts_color + geom_line() + facet_wrap(~species_id)
+ggplot(data = yearly_counts, aes(x = year, y = n, group = species_id, colour = species_id)) +
+    geom_line() +
+    facet_wrap(~ species_id)
 ```
 
 Now we would like to split line in each plot by sex of each individual
-measured. To do that we need to make counts in dataframe grouped by sex.
+measured. To do that we need to make counts in data frame grouped by sex.
 
 > ### Challenges:
 >
 > - filter the dataframe so that we only keep records with sex "F" or "M"s
 >
-
-```{r}
-sex_values = c("F", "M")
-surveys_complete <- surveys_complete %>%
-           filter(sex %in% sex_values)
-```
-
+>
+> ```{r}
+> surveys_complete <- surveys_complete %>%
+>           filter(sex %in% c("F", "M"))
+> ```
+>
 > - group by year, species_id, sex
 
-```{r}
-yearly_sex_counts <- surveys_complete %>%
-                     group_by(year, species_id, sex) %>%
-                     tally
-```
-
+> ```{r}
+> yearly_sex_counts <- surveys_complete %>%
+>                      group_by(year, species_id, sex) %>%
+>                      tally
+> ```
 > - make the faceted plot splitting further by sex (within single plot)
 
-```{r facet-by-species-and-sex}
-yearly_sex_gender_plot <- ggplot(data = yearly_sex_counts) + 
-    aes(x = year, y = n, color = species_id, group = sex) +
-    geom_line() + 
-    facet_wrap(~ species_id)
-
-# Draw plot
-yearly_sex_gender_plot
-```
-
-Usually plots with white background looks more readable in the publications.
-We can set the background to white using the function `theme_bw()`.
-
-```{r facet-by-species-and-sex-white-bg}
-yearly_sex_gender_plot + theme_bw()
-```
-
+> ```{r facet-by-species-and-sex}
+> ggplot(data = yearly_sex_counts) +
+>     aes(x = year, y = n, color = species_id, group = sex) +
+>     geom_line() +
+>     facet_wrap(~ species_id)
+> ```
+>
+> Usually plots with white background looks more readable in the publications.
+> We can set the background to white using the function `theme_bw()`.
+>
+> ```{r facet-by-species-and-sex-white-bg}
+> ggplot(data = yearly_sex_counts) +
+>     aes(x = year, y = n, color = species_id, group = sex) +
+>     geom_line() +
+>     facet_wrap(~ species_id) +
+>     theme_bw()
+> ```
 > We can improve the plot by coloring by sex instead of species (species are
 > already in separate plots, so we don't need to distinguish them further).
 
-Note that even though the `color` and `group` aesthetic mappings are set, I can
-*redefine them* via the `+` operator.
-
-```{r facet-by-species-and-sex-colored}
-yearly_sex_gender_plot + aes(color=sex, group=sex) + theme_bw()
-```
-
+> Note that even though the `color` and `group` aesthetic mappings are set, I can
+> *redefine them* via the `+` operator.
+>
+> ```{r facet-by-species-and-sex-colored}
+> ggplot(data = yearly_sex_counts) +
+>     aes(x = year, y = n, color = sex, group = sex) +
+>     geom_line() +
+>     facet_wrap(~ species_id) +
+>     theme_bw()
+> ```
 > - plot average weight of each species over the course of the years
 
-```{r average-weight-timeseries}
-yearly_weight <- surveys_complete %>%
-                 group_by(year, species_id, sex) %>%
-                 summarise(avg_weight = mean(weight, na.rm = TRUE))
-yearly_weight_plot <- ggplot(data = yearly_weight) + 
-    aes(x=year, y=avg_weight, color = species_id, group = species_id) +
-    geom_line() + theme_bw()
-yearly_weight_plot
-```
-
+> ```{r average-weight-timeseries}
+> yearly_weight <- surveys_complete %>%
+>                  group_by(year, species_id, sex) %>%
+>                  summarise(avg_weight = mean(weight, na.rm = TRUE))
+> ggplot(data = yearly_weight, aes(x=year, y=avg_weight, color = species_id, group = species_id)) +
+>     geom_line() +
+>     facet_wrap(~ species_id) +
+>     theme_bw()
+> ```
 > - why do you think we see those steps in the plot?
-
-The `facet_wrap` geometry extracts plots into an arbitrary number of dimensions
-to allow them to cleanly fit on one page. On the other hand, the `facet_grid`
-geometry allows you to explicitly specify how you want your plots to be
-arranged via formula notation (`rows ~ columns`; a `.` can be used as
-a placeholder that indicates only one row or column). 
-
+>
+> The `facet_wrap` geometry extracts plots into an arbitrary number of dimensions
+> to allow them to cleanly fit on one page. On the other hand, the `facet_grid`
+> geometry allows you to explicitly specify how you want your plots to be
+> arranged via formula notation (`rows ~ columns`; a `.` can be used as
+> a placeholder that indicates only one row or column).
+>
 > - make separate plots per sex since weight of males and females can differ a lot
 
-```{r average-weight-time-facet_sex_rows}
-# One column, facet by rows 
-yearly_weight_plot + facet_grid(sex ~ .)
-```
+> ```{r average-weight-time-facet_sex_rows}
+> ## One column, facet by rows
+> ggplot(data = yearly_weight, aes(x=year, y=avg_weight, color = species_id, group = species_id)) +
+>     geom_line() +
+>     facet_grid(sex ~ .)
+> ```
+>
+> ```{r average-weight-time-facet_sex_columns}
+> # One row, facet by column
+> ggplot(data = yearly_weight, aes(x=year, y=avg_weight, color = species_id, group = species_id)) +
+>     geom_line() +
+>     facet_grid(. ~ sex)
+> ```
 
-```{r average-weight-time-facet_sex_columns}
-# One row, facet by column
-yearly_weight_plot + facet_grid(. ~ sex)
-```
-
-So far our result looks quite good, but is far from being publishable.
-What are other ways one can improve it? Take a look at the ggplot2 cheat sheet (https://www.rstudio.com/wp-content/uploads/2015/08/ggplot2-cheatsheet.pdf),
-and write down at least three more ideas (you can leave them as comments
-to the Etherpad).
+Take a look at the ggplot2 cheat sheet
+(https://www.rstudio.com/wp-content/uploads/2015/08/ggplot2-cheatsheet.pdf), and
+think of ways to improve the plot. You can write down some of your ideas as
+comments in the Etherpad.
 
 Now, let's change names of axes to something more informative than 'year'
 and 'n' and add a title to this figure:
 
 ```{r number_species_year_with_right_labels}
-plt_with_labels <- ggplot(data = yearly_sex_counts) + 
-    aes(x = year, y = n, color = sex, group = sex) +
+ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex, group = sex)) +
+    geom_line() +
+    facet_wrap(~ species_id) +
+    labs(title = 'Observed species in time',
+         x = 'Year of observation',
+         y = 'Number of species') +
+    theme_bw()
+```
+
+The axes have more informative names, but their readibility can be improved by
+increasing the font size. While we are at it, we'll also change the font family:
+
+```{r number_species_year_with_right_labels_xfont_size}
+ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex, group = sex)) +
     geom_line() +
     facet_wrap(~ species_id) +
     labs(title = 'Observed species in time',
         x = 'Year of observation',
-        y = 'Number of species') + theme_bw()
-
-plt_with_labels
-```
-
-Thanks to our efforts, the axes have much more informative names,
-but are still quite small and hard to read.
-Let's change their size (and font just for fun):
-
-```{r number_species_year_with_right_labels_xfont_size}
-plt_with_labels + theme(text=element_text(size=16, family="Arial"))
-
+        y = 'Number of species') +
+    theme_bw() +
+    theme(text=element_text(size=16, family="Arial"))
 ```
 
 After our manipulations we notice that the values on the x-axis are still not
-properly readable.  Let's change the orientation of the labels and adjust them
-vertically and horizontally so they don’t overlap.  You can use a 90 degree
+properly readable. Let's change the orientation of the labels and adjust them
+vertically and horizontally so they don't overlap. You can use a 90 degree
 angle, or experiment to find the appropriate angle for diagonally oriented
 labels.
 
+```{r number_species_year_with_theme}
+ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex, group = sex)) +
+    geom_line() +
+    facet_wrap(~ species_id) +
+    labs(title = 'Observed species in time',
+        x = 'Year of observation',
+        y = 'Number of species') +
+    theme_bw() +
+    theme(axis.text.x = element_text(colour="grey20", size=12, angle=90, hjust=.5, vjust=.5),
+                        axis.text.y = element_text(colour="grey20", size=12),
+          text=element_text(size=16, family="Arial"))
+```
+
+If you like the changes you created to the default theme, you can save them as
+an object to easily apply them to other plots you may create:
+
+
 ```{r number_species_year_with_right_labels_xfont_orientation}
 arial_grey_theme <- theme(axis.text.x = element_text(colour="grey20", size=12, angle=90, hjust=.5, vjust=.5),
-                        axis.text.y = element_text(colour="grey20", size=12),
-                        text=element_text(size=16, family="Arial"))
-plt_with_labels + arial_grey_theme
+                          axis.text.y = element_text(colour="grey20", size=12),
+                          text=element_text(size=16, family="Arial"))
+ggplot(surveys_complete, aes(x = species_id, y = hindfoot_length)) +
+    geom_boxplot() +
+    arial_grey_theme
 ```
 
-Note that themes (and any other individual components of ggplot-based objects)
-can be saved to variables for convenient access, as the previous code block
-demonstrates. A useful application of this is that you can define a global
-theme that contains text fonts and sizes, plot margins, etc. that you'd like to
-apply to all of your plots and then selectively modify this theme for
-individual plots without having to type out every setting each time. 
-
-```{r, eval=FALSE}
-# Setup plots
-global_theme <- theme(...)
-plot1_theme <- theme(...)
-plot2_theme <- theme(...)
-plot_template <- ggplot() + aes(...)
-plot1_aes <- aes(...)   ## Additional custom aesthetic mappings for plot1
-plot2_aes <- aes(...)   ## Additional custom aesthetic mappings for plot2
-plot1 <- plot_template + plot1_aes + geom_point(...) + global_theme + plot1_theme
-plot2 <- plot_template + plot2_aes + geom_line(...) + global_theme + plot2_theme
-
-# Draw plots
-plot1
-plot2
-```
-
-Be aware that when overwriting settings via the `+` operator, order matters.
-That is, `global_theme + plot1_theme` will overwrite any settings in
-`global_theme` with those in `plot1_theme`, whereas `plot1_theme + global_theme` 
-will overwrite any settings in `plot1_theme` with those in `global_theme`. 
-This only applies to settings that you set, however -- if the `plot1` and
-`global` themes don't share any common settings (i.e. are mutually exclusive),
-neither will be affected by the other. 
-
-With all of this information in hand, please take another five minutes to
-either improve one of the plots generated in this exercise or create
-a beautiful graph of your own. Use the ggplot2 cheat sheet, which we linked
-earlier for inspiration.
+With all of this information in hand, please take another five minutes to either
+improve one of the plots generated in this exercise or create a beautiful graph
+of your own. Use the RStudio ggplot2 cheat sheet, which we linked earlier for
+inspiration.
 
 Here are some ideas:
 
