@@ -156,9 +156,12 @@ $(document).ready(function () {
 <li><a href="#presentation-of-rstudio">Presentation of RStudio</a></li>
 <li><a href="#interacting-with-r">Interacting with R</a></li>
 <li><a href="#basics-of-r">Basics of R</a><ul>
+<li><a href="#the-r-syntax">The R syntax</a><ul>
 <li><a href="#commenting">Commenting</a></li>
 <li><a href="#assignment-operator">Assignment operator</a></li>
 <li><a href="#functions-and-their-arguments">Functions and their arguments</a></li>
+</ul></li>
+</ul></li>
 <li><a href="#seeking-help">Seeking help</a><ul>
 <li><a href="#i-know-the-name-of-the-function-i-want-to-use-but-im-not-sure-how-to-use-it">I know the name of the function I want to use, but I’m not sure how to use it</a></li>
 <li><a href="#i-want-to-use-a-function-that-does-x-there-must-be-a-function-for-it-but-i-dont-know-which-one">I want to use a function that does X, there must be a function for it but I don’t know which one…</a></li>
@@ -166,7 +169,6 @@ $(document).ready(function () {
 <li><a href="#asking-for-help">Asking for help</a></li>
 <li><a href="#where-to-ask-for-help">Where to ask for help?</a></li>
 <li><a href="#more-resources">More resources</a></li>
-</ul></li>
 </ul></li>
 </ul>
 </div>
@@ -220,14 +222,14 @@ $(document).ready(function () {
 </div>
 <div id="presentation-of-rstudio" class="section level1">
 <h1>Presentation of RStudio</h1>
-<p>Let’s start by learning about RStudio, the Integrated Development Environment (IDE) that we will use to write code, navigate the files found on our computer, inspect the variables we are going to create, and visualize the plots we will generate. RStudio can also be used for other things (e.g., version control, developing packages) that we will not cover during the workshop.</p>
-<p>RStudio is divided into 4 “Panes”: the editor for your scripts and documents (top-left), the R console (bottom-left), your environment/history (top-right), and your files/plots/packages/help/viewer (bottom-right). The placement of these panes and their content can be customized. One of the advantages of using RStudio is that</p>
+<p>Let’s start by learning about RStudio, the Integrated Development Environment (IDE) that we will use to write code, navigate the files found on our computer, inspect the variables we are going to create, and visualize the plots we will generate. RStudio can also be used for other things (e.g., version control, developing packages, writting Shiny apps) that we will not cover during the workshop.</p>
+<p>RStudio is divided into 4 “Panes”: the editor for your scripts and documents (top-left), the R console (bottom-left), your environment/history (top-right), and your files/plots/packages/help/viewer (bottom-right). The placement of these panes and their content can be customized. One of the advantages of using RStudio is that all the information you need to write code is available in a single window. Additionally, with many shortcuts, autocompletion, and highlighting for the major file types you use while developping in R, RStudio will make typing easier and less error-prone.</p>
 </div>
 <div id="interacting-with-r" class="section level1">
 <h1>Interacting with R</h1>
 <p>The basis of programming is that we write down instructions for the computer to follow, and then we tell the computer to follow those instructions. We write, or <em>code</em>, instructions in R because it is a common language that both the computer and we can understand. We call the instructions <em>commands</em> and we tell the computer to follow the instructions by <em>executing</em> (also called <em>running</em>) those commands.</p>
 <p>There are two main ways of interacting with R: using the console or by using script files (plain text files that contain your code). We want our code and workflow to be reproducible. In other words, we want to write code in a way that anyone can easily replicate, such they can obtain the same results from our code on their computer.</p>
-<p>The console window (in RStudio, the bottom left panel) is the place where R is waiting for you to tell it what to do, and where it will show the results of a command that has been executed. You can type commands directly into the console and press <code>Enter</code> to execute those commands, but they will be forgotten when you close the session. It is better to enter the commands in the script editor, and save the script. This way, you have a complete record of what you did, you can easily show others how you did it and you can do it again later on if needed. RStudio allows you to execute commands directly from the script editor by using the <kbd><code>Ctrl</code></kbd> + <kbd><code>Enter</code></kbd> shortcut. The command on the current line in the script or all of the commands in the currently selected text will be sent to the console and executed when you press <kbd><code>Ctrl</code></kbd> + <kbd><code>Enter</code></kbd>.</p>
+<p>The console pane (in RStudio, the bottom left panel) is the place where R is waiting for you to tell it what to do, and where it will show the results of a command that has been executed. You can type commands directly into the console and press <code>Enter</code> to execute those commands, but they will be forgotten when you close the session. It is better to enter the commands in the script editor, and save the script. This way, you have a complete record of what you did, you can easily show others how you did it and you can do it again later on if needed. RStudio allows you to execute commands directly from the script editor by using the <kbd><code>Ctrl</code></kbd> + <kbd><code>Enter</code></kbd> shortcut. The command on the current line in the script or all of the commands in the currently selected text will be sent to the console and executed when you press <kbd><code>Ctrl</code></kbd> + <kbd><code>Enter</code></kbd>.</p>
 <p>At some point in your analysis you may want to check the content of variable or the structure of an object, without necessarily keep a record of it in your script. You can type these commands and execute them directly in the console. RStudio provides the <kbd><code>Ctrl</code></kbd> + <kbd><code>1</code></kbd> and <kbd><code>Ctrl</code></kbd> + <kbd><code>2</code></kbd> shortcuts allow you to jump between the script and the console windows.</p>
 <p>If R is ready to accept commands, the R console shows a <code>&gt;</code> prompt. If it receives a command (by typing, copy-pasting or sent from the script editor using <kbd><code>Ctrl</code></kbd> + <kbd><code>Enter</code></kbd>), R will try to execute it, and when ready, show the results and come back with a new <code>&gt;</code>-prompt to wait for new commands.</p>
 <p>If R is still waiting for you to enter more data because it isn’t complete yet, the console will show a <code>+</code> prompt. It means that you haven’t finished entering a complete command. This is because you have not ‘closed’ a parenthesis or quotation, i.e. you don’t have the same number of left-parentheses as right-parentheses, or the same number of opening and closing quotation marks. If you’re in RStudio and this happens, click inside the console window and press <code>Esc</code>; this will cancel the incomplete command and return you to the <code>&gt;</code> prompt.</p>
@@ -243,17 +245,33 @@ $(document).ready(function () {
 <li>For people who have experience in programmming: R is both an object-oriented and a so-called <a href="http://adv-r.had.co.nz/Functional-programming.html">functional language</a>.</li>
 <li>Large and growing community of peers.</li>
 </ul>
-<div id="commenting" class="section level2">
-<h2>Commenting</h2>
+<div id="the-r-syntax" class="section level2">
+<h2>The R syntax</h2>
+<p><em>Start by showing an example of a script</em></p>
+<ul>
+<li>Point to the different parts:</li>
+<li>a function</li>
+<li>the assignment operator <code>&lt;-</code></li>
+<li>the <code>=</code> for arguments</li>
+<li>the comments <code>#</code> and how they are used to document function and its content</li>
+<li>the <code>$</code> operator</li>
+<li>Point to indentation and consistency in spacing to improve clarity</li>
+</ul>
+<div class="figure">
+<img src="img/r_starting_example_script.png" alt="Example of a simple R script" />
+<p class="caption">Example of a simple R script</p>
+</div>
+<div id="commenting" class="section level3">
+<h3>Commenting</h3>
 <p>Use <code>#</code> signs to comment. Anything to the right of a <code>#</code> is ignored by R, meaning it won’t be executed. Comments are a great way to describe what your code does within the code itself, so comment liberally in your R scripts.</p>
 </div>
-<div id="assignment-operator" class="section level2">
-<h2>Assignment operator</h2>
+<div id="assignment-operator" class="section level3">
+<h3>Assignment operator</h3>
 <p><code>&lt;-</code> is the assignment operator. It assigns values on the right to objects on the left. So, after executing <code>x &lt;- 3</code>, the value of <code>x</code> is <code>3</code>. The arrow can be read as 3 <strong>goes into</strong> <code>x</code>. For historical reasons, you can also use <code>=</code> for assignments, but not in every context. Because of the <a href="http://blog.revolutionanalytics.com/2008/12/use-equals-or-arrow-for-assignment.html">slight</a> <a href="https://web.archive.org/web/20130610005305/https://stat.ethz.ch/pipermail/r-help/2009-March/191462.html">differences</a> in syntax, it is good practice to use always <code>&lt;-</code> for assignments, except when specifying the values of arguments in functions, when only <code>=</code> should be used, see below.</p>
 <p>In RStudio, typing <kbd>Alt</kbd> + <kbd>-</kbd> (push <kbd>Alt</kbd> at the same time as the <kbd>-</kbd> key) will write <code>&lt;-</code> in a single keystroke.</p>
 </div>
-<div id="functions-and-their-arguments" class="section level2">
-<h2>Functions and their arguments</h2>
+<div id="functions-and-their-arguments" class="section level3">
+<h3>Functions and their arguments</h3>
 <p>Functions are “canned scripts” that automate something complicated or convenient or both. Many functions are predefined, or can be made available by importing R <em>packages</em> (more on that later). A function usually gets one or more inputs called <em>arguments</em>. Functions often (but not always) return a <em>value</em>. A typical example would be the function <code>sqrt()</code>. The input (the argument) must be a number, and the return value (in fact, the output) is the square root of that number. Executing a function (‘running it’) is called <em>calling</em> the function. An example of a function call is:</p>
 <p><code>b &lt;- sqrt(a)</code></p>
 <p>Here, the value of <code>a</code> is given to the <code>sqrt()</code> function, the <code>sqrt()</code> function calculates the square root, and returns the value which is then assigned to variable <code>b</code>. This function is very simple, because it takes just one argument.</p>
@@ -278,33 +296,35 @@ $(document).ready(function () {
 <pre><code>## [1] 3.14</code></pre>
 <p>It’s good practice to put the non-optional arguments (like the number you’re rounding) first in your function call, and to specify the names of all optional arguments. If you don’t, someone reading your code might have to look up definition of a function with unfamiliar arguments to understand what you’re doing.</p>
 </div>
-<div id="seeking-help" class="section level2">
-<h2>Seeking help</h2>
-<div id="i-know-the-name-of-the-function-i-want-to-use-but-im-not-sure-how-to-use-it" class="section level3">
-<h3>I know the name of the function I want to use, but I’m not sure how to use it</h3>
+</div>
+</div>
+<div id="seeking-help" class="section level1">
+<h1>Seeking help</h1>
+<div id="i-know-the-name-of-the-function-i-want-to-use-but-im-not-sure-how-to-use-it" class="section level2">
+<h2>I know the name of the function I want to use, but I’m not sure how to use it</h2>
 <p>If you need help with a specific function, let’s say <code>barplot()</code>, you can type:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">?barplot</code></pre></div>
 <p>If you just need to remind yourself of the names of the arguments, you can use:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">args</span>(lm)</code></pre></div>
 </div>
-<div id="i-want-to-use-a-function-that-does-x-there-must-be-a-function-for-it-but-i-dont-know-which-one" class="section level3">
-<h3>I want to use a function that does X, there must be a function for it but I don’t know which one…</h3>
+<div id="i-want-to-use-a-function-that-does-x-there-must-be-a-function-for-it-but-i-dont-know-which-one" class="section level2">
+<h2>I want to use a function that does X, there must be a function for it but I don’t know which one…</h2>
 <p>If you are looking for a function to do a particular task, you can use <code>help.search()</code> function, which is called by the double question mark <code>??</code>. However, this only looks through the installed packages for help pages with a match to your search request</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">??kruskal</code></pre></div>
 <p>If you can’t find what you are looking for, you can use the <a href="http://www.rdocumentation.org">rdocumention.org</a> website that search through the help files across all packages available.</p>
 </div>
-<div id="i-am-stuck-i-get-an-error-message-that-i-dont-understand" class="section level3">
-<h3>I am stuck… I get an error message that I don’t understand</h3>
+<div id="i-am-stuck-i-get-an-error-message-that-i-dont-understand" class="section level2">
+<h2>I am stuck… I get an error message that I don’t understand</h2>
 <p>Start by googling the error message. However, this doesn’t always work very well because often, package developers rely on the error catching provided by R. You end up with general error messages that might not be very helpful to diagnose a problem (e.g. “subscript out of bounds”). If the message is very generic, you might also include the name of the function or package you’re using in your query.</p>
 <p>However, you should check StackOverflow. Search using the <code>[r]</code> tag. Most questions have already been answered, but the challenge is to use the right words in the search to find the answers: <a href="http://stackoverflow.com/questions/tagged/r" class="uri">http://stackoverflow.com/questions/tagged/r</a></p>
 <p>The <a href="http://cran.r-project.org/doc/manuals/R-intro.pdf">Introduction to R</a> can also be dense for people with little programming experience but it is a good place to understand the underpinnings of the R language.</p>
 <p>The <a href="http://cran.r-project.org/doc/FAQ/R-FAQ.html">R FAQ</a> is dense and technical but it is full of useful information.</p>
 </div>
-<div id="asking-for-help" class="section level3">
-<h3>Asking for help</h3>
+<div id="asking-for-help" class="section level2">
+<h2>Asking for help</h2>
 <p>The key to get help from someone is for them to grasp your problem rapidly. You should make it as easy as possible to pinpoint where the issue might be.</p>
 <p>Try to use the correct words to describe your problem. For instance, a package is not the same thing as a library. Most people will understand what you meant, but others have really strong feelings about the difference in meaning. The key point is that it can make things confusing for people trying to help you. Be as precise as possible when describing your problem.</p>
-<p>If possible, try to reduce what doesn’t work to a simple reproducible example. If you can reproduce the problem using a very small <code>data.frame</code> instead of your 50,000 rows and 10,000 columns one, provide the small one with the description of your problem. When appropriate, try to generalize what you are doing so even people who are not in your field can understand the question.</p>
+<p>If possible, try to reduce what doesn’t work to a simple reproducible example. If you can reproduce the problem using a very small <code>data.frame</code> instead of your 50,000 rows and 10,000 columns one, provide the small one with the description of your problem. When appropriate, try to generalize what you are doing so even people who are not in your field can understand the question. For instance instead of using a subset of your real dataset, create a small (3 columns, 5 row) generic one.</p>
 <p>To share an object with someone else, if it’s relatively small, you can use the function <code>dput()</code>. It will output R code that can be used to recreate the exact same object as the one in memory:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dput</span>(<span class="kw">head</span>(iris)) <span class="co"># iris is an example data.frame that comes with R</span></code></pre></div>
 <pre><code>## structure(list(Sepal.Length = c(5.1, 4.9, 4.7, 4.6, 5, 5.4), 
@@ -344,24 +364,23 @@ $(document).ready(function () {
 ##  [9] knitr_1.13      methods_3.3.0   stringr_1.0.0   digest_0.6.9   
 ## [13] evaluate_0.9</code></pre>
 </div>
-<div id="where-to-ask-for-help" class="section level3">
-<h3>Where to ask for help?</h3>
+<div id="where-to-ask-for-help" class="section level2">
+<h2>Where to ask for help?</h2>
 <ul>
 <li>Your friendly colleagues: if you know someone with more experience than you, they might be able and willing to help you.</li>
 <li><a href="http://stackoverflow.com/questions/tagged/r">StackOverflow</a>: if your question hasn’t been answered before and is well crafted, chances are you will get an answer in less than 5 min.</li>
 <li>The <a href="https://stat.ethz.ch/mailman/listinfo/r-help">R-help mailing list</a>: it is read by a lot of people (including most of the R core team), a lot of people post to it, but the tone can be pretty dry, and it is not always very welcoming to new users. If your question is valid, you are likely to get an answer very fast but don’t expect that it will come with smiley faces. Also, here more than everywhere else, be sure to use correct vocabulary (otherwise you might get an answer pointing to the misuse of your words rather than answering your question). You will also have more success if your question is about a base function rather than a specific package.</li>
-<li>If your question is about a specific package, see if there is a mailing list for it. Usually it’s included in the DESCRIPTION file of the package that can be accessed using <code>packageDescription(&quot;name-of-package&quot;)</code>. You may also want to try to email the author of the package directly.</li>
+<li>If your question is about a specific package, see if there is a mailing list for it. Usually it’s included in the DESCRIPTION file of the package that can be accessed using <code>packageDescription(&quot;name-of-package&quot;)</code>. You may also want to try to email the author of the package directly, or open an issue on the code repository (e.g., GitHub).</li>
 <li>There are also some topic-specific mailing lists (GIS, phylogenetics, etc…), the complete list is <a href="http://www.r-project.org/mail.html">here</a>.</li>
 </ul>
 </div>
-<div id="more-resources" class="section level3">
-<h3>More resources</h3>
+<div id="more-resources" class="section level2">
+<h2>More resources</h2>
 <ul>
 <li>The <a href="http://www.r-project.org/posting-guide.html">Posting Guide</a> for the R mailing lists.</li>
 <li><a href="http://blog.revolutionanalytics.com/2014/01/how-to-ask-for-r-help.html">How to ask for R help</a> useful guidelines</li>
 <li><a href="http://codeblog.jonskeet.uk/2010/08/29/writing-the-perfect-question/">This blog post by Jon Skeet</a> has quite comprehensive advice on how to ask programming questions.</li>
 </ul>
-</div>
 </div>
 </div>
 

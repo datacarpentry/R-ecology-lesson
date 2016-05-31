@@ -132,7 +132,9 @@ fix them? Don't hesitate to experiment!
     new_dataframe <- as.data.frame(cbind(colors, weights))
     class(new_dataframe)
     ```
-   <!---
+
+   <!--- Answers
+
    ```{r, eval=FALSE, echo=FALSE, purl=FALSE}
    ## Answers
    ## * missing quotations around the first names of the authors
@@ -150,7 +152,8 @@ fix them? Don't hesitate to experiment!
    ##   by TRUE in the `has_kangaroo` column would probably what was originally
    ##   intended.
    ```
-   --->
+
+   -->
 
    The automatic conversion of data type is sometimes a blessing, sometimes an
    annoyance. Be aware that it exists, learn the rules, and double check that
@@ -194,7 +197,7 @@ objects besides `data.frame`.
 
 ```{r, echo=FALSE, purl=TRUE}
 
-## Indexing, Sequences, and Subsetting
+## Sequences and Subsetting data frames
 
 ```
 
@@ -249,7 +252,7 @@ to get the full and correct column name.
 1. Create a `data.frame` containing only the observations from 1999 of the
    `surveys` dataset.
 
-``{r, echo=FALSE, purl=TRUE}
+```{r, echo=FALSE, purl=TRUE}
 ### 1. The function `nrow()` on a `data.frame` returns the number of
 ### rows. Use it, in conjuction with `seq()` to create a new
 ### `data.frame` called `surveys_by_10` that includes every 10th row

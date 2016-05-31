@@ -150,7 +150,6 @@ $(document).ready(function () {
 
 <div id="TOC">
 <ul>
-<li><a href="#the-r-syntax">The R syntax</a></li>
 <li><a href="#creating-objects">Creating objects</a><ul>
 <li><a href="#challenge">Challenge</a></li>
 </ul></li>
@@ -177,23 +176,6 @@ $(document).ready(function () {
 </ul>
 </blockquote>
 <hr />
-<div id="the-r-syntax" class="section level2">
-<h2>The R syntax</h2>
-<p><em>Start by showing an example of a script</em></p>
-<ul>
-<li>Point to the different parts:</li>
-<li>a function</li>
-<li>the assignment operator <code>&lt;-</code></li>
-<li>the <code>=</code> for arguments</li>
-<li>the comments <code>#</code> and how they are used to document function and its content</li>
-<li>the <code>$</code> operator</li>
-<li>Point to indentation and consistency in spacing to improve clarity</li>
-</ul>
-<div class="figure">
-<img src="img/r_starting_example_script.png" alt="Example of a simple R script" />
-<p class="caption">Example of a simple R script</p>
-</div>
-</div>
 <div id="creating-objects" class="section level2">
 <h2>Creating objects</h2>
 <p>You can get output from R simply by typing in math in the console</p>
@@ -258,27 +240,16 @@ weight_g</code></pre></div>
 <p>Vectors are one of the many <strong>data structures</strong> that R uses. Other important ones are lists (<code>list</code>), matrices (<code>matrix</code>), data frames (<code>data.frame</code>) and factors (<code>factor</code>).</p>
 <div id="challenge-1" class="section level3">
 <h3>Challenge</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## We’ve seen that atomic vectors can be of type character, numeric, integer, and
-## logical. But what happens if we try to mix these types in a single
-## vector?
-
-## What will happen in each of these examples? (hint: use `class()` to
-## check the data type of your object)
-num_char &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="st">&#39;a&#39;</span>)
-
-num_logical &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="ot">TRUE</span>)
-
-char_logical &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;a&#39;</span>, <span class="st">&#39;b&#39;</span>, <span class="st">&#39;c&#39;</span>, <span class="ot">TRUE</span>)
-
-tricky &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="st">&#39;4&#39;</span>)
-
-## Why do you think it happens?
-
-## Can you draw a diagram that represents the hierarchy of the data
-## types?</code></pre></div>
 <ul>
 <li><strong>Question</strong>: We’ve seen that atomic vectors can be of type character, numeric, integer, and logical. But what happens if we try to mix these types in a single vector?</li>
 <li><p><em>Answer</em>: R implicitly converts them to all be the same type</p></li>
+<li><p><strong>Question</strong>: What will happen in each of these examples? (hint: use <code>class()</code> to check the data type of your objects):</p></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">num_char &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="st">&#39;a&#39;</span>)
+num_logical &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="ot">TRUE</span>)
+char_logical &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;a&#39;</span>, <span class="st">&#39;b&#39;</span>, <span class="st">&#39;c&#39;</span>, <span class="ot">TRUE</span>)
+tricky &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="st">&#39;4&#39;</span>)</code></pre></div>
+<ul>
 <li><strong>Question</strong>: Why do you think it happens?</li>
 <li><p><em>Answer</em>: Vectors can be of only one data type. R tries to convert (=coerce) the content of this vector to find a “common denominator”.</p></li>
 <li><strong>Question</strong>: Can you draw a diagram that represents the hierarchy of the data types?</li>
@@ -330,7 +301,6 @@ animals[animals ==<span class="st"> &quot;cat&quot;</span> |<span class="st"> </
 <li>Can you figure out why <code>&quot;four&quot; &gt; &quot;five&quot;</code> returns <code>TRUE</code>?</li>
 </ul>
 </blockquote>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># * Can you figure out why `&quot;four&quot; &gt; &quot;five&quot;` returns `TRUE`?</span></code></pre></div>
 <!--
 
 ```r

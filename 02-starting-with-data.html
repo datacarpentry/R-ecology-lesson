@@ -241,8 +241,7 @@ $(document).ready(function () {
               <span class="st">&quot;data/portal_data_joined.csv&quot;</span>)</code></pre></div>
 <p>You are now ready to load the data:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;data/portal_data_joined.csv&#39;</span>)</code></pre></div>
-<p>This statement doesn’t produce any output because, as you might recall, assignment doesn’t display anything. If we want to check that our data has been loaded, we can print the variable’s value: <code>surveys</code>. Alternatively, wrapping an assignment in parentheses will perform the assignment and display it at the same time.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(surveys &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;data/portal_data_joined.csv&#39;</span>))</code></pre></div>
+<p>This statement doesn’t produce any output because, as you might recall, assignment doesn’t display anything. If we want to check that our data has been loaded, we can print the variable’s value: <code>surveys</code>.</p>
 <p>Wow… that was a lot of output. At least it means the data loaded properly. Let’s check the top (the first 6 lines) of this <code>data.frame</code> using the function <code>head()</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(surveys)</code></pre></div>
 <pre><code>#&gt;   record_id month day year plot_id species_id sex hindfoot_length weight
