@@ -100,13 +100,17 @@ Let's start by learning about RStudio, the Integrated Development Environment
 (IDE) that we will use to write code, navigate the files found on our computer,
 inspect the variables we are going to create, and visualize the plots we will
 generate. RStudio can also be used for other things (e.g., version control,
-developing packages) that we will not cover during the workshop.
+developing packages, writting Shiny apps) that we will not cover during the
+workshop.
 
 RStudio is divided into 4 "Panes": the editor for your scripts and documents
 (top-left), the R console (bottom-left), your environment/history (top-right),
 and your files/plots/packages/help/viewer (bottom-right). The placement of these
 panes and their content can be customized. One of the advantages of using
-RStudio is that
+RStudio is that all the information you need to write code is available in a
+single window. Additionally, with many shortcuts, autocompletion, and
+highlighting for the major file types you use while developping in R, RStudio
+will make typing easier and less error-prone.
 
 # Interacting with R
 
@@ -123,7 +127,7 @@ workflow to be reproducible. In other words, we want to write code in a way that
 anyone can easily replicate, such they can obtain the same results from our code
 on their computer.
 
-The console window (in RStudio, the bottom left panel) is the place where R is
+The console pane (in RStudio, the bottom left panel) is the place where R is
 waiting for you to tell it what to do, and where it will show the results of a
 command that has been executed.  You can type commands directly into the console
 and press `Enter` to execute those commands, but they will be forgotten when you
@@ -172,13 +176,27 @@ for statistics but also data science. Inspired by the programming language S.
   and a so-called [functional language](http://adv-r.had.co.nz/Functional-programming.html).
 * Large and growing community of peers.
 
-## Commenting
+## The R syntax
+
+_Start by showing an example of a script_
+
+* Point to the different parts:
+  - a function
+  - the assignment operator `<-`
+  - the `=` for arguments
+  - the comments `#` and how they are used to document function and its content
+  - the `$` operator
+* Point to indentation and consistency in spacing to improve clarity
+
+![Example of a simple R script](img/r_starting_example_script.png)
+
+### Commenting
 
 Use `#` signs to comment. Anything to the right of a `#` is ignored by R,
 meaning it won't be executed. Comments are a great way to describe what your
 code does within the code itself, so comment liberally in your R scripts.
 
-## Assignment operator
+### Assignment operator
 
 `<-` is the assignment operator. It assigns values on the right to objects on
 the left. So, after executing `x <- 3`, the value of `x` is `3`. The arrow can
@@ -190,7 +208,7 @@ arguments in functions, when only `=` should be used, see below.
 In RStudio, typing <kbd>Alt</kbd> + <kbd>-</kbd> (push <kbd>Alt</kbd> at the
 same time as the <kbd>-</kbd> key) will write ` <- ` in a single keystroke.
 
-## Functions and their arguments
+### Functions and their arguments
 
 Functions are "canned scripts" that automate something complicated or convenient
 or both.  Many functions are predefined, or can be made available by importing R
@@ -268,9 +286,9 @@ doing.
 
 
 
-## Seeking help
+# Seeking help
 
-### I know the name of the function I want to use, but I'm not sure how to use it
+## I know the name of the function I want to use, but I'm not sure how to use it
 
 If you need help with a specific function, let's say `barplot()`, you can type:
 
@@ -284,7 +302,7 @@ If you just need to remind yourself of the names of the arguments, you can use:
 args(lm)
 ```
 
-### I want to use a function that does X, there must be a function for it but I don't know which one...
+## I want to use a function that does X, there must be a function for it but I don't know which one...
 
 If you are looking for a function to do a particular task, you can use
 `help.search()` function, which is called by the double question mark `??`.
@@ -299,7 +317,7 @@ If you can't find what you are looking for, you can use the
 [rdocumention.org](http://www.rdocumentation.org) website that search through
 the help files across all packages available.
 
-### I am stuck... I get an error message that I don't understand
+## I am stuck... I get an error message that I don't understand
 
 Start by googling the error message. However, this doesn't always work very well
 because often, package developers rely on the error catching provided by R. You
@@ -319,7 +337,7 @@ place to understand the underpinnings of the R language.
 The [R FAQ](http://cran.r-project.org/doc/FAQ/R-FAQ.html) is dense and technical
 but it is full of useful information.
 
-### Asking for help
+## Asking for help
 
 The key to get help from someone is for them to grasp your problem rapidly. You
 should make it as easy as possible to pinpoint where the issue might be.
@@ -334,7 +352,9 @@ If possible, try to reduce what doesn't work to a simple reproducible
 example. If you can reproduce the problem using a very small `data.frame`
 instead of your 50,000 rows and 10,000 columns one, provide the small one with
 the description of your problem. When appropriate, try to generalize what you
-are doing so even people who are not in your field can understand the question.
+are doing so even people who are not in your field can understand the
+question. For instance instead of using a subset of your real dataset, create a
+small (3 columns, 5 row) generic one.
 
 To share an object with someone else, if it's relatively small, you can use the
 function `dput()`. It will output R code that can be used to recreate the exact
@@ -370,7 +390,7 @@ to understand your problem.
 sessionInfo()
 ```
 
-### Where to ask for help?
+## Where to ask for help?
 
 * Your friendly colleagues: if you know someone with more experience than you,
   they might be able and willing to help you.
@@ -389,11 +409,12 @@ sessionInfo()
 * If your question is about a specific package, see if there is a mailing list
   for it. Usually it's included in the DESCRIPTION file of the package that can
   be accessed using `packageDescription("name-of-package")`. You may also want
-  to try to email the author of the package directly.
+  to try to email the author of the package directly, or open an issue on the
+  code repository (e.g., GitHub).
 * There are also some topic-specific mailing lists (GIS, phylogenetics, etc...),
   the complete list is [here](http://www.r-project.org/mail.html).
 
-### More resources
+## More resources
 
 * The [Posting Guide](http://www.r-project.org/posting-guide.html) for the R
   mailing lists.
