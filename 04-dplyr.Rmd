@@ -162,7 +162,7 @@ The `!` symbol negates it, so we're asking for everything that is not an `NA`.
 > ### Challenge {.challenge}
 >
 >  Create a new dataframe from the survey data that meets the following
->  criteria: contains only the `species_id` column and a column that contains 
+>  criteria: contains only the `species_id` column and a column that contains
 >  values that are half the `hindfoot_length` values (e.g. a new column
 >  `hindfoot_half`). In this `hindfoot_half` column, there are no NA values
 >  and all values are < 30.
@@ -185,18 +185,12 @@ surveys_hindfoot_half %>%
 Many data analysis tasks can be approached using the "split-apply-combine"
 paradigm: split the data into groups, apply some analysis to each group, and
 then combine the results. `dplyr` makes this very easy through the use of the
-`group_by()` function. `group_by()` splits the data into groups upon which some
-operations can be run. For example, if we wanted to group by sex and find the
-number of rows of data for each sex, we would do:
+`group_by()` function.
 
-```{r, purl = FALSE}
-surveys %>%
-  group_by(sex) %>%
-  tally()
-```
-
-Here, `tally()` is the action applied to the groups created to `group_by()` and counts the total number of records for each category. `group_by()` is often used together with `summarize()` which collapses each
-group into a single-row summary of that group. So to view mean `weight` by sex:
+`group_by()` is often used together with `summarize()` which collapses each
+group into a single-row summary of that group.  `group_by()` takes as argument
+the column names that contain the **categorical** variables for which you want
+to calculate the summary statistics. So to view mean the `weight` by sex:
 
 ```{r, purl = FALSE}
 surveys %>%
@@ -223,10 +217,12 @@ surveys %>%
   filter(!is.nan(mean_weight))
 ```
 
-All of a sudden this isn't running off the screen anymore. That's because `dplyr`
-has changed our `data.frame` to a `tbl_df`. This is a data structure that's very
-similar to a data frame; for our purposes the only difference is that it won't
-automatically show tons of data going off the screen.
+You may also have noticed, that the output from these calls don't run off the
+screen anymore. That's because `dplyr` has changed our `data.frame` to a
+`tbl_df`. This is a data structure that's very similar to a data frame; for our
+purposes the only difference is that it won't automatically show tons of data
+going off the screen, while displaying the data type for each column under its
+name.
 
 You can also summarize multiple variables at the same time:
 
@@ -237,6 +233,20 @@ surveys %>%
             min_weight = min(weight, na.rm = TRUE)) %>%
   filter(!is.nan(mean_weight))
 ```
+
+When working with data, it is also common to want to know the number of
+observations found for each factor or combination of factors. For this, `dplyr`
+provides `tally()`. For example, if we wanted to group by sex and find the
+number of rows of data for each sex, we would do:
+
+```{r, purl = FALSE}
+surveys %>%
+  group_by(sex) %>%
+  tally()
+```
+
+Here, `tally()` is the action applied to the groups created to `group_by()` and
+counts the total number of records for each category.
 
 > ### Challenge {.challenge}
 >
