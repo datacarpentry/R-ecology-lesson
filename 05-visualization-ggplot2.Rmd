@@ -33,8 +33,6 @@ Load required packages
 ```{r}
 # plotting package
 library(ggplot2)
-# piping / chaining
-library(magrittr)
 # modern dataframe manipulations
 library(dplyr)
 ```
