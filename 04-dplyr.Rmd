@@ -52,7 +52,11 @@ memory. The database connections essentially remove that limitation in that you
 can have a database of many 100s GB, conduct queries on it directly, and pull
 back just what you need for analysis in R.
 
-### Selecting columns and filtering rows
+To learn more about `dplyr` after the workshop, you may want to check out this
+[handy dplyr cheatsheet](http://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf).
+
+
+## Selecting columns and filtering rows
 
 We're going to learn some of the most common `dplyr` functions: `select()`,
 `filter()`, `mutate()`, `group_by()`, and `summarize()`. To select columns of a
@@ -297,4 +301,3 @@ res <- surveys %>%
 ```
 --->
 
-[Handy dplyr cheatsheet](http://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)
