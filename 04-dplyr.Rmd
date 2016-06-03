@@ -73,7 +73,7 @@ To choose rows, use `filter()`:
 filter(surveys, year == 1995)
 ```
 
-### Pipes
+## Pipes
 
 But what if you wanted to select and filter at the same time? There are three
 ways to do this: use intermediate steps, nested functions, or pipes. With the
