@@ -210,15 +210,18 @@ surveys %>%
   summarize(mean_weight = mean(weight, na.rm = TRUE))
 ```
 
-It looks like most of these species were never weighed. We could then discard
-rows where `mean_weight` is `NaN` (`NaN` refers to "Not a Number") using
-`filter()`:
+When grouping both by "sex" and "species_id", the first rows are for individuals
+that escaped before their sex could be determined and weighted. You may notice
+that the last column does not contain `NA` but `NaN` (which refers to "Not a
+Number"). To avoid this, we can remove the missing values for weight before we
+attempt to calculate the summary statistics on weight. Because the missing
+values are removed, we can omit `na.rm=TRUE` when computing the mean:
 
 ```{r, purl = FALSE}
 surveys %>%
+  filter(!is.na(weight)) %>%
   group_by(sex, species_id) %>%
-  summarize(mean_weight = mean(weight, na.rm = TRUE)) %>%
-  filter(!is.nan(mean_weight))
+  summarize(mean_weight = mean(weight))
 ```
 
 You may also have noticed, that the output from these calls don't run off the
