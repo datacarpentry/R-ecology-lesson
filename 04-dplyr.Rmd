@@ -191,6 +191,9 @@ paradigm: split the data into groups, apply some analysis to each group, and
 then combine the results. `dplyr` makes this very easy through the use of the
 `group_by()` function.
 
+
+#### The `summarize()` function
+
 `group_by()` is often used together with `summarize()` which collapses each
 group into a single-row summary of that group.  `group_by()` takes as argument
 the column names that contain the **categorical** variables for which you want
@@ -242,15 +245,21 @@ surveys %>%
   print(n=15)
 ```
 
-You can also summarize multiple variables at the same time:
+Once the data is grouped, you can also summarize multiple variables at the same
+time (and not necessarily on the same variable). For instance, we could add a
+column indicating the minimum weight for each species for each sex:
 
 ```{r, purl = FALSE}
 surveys %>%
+  filter(!is.na(weight)) %>%
   group_by(sex, species_id) %>%
-  summarize(mean_weight = mean(weight, na.rm = TRUE),
-            min_weight = min(weight, na.rm = TRUE)) %>%
-  filter(!is.nan(mean_weight))
+  summarize(mean_weight = mean(weight),
+            min_weight = min(weight))
 ```
+
+
+
+#### Tallying
 
 When working with data, it is also common to want to know the number of
 observations found for each factor or combination of factors. For this, `dplyr`
