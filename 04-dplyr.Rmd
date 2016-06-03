@@ -277,7 +277,7 @@ counts the total number of records for each category.
 
 > ### Challenge {.challenge}
 >
-> How many times was each `plot_type` surveyed?
+> How many individuals were caught in each `plot_type` surveyed?
 
 <!---
 ```{r, echo=FALSE, purl=FALSE}
