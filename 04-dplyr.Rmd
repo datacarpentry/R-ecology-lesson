@@ -291,7 +291,7 @@ surveys %>%
 > ### Challenge {.challenge}
 >
 > Use `group_by()` and `summarize()` to find the mean, min, and max hindfoot
-> length for each species.
+> length for each species (using `species _id`).
 
 <!---
 ```{r, echo=FALSE, purl=FALSE}
@@ -310,7 +310,7 @@ surveys %>%
 > ### Challenge {.challenge}
 >
 > What was the heaviest animal measured in each year? Return the columns `year`,
-> `genus`, `species`, and `weight`.
+> `genus`, `species_id`, and `weight`.
 
 <!---
 ## Answer
