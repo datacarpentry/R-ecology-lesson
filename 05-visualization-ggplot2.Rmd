@@ -215,91 +215,90 @@ ggplot(data = yearly_counts, aes(x = year, y = n, group = species_id, colour = s
 ```
 
 Now we would like to split line in each plot by sex of each individual
-measured. To do that we need to make counts in data frame grouped by sex.
+measured. To do that we need to make counts in data frame grouped by year,
+species_id, and sex:
 
-> ### Challenges:
->
-> - filter the dataframe so that we only keep records with sex "F" or "M"s
->
->
-> ```{r}
-> surveys_complete <- surveys_complete %>%
->           filter(sex %in% c("F", "M"))
-> ```
->
-> - group by year, species_id, sex
+ ```{r}
+ yearly_sex_counts <- surveys_complete %>%
+                      group_by(year, species_id, sex) %>%
+                      tally
+ ```
 
-> ```{r}
-> yearly_sex_counts <- surveys_complete %>%
->                      group_by(year, species_id, sex) %>%
->                      tally
-> ```
-> - make the faceted plot splitting further by sex (within single plot)
+We can now make the faceted plot splitting further by sex (within a single plot):
 
-> ```{r facet-by-species-and-sex}
-> ggplot(data = yearly_sex_counts) +
->     aes(x = year, y = n, color = species_id, group = sex) +
->     geom_line() +
->     facet_wrap(~ species_id)
-> ```
->
-> Usually plots with white background looks more readable in the publications.
-> We can set the background to white using the function `theme_bw()`.
->
-> ```{r facet-by-species-and-sex-white-bg}
-> ggplot(data = yearly_sex_counts) +
->     aes(x = year, y = n, color = species_id, group = sex) +
->     geom_line() +
->     facet_wrap(~ species_id) +
->     theme_bw()
-> ```
-> We can improve the plot by coloring by sex instead of species (species are
-> already in separate plots, so we don't need to distinguish them further).
+ ```{r facet-by-species-and-sex}
+ ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = species_id, group = sex)) +
+     geom_line() +
+     facet_wrap(~ species_id)
+ ```
 
-> Note that even though the `color` and `group` aesthetic mappings are set, I can
-> *redefine them* via the `+` operator.
->
-> ```{r facet-by-species-and-sex-colored}
-> ggplot(data = yearly_sex_counts) +
->     aes(x = year, y = n, color = sex, group = sex) +
->     geom_line() +
->     facet_wrap(~ species_id) +
->     theme_bw()
-> ```
-> - plot average weight of each species over the course of the years
+Usually plots with white background look more readable when printed.  We can set
+the background to white using the function `theme_bw()`.
 
-> ```{r average-weight-timeseries}
-> yearly_weight <- surveys_complete %>%
->                  group_by(year, species_id, sex) %>%
->                  summarise(avg_weight = mean(weight, na.rm = TRUE))
-> ggplot(data = yearly_weight, aes(x=year, y=avg_weight, color = species_id, group = species_id)) +
->     geom_line() +
->     facet_wrap(~ species_id) +
->     theme_bw()
-> ```
-> - why do you think we see those steps in the plot?
->
-> The `facet_wrap` geometry extracts plots into an arbitrary number of dimensions
-> to allow them to cleanly fit on one page. On the other hand, the `facet_grid`
-> geometry allows you to explicitly specify how you want your plots to be
-> arranged via formula notation (`rows ~ columns`; a `.` can be used as
-> a placeholder that indicates only one row or column).
->
-> - make separate plots per sex since weight of males and females can differ a lot
+```{r facet-by-species-and-sex-white-bg}
+ ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = species_id, group = sex)) +
+     geom_line() +
+     facet_wrap(~ species_id) +
+     theme_bw()
+```
 
-> ```{r average-weight-time-facet_sex_rows}
-> ## One column, facet by rows
-> ggplot(data = yearly_weight, aes(x=year, y=avg_weight, color = species_id, group = species_id)) +
->     geom_line() +
->     facet_grid(sex ~ .)
-> ```
->
-> ```{r average-weight-time-facet_sex_columns}
-> # One row, facet by column
-> ggplot(data = yearly_weight, aes(x=year, y=avg_weight, color = species_id, group = species_id)) +
->     geom_line() +
->     facet_grid(. ~ sex)
-> ```
+To make the plot easier to read, we can color by sex instead of species (species
+are already in separate plots, so we don't need to distinguish them further).
+
+```{r facet-by-species-and-sex-colored}
+ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex, group = sex)) +
+    geom_line() +
+    facet_wrap(~ species_id) +
+    theme_bw()
+```
+
+
+## Challenge
+
+> Use what you just learned to create a plot that depicts how the average weight
+> of each species changes through the years.
+
+<!-- Answer
+```{r average-weight-timeseries}
+yearly_weight <- surveys_complete %>%
+                 group_by(year, species_id) %>%
+                 summarise(avg_weight = mean(weight))
+ggplot(data = yearly_weight, aes(x=year, y=avg_weight, color = species_id, group = species_id)) +
+    geom_line() +
+    facet_wrap(~ species_id) +
+    theme_bw()
+```
+-->
+
+
+
+The `facet_wrap` geometry extracts plots into an arbitrary number of dimensions
+to allow them to cleanly fit on one page. On the other hand, the `facet_grid`
+geometry allows you to explicitly specify how you want your plots to be
+arranged via formula notation (`rows ~ columns`; a `.` can be used as
+a placeholder that indicates only one row or column).
+
+Let's modify the previous plot to compare how the weights of male and females
+has changed through time.
+
+```{r average-weight-time-facet_sex_rows}
+## One column, facet by rows
+yearly_sex_weight <- surveys_complete %>%
+    group_by(year, sex, species_id) %>%
+    summarize(avg_weight = mean(weight))
+ggplot(data = yearly_sex_weight, aes(x=year, y=avg_weight, color = species_id, group = species_id)) +
+    geom_line() +
+    facet_grid(sex ~ .)
+```
+
+```{r average-weight-time-facet_sex_columns}
+# One row, facet by column
+ggplot(data = yearly_sex_weight, aes(x=year, y=avg_weight, color = species_id, group = species_id)) +
+    geom_line() +
+    facet_grid(. ~ sex)
+```
+
+## Customization
 
 Take a look at the ggplot2 cheat sheet
 (https://www.rstudio.com/wp-content/uploads/2015/08/ggplot2-cheatsheet.pdf), and
