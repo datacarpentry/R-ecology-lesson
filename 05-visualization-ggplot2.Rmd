@@ -372,13 +372,12 @@ inspiration.
 Here are some ideas:
 
 * See if you can change thickness of the lines.
-* Can you find a way to change the name of the legend?
-What about its labels?
-* Use different color palette to improve the look
-(http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/)
+* Can you find a way to change the name of the legend? What about its labels?
+* Use a different color palette (see http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/)
 
-When you created your perfect plot. You can save it to the file in your favourite format.
-You can easily change the size by specifying the width and height of your plot.
+After creating your plot, you can save it to a file in your favourite format.
+You can easily change the dimension (and its resolution) of your plot by
+adjusting the appropriate arguments (`width`, `height` and `dpi`):
 
 ```{r number_species_year_with_right_labels_xfont_save, eval=FALSE}
 your_plot_here      # Draw the plot to the screen
