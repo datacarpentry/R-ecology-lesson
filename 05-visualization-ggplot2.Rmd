@@ -11,6 +11,7 @@ knitr::opts_chunk$set(fig.keep='last')
 
 ```{r setup, echo=FALSE, purl=FALSE}
 source("setup.R")
+surveys_complete <- read.csv(file = "data_output/surveys_complete.csv")
 ```
 
 #### Disclaimer
