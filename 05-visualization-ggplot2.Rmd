@@ -93,25 +93,36 @@ Notes:
   aesthetics defined globally in the `ggplot()` function.
 
 
-## Modifying plots
+## Building your plots iteratively
 
-First, following the notes from above, let's create a ggplot "template" to
-prevent unnecessary redundancy in our code.
+Building plots with ggplot is typically an iterative process. We start by
+defining the dataset we'll use, lay the axes, and choose a geom.
 
 ```{r create-ggplot-object}
-surveys_plot <- ggplot(data = surveys_complete, aes(x = weight, y = hindfoot_length))
+ggplot(data = surveys_complete, aes(x = weight, y = hindfoot_length)) +
+    geom_point()
 ```
 
-- adding transparency (alpha)
+Then, we start modifying this plot to extract more infromation from it. For
+instance, we can add transparency (alpha) to avoid overplotting.
 
 ```{r adding-transparency}
-surveys_plot + geom_point(alpha = 0.1)
+ggplot(data = surveys_complete, aes(x = weight, y = hindfoot_length)) +
+    geom_point(alpha = 0.1)
 ```
 
-- adding colors
+We can also add colors for all the points
 
 ```{r adding-colors}
-surveys_plot + geom_point(alpha = 0.1, color = "blue")
+ggplot(data = surveys_complete, aes(x = weight, y = hindfoot_length)) +
+    geom_point(alpha = 0.1, color = "blue")
+```
+
+Or to color each species in the plot differently:
+
+```{r color-by-species}
+ggplot(data = surveys_complete, aes(x = weight, y = hindfoot_length)) +
+    geom_point(alpha = 0.1, aes(color=species_id))
 ```
 
 ## Boxplot
