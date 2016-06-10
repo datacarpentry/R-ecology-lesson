@@ -379,9 +379,16 @@ After creating your plot, you can save it to a file in your favourite format.
 You can easily change the dimension (and its resolution) of your plot by
 adjusting the appropriate arguments (`width`, `height` and `dpi`):
 
-```{r number_species_year_with_right_labels_xfont_save, eval=FALSE}
-your_plot_here      # Draw the plot to the screen
-ggsave("name_of_file.png", width=15, height=10)
+```{r ggsave-example, eval=FALSE}
+my_plot <- ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex, group = sex)) +
+    geom_line() +
+    facet_wrap(~ species_id) +
+    labs(title = 'Observed species in time',
+        x = 'Year of observation',
+        y = 'Number of species') +
+    theme_bw() +
+    theme(axis.text.x = element_text(colour="grey20", size=12, angle=90, hjust=.5, vjust=.5),
+                        axis.text.y = element_text(colour="grey20", size=12),
+          text=element_text(size=16, family="Arial"))
+ggsave("name_of_file.png", my_plot, width=15, height=10)
 ```
-
-Enjoy plotting with ggplot2!
