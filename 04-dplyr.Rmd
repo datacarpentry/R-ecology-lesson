@@ -393,3 +393,8 @@ they are not included:
 write.csv(surveys_complete, file="data_output/surveys_complete.csv",
           row.names=FALSE)
 ```
+
+```{r, purl=FALSE, eval=TRUE, echo=FALSE}
+if (!file.exists("data_output")) dir.create("data_output")
+write.csv(surveys_complete, file = "data_output/surveys_complete.csv")
+```
