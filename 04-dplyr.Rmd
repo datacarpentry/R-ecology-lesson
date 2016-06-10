@@ -353,7 +353,7 @@ of animals for which the sex has been determined:
 
 
 ```{r, purl=FALSE}
-surveys_clean <- surveys %>%
+surveys_complete <- surveys %>%
   filter(species_id != "",         # remove missing species_id
          !is.na(weight),           # remove missing weight
 		 !is.na(hindfoot_length),  # remove missing hindfoot_length
@@ -369,20 +369,20 @@ observations for these more common species:
 
 ```{r, purl=FALSE}
 ## Extract the most common species_id
-species_counts <- surveys_clean %>%
+species_counts <- surveys_complete %>%
                   group_by(species_id) %>%
                   tally %>%
 				  filter(n >= 50) %>%
 				  select(species_id)
 
 ## Only keep the most common species
-surveys_clean <- surveys_clean %>%
+surveys_complete <- surveys_complete %>%
                  filter(species_id %in% species_counts$species_id)
 ```
 
 To make sure that everyone has the same dataset, check that
-`surveys_clean` has `r nrow(surveys_clean)` rows and `r ncol(surveys_clean)`
-columns by typing `dim(surveys_clean)`.
+`surveys_complete` has `r nrow(surveys_complete)` rows and `r ncol(surveys_complete)`
+columns by typing `dim(surveys_complete)`.
 
 Now that our dataset is ready, we can save it as a CSV file in our `data_output`
 folder. By default, `write.csv()` includes a column with row names (in our case
@@ -390,6 +390,6 @@ the names are just the row numbers), so we need to add `row.names = FALSE` so
 they are not included:
 
 ```{r, purl=FALSE, eval=FALSE}
-write.csv(surveys_clean, file="data_output/surveys_clean.csv",
+write.csv(surveys_complete, file="data_output/surveys_complete.csv",
           row.names=FALSE)
 ```
