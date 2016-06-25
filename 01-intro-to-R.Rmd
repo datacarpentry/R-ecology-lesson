@@ -1,4 +1,4 @@
----
+﻿---
 layout: topic
 title: Introduction to R
 author: Data Carpentry contributors
@@ -32,7 +32,7 @@ source("setup.R")
 You can get output from R simply by typing in math in the console
 
 ```{r, purl=FALSE}
-3 + 5
+3 + 5 ###### Put in an actual print screen image of the input and output of the R console. Example attached.
 12/7
 ```
 
