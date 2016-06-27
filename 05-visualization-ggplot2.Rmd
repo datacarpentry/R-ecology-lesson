@@ -218,19 +218,19 @@ Now we would like to split line in each plot by sex of each individual
 measured. To do that we need to make counts in data frame grouped by year,
 species_id, and sex:
 
- ```{r}
+```{r}
  yearly_sex_counts <- surveys_complete %>%
                       group_by(year, species_id, sex) %>%
                       tally
- ```
+```
 
 We can now make the faceted plot splitting further by sex (within a single plot):
 
- ```{r facet-by-species-and-sex}
+```{r facet-by-species-and-sex}
  ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = species_id, group = sex)) +
      geom_line() +
      facet_wrap(~ species_id)
- ```
+```
 
 Usually plots with white background look more readable when printed.  We can set
 the background to white using the function `theme_bw()`.
