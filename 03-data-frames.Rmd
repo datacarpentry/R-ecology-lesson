@@ -123,14 +123,14 @@ fix them? Don't hesitate to experiment!
    `cbind()` (bind by columns) and `rbind()` (bind by rows) and use
    `as.data.frame()` to build a data frame as well. Look how we can do this
    below. Try making your own new data frame from some vectors. You can check
-   the data type of the new object using `class()`.
+   the data type of the new object using `str()`.
 
 
     ```{r, eval=FALSE, purl=FALSE}
     colors <- c("red", "green", "blue", "yellow")
     counts <- c(50, 60, 65, 82)
-    new_dataframe <- as.data.frame(cbind(colors, weights))
-    class(new_dataframe)
+    new_dataframe <- as.data.frame(cbind(colors, counts))
+    str(new_dataframe)
     ```
 
    <!--- Answers
