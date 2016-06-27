@@ -287,9 +287,13 @@ surveys_plot +<span class="st"> </span><span class="kw">geom_point</span>()</cod
 <span class="st">    </span><span class="kw">facet_wrap</span>(~<span class="st"> </span>species_id)</code></pre></div>
 <p><img src="img/R-ecology-first-facet-1.png" width="672" /></p>
 <p>Now we would like to split line in each plot by sex of each individual measured. To do that we need to make counts in data frame grouped by year, species_id, and sex:</p>
-<p><code>r  yearly_sex_counts &lt;- surveys_complete %&gt;%                       group_by(year, species_id, sex) %&gt;%                       tally</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"> yearly_sex_counts &lt;-<span class="st"> </span>surveys_complete %&gt;%
+<span class="st">                      </span><span class="kw">group_by</span>(year, species_id, sex) %&gt;%
+<span class="st">                      </span>tally</code></pre></div>
 <p>We can now make the faceted plot splitting further by sex (within a single plot):</p>
-<p><code>r  ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = species_id, group = sex)) +      geom_line() +      facet_wrap(~ species_id)</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"> <span class="kw">ggplot</span>(<span class="dt">data =</span> yearly_sex_counts, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> n, <span class="dt">color =</span> species_id, <span class="dt">group =</span> sex)) +
+<span class="st">     </span><span class="kw">geom_line</span>() +
+<span class="st">     </span><span class="kw">facet_wrap</span>(~<span class="st"> </span>species_id)</code></pre></div>
 <p><img src="img/R-ecology-facet-by-species-and-sex-1.png" width="672" /></p>
 <p>Usually plots with white background look more readable when printed. We can set the background to white using the function <code>theme_bw()</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"> <span class="kw">ggplot</span>(<span class="dt">data =</span> yearly_sex_counts, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> n, <span class="dt">color =</span> species_id, <span class="dt">group =</span> sex)) +
