@@ -9,7 +9,7 @@ author: Data Carpentry contributors
 setwd("/Users/kivan/repos/R-ecology-lesson")
 ```
 
-```{r, echo=FALSE, purl=FALSE, message = FALSE}
+```{r, echo=FALSE, purl=FALSE, message = FALSE, warning=FALSE}
 source("setup.R")
 surveys <- read.csv("data/portal_data_joined.csv")
 ```
@@ -37,16 +37,9 @@ install.packages("tidyr")
 library("tidyr")    ## load the package
 ```
 
-## What is `dplyr`?
+## What is `tidyr`?
 
-The package `dplyr` provides easy tools for the most common data manipulation
-tasks. It is built to work directly with data frames. The thinking behind it was
-largely inspired by the package `plyr` which has been in use for some time but
-suffered from being slow in some cases.` dplyr` addresses this by porting much
-of the computation to C++. An additional feature is the ability to work with
-data stored directly in an external database. The benefits of doing this are
-that the data can be managed natively in a relational database, queries can be
-conducted on that database, and only the results of the query returned.
+The package `tidyr` 
 
 This addresses a common problem with R in that all operations are conducted in
 memory and thus the amount of data you can work with is limited by available
