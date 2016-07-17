@@ -1,7 +1,5 @@
 ## file structure
-analysis_folders<-c("scripts", "data", "documents")
-sapply(analysis_folders, function(x) dir.create(file.path(x),
-showWarnings = FALSE))
+sapply(c("scripts", "data", "documents"), function(x) dir.create(file.path(x),showWarnings = FALSE))
 
 if (!file.exists("data/surveys.csv")) {
     download.file("https://ndownloader.figshare.com/files/2292172",

@@ -1,6 +1,6 @@
 ---
 layout: topic
-title: tidyr
+title: Tidy Data - A foundation for wrangling in R
 author: Data Carpentry contributors
 ---
 
@@ -37,18 +37,19 @@ install.packages("tidyr")
 library("tidyr")    ## load the package
 ```
 
-## What is `tidyr`?
+## What is `tidyr`? ##
 
 The package `tidyr` 
 
-This addresses a common problem with R in that all operations are conducted in
-memory and thus the amount of data you can work with is limited by available
-memory. The database connections essentially remove that limitation in that you
-can have a database of many 100s GB, conduct queries on it directly, and pull
-back just what you need for analysis in R.
 
-To learn more about `dplyr` after the workshop, you may want to check out this
+
+To learn more about `tidyr` after the workshop, you may want to check out this
 [handy tidyr cheatsheet](http://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf).
 
+## Data semantics
+
+A dataset is a collection of values, usually either numbers (if quantitative) or strings (if qualitative). Values are organised in two ways. Every value belongs to a variable and an observation. A variable contains all values that measure the same underlying attribute (like height, temperature, duration) across units. An observation contains all values measured on the same unit (like a person, or a day, or a race) across attributes.
+
+A tidy version of the pregnancy data looks like this: (you’ll learn how the functions work a little later)
 
 ## Column headers are values, not variable names
