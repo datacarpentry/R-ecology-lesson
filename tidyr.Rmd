@@ -1,0 +1,61 @@
+---
+layout: topic
+title: tidyr
+author: Data Carpentry contributors
+---
+
+
+```{r, echo=FALSE, message = FALSE}
+setwd("/Users/kivan/repos/R-ecology-lesson")
+```
+
+```{r, echo=FALSE, purl=FALSE, message = FALSE}
+source("setup.R")
+surveys <- read.csv("data/portal_data_joined.csv")
+```
+
+------------
+
+# Defining data structure with tidyr
+
+Tidying messy datasets
+
+Real datasets can, and often do, violate the three precepts of tidy data in almost every way imaginable. While occasionally you do get a dataset that you can start analysing immediately, this is the exception, not the rule. This section describes the five most common problems with messy datasets, along with their remedies:
+
+* Column headers are values, not variable names.
+* Multiple variables are stored in one column.
+* Variables are stored in both rows and columns.
+* Multiple types of observational units are stored in the same table.
+* A single observational unit is stored in multiple tables.
+
+```{r, eval = FALSE, purl = FALSE}
+install.packages("tidyr")
+```
+
+
+```{r, message = FALSE, purl = FALSE}
+library("tidyr")    ## load the package
+```
+
+## What is `dplyr`?
+
+The package `dplyr` provides easy tools for the most common data manipulation
+tasks. It is built to work directly with data frames. The thinking behind it was
+largely inspired by the package `plyr` which has been in use for some time but
+suffered from being slow in some cases.` dplyr` addresses this by porting much
+of the computation to C++. An additional feature is the ability to work with
+data stored directly in an external database. The benefits of doing this are
+that the data can be managed natively in a relational database, queries can be
+conducted on that database, and only the results of the query returned.
+
+This addresses a common problem with R in that all operations are conducted in
+memory and thus the amount of data you can work with is limited by available
+memory. The database connections essentially remove that limitation in that you
+can have a database of many 100s GB, conduct queries on it directly, and pull
+back just what you need for analysis in R.
+
+To learn more about `dplyr` after the workshop, you may want to check out this
+[handy tidyr cheatsheet](http://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf).
+
+
+## Column headers are values, not variable names
