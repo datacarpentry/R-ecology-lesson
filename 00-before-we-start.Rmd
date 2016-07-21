@@ -96,12 +96,11 @@ workshop, you only need a `data/` folder.
 
 # Presentation of RStudio
 
-Let's start by learning about RStudio, the Integrated Development Environment
-(IDE) that we will use to write code, navigate the files found on our computer,
-inspect the variables we are going to create, and visualize the plots we will
-generate. RStudio can also be used for other things (e.g., version control,
-developing packages, writting Shiny apps) that we will not cover during the
-workshop.
+Let's start by learning about [RStudio](https://www.rstudio.com/), the Integrated Development Environment (IDE).
+
+The RStudio IDE open source product is free under the [Affero General Public License (AGPL) v3](https://www.gnu.org/licenses/agpl-3.0.en.html). Rstudio IDE is also available with a commercial license and priority email support from Rstudio, Inc.
+
+We will use Rstudio IDE to write code, navigate the files found on our computer, inspect the variables we are going to create, and visualize the plots we will generate. RStudio can also be used for other things (e.g., version control, developing packages, writting Shiny apps) that we will not cover during the workshop.
 
 RStudio is divided into 4 "Panes": the editor for your scripts and documents
 (top-left), the R console (bottom-left), your environment/history (top-right),
@@ -111,6 +110,7 @@ RStudio is that all the information you need to write code is available in a
 single window. Additionally, with many shortcuts, autocompletion, and
 highlighting for the major file types you use while developping in R, RStudio
 will make typing easier and less error-prone.
+
 
 # Interacting with R
 
@@ -166,7 +166,7 @@ you're in RStudio and this happens, click inside the console window and press
 R is a versatile, open source programming/scripting language that's useful both
 for statistics but also data science. Inspired by the programming language S.
 
-* Free/Libre/Open Source Software under the GPL.
+* Free/Libre/Open Source Software under the [GPL version 2](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html).
 * Superior (if not just comparable) to commercial alternatives. R has over 7,000
   user contributed packages at this time. It's widely used both in academia and
   industry.
