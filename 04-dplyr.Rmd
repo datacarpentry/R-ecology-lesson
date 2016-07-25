@@ -11,6 +11,17 @@ surveys <- read.csv("data/portal_data_joined.csv")
 
 ------------
 
+> ## Learning Objectives
+>
+> * Learn basic utilities of the dplyr package
+> * Select and filter data
+> * Be able to use magrittr pipes
+> * Create new columns with mutate()
+> * Use the split-apply-combine paradigm to summarize data
+> * Export data with write.csv()
+
+------------
+
 # Data Manipulation using dplyr
 
 Bracket subsetting is handy, but it can be cumbersome and difficult to read,
