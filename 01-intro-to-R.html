@@ -125,7 +125,7 @@ button.code-folding-btn:focus {
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
-<script src="libs/navigation-1.0/tabsets.js"></script>
+<script src="libs/navigation-1.1/tabsets.js"></script>
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
@@ -241,8 +241,7 @@ weight_g</code></pre></div>
 <div id="challenge-1" class="section level3">
 <h3>Challenge</h3>
 <ul>
-<li><strong>Question</strong>: We’ve seen that atomic vectors can be of type character, numeric, integer, and logical. But what happens if we try to mix these types in a single vector?</li>
-<li><p><em>Answer</em>: R implicitly converts them to all be the same type</p></li>
+<li><p><strong>Question</strong>: We’ve seen that atomic vectors can be of type character, numeric, integer, and logical. But what happens if we try to mix these types in a single vector? <!-- * _Answer_: R implicitly converts them to all be the same type --></p></li>
 <li><p><strong>Question</strong>: What will happen in each of these examples? (hint: use <code>class()</code> to check the data type of your objects):</p></li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">num_char &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="st">&#39;a&#39;</span>)
@@ -250,10 +249,9 @@ num_logical &lt;-<span class="st"> </span><span class="kw">c</span>(<span class=
 char_logical &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;a&#39;</span>, <span class="st">&#39;b&#39;</span>, <span class="st">&#39;c&#39;</span>, <span class="ot">TRUE</span>)
 tricky &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="st">&#39;4&#39;</span>)</code></pre></div>
 <ul>
-<li><strong>Question</strong>: Why do you think it happens?</li>
-<li><p><em>Answer</em>: Vectors can be of only one data type. R tries to convert (=coerce) the content of this vector to find a “common denominator”.</p></li>
-<li><strong>Question</strong>: Can you draw a diagram that represents the hierarchy of the data types?</li>
-<li><p><em>Answer</em>: <code>logical --&gt; numeric --&gt; character &lt;-- logical</code></p></li>
+<li><p><strong>Question</strong>: Why do you think it happens? <!-- * _Answer_: Vectors can be of only one data type. R tries to convert (=coerce)
+  the content of this vector to find a "common denominator". --></p></li>
+<li><p><strong>Question</strong>: Can you draw a diagram that represents the hierarchy of the data types? <!-- * _Answer_: `logical -> numeric -> character <-- logical` --></p></li>
 </ul>
 </div>
 </div>
@@ -340,10 +338,9 @@ heights[<span class="kw">complete.cases</span>(heights)]</code></pre></div>
 <span class="kw">mean</span>(sample, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <pre><code>#&gt; Warning in mean.default(sample, na.rm = TRUE): argument is not numeric or
 #&gt; logical: returning NA</code></pre>
+<!-- * _Answer_: Because R recognizes the NA in quotes as a character. -->
 <ul>
-<li><p><em>Answer</em>: Because R recognizes the NA in quotes as a character.</p></li>
-<li><strong>Question</strong>: Why does the error message say the argument is not numeric?</li>
-<li><p><em>Answer</em>: R converts the entire vector to character because of the “NA”, and doesn’t recognize it as numeric.</p></li>
+<li><strong>Question</strong>: Why does the error message say the argument is not numeric? <!-- * _Answer_: R converts the entire vector to character because of the "NA", and doesn't recognize it as numeric. --></li>
 </ul>
 <p>Next, we will use the “surveys” dataset to explore the <code>data.frame</code> data structure, which is one of the most common types of R objects.</p>
 </div>
