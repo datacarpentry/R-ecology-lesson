@@ -22,6 +22,7 @@
 ## 
 ## ## Can you draw a diagram that represents the hierarchy of the data
 ## ## types?
+# * Can you figure out why `"four" > "five"` returns `TRUE`?
 
 
 ### Presentation of the survey data
@@ -93,13 +94,15 @@ str(example_data)
 ##                                northern_hemisphere=c(TRUE, TRUE, FALSE, "FALSE"),
 ##                                has_kangaroo=c(FALSE, FALSE, FALSE, 1))
 
-## Indexing, Sequences, and Subsetting
+## Sequences and Subsetting data frames
 
-### The function `nrow()` on a `data.frame` returns the number of
+### 1. The function `nrow()` on a `data.frame` returns the number of
 ### rows. Use it, in conjuction with `seq()` to create a new
 ### `data.frame` called `surveys_by_10` that includes every 10th row
 ### of the survey data frame starting at row 10 (10, 20, 30, ...)
-# * Can you figure out why `"four" > "five"` returns `TRUE`?
+###
+### 2. Create a data.frame containing only the observation from 1999 of the -->
+### surveys dataset.
 
 
 

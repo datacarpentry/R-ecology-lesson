@@ -1,6 +1,6 @@
 ---
 layout: topic
-title: Aggregating and analyzing data with dplyr
+title: Manipulating and analyzing data with dplyr; Exporting data
 author: Data Carpentry contributors
 ---
 
@@ -8,6 +8,17 @@ author: Data Carpentry contributors
 source("setup.R")
 surveys <- read.csv("data/portal_data_joined.csv")
 ```
+
+------------
+
+> ## Learning Objectives
+>
+> * Learn basic utilities of the dplyr package
+> * Select and filter data
+> * Be able to use magrittr pipes
+> * Create new columns with mutate()
+> * Use the split-apply-combine paradigm to summarize data
+> * Export data with write.csv()
 
 ------------
 
@@ -52,7 +63,11 @@ memory. The database connections essentially remove that limitation in that you
 can have a database of many 100s GB, conduct queries on it directly, and pull
 back just what you need for analysis in R.
 
-### Selecting columns and filtering rows
+To learn more about `dplyr` after the workshop, you may want to check out this
+[handy dplyr cheatsheet](http://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf).
+
+
+## Selecting columns and filtering rows
 
 We're going to learn some of the most common `dplyr` functions: `select()`,
 `filter()`, `mutate()`, `group_by()`, and `summarize()`. To select columns of a
@@ -69,7 +84,7 @@ To choose rows, use `filter()`:
 filter(surveys, year == 1995)
 ```
 
-### Pipes
+## Pipes
 
 But what if you wanted to select and filter at the same time? There are three
 ways to do this: use intermediate steps, nested functions, or pipes. With the
@@ -162,7 +177,7 @@ The `!` symbol negates it, so we're asking for everything that is not an `NA`.
 > ### Challenge {.challenge}
 >
 >  Create a new dataframe from the survey data that meets the following
->  criteria: contains only the `species_id` column and a column that contains 
+>  criteria: contains only the `species_id` column and a column that contains
 >  values that are half the `hindfoot_length` values (e.g. a new column
 >  `hindfoot_half`). In this `hindfoot_half` column, there are no NA values
 >  and all values are < 30.
@@ -172,7 +187,7 @@ The `!` symbol negates it, so we're asking for everything that is not an `NA`.
 <!---
 ```{r, eval=FALSE, purl=FALSE}
 ## Answer
-surveys_hindfoot_half %>%
+surveys_hindfoot_half <- surveys %>%
     filter(!is.na(hindfoot_length)) %>%
     mutate(hindfoot_half = hindfoot_length / 2) %>%
     filter(hindfoot_half < 30) %>%
@@ -185,18 +200,15 @@ surveys_hindfoot_half %>%
 Many data analysis tasks can be approached using the "split-apply-combine"
 paradigm: split the data into groups, apply some analysis to each group, and
 then combine the results. `dplyr` makes this very easy through the use of the
-`group_by()` function. `group_by()` splits the data into groups upon which some
-operations can be run. For example, if we wanted to group by sex and find the
-number of rows of data for each sex, we would do:
+`group_by()` function.
 
-```{r, purl = FALSE}
-surveys %>%
-  group_by(sex) %>%
-  tally()
-```
 
-Here, `tally()` is the action applied to the groups created to `group_by()` and counts the total number of records for each category. `group_by()` is often used together with `summarize()` which collapses each
-group into a single-row summary of that group. So to view mean `weight` by sex:
+#### The `summarize()` function
+
+`group_by()` is often used together with `summarize()` which collapses each
+group into a single-row summary of that group.  `group_by()` takes as argument
+the column names that contain the **categorical** variables for which you want
+to calculate the summary statistics. So to view mean the `weight` by sex:
 
 ```{r, purl = FALSE}
 surveys %>%
@@ -212,35 +224,71 @@ surveys %>%
   summarize(mean_weight = mean(weight, na.rm = TRUE))
 ```
 
-It looks like most of these species were never weighed. We could then discard
-rows where `mean_weight` is `NaN` (`NaN` refers to "Not a Number") using
-`filter()`:
+When grouping both by "sex" and "species_id", the first rows are for individuals
+that escaped before their sex could be determined and weighted. You may notice
+that the last column does not contain `NA` but `NaN` (which refers to "Not a
+Number"). To avoid this, we can remove the missing values for weight before we
+attempt to calculate the summary statistics on weight. Because the missing
+values are removed, we can omit `na.rm=TRUE` when computing the mean:
 
 ```{r, purl = FALSE}
 surveys %>%
+  filter(!is.na(weight)) %>%
   group_by(sex, species_id) %>%
-  summarize(mean_weight = mean(weight, na.rm = TRUE)) %>%
-  filter(!is.nan(mean_weight))
+  summarize(mean_weight = mean(weight))
 ```
 
-All of a sudden this isn't running off the screen anymore. That's because `dplyr`
-has changed our `data.frame` to a `tbl_df`. This is a data structure that's very
-similar to a data frame; for our purposes the only difference is that it won't
-automatically show tons of data going off the screen.
+You may also have noticed, that the output from these calls don't run off the
+screen anymore. That's because `dplyr` has changed our `data.frame` to a
+`tbl_df`. This is a data structure that's very similar to a data frame; for our
+purposes the only difference is that it won't automatically show tons of data
+going off the screen, while displaying the data type for each column under its
+name. If you want to display more data on the screen, you can add the `print()
+function at the end of the with the argument `n` specifying the number of rows
+to display:
 
-You can also summarize multiple variables at the same time:
 
 ```{r, purl = FALSE}
 surveys %>%
+  filter(!is.na(weight)) %>%
   group_by(sex, species_id) %>%
-  summarize(mean_weight = mean(weight, na.rm = TRUE),
-            min_weight = min(weight, na.rm = TRUE)) %>%
-  filter(!is.nan(mean_weight))
+  summarize(mean_weight = mean(weight)) %>%
+  print(n=15)
 ```
+
+Once the data is grouped, you can also summarize multiple variables at the same
+time (and not necessarily on the same variable). For instance, we could add a
+column indicating the minimum weight for each species for each sex:
+
+```{r, purl = FALSE}
+surveys %>%
+  filter(!is.na(weight)) %>%
+  group_by(sex, species_id) %>%
+  summarize(mean_weight = mean(weight),
+            min_weight = min(weight))
+```
+
+
+
+#### Tallying
+
+When working with data, it is also common to want to know the number of
+observations found for each factor or combination of factors. For this, `dplyr`
+provides `tally()`. For example, if we wanted to group by sex and find the
+number of rows of data for each sex, we would do:
+
+```{r, purl = FALSE}
+surveys %>%
+  group_by(sex) %>%
+  tally()
+```
+
+Here, `tally()` is the action applied to the groups created to `group_by()` and
+counts the total number of records for each category.
 
 > ### Challenge {.challenge}
 >
-> How many times was each `plot_type` surveyed?
+> How many individuals were caught in each `plot_type` surveyed?
 
 <!---
 ```{r, echo=FALSE, purl=FALSE}
@@ -254,7 +302,7 @@ surveys %>%
 > ### Challenge {.challenge}
 >
 > Use `group_by()` and `summarize()` to find the mean, min, and max hindfoot
-> length for each species.
+> length for each species (using `species _id`).
 
 <!---
 ```{r, echo=FALSE, purl=FALSE}
@@ -273,7 +321,7 @@ surveys %>%
 > ### Challenge {.challenge}
 >
 > What was the heaviest animal measured in each year? Return the columns `year`,
-> `genus`, `species`, and `weight`.
+> `genus`, `species_id`, and `weight`.
 
 <!---
 ## Answer
@@ -287,6 +335,77 @@ res <- surveys %>%
 ```
 --->
 
-[Handy dplyr cheatsheet](http://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)
+# Exporting data
 
-*Much of this lesson was copied or adapted from Jeff Hollister's [materials](http://usepa.github.io/introR/2015/01/14/03-Clean/)*
+Now that you have learned how to use `dplyr` to extract the information you need
+from the raw data, or to summarize your raw data, you may want to export these
+new datasets to share them with your collaborators or for archival.
+
+Similarly to the `read.csv()` function used to read in CSV into R, there is a
+`write.csv()` function that generates CSV files from data frames.
+
+Before using it, we are going to create a new folder, `data_output` in our
+working directory that will store this generated dataset. We don't want to write
+generated datasets in the same directory as our raw data. It's good practice to
+keep them separate. The `data` folder should only contain the raw, unaltered
+data, and should be left alone to make sure we don't delete or modify it; on the
+other end the content of `data_output` directory will be generated by our
+script, and we know that we can delete the files it contains because we have the
+script that can re-generate these files.
+
+In preparation for our next lesson on plotting, we are going to prepare a
+cleaned up version of the dataset that doesn't include any missing data.
+
+Let's start by removing observations for which the `species_id` is missing. In
+this dataset, the missing species are represented by an empty string and not an
+`NA`. Let's also remove observations for which `weight` and the
+`hindfoot_length` are missing. This dataset will also only contain observations
+of animals for which the sex has been determined:
+
+
+```{r, purl=FALSE}
+surveys_complete <- surveys %>%
+  filter(species_id != "",         # remove missing species_id
+         !is.na(weight),           # remove missing weight
+		 !is.na(hindfoot_length),  # remove missing hindfoot_length
+		 sex != "")                # remove missing sex
+```
+
+Because we are interested in plotting how species abundances have changed
+through time, we are also going to remove observations for rare species (i.e.,
+that have been observed less than 50 times). We will do this in two steps: first
+we are going to create a dataset that counts how often each species has been
+observed, and filter out the rare species; then, we will extract only the
+observations for these more common species:
+
+```{r, purl=FALSE}
+## Extract the most common species_id
+species_counts <- surveys_complete %>%
+                  group_by(species_id) %>%
+                  tally %>%
+				  filter(n >= 50) %>%
+				  select(species_id)
+
+## Only keep the most common species
+surveys_complete <- surveys_complete %>%
+                 filter(species_id %in% species_counts$species_id)
+```
+
+To make sure that everyone has the same dataset, check that
+`surveys_complete` has `r nrow(surveys_complete)` rows and `r ncol(surveys_complete)`
+columns by typing `dim(surveys_complete)`.
+
+Now that our dataset is ready, we can save it as a CSV file in our `data_output`
+folder. By default, `write.csv()` includes a column with row names (in our case
+the names are just the row numbers), so we need to add `row.names = FALSE` so
+they are not included:
+
+```{r, purl=FALSE, eval=FALSE}
+write.csv(surveys_complete, file="data_output/surveys_complete.csv",
+          row.names=FALSE)
+```
+
+```{r, purl=FALSE, eval=TRUE, echo=FALSE}
+if (!file.exists("data_output")) dir.create("data_output")
+write.csv(surveys_complete, file = "data_output/surveys_complete.csv")
+```

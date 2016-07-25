@@ -117,15 +117,24 @@ fix them? Don't hesitate to experiment!
                                   northern_hemisphere=c(TRUE, TRUE, FALSE, "FALSE"),
                                   has_kangaroo=c(FALSE, FALSE, FALSE, 1))
    ```
-1. We introduced you to the `data.frame()` function and `read.csv()`, but what if we are starting with some vectors? We can "bind" vectors together using `cbind()` (bind by columns) and `rbind()` (bind by rows) and use `as.data.frame()` to build a data frame as well. Look how we can do this below. Try making your own new data frame from some vectors. You can check the data type of the new object using `class()`.
+
+1. We introduced you to the `data.frame()` function and `read.csv()`, but what
+   if we are starting with some vectors? We can "bind" vectors together using
+   `cbind()` (bind by columns) and `rbind()` (bind by rows) and use
+   `as.data.frame()` to build a data frame as well. Look how we can do this
+   below. Try making your own new data frame from some vectors. You can check
+   the data type of the new object using `str()`.
+
 
     ```{r, eval=FALSE, purl=FALSE}
     colors <- c("red", "green", "blue", "yellow")
     counts <- c(50, 60, 65, 82)
-    new_dataframe <- as.data.frame(cbind(colors, weights))
-    class(new_dataframe)
+    new_dataframe <- as.data.frame(cbind(colors, counts))
+    str(new_dataframe)
     ```
-   <!---
+
+   <!--- Answers
+
    ```{r, eval=FALSE, echo=FALSE, purl=FALSE}
    ## Answers
    ## * missing quotations around the first names of the authors
@@ -143,7 +152,8 @@ fix them? Don't hesitate to experiment!
    ##   by TRUE in the `has_kangaroo` column would probably what was originally
    ##   intended.
    ```
-   --->
+
+   -->
 
    The automatic conversion of data type is sometimes a blessing, sometimes an
    annoyance. Be aware that it exists, learn the rules, and double check that
@@ -187,26 +197,9 @@ objects besides `data.frame`.
 
 ```{r, echo=FALSE, purl=TRUE}
 
-## Indexing, Sequences, and Subsetting
+## Sequences and Subsetting data frames
 
 ```
-
-If we want to extract one or several values from a vector, we must provide one
-or several indices in square brackets. For instance:
-
-```{r, results='show', purl=FALSE}
-animals <- c("mouse", "rat", "dog", "cat")
-animals[2]
-animals[c(3, 2)]
-animals[2:4]
-more_animals <- animals[c(1:3, 2:4)]
-more_animals
-```
-
-R indexes start at 1. Programming languages like Fortran, MATLAB, and R start
-counting at 1, because that's what human beings typically do. Languages in the C
-family (including C++, Java, Perl, and Python) count from 0 because that's
-simpler for computers to do.
 
 `:` is a special function that creates numeric vectors of integers in increasing
 or decreasing order, test `1:10` and `10:1` for instance. The function `seq()`
@@ -256,78 +249,23 @@ to get the full and correct column name.
    `surveys_by_10` that includes every 10th row of the survey data frame
    starting at row 10 (10, 20, 30, ...)
 
+1. Create a `data.frame` containing only the observations from 1999 of the
+   `surveys` dataset.
+
 ```{r, echo=FALSE, purl=TRUE}
-### The function `nrow()` on a `data.frame` returns the number of
+### 1. The function `nrow()` on a `data.frame` returns the number of
 ### rows. Use it, in conjuction with `seq()` to create a new
 ### `data.frame` called `surveys_by_10` that includes every 10th row
 ### of the survey data frame starting at row 10 (10, 20, 30, ...)
+###
+### 2. Create a data.frame containing only the observation from 1999 of the -->
+### surveys dataset.
 ```
 
 <!---
 ```{r, purl=FALSE}
-## Answer
+## Answers
 surveys_by_10 <- surveys[seq(10, nrow(surveys), by=10), ]
+surveys_1999 <- surveys[surveys$year == 1999, ]
 ```
 --->
-
-### Conditional subsetting
-
-Besides using the index position of an element in a vector to extract its value
-as we saw earlier, we can also use logical vectors:
-
-```{r, purl=FALSE}
-animals <- c("mouse", "rat", "dog", "cat")
-animals[c(TRUE, FALSE, TRUE, TRUE)]
-```
-
-But typically, those logical vectors are not typed by hand but the result of a
-logical test:
-
-```{r, purl=FALSE}
-animals != "rat"
-animals[animals != "rat"]
-animals[animals == "cat"]
-```
-
-If you can combine multiple tests using `&` (both conditions are true, AND) or `|`
-(at least one of the conditions if true, OR):
-
-```{r, purl=FALSE}
-animals[animals == "cat" & animals == "rat"] # returns nothing
-animals[animals == "cat" | animals == "rat"] # returns both rat and cat
-```
-
-If you are trying to combine many conditions, it can become tedious to type. The
-function `%in%` allows you to test if a value if found in a vector:
-
-```{r, purl=FALSE}
-animals %in% c("rat", "cat", "dog", "duck")
-animals[animals %in% c("rat", "cat", "dog", "duck")]
-```
-
-In addition to testing equalities, you can also test whether the elements of
-your vector are less than or greater than a given value:
-
-```{r, purl=FALSE}
-dates <- c(1960, 1963, 1974, 2015, 2016)
-dates >= 1974
-dates[dates >= 1974]
-dates[dates > 1970 & dates <= 2015]
-dates[dates < 1975 | dates > 2016]
-```
-
-> ### Challenge {.challenge}
->
-> * Can you figure out why `"four" > "five"` returns `TRUE`?
-
-```{r, purl=TRUE}
-# * Can you figure out why `"four" > "five"` returns `TRUE`?
-```
-
-<!--
-```{r, purl=FALSE}
-## Answers
-## * When using ">" or "<" on strings, R compares their alphabetical order. Here
-##   "four" comes after "five", and therefore is "greater than" it.
-```
--->

@@ -21,19 +21,6 @@ source("setup.R")
 
 ------------
 
-## The R syntax
-
-_Start by showing an example of a script_
-
-* Point to the different parts:
-  - a function
-  - the assignment operator `<-`
-  - the `=` for arguments
-  - the comments `#` and how they are used to document function and its content
-  - the `$` operator
-* Point to indentation and consistency in spacing to improve clarity
-
-![Example of a simple R script](img/r_starting_example_script.png)
 
 ## Creating objects
 
@@ -140,8 +127,8 @@ characters. You can assign this list of values to a variable, just like you
 would for one item. For example we can create a vector of animal weights:
 
 ```{r, purl=FALSE}
-weights <- c(50, 60, 65, 82)
-weights
+weight_g <- c(50, 60, 65, 82)
+weight_g
 ```
 
 A vector can also contain characters:
@@ -155,7 +142,7 @@ There are many functions that allow you to inspect the content of a
 vector. `length()` tells you how many elements are in a particular vector:
 
 ```{r, purl=FALSE}
-length(weights)
+length(weight_g)
 length(animals)
 ```
 
@@ -163,7 +150,7 @@ An important feature of a vector, is that all of the elements are the same type 
 The function `class()` indicates the class (the type of element) of an object:
 
 ```{r, purl=FALSE}
-class(weights)
+class(weight_g)
 class(animals)
 ```
 
@@ -172,19 +159,19 @@ contains. It is a really useful function when working with large and complex
 objects:
 
 ```{r, purl=FALSE}
-str(weights)
+str(weight_g)
 str(animals)
 ```
 
 You can add elements to your vector by using the `c()` function:
 
 ```{r, purl=FALSE}
-weights <- c(weights, 90) # adding at the end of the vector
-weights <- c(30, weights) # adding at the beginning of the vector
-weights
+weight_g <- c(weight_g, 90) # adding at the end of the vector
+weight_g <- c(30, weight_g) # adding at the beginning of the vector
+weight_g
 ```
 
-What happens here is that we take the original vector `weights`, and we are
+What happens here is that we take the original vector `weight_g`, and we are
 adding another item first to the end of the other ones, and then another item at
 the beginning. We can do this over and over again to grow a vector, or assemble
 a dataset. As we program, this may be useful to add results that we are
@@ -207,20 +194,31 @@ factors (`factor`).
 
 ### Challenge
 
+
 * **Question**: We’ve seen that atomic vectors can be of type character,
   numeric, integer, and logical. But what happens if we try to mix these types in
   a single vector?
-* _Answer_: R implicitly converts them to all be the same type
+<!-- * _Answer_: R implicitly converts them to all be the same type -->
+
+* **Question**: What will happen in each of these examples? (hint: use `class()`
+  to check the data type of your objects):
+
+```r
+num_char <- c(1, 2, 3, 'a')
+num_logical <- c(1, 2, 3, TRUE)
+char_logical <- c('a', 'b', 'c', TRUE)
+tricky <- c(1, 2, 3, '4')
+```
 
 * **Question**: Why do you think it happens?
-* _Answer_: Vectors can be of only one data type. R tries to convert (=coerce)
-  the content of this vector to find a "common denominator".
+<!-- * _Answer_: Vectors can be of only one data type. R tries to convert (=coerce)
+  the content of this vector to find a "common denominator". -->
 
 * **Question**: Can you draw a diagram that represents the hierarchy of the data
   types?
-* _Answer_: `logical --> numeric --> character <-- logical`
+<!-- * _Answer_: `logical -> numeric -> character <-- logical` -->
 
-```{r, echo=TRUE, eval=FALSE, purl=TRUE}
+```{r, echo=FALSE, eval=FALSE, purl=TRUE}
 ## We’ve seen that atomic vectors can be of type character, numeric, integer, and
 ## logical. But what happens if we try to mix these types in a single
 ## vector?
@@ -241,11 +239,93 @@ tricky <- c(1, 2, 3, '4')
 ## types?
 ```
 
+
+## Subsetting vectors
+
+If we want to extract one or several values from a vector, we must provide one
+or several indices in square brackets. For instance:
+
+```{r, results='show', purl=FALSE}
+animals <- c("mouse", "rat", "dog", "cat")
+animals[2]
+animals[c(3, 2)]
+```
+
+We can also repeat the indices to create an object with more elements than the
+original one:
+
+```{r, results='show', purl=FALSE}
+more_animals <- animals[c(1, 2, 3, 2, 1, 4)]
+more_animals
+```
+
+R indexes start at 1. Programming languages like Fortran, MATLAB, and R start
+counting at 1, because that's what human beings typically do. Languages in the C
+family (including C++, Java, Perl, and Python) count from 0 because that's
+simpler for computers to do.
+
+### Conditional subsetting
+
+Another common way of subsetting is by using a logical vector: `TRUE` will
+select the element with the same index, while `FALSE` will not:
+
+```{r, results='show', purl=FALSE}
+weight_g <- c(21, 34, 39, 54, 55)
+weight_g[c(TRUE, FALSE, TRUE, TRUE, FALSE)]
+```
+
+Typically, these logical vectors are not typed by hand, but are the output of
+other functions or logical tests. For instance, if you wanted to select only the
+values above 50:
+
+```{r, results='show', purl=FALSE}
+weight_g > 50    # will return logicals with TRUE for the indices that meet the condition
+## so we can use this to select only the values above 50
+weight_g[weight_g > 50]
+```
+
+You can combine multiple tests using `&` (both conditions are true, AND) or `|`
+(at least one of the conditions is true, OR):
+
+```{r, results='show', purl=FALSE}
+weight_g[weight_g < 30 | weight_g > 50]
+weight_g[weight_g >= 30 & weight_g == 21]
+```
+
+When working with vectors of characters, if you are trying to combine many
+conditions it can become tedious to type. The function `%in%` allows you to test
+if a value if found in a vector:
+
+```{r, results='show', purl=FALSE}
+animals <- c("mouse", "rat", "dog", "cat")
+animals[animals == "cat" | animals == "rat"] # returns both rat and cat
+animals %in% c("rat", "cat", "dog", "duck")
+animals[animals %in% c("rat", "cat", "dog", "duck")]
+```
+
+> ### Challenge {.challenge}
+>
+> * Can you figure out why `"four" > "five"` returns `TRUE`?
+
+```{r, echo=FALSE, purl=TRUE}
+# * Can you figure out why `"four" > "five"` returns `TRUE`?
+```
+
+<!--
+```{r, purl=FALSE}
+## Answers
+## * When using ">" or "<" on strings, R compares their alphabetical order. Here
+##   "four" comes after "five", and therefore is "greater than" it.
+```
+-->
+
+
+
 ## Missing data
 
-As R was designed to work with data, it includes the concept of missing data
+As R was designed to analyze datasets, it includes the concept of missing data
 (which is uncommon in other programming languages). Missing data are represented
-as `NA`.
+in vectors as `NA`.
 
 ```{r, purl=FALSE}
 planets <- c("Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus",
@@ -266,7 +346,33 @@ max(heights, na.rm = TRUE)
 ```
 
 If your data include missing values, you may want to become familiar with the
-functions `is.na()`, `na.omit()`, and `complete.cases()`.
+functions `is.na()`, `na.omit()`, and `complete.cases()`. See below for
+examples.
+
+
+```{r, purl=FALSE}
+## Extract those elements which are not missing values.
+heights[!is.na(heights)]
+
+## Returns the object with incomplete cases removed. The returned object is atomic.
+na.omit(heights)
+
+## Extract those elements which are complete cases.
+heights[complete.cases(heights)]
+```
+
+
+### Challenge
+
+* **Question**: Why does the following piece of code give an error message?
+```{r, purl=FALSE}
+sample <- c(2, 4, 4, "NA", 6)
+mean(sample, na.rm = TRUE)
+```
+<!-- * _Answer_: Because R recognizes the NA in quotes as a character. -->
+
+* **Question**: Why does the error message say the argument is not numeric?
+<!-- * _Answer_: R converts the entire vector to character because of the "NA", and doesn't recognize it as numeric. -->
 
 Next, we will use the "surveys" dataset to explore the `data.frame` data
 structure, which is one of the most common types of R objects.
