@@ -198,7 +198,7 @@ factors (`factor`).
 * **Question**: We’ve seen that atomic vectors can be of type character,
   numeric, integer, and logical. But what happens if we try to mix these types in
   a single vector?
-* _Answer_: R implicitly converts them to all be the same type
+<!-- * _Answer_: R implicitly converts them to all be the same type -->
 
 * **Question**: What will happen in each of these examples? (hint: use `class()`
   to check the data type of your objects):
@@ -211,12 +211,12 @@ tricky <- c(1, 2, 3, '4')
 ```
 
 * **Question**: Why do you think it happens?
-* _Answer_: Vectors can be of only one data type. R tries to convert (=coerce)
-  the content of this vector to find a "common denominator".
+<!-- * _Answer_: Vectors can be of only one data type. R tries to convert (=coerce)
+  the content of this vector to find a "common denominator". -->
 
 * **Question**: Can you draw a diagram that represents the hierarchy of the data
   types?
-* _Answer_: `logical --> numeric --> character <-- logical`
+<!-- * _Answer_: `logical -> numeric -> character <-- logical` -->
 
 ```{r, echo=FALSE, eval=FALSE, purl=TRUE}
 ## We’ve seen that atomic vectors can be of type character, numeric, integer, and
@@ -369,10 +369,10 @@ heights[complete.cases(heights)]
 sample <- c(2, 4, 4, "NA", 6)
 mean(sample, na.rm = TRUE)
 ```
-* _Answer_: Because R recognizes the NA in quotes as a character.
+<!-- * _Answer_: Because R recognizes the NA in quotes as a character. -->
 
 * **Question**: Why does the error message say the argument is not numeric?
-* _Answer_: R converts the entire vector to character because of the "NA", and doesn't recognize it as numeric.
+<!-- * _Answer_: R converts the entire vector to character because of the "NA", and doesn't recognize it as numeric. -->
 
 Next, we will use the "surveys" dataset to explore the `data.frame` data
 structure, which is one of the most common types of R objects.
