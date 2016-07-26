@@ -101,8 +101,16 @@ str(example_data)
 ### `data.frame` called `surveys_by_10` that includes every 10th row
 ### of the survey data frame starting at row 10 (10, 20, 30, ...)
 ###
-### 2. Create a data.frame containing only the observation from 1999 of the -->
+### 2. Create a data.frame containing only the observation from row 1999 of the -->
 ### surveys dataset.
+###
+### 3. Notice how `nrow()` gave you the number of rows in a `data.frame`? Use `nrow()`
+###   instead of a row number to make a `data.frame` with observations from only the last
+###   row of the `surveys` dataset.
+###
+### 4. Now that you've seen how `nrow()` can be used to stand in for a row index, let's combine
+###   that behavior with the `-` notation above to reproduce the behavior of `head(surveys)`
+###   excluding the 7th through final row of the `surveys` dataset.
 
 
 
