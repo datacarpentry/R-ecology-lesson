@@ -122,11 +122,11 @@ fix them? Don't hesitate to experiment!
    if we are starting with some vectors? The best way to do this is to pass
    those vectors to the `data.frame()` function, similar to the above.
 
-   ```{r, eval=FALSE, purl=FALSE}
-   color <- c("red", "green", "blue", "yellow")
-   counts <- c(50, 60, 65, 82)
-   new_datarame <- data.frame(colors = color, counts = counts)
-   ```
+    ```{r, eval=FALSE, purl=FALSE}
+    color <- c("red", "green", "blue", "yellow")
+    counts <- c(50, 60, 65, 82)
+    new_datarame <- data.frame(colors = color, counts = counts)
+    ```
 
    Try making your own new data frame from some vectors. You can check the data
    type of the new object using `class()`.
