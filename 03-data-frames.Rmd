@@ -87,7 +87,7 @@ fix them? Don't hesitate to experiment!
                                   year=c(1942, 1970))
     ```
 
-1. Can you predict the class for each of the columns in the following example?
+2. Can you predict the class for each of the columns in the following example?
    Check your guesses using `str(country_climate)`:
      * Are they what you expected?  Why? Why not?
      * What would have been different if we had added `stringsAsFactors = FALSE` to this call?
@@ -118,20 +118,18 @@ fix them? Don't hesitate to experiment!
                                   has_kangaroo=c(FALSE, FALSE, FALSE, 1))
    ```
 
-1. We introduced you to the `data.frame()` function and `read.csv()`, but what
-   if we are starting with some vectors? We can "bind" vectors together using
-   `cbind()` (bind by columns) and `rbind()` (bind by rows) and use
-   `as.data.frame()` to build a data frame as well. Look how we can do this
-   below. Try making your own new data frame from some vectors. You can check
-   the data type of the new object using `str()`.
+3. We introduced you to the `data.frame()` function and `read.csv()`, but what
+   if we are starting with some vectors? The best way to do this is to pass
+   those vectors to the `data.frame()` function, similar to the above.
 
+   ```{r, eval=FALSE, purl=FALSE}
+   color <- c("red", "green", "blue", "yellow")
+   counts <- c(50, 60, 65, 82)
+   new_datarame <- data.frame(colors = color, counts = counts)
+   ```
 
-    ```{r, eval=FALSE, purl=FALSE}
-    colors <- c("red", "green", "blue", "yellow")
-    counts <- c(50, 60, 65, 82)
-    new_dataframe <- as.data.frame(cbind(colors, counts))
-    str(new_dataframe)
-    ```
+   Try making your own new data frame from some vectors. You can check the data
+   type of the new object using `class()`.
 
    <!--- Answers
 
@@ -171,8 +169,8 @@ functions to get a sense of the content/structure of the data.
 
 * Size:
     * `dim()` - returns a vector with the number of rows in the first element,
-	  and the number of columns as the second element (the __dim__ensions of the
-	  object)
+          and the number of columns as the second element (the **dim**ensions of
+          the object)
     * `nrow()` - returns the number of rows
     * `ncol()` - returns the number of columns
 
@@ -203,7 +201,7 @@ objects besides `data.frame`.
 
 `:` is a special function that creates numeric vectors of integers in increasing
 or decreasing order, test `1:10` and `10:1` for instance. The function `seq()`
-(for __seq__uence) can be used to create more complex patterns:
+(for **seq**uence) can be used to create more complex patterns:
 
 ```{r, results='show', purl=FALSE}
 seq(1, 10, by=2)
@@ -213,17 +211,19 @@ seq(1, 8, by=3) # sequence stops to stay below upper limit
 ```
 
 Our survey data frame has rows and columns (it has 2 dimensions), if we want to
-extract some specific data from it, we need to specify the "coordinates" we want
-from it. Row numbers come first, followed by column numbers.
+extract some specific data from it, we need to specify the "coordinates" we
+want from it. Row numbers come first, followed by column numbers. However, note
+that different ways of specifying these coorinates lead to results with
+different classes.
 
 ```{r, purl=FALSE}
-surveys[1]      # first column in the data frame
-surveys[1, 1]   # first element in the first column of the data frame
-surveys[1, 6]   # first element in the 6th column
-surveys[1:3, 7] # first three elements in the 7th column
-surveys[3, ]    # the 3rd element for all columns
-surveys[, 8]    # the entire 8th column
-head_surveys <- surveys[1:6, ] # surveys[1:6, ] is equivalent to head(surveys)
+surveys[1]      # first column in the data frame (as a data.frame)
+surveys[1, 1]   # first element in the first column of the data frame (as a vector)
+surveys[1, 6]   # first element in the 6th column (as a vector)
+surveys[1:3, 7] # first three elements in the 7th column (as a vector)
+surveys[3, ]    # the 3rd element for all columns (as a data.frame)
+surveys[, 8]    # the entire 8th column (as a vector)
+head_surveys <- surveys[1:6, ] # equivalent to head(surveys)
 ```
 
 You can also exclude certain parts of a data frame
@@ -236,9 +236,10 @@ As well as using numeric values to subset a `data.frame` (or `matrix`), columns
 can be called by name, using one the three following notations:
 
 ```{r, eval = FALSE, purl=FALSE}
-surveys[, "species_id"]
-surveys[["species_id"]]
-surveys$species_id
+surveys["species_id"]       # Result is a data.frame
+surveys[, "species_id"]     # Result is a vector
+surveys[["species_id"]]     # Result is a vector
+surveys$species_id          # Result is a vector
 ```
 
 For our purposes, these three notations are equivalent. However, the last one
@@ -257,15 +258,15 @@ to get the full and correct column name.
 
 2. Create a `data.frame` containing only the observations from row 1999 of the
    `surveys` dataset.
-   
-3. Notice how `nrow()` gave you the number of rows in a `data.frame`? Use `nrow()` 
+
+3. Notice how `nrow()` gave you the number of rows in a `data.frame`? Use `nrow()`
   instead of a row number to make a `data.frame` with observations from only the last
   row of the `surveys` dataset.
 
 4. Now that you've seen how `nrow()` can be used to stand in for a row index, let's combine
-  that behavior with the `-` notation above to reproduce the behavior of `head(surveys)` 
+  that behavior with the `-` notation above to reproduce the behavior of `head(surveys)`
   excluding the 7th through final row of the `surveys` dataset.
-  
+
 ```{r, echo=FALSE, purl=TRUE}
 ### 1. The function `nrow()` on a `data.frame` returns the number of
 ### rows. Use it, in conjuction with `seq()` to create a new
@@ -274,11 +275,11 @@ to get the full and correct column name.
 ###
 ### 2. Create a data.frame containing only the observation from row 1999 of the -->
 ### surveys dataset.
-### 
+###
 ### 3. Notice how `nrow()` gave you the number of rows in a `data.frame`? Use `nrow()`
 ###   instead of a row number to make a `data.frame` with observations from only the last
 ###   row of the `surveys` dataset.
-### 
+###
 ### 4. Now that you've seen how `nrow()` can be used to stand in for a row index, let's combine
 ###   that behavior with the `-` notation above to reproduce the behavior of `head(surveys)`
 ###   excluding the 7th through final row of the `surveys` dataset.
