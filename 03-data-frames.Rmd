@@ -233,7 +233,7 @@ surveys[-c(7:34786),] #equivalent to head(surveys)
 ```
 
 As well as using numeric values to subset a `data.frame` (or `matrix`), columns
-can be called by name, using one the three following notations:
+can be called by name, using one of the three following notations:
 
 ```{r, eval = FALSE, purl=FALSE}
 surveys["species_id"]       # Result is a data.frame
