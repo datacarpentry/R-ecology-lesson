@@ -32,7 +32,7 @@ Packages in R are basically sets of additional functions that let you do more
 stuff. The functions we've been using so far, like `str()` or `data.frame()`,
 come built into R; packages give you access to more of them. Before you use a
 package for the first time you need to install it on your machine, and then you
-should to import it in every subsequent R session when you'll need it.
+should import it in every subsequent R session when you need it.
 
 ```{r, eval = FALSE, purl = FALSE}
 install.packages("dplyr")
