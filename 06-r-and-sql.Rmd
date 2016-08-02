@@ -34,9 +34,9 @@ others.
 
 # Connecting R to sqlite databases
 
-R can connect to databases through a number of packages.  In our case we we will
+R can connect to databases through a number of packages.  In our case we will
 use [RSQLite](http://cran.r-project.org/web/packages/RSQLite/index.html) to
-connect to existing SQLite3 databases.  However you should be able to connect on
+connect to existing SQLite3 databases.  However you should be able to connect to
 almost any database in R via
 [JDBC](http://cran.r-project.org/web/packages/RJDBC/index.html)
 or [ODBC](http://cran.r-project.org/web/packages/RODBC/index.html), or specific

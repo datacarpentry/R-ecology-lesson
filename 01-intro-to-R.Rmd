@@ -294,7 +294,7 @@ weight_g[weight_g >= 30 & weight_g == 21]
 
 When working with vectors of characters, if you are trying to combine many
 conditions it can become tedious to type. The function `%in%` allows you to test
-if a value if found in a vector:
+if a value is found in a vector:
 
 ```{r, results='show', purl=FALSE}
 animals <- c("mouse", "rat", "dog", "cat")
