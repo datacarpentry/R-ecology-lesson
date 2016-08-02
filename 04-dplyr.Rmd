@@ -32,7 +32,7 @@ Packages in R are basically sets of additional functions that let you do more
 stuff. The functions we've been using so far, like `str()` or `data.frame()`,
 come built into R; packages give you access to more of them. Before you use a
 package for the first time you need to install it on your machine, and then you
-should to import it in every subsequent R session when you'll need it.
+should import it in every subsequent R session when you need it.
 
 ```{r, eval = FALSE, purl = FALSE}
 install.packages("dplyr")
@@ -52,8 +52,8 @@ The package `dplyr` provides easy tools for the most common data manipulation
 tasks. It is built to work directly with data frames. The thinking behind it was
 largely inspired by the package `plyr` which has been in use for some time but
 suffered from being slow in some cases.` dplyr` addresses this by porting much
-of the computation to C++. An additional feature is the ability to work with
-data stored directly in an external database. The benefits of doing this are
+of the computation to C++. An additional feature is the ability to work directly
+with data stored in an external database. The benefits of doing this are
 that the data can be managed natively in a relational database, queries can be
 conducted on that database, and only the results of the query returned.
 
@@ -94,7 +94,7 @@ objects. You can also nest functions (i.e. one function inside of another).
 This is handy, but can be difficult to read if too many functions are nested as
 the process from inside out. The last option, pipes, are a fairly recent
 addition to R. Pipes let you take the output of one function and send it
-directly to the next, which is useful when you need to many things to the same
+directly to the next, which is useful when you need to do many things to the same
 data set.  Pipes in R look like `%>%` and are made available via the `magrittr`
 package installed as part of `dplyr`.
 
@@ -105,10 +105,10 @@ surveys %>%
 ```
 
 In the above we use the pipe to send the `surveys` data set first through
-`filter`, to keep rows where `wgt` was less than 5, and then through `select` to
-keep the `species` and `sex` columns. When the data frame is being passed to the
-`filter()` and `select()` functions through a pipe, we don't need to include it
-as an argument to these functions anymore.
+`filter`, to keep rows where `weight` was less than 5, and then through `select`
+to keep the `species` and `sex` columns. When the data frame is being passed to
+the `filter()` and `select()` functions through a pipe, we don't need to include
+it as an argument to these functions anymore.
 
 If we wanted to create a new object with this smaller version of the data we
 could do so by assigning it a new name:
@@ -243,9 +243,9 @@ screen anymore. That's because `dplyr` has changed our `data.frame` to a
 `tbl_df`. This is a data structure that's very similar to a data frame; for our
 purposes the only difference is that it won't automatically show tons of data
 going off the screen, while displaying the data type for each column under its
-name. If you want to display more data on the screen, you can add the `print()
-function at the end of the with the argument `n` specifying the number of rows
-to display:
+name. If you want to display more data on the screen, you can add the `print()`
+function at the end with the argument `n` specifying the number of rows to
+display:
 
 
 ```{r, purl = FALSE}
@@ -283,7 +283,7 @@ surveys %>%
   tally()
 ```
 
-Here, `tally()` is the action applied to the groups created to `group_by()` and
+Here, `tally()` is the action applied to the groups created by `group_by()` and
 counts the total number of records for each category.
 
 > ### Challenge {.challenge}
