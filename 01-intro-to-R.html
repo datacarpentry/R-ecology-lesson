@@ -285,7 +285,7 @@ weight_g[weight_g &gt;<span class="st"> </span><span class="dv">50</span>]</code
 <pre><code>#&gt; [1] 21 54 55</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">weight_g[weight_g &gt;=<span class="st"> </span><span class="dv">30</span> &amp;<span class="st"> </span>weight_g ==<span class="st"> </span><span class="dv">21</span>]</code></pre></div>
 <pre><code>#&gt; numeric(0)</code></pre>
-<p>When working with vectors of characters, if you are trying to combine many conditions it can become tedious to type. The function <code>%in%</code> allows you to test if a value if found in a vector:</p>
+<p>When working with vectors of characters, if you are trying to combine many conditions it can become tedious to type. The function <code>%in%</code> allows you to test if a value is found in a vector:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">animals &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;mouse&quot;</span>, <span class="st">&quot;rat&quot;</span>, <span class="st">&quot;dog&quot;</span>, <span class="st">&quot;cat&quot;</span>)
 animals[animals ==<span class="st"> &quot;cat&quot;</span> |<span class="st"> </span>animals ==<span class="st"> &quot;rat&quot;</span>] <span class="co"># returns both rat and cat</span></code></pre></div>
 <pre><code>#&gt; [1] &quot;rat&quot; &quot;cat&quot;</code></pre>

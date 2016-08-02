@@ -221,13 +221,13 @@ counts &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">
 new_datarame &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">colors =</span> color, <span class="dt">counts =</span> counts)</code></pre></div></li>
 </ol>
 <p>Try making your own new data frame from some vectors. You can check the data type of the new object using <code>class()</code>.</p>
-<!--- Answers
+<p><!--- Answers
 
    
 
    
 
-   -->
+   --></p>
 <p>The automatic conversion of data type is sometimes a blessing, sometimes an annoyance. Be aware that it exists, learn the rules, and double check that data you import in R are of the correct type within your data frame. If not, use it to your advantage to detect mistakes that might have been introduced during data entry (a letter in a column that should only contain numbers for instance.).</p>
 </div>
 </div>
@@ -281,7 +281,7 @@ head_surveys &lt;-<span class="st"> </span>surveys[<span class="dv">1</span>:<sp
 <p>You can also exclude certain parts of a data frame</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys[,-<span class="dv">1</span>]   <span class="co">#The whole data frame, except the first column</span>
 surveys[-<span class="kw">c</span>(<span class="dv">7</span>:<span class="dv">34786</span>),] <span class="co">#equivalent to head(surveys)</span></code></pre></div>
-<p>As well as using numeric values to subset a <code>data.frame</code> (or <code>matrix</code>), columns can be called by name, using one the three following notations:</p>
+<p>As well as using numeric values to subset a <code>data.frame</code> (or <code>matrix</code>), columns can be called by name, using one of the three following notations:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys[<span class="st">&quot;species_id&quot;</span>]       <span class="co"># Result is a data.frame</span>
 surveys[, <span class="st">&quot;species_id&quot;</span>]     <span class="co"># Result is a vector</span>
 surveys[[<span class="st">&quot;species_id&quot;</span>]]     <span class="co"># Result is a vector</span>
