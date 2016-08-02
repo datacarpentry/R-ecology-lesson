@@ -105,7 +105,7 @@ surveys %>%
 ```
 
 In the above we use the pipe to send the `surveys` data set first through
-`filter`, to keep rows where `wgt` was less than 5, and then through `select` to
+`filter`, to keep rows where `weight` was less than 5, and then through `select` to
 keep the `species` and `sex` columns. When the data frame is being passed to the
 `filter()` and `select()` functions through a pipe, we don't need to include it
 as an argument to these functions anymore.
