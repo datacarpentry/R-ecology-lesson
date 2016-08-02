@@ -243,9 +243,9 @@ screen anymore. That's because `dplyr` has changed our `data.frame` to a
 `tbl_df`. This is a data structure that's very similar to a data frame; for our
 purposes the only difference is that it won't automatically show tons of data
 going off the screen, while displaying the data type for each column under its
-name. If you want to display more data on the screen, you can add the `print()
-function at the end of the with the argument `n` specifying the number of rows
-to display:
+name. If you want to display more data on the screen, you can add the `print()`
+function at the end with the argument `n` specifying the number of rows to
+display:
 
 
 ```{r, purl = FALSE}
