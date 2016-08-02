@@ -283,7 +283,7 @@ surveys %>%
   tally()
 ```
 
-Here, `tally()` is the action applied to the groups created to `group_by()` and
+Here, `tally()` is the action applied to the groups created by `group_by()` and
 counts the total number of records for each category.
 
 > ### Challenge {.challenge}
