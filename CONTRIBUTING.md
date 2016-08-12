@@ -45,11 +45,11 @@ we'd rather have you doing the former.
 
 ## Locations and Formats
 
-Eeach lesson contains files such as `00-intro.md`, `01-filedir.md` and so on.
+Each lesson contains files such as `00-intro.Rmd`, `01-filedir.Rmd` and so on.
 (We use two digits followed by a one-word topic key to ensure files appear in
 the right order when listed.)
 
-For the R material, lessons must be written in RMarkdown. A Makefile converts
+_Note:_ For the R material, lessons must be written in RMarkdown (ending in `Rmd`). A Makefile converts
 the Rmd files into HTML that are processed by Jekyll (the tool GitHub uses to
 create websites) as explained in [the README file](README.md).
 
