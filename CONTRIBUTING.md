@@ -11,7 +11,7 @@ under [these licenses](LICENSE.md).
 **Table of Contents**
 
 *   [Working With GitHub](#working-with-github)
-*   [Locations and Formats](#locations-and-formats)
+*   [File Locations and Formats](#file-locations-and-formats)
 *   [FAQ](#faq)
 
 
@@ -43,21 +43,29 @@ Given a choice between you creating content or wrestling with Git,
 we'd rather have you doing the former.
 
 
-## Locations and Formats
+## File Locations and Formats
 
 Each lesson contains files such as `00-intro.Rmd`, `01-filedir.Rmd` and so on.
 (We use two digits followed by a one-word topic key to ensure files appear in
 the right order when listed.)
 
-_Note:_ For the R material, lessons must be written in RMarkdown (ending in `Rmd`). A Makefile converts
+For the R material, lessons must be written in RMarkdown (ending in
+`Rmd`). A Makefile converts
 the Rmd files into HTML that are processed by Jekyll (the tool GitHub uses to
 create websites) as explained in [the README file](README.md).
 
 Currently, the Makefile also generates the README file from `index.md`.
 
-We use the `purl()` function from `knitr` to generate a skeleton file that
-contains code to be distributed to the workshop participants. It's useful in
-particular for error-prone pieces of code (e.g., if it contains long URLs).
+_Important Note:_ We use the `purl()` function from `knitr` to generate
+a skeleton file that contains code to be distributed to the workshop
+participants. This strategy is useful in particular for error-prone pieces of
+code (e.g., if it contains long URLs). To take full advantage, every line of
+code that should be included in the handout **must** be enclosed in an `R` code
+chunk with `purl=TRUE` in the chunk options. Further, to aid students' use of
+the handout code, consider including explanatory comments. When writing
+Challenges in particular, you may need to include redundant comments and used
+the chunk option `echo=FALSE`. If in doubt consult the `Rmd` files for
+examples.
 
 ## Datasets
 
