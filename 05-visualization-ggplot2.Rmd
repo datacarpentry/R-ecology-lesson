@@ -392,3 +392,52 @@ my_plot <- ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex, gr
           text=element_text(size=16, family="Arial"))
 ggsave("name_of_file.png", my_plot, width=15, height=10)
 ```
+
+
+## Making Plots Interactive with Plotly
+
+You can make plots interactive by simply passing the ggplot2 object to the plotly library's [ggplot2](https://plot.ly/ggplot2/) function. This is most useful for dense plots in which you wish to inspect a plot's individual elements interactively, such as outliers in a scatterplot.
+
+This only works when outputting to HTML, since it takes advantage of the [htmlwidgets](http://www.htmlwidgets.org/) framework.
+
+First load the library:
+
+```{r}
+library(plotly) # install.packages('plotly')
+```
+
+Let's start with the first ggplot of a scatterplot.
+
+```{r}
+# get ggplot2 object for scatter plot
+p <- ggplot(data = surveys_complete, aes(x = weight, y = hindfoot_length)) +
+    geom_point(alpha = 0.1, aes(color=species_id))
+  
+# feed  ggplot2 object to plotly::ggplotly() to make interactive
+ggplotly(p)
+```
+
+Running the code above from within RStudio's Console, outputs to a Viewer pane, rather than the Plots pane of previous ggplot2 functions. Hovering over any given point displays the information associated with that data point.
+
+![Popup information on hover for scatterplot rendered through `plotly::ggplotly()`](./img/ggplot2-plotly_scatterplot-hover.png)
+
+You can similarly make any other ggplot2 interactive, such as for a box plot:
+  
+```{r}
+# box plot
+p <- ggplot(data = surveys_complete, aes(x = species_id, y = hindfoot_length)) +
+  geom_boxplot()
+ggplotly(p)
+```
+
+Or for a line graph:
+
+```{r}
+# line graph
+p <- ggplot(yearly_counts,
+            aes(x = year, y = n, group = species_id, colour = species_id)) +
+  geom_line()
+ggplotly(p)
+```
+
+For more options, please visit [plot.ly/ggplot2](https://plot.ly/ggplot2/).
