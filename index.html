@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>R for Data Analysis in Ecology</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta name="description" content="This is an introduction to R designed for participants with no programming experience. These lessons can be taught in 3/4 of a day. They start with some basic information about R syntax, the RStudio interface, and move through how to import CSV files, the structure of data.frame, how to deal with factors, how to add/remove rows and columns, and finish with how to calculate summary statistics for each level and a very brief introduction to plotting.">
+  <meta name="generator" content="bookdown 0.1.4 and GitBook 2.6.7">
+
+  <meta property="og:title" content="R for Data Analysis in Ecology" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is an introduction to R designed for participants with no programming experience. These lessons can be taught in 3/4 of a day. They start with some basic information about R syntax, the RStudio interface, and move through how to import CSV files, the structure of data.frame, how to deal with factors, how to add/remove rows and columns, and finish with how to calculate summary statistics for each level and a very brief introduction to plotting." />
+  <meta name="github-repo" content="datacarpentry/R-ecology-lesson" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="R for Data Analysis in Ecology" />
+  
+  <meta name="twitter:description" content="This is an introduction to R designed for participants with no programming experience. These lessons can be taught in 3/4 of a day. They start with some basic information about R syntax, the RStudio interface, and move through how to import CSV files, the structure of data.frame, how to deal with factors, how to add/remove rows and columns, and finish with how to calculate summary statistics for each level and a very brief introduction to plotting." />
+  
+
+
+<meta name="date" content="2016-08-15">
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+
+<link rel="next" href="before-we-start.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="http://www.datacarpentry.org/" target="blank"><img src="./img/DC1_logo_xsmall.png"></a></li> |
+<li><a href="./">R in Ecology</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Overview</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#lessons"><i class="fa fa-check"></i><b>1.1</b> Lessons</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#data"><i class="fa fa-check"></i><b>1.2</b> Data</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#requirements"><i class="fa fa-check"></i><b>1.2.1</b> Requirements</a></li>
+<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#r"><i class="fa fa-check"></i><b>1.2.2</b> R</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#other-resources"><i class="fa fa-check"></i><b>1.3</b> Other resources</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="before-we-start.html"><a href="before-we-start.html"><i class="fa fa-check"></i><b>2</b> Before we start</a><ul>
+<li class="chapter" data-level="2.1" data-path="before-we-start.html"><a href="before-we-start.html#organizing-your-working-directory"><i class="fa fa-check"></i><b>2.1</b> Organizing your working directory</a></li>
+<li class="chapter" data-level="2.2" data-path="before-we-start.html"><a href="before-we-start.html#presentation-of-rstudio"><i class="fa fa-check"></i><b>2.2</b> Presentation of RStudio</a></li>
+<li class="chapter" data-level="2.3" data-path="before-we-start.html"><a href="before-we-start.html#interacting-with-r"><i class="fa fa-check"></i><b>2.3</b> Interacting with R</a></li>
+<li class="chapter" data-level="2.4" data-path="before-we-start.html"><a href="before-we-start.html#basics-of-r"><i class="fa fa-check"></i><b>2.4</b> Basics of R</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="before-we-start.html"><a href="before-we-start.html#the-r-syntax"><i class="fa fa-check"></i><b>2.4.1</b> The R syntax</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="before-we-start.html"><a href="before-we-start.html#seeking-help"><i class="fa fa-check"></i><b>2.5</b> Seeking help</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="before-we-start.html"><a href="before-we-start.html#i-know-the-name-of-the-function-i-want-to-use-but-im-not-sure-how-to-use-it"><i class="fa fa-check"></i><b>2.5.1</b> I know the name of the function I want to use, but I’m not sure how to use it</a></li>
+<li class="chapter" data-level="2.5.2" data-path="before-we-start.html"><a href="before-we-start.html#i-want-to-use-a-function-that-does-x-there-must-be-a-function-for-it-but-i-dont-know-which-one"><i class="fa fa-check"></i><b>2.5.2</b> I want to use a function that does X, there must be a function for it but I don’t know which one…</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="before-we-start.html"><a href="before-we-start.html#i-am-stuck-i-get-an-error-message-that-i-dont-understand"><i class="fa fa-check"></i><b>2.6</b> I am stuck… I get an error message that I don’t understand</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="before-we-start.html"><a href="before-we-start.html#asking-for-help"><i class="fa fa-check"></i><b>2.6.1</b> Asking for help</a></li>
+<li class="chapter" data-level="2.6.2" data-path="before-we-start.html"><a href="before-we-start.html#where-to-ask-for-help"><i class="fa fa-check"></i><b>2.6.2</b> Where to ask for help?</a></li>
+<li class="chapter" data-level="2.6.3" data-path="before-we-start.html"><a href="before-we-start.html#more-resources"><i class="fa fa-check"></i><b>2.6.3</b> More resources</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="intro-to-r.html"><a href="intro-to-r.html"><i class="fa fa-check"></i><b>3</b> Introduction to R</a><ul>
+<li class="chapter" data-level="3.1" data-path="intro-to-r.html"><a href="intro-to-r.html#creating-objects"><i class="fa fa-check"></i><b>3.1</b> Creating objects</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="intro-to-r.html"><a href="intro-to-r.html#challenge"><i class="fa fa-check"></i><b>3.1.1</b> Challenge</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="intro-to-r.html"><a href="intro-to-r.html#vectors-and-data-types"><i class="fa fa-check"></i><b>3.2</b> Vectors and data types</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="intro-to-r.html"><a href="intro-to-r.html#challenge-1"><i class="fa fa-check"></i><b>3.2.1</b> Challenge</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="intro-to-r.html"><a href="intro-to-r.html#subsetting-vectors"><i class="fa fa-check"></i><b>3.3</b> Subsetting vectors</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="intro-to-r.html"><a href="intro-to-r.html#conditional-subsetting"><i class="fa fa-check"></i><b>3.3.1</b> Conditional subsetting</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="intro-to-r.html"><a href="intro-to-r.html#missing-data"><i class="fa fa-check"></i><b>3.4</b> Missing data</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="intro-to-r.html"><a href="intro-to-r.html#challenge-3"><i class="fa fa-check"></i><b>3.4.1</b> Challenge</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="starting-with-data.html"><a href="starting-with-data.html"><i class="fa fa-check"></i><b>4</b> Starting with data</a><ul>
+<li class="chapter" data-level="4.1" data-path="starting-with-data.html"><a href="starting-with-data.html#presentation-of-the-survey-data"><i class="fa fa-check"></i><b>4.1</b> Presentation of the Survey Data</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="starting-with-data.html"><a href="starting-with-data.html#challenge-4"><i class="fa fa-check"></i><b>4.1.1</b> Challenge</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="starting-with-data.html"><a href="starting-with-data.html#factors"><i class="fa fa-check"></i><b>4.2</b> Factors</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="starting-with-data.html"><a href="starting-with-data.html#converting-factors"><i class="fa fa-check"></i><b>4.2.1</b> Converting factors</a></li>
+<li class="chapter" data-level="4.2.2" data-path="starting-with-data.html"><a href="starting-with-data.html#challenge-5"><i class="fa fa-check"></i><b>4.2.2</b> Challenge</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="data-frames.html"><a href="data-frames.html"><i class="fa fa-check"></i><b>5</b> The <code>data.frame</code> class</a><ul>
+<li class="chapter" data-level="5.1" data-path="data-frames.html"><a href="data-frames.html#what-are-data-frames"><i class="fa fa-check"></i><b>5.1</b> What are data frames?</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="data-frames.html"><a href="data-frames.html#challenge-6"><i class="fa fa-check"></i><b>5.1.1</b> Challenge</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="data-frames.html"><a href="data-frames.html#inspecting-data.frame-objects"><i class="fa fa-check"></i><b>5.2</b> Inspecting <code>data.frame</code> Objects</a></li>
+<li class="chapter" data-level="5.3" data-path="data-frames.html"><a href="data-frames.html#indexing-sequences-and-subsetting"><i class="fa fa-check"></i><b>5.3</b> Indexing, Sequences, and Subsetting</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="data-frames.html"><a href="data-frames.html#challenge-7"><i class="fa fa-check"></i><b>5.3.1</b> Challenge</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="data-manip-dplyr.html"><a href="data-manip-dplyr.html"><i class="fa fa-check"></i><b>6</b> Data Manipulation using dplyr</a><ul>
+<li class="chapter" data-level="6.1" data-path="data-manip-dplyr.html"><a href="data-manip-dplyr.html#what-is-dplyr"><i class="fa fa-check"></i><b>6.1</b> What is <code>dplyr</code>?</a></li>
+<li class="chapter" data-level="6.2" data-path="data-manip-dplyr.html"><a href="data-manip-dplyr.html#selecting-columns-and-filtering-rows"><i class="fa fa-check"></i><b>6.2</b> Selecting columns and filtering rows</a></li>
+<li class="chapter" data-level="6.3" data-path="data-manip-dplyr.html"><a href="data-manip-dplyr.html#pipes"><i class="fa fa-check"></i><b>6.3</b> Pipes</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="data-manip-dplyr.html"><a href="data-manip-dplyr.html#mutate"><i class="fa fa-check"></i><b>6.3.1</b> Mutate</a></li>
+<li class="chapter" data-level="6.3.2" data-path="data-manip-dplyr.html"><a href="data-manip-dplyr.html#split-apply-combine-data-analysis-and-the-summarize-function"><i class="fa fa-check"></i><b>6.3.2</b> Split-apply-combine data analysis and the summarize() function</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="data-manip-dplyr.html"><a href="data-manip-dplyr.html#exporting-data"><i class="fa fa-check"></i><b>6.4</b> Exporting data</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="vis-ggplot2.html"><a href="vis-ggplot2.html"><i class="fa fa-check"></i><b>7</b> Data visualization with ggplot2</a><ul>
+<li class="chapter" data-level="7.1" data-path="vis-ggplot2.html"><a href="vis-ggplot2.html#plotting-with-ggplot2"><i class="fa fa-check"></i><b>7.1</b> Plotting with ggplot2</a></li>
+<li class="chapter" data-level="7.2" data-path="vis-ggplot2.html"><a href="vis-ggplot2.html#building-your-plots-iteratively"><i class="fa fa-check"></i><b>7.2</b> Building your plots iteratively</a></li>
+<li class="chapter" data-level="7.3" data-path="vis-ggplot2.html"><a href="vis-ggplot2.html#boxplot"><i class="fa fa-check"></i><b>7.3</b> Boxplot</a></li>
+<li class="chapter" data-level="7.4" data-path="vis-ggplot2.html"><a href="vis-ggplot2.html#plotting-time-series-data"><i class="fa fa-check"></i><b>7.4</b> Plotting time series data</a></li>
+<li class="chapter" data-level="7.5" data-path="vis-ggplot2.html"><a href="vis-ggplot2.html#faceting"><i class="fa fa-check"></i><b>7.5</b> Faceting</a></li>
+<li class="chapter" data-level="7.6" data-path="vis-ggplot2.html"><a href="vis-ggplot2.html#challenge-13"><i class="fa fa-check"></i><b>7.6</b> Challenge</a></li>
+<li class="chapter" data-level="7.7" data-path="vis-ggplot2.html"><a href="vis-ggplot2.html#customization"><i class="fa fa-check"></i><b>7.7</b> Customization</a></li>
+<li class="chapter" data-level="7.8" data-path="vis-ggplot2.html"><a href="vis-ggplot2.html#making-plots-interactive-with-plotly"><i class="fa fa-check"></i><b>7.8</b> Making Plots Interactive with Plotly</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="r-and-sql.html"><a href="r-and-sql.html"><i class="fa fa-check"></i><b>8</b> SQL databases and R</a><ul>
+<li class="chapter" data-level="8.1" data-path="r-and-sql.html"><a href="r-and-sql.html#introduction"><i class="fa fa-check"></i><b>8.1</b> Introduction</a></li>
+<li class="chapter" data-level="8.2" data-path="r-and-sql.html"><a href="r-and-sql.html#connecting-r-to-sqlite-databases"><i class="fa fa-check"></i><b>8.2</b> Connecting R to sqlite databases</a></li>
+<li class="chapter" data-level="8.3" data-path="r-and-sql.html"><a href="r-and-sql.html#running-sql-queries-from-r"><i class="fa fa-check"></i><b>8.3</b> Running SQL queries from R</a></li>
+<li class="chapter" data-level="8.4" data-path="r-and-sql.html"><a href="r-and-sql.html#creating-a-sqlite-db-using-r"><i class="fa fa-check"></i><b>8.4</b> Creating a SQLite DB using R</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R for Data Analysis in Ecology</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">R for Data Analysis in Ecology</h1>
+<h4 class="date"><em>2016-08-15</em></h4>
+</div>
+<div id="overview" class="section level1">
+<h1><span class="header-section-number">Chapter 1</span> Overview</h1>
+<p><strong>Content Contributors: Sarah Supp, John Blischak, Gavin Simpson, Tracy Teal, Greg Wilson, Diego Barneche, Stephen Turner, Francois Michonneau</strong></p>
+<p><strong>Lesson Maintainers: Francois Michonneau, Auriel Fournier</strong>**</p>
+<p><strong>Lesson status: Teaching</strong></p>
+<!--
+  [Information on Lesson Status Categories]()
+-->
+<!-- ###### INDEX OF LESSONS ON THIS TOPIC ###### -->
+<div id="lessons" class="section level2">
+<h2><span class="header-section-number">1.1</span> Lessons</h2>
+<ol style="list-style-type: decimal">
+<li><a href="before-we-start.html">Lesson 00 Before we start</a></li>
+<li><a href="intro-to-r.html">Lesson 01 Introduction to R</a></li>
+<li><a href="starting-with-data.html">Lesson 02 Starting with data</a></li>
+<li><a href="data-frames.html">Lesson 03 Introducing <code>data.frame</code></a></li>
+<li><a href="data-manip-dplyr.html">Lesson 04 Aggregating and analyzing data with dplyr</a></li>
+<li><a href="vis-ggplot2.html">Lesson 05 Data visualization with ggplot2</a></li>
+<li><a href="r-and-sql.html">Lesson 06 R and SQL</a></li>
+</ol>
+</div>
+<div id="data" class="section level2">
+<h2><span class="header-section-number">1.2</span> Data</h2>
+<p>Data files for the lesson are available here: <a href="http://dx.doi.org/10.6084/m9.figshare.1314459" class="uri">http://dx.doi.org/10.6084/m9.figshare.1314459</a></p>
+<p>Please download the <em>*.csv</em> (Comma Separated Value) files: <em>species.csv</em>, <em>plots.csv</em>, <em>surveys.csv</em>, and <em>combined.csv</em>.</p>
+<div id="requirements" class="section level3">
+<h3><span class="header-section-number">1.2.1</span> Requirements</h3>
+<p>Data Carpentry’s teaching is hands-on, so participants are encouraged to use their own computers to insure the proper setup of tools for an efficient workflow. <em>These lessons assume no prior knowledge of the skills or tools</em>, but working through this lesson requires working copies of the software described below. To most effectively use these materials, please make sure to install everything <em>before</em> working through this lesson.</p>
+</div>
+<div id="r" class="section level3">
+<h3><span class="header-section-number">1.2.2</span> R</h3>
+<p><a href="http://www.r-project.org">R</a> is a programming language that is especially powerful for data exploration, visualization, and statistical analysis. To interact with R, we use <a href="http://www.rstudio.com">RStudio</a>. Make sure you have a recent version of R ( or higher).</p>
+<div id="r-windows" class="section level4">
+<h4><span class="header-section-number">1.2.2.1</span> Windows</h4>
+<p>Install R by downloading and running <a href="http://cran.r-project.org/bin/windows/base/release.htm">this .exe file</a> from <a href="http://cran.r-project.org/index.html">CRAN</a>. Also, please install the <a href="http://www.rstudio.com/ide/download/desktop">RStudio IDE</a>.</p>
+</div>
+<div id="r-macosx" class="section level4">
+<h4><span class="header-section-number">1.2.2.2</span> Mac OS X</h4>
+<p>Install R by downloading and running <a href="http://cran.r-project.org/bin/macosx/R-latest.pkg">this .pkg file</a> from <a href="http://cran.r-project.org/index.html">CRAN</a>. If you have Snow Leopard, you might run into issues when trying to download the datasets directly from R using the <code>download.file()</code> function. If it’s the case, you will need to download the data files manually. Don’t hesitate to ask the instructor for help if you run into issues. Also, please install the <a href="http://www.rstudio.com/ide/download/desktop">RStudio IDE</a>.</p>
+</div>
+<div id="r-linux" class="section level4">
+<h4><span class="header-section-number">1.2.2.3</span> Linux</h4>
+<p>You can download the binary files for your distribution from <a href="http://cran.r-project.org/index.html">CRAN</a>. Or you can use your package manager (e.g. for Debian/Ubuntu run <code>sudo apt-get install r-base</code> and for Fedora run <code>sudo yum install R</code>). This workshop requires a version of R no older than version 3.2.2; the default software repositories for some Linux distributions maybe out of date. It is recommended that you use a more recent version of R by adding the relevant entries to your package manager. See the instructions for your <a href="https://cran.r-project.org/bin/linux">distribution</a> on the CRAN website. Also, please install the <a href="http://www.rstudio.com/ide/download/desktop">RStudio IDE</a>.</p>
+</div>
+</div>
+</div>
+<div id="other-resources" class="section level2">
+<h2><span class="header-section-number">1.3</span> Other resources</h2>
+<ul>
+<li><a href="other/r-motivation.html">Why use R?</a></li>
+</ul>
+<p>
+<strong>Twitter</strong>: <span class="citation">@datacarpentry</span>
+</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="before-we-start.html" class="navigation navigation-next navigation-unique" aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/datacarpentry/R-ecology-lesson/edit/master/index.Rmd",
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

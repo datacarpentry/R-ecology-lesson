@@ -1,0 +1,4 @@
+book_filename: "_main.Rmd"
+chapter_name: "Chapter "
+output_dir: "."
+exclude: ["r-motivation.Rmd"]

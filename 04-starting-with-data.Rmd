@@ -1,0 +1,230 @@
+# Starting with data  {#starting-with-data}
+
+```{r, echo=FALSE, purl=FALSE, message = FALSE}
+source("setup.R")
+```
+
+------------
+
+> ## Learning Objectives
+>
+> * load external data (CSV files) in memory using the survey table
+>  (`surveys.csv`) as an example
+> * explore the structure and the content of a data frame in R
+> * understand what factors are and how to manipulate them
+
+------------
+
+## Presentation of the Survey Data
+
+```{r, echo=FALSE, purl=TRUE}
+### Presentation of the survey data
+```
+
+We are studying the species and weight of animals caught in plots in our study
+area. The dataset is stored as a CSV file: each row holds information for a
+single animal, and the columns represent:
+
+| Column           | Description                        |
+|------------------|------------------------------------|
+| record\_id       | Unique id for the observation      |
+| month            | month of observation               |
+| day              | day of observation                 |
+| year             | year of observation                |
+| plot\_id         | ID of a particular plot            |
+| species\_id      | 2-letter code                      |
+| sex              | sex of animal ("M", "F")           |
+| hindfoot\_length | length of the hindfoot in mm       |
+| weight           | weight of the animal in grams      |
+| genus            | genus of animal                    |
+| species          | species of animal                  |
+| taxa             | e.g. Rodent, Reptile, Bird, Rabbit |
+| plot\_type       | type of plot                       |
+
+We are going to use the R function `download.file()` to download the CSV file
+that contains the survey data from figshare, and we will use `read.csv()` to
+load into memory (as a `data.frame`) the content of the CSV file.
+
+To download the data into the `data/` subdirectory, do:
+
+```{r, eval=FALSE, purl=TRUE}
+download.file("https://ndownloader.figshare.com/files/2292169",
+              "data/portal_data_joined.csv")
+```
+
+You are now ready to load the data:
+
+```{r, eval=TRUE,  purl=FALSE}
+surveys <- read.csv('data/portal_data_joined.csv')
+```
+
+This statement doesn't produce any output because, as you might recall,
+assignment doesn't display anything. If we want to check that our data has been
+loaded, we can print the variable's value: `surveys`.
+
+Wow... that was a lot of output. At least it means the data loaded
+properly. Let's check the top (the first 6 lines) of this `data.frame` using the
+function `head()`:
+
+```{r, results='show', purl=FALSE}
+head(surveys)
+```
+
+A `data.frame` is the representation of data in the format of a table where the
+columns are vectors that all have the same length. Because each column is a
+vector, they all contain the same type of data. We can see this when inspecting
+the __str__ucture of a `data.frame` with the function `str()`:
+
+```{r, purl=FALSE}
+str(surveys)
+```
+
+### Challenge
+
+Based on the output of `str(surveys)`, can you answer the following questions?
+
+* What is the class of the object `surveys`?
+* How many rows and how many columns are in this object?
+* How many species have been recorded during these surveys?
+
+```{r, echo=FALSE, purl=TRUE}
+
+## Challenge
+## Based on the output of `str(surveys)`, can you answer the following questions?
+## * What is the class of the object `surveys`?
+## * How many rows and how many columns are in this object?
+## * How many species have been recorded during these surveys?
+
+```
+
+<!---
+```{r, echo=FALSE, purl=FALSE}
+## Answers
+##
+## * class: data frame
+## * how many rows: 34786,  how many columns: 13
+## * how many species: 48
+```
+--->
+
+As you can see, many of the columns consist of integers, however, the columns
+`species` and `sex` are of a special class called a `factor`. Before we learn
+more about the `data.frame` class, let's talk about factors. They are very
+useful but not necessarily intuitive, and therefore require some attention.
+
+
+## Factors
+
+```{r, echo=FALSE, purl=TRUE}
+### Factors
+```
+
+Factors are used to represent categorical data. Factors can be ordered or
+unordered, and understanding them is necessary for statistical analysis and for
+plotting.
+
+Factors are stored as integers, and have labels associated with these unique
+integers. While factors look (and often behave) like character vectors, they are
+actually integers under the hood, and you need to be careful when treating them
+like strings.
+
+Once created, factors can only contain a pre-defined set of values, known as
+*levels*. By default, R always sorts *levels* in alphabetical order. For
+instance, if you have a factor with 2 levels:
+
+```{r, purl=TRUE}
+sex <- factor(c("male", "female", "female", "male"))
+```
+
+R will assign `1` to the level `"female"` and `2` to the level `"male"` (because
+`f` comes before `m`, even though the first element in this vector is
+`"male"`). You can check this by using the function `levels()`, and check the
+number of levels using `nlevels()`:
+
+```{r, purl=FALSE}
+levels(sex)
+nlevels(sex)
+```
+
+Sometimes, the order of the factors does not matter, other times you might want
+to specify the order because it is meaningful (e.g., "low", "medium", "high") or
+it is required by a particular type of analysis. Additionally, specifying the
+order of the levels allows for level comparison:
+
+```{r, purl=TRUE, error=TRUE}
+food <- factor(c("low", "high", "medium", "high", "low", "medium", "high"))
+levels(food)
+food <- factor(food, levels=c("low", "medium", "high"))
+levels(food)
+min(food) ## doesn't work
+food <- factor(food, levels=c("low", "medium", "high"), ordered=TRUE)
+levels(food)
+min(food) ## works!
+```
+
+In R's memory, these factors are represented by integers (1, 2, 3), but are more
+informative than integers because factors are self describing: `"low"`,
+`"medium"`, `"high"`" is more descriptive than `1`, `2`, `3`. Which is low?  You
+wouldn't be able to tell just from the integer data. Factors, on the other hand,
+have this information built in. It is particularly helpful when there are many
+levels (like the species in our example data set).
+
+### Converting factors
+
+If you need to convert a factor to a character vector, you use
+`as.character(x)`.
+
+Converting factors where the levels appear as numbers (such as concentration
+levels) to a numeric vector is a little trickier.  One method is to convert
+factors to characters and then numbers.  Another method is to use the `levels()`
+function. Compare:
+
+```{r, purl=TRUE}
+f <- factor(c(1, 5, 10, 2))
+as.numeric(f)               ## wrong! and there is no warning...
+as.numeric(as.character(f)) ## works...
+as.numeric(levels(f))[f]    ## The recommended way.
+```
+
+Notice that in the `levels()` approach, three important steps occur:
+
+* We obtain all the factor levels using `levels(f)`
+* We convert these levels to numeric values using `as.numeric(levels(f))`
+* We then access these numeric values using the underlying integers of the
+  vector `f` inside the square brackets
+
+### Challenge
+
+The function `table()` tabulates observations and can be used to create bar
+plots quickly. For instance, the code below gives you a barplot of the number of
+observations.
+
+* In which order are the treatments listed?
+* How can you recreate this plot with "control" listed last instead
+of first?
+
+
+```{r wrong-order, results='show', purl=TRUE}
+## Challenge
+##
+## * In which order are the treatments listed?
+##
+## * How can you recreate this plot with "control" listed
+## last instead of first?
+exprmt <- factor(c("treat1", "treat2", "treat1", "treat3", "treat1", "control",
+                   "treat1", "treat2", "treat3"))
+table(exprmt)
+barplot(table(exprmt))
+```
+
+
+<!---
+```{r correct-order, purl=FALSE}
+## Answers
+##
+## * The treatments are listed in alphabetical order because they are factors.
+## * By redefining the order of the levels
+exprmt <- factor(exprmt, levels=c("treat1", "treat2", "treat3", "control"))
+barplot(table(exprmt))
+```
+--->

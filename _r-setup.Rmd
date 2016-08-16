@@ -1,0 +1,21 @@
+---
+output: html_fragment
+params:
+  r_version: 3.2.2
+---
+
+### R
+
+[R](http://www.r-project.org) is a programming language that is especially powerful for data exploration, visualization, and statistical analysis. To interact with R, we use [RStudio](http://www.rstudio.com). Make sure you have a recent version of R (`r params$r_version` or higher).
+
+#### Windows {#r-windows}
+
+Install R by downloading and running [this .exe file](http://cran.r-project.org/bin/windows/base/release.htm) from [CRAN](http://cran.r-project.org/index.html). Also, please install the [RStudio IDE](http://www.rstudio.com/ide/download/desktop).
+
+#### Mac OS X {#r-macosx}
+
+Install R by downloading and running [this .pkg file](http://cran.r-project.org/bin/macosx/R-latest.pkg) from [CRAN](http://cran.r-project.org/index.html). If you have Snow Leopard, you might run into issues when trying to download the datasets directly from R using the `download.file()` function. If it's the case, you will need to download the data files manually. Don't hesitate to ask the instructor for help if you run into issues. Also, please install the [RStudio IDE](http://www.rstudio.com/ide/download/desktop).
+
+#### Linux {#r-linux}
+
+You can download the binary files for your distribution from [CRAN](http://cran.r-project.org/index.html). Or you can use your package manager (e.g. for Debian/Ubuntu run `sudo apt-get install r-base` and for Fedora run `sudo yum install R`).  This workshop requires a version of R no older than version 3.2.2; the default software repositories for some Linux distributions maybe out of date. It is recommended that you use a more recent version of R by adding the relevant entries to your package manager. See the instructions for your [distribution](https://cran.r-project.org/bin/linux) on the CRAN website. Also, please install the [RStudio IDE](http://www.rstudio.com/ide/download/desktop).
