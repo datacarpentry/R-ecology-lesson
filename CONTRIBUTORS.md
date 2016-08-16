@@ -31,3 +31,5 @@ from Jeff Hollister's
 The ggplot2 lesson was initially created by Mateusz Kuzak, Diana Marek, and Hedi
 Peterson, during a Hackathon in Espoo, Finland on March 16-17, 2015, sponsored
 by the [ELIXIR project](http://elixir-europe.org/).
+
+Interactive plots and translation into the [bookdown](https://bookdown.org/home/getting-started.html) format was done by [Ben Best](https://github.com/bbest) for his Software / Data Carpentry instructor checkout, August 15th.

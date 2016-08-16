@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>R for Data Analysis in Ecology</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta name="description" content="This is an introduction to R designed for participants with no programming experience. These lessons can be taught in 3/4 of a day. They start with some basic information about R syntax, the RStudio interface, and move through how to import CSV files, the structure of data.frame, how to deal with factors, how to add/remove rows and columns, and finish with how to calculate summary statistics for each level and a very brief introduction to plotting.">
+  <meta name="generator" content="bookdown 0.1.4 and GitBook 2.6.7">
+
+  <meta property="og:title" content="R for Data Analysis in Ecology" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is an introduction to R designed for participants with no programming experience. These lessons can be taught in 3/4 of a day. They start with some basic information about R syntax, the RStudio interface, and move through how to import CSV files, the structure of data.frame, how to deal with factors, how to add/remove rows and columns, and finish with how to calculate summary statistics for each level and a very brief introduction to plotting." />
+  <meta name="github-repo" content="datacarpentry/R-ecology-lesson" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="R for Data Analysis in Ecology" />
+  
+  <meta name="twitter:description" content="This is an introduction to R designed for participants with no programming experience. These lessons can be taught in 3/4 of a day. They start with some basic information about R syntax, the RStudio interface, and move through how to import CSV files, the structure of data.frame, how to deal with factors, how to add/remove rows and columns, and finish with how to calculate summary statistics for each level and a very brief introduction to plotting." />
+  
+
+
+<meta name="date" content="2016-08-15">
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="intro-to-r.html">
+<link rel="next" href="data-frames.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="http://www.datacarpentry.org/" target="blank"><img src="./img/DC1_logo_xsmall.png"></a></li> |
+<li><a href="./">R in Ecology</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Overview</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#lessons"><i class="fa fa-check"></i><b>1.1</b> Lessons</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#data"><i class="fa fa-check"></i><b>1.2</b> Data</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#requirements"><i class="fa fa-check"></i><b>1.2.1</b> Requirements</a></li>
+<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#r"><i class="fa fa-check"></i><b>1.2.2</b> R</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#other-resources"><i class="fa fa-check"></i><b>1.3</b> Other resources</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="before-we-start.html"><a href="before-we-start.html"><i class="fa fa-check"></i><b>2</b> Before we start</a><ul>
+<li class="chapter" data-level="2.1" data-path="before-we-start.html"><a href="before-we-start.html#organizing-your-working-directory"><i class="fa fa-check"></i><b>2.1</b> Organizing your working directory</a></li>
+<li class="chapter" data-level="2.2" data-path="before-we-start.html"><a href="before-we-start.html#presentation-of-rstudio"><i class="fa fa-check"></i><b>2.2</b> Presentation of RStudio</a></li>
+<li class="chapter" data-level="2.3" data-path="before-we-start.html"><a href="before-we-start.html#interacting-with-r"><i class="fa fa-check"></i><b>2.3</b> Interacting with R</a></li>
+<li class="chapter" data-level="2.4" data-path="before-we-start.html"><a href="before-we-start.html#basics-of-r"><i class="fa fa-check"></i><b>2.4</b> Basics of R</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="before-we-start.html"><a href="before-we-start.html#the-r-syntax"><i class="fa fa-check"></i><b>2.4.1</b> The R syntax</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="before-we-start.html"><a href="before-we-start.html#seeking-help"><i class="fa fa-check"></i><b>2.5</b> Seeking help</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="before-we-start.html"><a href="before-we-start.html#i-know-the-name-of-the-function-i-want-to-use-but-im-not-sure-how-to-use-it"><i class="fa fa-check"></i><b>2.5.1</b> I know the name of the function I want to use, but I’m not sure how to use it</a></li>
+<li class="chapter" data-level="2.5.2" data-path="before-we-start.html"><a href="before-we-start.html#i-want-to-use-a-function-that-does-x-there-must-be-a-function-for-it-but-i-dont-know-which-one"><i class="fa fa-check"></i><b>2.5.2</b> I want to use a function that does X, there must be a function for it but I don’t know which one…</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="before-we-start.html"><a href="before-we-start.html#i-am-stuck-i-get-an-error-message-that-i-dont-understand"><i class="fa fa-check"></i><b>2.6</b> I am stuck… I get an error message that I don’t understand</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="before-we-start.html"><a href="before-we-start.html#asking-for-help"><i class="fa fa-check"></i><b>2.6.1</b> Asking for help</a></li>
+<li class="chapter" data-level="2.6.2" data-path="before-we-start.html"><a href="before-we-start.html#where-to-ask-for-help"><i class="fa fa-check"></i><b>2.6.2</b> Where to ask for help?</a></li>
+<li class="chapter" data-level="2.6.3" data-path="before-we-start.html"><a href="before-we-start.html#more-resources"><i class="fa fa-check"></i><b>2.6.3</b> More resources</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="intro-to-r.html"><a href="intro-to-r.html"><i class="fa fa-check"></i><b>3</b> Introduction to R</a><ul>
+<li class="chapter" data-level="3.1" data-path="intro-to-r.html"><a href="intro-to-r.html#creating-objects"><i class="fa fa-check"></i><b>3.1</b> Creating objects</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="intro-to-r.html"><a href="intro-to-r.html#challenge"><i class="fa fa-check"></i><b>3.1.1</b> Challenge</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="intro-to-r.html"><a href="intro-to-r.html#vectors-and-data-types"><i class="fa fa-check"></i><b>3.2</b> Vectors and data types</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="intro-to-r.html"><a href="intro-to-r.html#challenge-1"><i class="fa fa-check"></i><b>3.2.1</b> Challenge</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="intro-to-r.html"><a href="intro-to-r.html#subsetting-vectors"><i class="fa fa-check"></i><b>3.3</b> Subsetting vectors</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="intro-to-r.html"><a href="intro-to-r.html#conditional-subsetting"><i class="fa fa-check"></i><b>3.3.1</b> Conditional subsetting</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="intro-to-r.html"><a href="intro-to-r.html#missing-data"><i class="fa fa-check"></i><b>3.4</b> Missing data</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="intro-to-r.html"><a href="intro-to-r.html#challenge-3"><i class="fa fa-check"></i><b>3.4.1</b> Challenge</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="starting-with-data.html"><a href="starting-with-data.html"><i class="fa fa-check"></i><b>4</b> Starting with data</a><ul>
+<li class="chapter" data-level="4.1" data-path="starting-with-data.html"><a href="starting-with-data.html#presentation-of-the-survey-data"><i class="fa fa-check"></i><b>4.1</b> Presentation of the Survey Data</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="starting-with-data.html"><a href="starting-with-data.html#challenge-4"><i class="fa fa-check"></i><b>4.1.1</b> Challenge</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="starting-with-data.html"><a href="starting-with-data.html#factors"><i class="fa fa-check"></i><b>4.2</b> Factors</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="starting-with-data.html"><a href="starting-with-data.html#converting-factors"><i class="fa fa-check"></i><b>4.2.1</b> Converting factors</a></li>
+<li class="chapter" data-level="4.2.2" data-path="starting-with-data.html"><a href="starting-with-data.html#challenge-5"><i class="fa fa-check"></i><b>4.2.2</b> Challenge</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="data-frames.html"><a href="data-frames.html"><i class="fa fa-check"></i><b>5</b> The <code>data.frame</code> class</a><ul>
+<li class="chapter" data-level="5.1" data-path="data-frames.html"><a href="data-frames.html#what-are-data-frames"><i class="fa fa-check"></i><b>5.1</b> What are data frames?</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="data-frames.html"><a href="data-frames.html#challenge-6"><i class="fa fa-check"></i><b>5.1.1</b> Challenge</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="data-frames.html"><a href="data-frames.html#inspecting-data.frame-objects"><i class="fa fa-check"></i><b>5.2</b> Inspecting <code>data.frame</code> Objects</a></li>
+<li class="chapter" data-level="5.3" data-path="data-frames.html"><a href="data-frames.html#indexing-sequences-and-subsetting"><i class="fa fa-check"></i><b>5.3</b> Indexing, Sequences, and Subsetting</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="data-frames.html"><a href="data-frames.html#challenge-7"><i class="fa fa-check"></i><b>5.3.1</b> Challenge</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="data-manip-dplyr.html"><a href="data-manip-dplyr.html"><i class="fa fa-check"></i><b>6</b> Data Manipulation using dplyr</a><ul>
+<li class="chapter" data-level="6.1" data-path="data-manip-dplyr.html"><a href="data-manip-dplyr.html#what-is-dplyr"><i class="fa fa-check"></i><b>6.1</b> What is <code>dplyr</code>?</a></li>
+<li class="chapter" data-level="6.2" data-path="data-manip-dplyr.html"><a href="data-manip-dplyr.html#selecting-columns-and-filtering-rows"><i class="fa fa-check"></i><b>6.2</b> Selecting columns and filtering rows</a></li>
+<li class="chapter" data-level="6.3" data-path="data-manip-dplyr.html"><a href="data-manip-dplyr.html#pipes"><i class="fa fa-check"></i><b>6.3</b> Pipes</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="data-manip-dplyr.html"><a href="data-manip-dplyr.html#mutate"><i class="fa fa-check"></i><b>6.3.1</b> Mutate</a></li>
+<li class="chapter" data-level="6.3.2" data-path="data-manip-dplyr.html"><a href="data-manip-dplyr.html#split-apply-combine-data-analysis-and-the-summarize-function"><i class="fa fa-check"></i><b>6.3.2</b> Split-apply-combine data analysis and the summarize() function</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="data-manip-dplyr.html"><a href="data-manip-dplyr.html#exporting-data"><i class="fa fa-check"></i><b>6.4</b> Exporting data</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="vis-ggplot2.html"><a href="vis-ggplot2.html"><i class="fa fa-check"></i><b>7</b> Data visualization with ggplot2</a><ul>
+<li class="chapter" data-level="7.1" data-path="vis-ggplot2.html"><a href="vis-ggplot2.html#plotting-with-ggplot2"><i class="fa fa-check"></i><b>7.1</b> Plotting with ggplot2</a></li>
+<li class="chapter" data-level="7.2" data-path="vis-ggplot2.html"><a href="vis-ggplot2.html#building-your-plots-iteratively"><i class="fa fa-check"></i><b>7.2</b> Building your plots iteratively</a></li>
+<li class="chapter" data-level="7.3" data-path="vis-ggplot2.html"><a href="vis-ggplot2.html#boxplot"><i class="fa fa-check"></i><b>7.3</b> Boxplot</a></li>
+<li class="chapter" data-level="7.4" data-path="vis-ggplot2.html"><a href="vis-ggplot2.html#plotting-time-series-data"><i class="fa fa-check"></i><b>7.4</b> Plotting time series data</a></li>
+<li class="chapter" data-level="7.5" data-path="vis-ggplot2.html"><a href="vis-ggplot2.html#faceting"><i class="fa fa-check"></i><b>7.5</b> Faceting</a></li>
+<li class="chapter" data-level="7.6" data-path="vis-ggplot2.html"><a href="vis-ggplot2.html#challenge-13"><i class="fa fa-check"></i><b>7.6</b> Challenge</a></li>
+<li class="chapter" data-level="7.7" data-path="vis-ggplot2.html"><a href="vis-ggplot2.html#customization"><i class="fa fa-check"></i><b>7.7</b> Customization</a></li>
+<li class="chapter" data-level="7.8" data-path="vis-ggplot2.html"><a href="vis-ggplot2.html#making-plots-interactive-with-plotly"><i class="fa fa-check"></i><b>7.8</b> Making Plots Interactive with Plotly</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="r-and-sql.html"><a href="r-and-sql.html"><i class="fa fa-check"></i><b>8</b> SQL databases and R</a><ul>
+<li class="chapter" data-level="8.1" data-path="r-and-sql.html"><a href="r-and-sql.html#introduction"><i class="fa fa-check"></i><b>8.1</b> Introduction</a></li>
+<li class="chapter" data-level="8.2" data-path="r-and-sql.html"><a href="r-and-sql.html#connecting-r-to-sqlite-databases"><i class="fa fa-check"></i><b>8.2</b> Connecting R to sqlite databases</a></li>
+<li class="chapter" data-level="8.3" data-path="r-and-sql.html"><a href="r-and-sql.html#running-sql-queries-from-r"><i class="fa fa-check"></i><b>8.3</b> Running SQL queries from R</a></li>
+<li class="chapter" data-level="8.4" data-path="r-and-sql.html"><a href="r-and-sql.html#creating-a-sqlite-db-using-r"><i class="fa fa-check"></i><b>8.4</b> Creating a SQLite DB using R</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R for Data Analysis in Ecology</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="starting-with-data" class="section level1">
+<h1><span class="header-section-number">Chapter 4</span> Starting with data</h1>
+<hr />
+<blockquote>
+<h2 id="learning-objectives-2"><span class="header-section-number">4</span> Learning Objectives</h2>
+<ul>
+<li>load external data (CSV files) in memory using the survey table (<code>surveys.csv</code>) as an example</li>
+<li>explore the structure and the content of a data frame in R</li>
+<li>understand what factors are and how to manipulate them</li>
+</ul>
+</blockquote>
+<hr />
+<div id="presentation-of-the-survey-data" class="section level2">
+<h2><span class="header-section-number">4.1</span> Presentation of the Survey Data</h2>
+<p>We are studying the species and weight of animals caught in plots in our study area. The dataset is stored as a CSV file: each row holds information for a single animal, and the columns represent:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Column</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>record_id</td>
+<td>Unique id for the observation</td>
+</tr>
+<tr class="even">
+<td>month</td>
+<td>month of observation</td>
+</tr>
+<tr class="odd">
+<td>day</td>
+<td>day of observation</td>
+</tr>
+<tr class="even">
+<td>year</td>
+<td>year of observation</td>
+</tr>
+<tr class="odd">
+<td>plot_id</td>
+<td>ID of a particular plot</td>
+</tr>
+<tr class="even">
+<td>species_id</td>
+<td>2-letter code</td>
+</tr>
+<tr class="odd">
+<td>sex</td>
+<td>sex of animal (“M”, “F”)</td>
+</tr>
+<tr class="even">
+<td>hindfoot_length</td>
+<td>length of the hindfoot in mm</td>
+</tr>
+<tr class="odd">
+<td>weight</td>
+<td>weight of the animal in grams</td>
+</tr>
+<tr class="even">
+<td>genus</td>
+<td>genus of animal</td>
+</tr>
+<tr class="odd">
+<td>species</td>
+<td>species of animal</td>
+</tr>
+<tr class="even">
+<td>taxa</td>
+<td>e.g. Rodent, Reptile, Bird, Rabbit</td>
+</tr>
+<tr class="odd">
+<td>plot_type</td>
+<td>type of plot</td>
+</tr>
+</tbody>
+</table>
+<p>We are going to use the R function <code>download.file()</code> to download the CSV file that contains the survey data from figshare, and we will use <code>read.csv()</code> to load into memory (as a <code>data.frame</code>) the content of the CSV file.</p>
+<p>To download the data into the <code>data/</code> subdirectory, do:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">download.file</span>(<span class="st">&quot;https://ndownloader.figshare.com/files/2292169&quot;</span>,
+              <span class="st">&quot;data/portal_data_joined.csv&quot;</span>)</code></pre></div>
+<p>You are now ready to load the data:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;data/portal_data_joined.csv&#39;</span>)</code></pre></div>
+<p>This statement doesn’t produce any output because, as you might recall, assignment doesn’t display anything. If we want to check that our data has been loaded, we can print the variable’s value: <code>surveys</code>.</p>
+<p>Wow… that was a lot of output. At least it means the data loaded properly. Let’s check the top (the first 6 lines) of this <code>data.frame</code> using the function <code>head()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(surveys)</code></pre></div>
+<pre><code>#&gt;   record_id month day year plot_id species_id sex hindfoot_length weight
+#&gt; 1         1     7  16 1977       2         NL   M              32     NA
+#&gt; 2        72     8  19 1977       2         NL   M              31     NA
+#&gt; 3       224     9  13 1977       2         NL                  NA     NA
+#&gt; 4       266    10  16 1977       2         NL                  NA     NA
+#&gt; 5       349    11  12 1977       2         NL                  NA     NA
+#&gt; 6       363    11  12 1977       2         NL                  NA     NA
+#&gt;     genus  species   taxa plot_type
+#&gt; 1 Neotoma albigula Rodent   Control
+#&gt; 2 Neotoma albigula Rodent   Control
+#&gt; 3 Neotoma albigula Rodent   Control
+#&gt; 4 Neotoma albigula Rodent   Control
+#&gt; 5 Neotoma albigula Rodent   Control
+#&gt; 6 Neotoma albigula Rodent   Control</code></pre>
+<p>A <code>data.frame</code> is the representation of data in the format of a table where the columns are vectors that all have the same length. Because each column is a vector, they all contain the same type of data. We can see this when inspecting the __str__ucture of a <code>data.frame</code> with the function <code>str()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(surveys)</code></pre></div>
+<div id="challenge-4" class="section level3">
+<h3><span class="header-section-number">4.1.1</span> Challenge</h3>
+<p>Based on the output of <code>str(surveys)</code>, can you answer the following questions?</p>
+<ul>
+<li>What is the class of the object <code>surveys</code>?</li>
+<li>How many rows and how many columns are in this object?</li>
+<li>How many species have been recorded during these surveys?</li>
+</ul>
+<!---
+
+--->
+<p>As you can see, many of the columns consist of integers, however, the columns <code>species</code> and <code>sex</code> are of a special class called a <code>factor</code>. Before we learn more about the <code>data.frame</code> class, let’s talk about factors. They are very useful but not necessarily intuitive, and therefore require some attention.</p>
+</div>
+</div>
+<div id="factors" class="section level2">
+<h2><span class="header-section-number">4.2</span> Factors</h2>
+<p>Factors are used to represent categorical data. Factors can be ordered or unordered, and understanding them is necessary for statistical analysis and for plotting.</p>
+<p>Factors are stored as integers, and have labels associated with these unique integers. While factors look (and often behave) like character vectors, they are actually integers under the hood, and you need to be careful when treating them like strings.</p>
+<p>Once created, factors can only contain a pre-defined set of values, known as <em>levels</em>. By default, R always sorts <em>levels</em> in alphabetical order. For instance, if you have a factor with 2 levels:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sex &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;male&quot;</span>, <span class="st">&quot;female&quot;</span>, <span class="st">&quot;female&quot;</span>, <span class="st">&quot;male&quot;</span>))</code></pre></div>
+<p>R will assign <code>1</code> to the level <code>&quot;female&quot;</code> and <code>2</code> to the level <code>&quot;male&quot;</code> (because <code>f</code> comes before <code>m</code>, even though the first element in this vector is <code>&quot;male&quot;</code>). You can check this by using the function <code>levels()</code>, and check the number of levels using <code>nlevels()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">levels</span>(sex)
+<span class="kw">nlevels</span>(sex)</code></pre></div>
+<p>Sometimes, the order of the factors does not matter, other times you might want to specify the order because it is meaningful (e.g., “low”, “medium”, “high”) or it is required by a particular type of analysis. Additionally, specifying the order of the levels allows for level comparison:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">food &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;low&quot;</span>, <span class="st">&quot;high&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;high&quot;</span>, <span class="st">&quot;low&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;high&quot;</span>))
+<span class="kw">levels</span>(food)
+food &lt;-<span class="st"> </span><span class="kw">factor</span>(food, <span class="dt">levels=</span><span class="kw">c</span>(<span class="st">&quot;low&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;high&quot;</span>))
+<span class="kw">levels</span>(food)
+<span class="kw">min</span>(food) ## doesn&#39;t work</code></pre></div>
+<pre><code>#&gt; Error in Summary.factor(structure(c(1L, 3L, 2L, 3L, 1L, 2L, 3L), .Label = c(&quot;low&quot;, : &#39;min&#39; not meaningful for factors</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">food &lt;-<span class="st"> </span><span class="kw">factor</span>(food, <span class="dt">levels=</span><span class="kw">c</span>(<span class="st">&quot;low&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;high&quot;</span>), <span class="dt">ordered=</span><span class="ot">TRUE</span>)
+<span class="kw">levels</span>(food)
+<span class="kw">min</span>(food) ## works!</code></pre></div>
+<p>In R’s memory, these factors are represented by integers (1, 2, 3), but are more informative than integers because factors are self describing: <code>&quot;low&quot;</code>, <code>&quot;medium&quot;</code>, <code>&quot;high&quot;</code>&quot; is more descriptive than <code>1</code>, <code>2</code>, <code>3</code>. Which is low? You wouldn’t be able to tell just from the integer data. Factors, on the other hand, have this information built in. It is particularly helpful when there are many levels (like the species in our example data set).</p>
+<div id="converting-factors" class="section level3">
+<h3><span class="header-section-number">4.2.1</span> Converting factors</h3>
+<p>If you need to convert a factor to a character vector, you use <code>as.character(x)</code>.</p>
+<p>Converting factors where the levels appear as numbers (such as concentration levels) to a numeric vector is a little trickier. One method is to convert factors to characters and then numbers. Another method is to use the <code>levels()</code> function. Compare:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">f &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">2</span>))
+<span class="kw">as.numeric</span>(f)               ## wrong! and there is no warning...
+<span class="kw">as.numeric</span>(<span class="kw">as.character</span>(f)) ## works...
+<span class="kw">as.numeric</span>(<span class="kw">levels</span>(f))[f]    ## The recommended way.</code></pre></div>
+<p>Notice that in the <code>levels()</code> approach, three important steps occur:</p>
+<ul>
+<li>We obtain all the factor levels using <code>levels(f)</code></li>
+<li>We convert these levels to numeric values using <code>as.numeric(levels(f))</code></li>
+<li>We then access these numeric values using the underlying integers of the vector <code>f</code> inside the square brackets</li>
+</ul>
+</div>
+<div id="challenge-5" class="section level3">
+<h3><span class="header-section-number">4.2.2</span> Challenge</h3>
+<p>The function <code>table()</code> tabulates observations and can be used to create bar plots quickly. For instance, the code below gives you a barplot of the number of observations.</p>
+<ul>
+<li>In which order are the treatments listed?</li>
+<li>How can you recreate this plot with “control” listed last instead of first?</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Challenge
+##
+## * In which order are the treatments listed?
+##
+## * How can you recreate this plot with &quot;control&quot; listed
+## last instead of first?
+exprmt &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;treat1&quot;</span>, <span class="st">&quot;treat2&quot;</span>, <span class="st">&quot;treat1&quot;</span>, <span class="st">&quot;treat3&quot;</span>, <span class="st">&quot;treat1&quot;</span>, <span class="st">&quot;control&quot;</span>,
+                   <span class="st">&quot;treat1&quot;</span>, <span class="st">&quot;treat2&quot;</span>, <span class="st">&quot;treat3&quot;</span>))
+<span class="kw">table</span>(exprmt)</code></pre></div>
+<pre><code>#&gt; exprmt
+#&gt; control  treat1  treat2  treat3 
+#&gt;       1       4       2       2</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">barplot</span>(<span class="kw">table</span>(exprmt))</code></pre></div>
+<p><img src="img/R-ecology-wrong-order-1.png" width="672" /></p>
+<!---
+
+```r
+## Answers
+##
+## * The treatments are listed in alphabetical order because they are factors.
+## * By redefining the order of the levels
+exprmt <- factor(exprmt, levels=c("treat1", "treat2", "treat3", "control"))
+barplot(table(exprmt))
+```
+
+<img src="img/R-ecology-correct-order-1.png" width="672" />
+--->
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="intro-to-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="data-frames.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/datacarpentry/R-ecology-lesson/edit/master/04-starting-with-data.Rmd",
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>R for Data Analysis in Ecology</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta name="description" content="This is an introduction to R designed for participants with no programming experience. These lessons can be taught in 3/4 of a day. They start with some basic information about R syntax, the RStudio interface, and move through how to import CSV files, the structure of data.frame, how to deal with factors, how to add/remove rows and columns, and finish with how to calculate summary statistics for each level and a very brief introduction to plotting.">
+  <meta name="generator" content="bookdown 0.1.4 and GitBook 2.6.7">
+
+  <meta property="og:title" content="R for Data Analysis in Ecology" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is an introduction to R designed for participants with no programming experience. These lessons can be taught in 3/4 of a day. They start with some basic information about R syntax, the RStudio interface, and move through how to import CSV files, the structure of data.frame, how to deal with factors, how to add/remove rows and columns, and finish with how to calculate summary statistics for each level and a very brief introduction to plotting." />
+  <meta name="github-repo" content="datacarpentry/R-ecology-lesson" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="R for Data Analysis in Ecology" />
+  
+  <meta name="twitter:description" content="This is an introduction to R designed for participants with no programming experience. These lessons can be taught in 3/4 of a day. They start with some basic information about R syntax, the RStudio interface, and move through how to import CSV files, the structure of data.frame, how to deal with factors, how to add/remove rows and columns, and finish with how to calculate summary statistics for each level and a very brief introduction to plotting." />
+  
+
+
+<meta name="date" content="2016-08-15">
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="data-frames.html">
+<link rel="next" href="vis-ggplot2.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="http://www.datacarpentry.org/" target="blank"><img src="./img/DC1_logo_xsmall.png"></a></li> |
+<li><a href="./">R in Ecology</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Overview</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#lessons"><i class="fa fa-check"></i><b>1.1</b> Lessons</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#data"><i class="fa fa-check"></i><b>1.2</b> Data</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#requirements"><i class="fa fa-check"></i><b>1.2.1</b> Requirements</a></li>
+<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#r"><i class="fa fa-check"></i><b>1.2.2</b> R</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#other-resources"><i class="fa fa-check"></i><b>1.3</b> Other resources</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="before-we-start.html"><a href="before-we-start.html"><i class="fa fa-check"></i><b>2</b> Before we start</a><ul>
+<li class="chapter" data-level="2.1" data-path="before-we-start.html"><a href="before-we-start.html#organizing-your-working-directory"><i class="fa fa-check"></i><b>2.1</b> Organizing your working directory</a></li>
+<li class="chapter" data-level="2.2" data-path="before-we-start.html"><a href="before-we-start.html#presentation-of-rstudio"><i class="fa fa-check"></i><b>2.2</b> Presentation of RStudio</a></li>
+<li class="chapter" data-level="2.3" data-path="before-we-start.html"><a href="before-we-start.html#interacting-with-r"><i class="fa fa-check"></i><b>2.3</b> Interacting with R</a></li>
+<li class="chapter" data-level="2.4" data-path="before-we-start.html"><a href="before-we-start.html#basics-of-r"><i class="fa fa-check"></i><b>2.4</b> Basics of R</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="before-we-start.html"><a href="before-we-start.html#the-r-syntax"><i class="fa fa-check"></i><b>2.4.1</b> The R syntax</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="before-we-start.html"><a href="before-we-start.html#seeking-help"><i class="fa fa-check"></i><b>2.5</b> Seeking help</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="before-we-start.html"><a href="before-we-start.html#i-know-the-name-of-the-function-i-want-to-use-but-im-not-sure-how-to-use-it"><i class="fa fa-check"></i><b>2.5.1</b> I know the name of the function I want to use, but I’m not sure how to use it</a></li>
+<li class="chapter" data-level="2.5.2" data-path="before-we-start.html"><a href="before-we-start.html#i-want-to-use-a-function-that-does-x-there-must-be-a-function-for-it-but-i-dont-know-which-one"><i class="fa fa-check"></i><b>2.5.2</b> I want to use a function that does X, there must be a function for it but I don’t know which one…</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="before-we-start.html"><a href="before-we-start.html#i-am-stuck-i-get-an-error-message-that-i-dont-understand"><i class="fa fa-check"></i><b>2.6</b> I am stuck… I get an error message that I don’t understand</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="before-we-start.html"><a href="before-we-start.html#asking-for-help"><i class="fa fa-check"></i><b>2.6.1</b> Asking for help</a></li>
+<li class="chapter" data-level="2.6.2" data-path="before-we-start.html"><a href="before-we-start.html#where-to-ask-for-help"><i class="fa fa-check"></i><b>2.6.2</b> Where to ask for help?</a></li>
+<li class="chapter" data-level="2.6.3" data-path="before-we-start.html"><a href="before-we-start.html#more-resources"><i class="fa fa-check"></i><b>2.6.3</b> More resources</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="intro-to-r.html"><a href="intro-to-r.html"><i class="fa fa-check"></i><b>3</b> Introduction to R</a><ul>
+<li class="chapter" data-level="3.1" data-path="intro-to-r.html"><a href="intro-to-r.html#creating-objects"><i class="fa fa-check"></i><b>3.1</b> Creating objects</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="intro-to-r.html"><a href="intro-to-r.html#challenge"><i class="fa fa-check"></i><b>3.1.1</b> Challenge</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="intro-to-r.html"><a href="intro-to-r.html#vectors-and-data-types"><i class="fa fa-check"></i><b>3.2</b> Vectors and data types</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="intro-to-r.html"><a href="intro-to-r.html#challenge-1"><i class="fa fa-check"></i><b>3.2.1</b> Challenge</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="intro-to-r.html"><a href="intro-to-r.html#subsetting-vectors"><i class="fa fa-check"></i><b>3.3</b> Subsetting vectors</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="intro-to-r.html"><a href="intro-to-r.html#conditional-subsetting"><i class="fa fa-check"></i><b>3.3.1</b> Conditional subsetting</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="intro-to-r.html"><a href="intro-to-r.html#missing-data"><i class="fa fa-check"></i><b>3.4</b> Missing data</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="intro-to-r.html"><a href="intro-to-r.html#challenge-3"><i class="fa fa-check"></i><b>3.4.1</b> Challenge</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="starting-with-data.html"><a href="starting-with-data.html"><i class="fa fa-check"></i><b>4</b> Starting with data</a><ul>
+<li class="chapter" data-level="4.1" data-path="starting-with-data.html"><a href="starting-with-data.html#presentation-of-the-survey-data"><i class="fa fa-check"></i><b>4.1</b> Presentation of the Survey Data</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="starting-with-data.html"><a href="starting-with-data.html#challenge-4"><i class="fa fa-check"></i><b>4.1.1</b> Challenge</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="starting-with-data.html"><a href="starting-with-data.html#factors"><i class="fa fa-check"></i><b>4.2</b> Factors</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="starting-with-data.html"><a href="starting-with-data.html#converting-factors"><i class="fa fa-check"></i><b>4.2.1</b> Converting factors</a></li>
+<li class="chapter" data-level="4.2.2" data-path="starting-with-data.html"><a href="starting-with-data.html#challenge-5"><i class="fa fa-check"></i><b>4.2.2</b> Challenge</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="data-frames.html"><a href="data-frames.html"><i class="fa fa-check"></i><b>5</b> The <code>data.frame</code> class</a><ul>
+<li class="chapter" data-level="5.1" data-path="data-frames.html"><a href="data-frames.html#what-are-data-frames"><i class="fa fa-check"></i><b>5.1</b> What are data frames?</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="data-frames.html"><a href="data-frames.html#challenge-6"><i class="fa fa-check"></i><b>5.1.1</b> Challenge</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="data-frames.html"><a href="data-frames.html#inspecting-data.frame-objects"><i class="fa fa-check"></i><b>5.2</b> Inspecting <code>data.frame</code> Objects</a></li>
+<li class="chapter" data-level="5.3" data-path="data-frames.html"><a href="data-frames.html#indexing-sequences-and-subsetting"><i class="fa fa-check"></i><b>5.3</b> Indexing, Sequences, and Subsetting</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="data-frames.html"><a href="data-frames.html#challenge-7"><i class="fa fa-check"></i><b>5.3.1</b> Challenge</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="data-manip-dplyr.html"><a href="data-manip-dplyr.html"><i class="fa fa-check"></i><b>6</b> Data Manipulation using dplyr</a><ul>
+<li class="chapter" data-level="6.1" data-path="data-manip-dplyr.html"><a href="data-manip-dplyr.html#what-is-dplyr"><i class="fa fa-check"></i><b>6.1</b> What is <code>dplyr</code>?</a></li>
+<li class="chapter" data-level="6.2" data-path="data-manip-dplyr.html"><a href="data-manip-dplyr.html#selecting-columns-and-filtering-rows"><i class="fa fa-check"></i><b>6.2</b> Selecting columns and filtering rows</a></li>
+<li class="chapter" data-level="6.3" data-path="data-manip-dplyr.html"><a href="data-manip-dplyr.html#pipes"><i class="fa fa-check"></i><b>6.3</b> Pipes</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="data-manip-dplyr.html"><a href="data-manip-dplyr.html#mutate"><i class="fa fa-check"></i><b>6.3.1</b> Mutate</a></li>
+<li class="chapter" data-level="6.3.2" data-path="data-manip-dplyr.html"><a href="data-manip-dplyr.html#split-apply-combine-data-analysis-and-the-summarize-function"><i class="fa fa-check"></i><b>6.3.2</b> Split-apply-combine data analysis and the summarize() function</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="data-manip-dplyr.html"><a href="data-manip-dplyr.html#exporting-data"><i class="fa fa-check"></i><b>6.4</b> Exporting data</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="vis-ggplot2.html"><a href="vis-ggplot2.html"><i class="fa fa-check"></i><b>7</b> Data visualization with ggplot2</a><ul>
+<li class="chapter" data-level="7.1" data-path="vis-ggplot2.html"><a href="vis-ggplot2.html#plotting-with-ggplot2"><i class="fa fa-check"></i><b>7.1</b> Plotting with ggplot2</a></li>
+<li class="chapter" data-level="7.2" data-path="vis-ggplot2.html"><a href="vis-ggplot2.html#building-your-plots-iteratively"><i class="fa fa-check"></i><b>7.2</b> Building your plots iteratively</a></li>
+<li class="chapter" data-level="7.3" data-path="vis-ggplot2.html"><a href="vis-ggplot2.html#boxplot"><i class="fa fa-check"></i><b>7.3</b> Boxplot</a></li>
+<li class="chapter" data-level="7.4" data-path="vis-ggplot2.html"><a href="vis-ggplot2.html#plotting-time-series-data"><i class="fa fa-check"></i><b>7.4</b> Plotting time series data</a></li>
+<li class="chapter" data-level="7.5" data-path="vis-ggplot2.html"><a href="vis-ggplot2.html#faceting"><i class="fa fa-check"></i><b>7.5</b> Faceting</a></li>
+<li class="chapter" data-level="7.6" data-path="vis-ggplot2.html"><a href="vis-ggplot2.html#challenge-13"><i class="fa fa-check"></i><b>7.6</b> Challenge</a></li>
+<li class="chapter" data-level="7.7" data-path="vis-ggplot2.html"><a href="vis-ggplot2.html#customization"><i class="fa fa-check"></i><b>7.7</b> Customization</a></li>
+<li class="chapter" data-level="7.8" data-path="vis-ggplot2.html"><a href="vis-ggplot2.html#making-plots-interactive-with-plotly"><i class="fa fa-check"></i><b>7.8</b> Making Plots Interactive with Plotly</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="r-and-sql.html"><a href="r-and-sql.html"><i class="fa fa-check"></i><b>8</b> SQL databases and R</a><ul>
+<li class="chapter" data-level="8.1" data-path="r-and-sql.html"><a href="r-and-sql.html#introduction"><i class="fa fa-check"></i><b>8.1</b> Introduction</a></li>
+<li class="chapter" data-level="8.2" data-path="r-and-sql.html"><a href="r-and-sql.html#connecting-r-to-sqlite-databases"><i class="fa fa-check"></i><b>8.2</b> Connecting R to sqlite databases</a></li>
+<li class="chapter" data-level="8.3" data-path="r-and-sql.html"><a href="r-and-sql.html#running-sql-queries-from-r"><i class="fa fa-check"></i><b>8.3</b> Running SQL queries from R</a></li>
+<li class="chapter" data-level="8.4" data-path="r-and-sql.html"><a href="r-and-sql.html#creating-a-sqlite-db-using-r"><i class="fa fa-check"></i><b>8.4</b> Creating a SQLite DB using R</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R for Data Analysis in Ecology</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data-manip-dplyr" class="section level1">
+<h1><span class="header-section-number">Chapter 6</span> Data Manipulation using dplyr</h1>
+<hr />
+<blockquote>
+<h2 id="learning-objectives-4"><span class="header-section-number">6</span> Learning Objectives</h2>
+<ul>
+<li>Learn basic utilities of the dplyr package</li>
+<li>Select and filter data</li>
+<li>Be able to use magrittr pipes</li>
+<li>Create new columns with mutate()</li>
+<li>Use the split-apply-combine paradigm to summarize data</li>
+<li>Export data with write.csv()</li>
+</ul>
+</blockquote>
+<hr />
+<p>Bracket subsetting is handy, but it can be cumbersome and difficult to read, especially for complicated operations. Enter <code>dplyr</code>. <code>dplyr</code> is a package for making data manipulation easier.</p>
+<p>Packages in R are basically sets of additional functions that let you do more stuff. The functions we’ve been using so far, like <code>str()</code> or <code>data.frame()</code>, come built into R; packages give you access to more of them. Before you use a package for the first time you need to install it on your machine, and then you should import it in every subsequent R session when you need it.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;dplyr&quot;</span>)</code></pre></div>
+<p>You might get asked to choose a CRAN mirror – this is basically asking you to choose a site to download the package from. The choice doesn’t matter too much; we recommend the RStudio mirror.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;dplyr&quot;</span>)    ## load the package</code></pre></div>
+<div id="what-is-dplyr" class="section level2">
+<h2><span class="header-section-number">6.1</span> What is <code>dplyr</code>?</h2>
+<p>The package <code>dplyr</code> provides easy tools for the most common data manipulation tasks. It is built to work directly with data frames. The thinking behind it was largely inspired by the package <code>plyr</code> which has been in use for some time but suffered from being slow in some cases.<code>dplyr</code> addresses this by porting much of the computation to C++. An additional feature is the ability to work directly with data stored in an external database. The benefits of doing this are that the data can be managed natively in a relational database, queries can be conducted on that database, and only the results of the query returned.</p>
+<p>This addresses a common problem with R in that all operations are conducted in memory and thus the amount of data you can work with is limited by available memory. The database connections essentially remove that limitation in that you can have a database of many 100s GB, conduct queries on it directly, and pull back just what you need for analysis in R.</p>
+<p>To learn more about <code>dplyr</code> after the workshop, you may want to check out this <a href="http://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">handy dplyr cheatsheet</a>.</p>
+</div>
+<div id="selecting-columns-and-filtering-rows" class="section level2">
+<h2><span class="header-section-number">6.2</span> Selecting columns and filtering rows</h2>
+<p>We’re going to learn some of the most common <code>dplyr</code> functions: <code>select()</code>, <code>filter()</code>, <code>mutate()</code>, <code>group_by()</code>, and <code>summarize()</code>. To select columns of a data frame, use <code>select()</code>. The first argument to this function is the data frame (<code>surveys</code>), and the subsequent arguments are the columns to keep.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">select</span>(surveys, plot_id, species_id, weight)</code></pre></div>
+<p>To choose rows, use <code>filter()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">filter</span>(surveys, year ==<span class="st"> </span><span class="dv">1995</span>)</code></pre></div>
+</div>
+<div id="pipes" class="section level2">
+<h2><span class="header-section-number">6.3</span> Pipes</h2>
+<p>But what if you wanted to select and filter at the same time? There are three ways to do this: use intermediate steps, nested functions, or pipes. With the intermediate steps, you essentially create a temporary data frame and use that as input to the next function. This can clutter up your workspace with lots of objects. You can also nest functions (i.e. one function inside of another). This is handy, but can be difficult to read if too many functions are nested as the process from inside out. The last option, pipes, are a fairly recent addition to R. Pipes let you take the output of one function and send it directly to the next, which is useful when you need to do many things to the same data set. Pipes in R look like <code>%&gt;%</code> and are made available via the <code>magrittr</code> package installed as part of <code>dplyr</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys %&gt;%
+<span class="st">  </span><span class="kw">filter</span>(weight &lt;<span class="st"> </span><span class="dv">5</span>) %&gt;%
+<span class="st">  </span><span class="kw">select</span>(species_id, sex, weight)</code></pre></div>
+<p>In the above we use the pipe to send the <code>surveys</code> data set first through <code>filter</code>, to keep rows where <code>weight</code> was less than 5, and then through <code>select</code> to keep the <code>species</code> and <code>sex</code> columns. When the data frame is being passed to the <code>filter()</code> and <code>select()</code> functions through a pipe, we don’t need to include it as an argument to these functions anymore.</p>
+<p>If we wanted to create a new object with this smaller version of the data we could do so by assigning it a new name:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys_sml &lt;-<span class="st"> </span>surveys %&gt;%
+<span class="st">  </span><span class="kw">filter</span>(weight &lt;<span class="st"> </span><span class="dv">5</span>) %&gt;%
+<span class="st">  </span><span class="kw">select</span>(species_id, sex, weight)
+
+surveys_sml</code></pre></div>
+<p>Note that the final data frame is the leftmost part of this expression.</p>
+<blockquote>
+<h3 id="challenge-8" class="challenge"><span class="header-section-number">6.3</span> Challenge</h3>
+<p>Using pipes, subset the data to include individuals collected before 1995, and retain the columns <code>year</code>, <code>sex</code>, and <code>weight.</code></p>
+</blockquote>
+<!---
+
+```r
+## Answer
+surveys %>%
+    filter(year < 1995) %>%
+    select(year, sex, weight)
+```
+--->
+<div id="mutate" class="section level3">
+<h3><span class="header-section-number">6.3.1</span> Mutate</h3>
+<p>Frequently you’ll want to create new columns based on the values in existing columns, for example to do unit conversions, or find the ratio of values in two columns. For this we’ll use <code>mutate()</code>.</p>
+<p>To create a new column of weight in kg:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys %&gt;%
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">weight_kg =</span> weight /<span class="st"> </span><span class="dv">1000</span>)</code></pre></div>
+<p>If this runs off your screen and you just want to see the first few rows, you can use a pipe to view the <code>head()</code> of the data (pipes work with non-dplyr functions too, as long as the <code>dplyr</code> or <code>magrittr</code> packages are loaded).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys %&gt;%
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">weight_kg =</span> weight /<span class="st"> </span><span class="dv">1000</span>) %&gt;%
+<span class="st">  </span>head</code></pre></div>
+<p>The first few rows are full of NAs, so if we wanted to remove those we could insert a <code>filter()</code> in this chain:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys %&gt;%
+<span class="st">  </span><span class="kw">filter</span>(!<span class="kw">is.na</span>(weight)) %&gt;%
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">weight_kg =</span> weight /<span class="st"> </span><span class="dv">1000</span>) %&gt;%
+<span class="st">  </span>head</code></pre></div>
+<p><code>is.na()</code> is a function that determines whether something is or is not an <code>NA</code>. The <code>!</code> symbol negates it, so we’re asking for everything that is not an <code>NA</code>.</p>
+<blockquote>
+<h3 id="challenge-9" class="challenge"><span class="header-section-number">6.3.1</span> Challenge</h3>
+<p>Create a new dataframe from the survey data that meets the following criteria: contains only the <code>species_id</code> column and a column that contains values that are half the <code>hindfoot_length</code> values (e.g. a new column <code>hindfoot_half</code>). In this <code>hindfoot_half</code> column, there are no NA values and all values are &lt; 30.</p>
+<p><strong>Hint</strong>: think about how the commands should be ordered to produce this data frame!</p>
+</blockquote>
+<!---
+
+```r
+## Answer
+surveys_hindfoot_half <- surveys %>%
+    filter(!is.na(hindfoot_length)) %>%
+    mutate(hindfoot_half = hindfoot_length / 2) %>%
+    filter(hindfoot_half < 30) %>%
+    select(species_id, hindfoot_half)
+```
+--->
+</div>
+<div id="split-apply-combine-data-analysis-and-the-summarize-function" class="section level3">
+<h3><span class="header-section-number">6.3.2</span> Split-apply-combine data analysis and the summarize() function</h3>
+<p>Many data analysis tasks can be approached using the “split-apply-combine” paradigm: split the data into groups, apply some analysis to each group, and then combine the results. <code>dplyr</code> makes this very easy through the use of the <code>group_by()</code> function.</p>
+<div id="the-summarize-function" class="section level4">
+<h4><span class="header-section-number">6.3.2.1</span> The <code>summarize()</code> function</h4>
+<p><code>group_by()</code> is often used together with <code>summarize()</code> which collapses each group into a single-row summary of that group. <code>group_by()</code> takes as argument the column names that contain the <strong>categorical</strong> variables for which you want to calculate the summary statistics. So to view mean the <code>weight</code> by sex:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys %&gt;%
+<span class="st">  </span><span class="kw">group_by</span>(sex) %&gt;%
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_weight =</span> <span class="kw">mean</span>(weight, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</code></pre></div>
+<p>You can group by multiple columns too:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys %&gt;%
+<span class="st">  </span><span class="kw">group_by</span>(sex, species_id) %&gt;%
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_weight =</span> <span class="kw">mean</span>(weight, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</code></pre></div>
+<p>When grouping both by “sex” and “species_id”, the first rows are for individuals that escaped before their sex could be determined and weighted. You may notice that the last column does not contain <code>NA</code> but <code>NaN</code> (which refers to “Not a Number”). To avoid this, we can remove the missing values for weight before we attempt to calculate the summary statistics on weight. Because the missing values are removed, we can omit <code>na.rm=TRUE</code> when computing the mean:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys %&gt;%
+<span class="st">  </span><span class="kw">filter</span>(!<span class="kw">is.na</span>(weight)) %&gt;%
+<span class="st">  </span><span class="kw">group_by</span>(sex, species_id) %&gt;%
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_weight =</span> <span class="kw">mean</span>(weight))</code></pre></div>
+<p>You may also have noticed, that the output from these calls don’t run off the screen anymore. That’s because <code>dplyr</code> has changed our <code>data.frame</code> to a <code>tbl_df</code>. This is a data structure that’s very similar to a data frame; for our purposes the only difference is that it won’t automatically show tons of data going off the screen, while displaying the data type for each column under its name. If you want to display more data on the screen, you can add the <code>print()</code> function at the end with the argument <code>n</code> specifying the number of rows to display:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys %&gt;%
+<span class="st">  </span><span class="kw">filter</span>(!<span class="kw">is.na</span>(weight)) %&gt;%
+<span class="st">  </span><span class="kw">group_by</span>(sex, species_id) %&gt;%
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_weight =</span> <span class="kw">mean</span>(weight)) %&gt;%
+<span class="st">  </span><span class="kw">print</span>(<span class="dt">n=</span><span class="dv">15</span>)</code></pre></div>
+<p>Once the data is grouped, you can also summarize multiple variables at the same time (and not necessarily on the same variable). For instance, we could add a column indicating the minimum weight for each species for each sex:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys %&gt;%
+<span class="st">  </span><span class="kw">filter</span>(!<span class="kw">is.na</span>(weight)) %&gt;%
+<span class="st">  </span><span class="kw">group_by</span>(sex, species_id) %&gt;%
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_weight =</span> <span class="kw">mean</span>(weight),
+            <span class="dt">min_weight =</span> <span class="kw">min</span>(weight))</code></pre></div>
+</div>
+<div id="tallying" class="section level4">
+<h4><span class="header-section-number">6.3.2.2</span> Tallying</h4>
+<p>When working with data, it is also common to want to know the number of observations found for each factor or combination of factors. For this, <code>dplyr</code> provides <code>tally()</code>. For example, if we wanted to group by sex and find the number of rows of data for each sex, we would do:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys %&gt;%
+<span class="st">  </span><span class="kw">group_by</span>(sex) %&gt;%
+<span class="st">  </span><span class="kw">tally</span>()</code></pre></div>
+<p>Here, <code>tally()</code> is the action applied to the groups created by <code>group_by()</code> and counts the total number of records for each category.</p>
+<blockquote>
+<h3 id="challenge-10" class="challenge"><span class="header-section-number">6.3.2.2</span> Challenge</h3>
+<p>How many individuals were caught in each <code>plot_type</code> surveyed?</p>
+</blockquote>
+<!---
+
+--->
+<blockquote>
+<h3 id="challenge-11" class="challenge"><span class="header-section-number">6.3.2.2</span> Challenge</h3>
+<p>Use <code>group_by()</code> and <code>summarize()</code> to find the mean, min, and max hindfoot length for each species (using <code>species _id</code>).</p>
+</blockquote>
+<!---
+
+--->
+<blockquote>
+<h3 id="challenge-12" class="challenge"><span class="header-section-number">6.3.2.2</span> Challenge</h3>
+<p>What was the heaviest animal measured in each year? Return the columns <code>year</code>, <code>genus</code>, <code>species_id</code>, and <code>weight</code>.</p>
+</blockquote>
+<!---
+## Answer
+
+--->
+</div>
+</div>
+</div>
+<div id="exporting-data" class="section level2">
+<h2><span class="header-section-number">6.4</span> Exporting data</h2>
+<p>Now that you have learned how to use <code>dplyr</code> to extract the information you need from the raw data, or to summarize your raw data, you may want to export these new datasets to share them with your collaborators or for archival.</p>
+<p>Similarly to the <code>read.csv()</code> function used to read in CSV into R, there is a <code>write.csv()</code> function that generates CSV files from data frames.</p>
+<p>Before using it, we are going to create a new folder, <code>data_output</code> in our working directory that will store this generated dataset. We don’t want to write generated datasets in the same directory as our raw data. It’s good practice to keep them separate. The <code>data</code> folder should only contain the raw, unaltered data, and should be left alone to make sure we don’t delete or modify it; on the other end the content of <code>data_output</code> directory will be generated by our script, and we know that we can delete the files it contains because we have the script that can re-generate these files.</p>
+<p>In preparation for our next lesson on plotting, we are going to prepare a cleaned up version of the dataset that doesn’t include any missing data.</p>
+<p>Let’s start by removing observations for which the <code>species_id</code> is missing. In this dataset, the missing species are represented by an empty string and not an <code>NA</code>. Let’s also remove observations for which <code>weight</code> and the <code>hindfoot_length</code> are missing. This dataset will also only contain observations of animals for which the sex has been determined:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys_complete &lt;-<span class="st"> </span>surveys %&gt;%
+<span class="st">  </span><span class="kw">filter</span>(species_id !=<span class="st"> &quot;&quot;</span>,         <span class="co"># remove missing species_id</span>
+         !<span class="kw">is.na</span>(weight),           <span class="co"># remove missing weight</span>
+         !<span class="kw">is.na</span>(hindfoot_length),  <span class="co"># remove missing hindfoot_length</span>
+         sex !=<span class="st"> &quot;&quot;</span>)                <span class="co"># remove missing sex</span></code></pre></div>
+<p>Because we are interested in plotting how species abundances have changed through time, we are also going to remove observations for rare species (i.e., that have been observed less than 50 times). We will do this in two steps: first we are going to create a dataset that counts how often each species has been observed, and filter out the rare species; then, we will extract only the observations for these more common species:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Extract the most common species_id
+species_counts &lt;-<span class="st"> </span>surveys_complete %&gt;%
+<span class="st">                  </span><span class="kw">group_by</span>(species_id) %&gt;%
+<span class="st">                  </span>tally %&gt;%
+<span class="st">                  </span><span class="kw">filter</span>(n &gt;=<span class="st"> </span><span class="dv">50</span>) %&gt;%
+<span class="st">                  </span><span class="kw">select</span>(species_id)
+
+## Only keep the most common species
+surveys_complete &lt;-<span class="st"> </span>surveys_complete %&gt;%
+<span class="st">                 </span><span class="kw">filter</span>(species_id %in%<span class="st"> </span>species_counts$species_id)</code></pre></div>
+<p>To make sure that everyone has the same dataset, check that <code>surveys_complete</code> has 30463 rows and 13 columns by typing <code>dim(surveys_complete)</code>.</p>
+<p>Now that our dataset is ready, we can save it as a CSV file in our <code>data_output</code> folder. By default, <code>write.csv()</code> includes a column with row names (in our case the names are just the row numbers), so we need to add <code>row.names = FALSE</code> so they are not included:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write.csv</span>(surveys_complete, <span class="dt">file=</span><span class="st">&quot;data_output/surveys_complete.csv&quot;</span>,
+          <span class="dt">row.names=</span><span class="ot">FALSE</span>)</code></pre></div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="data-frames.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="vis-ggplot2.html" class="navigation navigation-next " aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/datacarpentry/R-ecology-lesson/edit/master/06-data-manip-dplyr.Rmd",
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

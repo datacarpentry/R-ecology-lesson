@@ -1,0 +1,9 @@
+bookdown::gitbook:
+  css: style.css
+  config:
+    toc:
+      before: |
+        <li><a href="http://www.datacarpentry.org/" target="blank"><img src="./img/DC1_logo_xsmall.png"></a></li> |
+        <li><a href="./">R in Ecology</a></li>
+    edit:
+      link: https://github.com/datacarpentry/R-ecology-lesson/edit/master/%s
