@@ -30,7 +30,7 @@ params:
 **Content Contributors: `r paste(params$contributors, collapse=', ')`**
 
 
-**Lesson Maintainers: `r paste(params$maintainers, collapse=', ')`****
+**Lesson Maintainers: `r paste(params$maintainers, collapse=', ')`**
 
 
 **Lesson status: `r params$status`**

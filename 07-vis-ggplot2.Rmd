@@ -403,7 +403,7 @@ library(plotly) # install.packages('plotly')
 
 Let's start with the first ggplot of a scatterplot.
 
-```{r plotly scatterplot}
+```{r plotly scatterplot, results='asis'}
 # get ggplot2 object for scatter plot
 p <- ggplot(data = surveys_complete, aes(x = weight, y = hindfoot_length)) +
     geom_point(alpha = 0.1, aes(color=species_id))
@@ -418,7 +418,7 @@ Running the code above from within RStudio's Console, outputs to a Viewer pane, 
 
 You can similarly make any other ggplot2 interactive, such as for a box plot:
   
-```{r plotly boxplot}
+```{r plotly boxplot, results='asis'}
 # box plot
 p <- ggplot(data = surveys_complete, aes(x = species_id, y = hindfoot_length)) +
   geom_boxplot()
@@ -427,7 +427,7 @@ ggplotly(p)
 
 Or for a line graph:
 
-```{r plotly line graph}
+```{r plotly line graph, results='asis'}
 # line graph
 p <- ggplot(yearly_counts,
             aes(x = year, y = n, group = species_id, colour = species_id)) +
