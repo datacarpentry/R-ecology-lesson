@@ -87,7 +87,7 @@ surveys_plot + geom_point()
 Notes:
 
 - Anything you put in the `ggplot()` function can be seen by any geom layers
-  that you add.  i.e. these are universal plot settings. This includes the x and
+  that you add (i.e., these are universal plot settings). This includes the x and
   y axis you set up in `aes()`.
 - You can also specify aesthetics for a given geom independently of the
   aesthetics defined globally in the `ggplot()` function.
@@ -103,7 +103,7 @@ ggplot(data = surveys_complete, aes(x = weight, y = hindfoot_length)) +
     geom_point()
 ```
 
-Then, we start modifying this plot to extract more infromation from it. For
+Then, we start modifying this plot to extract more information from it. For
 instance, we can add transparency (alpha) to avoid overplotting.
 
 ```{r adding-transparency}
@@ -318,7 +318,7 @@ ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex, group = sex))
     theme_bw()
 ```
 
-The axes have more informative names, but their readibility can be improved by
+The axes have more informative names, but their readability can be improved by
 increasing the font size. While we are at it, we'll also change the font family:
 
 ```{r number_species_year_with_right_labels_xfont_size}
