@@ -98,9 +98,9 @@ workshop, you only need a `data/` folder.
 
 Let's start by learning about [RStudio](https://www.rstudio.com/), the Integrated Development Environment (IDE).
 
-The RStudio IDE open source product is free under the [Affero General Public License (AGPL) v3](https://www.gnu.org/licenses/agpl-3.0.en.html). Rstudio IDE is also available with a commercial license and priority email support from Rstudio, Inc.
+The RStudio IDE open source product is free under the [Affero General Public License (AGPL) v3](https://www.gnu.org/licenses/agpl-3.0.en.html). RStudio IDE is also available with a commercial license and priority email support from RStudio, Inc.
 
-We will use Rstudio IDE to write code, navigate the files found on our computer, inspect the variables we are going to create, and visualize the plots we will generate. RStudio can also be used for other things (e.g., version control, developing packages, writting Shiny apps) that we will not cover during the workshop.
+We will use RStudio IDE to write code, navigate the files found on our computer, inspect the variables we are going to create, and visualize the plots we will generate. RStudio can also be used for other things (e.g., version control, developing packages, writting Shiny apps) that we will not cover during the workshop.
 
 RStudio is divided into 4 "Panes": the editor for your scripts and documents
 (top-left), the R console (bottom-left), your environment/history (top-right),
