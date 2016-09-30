@@ -355,7 +355,7 @@ the description of your problem. When appropriate, try to generalize what you
 are doing so even people who are not in your field can understand the
 question. For instance instead of using a subset of your real dataset, create a
 small (3 columns, 5 row) generic one. For more information on how to write a
-reproducible example see [this artle by Hadley Wickham](http://adv-r.had.co.nz/Reproducibility.html).
+reproducible example see [this article by Hadley Wickham](http://adv-r.had.co.nz/Reproducibility.html).
 
 To share an object with someone else, if it's relatively small, you can use the
 function `dput()`. It will output R code that can be used to recreate the exact
