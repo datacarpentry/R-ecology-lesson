@@ -98,16 +98,17 @@ workshop, you only need a `data/` folder.
 
 Let's start by learning about [RStudio](https://www.rstudio.com/), the Integrated Development Environment (IDE).
 
-The RStudio IDE open source product is free under the [Affero General Public License (AGPL) v3](https://www.gnu.org/licenses/agpl-3.0.en.html). Rstudio IDE is also available with a commercial license and priority email support from Rstudio, Inc.
+The RStudio IDE open source product is free under the [Affero General Public License (AGPL) v3](https://www.gnu.org/licenses/agpl-3.0.en.html). RStudio IDE is also available with a commercial license and priority email support from RStudio, Inc.
 
-We will use Rstudio IDE to write code, navigate the files found on our computer, inspect the variables we are going to create, and visualize the plots we will generate. RStudio can also be used for other things (e.g., version control, developing packages, writting Shiny apps) that we will not cover during the workshop.
+We will use RStudio IDE to write code, navigate the files found on our computer, inspect the variables we are going to create, and visualize the plots we will generate. RStudio can also be used for other things (e.g., version control, developing packages, writting Shiny apps) that we will not cover during the workshop.
 
 RStudio is divided into 4 "Panes": the editor for your scripts and documents
-(top-left), the R console (bottom-left), your environment/history (top-right),
-and your files/plots/packages/help/viewer (bottom-right). The placement of these
-panes and their content can be customized. One of the advantages of using
-RStudio is that all the information you need to write code is available in a
-single window. Additionally, with many shortcuts, autocompletion, and
+(top-left, in the default layout), the R console (bottom-left), your
+environment/history (top-right), and your files/plots/packages/help/viewer
+(bottom-right). The placement of these panes and their content can be customized
+(see menu, RStudio -> Preferences -> Pane Layout). One of the advantages of
+using RStudio is that all the information you need to write code is available in
+a single window. Additionally, with many shortcuts, autocompletion, and
 highlighting for the major file types you use while developing in R, RStudio
 will make typing easier and less error-prone.
 
