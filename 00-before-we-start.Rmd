@@ -398,7 +398,7 @@ sessionInfo()
 * [StackOverflow](http://stackoverflow.com/questions/tagged/r): if your question
   hasn't been answered before and is well crafted, chances are you will get an
   answer in less than 5 min. Remember to follow their guidelines on [how to ask
-  a good question[(http://stackoverflow.com/help/how-to-ask).
+  a good question](http://stackoverflow.com/help/how-to-ask).
 * The [R-help mailing list](https://stat.ethz.ch/mailman/listinfo/r-help): it is
   read by a lot of people (including most of the R core team), a lot of people
   post to it, but the tone can be pretty dry, and it is not always very
