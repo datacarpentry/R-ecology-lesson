@@ -348,8 +348,8 @@ but others have really strong feelings about the difference in meaning. The key
 point is that it can make things confusing for people trying to help you. Be as
 precise as possible when describing your problem.
 
-If possible, try to reduce what doesn't work to a simple reproducible
-example. If you can reproduce the problem using a very small `data.frame`
+If possible, try to reduce what doesn't work to a simple *reproducible
+example*. If you can reproduce the problem using a very small `data.frame`
 instead of your 50,000 rows and 10,000 columns one, provide the small one with
 the description of your problem. When appropriate, try to generalize what you
 are doing so even people who are not in your field can understand the
