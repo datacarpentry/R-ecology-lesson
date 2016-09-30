@@ -314,7 +314,7 @@ match to your search request
 ```
 
 If you can't find what you are looking for, you can use the
-[rdocumention.org](http://www.rdocumentation.org) website that search through
+[rdocumention.org](http://www.rdocumentation.org) website that searches through
 the help files across all packages available.
 
 ## I am stuck... I get an error message that I don't understand
