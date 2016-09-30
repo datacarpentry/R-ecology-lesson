@@ -314,7 +314,7 @@ match to your search request
 ```
 
 If you can't find what you are looking for, you can use the
-[rdocumention.org](http://www.rdocumentation.org) website that search through
+[rdocumention.org](http://www.rdocumentation.org) website that searches through
 the help files across all packages available.
 
 ## I am stuck... I get an error message that I don't understand
@@ -348,13 +348,14 @@ but others have really strong feelings about the difference in meaning. The key
 point is that it can make things confusing for people trying to help you. Be as
 precise as possible when describing your problem.
 
-If possible, try to reduce what doesn't work to a simple reproducible
-example. If you can reproduce the problem using a very small `data.frame`
+If possible, try to reduce what doesn't work to a simple *reproducible
+example*. If you can reproduce the problem using a very small `data.frame`
 instead of your 50,000 rows and 10,000 columns one, provide the small one with
 the description of your problem. When appropriate, try to generalize what you
 are doing so even people who are not in your field can understand the
 question. For instance instead of using a subset of your real dataset, create a
-small (3 columns, 5 row) generic one.
+small (3 columns, 5 row) generic one. For more information on how to write a
+reproducible example see [this article by Hadley Wickham](http://adv-r.had.co.nz/Reproducibility.html).
 
 To share an object with someone else, if it's relatively small, you can use the
 function `dput()`. It will output R code that can be used to recreate the exact
@@ -396,7 +397,8 @@ sessionInfo()
   they might be able and willing to help you.
 * [StackOverflow](http://stackoverflow.com/questions/tagged/r): if your question
   hasn't been answered before and is well crafted, chances are you will get an
-  answer in less than 5 min.
+  answer in less than 5 min. Remember to follow their guidelines on [how to ask
+  a good question](http://stackoverflow.com/help/how-to-ask).
 * The [R-help mailing list](https://stat.ethz.ch/mailman/listinfo/r-help): it is
   read by a lot of people (including most of the R core team), a lot of people
   post to it, but the tone can be pretty dry, and it is not always very
