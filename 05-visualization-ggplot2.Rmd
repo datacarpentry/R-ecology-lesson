@@ -168,6 +168,9 @@ hidden.
 >
 > - Create boxplot for `hindfoot_length`.
 
+> - Add color to the datapoints on your boxplot according to the plot from which the sample was taken (`plot_id`)
+
+hint: Check the class for `plot_id`. Consider changing the class of `plot_id` from integer to factor. Why does this change how R makes the graph? 
 
 ## Plotting time series data
 
