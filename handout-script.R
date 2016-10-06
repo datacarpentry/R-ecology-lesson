@@ -49,16 +49,17 @@ f <- factor(c(1, 5, 10, 2))
 as.numeric(f)               ## wrong! and there is no warning...
 as.numeric(as.character(f)) ## works...
 as.numeric(levels(f))[f]    ## The recommended way.
-## Challenge
-##
-## * In which order are the treatments listed?
-##
-## * How can you recreate this plot with "control" listed
-## last instead of first?
-exprmt <- factor(c("treat1", "treat2", "treat1", "treat3", "treat1", "control",
-                   "treat1", "treat2", "treat3"))
-table(exprmt)
-barplot(table(exprmt))
+## The function `plot()` can be used to quickly create a bar plot of a factor.
+## For instance, for a factor
+exprmt <- factor(c("treat1", "treat2", "treat1", "treat3", "treat1",
+		   "control", "treat1", "treat2", "treat3"))
+## the code `plot(exprmt)`
+## gives you a barplot of the number of observations, as shown below.
+
+## * What determines the order in which the treatments are listed in the plot?
+## * How can you recreate this plot with "control" listed last instead
+## of first?
+plot(exprmt)
 
 
 ## The data.frame class

@@ -311,24 +311,11 @@ food &lt;-<span class="st"> </span><span class="kw">factor</span>(food, <span cl
 </div>
 <div id="challenge-1" class="section level3">
 <h3>Challenge</h3>
-<p>The function <code>table()</code> tabulates observations and can be used to create bar plots quickly. For instance, the code below gives you a barplot of the number of observations.</p>
+<p>The function <code>plot()</code> can be used to quickly create a bar plot of a factor. For instance, for the factor <code>exprmt &lt;- factor(c(&quot;treat1&quot;, &quot;treat2&quot;, &quot;treat1&quot;, &quot;treat3&quot;, &quot;treat1&quot;, &quot;control&quot;, &quot;treat1&quot;, &quot;treat2&quot;, &quot;treat3&quot;))</code>, the code <code>plot(exprmt)</code> gives you a barplot of the number of observations at each level, as shown below.</p>
 <ul>
-<li>In which order are the treatments listed?</li>
+<li>What determines the order in which the treatments are listed in the plot? (Hint: use <code>str</code> to inspect the factor.)</li>
 <li>How can you recreate this plot with “control” listed last instead of first?</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Challenge
-##
-## * In which order are the treatments listed?
-##
-## * How can you recreate this plot with &quot;control&quot; listed
-## last instead of first?
-exprmt &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;treat1&quot;</span>, <span class="st">&quot;treat2&quot;</span>, <span class="st">&quot;treat1&quot;</span>, <span class="st">&quot;treat3&quot;</span>, <span class="st">&quot;treat1&quot;</span>, <span class="st">&quot;control&quot;</span>,
-                   <span class="st">&quot;treat1&quot;</span>, <span class="st">&quot;treat2&quot;</span>, <span class="st">&quot;treat3&quot;</span>))
-<span class="kw">table</span>(exprmt)</code></pre></div>
-<pre><code>#&gt; exprmt
-#&gt; control  treat1  treat2  treat3 
-#&gt;       1       4       2       2</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">barplot</span>(<span class="kw">table</span>(exprmt))</code></pre></div>
 <p><img src="img/R-ecology-wrong-order-1.png" width="672" /></p>
 <!---
 
@@ -338,7 +325,7 @@ exprmt &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class=
 ## * The treatments are listed in alphabetical order because they are factors.
 ## * By redefining the order of the levels
 exprmt <- factor(exprmt, levels=c("treat1", "treat2", "treat3", "control"))
-barplot(table(exprmt))
+plot(exprmt)
 ```
 
 <img src="img/R-ecology-correct-order-1.png" width="672" />

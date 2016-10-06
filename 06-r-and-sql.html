@@ -160,17 +160,18 @@ $(document).ready(function () {
 
 <blockquote>
 <h2 id="learning-objectives">Learning Objectives</h2>
+<p>By the end of this lesson the learner will:</p>
 <ul>
-<li>Students will be able to connect to an existing database using R</li>
-<li>Query an existing database through R using queries constructed with variables</li>
-<li>Create a database and populate it from R</li>
-<li>Understand that scripted database interactions enhance reproducibility of analysis</li>
+<li>Know how to connect R to an existing database</li>
+<li>Be able to use SQL syntax inside R to to query a database and return a subset of data</li>
+<li>Be able to use R and SQL to create a new database from existing csv files.</li>
+<li>Understand that scripted database interactions enhance the reproducibility of their analysis</li>
 </ul>
 </blockquote>
 <hr />
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
-<p>Interacting with databases through scripted languages can offer advantages over querying databases via a GUI interface. A GUI interface for your database is easier to use and allows the quick viewing of adhoc queries. Querying a database with a programatic interface (in this case R, but it could be any language) are slightly more complicated. However the trade-off is that data manipulations are preserved in the code. Aggregations, summaries and other database operations are preserved. Therefore those pre-analysis data manipulation steps are not lost and can be reproduced later by yourself or others.</p>
+<p>Interacting with databases through scripted languages can offer advantages over querying databases via a GUI interface. A GUI interface for your database is easier to use and allows the quick viewing of adhoc queries. Querying a database with a programmatic interface (in this case R, but it could be any language) are slightly more complicated. However the trade-off is that data manipulations are preserved in the code. Aggregations, summaries and other database operations are preserved. Therefore those pre-analysis data manipulation steps are not lost and can be reproduced later by yourself or others.</p>
 </div>
 <div id="connecting-r-to-sqlite-databases" class="section level1">
 <h1>Connecting R to sqlite databases</h1>
@@ -245,7 +246,7 @@ years &lt;-<span class="st"> </span><span class="kw">seq</span>(yearRange[,<span
 <span class="dt">sep =</span> <span class="st">&quot;&quot;</span> )
 rCount &lt;-<span class="st"> </span><span class="kw">dbGetQuery</span>(conn,q)
 <span class="kw">head</span>(rCount)</code></pre></div>
-<p>With the nested paste commands we were able to construct a query programatically, without having to type out all the years. This could also be done with a for loop, especially if the query to be constructed is more complicated.</p>
+<p>With the nested paste commands we were able to construct a query programmatically, without having to type out all the years. This could also be done with a for loop, especially if the query to be constructed is more complicated.</p>
 <div id="creating-a-sqlite-db-using-r" class="section level2">
 <h2>Creating a SQLite DB using R</h2>
 <p>We can use R to create a new database and associated structure (also known as the schema) databases from existing <code>csv</code> files. Let’s recreate the mammals database that we’ve been working with, in R. First let’s read in the <code>csv</code> files.</p>

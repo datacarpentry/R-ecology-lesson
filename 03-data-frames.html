@@ -270,13 +270,13 @@ new_datarame &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<s
 <pre><code>#&gt;  [1] 50 55 60 65 70 75 80 85 90 95</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">8</span>, <span class="dt">by=</span><span class="dv">3</span>) <span class="co"># sequence stops to stay below upper limit</span></code></pre></div>
 <pre><code>#&gt; [1] 1 4 7</code></pre>
-<p>Our survey data frame has rows and columns (it has 2 dimensions), if we want to extract some specific data from it, we need to specify the “coordinates” we want from it. Row numbers come first, followed by column numbers. However, note that different ways of specifying these coorinates lead to results with different classes.</p>
+<p>Our survey data frame has rows and columns (it has 2 dimensions), if we want to extract some specific data from it, we need to specify the “coordinates” we want from it. Row numbers come first, followed by column numbers. However, note that different ways of specifying these coordinates lead to results with different classes.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys[<span class="dv">1</span>]      <span class="co"># first column in the data frame (as a data.frame)</span>
+surveys[,<span class="dv">1</span>]     <span class="co"># first column in the data frame (as a vector)</span>
 surveys[<span class="dv">1</span>, <span class="dv">1</span>]   <span class="co"># first element in the first column of the data frame (as a vector)</span>
 surveys[<span class="dv">1</span>, <span class="dv">6</span>]   <span class="co"># first element in the 6th column (as a vector)</span>
 surveys[<span class="dv">1</span>:<span class="dv">3</span>, <span class="dv">7</span>] <span class="co"># first three elements in the 7th column (as a vector)</span>
 surveys[<span class="dv">3</span>, ]    <span class="co"># the 3rd element for all columns (as a data.frame)</span>
-surveys[, <span class="dv">8</span>]    <span class="co"># the entire 8th column (as a vector)</span>
 head_surveys &lt;-<span class="st"> </span>surveys[<span class="dv">1</span>:<span class="dv">6</span>, ] <span class="co"># equivalent to head(surveys)</span></code></pre></div>
 <p>You can also exclude certain parts of a data frame</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys[,-<span class="dv">1</span>]   <span class="co">#The whole data frame, except the first column</span>
@@ -290,7 +290,7 @@ surveys$species_id          <span class="co"># Result is a vector</span></code><
 <div id="challenge-1" class="section level3">
 <h3>Challenge</h3>
 <ol style="list-style-type: decimal">
-<li><p>The function <code>nrow()</code> on a <code>data.frame</code> returns the number of rows. Use it, in conjuction with <code>seq()</code> to create a new <code>data.frame</code> called <code>surveys_by_10</code> that includes every 10th row of the survey data frame starting at row 10 (10, 20, 30, …)</p></li>
+<li><p>The function <code>nrow()</code> on a <code>data.frame</code> returns the number of rows. Use it, in conjunction with <code>seq()</code> to create a new <code>data.frame</code> called <code>surveys_by_10</code> that includes every 10th row of the survey data frame starting at row 10 (10, 20, 30, …)</p></li>
 <li><p>Create a <code>data.frame</code> containing only the observations from row 1999 of the <code>surveys</code> dataset.</p></li>
 <li><p>Notice how <code>nrow()</code> gave you the number of rows in a <code>data.frame</code>? Use <code>nrow()</code> instead of a row number to make a <code>data.frame</code> with observations from only the last row of the <code>surveys</code> dataset.</p></li>
 <li><p>Now that you’ve seen how <code>nrow()</code> can be used to stand in for a row index, let’s combine that behavior with the <code>-</code> notation above to reproduce the behavior of <code>head(surveys)</code> excluding the 7th through final row of the <code>surveys</code> dataset.</p></li>
