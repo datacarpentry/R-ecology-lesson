@@ -11,12 +11,12 @@ if (file.exists("portalR.db")) file.remove("portalR.db")
 
 > ## Learning Objectives
 >
-> * Students will be able to connect to an existing database using R
-> * Query an existing database through R using queries constructed with
->   variables
-> * Create a database and populate it from R
-> * Understand that scripted database interactions enhance reproducibility of
->   analysis
+>  By the end of this lesson the learner will:
+>
+> * Know how to connect R to an existing database
+> * Be able to use SQL syntax inside R to to query a database and return a subset of data
+> * Be able to use R and SQL to create a new database from existing csv files.
+> * Understand that scripted database interactions enhance the reproducibility of their analysis
 
 ------------
 
