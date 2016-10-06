@@ -233,13 +233,18 @@ We can now make the faceted plot splitting further by sex (within a single plot)
 ```
 
 Usually plots with white background look more readable when printed.  We can set
-the background to white using the function `theme_bw()`.
+the background to white using the function `theme_bw()`. Additionally you can also remove 
+the grid. 
 
 ```{r facet-by-species-and-sex-white-bg}
  ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = species_id, group = sex)) +
      geom_line() +
      facet_wrap(~ species_id) +
-     theme_bw()
+     theme_bw() +
+     theme(panel.grid.major.x = element_blank(), 
+	   panel.grid.minor.x = element_blank(),
+	   panel.grid.major.y = element_blank(),
+	   panel.grid.minor.y = element_blank())
 ```
 
 To make the plot easier to read, we can color by sex instead of species (species
