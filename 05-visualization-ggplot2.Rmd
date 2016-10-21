@@ -25,13 +25,17 @@ structured data.
 >
 > By the end of this lesson the learner will:
 >
-> * Know to to effectively visualize data using the ggplot2 package
+> * Be able to create a ggplot object
+> * Be able to set universal plot settings
+> * Be able to modify an existing ggplot object
+> * Be able to change the aesthetics of a plot such as colour
+> * Be able to edit the axis labels 
 > * Know how to use a step-by-step approach to build complex plots
 > * Be able to create, scatter plots, box plots and time series plots
-> * Use the 'facet_wrap' and 'facet_grid' commands to create a collection of plots splitting the data by a factor variable
+> * Use the facet_wrap and facet_grid commands to create a collection of plots splitting the data by a factor variable
 > * Be able to create customized plot styles to meet their needs
 
-Load required packages
+We start by loading the required packages.
 
 ```{r}
 # plotting package
@@ -58,8 +62,8 @@ To build a ggplot we need to:
 ggplot(data = surveys_complete)
 ```
 
-- define aesthetics (`aes`), that maps variables in the data to axes on the plot
-     or to plotting size, shape color, etc.,
+- define aesthetics (`aes`), by selecting the variables to be plotted and the variables to define the presentation
+     such as plotting size, shape color, etc.,
 
 ```{r, eval=FALSE}
 ggplot(data = surveys_complete, aes(x = weight, y = hindfoot_length))
