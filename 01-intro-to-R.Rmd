@@ -364,14 +364,14 @@ heights[complete.cases(heights)]
 
 ### Challenge
 
-* **Question**: Why does the following piece of code give an error message?
+* **Question**: Why does the following piece of code give a warning?
 ```{r, purl=FALSE}
 sample <- c(2, 4, 4, "NA", 6)
 mean(sample, na.rm = TRUE)
 ```
 <!-- * _Answer_: Because R recognizes the NA in quotes as a character. -->
 
-* **Question**: Why does the error message say the argument is not numeric?
+* **Question**: Why does the warning message say the argument is not numeric?
 <!-- * _Answer_: R converts the entire vector to character because of the "NA", and doesn't recognize it as numeric. -->
 
 Next, we will use the "surveys" dataset to explore the `data.frame` data
