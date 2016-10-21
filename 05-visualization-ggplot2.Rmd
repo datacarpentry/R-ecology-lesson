@@ -32,7 +32,7 @@ structured data.
 > * Be able to edit the axis labels 
 > * Know how to use a step-by-step approach to build complex plots
 > * Be able to create, scatter plots, box plots and time series plots
-> * Be able to write a command using 'facet_wrap()' and 'facet_grid()'to create a collection of plots splitting the data by a factor variable
+> * Use the facet_wrap and facet_grid commands to create a collection of plots splitting the data by a factor variable
 > * Be able to create customized plot styles to meet their needs
 
 We start by loading the required packages.
