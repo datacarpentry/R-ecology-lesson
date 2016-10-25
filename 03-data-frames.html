@@ -122,6 +122,7 @@ button.code-folding-btn:focus {
 </style>
 
 
+
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
@@ -164,9 +165,11 @@ $(document).ready(function () {
 <blockquote>
 <h2 id="learning-objectives">Learning Objectives</h2>
 <ul>
-<li>understand the concept of a <code>data.frame</code></li>
-<li>use sequences</li>
-<li>know how to access any element of a <code>data.frame</code></li>
+<li>describe what a <code>data.frame</code> is</li>
+<li>read data from a file into a <code>data.frame</code> and change how character strings are handled</li>
+<li>summarize the size and data types of a <code>data.frame</code></li>
+<li>write a command to print a sequence of numbers</li>
+<li>subset part of a <code>data.frame</code> e.g. particular rows or columns</li>
 </ul>
 </blockquote>
 <hr />
@@ -319,6 +322,7 @@ surveys_head <- surveys[-c(7:nrow(surveys)),]
 $(document).ready(function () {
   $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
 });
+
 
 </script>
 

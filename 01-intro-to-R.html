@@ -122,6 +122,7 @@ button.code-folding-btn:focus {
 </style>
 
 
+
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
@@ -332,7 +333,7 @@ heights[<span class="kw">complete.cases</span>(heights)]</code></pre></div>
 <div id="challenge-3" class="section level3">
 <h3>Challenge</h3>
 <ul>
-<li><strong>Question</strong>: Why does the following piece of code give an error message?</li>
+<li><strong>Question</strong>: Why does the following piece of code give a warning?</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sample &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="st">&quot;NA&quot;</span>, <span class="dv">6</span>)
 <span class="kw">mean</span>(sample, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</code></pre></div>
@@ -340,7 +341,7 @@ heights[<span class="kw">complete.cases</span>(heights)]</code></pre></div>
 #&gt; logical: returning NA</code></pre>
 <!-- * _Answer_: Because R recognizes the NA in quotes as a character. -->
 <ul>
-<li><strong>Question</strong>: Why does the error message say the argument is not numeric? <!-- * _Answer_: R converts the entire vector to character because of the "NA", and doesn't recognize it as numeric. --></li>
+<li><strong>Question</strong>: Why does the warning message say the argument is not numeric? <!-- * _Answer_: R converts the entire vector to character because of the "NA", and doesn't recognize it as numeric. --></li>
 </ul>
 <p>Next, we will use the “surveys” dataset to explore the <code>data.frame</code> data structure, which is one of the most common types of R objects.</p>
 </div>
@@ -357,6 +358,7 @@ heights[<span class="kw">complete.cases</span>(heights)]</code></pre></div>
 $(document).ready(function () {
   $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
 });
+
 
 </script>
 

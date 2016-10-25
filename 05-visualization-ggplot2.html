@@ -121,6 +121,7 @@ button.code-folding-btn:focus {
 </style>
 
 
+
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
@@ -166,14 +167,18 @@ $(document).ready(function () {
 <h3 id="learning-objectives">Learning Objectives</h3>
 <p>By the end of this lesson the learner will:</p>
 <ul>
-<li>Know to to effectively visualize data using the ggplot2 package</li>
+<li>Be able to create a ggplot object</li>
+<li>Be able to set universal plot settings</li>
+<li>Be able to modify an existing ggplot object</li>
+<li>Be able to change the aesthetics of a plot such as colour</li>
+<li>Be able to edit the axis labels</li>
 <li>Know how to use a step-by-step approach to build complex plots</li>
 <li>Be able to create, scatter plots, box plots and time series plots</li>
-<li>Use the ‘facet_wrap’ and ‘facet_grid’ commands to create a collection of plots splitting the data by a factor variable</li>
+<li>Use the facet_wrap and facet_grid commands to create a collection of plots splitting the data by a factor variable</li>
 <li>Be able to create customized plot styles to meet their needs</li>
 </ul>
 </blockquote>
-<p>Load required packages</p>
+<p>We start by loading the required packages.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># plotting package</span>
 <span class="kw">library</span>(ggplot2)
 <span class="co"># modern data frame manipulations</span>
@@ -198,7 +203,7 @@ $(document).ready(function () {
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> surveys_complete)</code></pre></div>
 <ul>
-<li>define aesthetics (<code>aes</code>), that maps variables in the data to axes on the plot or to plotting size, shape color, etc.,</li>
+<li>define aesthetics (<code>aes</code>), by selecting the variables to be plotted and the variables to define the presentation such as plotting size, shape color, etc.,</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> surveys_complete, <span class="kw">aes</span>(<span class="dt">x =</span> weight, <span class="dt">y =</span> hindfoot_length))</code></pre></div>
 <ul>
@@ -430,6 +435,7 @@ yearly_sex_weight &lt;-<span class="st"> </span>surveys_complete %&gt;%
 $(document).ready(function () {
   $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
 });
+
 
 </script>
 
