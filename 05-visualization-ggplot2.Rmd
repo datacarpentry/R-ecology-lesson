@@ -14,6 +14,10 @@ source("setup.R")
 surveys_complete <- read.csv(file = "data_output/surveys_complete.csv")
 ```
 
+```{r, echo=FALSE, purl=TRUE}
+## The ggplot2 lesson
+```
+
 #### Disclaimer
 
 We will be using the functions in the ggplot2 package. R has powerful built-in
@@ -89,6 +93,13 @@ surveys_plot <- ggplot(data = surveys_complete, aes(x = weight, y = hindfoot_len
 # Draw the plot
 surveys_plot + geom_point()
 ```
+
+    ```{r, eval=FALSE, purl=TRUE, echo=FALSE}
+    ## Create a ggplot and draw it.
+    surveys_plot <- ggplot(data = surveys_complete, aes(x = weight, y = hindfoot_length))
+    surveys_plot + geom_point()
+  
+    ```
 
 Notes:
 
@@ -174,7 +185,29 @@ hidden.
 
 > - Add color to the datapoints on your boxplot according to the plot from which the sample was taken (`plot_id`)
 
-hint: Check the class for `plot_id`. Consider changing the class of `plot_id` from integer to factor. Why does this change how R makes the graph? 
+Hint: Check the class for `plot_id`. Consider changing the class of `plot_id` from integer to factor. Why does this change how R makes the graph? 
+
+    ```{r, eval=FALSE, purl=TRUE, echo=FALSE}
+    ## Challenges:
+    ##  Start with the boxplot we created:
+    ggplot(data = surveys_complete, aes(x = species_id, y = hindfoot_length)) +
+    geom_boxplot(alpha = 0) +
+    geom_jitter(alpha = 0.3, color = "tomato")
+    
+    ##  1. Replace the box plot with a violin plot; see `geom_violin()`.
+    
+    ##  2. Represent weight on the log10 scale; see `scale_y_log10()`.
+    
+    ##  3. Create boxplot for `hindfoot_length`.
+    
+    ##  4. Add color to the datapoints on your boxplot according to the 
+    ##  plot from which the sample was taken (`plot_id`).
+    ##  Hint: Check the class for `plot_id`. Consider changing the class 
+    ##  of `plot_id` from integer to factor. Why does this change how R 
+    ##  makes the graph? 
+  
+    ```
+
 
 ## Plotting time series data
 
@@ -284,7 +317,12 @@ ggplot(data = yearly_weight, aes(x=year, y=avg_weight, color = species_id, group
 ```
 -->
 
-
+    ```{r, eval=FALSE, purl=TRUE, echo=FALSE}
+    ## Plotting time series challenge:
+    ##  Use what you just learned to create a plot that depicts how the 
+    ##  average weight of each species changes through the years.
+  
+    ```
 
 The `facet_wrap` geometry extracts plots into an arbitrary number of dimensions
 to allow them to cleanly fit on one page. On the other hand, the `facet_grid`
@@ -406,3 +444,13 @@ my_plot <- ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex, gr
           text=element_text(size=16, family="Arial"))
 ggsave("name_of_file.png", my_plot, width=15, height=10)
 ```
+
+    ```{r, eval=FALSE, purl=TRUE, echo=FALSE}
+    ## Final plotting challenge:
+    ##  With all of this information in hand, please take another five 
+    ##  minutes to either improve one of the plots generated in this 
+    ##  exercise or create a beautiful graph of your own. Use the RStudio 
+    ##  ggplot2 cheat sheet for inspiration:
+    ##  https://www.rstudio.com/wp-content/uploads/2015/08/ggplot2-cheatsheet.pdf
+
+    ```
