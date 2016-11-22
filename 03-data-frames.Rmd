@@ -81,7 +81,7 @@ fix them? Don't hesitate to experiment!
     ```
 
     ```{r, eval=FALSE, purl=TRUE, echo=FALSE}
-    ## Challenge
+    ## Challenge:
     ##  There are a few mistakes in this hand crafted `data.frame`,
     ##  can you spot and fix them? Don't hesitate to experiment!
     author_book <- data.frame(author_first=c("Charles", "Ernst", "Theodosius"),
@@ -132,6 +132,19 @@ fix them? Don't hesitate to experiment!
 
    Try making your own new data frame from some vectors. You can check the data
    type of the new object using `class()`.
+
+   ```{r, eval=FALSE, purl=TRUE, echo=FALSE}
+    ## Challenge:
+    ##   We introduced you to the `data.frame()` function and `read.csv()`, 
+    ##   but what if we are starting with some vectors? The best way to do 
+    ##   this is to pass those vectors to the `data.frame()` function, similar
+    ##   to the above.
+    color <- c("red", "green", "blue", "yellow")
+    counts <- c(50, 60, 65, 82)
+    new_datarame <- data.frame(colors = color, counts = counts)
+    ##    Try making your own new data frame from some vectors. You can check 
+    ##    the data type of the new object using `class()`.
+   ```
 
    <!--- Answers
 
@@ -198,7 +211,6 @@ objects besides `data.frame`.
 ```{r, echo=FALSE, purl=TRUE}
 
 ## Sequences and Subsetting data frames
-
 ```
 
 `:` is a special function that creates numeric vectors of integers in increasing
@@ -270,6 +282,7 @@ to get the full and correct column name.
   excluding the 7th through final row of the `surveys` dataset.
 
 ```{r, echo=FALSE, purl=TRUE}
+### Challenges:
 ### 1. The function `nrow()` on a `data.frame` returns the number of
 ### rows. Use it, in conjuction with `seq()` to create a new
 ### `data.frame` called `surveys_by_10` that includes every 10th row

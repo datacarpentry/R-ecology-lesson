@@ -9,6 +9,10 @@ source("setup.R")
 surveys <- read.csv("data/portal_data_joined.csv")
 ```
 
+```{r, echo=FALSE, purl=TRUE}
+## The dplyr lesson
+```
+
 ------------
 
 > ## Learning Objectives
@@ -138,6 +142,12 @@ surveys %>%
 ```
 --->
 
+    ```{r, eval=FALSE, purl=TRUE, echo=FALSE}
+    ## Pipes Challenge:
+    ##  Using pipes, subset the data to include individuals collected 
+    ##  before 1995, and retain the columns `year`, `sex`, and `weight.`
+   
+    ```
 
 ### Mutate
 
@@ -196,6 +206,18 @@ surveys_hindfoot_half <- surveys %>%
 ```
 --->
 
+    ```{r, eval=FALSE, purl=TRUE, echo=FALSE}
+    ## Mutate Challenge:
+    ##  Create a new dataframe from the survey data that meets the following
+    ##  criteria: contains only the `species_id` column and a column that 
+    ##  contains values that are half the `hindfoot_length` values (e.g. a 
+    ##  new column `hindfoot_half`). In this `hindfoot_half` column, there are 
+    ##  no NA values and all values are < 30.
+    
+    ##  Hint: think about how the commands should be ordered to produce this data frame!
+   
+    ```
+    
 ### Split-apply-combine data analysis and the summarize() function
 
 Many data analysis tasks can be approached using the "split-apply-combine"
@@ -247,7 +269,6 @@ going off the screen, while displaying the data type for each column under its
 name. If you want to display more data on the screen, you can add the `print()`
 function at the end with the argument `n` specifying the number of rows to
 display:
-
 
 ```{r, purl = FALSE}
 surveys %>%
@@ -303,7 +324,7 @@ surveys %>%
 > ### Challenge {.challenge}
 >
 > Use `group_by()` and `summarize()` to find the mean, min, and max hindfoot
-> length for each species (using `species _id`).
+> length for each species (using `species_id`).
 
 <!---
 ```{r, echo=FALSE, purl=FALSE}
@@ -336,6 +357,18 @@ res <- surveys %>%
 ```
 --->
 
+    ```{r, eval=FALSE, purl=TRUE, echo=FALSE}
+    ## Tally Challenges:
+    ##  1. How many individuals were caught in each `plot_type` surveyed?
+    
+    ##  2. Use `group_by()` and `summarize()` to find the mean, min, and 
+    ##  max hindfoot length for each species (using `species_id`).
+    
+    ##  3. What was the heaviest animal measured in each year? Return the 
+    ##  columns `year`, `genus`, `species_id`, and `weight`.
+   
+    ```
+
 # Exporting data
 
 Now that you have learned how to use `dplyr` to extract the information you need
@@ -366,10 +399,10 @@ of animals for which the sex has been determined:
 
 ```{r, purl=FALSE}
 surveys_complete <- surveys %>%
-  filter(species_id != "",         # remove missing species_id
-         !is.na(weight),           # remove missing weight
-		 !is.na(hindfoot_length),  # remove missing hindfoot_length
-		 sex != "")                # remove missing sex
+  filter(species_id != "",        # remove missing species_id
+  !is.na(weight),                 # remove missing weight
+	!is.na(hindfoot_length),        # remove missing hindfoot_length
+	sex != "")                      # remove missing sex
 ```
 
 Because we are interested in plotting how species abundances have changed
@@ -384,13 +417,37 @@ observations for these more common species:
 species_counts <- surveys_complete %>%
                   group_by(species_id) %>%
                   tally %>%
-				  filter(n >= 50) %>%
-				  select(species_id)
+				          filter(n >= 50) %>%
+				          select(species_id)
 
 ## Only keep the most common species
 surveys_complete <- surveys_complete %>%
                  filter(species_id %in% species_counts$species_id)
 ```
+
+    ```{r, eval=FALSE, purl=TRUE, echo=FALSE}
+    ### Create the dataset for exporting:
+    ##  Start by removing observations for which the `species_id`, `weight`, 
+    ##  `hindfoot_length`, or `sex` data are missing:
+    surveys_complete <- surveys %>%
+      filter(species_id != "",        # remove missing species_id
+      !is.na(weight),                 # remove missing weight
+		  !is.na(hindfoot_length),        # remove missing hindfoot_length
+		  sex != "")                      # remove missing sex
+    
+    ##  Now remove rare species in two steps. First, make a list of species which 
+    ##  appear at least 50 times in our dataset:
+    species_counts <- surveys_complete %>%
+                  group_by(species_id) %>%
+                  tally %>%
+				          filter(n >= 50) %>%
+				          select(species_id)
+				          
+    ##  Second, keep only those species:
+    surveys_complete <- surveys_complete %>%
+                 filter(species_id %in% species_counts$species_id)
+   
+    ```
 
 To make sure that everyone has the same dataset, check that
 `surveys_complete` has `r nrow(surveys_complete)` rows and `r ncol(surveys_complete)`
