@@ -41,7 +41,7 @@ install.packages("dplyr")
 
 You might get asked to choose a CRAN mirror -- this is basically asking you to
 choose a site to download the package from. The choice doesn't matter too much;
-we recommend the RStudio mirror.
+we recommend the RStudio mirror (`1: 0-Cloud`).
 
 ```{r, message = FALSE, purl = FALSE}
 library("dplyr")    ## load the package
@@ -56,13 +56,13 @@ suffered from being slow in some cases.` dplyr` addresses this by porting much
 of the computation to C++. An additional feature is the ability to work directly
 with data stored in an external database. The benefits of doing this are
 that the data can be managed natively in a relational database, queries can be
-conducted on that database, and only the results of the query returned.
+conducted on that database, and only the results of the query are returned.
 
-This addresses a common problem with R in that all operations are conducted in
-memory and thus the amount of data you can work with is limited by available
+This addresses a common problem with R in that all operations are conducted 
+in-memory and thus the amount of data you can work with is limited by available
 memory. The database connections essentially remove that limitation in that you
 can have a database of many 100s GB, conduct queries on it directly, and pull
-back just what you need for analysis in R.
+back into R only what you need for analysis.
 
 To learn more about `dplyr` after the workshop, you may want to check out this
 [handy dplyr cheatsheet](http://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf).
@@ -87,17 +87,20 @@ filter(surveys, year == 1995)
 
 ## Pipes
 
-But what if you wanted to select and filter at the same time? There are three
-ways to do this: use intermediate steps, nested functions, or pipes. With the
-intermediate steps, you essentially create a temporary data frame and use that
-as input to the next function. This can clutter up your workspace with lots of
-objects. You can also nest functions (i.e. one function inside of another).
+But what if you wanted to select and filter at the same time? There are three 
+ways to do this: use intermediate steps, nested functions, or pipes.
+
+With intermediate steps, you essentially create a temporary data frame and use
+that as input to the next function. This can clutter up your workspace with lots
+of objects. You can also nest functions (i.e. one function inside of another).
 This is handy, but can be difficult to read if too many functions are nested as
-the process from inside out. The last option, pipes, are a fairly recent
-addition to R. Pipes let you take the output of one function and send it
-directly to the next, which is useful when you need to do many things to the same
-data set.  Pipes in R look like `%>%` and are made available via the `magrittr`
-package installed as part of `dplyr`.
+things are evaluated from the inside out.
+
+The last option, pipes, are a fairly recent addition to R. Pipes let you take
+the output of one function and send it directly to the next, which is useful
+when you need to do many things to the same data set.  Pipes in R look like
+`%>%` and are made available via the `magrittr` package, installed automatically
+with `dplyr`.
 
 ```{r, purl = FALSE}
 surveys %>%
@@ -105,13 +108,14 @@ surveys %>%
   select(species_id, sex, weight)
 ```
 
-In the above we use the pipe to send the `surveys` data set first through
-`filter`, to keep rows where `weight` was less than 5, and then through `select`
-to keep the `species` and `sex` columns. When the data frame is being passed to
-the `filter()` and `select()` functions through a pipe, we don't need to include
-it as an argument to these functions anymore.
+In the above, we use the pipe to send the `surveys` data set first through 
+`filter()` to keep rows where `weight` is less than 5, then through `select()`
+to keep only the `species_id`, `sex`, and `weight` columns. Since `%>%` takes
+the object on its left and passes it as the first argument to the function on
+its right, we don't need to explicitly include it as an argument to the 
+`filter()` and `select()` functions anymore.
 
-If we wanted to create a new object with this smaller version of the data we
+If we wanted to create a new object with this smaller version of the data, we
 could do so by assigning it a new name:
 
 ```{r, purl = FALSE}
@@ -126,8 +130,8 @@ Note that the final data frame is the leftmost part of this expression.
 
 > ### Challenge {.challenge}
 >
->  Using pipes, subset the data to include individuals collected before 1995,
->  and retain the columns `year`, `sex`, and `weight.`
+>  Using pipes, subset the `survey` data to include individuals collected before
+>  1995 and retain only the columns `year`, `sex`, and `weight`.
 
 <!---
 ```{r, eval=FALSE, purl=FALSE}
@@ -153,8 +157,8 @@ surveys %>%
 ```
 
 If this runs off your screen and you just want to see the first few rows, you
-can use a pipe to view the `head()` of the data (pipes work with non-dplyr
-functions too, as long as the `dplyr` or `magrittr` packages are loaded).
+can use a pipe to view the `head()` of the data. (Pipes work with non-dplyr
+functions, too, as long as the `dplyr` or `magrittr` package is loaded).
 
 ```{r, purl = FALSE}
 surveys %>%
@@ -162,8 +166,12 @@ surveys %>%
   head
 ```
 
-The first few rows are full of NAs, so if we wanted to remove those we could
-insert a `filter()` in this chain:
+Note that we don't include parentheses at the end of our call to `head()` above.
+When piping into a function with no additional arguments, you can call the
+function with or without parentheses (e.g. `head` or `head()`).
+
+The first few rows of the output are full of `NA`s, so if we wanted to remove 
+those we could insert a `filter()` in the chain:
 
 ```{r, purl = FALSE}
 surveys %>%
@@ -172,16 +180,16 @@ surveys %>%
   head
 ```
 
-`is.na()` is a function that determines whether something is or is not an `NA`.
-The `!` symbol negates it, so we're asking for everything that is not an `NA`.
+`is.na()` is a function that determines whether something is an `NA`. The `!` 
+symbol negates the result, so we're asking for everything that *is not* an `NA`.
 
 > ### Challenge {.challenge}
 >
->  Create a new dataframe from the survey data that meets the following
->  criteria: contains only the `species_id` column and a column that contains
->  values that are half the `hindfoot_length` values (e.g. a new column
->  `hindfoot_half`). In this `hindfoot_half` column, there are no NA values
->  and all values are < 30.
+>  Create a new data frame from the `survey` data that meets the following
+>  criteria: contains only the `species_id` column and a new column called
+>  `hindfoot_half` containing values that are half the `hindfoot_length` values. 
+>  In this `hindfoot_half` column, there are no `NA`s and all values are less
+>  than 30.
 >
 >  **Hint**: think about how the commands should be ordered to produce this data frame!
 
@@ -198,7 +206,7 @@ surveys_hindfoot_half <- surveys %>%
 
 ### Split-apply-combine data analysis and the summarize() function
 
-Many data analysis tasks can be approached using the "split-apply-combine"
+Many data analysis tasks can be approached using the *split-apply-combine*
 paradigm: split the data into groups, apply some analysis to each group, and
 then combine the results. `dplyr` makes this very easy through the use of the
 `group_by()` function.
@@ -206,10 +214,10 @@ then combine the results. `dplyr` makes this very easy through the use of the
 
 #### The `summarize()` function
 
-`group_by()` is often used together with `summarize()` which collapses each
-group into a single-row summary of that group.  `group_by()` takes as argument
+`group_by()` is often used together with `summarize()`, which collapses each
+group into a single-row summary of that group.  `group_by()` takes as arguments
 the column names that contain the **categorical** variables for which you want
-to calculate the summary statistics. So to view mean the `weight` by sex:
+to calculate the summary statistics. So to view the mean `weight` by sex:
 
 ```{r, purl = FALSE}
 surveys %>%
@@ -217,7 +225,7 @@ surveys %>%
   summarize(mean_weight = mean(weight, na.rm = TRUE))
 ```
 
-You can group by multiple columns too:
+You can also group by multiple columns:
 
 ```{r, purl = FALSE}
 surveys %>%
@@ -225,12 +233,12 @@ surveys %>%
   summarize(mean_weight = mean(weight, na.rm = TRUE))
 ```
 
-When grouping both by "sex" and "species_id", the first rows are for individuals
+When grouping both by `sex` and `species_id`, the first rows are for individuals
 that escaped before their sex could be determined and weighted. You may notice
 that the last column does not contain `NA` but `NaN` (which refers to "Not a
 Number"). To avoid this, we can remove the missing values for weight before we
 attempt to calculate the summary statistics on weight. Because the missing
-values are removed, we can omit `na.rm=TRUE` when computing the mean:
+values are removed, we can omit `na.rm = TRUE` when computing the mean:
 
 ```{r, purl = FALSE}
 surveys %>%
@@ -239,25 +247,24 @@ surveys %>%
   summarize(mean_weight = mean(weight))
 ```
 
-You may also have noticed, that the output from these calls don't run off the
+You may also have noticed that the output from these calls doesn't run off the
 screen anymore. That's because `dplyr` has changed our `data.frame` to a
-`tbl_df`. This is a data structure that's very similar to a data frame; for our
-purposes the only difference is that it won't automatically show tons of data
-going off the screen, while displaying the data type for each column under its
-name. If you want to display more data on the screen, you can add the `print()`
-function at the end with the argument `n` specifying the number of rows to
-display:
-
+`tbl_df`. The `tbl` data structure is very similar to a data frame; for our
+purposes the only difference is that, in addition to displaying the data type 
+of each column under its name, it only prints the first few rows of data and
+only as many columns as fit on one screen. If you want to display more data, you 
+use the `print()` function at the end of your chain with the argument `n` 
+specifying the number of rows to display:
 
 ```{r, purl = FALSE}
 surveys %>%
   filter(!is.na(weight)) %>%
   group_by(sex, species_id) %>%
   summarize(mean_weight = mean(weight)) %>%
-  print(n=15)
+  print(n = 15)
 ```
 
-Once the data is grouped, you can also summarize multiple variables at the same
+Once the data are grouped, you can also summarize multiple variables at the same
 time (and not necessarily on the same variable). For instance, we could add a
 column indicating the minimum weight for each species for each sex:
 
@@ -270,7 +277,6 @@ surveys %>%
 ```
 
 
-
 #### Tallying
 
 When working with data, it is also common to want to know the number of
@@ -281,7 +287,7 @@ number of rows of data for each sex, we would do:
 ```{r, purl = FALSE}
 surveys %>%
   group_by(sex) %>%
-  tally()
+  tally
 ```
 
 Here, `tally()` is the action applied to the groups created by `group_by()` and
@@ -303,7 +309,7 @@ surveys %>%
 > ### Challenge {.challenge}
 >
 > Use `group_by()` and `summarize()` to find the mean, min, and max hindfoot
-> length for each species (using `species _id`).
+> length for each species (using `species_id`).
 
 <!---
 ```{r, echo=FALSE, purl=FALSE}
@@ -327,7 +333,7 @@ surveys %>%
 <!---
 ## Answer
 ```{r, echo=FALSE, purl=FALSE}
-res <- surveys %>%
+surveys %>%
     filter(!is.na(weight)) %>%
     group_by(year) %>%
     filter(weight == max(weight)) %>%
@@ -336,23 +342,38 @@ res <- surveys %>%
 ```
 --->
 
+> ### Challenge {.challenge}
+>
+> You saw above how to count the number of individuals of each `sex` using a 
+> combination of `group_by()` and `tally()`. How could you get the same result 
+> using `group_by()` and `summarize()`? Hint: see `?n`.
+
+<!---
+## Answer
+```{r, echo=FALSE, purl=FALSE}
+surveys %>%
+  group_by(sex) %>%
+  summarize(n = n())
+```
+--->
+
 # Exporting data
 
-Now that you have learned how to use `dplyr` to extract the information you need
-from the raw data, or to summarize your raw data, you may want to export these
-new datasets to share them with your collaborators or for archival.
+Now that you have learned how to use `dplyr` to extract information from or 
+summarize your raw data, you may want to export these new datasets to share 
+them with your collaborators or for archival.
 
-Similarly to the `read.csv()` function used to read in CSV into R, there is a
+Similar to the `read.csv()` function used for reading CSVs into R, there is a
 `write.csv()` function that generates CSV files from data frames.
 
-Before using it, we are going to create a new folder, `data_output` in our
-working directory that will store this generated dataset. We don't want to write
-generated datasets in the same directory as our raw data. It's good practice to
-keep them separate. The `data` folder should only contain the raw, unaltered
-data, and should be left alone to make sure we don't delete or modify it; on the
-other end the content of `data_output` directory will be generated by our
-script, and we know that we can delete the files it contains because we have the
-script that can re-generate these files.
+Before using `write.csv()`, we are going to create a new folder, `data_output`, 
+in our working directory that will store this generated dataset. We don't want
+to write generated datasets in the same directory as our raw data. It's good
+practice to keep them separate. The `data` folder should only contain the raw,
+unaltered data, and should be left alone to make sure we don't delete or modify
+it. In contrast, our script will generate the contents of the `data_output` 
+directory, so even if the files it contains are deleted, we can always 
+re-generate them.
 
 In preparation for our next lesson on plotting, we are going to prepare a
 cleaned up version of the dataset that doesn't include any missing data.
@@ -360,16 +381,16 @@ cleaned up version of the dataset that doesn't include any missing data.
 Let's start by removing observations for which the `species_id` is missing. In
 this dataset, the missing species are represented by an empty string and not an
 `NA`. Let's also remove observations for which `weight` and the
-`hindfoot_length` are missing. This dataset will also only contain observations
-of animals for which the sex has been determined:
+`hindfoot_length` are missing. This dataset should also only contain 
+observations of animals for which the sex has been determined:
 
 
 ```{r, purl=FALSE}
 surveys_complete <- surveys %>%
   filter(species_id != "",         # remove missing species_id
          !is.na(weight),           # remove missing weight
-		 !is.na(hindfoot_length),  # remove missing hindfoot_length
-		 sex != "")                # remove missing sex
+         !is.na(hindfoot_length),  # remove missing hindfoot_length
+         sex != "")                # remove missing sex
 ```
 
 Because we are interested in plotting how species abundances have changed
@@ -382,14 +403,13 @@ observations for these more common species:
 ```{r, purl=FALSE}
 ## Extract the most common species_id
 species_counts <- surveys_complete %>%
-                  group_by(species_id) %>%
-                  tally %>%
-				  filter(n >= 50) %>%
-				  select(species_id)
+  group_by(species_id) %>%
+  tally %>%
+  filter(n >= 50)
 
 ## Only keep the most common species
 surveys_complete <- surveys_complete %>%
-                 filter(species_id %in% species_counts$species_id)
+  filter(species_id %in% species_counts$species_id)
 ```
 
 To make sure that everyone has the same dataset, check that
@@ -402,7 +422,7 @@ the names are just the row numbers), so we need to add `row.names = FALSE` so
 they are not included:
 
 ```{r, purl=FALSE, eval=FALSE}
-write.csv(surveys_complete, file="data_output/surveys_complete.csv",
+write.csv(surveys_complete, file = "data_output/surveys_complete.csv",
           row.names=FALSE)
 ```
 
