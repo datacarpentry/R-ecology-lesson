@@ -5,16 +5,16 @@ skeleton-%.R: %.Rmd
 	Rscript -e "knitr::purl('$<', output='$@', documentation=0L)"
 
 %.html: %.Rmd
-	Rscript -e "rmarkdown::render('$<', output_format=rmarkdown::html_document(toc=TRUE, highlight='tango', self_contained=FALSE, lib_dir='libs'))"
+	Rscript -e "rmarkdown::render_site(input='$^')"
 
-motivation.html: motivation.md
-	pandoc -o $@ $^
+%.html: %.md
+	Rscript -e "rmarkdown::render_site(input='$<')"
 
 handout-script.R: skeleton-00-before-we-start.R skeleton-01-intro-to-R.R skeleton-02-starting-with-data.R skeleton-03-data-frames.R skeleton-04-dplyr.R skeleton-05-visualization-ggplot2.R
 	for f in $^; do cat $$f; echo "\n"; done > $@
 	make clean-skeleton
 
-pages: motivation.html 00-before-we-start.html 01-intro-to-R.html 02-starting-with-data.html 03-data-frames.html 04-dplyr.html 05-visualization-ggplot2.html 06-r-and-sql.html
+pages: LICENSE.html motivation.html 00-before-we-start.html 01-intro-to-R.html 02-starting-with-data.html 03-data-frames.html 04-dplyr.html 05-visualization-ggplot2.html 06-r-and-sql.html
 	make clean-md
 
 clean-skeleton:
