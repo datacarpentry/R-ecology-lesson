@@ -14,13 +14,17 @@
 
 <title>Manipulating and analyzing data with dplyr; Exporting data</title>
 
-<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
-<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
-<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
-<script src="libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
 
 
 <style type="text/css">code{white-space: pre;}</style>
@@ -123,6 +127,58 @@ button.code-folding-btn:focus {
 </style>
 
 
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
 
 <div class="container-fluid main-container">
 
@@ -138,7 +194,160 @@ $(document).ready(function () {
 
 
 
+<script>
+$(document).ready(function ()  {
 
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="00-before-we-start.html">Before we start</a>
+</li>
+<li>
+  <a href="01-intro-to-R.html">Intro to R</a>
+</li>
+<li>
+  <a href="02-starting-with-data.html">Starting with data</a>
+</li>
+<li>
+  <a href="03-data-frames.html">Introducing data frames</a>
+</li>
+<li>
+  <a href="04-dplyr.html">Manipulating data</a>
+</li>
+<li>
+  <a href="05-visualization-ggplot2.html">Visualizing data</a>
+</li>
+<li>
+  <a href="06-r-and-sql.html">R and SQL</a>
+</li>
+<li>
+  <a href="handout-script.R">Handout</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="http://datacarpentry.org"></a>
+</li>
+<li>
+  <a href="https://github.com/datacarpentry/R-ecology-lesson">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
 
 <div class="fluid-row" id="header">
 
@@ -149,19 +358,6 @@ $(document).ready(function () {
 
 </div>
 
-<div id="TOC">
-<ul>
-<li><a href="#data-manipulation-using-dplyr">Data Manipulation using dplyr</a><ul>
-<li><a href="#what-is-dplyr">What is <code>dplyr</code>?</a></li>
-<li><a href="#selecting-columns-and-filtering-rows">Selecting columns and filtering rows</a></li>
-<li><a href="#pipes">Pipes</a><ul>
-<li><a href="#mutate">Mutate</a></li>
-<li><a href="#split-apply-combine-data-analysis-and-the-summarize-function">Split-apply-combine data analysis and the summarize() function</a></li>
-</ul></li>
-</ul></li>
-<li><a href="#exporting-data">Exporting data</a></li>
-</ul>
-</div>
 
 <hr />
 <blockquote>
@@ -341,8 +537,14 @@ surveys_complete &lt;-<span class="st"> </span>surveys_complete %&gt;%
           <span class="dt">row.names=</span><span class="ot">FALSE</span>)</code></pre></div>
 </div>
 
+<hr/>
+
+<p><a href="http://datacarpentry.org/">Data Carpentry</a>, 2016. <a href="LICENSE.html">License</a>. Questions?
+  Feedback? Please <a href="https://github.com/datacarpentry/R-ecology-lesson/issues/new">file an issue on GitHub</a>.</p>
 
 
+</div>
+</div>
 
 </div>
 
