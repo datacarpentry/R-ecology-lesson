@@ -1,0 +1,34 @@
+navbar:
+  left:
+    - text: "Before we start"
+      href: 00-before-we-start.html
+    - text: "Intro to R"
+      href: 01-intro-to-R.html
+    - text: "Starting with data"
+      href: 02-starting-with-data.html
+    - text: "Introducing data frames"
+      href: 03-data-frames.html
+    - text: "Manipulating data"
+      href: 04-dplyr.html
+    - text: "Visualizing data"
+      href: 05-visualization-ggplot2.html
+    - text: "R and SQL"
+      href: 06-r-and-sql.html
+    - text: "Handout"
+      href: handout-script.R
+  right:
+    - image: img/DC1_logo_small.png
+      href: http://datacarpentry.org
+    - icon: fa-github fa-lg
+      href: https://github.com/datacarpentry/R-ecology-lesson
+output_dir: "."
+exclude: ["CONTRIBUT*.md","index.md","README.md","*.db"]
+include: ["*.Rmd","LICENSE.md"]
+output:
+  html_document:
+    highlight: tango
+    toc: true
+    toc_float:
+      collapsed: false
+    include:
+      after_body: footer.html
