@@ -9,6 +9,10 @@ source("setup.R")
 surveys <- read.csv("data/portal_data_joined.csv")
 ```
 
+```{r, echo=FALSE, purl=TRUE}
+## The dplyr lesson
+```
+
 ------------
 
 > ## Learning Objectives
@@ -58,7 +62,7 @@ with data stored in an external database. The benefits of doing this are
 that the data can be managed natively in a relational database, queries can be
 conducted on that database, and only the results of the query are returned.
 
-This addresses a common problem with R in that all operations are conducted 
+This addresses a common problem with R in that all operations are conducted
 in-memory and thus the amount of data you can work with is limited by available
 memory. The database connections essentially remove that limitation in that you
 can have a database of many 100s GB, conduct queries on it directly, and pull
@@ -87,7 +91,7 @@ filter(surveys, year == 1995)
 
 ## Pipes
 
-But what if you wanted to select and filter at the same time? There are three 
+But what if you wanted to select and filter at the same time? There are three
 ways to do this: use intermediate steps, nested functions, or pipes.
 
 With intermediate steps, you essentially create a temporary data frame and use
@@ -108,11 +112,11 @@ surveys %>%
   select(species_id, sex, weight)
 ```
 
-In the above, we use the pipe to send the `surveys` data set first through 
+In the above, we use the pipe to send the `surveys` data set first through
 `filter()` to keep rows where `weight` is less than 5, then through `select()`
 to keep only the `species_id`, `sex`, and `weight` columns. Since `%>%` takes
 the object on its left and passes it as the first argument to the function on
-its right, we don't need to explicitly include it as an argument to the 
+its right, we don't need to explicitly include it as an argument to the
 `filter()` and `select()` functions anymore.
 
 If we wanted to create a new object with this smaller version of the data, we
@@ -142,6 +146,12 @@ surveys %>%
 ```
 --->
 
+    ```{r, eval=FALSE, purl=TRUE, echo=FALSE}
+    ## Pipes Challenge:
+    ##  Using pipes, subset the data to include individuals collected
+    ##  before 1995, and retain the columns `year`, `sex`, and `weight.`
+
+    ```
 
 ### Mutate
 
@@ -170,7 +180,7 @@ Note that we don't include parentheses at the end of our call to `head()` above.
 When piping into a function with no additional arguments, you can call the
 function with or without parentheses (e.g. `head` or `head()`).
 
-The first few rows of the output are full of `NA`s, so if we wanted to remove 
+The first few rows of the output are full of `NA`s, so if we wanted to remove
 those we could insert a `filter()` in the chain:
 
 ```{r, purl = FALSE}
@@ -180,14 +190,14 @@ surveys %>%
   head
 ```
 
-`is.na()` is a function that determines whether something is an `NA`. The `!` 
+`is.na()` is a function that determines whether something is an `NA`. The `!`
 symbol negates the result, so we're asking for everything that *is not* an `NA`.
 
 > ### Challenge {.challenge}
 >
 >  Create a new data frame from the `survey` data that meets the following
 >  criteria: contains only the `species_id` column and a new column called
->  `hindfoot_half` containing values that are half the `hindfoot_length` values. 
+>  `hindfoot_half` containing values that are half the `hindfoot_length` values.
 >  In this `hindfoot_half` column, there are no `NA`s and all values are less
 >  than 30.
 >
@@ -203,6 +213,18 @@ surveys_hindfoot_half <- surveys %>%
     select(species_id, hindfoot_half)
 ```
 --->
+
+    ```{r, eval=FALSE, purl=TRUE, echo=FALSE}
+    ## Mutate Challenge:
+    ##  Create a new dataframe from the survey data that meets the following
+    ##  criteria: contains only the `species_id` column and a column that
+    ##  contains values that are half the `hindfoot_length` values (e.g. a
+    ##  new column `hindfoot_half`). In this `hindfoot_half` column, there are
+    ##  no NA values and all values are < 30.
+
+    ##  Hint: think about how the commands should be ordered to produce this data frame!
+
+    ```
 
 ### Split-apply-combine data analysis and the summarize() function
 
@@ -250,10 +272,10 @@ surveys %>%
 You may also have noticed that the output from these calls doesn't run off the
 screen anymore. That's because `dplyr` has changed our `data.frame` to a
 `tbl_df`. The `tbl` data structure is very similar to a data frame; for our
-purposes the only difference is that, in addition to displaying the data type 
+purposes the only difference is that, in addition to displaying the data type
 of each column under its name, it only prints the first few rows of data and
-only as many columns as fit on one screen. If you want to display more data, you 
-use the `print()` function at the end of your chain with the argument `n` 
+only as many columns as fit on one screen. If you want to display more data, you
+use the `print()` function at the end of your chain with the argument `n`
 specifying the number of rows to display:
 
 ```{r, purl = FALSE}
@@ -295,25 +317,27 @@ counts the total number of records for each category.
 
 > ### Challenge {.challenge}
 >
-> How many individuals were caught in each `plot_type` surveyed?
+> 1. How many individuals were caught in each `plot_type` surveyed?
+>
+> 2. Use `group_by()` and `summarize()` to find the mean, min, and max hindfoot
+> length for each species (using `species_id`).
+>
+> 3. What was the heaviest animal measured in each year? Return the columns `year`,
+> `genus`, `species_id`, and `weight`.
+>
+> 4. You saw above how to count the number of individuals of each `sex` using a
+> combination of `group_by()` and `tally()`. How could you get the same result
+> using `group_by()` and `summarize()`? Hint: see `?n`.
+
 
 <!---
 ```{r, echo=FALSE, purl=FALSE}
-## Answer
+## Answer 1
 surveys %>%
     group_by(plot_type) %>%
     tally
-```
---->
 
-> ### Challenge {.challenge}
->
-> Use `group_by()` and `summarize()` to find the mean, min, and max hindfoot
-> length for each species (using `species_id`).
-
-<!---
-```{r, echo=FALSE, purl=FALSE}
-## Answer
+## Answer 2
 surveys %>%
     filter(!is.na(hindfoot_length)) %>%
     group_by(species_id) %>%
@@ -322,57 +346,54 @@ surveys %>%
         min_hindfoot_length = min(hindfoot_length),
         max_hindfoot_length = max(hindfoot_length)
     )
-```
---->
 
-> ### Challenge {.challenge}
->
-> What was the heaviest animal measured in each year? Return the columns `year`,
-> `genus`, `species_id`, and `weight`.
-
-<!---
-## Answer
-```{r, echo=FALSE, purl=FALSE}
+## Answer 3
 surveys %>%
     filter(!is.na(weight)) %>%
     group_by(year) %>%
     filter(weight == max(weight)) %>%
     select(year, genus, species, weight) %>%
     arrange(year)
-```
---->
 
-> ### Challenge {.challenge}
->
-> You saw above how to count the number of individuals of each `sex` using a 
-> combination of `group_by()` and `tally()`. How could you get the same result 
-> using `group_by()` and `summarize()`? Hint: see `?n`.
-
-<!---
-## Answer
-```{r, echo=FALSE, purl=FALSE}
+## Answer 4
 surveys %>%
   group_by(sex) %>%
   summarize(n = n())
 ```
 --->
 
+```{r, eval=FALSE, purl=TRUE, echo=FALSE}
+## Tally Challenges:
+##  1. How many individuals were caught in each `plot_type` surveyed?
+
+##  2. Use `group_by()` and `summarize()` to find the mean, min, and
+##  max hindfoot length for each species (using `species_id`).
+
+##  3. What was the heaviest animal measured in each year? Return the
+##  columns `year`, `genus`, `species_id`, and `weight`.
+
+## 4. You saw above how to count the number of individuals of each `sex` using a
+## combination of `group_by()` and `tally()`. How could you get the same result
+## using `group_by()` and `summarize()`? Hint: see `?n`.
+
+```
+
 # Exporting data
 
-Now that you have learned how to use `dplyr` to extract information from or 
-summarize your raw data, you may want to export these new datasets to share 
+Now that you have learned how to use `dplyr` to extract information from or
+summarize your raw data, you may want to export these new datasets to share
 them with your collaborators or for archival.
 
 Similar to the `read.csv()` function used for reading CSVs into R, there is a
 `write.csv()` function that generates CSV files from data frames.
 
-Before using `write.csv()`, we are going to create a new folder, `data_output`, 
+Before using `write.csv()`, we are going to create a new folder, `data_output`,
 in our working directory that will store this generated dataset. We don't want
 to write generated datasets in the same directory as our raw data. It's good
 practice to keep them separate. The `data` folder should only contain the raw,
 unaltered data, and should be left alone to make sure we don't delete or modify
-it. In contrast, our script will generate the contents of the `data_output` 
-directory, so even if the files it contains are deleted, we can always 
+it. In contrast, our script will generate the contents of the `data_output`
+directory, so even if the files it contains are deleted, we can always
 re-generate them.
 
 In preparation for our next lesson on plotting, we are going to prepare a
@@ -381,7 +402,7 @@ cleaned up version of the dataset that doesn't include any missing data.
 Let's start by removing observations for which the `species_id` is missing. In
 this dataset, the missing species are represented by an empty string and not an
 `NA`. Let's also remove observations for which `weight` and the
-`hindfoot_length` are missing. This dataset should also only contain 
+`hindfoot_length` are missing. This dataset should also only contain
 observations of animals for which the sex has been determined:
 
 
@@ -411,6 +432,30 @@ species_counts <- surveys_complete %>%
 surveys_complete <- surveys_complete %>%
   filter(species_id %in% species_counts$species_id)
 ```
+
+    ```{r, eval=FALSE, purl=TRUE, echo=FALSE}
+    ### Create the dataset for exporting:
+    ##  Start by removing observations for which the `species_id`, `weight`,
+    ##  `hindfoot_length`, or `sex` data are missing:
+    surveys_complete <- surveys %>%
+      filter(species_id != "",        # remove missing species_id
+      !is.na(weight),                 # remove missing weight
+		  !is.na(hindfoot_length),        # remove missing hindfoot_length
+		  sex != "")                      # remove missing sex
+
+    ##  Now remove rare species in two steps. First, make a list of species which
+    ##  appear at least 50 times in our dataset:
+    species_counts <- surveys_complete %>%
+                  group_by(species_id) %>%
+                  tally %>%
+				          filter(n >= 50) %>%
+				          select(species_id)
+
+    ##  Second, keep only those species:
+    surveys_complete <- surveys_complete %>%
+                 filter(species_id %in% species_counts$species_id)
+
+    ```
 
 To make sure that everyone has the same dataset, check that
 `surveys_complete` has `r nrow(surveys_complete)` rows and `r ncol(surveys_complete)`
