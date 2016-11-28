@@ -332,13 +332,15 @@ planets <- c("Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus",
              "Neptune", NA)
 ```
 
-The default setting for most base functions that read data into R is to interpret
-`NA` as a missing value. If there are multiple types of missing values in your
-dataset, you can extend what R considers a missing value when it reads the file in.
-To do this we supply additional values in the "na.strings" component of the command 
-to read in the data:
+The default setting for most base functions that read data into R is to
+interpret `NA` as a missing value. If there are multiple types of missing values
+in your dataset, you can extend what R considers a missing value when it reads
+the file in.  To do this you supply additional values to the "`na.strings`"
+argument of the command to read in the data. For instance, if you wanted to read
+in a CSV file named `planets.csv` that had missing values represented as empty
+cell, a single blank space, and the value -999, you would use:
 
-```{r, purl=FALSE}
+```{r, eval=FALSE, purl=FALSE}
 planets_df <- read.csv(file = "planets.csv", na.strings = c("", " ", "-999"))
 ```
 
