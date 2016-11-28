@@ -19,6 +19,7 @@
 <script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="libs/navigation-1.1/tabsets.js"></script>
 
 
 <style type="text/css">code{white-space: pre;}</style>
@@ -125,7 +126,6 @@ button.code-folding-btn:focus {
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
-<script src="libs/navigation-1.1/tabsets.js"></script>
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
@@ -265,14 +265,10 @@ surveys_plot +<span class="st"> </span><span class="kw">geom_point</span>()</cod
 <ul>
 <li><p>Represent weight on the log10 scale; see <code>scale_y_log10()</code></p></li>
 <li><p>Create boxplot for <code>hindfoot_length</code>.</p></li>
+<li><p>Add color to the datapoints on your boxplot according to the plot from which the sample was taken (<code>plot_id</code>)</p></li>
 </ul>
 </blockquote>
-<blockquote>
-<ul>
-<li>Add color to the datapoints on your boxplot according to the plot from which the sample was taken (<code>plot_id</code>)</li>
-</ul>
-</blockquote>
-<p>hint: Check the class for <code>plot_id</code>. Consider changing the class of <code>plot_id</code> from integer to factor. Why does this change how R makes the graph?</p>
+<p>Hint: Check the class for <code>plot_id</code>. Consider changing the class of <code>plot_id</code> from integer to factor. Why does this change how R makes the graph?</p>
 </div>
 <div id="plotting-time-series-data" class="section level2">
 <h2>Plotting time series data</h2>
@@ -314,7 +310,7 @@ surveys_plot +<span class="st"> </span><span class="kw">geom_point</span>()</cod
 <span class="st">     </span><span class="kw">geom_line</span>() +
 <span class="st">     </span><span class="kw">facet_wrap</span>(~<span class="st"> </span>species_id) +
 <span class="st">     </span><span class="kw">theme_bw</span>() +
-<span class="st">     </span><span class="kw">theme</span>(<span class="dt">panel.grid.major.x =</span> <span class="kw">element_blank</span>(), 
+<span class="st">     </span><span class="kw">theme</span>(<span class="dt">panel.grid.major.x =</span> <span class="kw">element_blank</span>(),
        <span class="dt">panel.grid.minor.x =</span> <span class="kw">element_blank</span>(),
        <span class="dt">panel.grid.major.y =</span> <span class="kw">element_blank</span>(),
        <span class="dt">panel.grid.minor.y =</span> <span class="kw">element_blank</span>())</code></pre></div>
@@ -432,8 +428,11 @@ yearly_sex_weight &lt;-<span class="st"> </span>surveys_complete %&gt;%
 <script>
 
 // add bootstrap table styles to pandoc tables
-$(document).ready(function () {
+function bootstrapStylePandocTables() {
   $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
 });
 
 

@@ -20,6 +20,7 @@
 <script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="libs/navigation-1.1/tabsets.js"></script>
 
 
 <style type="text/css">code{white-space: pre;}</style>
@@ -126,7 +127,6 @@ button.code-folding-btn:focus {
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
-<script src="libs/navigation-1.1/tabsets.js"></script>
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
@@ -178,10 +178,8 @@ $(document).ready(function () {
 <h1>Connecting R to sqlite databases</h1>
 <p>R can connect to databases through a number of packages. In our case we will use <a href="http://cran.r-project.org/web/packages/RSQLite/index.html">RSQLite</a> to connect to existing SQLite3 databases. However you should be able to connect to almost any database in R via <a href="http://cran.r-project.org/web/packages/RJDBC/index.html">JDBC</a> or <a href="http://cran.r-project.org/web/packages/RODBC/index.html">ODBC</a>, or specific database packages (such as we are doing, or <a href="http://cran.r-project.org/web/packages/RMySQL/index.html">MySQL</a> ).</p>
 <p>To begin these exercises we’ll connect to the mammal database you’ve just created. We’ll need the RSQLite package so be sure to install it first. <code>install.packages('RSQLite')</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(RSQLite)</code></pre></div>
-<pre><code>#&gt; Loading required package: DBI</code></pre>
-<pre><code>#&gt; Loading required package: methods</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Set dbname and driver out of convenience
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(RSQLite)
+## Set dbname and driver out of convenience
 myDB &lt;-<span class="st"> &quot;data/portal_mammals.sqlite&quot;</span>
 conn &lt;-<span class="st"> </span><span class="kw">dbConnect</span>(<span class="dt">drv =</span> <span class="kw">SQLite</span>(), <span class="dt">dbname=</span> myDB)</code></pre></div>
 <p>Now we’re connected to our database, let’s explore the table structure in the database. Remember we could see the list of tables in the SQLite Firefox gui. In R, we’ll need to use SQL commands.</p>
@@ -285,8 +283,11 @@ myConn &lt;-<span class="st"> </span><span class="kw">dbConnect</span>(<span cla
 <script>
 
 // add bootstrap table styles to pandoc tables
-$(document).ready(function () {
+function bootstrapStylePandocTables() {
   $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
 });
 
 

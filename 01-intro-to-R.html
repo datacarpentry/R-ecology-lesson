@@ -20,6 +20,7 @@
 <script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="libs/navigation-1.1/tabsets.js"></script>
 
 
 <style type="text/css">code{white-space: pre;}</style>
@@ -126,7 +127,6 @@ button.code-folding-btn:focus {
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
-<script src="libs/navigation-1.1/tabsets.js"></script>
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
@@ -315,6 +315,8 @@ animals[animals ==<span class="st"> &quot;cat&quot;</span> |<span class="st"> </
 <p>As R was designed to analyze datasets, it includes the concept of missing data (which is uncommon in other programming languages). Missing data are represented in vectors as <code>NA</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">planets &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Mercury&quot;</span>, <span class="st">&quot;Venus&quot;</span>, <span class="st">&quot;Earth&quot;</span>, <span class="st">&quot;Mars&quot;</span>, <span class="st">&quot;Jupiter&quot;</span>, <span class="st">&quot;Saturn&quot;</span>, <span class="st">&quot;Uranus&quot;</span>,
              <span class="st">&quot;Neptune&quot;</span>, <span class="ot">NA</span>)</code></pre></div>
+<p>The default setting for most base functions that read data into R is to interpret <code>NA</code> as a missing value. If there are multiple types of missing values in your dataset, you can extend what R considers a missing value when it reads the file in. To do this you supply additional values to the “<code>na.strings</code>” argument of the command to read in the data. For instance, if you wanted to read in a CSV file named <code>planets.csv</code> that had missing values represented as empty cell, a single blank space, and the value -999, you would use:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">planets_df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="dt">file =</span> <span class="st">&quot;planets.csv&quot;</span>, <span class="dt">na.strings =</span> <span class="kw">c</span>(<span class="st">&quot;&quot;</span>, <span class="st">&quot; &quot;</span>, <span class="st">&quot;-999&quot;</span>))</code></pre></div>
 <p>When doing operations on numbers, most functions will return <code>NA</code> if the data you are working with include missing values. It is a safer behavior as otherwise you may overlook that you are dealing with missing data. You can add the argument <code>na.rm=TRUE</code> to calculate the result while ignoring the missing values.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">heights &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="ot">NA</span>, <span class="dv">6</span>)
 <span class="kw">mean</span>(heights)
@@ -355,8 +357,11 @@ heights[<span class="kw">complete.cases</span>(heights)]</code></pre></div>
 <script>
 
 // add bootstrap table styles to pandoc tables
-$(document).ready(function () {
+function bootstrapStylePandocTables() {
   $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
 });
 
 
