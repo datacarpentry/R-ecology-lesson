@@ -50,8 +50,6 @@ library(dplyr)
 
 ## Plotting with ggplot2
 
-We will make the same plot using the `ggplot2` package.
-
 `ggplot2` is a plotting package that makes it simple to create complex plots
 from data in a dataframe. It uses default settings, which help creating
 publication quality plots with a minimal amount of settings and tweaking.
