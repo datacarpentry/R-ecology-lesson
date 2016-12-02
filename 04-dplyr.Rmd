@@ -19,11 +19,13 @@ surveys <- read.csv("data/portal_data_joined.csv")
 >
 > By the end of this lesson the learner will:
 >
-> * Know the six basic data manipulation 'verbs' in the dplyr package
-> * Be able to select subsets of columns from a dataframe, and filter rows according to a condition(s)
-> * Use the 'pipe' operator to link together a sequence of dplyr verbs
-> * Be able to create new columns of data by applying functions to existing columns using the 'mutate' command
-> * Know how to export a dataframe to a csv file using write.csv
+> * List the six basic data manipulation 'verbs' in the dplyr package
+> * Select subsets of columns from a dataframe, and filter rows 
+according to a condition(s)
+> * Link together a sequence of dplyr verbs using the 'pipe' operator
+> * Create new columns of data by applying functions to existing columns 
+using the 'mutate' command
+> * Export a dataframe to a csv file using write.csv
 
 ------------
 
