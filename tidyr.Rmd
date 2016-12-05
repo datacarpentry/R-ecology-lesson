@@ -1,0 +1,55 @@
+---
+layout: topic
+title: Tidy Data - A foundation for wrangling in R
+author: Data Carpentry contributors
+---
+
+
+```{r, echo=FALSE, message = FALSE}
+setwd("/Users/kivan/repos/R-ecology-lesson")
+```
+
+```{r, echo=FALSE, purl=FALSE, message = FALSE, warning=FALSE}
+source("setup.R")
+surveys <- read.csv("data/portal_data_joined.csv")
+```
+
+------------
+
+# Defining data structure with tidyr
+
+Tidying messy datasets
+
+Real datasets can, and often do, violate the three precepts of tidy data in almost every way imaginable. While occasionally you do get a dataset that you can start analysing immediately, this is the exception, not the rule. This section describes the five most common problems with messy datasets, along with their remedies:
+
+* Column headers are values, not variable names.
+* Multiple variables are stored in one column.
+* Variables are stored in both rows and columns.
+* Multiple types of observational units are stored in the same table.
+* A single observational unit is stored in multiple tables.
+
+```{r, eval = FALSE, purl = FALSE}
+install.packages("tidyr")
+```
+
+
+```{r, message = FALSE, purl = FALSE}
+library("tidyr")    ## load the package
+```
+
+## What is `tidyr`? ##
+
+The package `tidyr` 
+
+
+
+To learn more about `tidyr` after the workshop, you may want to check out this
+[handy tidyr cheatsheet](http://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf).
+
+## Data semantics
+
+A dataset is a collection of values, usually either numbers (if quantitative) or strings (if qualitative). Values are organised in two ways. Every value belongs to a variable and an observation. A variable contains all values that measure the same underlying attribute (like height, temperature, duration) across units. An observation contains all values measured on the same unit (like a person, or a day, or a race) across attributes.
+
+A tidy version of the pregnancy data looks like this: (you’ll learn how the functions work a little later)
+
+## Column headers are values, not variable names
