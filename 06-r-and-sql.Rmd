@@ -13,10 +13,9 @@ if (file.exists("portalR.db")) file.remove("portalR.db")
 >
 >  By the end of this lesson the learner will:
 >
-> * Know how to connect R to an existing database
-> * Be able to use SQL syntax inside R to to query a database and return a subset of data
-> * Be able to use R and SQL to create a new database from existing csv files.
-> * Understand that scripted database interactions enhance the reproducibility of their analysis
+> * Access and run a SQL query in R.
+> * Create a database from an existing .csv file using SQL syntax.
+> * Recognize how scripted database interactions enhance the reproducibility of data analysis. 
 
 ------------
 
