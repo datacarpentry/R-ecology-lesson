@@ -13,10 +13,10 @@ source("setup.R")
 
 > ## Learning Objectives
 >
-> * load external data (CSV files) in memory using the survey table
->  (`surveys.csv`) as an example
-> * explore the structure and the content of a data frame in R
-> * understand what factors are and how to manipulate them
+> * Describe what a data.frame is.
+> * Summarize the contents of a dataframe in R.
+> * Load external data from a .csv file into R.
+> * Manipulate categorical data in R.
 
 ------------
 
