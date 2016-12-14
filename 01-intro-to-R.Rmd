@@ -14,10 +14,13 @@ source("setup.R")
 
 > ## Learning Objectives
 >
-> * Familiarize participants with R syntax
-> * Understand the concepts of objects and assignment
-> * Understand the concepts of vector and data types
-> * Get exposed to a few functions
+> * Solve mathematical operations in R.
+> * Assign values to objects and variables in R.
+> * Describe what vectors are and how they are manipulated in R.
+> * Inspect the content of vectors in R and manipulate their content.
+> * Extract values from vectors in R.
+> * Employ logic (i.e. TRUE, FALSE) to subset data in a vector.
+> * Analyze vectors with missing data.
 
 ------------
 
