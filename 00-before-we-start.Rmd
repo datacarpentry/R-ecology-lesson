@@ -15,18 +15,14 @@ knitr::opts_chunk$set(results='hide', fig.path='img/r-lesson-')
 >
 > After completing this module, the learner should be able to:
 >
-> * Organize files and directories related to a particular set of analyses in an
->   R Project within RStudio
-> * Define the following (as they apply to R): Script, function, working
->   directory, assign, object, variable
-> * Describe the purpose of the RStudio script, console, environment, and plot
->   windows
-> * Assign values to variables
-> * Call functions with zero or more named or unnamed arguments
+> * Describe the purpose of the RStudio script, console, environment, and plot windows. 
+> * Organize files and directories for a set of analysis in an R Project.
+> * Define the following terms as they relate to R: script, function, working directory, assign, object, variable.
+> * Assign values to variables.
+> * Call functions with zero or more named or unnamed arguments.
 > * Use the built-in RStudio help interface to search for more information on R
->   functions
-> * Ask for help from the R user community, providing sufficient information for
->   the problem to be reproduced and troubleshooted
+>   functions.
+> * Demonstrate how to provide sufficient information for troubleshooting with the R user community.
 
 ------------
 
