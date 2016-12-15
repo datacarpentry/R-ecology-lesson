@@ -18,11 +18,11 @@ surveys <- read.csv("data/portal_data_joined.csv")
 
 > ## Learning Objectives
 >
-> * describe what a `data.frame` is
-> * read data from a file into a `data.frame` and change how character strings are handled
-> * summarize the size and data types of a `data.frame` 
-> * write a command to print a sequence of numbers
-> * subset part of a `data.frame` e.g. particular rows or columns
+> * Read data from a file into a data.frame.
+> * Change how character strings are handled in a data.frame.
+> * Summarize the size and data types of a data.frame 
+> * Write a command to print a sequence of numbers.
+> * Subset data in a data.frame.
 
 ------------
 
