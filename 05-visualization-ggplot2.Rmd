@@ -29,15 +29,11 @@ structured data.
 >
 > By the end of this lesson the learner will:
 >
-> * Be able to create a ggplot object
-> * Be able to set universal plot settings
-> * Be able to modify an existing ggplot object
-> * Be able to change the aesthetics of a plot such as colour
-> * Be able to edit the axis labels
-> * Know how to use a step-by-step approach to build complex plots
-> * Be able to create, scatter plots, box plots and time series plots
-> * Use the facet_wrap and facet_grid commands to create a collection of plots splitting the data by a factor variable
-> * Be able to create customized plot styles to meet their needs
+> * Produce scatter plots, bloxplots, and time series plots using ggplot.
+> * Set universal plot settings.
+> * Modify the aesthetics of an existing ggplot plot (including axis labels and color).
+> * Build complex and customized plots from data in a dataframe.
+
 
 We start by loading the required packages.
 
