@@ -39,7 +39,7 @@ work.
 
 RStudio provides a helpful set of tools to do this through its "Projects"
 interface, which not only creates a working directory for you but also
-remembers its location (allowing you to quickly navigate to it) and optonally
+remembers its location (allowing you to quickly navigate to it) and optionally
 preserves custom settings and open files to make it easier to resume work after
 a break. Below, we will go through the steps for creating an RProject for this
 tutorial.
