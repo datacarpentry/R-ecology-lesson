@@ -321,7 +321,7 @@ end up with general error messages that might not be very helpful to diagnose a
 problem (e.g. "subscript out of bounds"). If the message is very generic, you might
 also include the name of the function or package you're using in your query.
 
-However, you should check StackOverflow. Search using the `[r]` tag. Most
+However, you should check Stack Overflow. Search using the `[r]` tag. Most
 questions have already been answered, but the challenge is to use the right
 words in the search to find the answers:
 [http://stackoverflow.com/questions/tagged/r](http://stackoverflow.com/questions/tagged/r)
@@ -371,7 +371,7 @@ saveRDS(iris, file="/tmp/iris.rds")
 ```
 
 The content of this file is however not human readable and cannot be posted
-directly on stackoverflow. It can however be sent to someone by email who can
+directly on Stack Overflow. It can however be sent to someone by email who can
 read it with this command:
 
 ```{r, eval=FALSE, purl=FALSE}
@@ -391,7 +391,7 @@ sessionInfo()
 
 * Your friendly colleagues: if you know someone with more experience than you,
   they might be able and willing to help you.
-* [StackOverflow](http://stackoverflow.com/questions/tagged/r): if your question
+* [Stack Overflow](http://stackoverflow.com/questions/tagged/r): if your question
   hasn't been answered before and is well crafted, chances are you will get an
   answer in less than 5 min. Remember to follow their guidelines on [how to ask
   a good question](http://stackoverflow.com/help/how-to-ask).
