@@ -413,6 +413,7 @@ weight_g</code></pre></div>
 <p>A vector can also contain characters:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">animals &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;mouse&quot;</span>, <span class="st">&quot;rat&quot;</span>, <span class="st">&quot;dog&quot;</span>)
 animals</code></pre></div>
+<p>The quotes around “mouse”, “rat”, etc. are essential here. Without the quotes R will assume there is a variable called mouse, rat, etc.</p>
 <p>There are many functions that allow you to inspect the content of a vector. <code>length()</code> tells you how many elements are in a particular vector:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>(weight_g)
 <span class="kw">length</span>(animals)</code></pre></div>
@@ -446,7 +447,7 @@ num_logical &lt;-<span class="st"> </span><span class="kw">c</span>(<span class=
 char_logical &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;a&#39;</span>, <span class="st">&#39;b&#39;</span>, <span class="st">&#39;c&#39;</span>, <span class="ot">TRUE</span>)
 tricky &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="st">&#39;4&#39;</span>)</code></pre></div>
 <ul>
-<li><p><strong>Question</strong>: Why do you think it happens? <!-- * _Answer_: Vectors can be of only one data type. R tries to convert (=coerce)
+<li><p><strong>Question</strong>: Why do you think it happens? <!-- * _Answer_: Vectors can be of only one data type. R tries to convert (coerce)
   the content of this vector to find a "common denominator". --></p></li>
 <li><p><strong>Question</strong>: Can you draw a diagram that represents the hierarchy of the data types? <!-- * _Answer_: `logical -> numeric -> character <-- logical` --></p></li>
 </ul>
@@ -482,7 +483,8 @@ weight_g[weight_g &gt;<span class="st"> </span><span class="dv">50</span>]</code
 <pre><code>#&gt; [1] 21 54 55</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">weight_g[weight_g &gt;=<span class="st"> </span><span class="dv">30</span> &amp;<span class="st"> </span>weight_g ==<span class="st"> </span><span class="dv">21</span>]</code></pre></div>
 <pre><code>#&gt; numeric(0)</code></pre>
-<p>When working with vectors of characters, if you are trying to combine many conditions it can become tedious to type. The function <code>%in%</code> allows you to test if a value is found in a vector:</p>
+<p>Here, <code>&lt;</code> stands for “smaller than”, <code>&gt;</code> or “bigger than”, <code>&gt;=</code> for “bigger or equal to”, and <code>==</code> for “equal to”. The double equal sign <code>==</code> should not be confused with the single <code>=</code> sign, which assigns to a variable (roughly speaking the same as “&lt;-”).</p>
+<p>A common task is to search for certain strings in a vector. One could use the “or” operator <code>|</code> but this can become quickly tedious. The function <code>%in%</code> allows you to test if a value is found in a vector:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">animals &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;mouse&quot;</span>, <span class="st">&quot;rat&quot;</span>, <span class="st">&quot;dog&quot;</span>, <span class="st">&quot;cat&quot;</span>)
 animals[animals ==<span class="st"> &quot;cat&quot;</span> |<span class="st"> </span>animals ==<span class="st"> &quot;rat&quot;</span>] <span class="co"># returns both rat and cat</span></code></pre></div>
 <pre><code>#&gt; [1] &quot;rat&quot; &quot;cat&quot;</code></pre>
@@ -513,7 +515,7 @@ animals[animals ==<span class="st"> &quot;cat&quot;</span> |<span class="st"> </
              <span class="st">&quot;Neptune&quot;</span>, <span class="ot">NA</span>)</code></pre></div>
 <p>The default setting for most base functions that read data into R is to interpret <code>NA</code> as a missing value. If there are multiple types of missing values in your dataset, you can extend what R considers a missing value when it reads the file in. To do this you supply additional values to the “<code>na.strings</code>” argument of the command to read in the data. For instance, if you wanted to read in a CSV file named <code>planets.csv</code> that had missing values represented as empty cell, a single blank space, and the value -999, you would use:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">planets_df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="dt">file =</span> <span class="st">&quot;planets.csv&quot;</span>, <span class="dt">na.strings =</span> <span class="kw">c</span>(<span class="st">&quot;&quot;</span>, <span class="st">&quot; &quot;</span>, <span class="st">&quot;-999&quot;</span>))</code></pre></div>
-<p>When doing operations on numbers, most functions will return <code>NA</code> if the data you are working with include missing values. It is a safer behavior as otherwise you may overlook that you are dealing with missing data. You can add the argument <code>na.rm=TRUE</code> to calculate the result while ignoring the missing values.</p>
+<p>When doing operations on numbers, most functions will return <code>NA</code> if the data you are working with include missing values. It is a safer behavior as otherwise you may overlook the fact that you are dealing with missing data. You can add the argument <code>na.rm=TRUE</code> to calculate the result while ignoring the missing values.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">heights &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="ot">NA</span>, <span class="dv">6</span>)
 <span class="kw">mean</span>(heights)
 <span class="kw">max</span>(heights)
