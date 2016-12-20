@@ -217,7 +217,7 @@ tricky <- c(1, 2, 3, '4')
 ```
 
 * **Question**: Why do you think it happens?
-<!-- * _Answer_: Vectors can be of only one data type. R tries to convert (=coerce)
+<!-- * _Answer_: Vectors can be of only one data type. R tries to convert (coerce)
   the content of this vector to find a "common denominator". -->
 
 * **Question**: Can you draw a diagram that represents the hierarchy of the data
@@ -297,6 +297,11 @@ You can combine multiple tests using `&` (both conditions are true, AND) or `|`
 weight_g[weight_g < 30 | weight_g > 50]
 weight_g[weight_g >= 30 & weight_g == 21]
 ```
+
+Here, "<" stands for "smaller than", ">" or "bigger than", ">=" for "bigger or 
+equal to", and "==" for "equal to". The double equal sign "==" should not be confused 
+with the single "=" sign, which assigns to a variable (roughly speaking the same as
+"<-").
 
 When working with vectors of characters, if you are trying to combine many
 conditions it can become tedious to type. The function `%in%` allows you to test
