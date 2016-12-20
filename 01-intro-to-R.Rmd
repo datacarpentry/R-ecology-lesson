@@ -141,6 +141,9 @@ animals <- c("mouse", "rat", "dog")
 animals
 ```
 
+The quotes around "mouse", "rat", etc. are essential here. Without the quotes R
+will assume there is a variable called mouse, rat, etc. 
+
 There are many functions that allow you to inspect the content of a
 vector. `length()` tells you how many elements are in a particular vector:
 
