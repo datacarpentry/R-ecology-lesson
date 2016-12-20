@@ -76,8 +76,8 @@ head(surveys)
 ```
 
 A `data.frame` is the representation of data in the format of a table where the
-columns are vectors that all have the same length. Because each column is a
-vector, they all contain the same type of data. We can see this when inspecting
+columns are vectors that all have the same length. Because the column are
+vectors, they all contain the same type of data. We can see this when inspecting
 the __str__ucture of a `data.frame` with the function `str()`:
 
 ```{r, purl=FALSE}
