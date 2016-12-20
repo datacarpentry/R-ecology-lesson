@@ -298,13 +298,13 @@ weight_g[weight_g < 30 | weight_g > 50]
 weight_g[weight_g >= 30 & weight_g == 21]
 ```
 
-Here, "<" stands for "smaller than", ">" or "bigger than", ">=" for "bigger or 
-equal to", and "==" for "equal to". The double equal sign "==" should not be confused 
-with the single "=" sign, which assigns to a variable (roughly speaking the same as
+Here, `<` stands for "smaller than", `>` or "bigger than", `>=` for "bigger or 
+equal to", and `==` for "equal to". The double equal sign `==` should not be confused 
+with the single `=` sign, which assigns to a variable (roughly speaking the same as
 "<-").
 
-When working with vectors of characters, if you are trying to combine many
-conditions it can become tedious to type. The function `%in%` allows you to test
+A common task is to search for certain strings in a vector. One could use the "or" 
+operator `|` but this can become quickly tedious. The function `%in%` allows you to test
 if a value is found in a vector:
 
 ```{r, results='show', purl=FALSE}
