@@ -159,8 +159,8 @@ you're in RStudio and this happens, click inside the console window and press
 
 # Basics of R
 
-R is a versatile, open source programming/scripting language that's useful both
-for statistics but also data science. Inspired by the programming language S.
+R is a versatile, open source programming/scripting language inspired by the 
+programming language S, which is useful both for statistics and data science.
 
 * Free/Libre/Open Source Software under the [GPL version 2](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html).
 * Superior (if not just comparable) to commercial alternatives. R has over 7,000
