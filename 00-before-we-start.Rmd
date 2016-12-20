@@ -137,7 +137,7 @@ sent to the console and executed when you press <kbd>`Ctrl`</kbd> +
 <kbd>`Enter`</kbd>.
 
 At some point in your analysis you may want to check the content of a variable or
-the structure of an object, without necessarily keep a record of it in your
+the structure of an object, without necessarily keeping a record of it in your
 script. You can type these commands and execute them directly in the console.
 RStudio provides the <kbd>`Ctrl`</kbd> + <kbd>`1`</kbd> and <kbd>`Ctrl`</kbd> +
 <kbd>`2`</kbd> shortcuts allow you to jump between the script and the console
