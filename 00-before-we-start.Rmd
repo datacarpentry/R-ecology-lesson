@@ -39,7 +39,7 @@ work.
 
 RStudio provides a helpful set of tools to do this through its "Projects"
 interface, which not only creates a working directory for you but also
-remembers its location (allowing you to quickly navigate to it) and optonally
+remembers its location (allowing you to quickly navigate to it) and optionally
 preserves custom settings and open files to make it easier to resume work after
 a break. Below, we will go through the steps for creating an RProject for this
 tutorial.
@@ -121,8 +121,7 @@ commands.
 There are two main ways of interacting with R: using the console or by using
 script files (plain text files that contain your code). We want our code and
 workflow to be reproducible. In other words, we want to write code in a way that
-anyone can easily replicate, such they can obtain the same results from our code
-on their computer.
+anyone can easily replicate our results on their computer.
 
 The console pane (in RStudio, the bottom left panel) is the place where R is
 waiting for you to tell it what to do, and where it will show the results of a
@@ -137,8 +136,8 @@ line in the script or all of the commands in the currently selected text will be
 sent to the console and executed when you press <kbd>`Ctrl`</kbd> +
 <kbd>`Enter`</kbd>.
 
-At some point in your analysis you may want to check the content of variable or
-the structure of an object, without necessarily keep a record of it in your
+At some point in your analysis you may want to check the content of a variable or
+the structure of an object, without necessarily keeping a record of it in your
 script. You can type these commands and execute them directly in the console.
 RStudio provides the <kbd>`Ctrl`</kbd> + <kbd>`1`</kbd> and <kbd>`Ctrl`</kbd> +
 <kbd>`2`</kbd> shortcuts allow you to jump between the script and the console
@@ -147,7 +146,7 @@ windows.
 If R is ready to accept commands, the R console shows a `>` prompt. If it
 receives a command (by typing, copy-pasting or sent from the script editor using
 <kbd>`Ctrl`</kbd> + <kbd>`Enter`</kbd>), R will try to execute it, and when
-ready, show the results and come back with a new `>`-prompt to wait for new
+ready, will show the results and come back with a new `>`-prompt to wait for new
 commands.
 
 If R is still waiting for you to enter more data because it isn't complete yet,
@@ -160,8 +159,8 @@ you're in RStudio and this happens, click inside the console window and press
 
 # Basics of R
 
-R is a versatile, open source programming/scripting language that's useful both
-for statistics but also data science. Inspired by the programming language S.
+R is a versatile, open source programming/scripting language inspired by the 
+programming language S, which is useful both for statistics and data science.
 
 * Free/Libre/Open Source Software under the [GPL version 2](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html).
 * Superior (if not just comparable) to commercial alternatives. R has over 7,000
@@ -224,7 +223,7 @@ variable `b`. This function is very simple, because it takes just one argument.
 
 The return 'value' of a function need not be numerical (like that of `sqrt()`),
 and it also does not need to be a single item: it can be a set of things, or
-even a data set. We'll see that when we read data files in to R.
+even a data set. We'll see that when we read data files into R.
 
 Arguments can be anything, not only numbers or filenames, but also other
 objects. Exactly what each argument means differs per function, and must be
@@ -277,7 +276,7 @@ round(digits=2, x=3.14159)
 
 It's good practice to put the non-optional arguments (like the number you're
 rounding) first in your function call, and to specify the names of all optional
-arguments.  If you don't, someone reading your code might have to look up
+arguments.  If you don't, someone reading your code might have to look up the
 definition of a function with unfamiliar arguments to understand what you're
 doing.
 
@@ -322,7 +321,7 @@ end up with general error messages that might not be very helpful to diagnose a
 problem (e.g. "subscript out of bounds"). If the message is very generic, you might
 also include the name of the function or package you're using in your query.
 
-However, you should check StackOverflow. Search using the `[r]` tag. Most
+However, you should check Stack Overflow. Search using the `[r]` tag. Most
 questions have already been answered, but the challenge is to use the right
 words in the search to find the answers:
 [http://stackoverflow.com/questions/tagged/r](http://stackoverflow.com/questions/tagged/r)
@@ -372,7 +371,7 @@ saveRDS(iris, file="/tmp/iris.rds")
 ```
 
 The content of this file is however not human readable and cannot be posted
-directly on stackoverflow. It can however be sent to someone by email who can
+directly on Stack Overflow. It can however be sent to someone by email who can
 read it with this command:
 
 ```{r, eval=FALSE, purl=FALSE}
@@ -392,7 +391,7 @@ sessionInfo()
 
 * Your friendly colleagues: if you know someone with more experience than you,
   they might be able and willing to help you.
-* [StackOverflow](http://stackoverflow.com/questions/tagged/r): if your question
+* [Stack Overflow](http://stackoverflow.com/questions/tagged/r): if your question
   hasn't been answered before and is well crafted, chances are you will get an
   answer in less than 5 min. Remember to follow their guidelines on [how to ask
   a good question](http://stackoverflow.com/help/how-to-ask).

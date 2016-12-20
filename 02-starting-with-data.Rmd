@@ -27,8 +27,8 @@ source("setup.R")
 ```
 
 We are studying the species and weight of animals caught in plots in our study
-area. The dataset is stored as a CSV file: each row holds information for a
-single animal, and the columns represent:
+area. The dataset is stored as a comma separated value (CSV) file. 
+Each row holds information for a single animal, and the columns represent:
 
 | Column           | Description                        |
 |------------------|------------------------------------|
@@ -48,7 +48,7 @@ single animal, and the columns represent:
 
 We are going to use the R function `download.file()` to download the CSV file
 that contains the survey data from figshare, and we will use `read.csv()` to
-load into memory (as a `data.frame`) the content of the CSV file.
+load into memory the content of the CSV file as a `data.frame`.
 
 To download the data into the `data/` subdirectory, do:
 
@@ -76,8 +76,8 @@ head(surveys)
 ```
 
 A `data.frame` is the representation of data in the format of a table where the
-columns are vectors that all have the same length. Because each column is a
-vector, they all contain the same type of data. We can see this when inspecting
+columns are vectors that all have the same length. Because the column are
+vectors, they all contain the same type of data. We can see this when inspecting
 the __str__ucture of a `data.frame` with the function `str()`:
 
 ```{r, purl=FALSE}

@@ -141,6 +141,9 @@ animals <- c("mouse", "rat", "dog")
 animals
 ```
 
+The quotes around "mouse", "rat", etc. are essential here. Without the quotes R
+will assume there is a variable called mouse, rat, etc. 
+
 There are many functions that allow you to inspect the content of a
 vector. `length()` tells you how many elements are in a particular vector:
 
@@ -214,7 +217,7 @@ tricky <- c(1, 2, 3, '4')
 ```
 
 * **Question**: Why do you think it happens?
-<!-- * _Answer_: Vectors can be of only one data type. R tries to convert (=coerce)
+<!-- * _Answer_: Vectors can be of only one data type. R tries to convert (coerce)
   the content of this vector to find a "common denominator". -->
 
 * **Question**: Can you draw a diagram that represents the hierarchy of the data
@@ -295,8 +298,13 @@ weight_g[weight_g < 30 | weight_g > 50]
 weight_g[weight_g >= 30 & weight_g == 21]
 ```
 
-When working with vectors of characters, if you are trying to combine many
-conditions it can become tedious to type. The function `%in%` allows you to test
+Here, `<` stands for "smaller than", `>` or "bigger than", `>=` for "bigger or 
+equal to", and `==` for "equal to". The double equal sign `==` should not be confused 
+with the single `=` sign, which assigns to a variable (roughly speaking the same as
+"<-").
+
+A common task is to search for certain strings in a vector. One could use the "or" 
+operator `|` but this can become quickly tedious. The function `%in%` allows you to test
 if a value is found in a vector:
 
 ```{r, results='show', purl=FALSE}
@@ -349,7 +357,7 @@ planets_df <- read.csv(file = "planets.csv", na.strings = c("", " ", "-999"))
 
 When doing operations on numbers, most functions will return `NA` if the data
 you are working with include missing values. It is a safer behavior as otherwise
-you may overlook that you are dealing with missing data. You can add the
+you may overlook the fact that you are dealing with missing data. You can add the
 argument `na.rm=TRUE` to calculate the result while ignoring the missing values.
 
 ```{r, purl=FALSE}
