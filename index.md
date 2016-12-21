@@ -17,7 +17,7 @@ status: Teaching
 Data Carpentry's aim is to teach researchers basic concepts, skills,
 and tools for working with data so that they can get more done in less
 time, and with less pain. The lessons below were designed for those interested
-in working with {{page.domain %}} data in {{page.topic %}}.
+in working with {{page.domain}} data in {{page.topic}}.
 
 This is an introduction to R designed for participants with no programming
 experience. These lessons can be taught in 3/4 of a day. They start with some
@@ -27,10 +27,10 @@ add/remove rows and columns, and finish with how to calculate summary statistics
 for each level and a very brief introduction to plotting.
 
 
-**Content Contributors: {{page.contributors | join: ', ' %}}**
+**Content Contributors: {{page.contributors | join: ', '}}**
 
 
-**Lesson Maintainers: {{page.maintainers | join: ', ' %}}**
+**Lesson Maintainers: {{page.maintainers | join: ', '}}**
 
 
 **Lesson status: {{ page.status }}**
@@ -55,7 +55,7 @@ for each level and a very brief introduction to plotting.
 ## Data
 
 Data files for the lesson are available here:
-[{{page.dataurl %}}]({{page.dataurl %}})
+[{{page.dataurl}}]({{page.dataurl}})
 
 Please download the *\*.csv* (Comma Separated Value) files: *species.csv*, *plots.csv*, *surveys.csv*, and *combined.csv*.
 
