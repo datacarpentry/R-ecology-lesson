@@ -1,4 +1,5 @@
 ---
+title: fiz
 layout: lesson
 root: .
 lastupdated: March 21, 2016
@@ -9,9 +10,10 @@ topic: R for data analysis
 software: R
 dataurl: http://dx.doi.org/10.6084/m9.figshare.1314459
 status: Teaching
+title: R for data analysis for Ecology
 ---
 
-# Data Carpentry {{ page.topic }} for {{ page.domain }}
+# Data Carpentry {{ page.title }}
 
 
 Data Carpentry's aim is to teach researchers basic concepts, skills,
