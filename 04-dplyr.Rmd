@@ -1,5 +1,5 @@
 ---
-layout: topic
+layout: lesson
 title: Manipulating and analyzing data with dplyr; Exporting data
 author: Data Carpentry contributors
 ---
