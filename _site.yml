@@ -17,8 +17,6 @@ navbar:
     - text: "Handout"
       href: handout-script.R
   right:
-    - image: img/DC1_logo_small.png
-      href: http://datacarpentry.org
     - icon: fa-github fa-lg
       href: https://github.com/datacarpentry/R-ecology-lesson
 output_dir: "."
