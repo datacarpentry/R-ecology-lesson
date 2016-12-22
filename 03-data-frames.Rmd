@@ -1,5 +1,5 @@
 ---
-layout: topic
+layout: lesson
 title: The `data.frame` class
 author: Data Carpentry contributors
 minutes: 30
