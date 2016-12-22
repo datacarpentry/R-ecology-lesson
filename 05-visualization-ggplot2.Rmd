@@ -101,7 +101,19 @@ Notes:
   y axis you set up in `aes()`.
 - You can also specify aesthetics for a given geom independently of the
   aesthetics defined globally in the `ggplot()` function.
+- The `+` sign used to add layers must be placed at the end of each line containing 
+a layer; if, instead, the `+` sign is added in the line before the other layer,
+`ggplot2` will not add the new layer and will return an error message.
 
+```{r, first-ggplot-with-plus, eval=FALSE, purl=FALSE}
+# this is the correct syntax for adding layers
+surveys_plot + 
+  geom_point()
+
+# this will not add the new layer and will return an error message
+surveys_plot
+  + geom_point()
+```
 
 ## Building your plots iteratively
 
