@@ -313,7 +313,7 @@ If you can't find what you are looking for, you can use the
 [rdocumention.org](http://www.rdocumentation.org) website that searches through
 the help files across all packages available.
 
-Finally, a genetic Google or internet search "R \<task\>" will often either send you to the appropriate package documentation or a helpful forum question that someone else already asked.
+Finally, a generic Google or internet search "R \<task\>" will often either send you to the appropriate package documentation or a helpful forum question that someone else already asked.
 
 ## I am stuck... I get an error message that I don't understand
 
