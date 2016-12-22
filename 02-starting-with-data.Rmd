@@ -1,5 +1,4 @@
 ---
-layout: lesson
 title: Starting with data
 author: Data Carpentry contributors
 minutes: 20
@@ -27,7 +26,7 @@ source("setup.R")
 ```
 
 We are studying the species and weight of animals caught in plots in our study
-area. The dataset is stored as a comma separated value (CSV) file. 
+area. The dataset is stored as a comma separated value (CSV) file.
 Each row holds information for a single animal, and the columns represent:
 
 | Column           | Description                        |

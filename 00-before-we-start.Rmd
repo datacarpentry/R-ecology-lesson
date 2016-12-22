@@ -1,5 +1,4 @@
 ---
-layout: lesson
 title: Before we start
 author: Data Carpentry contributors
 minutes: 15
@@ -15,7 +14,7 @@ knitr::opts_chunk$set(results='hide', fig.path='img/r-lesson-')
 >
 > After completing this module, the learner should be able to:
 >
-> * Describe the purpose of the RStudio script, console, environment, and plot windows. 
+> * Describe the purpose of the RStudio script, console, environment, and plot windows.
 > * Organize files and directories for a set of analysis in an R Project.
 > * Define the following terms as they relate to R: script, function, working directory, assign, object, variable.
 > * Assign values to variables.
@@ -159,7 +158,7 @@ you're in RStudio and this happens, click inside the console window and press
 
 # Basics of R
 
-R is a versatile, open source programming/scripting language inspired by the 
+R is a versatile, open source programming/scripting language inspired by the
 programming language S, which is useful both for statistics and data science.
 
 * Free/Libre/Open Source Software under the [GPL version 2](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html).

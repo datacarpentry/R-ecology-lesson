@@ -1,5 +1,4 @@
 ---
-layout: lesson
 title: Introduction to R
 author: Data Carpentry contributors
 minutes: 45
@@ -142,7 +141,7 @@ animals
 ```
 
 The quotes around "mouse", "rat", etc. are essential here. Without the quotes R
-will assume there is a variable called mouse, rat, etc. 
+will assume there is a variable called mouse, rat, etc.
 
 There are many functions that allow you to inspect the content of a
 vector. `length()` tells you how many elements are in a particular vector:
@@ -298,12 +297,12 @@ weight_g[weight_g < 30 | weight_g > 50]
 weight_g[weight_g >= 30 & weight_g == 21]
 ```
 
-Here, `<` stands for "smaller than", `>` or "bigger than", `>=` for "bigger or 
-equal to", and `==` for "equal to". The double equal sign `==` should not be confused 
+Here, `<` stands for "smaller than", `>` or "bigger than", `>=` for "bigger or
+equal to", and `==` for "equal to". The double equal sign `==` should not be confused
 with the single `=` sign, which assigns to a variable (roughly speaking the same as
 "<-").
 
-A common task is to search for certain strings in a vector. One could use the "or" 
+A common task is to search for certain strings in a vector. One could use the "or"
 operator `|` but this can become quickly tedious. The function `%in%` allows you to test
 if a value is found in a vector:
 
