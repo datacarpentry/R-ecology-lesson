@@ -1,5 +1,4 @@
 ---
-layout: lesson
 title: The `data.frame` class
 author: Data Carpentry contributors
 minutes: 30
@@ -20,7 +19,7 @@ surveys <- read.csv("data/portal_data_joined.csv")
 >
 > * Read data from a file into a data.frame.
 > * Change how character strings are handled in a data.frame.
-> * Summarize the size and data types of a data.frame 
+> * Summarize the size and data types of a data.frame
 > * Write a command to print a sequence of numbers.
 > * Subset data in a data.frame.
 
@@ -135,14 +134,14 @@ fix them? Don't hesitate to experiment!
 
    ```{r, eval=FALSE, purl=TRUE, echo=FALSE}
     ## Challenge:
-    ##   We introduced you to the `data.frame()` function and `read.csv()`, 
-    ##   but what if we are starting with some vectors? The best way to do 
+    ##   We introduced you to the `data.frame()` function and `read.csv()`,
+    ##   but what if we are starting with some vectors? The best way to do
     ##   this is to pass those vectors to the `data.frame()` function, similar
     ##   to the above.
     color <- c("red", "green", "blue", "yellow")
     counts <- c(50, 60, 65, 82)
     new_datarame <- data.frame(colors = color, counts = counts)
-    ##    Try making your own new data frame from some vectors. You can check 
+    ##    Try making your own new data frame from some vectors. You can check
     ##    the data type of the new object using `class()`.
    ```
 
