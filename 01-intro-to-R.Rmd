@@ -1,5 +1,5 @@
 ---
-layout: topic
+layout: lesson
 title: Introduction to R
 author: Data Carpentry contributors
 minutes: 45
