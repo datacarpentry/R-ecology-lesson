@@ -1,11 +1,11 @@
 
 all: pages handout-script.R
 
-skeleton-%.R: %.Rmd
+skeleton-%.R: %.Rmd _site.yml
 	Rscript -e "knitr::purl('$<', output='$@', documentation=0L)"
 
-%.html: %.Rmd
-	Rscript -e "rmarkdown::render_site(input='$^')"
+%.html: %.Rmd _site.yml
+	Rscript -e "rmarkdown::render_site(input='$<')"
 
 %.html: %.md
 	Rscript -e "rmarkdown::render_site(input='$<')"
@@ -14,7 +14,7 @@ handout-script.R: skeleton-00-before-we-start.R skeleton-01-intro-to-R.R skeleto
 	for f in $^; do cat $$f; echo "\n"; done > $@
 	make clean-skeleton
 
-pages: LICENSE.html motivation.html 00-before-we-start.html 01-intro-to-R.html 02-starting-with-data.html 03-data-frames.html 04-dplyr.html 05-visualization-ggplot2.html 06-r-and-sql.html
+pages: 00-before-we-start.html 01-intro-to-R.html 02-starting-with-data.html 03-data-frames.html 04-dplyr.html 05-visualization-ggplot2.html 06-r-and-sql.html LICENSE.html
 	make clean-md
 
 clean-skeleton:
@@ -24,7 +24,7 @@ clean-md:
 	-rm *-*.md
 
 clean-html:
-	-rm *.html
+	-rm *-*.html
 
 clean: clean-skeleton clean-html clean-md
 
