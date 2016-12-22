@@ -335,9 +335,6 @@ div.tocify {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="http://datacarpentry.org"></a>
-</li>
-<li>
   <a href="https://github.com/datacarpentry/R-ecology-lesson">
     <span class="fa fa-github fa-lg"></span>
      
@@ -414,7 +411,15 @@ surveys_plot +<span class="st"> </span><span class="kw">geom_point</span>()</cod
 <ul>
 <li>Anything you put in the <code>ggplot()</code> function can be seen by any geom layers that you add (i.e., these are universal plot settings). This includes the x and y axis you set up in <code>aes()</code>.</li>
 <li>You can also specify aesthetics for a given geom independently of the aesthetics defined globally in the <code>ggplot()</code> function.</li>
+<li>The <code>+</code> sign used to add layers must be placed at the end of each line containing a layer; if, instead, the <code>+</code> sign is added in the line before the other layer, <code>ggplot2</code> will not add the new layer and will return an error message.</li>
 </ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># this is the correct syntax for adding layers</span>
+surveys_plot +
+<span class="st">  </span><span class="kw">geom_point</span>()
+
+<span class="co"># this will not add the new layer and will return an error message</span>
+surveys_plot
+  +<span class="st"> </span><span class="kw">geom_point</span>()</code></pre></div>
 </div>
 <div id="building-your-plots-iteratively" class="section level2">
 <h2>Building your plots iteratively</h2>
