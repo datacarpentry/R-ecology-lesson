@@ -1,5 +1,4 @@
 ---
-title: fiz
 layout: lesson
 root: .
 lastupdated: March 21, 2016
