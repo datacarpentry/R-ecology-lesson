@@ -230,13 +230,13 @@ tricky <- c(1, 2, 3, '4')
 
 ## What will happen in each of these examples? (hint: use `class()` to
 ## check the data type of your object)
-num_char <- c(1, 2, 3, 'a')
+num_char <- c(1, 2, 3, "a")
 
 num_logical <- c(1, 2, 3, TRUE)
 
-char_logical <- c('a', 'b', 'c', TRUE)
+char_logical <- c("a", "b", "c", TRUE)
 
-tricky <- c(1, 2, 3, '4')
+tricky <- c(1, 2, 3, "4")
 
 ## Why do you think it happens?
 
