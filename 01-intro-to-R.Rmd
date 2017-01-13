@@ -197,31 +197,31 @@ ones are lists (`list`), matrices (`matrix`), data frames (`data.frame`) and
 factors (`factor`).
 
 
-### Challenge
-
-
-* **Question**: We’ve seen that atomic vectors can be of type character,
-  numeric, integer, and logical. But what happens if we try to mix these types in
-  a single vector?
-<!-- * _Answer_: R implicitly converts them to all be the same type -->
-
-* **Question**: What will happen in each of these examples? (hint: use `class()`
-  to check the data type of your objects):
-
-```r
-num_char <- c(1, 2, 3, 'a')
-num_logical <- c(1, 2, 3, TRUE)
-char_logical <- c('a', 'b', 'c', TRUE)
-tricky <- c(1, 2, 3, '4')
-```
-
-* **Question**: Why do you think it happens?
-<!-- * _Answer_: Vectors can be of only one data type. R tries to convert (coerce)
-  the content of this vector to find a "common denominator". -->
-
-* **Question**: Can you draw a diagram that represents the hierarchy of the data
-  types?
-<!-- * _Answer_: `logical -> numeric -> character <-- logical` -->
+> ### Challenge
+>
+>
+> * **Question**: We’ve seen that atomic vectors can be of type character,
+>   numeric, integer, and logical. But what happens if we try to mix these types in
+>   a single vector?
+> <!-- * _Answer_: R implicitly converts them to all be the same type -->
+>
+> * **Question**: What will happen in each of these examples? (hint: use `class()`
+>   to check the data type of your objects):
+>
+> ```r
+> num_char <- c(1, 2, 3, 'a')
+> num_logical <- c(1, 2, 3, TRUE)
+> char_logical <- c('a', 'b', 'c', TRUE)
+> tricky <- c(1, 2, 3, '4')
+> ```
+>
+> * **Question**: Why do you think it happens?
+> <!-- * _Answer_: Vectors can be of only one data type. R tries to convert (coerce)
+>   the content of this vector to find a "common denominator". -->
+>
+> * **Question**: Can you draw a diagram that represents the hierarchy of the data
+>   types?
+> <!-- * _Answer_: `logical -> numeric -> character <-- logical` -->
 
 ```{r, echo=FALSE, eval=FALSE, purl=TRUE}
 ## We’ve seen that atomic vectors can be of type character, numeric, integer, and
@@ -243,6 +243,21 @@ tricky <- c(1, 2, 3, "4")
 ## Can you draw a diagram that represents the hierarchy of the data
 ## types?
 ```
+> ### Challenge (optional ){.challenge}
+>
+> * Can you figure out why `"four" > "five"` returns `TRUE`?
+
+```{r, echo=FALSE, purl=TRUE}
+# * Can you figure out why `"four" > "five"` returns `TRUE`? (optional)
+```
+
+<!--
+```{r, purl=FALSE}
+## Answers
+## * When using ">" or "<" on strings, R compares their alphabetical order. Here
+##   "four" comes after "five", and therefore is "greater than" it.
+```
+-->
 
 
 ## Subsetting vectors
@@ -313,21 +328,6 @@ animals %in% c("rat", "cat", "dog", "duck")
 animals[animals %in% c("rat", "cat", "dog", "duck")]
 ```
 
-> ### Challenge {.challenge}
->
-> * Can you figure out why `"four" > "five"` returns `TRUE`?
-
-```{r, echo=FALSE, purl=TRUE}
-# * Can you figure out why `"four" > "five"` returns `TRUE`?
-```
-
-<!--
-```{r, purl=FALSE}
-## Answers
-## * When using ">" or "<" on strings, R compares their alphabetical order. Here
-##   "four" comes after "five", and therefore is "greater than" it.
-```
--->
 
 
 
