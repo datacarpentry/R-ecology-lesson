@@ -111,11 +111,6 @@ Based on the output of `str(surveys)`, can you answer the following questions?
 ```
 --->
 
-As you can see, many of the columns consist of integers, however, the columns
-`species` and `sex` are of a special class called a `factor`. Before we learn
-more about the `data.frame` class, let's talk about factors. They are very
-useful but not necessarily intuitive, and therefore require some attention.
-
 ## Inspecting `data.frame` Objects
 
 We already saw how the functions `head()` and `str()` can be useful to check the
@@ -146,23 +141,13 @@ functions to get a sense of the content/structure of the data.
 Note: most of these functions are "generic", they can be used on other types of
 objects besides `data.frame`.
 
-## Indexing, Sequences, and Subsetting
+## Indexing and subsetting data frames
 
 ```{r, echo=FALSE, purl=TRUE}
 
 ## Sequences and Subsetting data frames
 ```
 
-`:` is a special function that creates numeric vectors of integers in increasing
-or decreasing order, test `1:10` and `10:1` for instance. The function `seq()`
-(for **seq**uence) can be used to create more complex patterns:
-
-```{r, results='show', purl=FALSE}
-seq(1, 10, by=2)
-seq(5, 10, length.out=3)
-seq(50, by=5, length.out=10)
-seq(1, 8, by=3) # sequence stops to stay below upper limit
-```
 
 Our survey data frame has rows and columns (it has 2 dimensions), if we want to
 extract some specific data from it, we need to specify the "coordinates" we
@@ -172,7 +157,7 @@ different classes.
 
 ```{r, purl=FALSE}
 surveys[1]      # first column in the data frame (as a data.frame)
-surveys[,1]     # first column in the data frame (as a vector)
+surveys[, 1]     # first column in the data frame (as a vector)
 surveys[1, 1]   # first element in the first column of the data frame (as a vector)
 surveys[1, 6]   # first element in the 6th column (as a vector)
 surveys[1:3, 7] # first three elements in the 7th column (as a vector)
@@ -180,7 +165,11 @@ surveys[3, ]    # the 3rd element for all columns (as a data.frame)
 head_surveys <- surveys[1:6, ] # equivalent to head(surveys)
 ```
 
-You can also exclude certain parts of a data frame
+`:` is a special function that creates numeric vectors of integers in increasing
+or decreasing order, test `1:10` and `10:1` for instance.
+
+You can also exclude certain parts of a data frame using the "`-`" sign:
+
 ```{r, purl=FALSE}
 surveys[,-1]   #The whole data frame, except the first column
 surveys[-c(7:34786),] #equivalent to head(surveys)
@@ -196,56 +185,55 @@ surveys[["species_id"]]     # Result is a vector
 surveys$species_id          # Result is a vector
 ```
 
-For our purposes, these three notations are equivalent. However, the last one
+For our purposes, the last three notations are equivalent. However, the last one
 with the `$` does partial matching on the name. So you could also select the
 column `"day"` by typing `surveys$d`. It's a shortcut, as with all shortcuts,
 they can have dangerous consequences, and are best avoided. Besides, with
 auto-completion in RStudio, you rarely have to type more than a few characters
 to get the full and correct column name.
 
-### Challenge
-
-1. The function `nrow()` on a `data.frame` returns the number of rows. Use it,
-   in conjunction with `seq()` to create a new `data.frame` called
-   `surveys_by_10` that includes every 10th row of the survey data frame
-   starting at row 10 (10, 20, 30, ...)
-
-2. Create a `data.frame` containing only the observations from row 1999 of the
-   `surveys` dataset.
-
-3. Notice how `nrow()` gave you the number of rows in a `data.frame`? Use `nrow()`
-  instead of a row number to make a `data.frame` with observations from only the last
-  row of the `surveys` dataset.
-
-4. Now that you've seen how `nrow()` can be used to stand in for a row index, let's combine
-  that behavior with the `-` notation above to reproduce the behavior of `head(surveys)`
-  excluding the 7th through final row of the `surveys` dataset.
+> ### Challenge
+>
+> 1. Create a `data.frame` containing only the observations from row 1999 of the
+>    `surveys` dataset.
+>
+> 2. Notice how `nrow()` gave you the number of rows in a `data.frame`? Use
+>   `nrow()` instead of a row number to make a `data.frame` with observations from
+>   only the last row of the `surveys` dataset.
+>
+> 3. Use `nrow()` in conjunction with the `:` function to create a new
+>    `data.frame` called `surveys_last_100` that includes the 100 rows of the
+>    survey data frame.
+>
+> 4. Combine `nrow()` with the `-` notation above to reproduce the behavior of
+>   `head(surveys)` excluding the 7th through final row of the `surveys` dataset.
 
 ```{r, echo=FALSE, purl=TRUE}
 ### Challenges:
-### 1. The function `nrow()` on a `data.frame` returns the number of
-### rows. Use it, in conjuction with `seq()` to create a new
-### `data.frame` called `surveys_by_10` that includes every 10th row
-### of the survey data frame starting at row 10 (10, 20, 30, ...)
 ###
-### 2. Create a data.frame containing only the observation from row 1999 of the -->
-### surveys dataset.
+###  1. Create a `data.frame` (`surveys_1999`) containing only the
+###    observations from row 1999 of the `surveys` dataset.
 ###
-### 3. Notice how `nrow()` gave you the number of rows in a `data.frame`? Use `nrow()`
-###   instead of a row number to make a `data.frame` with observations from only the last
-###   row of the `surveys` dataset.
+### 2. Notice how `nrow()` gave you the number of rows in a
+###   `data.frame`? Use `nrow()` instead of a row number to make a
+###   `data.frame` (`surveys_last`) with observations from only the
+###   last row of the `surveys` dataset.
 ###
-### 4. Now that you've seen how `nrow()` can be used to stand in for a row index, let's combine
-###   that behavior with the `-` notation above to reproduce the behavior of `head(surveys)`
-###   excluding the 7th through final row of the `surveys` dataset.
+### 3. Use `nrow()` in conjunction with the `:` function to create a new
+###    `data.frame` called `surveys_last_100` that includes the 100 rows of the
+###    survey data frame.
+###
+### 4. Combine `nrow()` with the `-` notation above to reproduce the behavior of
+###   `head(surveys)` excluding the 7th through final row of the `surveys` dataset.
+###
 ```
 
 <!---
 ```{r, purl=FALSE}
 ## Answers
-surveys_by_10 <- surveys[seq(10, nrow(surveys), by=10), ]
-surveys_1999 <- surveys[surveys$year == 1999, ]
-surveys_last <- surveys[nrow(surveys),]
+surveys_1999 <- surveys[1999, ]
+surveys_last <- surveys[nrow(surveys), ]
+surveys_last_100 <- surveys[(nrow(surveys)-99):nrow(surveys), ]
 surveys_head <- surveys[-c(7:nrow(surveys)),]
 ```
 --->
@@ -256,6 +244,12 @@ surveys_head <- surveys[-c(7:nrow(surveys)),]
 ```{r, echo=FALSE, purl=TRUE}
 ### Factors
 ```
+
+As you can see, many of the columns consist of integers, however, the columns
+`species` and `sex` are of a special class called a `factor`. Before we learn
+more about the `data.frame` class, let's talk about factors. They are very
+useful but not necessarily intuitive, and therefore require some attention.
+
 
 Factors are used to represent categorical data. Factors can be ordered or
 unordered, and understanding them is necessary for statistical analysis and for
@@ -285,11 +279,12 @@ nlevels(sex)
 ```
 
 Sometimes, the order of the factors does not matter, other times you might want
-to specify the order because it is meaningful (e.g., "low", "medium", "high") or
-it is required by a particular type of analysis. Additionally, specifying the
-order of the levels allows for level comparison:
+to specify the order because it is meaningful (e.g., "low", "medium", "high"),
+it improves your visualization, or it is required by a particular type of
+analysis.
 
 ```{r, purl=TRUE, error=TRUE}
+plot_type <- factor(c("control", "control", "rodent exclosure", "control", "spectab exclosure"))
 food <- factor(c("low", "high", "medium", "high", "low", "medium", "high"))
 levels(food)
 food <- factor(food, levels=c("low", "medium", "high"))
@@ -305,7 +300,7 @@ informative than integers because factors are self describing: `"low"`,
 `"medium"`, `"high"`" is more descriptive than `1`, `2`, `3`. Which is low?  You
 wouldn't be able to tell just from the integer data. Factors, on the other hand,
 have this information built in. It is particularly helpful when there are many
-levels (like the species in our example data set).
+levels (like the species names in our example data set).
 
 ### Converting factors
 
