@@ -337,23 +337,6 @@ As R was designed to analyze datasets, it includes the concept of missing data
 (which is uncommon in other programming languages). Missing data are represented
 in vectors as `NA`.
 
-```{r, purl=FALSE}
-planets <- c("Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus",
-             "Neptune", NA)
-```
-
-The default setting for most base functions that read data into R is to
-interpret `NA` as a missing value. If there are multiple types of missing values
-in your dataset, you can extend what R considers a missing value when it reads
-the file in.  To do this you supply additional values to the "`na.strings`"
-argument of the command to read in the data. For instance, if you wanted to read
-in a CSV file named `planets.csv` that had missing values represented as empty
-cell, a single blank space, and the value -999, you would use:
-
-```{r, eval=FALSE, purl=FALSE}
-planets_df <- read.csv(file = "planets.csv", na.strings = c("", " ", "-999"))
-```
-
 When doing operations on numbers, most functions will return `NA` if the data
 you are working with include missing values. It is a safer behavior as otherwise
 you may overlook the fact that you are dealing with missing data. You can add the
@@ -382,19 +365,6 @@ na.omit(heights)
 ## Extract those elements which are complete cases.
 heights[complete.cases(heights)]
 ```
-
-
-### Challenge
-
-* **Question**: Why does the following piece of code give a warning?
-```{r, purl=FALSE}
-sample <- c(2, 4, 4, "NA", 6)
-mean(sample, na.rm = TRUE)
-```
-<!-- * _Answer_: Because R recognizes the NA in quotes as a character. -->
-
-* **Question**: Why does the warning message say the argument is not numeric?
-<!-- * _Answer_: R converts the entire vector to character because of the "NA", and doesn't recognize it as numeric. -->
 
 Next, we will use the "surveys" dataset to explore the `data.frame` data
 structure, which is one of the most common types of R objects.
