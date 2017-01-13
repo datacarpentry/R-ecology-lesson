@@ -245,11 +245,10 @@ surveys_head <- surveys[-c(7:nrow(surveys)),]
 ### Factors
 ```
 
-As you can see, many of the columns consist of integers, however, the columns
-`species` and `sex` are of a special class called a `factor`. Before we learn
-more about the `data.frame` class, let's talk about factors. They are very
-useful but not necessarily intuitive, and therefore require some attention.
-
+When we did `str(surveys)` we see that several of the columns consist of
+integers, however, the columns `genus`, `species`, `sex`, `plot_type`, ... are
+of a special class called a `factor`. Factors are very useful but not
+necessarily intuitive, and therefore require some attention.
 
 Factors are used to represent categorical data. Factors can be ordered or
 unordered, and understanding them is necessary for statistical analysis and for
@@ -281,31 +280,29 @@ nlevels(sex)
 Sometimes, the order of the factors does not matter, other times you might want
 to specify the order because it is meaningful (e.g., "low", "medium", "high"),
 it improves your visualization, or it is required by a particular type of
-analysis.
+analysis. Here, one way to reorder our levels in the `sex` vector would be:
 
-```{r, purl=TRUE, error=TRUE}
-plot_type <- factor(c("control", "control", "rodent exclosure", "control", "spectab exclosure"))
-food <- factor(c("low", "high", "medium", "high", "low", "medium", "high"))
-levels(food)
-food <- factor(food, levels=c("low", "medium", "high"))
-levels(food)
-min(food) ## doesn't work
-food <- factor(food, levels=c("low", "medium", "high"), ordered=TRUE)
-levels(food)
-min(food) ## works!
+```{r, purl=FALSE}
+sex
+sex <- factor(sex, levels = c("male", "female"))
+sex
 ```
 
 In R's memory, these factors are represented by integers (1, 2, 3), but are more
-informative than integers because factors are self describing: `"low"`,
-`"medium"`, `"high"`" is more descriptive than `1`, `2`, `3`. Which is low?  You
-wouldn't be able to tell just from the integer data. Factors, on the other hand,
-have this information built in. It is particularly helpful when there are many
-levels (like the species names in our example data set).
+informative than integers because factors are self describing: `"female"`,
+`"male"` is more descriptive than `1`, `2`. Which one is "male"?  You wouldn't
+be able to tell just from the integer data. Factors, on the other hand, have
+this information built in. It is particularly helpful when there are many levels
+(like the species names in our example data set).
 
 ### Converting factors
 
 If you need to convert a factor to a character vector, you use
 `as.character(x)`.
+
+```{r, purl=FALSE}
+as.character(sex)
+```
 
 Converting factors where the levels appear as numbers (such as concentration
 levels, or years) to a numeric vector is a little trickier.  One method is to
@@ -326,40 +323,55 @@ Notice that in the `levels()` approach, three important steps occur:
 * We then access these numeric values using the underlying integers of the
   vector `f` inside the square brackets
 
-### Challenge
+### Renaming factors
 
-The function `plot()` can be used to quickly create a bar plot of a factor. For instance, for the factor
-`exprmt <- factor(c("treat1", "treat2", "treat1", "treat3", "treat1", "control", "treat1", "treat2", "treat3"))`, the code `plot(exprmt)`
-gives you a barplot of the number of observations at each level, as shown
-below.
+When your data is stored as a factor, you can use the `plot()` function to get a
+quick glance at the number of observations represented by each factor
+level. Let's look at the number of males and females captured over the course of
+the experiment:
 
-* What determines the order in which the treatments are listed in the plot? (Hint: use `str` to inspect the factor.)
-* How can you recreate this plot with "control" listed last instead
-of first?
+```{r, purl=TRUE}
+## bar plot of the number of females and males captured during the experiment:
+plot(surveys$sex)
+```
+
+In addition of males and females, there are about 1700 individuals for which the
+sex information hasn't been recorded. Additionally, for the these individuals,
+there is no label to indicate that the information is missing. Let's rename this
+label to something more meaningful. Before doing that, we are going to create a
+new object so we don't loose the original data:
+
+```{r, purl=FALSE}
+sex <- surveys$sex
+head(sex)
+levels(sex)
+levels(sex)[1] <- "missing"
+levels(sex)
+head(sex)
+```
+
+
+### Challenges
+
+* Rename "F" and "M" to "female" and "male" respectively.
+* Now that we have renamed the factor level to "missing", can you recreate the
+  barplot such that "missing" is last (after "male")
 
 
 ```{r wrong-order, results='show', echo=FALSE, purl=TRUE}
-## The function `plot()` can be used to quickly create a bar plot of a factor.
-## For instance, for a factor
-exprmt <- factor(c("treat1", "treat2", "treat1", "treat3", "treat1",
-		   "control", "treat1", "treat2", "treat3"))
-## the code `plot(exprmt)`
-## gives you a barplot of the number of observations, as shown below.
-
-## * What determines the order in which the treatments are listed in the plot?
-## * How can you recreate this plot with "control" listed last instead
-## of first?
-plot(exprmt)
+## Challenges
+##
+## * Rename "F" and "M" to "female" and "male" respectively.
+## * Now that we have renamed the factor level to "missing", can you recreate the
+##   barplot such that "missing" is last (after "male")
 ```
 
 
 <!---
 ```{r correct-order, purl=FALSE}
 ## Answers
-##
-## * The treatments are listed in alphabetical order because they are factors.
-## * By redefining the order of the levels
-exprmt <- factor(exprmt, levels=c("treat1", "treat2", "treat3", "control"))
-plot(exprmt)
+levels(sex)[2:3] <- c("female", "male")
+sex <- factor(sex, levels = c("female", "male", "missing"))
+plot(sex)
 ```
 --->
