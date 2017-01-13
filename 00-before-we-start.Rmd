@@ -176,11 +176,11 @@ programming language S, which is useful both for statistics and data science.
 _Start by showing an example of a script_
 
 * Point to the different parts:
-  - a function
-  - the assignment operator `<-`
-  - the `=` for arguments
-  - the comments `#` and how they are used to document function and its content
-  - the `$` operator
+    + a function
+    + the assignment operator `<-`
+    + the `=` for arguments
+    + the comments `#` and how they are used to document function and its content
+    + the `$` operator
 * Point to indentation and consistency in spacing to improve clarity
 
 ![Example of a simple R script](img/r_starting_example_script.png)
@@ -311,6 +311,8 @@ match to your search request
 If you can't find what you are looking for, you can use the
 [rdocumention.org](http://www.rdocumentation.org) website that searches through
 the help files across all packages available.
+
+Finally, a generic Google or internet search "R \<task\>" will often either send you to the appropriate package documentation or a helpful forum question that someone else already asked.
 
 ## I am stuck... I get an error message that I don't understand
 
