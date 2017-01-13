@@ -114,6 +114,24 @@ surveys_plot
   + geom_point()
 ```
 
+> ### Challenge (optional)
+>
+> Scatter plots can be useful exploratory tools for small data sets. For data sets with large numbers of observations, such as the `surveys_complete` data set, overplotting of points can be a limitation of scatter plots. One strategy for handling such settings is to use hexagonal binning of observations. The plot space is tesselated into hexagons. Each hexagon is assigned a color based on the number of observations that fell within its boundaries. 
+> To use hexagonal binning with `ggplot2`, first install the R package `hexbin` from CRAN:
+
+```{r purl = TRUE}
+install.packages("hexbin")
+```
+
+> Then use `geom_hex()` function from the `ggplot2` package.
+
+```{r purl = TRUE}
+surveys_plot +
+  geom_hex()
+```
+
+> - What are the relative strengths and weaknesses of a hexagonal bin plot compared to a scatter plot? Examine the above scatter plot and compare it with the hexagonal bin plot that you created.
+
 ## Building your plots iteratively
 
 Building plots with ggplot is typically an iterative process. We start by
