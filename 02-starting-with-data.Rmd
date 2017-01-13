@@ -118,25 +118,25 @@ content and the structure of a `data.frame`. Here is a non-exhaustive list of
 functions to get a sense of the content/structure of the data.
 
 * Size:
-    * `dim()` - returns a vector with the number of rows in the first element,
+    * `dim(surveys)` - returns a vector with the number of rows in the first element,
           and the number of columns as the second element (the **dim**ensions of
           the object)
-    * `nrow()` - returns the number of rows
-    * `ncol()` - returns the number of columns
+    * `nrow(surveys)` - returns the number of rows
+    * `ncol(surveys)` - returns the number of columns
 
 * Content:
-    * `head()` - shows the first 6 rows
-    * `tail()` - shows the last 6 rows
+    * `head(surveys)` - shows the first 6 rows
+    * `tail(surveys)` - shows the last 6 rows
 
 * Names:
-    * `names()` - returns the column names (synonym of `colnames()` for `data.frame`
+    * `names(surveys)` - returns the column names (synonym of `colnames()` for `data.frame`
 	   objects)
-    * `rownames()` - returns the row names
+    * `rownames(surveys)` - returns the row names
 
 * Summary:
-    * `str()` - structure of the object and information about the class, length and
+    * `str(surveys)` - structure of the object and information about the class, length and
 	   content of  each column
-    * `summary()` - summary statistics for each column
+    * `summary(surveys)` - summary statistics for each column
 
 Note: most of these functions are "generic", they can be used on other types of
 objects besides `data.frame`.
@@ -194,44 +194,55 @@ to get the full and correct column name.
 
 > ### Challenge
 >
-> 1. Create a `data.frame` containing only the observations from row 1999 of the
+> 1. Create a `data.frame` (`surveys_200`) containing only the observations from row 200 of the
 >    `surveys` dataset.
 >
-> 2. Notice how `nrow()` gave you the number of rows in a `data.frame`? Use
->   `nrow()` instead of a row number to make a `data.frame` with observations from
->   only the last row of the `surveys` dataset.
+> 2. Notice how `nrow()` gave you the number of rows in a `data.frame`?
+>
+>      * Use that number to pull out just that last row in the data frame
+>      * Compare that with what you see as the last row using `tail()` to make
+>        sure it's meeting expectations.
+>      * Pull out that last row using `nrow()` instead of row number
+>      * Create a new data frame object (`surveys_last`) from that last row
+>      * Which
 >
 > 3. Use `nrow()` in conjunction with the `:` function to create a new
->    `data.frame` called `surveys_last_100` that includes the 100 rows of the
->    survey data frame.
+>    data frame called `surveys_last_100` that includes the 100 rows of the
+>    `surveys` data frame.
 >
 > 4. Combine `nrow()` with the `-` notation above to reproduce the behavior of
->   `head(surveys)` excluding the 7th through final row of the `surveys` dataset.
+>    `head(surveys)` keeping just the first through 7th rows of the surveys
+>    dataset.
+
 
 ```{r, echo=FALSE, purl=TRUE}
 ### Challenges:
+### 1. Create a `data.frame` (`surveys_200`) containing only the observations from row 200 of the
+###    `surveys` dataset.
 ###
-###  1. Create a `data.frame` (`surveys_1999`) containing only the
-###    observations from row 1999 of the `surveys` dataset.
+### 2. Notice how `nrow()` gave you the number of rows in a `data.frame`?
 ###
-### 2. Notice how `nrow()` gave you the number of rows in a
-###   `data.frame`? Use `nrow()` instead of a row number to make a
-###   `data.frame` (`surveys_last`) with observations from only the
-###   last row of the `surveys` dataset.
+###      * Use that number to pull out just that last row in the data frame
+###      * Compare that with what you see as the last row using `tail()` to make
+###        sure it's meeting expectations.
+###      * Pull out that last row using `nrow()` instead of row number
+###      * Create a new data frame object (`surveys_last`) from that last row
+###      * Which
 ###
 ### 3. Use `nrow()` in conjunction with the `:` function to create a new
-###    `data.frame` called `surveys_last_100` that includes the 100 rows of the
-###    survey data frame.
+###    data frame called `surveys_last_100` that includes the 100 rows of the
+###    `surveys` data frame.
 ###
 ### 4. Combine `nrow()` with the `-` notation above to reproduce the behavior of
-###   `head(surveys)` excluding the 7th through final row of the `surveys` dataset.
-###
+###    `head(surveys)` keeping just the first through 7th rows of the surveys
+###    dataset.
+
 ```
 
 <!---
 ```{r, purl=FALSE}
 ## Answers
-surveys_1999 <- surveys[1999, ]
+surveys_1999 <- surveys[200, ]
 surveys_last <- surveys[nrow(surveys), ]
 surveys_last_100 <- surveys[(nrow(surveys)-99):nrow(surveys), ]
 surveys_head <- surveys[-c(7:nrow(surveys)),]
@@ -247,8 +258,9 @@ surveys_head <- surveys[-c(7:nrow(surveys)),]
 
 When we did `str(surveys)` we see that several of the columns consist of
 integers, however, the columns `genus`, `species`, `sex`, `plot_type`, ... are
-of a special class called a `factor`. Factors are very useful but not
-necessarily intuitive, and therefore require some attention.
+of a special class called a `factor`. Factor are very useful and are actually
+something that make R particularly well suited to working with data, so we're
+going to spend a little time introducing them.
 
 Factors are used to represent categorical data. Factors can be ordered or
 unordered, and understanding them is necessary for statistical analysis and for
@@ -282,7 +294,7 @@ to specify the order because it is meaningful (e.g., "low", "medium", "high"),
 it improves your visualization, or it is required by a particular type of
 analysis. Here, one way to reorder our levels in the `sex` vector would be:
 
-```{r, purl=FALSE}
+```{r, results=TRUE, purl=FALSE}
 sex
 sex <- factor(sex, levels = c("male", "female"))
 sex
@@ -338,8 +350,9 @@ plot(surveys$sex)
 In addition of males and females, there are about 1700 individuals for which the
 sex information hasn't been recorded. Additionally, for the these individuals,
 there is no label to indicate that the information is missing. Let's rename this
-label to something more meaningful. Before doing that, we are going to create a
-new object so we don't loose the original data:
+label to something more meaningful. Before doing that, we're going to pull out
+the data on sex and work with that data, so we're not modifying the working copy
+of the data frame:
 
 ```{r, purl=FALSE}
 sex <- surveys$sex
