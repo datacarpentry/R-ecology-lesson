@@ -25,6 +25,37 @@ knitr::opts_chunk$set(results='hide', fig.path='img/r-lesson-')
 
 ------------
 
+
+
+# Presentation of RStudio
+
+Let's start by learning about [RStudio](https://www.rstudio.com/), the
+Integrated Development Environment (IDE).
+
+The RStudio IDE open source product is free under
+the
+[Affero General Public License (AGPL) v3](https://www.gnu.org/licenses/agpl-3.0.en.html). RStudio
+IDE is also available with a commercial license and priority email support from
+RStudio, Inc.
+
+We will use RStudio IDE to write code, navigate the files found on our computer,
+inspect the variables we are going to create, and visualize the plots we will
+generate. RStudio can also be used for other things (e.g., version control,
+developing packages, writting Shiny apps) that we will not cover during the
+workshop.
+
+![RStudio interface screeshot](img/rstudio_screenshot.png)
+
+RStudio is divided into 4 "Panes": the editor for your scripts and documents
+(top-left, in the default layout), the R console (bottom-left), your
+environment/history (top-right), and your files/plots/packages/help/viewer
+(bottom-right). The placement of these panes and their content can be customized
+(see menu, RStudio -> Preferences -> Pane Layout). One of the advantages of
+using RStudio is that all the information you need to write code is available in
+a single window. Additionally, with many shortcuts, autocompletion, and
+highlighting for the major file types you use while developing in R, RStudio
+will make typing easier and less error-prone.
+
 # Before we get started
 
 It is good practice to keep a set of related data, analyses, and text
@@ -89,25 +120,6 @@ workshop, you only need a `data/` folder.
 ![Example of a working directory structure](img/R-ecology-work_dir_structure.png)
 
 
-# Presentation of RStudio
-
-Let's start by learning about [RStudio](https://www.rstudio.com/), the Integrated Development Environment (IDE).
-
-The RStudio IDE open source product is free under the [Affero General Public License (AGPL) v3](https://www.gnu.org/licenses/agpl-3.0.en.html). RStudio IDE is also available with a commercial license and priority email support from RStudio, Inc.
-
-We will use RStudio IDE to write code, navigate the files found on our computer, inspect the variables we are going to create, and visualize the plots we will generate. RStudio can also be used for other things (e.g., version control, developing packages, writting Shiny apps) that we will not cover during the workshop.
-
-RStudio is divided into 4 "Panes": the editor for your scripts and documents
-(top-left, in the default layout), the R console (bottom-left), your
-environment/history (top-right), and your files/plots/packages/help/viewer
-(bottom-right). The placement of these panes and their content can be customized
-(see menu, RStudio -> Preferences -> Pane Layout). One of the advantages of
-using RStudio is that all the information you need to write code is available in
-a single window. Additionally, with many shortcuts, autocompletion, and
-highlighting for the major file types you use while developing in R, RStudio
-will make typing easier and less error-prone.
-
-
 # Interacting with R
 
 The basis of programming is that we write down instructions for the computer to
@@ -170,116 +182,6 @@ programming language S, which is useful both for statistics and data science.
 * For people who have experience in programmming: R is both an object-oriented
   and a so-called [functional language](http://adv-r.had.co.nz/Functional-programming.html).
 * Large and growing community of peers.
-
-## The R syntax
-
-_Start by showing an example of a script_
-
-* Point to the different parts:
-    + a function
-    + the assignment operator `<-`
-    + the `=` for arguments
-    + the comments `#` and how they are used to document function and its content
-    + the `$` operator
-* Point to indentation and consistency in spacing to improve clarity
-
-![Example of a simple R script](img/r_starting_example_script.png)
-
-### Commenting
-
-Use `#` signs to comment. Anything to the right of a `#` is ignored by R,
-meaning it won't be executed. Comments are a great way to describe what your
-code does within the code itself, so comment liberally in your R scripts.
-
-### Assignment operator
-
-`<-` is the assignment operator. It assigns values on the right to objects on
-the left. So, after executing `x <- 3`, the value of `x` is `3`. The arrow can
-be read as 3 **goes into** `x`.  For historical reasons, you can also use `=` for assignments,
-but not in every context. Because of the [slight](http://blog.revolutionanalytics.com/2008/12/use-equals-or-arrow-for-assignment.html) [differences](https://web.archive.org/web/20130610005305/https://stat.ethz.ch/pipermail/r-help/2009-March/191462.html) in syntax,
-it is good practice to use always `<-` for assignments, except when specifying the values of
-arguments in functions, when only `=` should be used, see below.
-
-In RStudio, typing <kbd>Alt</kbd> + <kbd>-</kbd> (push <kbd>Alt</kbd> at the
-same time as the <kbd>-</kbd> key) will write ` <- ` in a single keystroke.
-
-### Functions and their arguments
-
-Functions are "canned scripts" that automate something complicated or convenient
-or both.  Many functions are predefined, or can be made available by importing R
-*packages* (more on that later). A function usually gets one or more inputs
-called *arguments*. Functions often (but not always) return a *value*. A typical
-example would be the function `sqrt()`. The input (the argument) must be a
-number, and the return value (in fact, the output) is the square root of that
-number. Executing a function ('running it') is called *calling* the function. An
-example of a function call is:
-
-`b <- sqrt(a)`
-
-Here, the value of `a` is given to the `sqrt()` function, the `sqrt()` function
-calculates the square root, and returns the value which is then assigned to
-variable `b`. This function is very simple, because it takes just one argument.
-
-The return 'value' of a function need not be numerical (like that of `sqrt()`),
-and it also does not need to be a single item: it can be a set of things, or
-even a data set. We'll see that when we read data files into R.
-
-Arguments can be anything, not only numbers or filenames, but also other
-objects. Exactly what each argument means differs per function, and must be
-looked up in the documentation (see below). Some functions take arguments which
-may either be specified by the user, or if left out, take on a *default* value:
-these are called *options*. Options are typically used to alter the way the
-function operates, such as whether it ignores 'bad values', or what symbol to
-use in a plot.  However, if you want something specific, you can specify a value
-of your choice which will be used instead of the default.
-
-Let's try a function that can take multiple arguments: `round()`.
-
-```{r, results='show', purl=FALSE}
-round(3.14159)
-```
-
-Here, we've called `round()` with just one argument, `3.14159`, and it has
-returned the value `3`.  That's because the default is to round to the nearest
-whole number. If we want more digits we can see how to do that by getting
-information about the `round` function.  We can use `args(round)` or look at the
-help for this function using `?round`.
-
-```{r, results='show', purl=FALSE}
-args(round)
-```
-
-```{r, eval=FALSE, purl=FALSE}
-?round
-```
-
-We see that if we want a different number of digits, we can
-type `digits=2` or however many we want.
-
-```{r, results='show', purl=FALSE}
-round(3.14159, digits=2)
-```
-
-If you provide the arguments in the exact same order as they are defined you
-don't have to name them:
-
-```{r, results='show', purl=FALSE}
-round(3.14159, 2)
-```
-
-And if you do name the arguments, you can switch their order:
-
-```{r, results='show', purl=FALSE}
-round(digits=2, x=3.14159)
-```
-
-It's good practice to put the non-optional arguments (like the number you're
-rounding) first in your function call, and to specify the names of all optional
-arguments.  If you don't, someone reading your code might have to look up the
-definition of a function with unfamiliar arguments to understand what you're
-doing.
-
-
 
 # Seeking help
 
