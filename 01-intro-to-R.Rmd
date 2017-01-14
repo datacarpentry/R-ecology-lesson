@@ -455,5 +455,11 @@ na.omit(heights)
 heights[complete.cases(heights)]
 ```
 
+> ### Challenge
+> Using this data for lengths, create a new vector with the NAs removed.
+> ```r
+> lengths <- c(10,24,NA,18,NA,20)
+> ```
+
 Next, we will use the "surveys" dataset to explore the `data.frame` data
 structure, which is one of the most common types of R objects.
