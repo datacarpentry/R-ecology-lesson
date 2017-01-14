@@ -115,7 +115,7 @@ Based on the output of `str(surveys)`, can you answer the following questions?
 
 We already saw how the functions `head()` and `str()` can be useful to check the
 content and the structure of a `data.frame`. Here is a non-exhaustive list of
-functions to get a sense of the content/structure of the data.
+functions to get a sense of the content/structure of the data. Let's try them out!
 
 * Size:
     * `dim(surveys)` - returns a vector with the number of rows in the first element,
@@ -176,7 +176,7 @@ surveys[-c(7:34786),] #equivalent to head(surveys)
 ```
 
 As well as using numeric values to subset a `data.frame` (or `matrix`), columns
-can be called by name, using one of the three following notations:
+can be called by name, using one of the four following notations:
 
 ```{r, eval = FALSE, purl=FALSE}
 surveys["species_id"]       # Result is a data.frame
@@ -185,12 +185,9 @@ surveys[["species_id"]]     # Result is a vector
 surveys$species_id          # Result is a vector
 ```
 
-For our purposes, the last three notations are equivalent. However, the last one
-with the `$` does partial matching on the name. So you could also select the
-column `"day"` by typing `surveys$d`. It's a shortcut, as with all shortcuts,
-they can have dangerous consequences, and are best avoided. Besides, with
-auto-completion in RStudio, you rarely have to type more than a few characters
-to get the full and correct column name.
+For our purposes, the last three notations are equivalent. RStudio knows about
+the columns in your data frame, so you can take advantage of the autocompetion
+feature to get the full and correct column name.
 
 > ### Challenge
 >
@@ -202,9 +199,8 @@ to get the full and correct column name.
 >      * Use that number to pull out just that last row in the data frame
 >      * Compare that with what you see as the last row using `tail()` to make
 >        sure it's meeting expectations.
->      * Pull out that last row using `nrow()` instead of row number
->      * Create a new data frame object (`surveys_last`) from that last row
->      * Which
+>      * Pull out that last row using `nrow()` instead of the row number
+>      * Create a new data frame object (`surveys_last`) from that last row>
 >
 > 3. Use `nrow()` in conjunction with the `:` function to create a new
 >    data frame called `surveys_last_100` that includes the 100 rows of the
@@ -225,9 +221,8 @@ to get the full and correct column name.
 ###      * Use that number to pull out just that last row in the data frame
 ###      * Compare that with what you see as the last row using `tail()` to make
 ###        sure it's meeting expectations.
-###      * Pull out that last row using `nrow()` instead of row number
+###      * Pull out that last row using `nrow()` instead of the row number
 ###      * Create a new data frame object (`surveys_last`) from that last row
-###      * Which
 ###
 ### 3. Use `nrow()` in conjunction with the `:` function to create a new
 ###    data frame called `surveys_last_100` that includes the 100 rows of the
@@ -242,7 +237,7 @@ to get the full and correct column name.
 <!---
 ```{r, purl=FALSE}
 ## Answers
-surveys_1999 <- surveys[200, ]
+surveys_200 <- surveys[200, ]
 surveys_last <- surveys[nrow(surveys), ]
 surveys_last_100 <- surveys[(nrow(surveys)-99):nrow(surveys), ]
 surveys_head <- surveys[-c(7:nrow(surveys)),]
