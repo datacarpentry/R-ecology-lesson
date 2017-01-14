@@ -19,9 +19,6 @@ surveys <- read.csv("data/portal_data_joined.csv")
 >
 > * Read data from a file into a data.frame.
 > * Change how character strings are handled in a data.frame.
-> * Summarize the size and data types of a data.frame
-> * Write a command to print a sequence of numbers.
-> * Subset data in a data.frame.
 
 ------------
 
@@ -43,133 +40,97 @@ By default, when building or importing a data frame, the columns that contain
 characters (i.e., text) are coerced (=converted) into the `factor` data
 type. Depending on what you want to do with the data, you may want to keep these
 columns as `character`. To do so, `read.csv()` and `read.table()` have an
-argument called `stringsAsFactors` which can be set to `FALSE`:
+argument called `stringsAsFactors` which can be set to `FALSE`.
+
+Compare the output of `str(surveys)` when setting `stringsAsFactors = TRUE`
+(default) and `stringsAsFactors = FALSE`:
+
 
 ```{r, eval=FALSE, purl=FALSE}
-some_data <- read.csv("data/some_file.csv", stringsAsFactors=FALSE)
+## Compare the difference between when the data are being read as
+## `factor`, and when they are being read as `character`.
+surveys <- read.csv("data/portal_data_joined.csv", stringsAsFactors = TRUE)
+str(surveys)
+surveys <- read.csv("data/portal_data_joined.csv", stringsAsFactors = FALSE)
+str(surveys)
 ```
 
-You can also create a data frame manually with the function `data.frame()`. This
-function can also take the argument `stringsAsFactors`. Compare the output of
-these examples, and compare the difference between when the data are being read
-as `character`, and when they are being read as `factor`.
-
-```{r, results='show', purl=TRUE}
-## Compare the output of these examples, and compare the difference between when
-## the data are being read as `character`, and when they are being read as
-## `factor`.
-example_data <- data.frame(animal=c("dog", "cat", "sea cucumber", "sea urchin"),
-                           feel=c("furry", "furry", "squishy", "spiny"),
-                           weight=c(45, 8, 1.1, 0.8))
-str(example_data)
-example_data <- data.frame(animal=c("dog", "cat", "sea cucumber", "sea urchin"),
-                           feel=c("furry", "furry", "squishy", "spiny"),
-                           weight=c(45, 8, 1.1, 0.8), stringsAsFactors=FALSE)
-str(example_data)
-```
-
-### Challenge
-
-1. There are a few mistakes in this hand crafted `data.frame`, can you spot and
-fix them? Don't hesitate to experiment!
-
-    ```{r, eval=FALSE, purl=FALSE}
-    author_book <- data.frame(author_first=c("Charles", "Ernst", "Theodosius"),
-                              author_last=c(Darwin, Mayr, Dobzhansky),
-                              year=c(1942, 1970))
-    ```
-
-    ```{r, eval=FALSE, purl=TRUE, echo=FALSE}
-    ## Challenge:
-    ##  There are a few mistakes in this hand crafted `data.frame`,
-    ##  can you spot and fix them? Don't hesitate to experiment!
-    author_book <- data.frame(author_first=c("Charles", "Ernst", "Theodosius"),
-                                  author_last=c(Darwin, Mayr, Dobzhansky),
-                                  year=c(1942, 1970))
-    ```
-
-2. Can you predict the class for each of the columns in the following example?
-   Check your guesses using `str(country_climate)`:
-     * Are they what you expected?  Why? Why not?
-     * What would have been different if we had added `stringsAsFactors = FALSE` to this call?
-     * What would you need to change to ensure that each column had the accurate data type?
-
-    ```{r, eval=FALSE, purl=FALSE}
-    country_climate <- data.frame(country=c("Canada", "Panama", "South Africa", "Australia"),
-                                   climate=c("cold", "hot", "temperate", "hot/temperate"),
-                                   temperature=c(10, 30, 18, "15"),
-                                   northern_hemisphere=c(TRUE, TRUE, FALSE, "FALSE"),
-                                   has_kangaroo=c(FALSE, FALSE, FALSE, 1))
-    ```
-
-   ```{r, eval=FALSE, purl=TRUE, echo=FALSE}
-   ## Challenge:
-   ##   Can you predict the class for each of the columns in the following
-   ##   example?
-   ##   Check your guesses using `str(country_climate)`:
-   ##   * Are they what you expected? Why? why not?
-   ##   * What would have been different if we had added `stringsAsFactors = FALSE`
-   ##     to this call?
-   ##   * What would you need to change to ensure that each column had the
-   ##     accurate data type?
-   country_climate <- data.frame(country=c("Canada", "Panama", "South Africa", "Australia"),
-                                  climate=c("cold", "hot", "temperate", "hot/temperate"),
-                                  temperature=c(10, 30, 18, "15"),
-                                  northern_hemisphere=c(TRUE, TRUE, FALSE, "FALSE"),
-                                  has_kangaroo=c(FALSE, FALSE, FALSE, 1))
-   ```
-
-3. We introduced you to the `data.frame()` function and `read.csv()`, but what
-   if we are starting with some vectors? The best way to do this is to pass
-   those vectors to the `data.frame()` function, similar to the above.
-
-    ```{r, eval=FALSE, purl=FALSE}
-    color <- c("red", "green", "blue", "yellow")
-    counts <- c(50, 60, 65, 82)
-    new_datarame <- data.frame(colors = color, counts = counts)
-    ```
-
-   Try making your own new data frame from some vectors. You can check the data
-   type of the new object using `class()`.
-
-   ```{r, eval=FALSE, purl=TRUE, echo=FALSE}
-    ## Challenge:
-    ##   We introduced you to the `data.frame()` function and `read.csv()`,
-    ##   but what if we are starting with some vectors? The best way to do
-    ##   this is to pass those vectors to the `data.frame()` function, similar
-    ##   to the above.
-    color <- c("red", "green", "blue", "yellow")
-    counts <- c(50, 60, 65, 82)
-    new_datarame <- data.frame(colors = color, counts = counts)
-    ##    Try making your own new data frame from some vectors. You can check
-    ##    the data type of the new object using `class()`.
-   ```
-
-   <!--- Answers
-
-   ```{r, eval=FALSE, echo=FALSE, purl=FALSE}
-   ## Answers
-   ## * missing quotations around the first names of the authors
-   ## * the year column is missing one value, 1859 (the year of publication of
-   ##   the origin of species)
-   ```
-
-   ```{r, eval=FALSE, echo=FALSE, purl=FALSE}
-   ## Answers
-   ## * `country`, `climate`, `temperature`, and `northern_hemisphere` are
-   ##    factors; `has_kangaroo` is numeric.
-   ## * using `stringsAsFactors=FALSE` would have made them character instead of
-   ##   factors
-   ## * removing the quotes in temperature, northern_hemisphere, and replacing 1
-   ##   by TRUE in the `has_kangaroo` column would probably what was originally
-   ##   intended.
-   ```
-
-   -->
-
-   The automatic conversion of data type is sometimes a blessing, sometimes an
-   annoyance. Be aware that it exists, learn the rules, and double check that
-   data you import in R are of the correct type within your data frame. If not,
-   use it to your advantage to detect mistakes that might have been introduced
-   during data entry (a letter in a column that should only contain numbers for
-   instance.).
+> ### Challenge
+>
+> 1. We have seen how data frames are created when using the `read.csv()`, but
+>   they can also be created by hand with the `data.frame()` function.  There are
+>   a few mistakes in this hand-crafted `data.frame`, can you spot and fix them?
+>   Don't hesitate to experiment!
+>
+>     ```{r, eval=FALSE, purl=FALSE}
+>     animal_data <- data.frame(animal=c("dog", "cat", "sea cucumber", "sea urchin"),
+>                               feel=c("furry", "squishy", "spiny"),
+>                               weight=c(45, 8 1.1, 0.8))
+>     ```
+>
+>     ```{r, eval=FALSE, purl=TRUE, echo=FALSE}
+>     ## Challenge:
+>     ##  There are a few mistakes in this hand-crafted `data.frame`,
+>     ##  can you spot and fix them? Don't hesitate to experiment!
+>     animal_data <- data.frame(animal=c(dog, cat, sea cucumber, sea urchin),
+>                               feel=c("furry", "squishy", "spiny"),
+>                               weight=c(45, 8 1.1, 0.8))
+>     ```
+>
+> 2. Can you predict the class for each of the columns in the following example?
+>    Check your guesses using `str(country_climate)`:
+>      * Are they what you expected?  Why? Why not?
+>      * What would have been different if we had added `stringsAsFactors = FALSE` to this call?
+>      * What would you need to change to ensure that each column had the accurate data type?
+>
+>     ```{r, eval=FALSE, purl=FALSE}
+>     country_climate <- data.frame(country=c("Canada", "Panama", "South Africa", "Australia"),
+>                                    climate=c("cold", "hot", "temperate", "hot/temperate"),
+>                                    temperature=c(10, 30, 18, "15"),
+>                                    northern_hemisphere=c(TRUE, TRUE, FALSE, "FALSE"),
+>                                    has_kangaroo=c(FALSE, FALSE, FALSE, 1))
+>     ```
+>
+>    ```{r, eval=FALSE, purl=TRUE, echo=FALSE}
+>    ## Challenge:
+>    ##   Can you predict the class for each of the columns in the following
+>    ##   example?
+>    ##   Check your guesses using `str(country_climate)`:
+>    ##   * Are they what you expected? Why? why not?
+>    ##   * What would have been different if we had added `stringsAsFactors = FALSE`
+>    ##     to this call?
+>    ##   * What would you need to change to ensure that each column had the
+>    ##     accurate data type?
+>    country_climate <- data.frame(country=c("Canada", "Panama", "South Africa", "Australia"),
+>                                   climate=c("cold", "hot", "temperate", "hot/temperate"),
+>                                   temperature=c(10, 30, 18, "15"),
+>                                   northern_hemisphere=c(TRUE, TRUE, FALSE, "FALSE"),
+>                                   has_kangaroo=c(FALSE, FALSE, FALSE, 1))
+>    ```
+>
+>    <!--- Answers
+>
+>    ```{r, eval=FALSE, echo=FALSE, purl=FALSE}
+>    ## Answers
+>    ## * missing quotations around the names of the animals
+>    ## * missing one entry in the "feel" column (probably for one of the furry animals)
+>    ## * missing one comma in the weight column
+>
+>    ## Answers
+>    ## * `country`, `climate`, `temperature`, and `northern_hemisphere` are
+>    ##    factors; `has_kangaroo` is numeric.
+>    ## * using `stringsAsFactors=FALSE` would have made them character instead of
+>    ##   factors
+>    ## * removing the quotes in temperature, northern_hemisphere, and replacing 1
+>    ##   by TRUE in the `has_kangaroo` column would probably what was originally
+>    ##   intended.
+>    ```
+>
+>    -->
+>
+>    The automatic conversion of data type is sometimes a blessing, sometimes an
+>    annoyance. Be aware that it exists, learn the rules, and double check that
+>    data you import in R are of the correct type within your data frame. If not,
+>    use it to your advantage to detect mistakes that might have been introduced
+>    during data entry (a letter in a column that should only contain numbers for
+>    instance.).
