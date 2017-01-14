@@ -321,6 +321,24 @@ the grid.
 	   panel.grid.minor.y = element_blank())
 ```
 
+> ## The ggplot2 themes
+>
+> In addition of `theme_bw()` that changes the plot background to white, ggplot2
+> comes with several other themes, which can be useful to quickly change the
+> look and feel of your visualization. The complete list of themes is available
+> at <http://docs.ggplot2.org/current/ggtheme.html>. `theme_minimal()` and
+> `theme_light()` are popular, and `theme_void()` can be useful as a starting
+> point to create a new hand-crafted theme.
+>
+> The
+> [ggthemes](https://cran.r-project.org/web/packages/ggthemes/vignettes/ggthemes.html) package
+> provides a wide variety of options (including an Excel 2003 theme).
+>
+> The [ggplot2 extensions website](https://www.ggplot2-exts.org) provides a list
+> of packages that extend the capabilities of ggplot2, including additional
+> themes.
+
+
 To make the plot easier to read, we can color by sex instead of species (species
 are already in separate plots, so we don't need to distinguish them further).
 
