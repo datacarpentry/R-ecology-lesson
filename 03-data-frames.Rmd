@@ -19,9 +19,6 @@ surveys <- read.csv("data/portal_data_joined.csv")
 >
 > * Read data from a file into a data.frame.
 > * Change how character strings are handled in a data.frame.
-> * Summarize the size and data types of a data.frame
-> * Write a command to print a sequence of numbers.
-> * Subset data in a data.frame.
 
 ------------
 
@@ -43,268 +40,96 @@ By default, when building or importing a data frame, the columns that contain
 characters (i.e., text) are coerced (=converted) into the `factor` data
 type. Depending on what you want to do with the data, you may want to keep these
 columns as `character`. To do so, `read.csv()` and `read.table()` have an
-argument called `stringsAsFactors` which can be set to `FALSE`:
+argument called `stringsAsFactors` which can be set to `FALSE`.
+
+Compare the output of `str(surveys)` when setting `stringsAsFactors = TRUE`
+(default) and `stringsAsFactors = FALSE`:
 
 ```{r, eval=FALSE, purl=FALSE}
-some_data <- read.csv("data/some_file.csv", stringsAsFactors=FALSE)
+## Compare the difference between when the data are being read as
+## `factor`, and when they are being read as `character`.
+surveys <- read.csv("data/portal_data_joined.csv", stringsAsFactors = TRUE)
+str(surveys)
+surveys <- read.csv("data/portal_data_joined.csv", stringsAsFactors = FALSE)
+str(surveys)
 ```
 
-You can also create a data frame manually with the function `data.frame()`. This
-function can also take the argument `stringsAsFactors`. Compare the output of
-these examples, and compare the difference between when the data are being read
-as `character`, and when they are being read as `factor`.
-
-```{r, results='show', purl=TRUE}
-## Compare the output of these examples, and compare the difference between when
-## the data are being read as `character`, and when they are being read as
-## `factor`.
-example_data <- data.frame(animal=c("dog", "cat", "sea cucumber", "sea urchin"),
-                           feel=c("furry", "furry", "squishy", "spiny"),
-                           weight=c(45, 8, 1.1, 0.8))
-str(example_data)
-example_data <- data.frame(animal=c("dog", "cat", "sea cucumber", "sea urchin"),
-                           feel=c("furry", "furry", "squishy", "spiny"),
-                           weight=c(45, 8, 1.1, 0.8), stringsAsFactors=FALSE)
-str(example_data)
-```
-
-### Challenge
-
-1. There are a few mistakes in this hand crafted `data.frame`, can you spot and
-fix them? Don't hesitate to experiment!
-
-    ```{r, eval=FALSE, purl=FALSE}
-    author_book <- data.frame(author_first=c("Charles", "Ernst", "Theodosius"),
-                              author_last=c(Darwin, Mayr, Dobzhansky),
-                              year=c(1942, 1970))
-    ```
-
-    ```{r, eval=FALSE, purl=TRUE, echo=FALSE}
-    ## Challenge:
-    ##  There are a few mistakes in this hand crafted `data.frame`,
-    ##  can you spot and fix them? Don't hesitate to experiment!
-    author_book <- data.frame(author_first=c("Charles", "Ernst", "Theodosius"),
-                                  author_last=c(Darwin, Mayr, Dobzhansky),
-                                  year=c(1942, 1970))
-    ```
-
-2. Can you predict the class for each of the columns in the following example?
-   Check your guesses using `str(country_climate)`:
-     * Are they what you expected?  Why? Why not?
-     * What would have been different if we had added `stringsAsFactors = FALSE` to this call?
-     * What would you need to change to ensure that each column had the accurate data type?
-
-    ```{r, eval=FALSE, purl=FALSE}
-    country_climate <- data.frame(country=c("Canada", "Panama", "South Africa", "Australia"),
-                                   climate=c("cold", "hot", "temperate", "hot/temperate"),
-                                   temperature=c(10, 30, 18, "15"),
-                                   northern_hemisphere=c(TRUE, TRUE, FALSE, "FALSE"),
-                                   has_kangaroo=c(FALSE, FALSE, FALSE, 1))
-    ```
-
-   ```{r, eval=FALSE, purl=TRUE, echo=FALSE}
-   ## Challenge:
-   ##   Can you predict the class for each of the columns in the following
-   ##   example?
-   ##   Check your guesses using `str(country_climate)`:
-   ##   * Are they what you expected? Why? why not?
-   ##   * What would have been different if we had added `stringsAsFactors = FALSE`
-   ##     to this call?
-   ##   * What would you need to change to ensure that each column had the
-   ##     accurate data type?
-   country_climate <- data.frame(country=c("Canada", "Panama", "South Africa", "Australia"),
-                                  climate=c("cold", "hot", "temperate", "hot/temperate"),
-                                  temperature=c(10, 30, 18, "15"),
-                                  northern_hemisphere=c(TRUE, TRUE, FALSE, "FALSE"),
-                                  has_kangaroo=c(FALSE, FALSE, FALSE, 1))
-   ```
-
-3. We introduced you to the `data.frame()` function and `read.csv()`, but what
-   if we are starting with some vectors? The best way to do this is to pass
-   those vectors to the `data.frame()` function, similar to the above.
-
-    ```{r, eval=FALSE, purl=FALSE}
-    color <- c("red", "green", "blue", "yellow")
-    counts <- c(50, 60, 65, 82)
-    new_datarame <- data.frame(colors = color, counts = counts)
-    ```
-
-   Try making your own new data frame from some vectors. You can check the data
-   type of the new object using `class()`.
-
-   ```{r, eval=FALSE, purl=TRUE, echo=FALSE}
-    ## Challenge:
-    ##   We introduced you to the `data.frame()` function and `read.csv()`,
-    ##   but what if we are starting with some vectors? The best way to do
-    ##   this is to pass those vectors to the `data.frame()` function, similar
-    ##   to the above.
-    color <- c("red", "green", "blue", "yellow")
-    counts <- c(50, 60, 65, 82)
-    new_datarame <- data.frame(colors = color, counts = counts)
-    ##    Try making your own new data frame from some vectors. You can check
-    ##    the data type of the new object using `class()`.
-   ```
-
-   <!--- Answers
-
-   ```{r, eval=FALSE, echo=FALSE, purl=FALSE}
-   ## Answers
-   ## * missing quotations around the first names of the authors
-   ## * the year column is missing one value, 1859 (the year of publication of
-   ##   the origin of species)
-   ```
-
-   ```{r, eval=FALSE, echo=FALSE, purl=FALSE}
-   ## Answers
-   ## * `country`, `climate`, `temperature`, and `northern_hemisphere` are
-   ##    factors; `has_kangaroo` is numeric.
-   ## * using `stringsAsFactors=FALSE` would have made them character instead of
-   ##   factors
-   ## * removing the quotes in temperature, northern_hemisphere, and replacing 1
-   ##   by TRUE in the `has_kangaroo` column would probably what was originally
-   ##   intended.
-   ```
-
-   -->
-
-   The automatic conversion of data type is sometimes a blessing, sometimes an
-   annoyance. Be aware that it exists, learn the rules, and double check that
-   data you import in R are of the correct type within your data frame. If not,
-   use it to your advantage to detect mistakes that might have been introduced
-   during data entry (a letter in a column that should only contain numbers for
-   instance.).
-
-
-## Inspecting `data.frame` Objects
-
-We already saw how the functions `head()` and `str()` can be useful to check the
-content and the structure of a `data.frame`. Here is a non-exhaustive list of
-functions to get a sense of the content/structure of the data.
-
-* Size:
-    * `dim()` - returns a vector with the number of rows in the first element,
-          and the number of columns as the second element (the **dim**ensions of
-          the object)
-    * `nrow()` - returns the number of rows
-    * `ncol()` - returns the number of columns
-
-* Content:
-    * `head()` - shows the first 6 rows
-    * `tail()` - shows the last 6 rows
-
-* Names:
-    * `names()` - returns the column names (synonym of `colnames()` for `data.frame`
-	   objects)
-    * `rownames()` - returns the row names
-
-* Summary:
-    * `str()` - structure of the object and information about the class, length and
-	   content of  each column
-    * `summary()` - summary statistics for each column
-
-Note: most of these functions are "generic", they can be used on other types of
-objects besides `data.frame`.
-
-## Indexing, Sequences, and Subsetting
-
-```{r, echo=FALSE, purl=TRUE}
-
-## Sequences and Subsetting data frames
-```
-
-`:` is a special function that creates numeric vectors of integers in increasing
-or decreasing order, test `1:10` and `10:1` for instance. The function `seq()`
-(for **seq**uence) can be used to create more complex patterns:
-
-```{r, results='show', purl=FALSE}
-seq(1, 10, by=2)
-seq(5, 10, length.out=3)
-seq(50, by=5, length.out=10)
-seq(1, 8, by=3) # sequence stops to stay below upper limit
-```
-
-Our survey data frame has rows and columns (it has 2 dimensions), if we want to
-extract some specific data from it, we need to specify the "coordinates" we
-want from it. Row numbers come first, followed by column numbers. However, note
-that different ways of specifying these coordinates lead to results with
-different classes.
-
-```{r, purl=FALSE}
-surveys[1]      # first column in the data frame (as a data.frame)
-surveys[,1]     # first column in the data frame (as a vector)
-surveys[1, 1]   # first element in the first column of the data frame (as a vector)
-surveys[1, 6]   # first element in the 6th column (as a vector)
-surveys[1:3, 7] # first three elements in the 7th column (as a vector)
-surveys[3, ]    # the 3rd element for all columns (as a data.frame)
-head_surveys <- surveys[1:6, ] # equivalent to head(surveys)
-```
-
-You can also exclude certain parts of a data frame
-```{r, purl=FALSE}
-surveys[,-1]   #The whole data frame, except the first column
-surveys[-c(7:34786),] #equivalent to head(surveys)
-```
-
-As well as using numeric values to subset a `data.frame` (or `matrix`), columns
-can be called by name, using one of the three following notations:
-
-```{r, eval = FALSE, purl=FALSE}
-surveys["species_id"]       # Result is a data.frame
-surveys[, "species_id"]     # Result is a vector
-surveys[["species_id"]]     # Result is a vector
-surveys$species_id          # Result is a vector
-```
-
-For our purposes, these three notations are equivalent. However, the last one
-with the `$` does partial matching on the name. So you could also select the
-column `"day"` by typing `surveys$d`. It's a shortcut, as with all shortcuts,
-they can have dangerous consequences, and are best avoided. Besides, with
-auto-completion in RStudio, you rarely have to type more than a few characters
-to get the full and correct column name.
-
-### Challenge
-
-1. The function `nrow()` on a `data.frame` returns the number of rows. Use it,
-   in conjunction with `seq()` to create a new `data.frame` called
-   `surveys_by_10` that includes every 10th row of the survey data frame
-   starting at row 10 (10, 20, 30, ...)
-
-2. Create a `data.frame` containing only the observations from row 1999 of the
-   `surveys` dataset.
-
-3. Notice how `nrow()` gave you the number of rows in a `data.frame`? Use `nrow()`
-  instead of a row number to make a `data.frame` with observations from only the last
-  row of the `surveys` dataset.
-
-4. Now that you've seen how `nrow()` can be used to stand in for a row index, let's combine
-  that behavior with the `-` notation above to reproduce the behavior of `head(surveys)`
-  excluding the 7th through final row of the `surveys` dataset.
-
-```{r, echo=FALSE, purl=TRUE}
-### Challenges:
-### 1. The function `nrow()` on a `data.frame` returns the number of
-### rows. Use it, in conjuction with `seq()` to create a new
-### `data.frame` called `surveys_by_10` that includes every 10th row
-### of the survey data frame starting at row 10 (10, 20, 30, ...)
-###
-### 2. Create a data.frame containing only the observation from row 1999 of the -->
-### surveys dataset.
-###
-### 3. Notice how `nrow()` gave you the number of rows in a `data.frame`? Use `nrow()`
-###   instead of a row number to make a `data.frame` with observations from only the last
-###   row of the `surveys` dataset.
-###
-### 4. Now that you've seen how `nrow()` can be used to stand in for a row index, let's combine
-###   that behavior with the `-` notation above to reproduce the behavior of `head(surveys)`
-###   excluding the 7th through final row of the `surveys` dataset.
-```
-
-<!---
-```{r, purl=FALSE}
-## Answers
-surveys_by_10 <- surveys[seq(10, nrow(surveys), by=10), ]
-surveys_1999 <- surveys[surveys$year == 1999, ]
-surveys_last <- surveys[nrow(surveys),]
-surveys_head <- surveys[-c(7:nrow(surveys)),]
-```
---->
+> ### Challenge
+>
+> 1. We have seen how data frames are created when using the `read.csv()`, but
+>   they can also be created by hand with the `data.frame()` function.  There are
+>   a few mistakes in this hand-crafted `data.frame`, can you spot and fix them?
+>   Don't hesitate to experiment!
+>
+>     ```{r, eval=FALSE, purl=FALSE}
+>     animal_data <- data.frame(animal=c("dog", "cat", "sea cucumber", "sea urchin"),
+>                               feel=c("furry", "squishy", "spiny"),
+>                               weight=c(45, 8 1.1, 0.8))
+>     ```
+>
+>     ```{r, eval=FALSE, purl=TRUE, echo=FALSE}
+>     ## Challenge:
+>     ##  There are a few mistakes in this hand-crafted `data.frame`,
+>     ##  can you spot and fix them? Don't hesitate to experiment!
+>     animal_data <- data.frame(animal=c(dog, cat, sea cucumber, sea urchin),
+>                               feel=c("furry", "squishy", "spiny"),
+>                               weight=c(45, 8 1.1, 0.8))
+>     ```
+>
+> 2. Can you predict the class for each of the columns in the following example?
+>    Check your guesses using `str(country_climate)`:
+>      * Are they what you expected?  Why? Why not?
+>      * What would have been different if we had added `stringsAsFactors = FALSE` to this call?
+>      * What would you need to change to ensure that each column had the accurate data type?
+>
+>     ```{r, eval=FALSE, purl=FALSE}
+>     country_climate <- data.frame(country=c("Canada", "Panama", "South Africa", "Australia"),
+>                                    climate=c("cold", "hot", "temperate", "hot/temperate"),
+>                                    temperature=c(10, 30, 18, "15"),
+>                                    northern_hemisphere=c(TRUE, TRUE, FALSE, "FALSE"),
+>                                    has_kangaroo=c(FALSE, FALSE, FALSE, 1))
+>     ```
+>
+>    ```{r, eval=FALSE, purl=TRUE, echo=FALSE}
+>    ## Challenge:
+>    ##   Can you predict the class for each of the columns in the following
+>    ##   example?
+>    ##   Check your guesses using `str(country_climate)`:
+>    ##   * Are they what you expected? Why? why not?
+>    ##   * What would have been different if we had added `stringsAsFactors = FALSE`
+>    ##     to this call?
+>    ##   * What would you need to change to ensure that each column had the
+>    ##     accurate data type?
+>    country_climate <- data.frame(country=c("Canada", "Panama", "South Africa", "Australia"),
+>                                   climate=c("cold", "hot", "temperate", "hot/temperate"),
+>                                   temperature=c(10, 30, 18, "15"),
+>                                   northern_hemisphere=c(TRUE, TRUE, FALSE, "FALSE"),
+>                                   has_kangaroo=c(FALSE, FALSE, FALSE, 1))
+>    ```
+>
+>    <!--- Answers
+>
+>    ```{r, eval=FALSE, echo=FALSE, purl=FALSE}
+>    ## Answers
+>    ## * missing quotations around the names of the animals
+>    ## * missing one entry in the "feel" column (probably for one of the furry animals)
+>    ## * missing one comma in the weight column
+>
+>    ## Answers
+>    ## * `country`, `climate`, `temperature`, and `northern_hemisphere` are
+>    ##    factors; `has_kangaroo` is numeric.
+>    ## * using `stringsAsFactors=FALSE` would have made them character instead of
+>    ##   factors
+>    ## * removing the quotes in temperature, northern_hemisphere, and replacing 1
+>    ##   by TRUE in the `has_kangaroo` column would probably what was originally
+>    ##   intended.
+>    ```
+>
+>    -->
+>
+>    The automatic conversion of data type is sometimes a blessing, sometimes an
+>    annoyance. Be aware that it exists, learn the rules, and double check that
+>    data you import in R are of the correct type within your data frame. If not,
+>    use it to your advantage to detect mistakes that might have been introduced
+>    during data entry (a letter in a column that should only contain numbers for
+>    instance.).
