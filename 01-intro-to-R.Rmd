@@ -46,6 +46,18 @@ assignment operator `<-`, and the value we want to give it:
 weight_kg <- 55
 ```
 
+`<-` is the assignment operator. It assigns values on the right to objects on
+the left. So, after executing `x <- 3`, the value of `x` is `3`. The arrow can
+be read as 3 **goes into** `x`.  For historical reasons, you can also use `=`
+for assignments, but not in every context. Because of
+the
+[slight](http://blog.revolutionanalytics.com/2008/12/use-equals-or-arrow-for-assignment.html) [differences](https://web.archive.org/web/20130610005305/https://stat.ethz.ch/pipermail/r-help/2009-March/191462.html) in
+syntax, it is good practice to use always `<-` for assignments.
+
+In RStudio, typing <kbd>Alt</kbd> + <kbd>-</kbd> (push <kbd>Alt</kbd> at the
+same time as the <kbd>-</kbd> key) will write ` <- ` in a single keystroke.
+
+
 Objects can be given any name such as `x`, `current_temperature`, or
 `subject_id`. You want your object names to be explicit and not too long. They
 cannot start with a number (`2x` is not valid, but `x2` is). R is case sensitive
@@ -116,6 +128,83 @@ mass <- mass * 2.0      # mass?
 age  <- age - 20        # age?
 mass_index <- mass/age  # mass_index?
 ```
+
+### Functions and their arguments
+
+Functions are "canned scripts" that automate something complicated or convenient
+or both.  Many functions are predefined, or can be made available by importing R
+*packages* (more on that later). A function usually gets one or more inputs
+called *arguments*. Functions often (but not always) return a *value*. A typical
+example would be the function `sqrt()`. The input (the argument) must be a
+number, and the return value (in fact, the output) is the square root of that
+number. Executing a function ('running it') is called *calling* the function. An
+example of a function call is:
+
+`b <- sqrt(a)`
+
+Here, the value of `a` is given to the `sqrt()` function, the `sqrt()` function
+calculates the square root, and returns the value which is then assigned to
+variable `b`. This function is very simple, because it takes just one argument.
+
+The return 'value' of a function need not be numerical (like that of `sqrt()`),
+and it also does not need to be a single item: it can be a set of things, or
+even a data set. We'll see that when we read data files into R.
+
+Arguments can be anything, not only numbers or filenames, but also other
+objects. Exactly what each argument means differs per function, and must be
+looked up in the documentation (see below). Some functions take arguments which
+may either be specified by the user, or if left out, take on a *default* value:
+these are called *options*. Options are typically used to alter the way the
+function operates, such as whether it ignores 'bad values', or what symbol to
+use in a plot.  However, if you want something specific, you can specify a value
+of your choice which will be used instead of the default.
+
+Let's try a function that can take multiple arguments: `round()`.
+
+```{r, results='show', purl=FALSE}
+round(3.14159)
+```
+
+Here, we've called `round()` with just one argument, `3.14159`, and it has
+returned the value `3`.  That's because the default is to round to the nearest
+whole number. If we want more digits we can see how to do that by getting
+information about the `round` function.  We can use `args(round)` or look at the
+help for this function using `?round`.
+
+```{r, results='show', purl=FALSE}
+args(round)
+```
+
+```{r, eval=FALSE, purl=FALSE}
+?round
+```
+
+We see that if we want a different number of digits, we can
+type `digits=2` or however many we want.
+
+```{r, results='show', purl=FALSE}
+round(3.14159, digits=2)
+```
+
+If you provide the arguments in the exact same order as they are defined you
+don't have to name them:
+
+```{r, results='show', purl=FALSE}
+round(3.14159, 2)
+```
+
+And if you do name the arguments, you can switch their order:
+
+```{r, results='show', purl=FALSE}
+round(digits=2, x=3.14159)
+```
+
+It's good practice to put the non-optional arguments (like the number you're
+rounding) first in your function call, and to specify the names of all optional
+arguments.  If you don't, someone reading your code might have to look up the
+definition of a function with unfamiliar arguments to understand what you're
+doing.
+
 
 ## Vectors and data types
 
