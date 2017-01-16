@@ -45,6 +45,7 @@ argument called `stringsAsFactors` which can be set to `FALSE`.
 Compare the output of `str(surveys)` when setting `stringsAsFactors = TRUE`
 (default) and `stringsAsFactors = FALSE`:
 
+
 ```{r, eval=FALSE, purl=FALSE}
 ## Compare the difference between when the data are being read as
 ## `factor`, and when they are being read as `character`.
