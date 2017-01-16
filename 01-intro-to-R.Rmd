@@ -428,8 +428,8 @@ in vectors as `NA`.
 
 When doing operations on numbers, most functions will return `NA` if the data
 you are working with include missing values. This feature
-makes it harder to overlook the cases where you are dealing with missing data. 
-You can add the argument `na.rm=TRUE` to calculate the result while ignoring 
+makes it harder to overlook the cases where you are dealing with missing data.
+You can add the argument `na.rm=TRUE` to calculate the result while ignoring
 the missing values.
 
 ```{r, purl=FALSE}
@@ -457,10 +457,26 @@ heights[complete.cases(heights)]
 ```
 
 > ### Challenge
-> Using this data for lengths, create a new vector with the NAs removed.
-> ```r
-> lengths <- c(10,24,NA,18,NA,20)
-> ```
+>
+> 1. Using this vector of length measurements, create a new vector with the NAs
+> removed.
+>
+>     ```r
+>     lengths <- c(10,24,NA,18,NA,20)
+>     ```
+>
+> 2. Use the function `median()` to calculate the median of the lengths vector.
+
+
+```{r, purl=TRUE, echo=FALSE}
+## ### Challenge
+## 1. Using this vector of length measurements, create a new vector with the NAs
+## removed.
+##
+##    lengths <- c(10,24,NA,18,NA,20)
+##
+## 2. Use the function `median()` to calculate the median of the lengths vector.
+```
 
 Next, we will use the "surveys" dataset to explore the `data.frame` data
 structure, which is one of the most common types of R objects.
