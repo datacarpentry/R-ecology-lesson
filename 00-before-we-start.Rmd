@@ -30,7 +30,6 @@ knitr::opts_chunk$set(results='hide', fig.path='img/r-lesson-')
 The term "R" is used to refer to both the programming language and the software
 that interprets the scripts written using it.
 
-# Presentation of RStudio
 RStudio is currently a very popular way to not only write your R scripts but
 also to interact with the R software. To function correctly, RStudio needs R and
 therefore both need to be installed on your computer.
@@ -107,14 +106,17 @@ transparency, there is less chance for mistakes, and if you (or someone else)
 find some, you can report and fix bugs.
 
 
+
+## Knowing your way around RStudio
+
 Let's start by learning about [RStudio](https://www.rstudio.com/), the
 Integrated Development Environment (IDE).
 
 The RStudio IDE open source product is free under
 the
-[Affero General Public License (AGPL) v3](https://www.gnu.org/licenses/agpl-3.0.en.html). RStudio
-IDE is also available with a commercial license and priority email support from
-RStudio, Inc.
+[Affero General Public License (AGPL) v3](https://www.gnu.org/licenses/agpl-3.0.en.html).
+RStudio IDE is also available with a commercial license and priority email
+support from RStudio, Inc.
 
 We will use RStudio IDE to write code, navigate the files found on our computer,
 inspect the variables we are going to create, and visualize the plots we will
@@ -134,7 +136,7 @@ a single window. Additionally, with many shortcuts, autocompletion, and
 highlighting for the major file types you use while developing in R, RStudio
 will make typing easier and less error-prone.
 
-# Before we get started
+## Before we get started
 
 It is good practice to keep a set of related data, analyses, and text
 self-contained in a single folder, called the **working directory**. All of the
@@ -168,7 +170,7 @@ Your working directory should now look like this:
 
 ![How it should look like at the beginning of this lesson](img/r_starting_how_it_should_like.png)
 
-## Organizing your working directory
+### Organizing your working directory
 
 Using a consistent folder structure across your projects will
 help keep things organized, and will also make it easy find/file things in the
@@ -198,7 +200,7 @@ workshop, you only need a `data/` folder.
 ![Example of a working directory structure](img/R-ecology-work_dir_structure.png)
 
 
-# Interacting with R
+## Interacting with R
 
 The basis of programming is that we write down instructions for the computer to
 follow, and then we tell the computer to follow those instructions. We write, or
@@ -246,9 +248,9 @@ right-parentheses, or the same number of opening and closing quotation marks. If
 you're in RStudio and this happens, click inside the console window and press
 `Esc`; this will cancel the incomplete command and return you to the `>` prompt.
 
-# Seeking help
+## Seeking help
 
-## I know the name of the function I want to use, but I'm not sure how to use it
+### I know the name of the function I want to use, but I'm not sure how to use it
 
 If you need help with a specific function, let's say `barplot()`, you can type:
 
@@ -262,7 +264,7 @@ If you just need to remind yourself of the names of the arguments, you can use:
 args(lm)
 ```
 
-## I want to use a function that does X, there must be a function for it but I don't know which one...
+### I want to use a function that does X, there must be a function for it but I don't know which one...
 
 If you are looking for a function to do a particular task, you can use
 `help.search()` function, which is called by the double question mark `??`.
@@ -279,7 +281,7 @@ the help files across all packages available.
 
 Finally, a generic Google or internet search "R \<task\>" will often either send you to the appropriate package documentation or a helpful forum question that someone else already asked.
 
-## I am stuck... I get an error message that I don't understand
+### I am stuck... I get an error message that I don't understand
 
 Start by googling the error message. However, this doesn't always work very well
 because often, package developers rely on the error catching provided by R. You
@@ -299,7 +301,7 @@ place to understand the underpinnings of the R language.
 The [R FAQ](http://cran.r-project.org/doc/FAQ/R-FAQ.html) is dense and technical
 but it is full of useful information.
 
-## Asking for help
+### Asking for help
 
 The key to get help from someone is for them to grasp your problem rapidly. You
 should make it as easy as possible to pinpoint where the issue might be.
@@ -353,7 +355,7 @@ to understand your problem.
 sessionInfo()
 ```
 
-## Where to ask for help?
+### Where to ask for help?
 
 * Your friendly colleagues: if you know someone with more experience than you,
   they might be able and willing to help you.
@@ -378,7 +380,7 @@ sessionInfo()
 * There are also some topic-specific mailing lists (GIS, phylogenetics, etc...),
   the complete list is [here](http://www.r-project.org/mail.html).
 
-## More resources
+### More resources
 
 * The [Posting Guide](http://www.r-project.org/posting-guide.html) for the R
   mailing lists.
