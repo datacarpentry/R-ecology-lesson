@@ -25,9 +25,16 @@ knitr::opts_chunk$set(results='hide', fig.path='img/r-lesson-')
 
 ------------
 
+## What is R? What is RStudio?
 
+The term "R" is used to refer to both the programming language and the software
+that interprets the scripts written using it.
 
 # Presentation of RStudio
+RStudio is currently a very popular way to not only write your R scripts but
+also to interact with the R software. To function correctly, RStudio needs R and
+therefore both need to be installed on your computer.
+
 
 Let's start by learning about [RStudio](https://www.rstudio.com/), the
 Integrated Development Environment (IDE).
