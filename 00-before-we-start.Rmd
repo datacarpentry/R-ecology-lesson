@@ -359,6 +359,10 @@ sessionInfo()
 
 ### Where to ask for help?
 
+* The person sitting next to you during the workshop. Don't hesitate to talk to
+  your neighbor during theh workshop, compare your answers, and ask for
+  help. You might also be interested in organizing regular meetings following
+  the workshop to keep learning from each others.
 * Your friendly colleagues: if you know someone with more experience than you,
   they might be able and willing to help you.
 * [Stack Overflow](http://stackoverflow.com/questions/tagged/r): if your question
