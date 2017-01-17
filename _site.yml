@@ -6,14 +6,12 @@ navbar:
       href: 01-intro-to-R.html
     - text: "Starting with data"
       href: 02-starting-with-data.html
-    - text: "Introducing data frames"
-      href: 03-data-frames.html
-    - text: "Manipulating data"
-      href: 04-dplyr.html
+    - text: "Manipulating data frames"
+      href: 03-dplyr.html
     - text: "Visualizing data"
-      href: 05-visualization-ggplot2.html
+      href: 04-visualization-ggplot2.html
     - text: "R and SQL"
-      href: 06-r-and-sql.html
+      href: 05-r-and-databases.html
     - text: "Handout"
       href: handout-script.R
   right:

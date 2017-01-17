@@ -10,11 +10,11 @@ skeleton-%.R: %.Rmd _site.yml
 %.html: %.md
 	Rscript -e "rmarkdown::render_site(input='$<')"
 
-handout-script.R: skeleton-00-before-we-start.R skeleton-01-intro-to-R.R skeleton-02-starting-with-data.R skeleton-03-data-frames.R skeleton-04-dplyr.R skeleton-05-visualization-ggplot2.R
+handout-script.R: skeleton-00-before-we-start.R skeleton-01-intro-to-R.R skeleton-02-starting-with-data.R skeleton-03-dplyr.R skeleton-04-visualization-ggplot2.R
 	for f in $^; do cat $$f; echo "\n"; done > $@
 	make clean-skeleton
 
-pages: 00-before-we-start.html 01-intro-to-R.html 02-starting-with-data.html 03-data-frames.html 04-dplyr.html 05-visualization-ggplot2.html 06-r-and-sql.html LICENSE.html
+pages: 00-before-we-start.html 01-intro-to-R.html 02-starting-with-data.html 03-dplyr.html 04-visualization-ggplot2.html 05-r-and-databases.html LICENSE.html
 	make clean-md
 
 clean-skeleton:
