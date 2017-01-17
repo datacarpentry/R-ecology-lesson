@@ -195,7 +195,9 @@ general, you may create directories (folders) for **scripts**, **data**, and
 
 You may want additional directories or subdirectories depending on your project
 needs, but these should form the backbone of your working directory. For this
-workshop, you only need a `data/` folder.
+workshop, we will need a `data/` folder to store our raw data, and we will
+create later a `data_output/` folder when we learn how to export data as CSV
+files.
 
 ![Example of a working directory structure](img/R-ecology-work_dir_structure.png)
 
