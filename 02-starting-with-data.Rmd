@@ -12,8 +12,8 @@ source("setup.R")
 
 > ## Learning Objectives
 >
-> * Describe what a data.frame is.
-> * Summarize the contents of a dataframe in R.
+> * Describe what a data frame is.
+> * Summarize the contents of a data frame in R.
 > * Load external data from a .csv file into R.
 > * Manipulate categorical data in R.
 
@@ -47,9 +47,9 @@ Each row holds information for a single animal, and the columns represent:
 
 We are going to use the R function `download.file()` to download the CSV file
 that contains the survey data from figshare, and we will use `read.csv()` to
-load into memory the content of the CSV file as a `data.frame`.
+load into memory the content of the CSV file as an object of class `data.frame`.
 
-To download the data into the `data/` subdirectory, do:
+To download the data into the `data/` subdirectory, run the following:
 
 ```{r, eval=FALSE, purl=TRUE}
 download.file("https://ndownloader.figshare.com/files/2292169",
@@ -63,11 +63,11 @@ surveys <- read.csv('data/portal_data_joined.csv')
 ```
 
 This statement doesn't produce any output because, as you might recall,
-assignment doesn't display anything. If we want to check that our data has been
+assignments don't display anything. If we want to check that our data has been
 loaded, we can print the variable's value: `surveys`.
 
 Wow... that was a lot of output. At least it means the data loaded
-properly. Let's check the top (the first 6 lines) of this `data.frame` using the
+properly. Let's check the top (the first 6 lines) of this data frame using the
 function `head()`:
 
 ```{r, results='show', purl=FALSE}
@@ -77,7 +77,7 @@ head(surveys)
 A `data.frame` is the representation of data in the format of a table where the
 columns are vectors that all have the same length. Because the column are
 vectors, they all contain the same type of data. We can see this when inspecting
-the __str__ucture of a `data.frame` with the function `str()`:
+the <b>str</b>ucture of a `data.frame` with the function `str()`:
 
 ```{r, purl=FALSE}
 str(surveys)
@@ -114,13 +114,13 @@ Note: most of these functions are "generic", they can be used on other types of
 objects besides `data.frame`.
 
 
-### Challenge
-
-Based on the output of `str(surveys)`, can you answer the following questions?
-
-* What is the class of the object `surveys`?
-* How many rows and how many columns are in this object?
-* How many species have been recorded during these surveys?
+> ### Challenge
+>
+> Based on the output of `str(surveys)`, can you answer the following questions?
+>
+> * What is the class of the object `surveys`?
+> * How many rows and how many columns are in this object?
+> * How many species have been recorded during these surveys?
 
 ```{r, echo=FALSE, purl=TRUE}
 
@@ -147,7 +147,7 @@ Based on the output of `str(surveys)`, can you answer the following questions?
 
 ```{r, echo=FALSE, purl=TRUE}
 
-## Sequences and Subsetting data frames
+## Indexing and subsetting data frames
 ```
 
 
@@ -159,7 +159,7 @@ different classes.
 
 ```{r, purl=FALSE}
 surveys[1]      # first column in the data frame (as a data.frame)
-surveys[, 1]     # first column in the data frame (as a vector)
+surveys[, 1]    # first column in the data frame (as a vector)
 surveys[1, 1]   # first element in the first column of the data frame (as a vector)
 surveys[1, 6]   # first element in the 6th column (as a vector)
 surveys[1:3, 7] # first three elements in the 7th column (as a vector)
@@ -253,9 +253,9 @@ surveys_head <- surveys[-c(7:nrow(surveys)),]
 ### Factors
 ```
 
-When we did `str(surveys)` we see that several of the columns consist of
+When we did `str(surveys)` we saw that several of the columns consist of
 integers, however, the columns `genus`, `species`, `sex`, `plot_type`, ... are
-of a special class called a `factor`. Factor are very useful and are actually
+of a special class called a `factor`. Factors are very useful and are actually
 something that make R particularly well suited to working with data, so we're
 going to spend a little time introducing them.
 
@@ -263,10 +263,10 @@ Factors are used to represent categorical data. Factors can be ordered or
 unordered, and understanding them is necessary for statistical analysis and for
 plotting.
 
-Factors are stored as integers, and have labels associated with these unique
-integers. While factors look (and often behave) like character vectors, they are
-actually integers under the hood, and you need to be careful when treating them
-like strings.
+Factors are stored as integers, and have labels (text) associated with these
+unique integers. While factors look (and often behave) like character vectors,
+they are actually integers under the hood, and you need to be careful when
+treating them like strings.
 
 Once created, factors can only contain a pre-defined set of values, known as
 *levels*. By default, R always sorts *levels* in alphabetical order. For
@@ -292,9 +292,9 @@ it improves your visualization, or it is required by a particular type of
 analysis. Here, one way to reorder our levels in the `sex` vector would be:
 
 ```{r, results=TRUE, purl=FALSE}
-sex
+sex # current order
 sex <- factor(sex, levels = c("male", "female"))
-sex
+sex # after re-ordering
 ```
 
 In R's memory, these factors are represented by integers (1, 2, 3), but are more
@@ -320,9 +320,9 @@ convert factors to characters and then numbers.  Another method is to use the
 
 ```{r, purl=TRUE}
 f <- factor(c(1990, 1983, 1977, 1998, 1990))
-as.numeric(f)               ## wrong! and there is no warning...
-as.numeric(as.character(f)) ## works...
-as.numeric(levels(f))[f]    ## The recommended way.
+as.numeric(f)               # wrong! and there is no warning...
+as.numeric(as.character(f)) # works...
+as.numeric(levels(f))[f]    # The recommended way.
 ```
 
 Notice that in the `levels()` approach, three important steps occur:
@@ -351,7 +351,7 @@ label to something more meaningful. Before doing that, we're going to pull out
 the data on sex and work with that data, so we're not modifying the working copy
 of the data frame:
 
-```{r, purl=FALSE}
+```{r, results=TRUE, purl=FALSE}
 sex <- surveys$sex
 head(sex)
 levels(sex)
@@ -361,11 +361,11 @@ head(sex)
 ```
 
 
-### Challenges
-
-* Rename "F" and "M" to "female" and "male" respectively.
-* Now that we have renamed the factor level to "missing", can you recreate the
-  barplot such that "missing" is last (after "male")
+> ### Challenge
+>
+> * Rename "F" and "M" to "female" and "male" respectively.
+> * Now that we have renamed the factor level to "missing", can you recreate the
+>  barplot such that "missing" is last (after "male")
 
 
 ```{r wrong-order, results='show', echo=FALSE, purl=TRUE}
