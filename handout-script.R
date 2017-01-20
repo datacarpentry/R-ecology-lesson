@@ -101,7 +101,7 @@ str(example_data)
 ##  ##   to the above.
 ##  color <- c("red", "green", "blue", "yellow")
 ##  counts <- c(50, 60, 65, 82)
-##  new_datarame <- data.frame(colors = color, counts = counts)
+##  new_dataframe <- data.frame(colors = color, counts = counts)
 ##  ##    Try making your own new data frame from some vectors. You can check
 ##  ##    the data type of the new object using `class()`.
 
