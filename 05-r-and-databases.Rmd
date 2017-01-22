@@ -6,7 +6,7 @@ author: Data Carpentry contributors
 ```{r setup, include=FALSE}
 library(knitr)
 opts_chunk$set(
-  message = FALSE, 
+  message = FALSE,
   echo = TRUE,
   purl = FALSE
 )
@@ -27,7 +27,7 @@ if (file.exists("portalR.sqlite")) file.remove("portalR.sqlite")
 
 ------------
 
-# Introduction
+## Introduction
 
 So far, we have dealt with small datasets that easily fit into your computer's
 memory. But what about datasets that are too large for your computer to
@@ -38,17 +38,29 @@ the chunks needed for the current analysis.
 Even better, many large datasets are already available in public or private
 databases. You can query them without having to download the data first.
 
-R can connect to almost any existing database type. For example, the popular
-[dplyr](https://cran.r-project.org/web/packages/dplyr/index.html) package you
-used in the previous lesson supports connecting to the popular open source
-databases [sqlite](https://sqlite.org/), [mysql](https://www.mysql.com/) and
-[postgresql](https://www.postgresql.org/), as well as google’s
-[bigquery](https://cloud.google.com/bigquery/).
+R can connect to almost any existing database type. Most common database types
+have R packages that allow you to connect to them (e.g., RSQLite, RMySQL,
+etc). Futhermore,
+the [dplyr](https://cran.r-project.org/web/packages/dplyr/index.html) package
+you used in the previous chapter supports connecting to the widely-used open
+source databases [sqlite](https://sqlite.org/), [mysql](https://www.mysql.com/)
+and [postgresql](https://www.postgresql.org/), as well as
+google’s [bigquery](https://cloud.google.com/bigquery/), and it can also be
+extended to other database types.
 
-# The portal_mammals database
+Interfacing with databases using `dplyr` focusses on retrieving and analyzing
+datasets by generating `SELECT` SQL statements, but it doesn't modify the
+database itself.  For example, dplyr does not offer functions to `UPDATE` or
+`DELETE` entries. If you need these functionalities, you will need to use the
+dedicated R packages (e.g., RSQLite).
 
-We will continue to explore the `survey` data you are
-already familiar with from previous lessons.
+Here we will demonstrate how to interact with a database using dplyr, using both
+the dplyr's verb syntax and the SQL syntax.
+
+## The portal_mammals database
+
+We will continue to explore the `surveys` data you are already familiar with
+from previous lessons.
 
 The SQLite database is contained in a single file `portal_mammals.sqlite`
 that you generated during the SQL lesson. If you don't have it, you can download
@@ -60,7 +72,7 @@ download.file(url = "https://ndownloader.figshare.com/files/2292171",
               destfile = "data/portal_mammals.sqlite")
 ```
 
-# Connecting to databases with dplyr
+## Connecting to databases with dplyr
 
 We can point R to this database with `dplyr's` `src_sqlite()` command.
 
@@ -69,7 +81,7 @@ library(dplyr)
 mammals <- src_sqlite("data/portal_mammals.sqlite")
 ```
 
-The `src_sqlite()` command does not load the data into the R session (as the 
+The `src_sqlite()` command does not load the data into the R session (as the
 `read.csv()` function did). Instead, it merely instructs R to connect to
 the `SQLite` database contained in the `portal_mammals.sqlite` file.
 
@@ -78,47 +90,76 @@ to the other database types supported by `dplyr`.)
 
 Let's take a closer look at the `mammals` database we just connected to
 
-```{r tables, results='markup'}
+```{r tables}
 mammals
 ```
 
 Just like a spreadsheet with multiple worksheets, a SQLite database can contain
-multiple tables. In this case three of them are listed in the `tbls` row in the output above:
+multiple tables. In this case three of them are listed in the `tbls` row in the
+output above:
 
 * plots
-* species,
+* species
 * surveys
 
-Let's explore these tables next!
+Now that we know that we can connect to the database, let's explore how to get
+the data from its tables in R.
 
-## Querying the database
+### Querying the database with the SQL syntax
 
-We specify the table of interest with `dplyr's` `tbl()` function. First, we focus 
-on the `surveys` table.
+To connect to tables within a database, you can use the `tbl()` function from
+dplyr. This function can be used to send SQL queries to the database. For
+instance, if you wanted to select the columns "year", "species_id", and
+"plot_id" from the `surveys` table, you could use the SQL syntax:
+
+```{r use-sql-syntax}
+tbl(mammals, sql("SELECT year, species_id, plot_id FROM surveys"))
+```
+
+With this approach you can use any of the SQL queries we have covered in the
+database lesson.
+
+### Querying the database with the dplyr syntax
+
+One of the strengths of dplyr, is that the same operation can be done using
+using the dplyr's verbs instead of writing SQL. First, we select the table on
+which to do the operations, and then we use the standard dplyr syntax:
+
+```{r use-dplyr-syntax}
+surveys <- tbl(mammals, "surveys")
+surveys %>%
+    select(year, species_id, plot_type)
+```
+
+In this case, the `surveys` object behaves like a data frame, and several of the
+functions that can used with data frames, can also be used on tables from a
+database. For instance, the `head()` function can be used to check the first 10
+rows of the table:
+
 
 ```{r table_details, results='markup'}
-surveys <- tbl(mammals, "surveys")
 head(surveys, n = 10)
 ```
 
 This output of the `head` command looks just like a regular `data.frame`:
-The table has 9 columns and the `head()` command shows us the first 10 rows. 
+The table has 9 columns and the `head()` command shows us the first 10 rows.
 
-Let's check how many rows there are in total:
+However, some functions don't work quite as expected. For instance, let's check
+how many rows there are in total using `nrow()`:
 
 ```{r nrows, results='markup'}
 nrow(tbl)
 ```
 
 That's strange - R doesn't know how many rows the `survey` table contains - it
-returns `NULL` instead. 
+returns `NULL` instead.
 
 The reason for this behavior highlights a key difference between using `dplyr`
 on datasets in memory (e.g. loaded into your R session via `read.csv()`) and
 those provided by a database. To understand it, we take a closer look at how
 `dplyr` communicates with our SQLite database.
 
-## SQL translation
+### SQL translation
 
 Relational databases typically use a special-purpose language,
 [Structured Query Language (SQL)](https://en.wikipedia.org/wiki/SQL),
@@ -147,7 +188,7 @@ explain(head(surveys, n = 10))
 ```
 
 The first part of the output shows the actual SQL query sent to the database;
-it matches our manually constructed `SELECT` statement above. 
+it matches our manually constructed `SELECT` statement above.
 
 Instead of having to formulate the SQL query ourselves - and
 having to mentally switch back and forth between R and SQL syntax - we can
@@ -163,7 +204,7 @@ tell us how many rows it contains. On the bright side, this allows us to work
 with large datasets - even too large to fit into our computer's memory.
 
 `dplyr` can translate many different query types into SQL allowing us e.g.
-to `select()` specific columns, `filter()` rows or join tables. 
+to `select()` specific columns, `filter()` rows or join tables.
 
 Too see this in action, let's compose a few queries with `dplyr`.
 
@@ -198,7 +239,7 @@ Hadley Wickham, the author of `dplyr`
 [explains](https://cran.r-project.org/web/packages/dplyr/vignettes/databases.html):
 
 > When working with databases, dplyr tries to be as lazy as possible:
-> 
+>
 > * It never pulls data into R unless you explicitly ask for it.
 > * It delays doing any work until the last possible moment: it collects together
 > everything you want to do and then sends it to the database in one step.
@@ -224,7 +265,7 @@ command is not executed by R. It is sent to the database instead. Only the
 _final_ result is retrieved and displayed to you.
 
 Of course, we could always add on more steps, e.g. we could filter by
-`species_id` or  minimum `weight`. That's why R doesn't retrieve the full set 
+`species_id` or  minimum `weight`. That's why R doesn't retrieve the full set
 of results - instead it only retrieves the first 10 results from the database
 by default. (After all, you might want to add an additional step and get the
 database to do more work...)
@@ -244,12 +285,19 @@ data.subset <- surveys %>%
 Now we have all 17 rows that match our query in a `data.frame` and can continue
 to work with them exclusively in R, without communicating with the database.
 
-## Complex database queries
+### Complex database queries
 
 `dplyr` enables database queries across one or multiple database tables, using
-the same single- and multipe-table verbs you encountered previously. (This means
+the same single- and multiple-table verbs you encountered previously. This means
 you can use the same commands regardless of whether you interact with a remote
-database or local dataset!)
+database or local dataset! This is a really useful feature if you work with
+large datasets, you can first prototype your code on a small subset that fits
+into memory, and when your code is ready, you can change the input dataset as
+your full database without having to change the syntax.
+
+On the other hand, being able use SQL queries directly can be useful if your
+collaborators have already put together complex queries to prepare the dataset
+for your needs.
 
 For example, the `plots` table in the database contains information about the
 different plots surveyed by the reseachers. To access it, we point the `tbl()`
@@ -274,23 +322,34 @@ For example, let's extract all surveys for the first plot, which has `plot_id` 1
 ```{r join, results='markup'}
 plots %>%
   filter(plot_id == 1) %>%
-  inner_join(surveys) %>% 
+  inner_join(surveys) %>%
   collect()
 ```
 
 **Note:** Without the `collect()` statement, only the first 10 matching rows
 are returned. By adding `collect()`, the full set of 1,985 is retrieved.
 
-> ## Challenge 1
+> ## Challenge
 >
->  Write a query that returns the number of rodents observed in each plot in 
->  each year.
+> Write a query that returns the number of rodents observed in each plot in
+> each year.
 >
->  Hint: Connect to the species table and write a query that joins the species
->  and survey tables together.
->  The query should return counts of rodents by year.
+> Hint: Connect to the species table and write a query that joins the species
+> and survey tables together.
+> The query should return counts of rodents by year.
+>
+> Optional: Write a query in SQL that will produce the same result. You can join
+> multiple tables together uusing the following syntax where foreign key refers
+> to your unique id (e.g., `species_id`):
+>
+>     SELECT table.col, table.col
+>     FROM table1 JOIN table2
+>     ON table1.key = table2.key
+>     JOIN table3 ON table2.key = table3.key
 
-```{r left_join, results='markup'}
+<!-- answser
+```{r left_join}
+## with dplyr syntax
 species <- tbl(mammals, "species")
 
 left_join(surveys, species) %>%
@@ -298,15 +357,30 @@ left_join(surveys, species) %>%
   group_by(taxa, year) %>%
   tally %>%
   collect()
-```
 
-> ## Challenge 2
+## with SQL syntax
+query <- paste("
+SELECT a.year, b.taxa,count(*) as count
+FROM surveys a
+JOIN species b
+ON a.species_id = b.species_id
+AND b.taxa = 'Rodent'
+GROUP BY a.year, b.taxa",
+sep = "" )
+
+tbl(mammals, sql(query))
+
+```
+--->
+
+> ## Challenge
 >
 >  Write a query that returns counts of genus by `plot_id`
 >
 >  Hint: Write a query that joins the species, plot, and survey tables together.
 >  The query should return counts of genus by plot type.
 
+<!-- answer
 ```{r genus_by_type, results='markup'}
 genus.counts <- left_join(surveys, plots) %>%
   left_join(species) %>%
@@ -314,11 +388,13 @@ genus.counts <- left_join(surveys, plots) %>%
   tally %>%
   collect()
 ```
+--->
 
-## Creating a new SQLite database
+
+### Creating a new SQLite database
 
 So far, we have used a previously prepared SQLite database. But we can also
-use R to create a new database, e.g. from existing `csv` files.  Let's recreate 
+use R to create a new database, e.g. from existing `csv` files.  Let's recreate
 the mammals database that we've been working with, in R. First let's read in the
 `csv` files.
 
@@ -359,123 +435,12 @@ being written to disk. R and `dplyr` not only provide easy ways to query
 existing databases, they also allows you to easily create your own databases
 from flat files!
 
-> ## Challenge 3
+> ## Challenge
 >
 > Add the remaining species table to the my_db database and run some of your
 > queries from earlier in the lesson to verify that you have
 > faithfully recreated the mammals database.
 
 **Note:** In this example, we first loaded all of the data into the R session by
-reading the three csv files. Because all the data has to flow through R, 
+reading the three csv files. Because all the data has to flow through R,
 this is not suitable for very large datasets.
-
-# Connecting with RSQlite
-
-`dplyr` is a powerful tool focussed on retrieving and analyzing datasets by
-generating `SELECT` SQL statements, but it doesn't modify the database itself.
-For example, dplyr does not offer functions to `UPDATE` or `DELETE` entries.
-
-Luckily, R can also communicate with your database directly. For example, the
-`RSQLite` R package offers functions to send, retrieve and modify SQLite
-databases.
-
-Similarly, you should be able to connect to almost any database in R via
-[JDBC](http://cran.r-project.org/web/packages/RJDBC/index.html)
-or [ODBC](http://cran.r-project.org/web/packages/RODBC/index.html), or specific
-database packages (such as we are doing, or
-[MySQL](http://cran.r-project.org/web/packages/RMySQL/index.html) ).
-
-Let's connect to our database using `RSQLite` and repeat our queries - this time
-using standard SQL statements. (We will need the RSQLite package, so be sure to
-install it first via `install.packages('RSQLite')`.)
-
-First, we create a connection to the `portal_mammals.sqlite` database, just like
-we did with `dplyr's` `src_sqlite` function above.
-
-```{r}
-library(RSQLite)
-conn <- dbConnect(drv = SQLite(), dbname= "data/portal_mammals.sqlite")
-```
-
-## db helper functions
-
-Now we can use helper functions from `RSQLite`, e.g. to list both tables and 
-fields within a table.
-
-```{r table details, purl=FALSE}
-dbListTables(conn)
-dbListFields(conn, "surveys")
-```
-
-The `RSQLite` R package comes with additional helper functions e.g. to create
-new databases, write tables, retrieve results in small chunks or load entire
-tables into your R session. Check its
-[vignette](https://cran.r-project.org/web/packages/RSQLite/vignettes/RSQLite.html)
-for more examples!
-
-## Executing arbitrary SQL queries
-
-In addition to these helper functions, we can submit _any_ valid SQL
-query with the `dbGetQuery` function. For example, let's count the number of
-rows in the `surveys` table:
-
-```{r}
-dbGetQuery(conn,"SELECT count(*) FROM surveys")
-```
-
-## Complex SQL queries
-
-Of course, we can also issue more complex queries. Let's revisit 
-__Challenge 1__ from above, but this time we will compose the SQL statement
-ourselves, without `dplyr's` help.
-
-> ## Challenge 1, redux
->
->  Write a query that returns the number of rodents observed in each plot in 
->  each year.
->  Hint: You can join multiple tables together in SQL using the following syntax
->  where foreign key refers to your unique id (e.g., `species_id`):
->
->     SELECT table.col, table.col
->     FROM table1 JOIN table2  
->     ON table1.key = table2.key  
->     JOIN table3 ON table2.key = table3.key
-
-First, we write our SQL query and store in a variable, e.g. `query`:
-
-```{r genus by type, purl=FALSE}
-query <- paste("
-SELECT a.year, b.taxa,count(*) as count
-FROM surveys a
-JOIN species b
-ON a.species_id = b.species_id
-AND b.taxa = 'Rodent'
-GROUP BY a.year, b.taxa",
-sep = "" )
-```
-
-Then, we submit this query to the database and collect its answer in the
-`result` object:
-
-```{r}
-result <- dbGetQuery(conn, query)
-head(result)
-```
-
-* Does the result match the output from our `dplyr` solution above?
-* Which solution do you find easier to read and understand?
-
-The `dbGetQuery` function accepts arbitrary SQL statements, opening up the full
-functionality of the SQLite database to us!
-
-## Cleaning up
-
-It is good practice to always close a connection that you open in R. Let's do
-that next. Note that once you've closed a connection, you will have to open
-a new connection to query and import the data again.
-
-```{r close Connection, purl=FALSE}
-dbDisconnect(conn)
-print(conn)
-```
-
