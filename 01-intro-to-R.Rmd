@@ -13,6 +13,8 @@ source("setup.R")
 
 > ## Learning Objectives
 >
+> * Define the following terms as they relate to R: script, function, working directory, assign, object, variable.
+> * Call functions with zero or more named or unnamed arguments.
 > * Solve mathematical operations in R.
 > * Assign values to objects and variables in R.
 > * Describe what vectors are and how they are manipulated in R.
@@ -117,16 +119,37 @@ weight_kg <- 100
 
 What do you think is the current content of the object `weight_lb`? 126.5 or 200?
 
+> ### Comments
+>
+> The comment character in R is `#`, anything to the right of a `#` in a script
+> will be ignored by R. It is useful to leave notes, and explanations in your
+> scripts.
+> RStudio makes it easy to comment or uncomment a paragraph: after selecting the
+> lines you  want to comment, press at the same time on your keyboard
+> <kbd>Crtl</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd>.
+
+> ### Challenge
+>
+> What are the values after each statement in the following?
+>
+> ```{r, purl=FALSE}
+> mass <- 47.5            # mass?
+> age  <- 122             # age?
+> mass <- mass * 2.0      # mass?
+> age  <- age - 20        # age?
+> mass_index <- mass/age  # mass_index?
+> ```
+
+```{r, echo=FALSE, purl=TRUE}
 ### Challenge
-
-What are the values after each statement in the following?
-
-```{r, purl=FALSE}
-mass <- 47.5            # mass?
-age  <- 122             # age?
-mass <- mass * 2.0      # mass?
-age  <- age - 20        # age?
-mass_index <- mass/age  # mass_index?
+##
+## What are the values after each statement in the following?
+##
+## mass <- 47.5            # mass?
+## age  <- 122             # age?
+## mass <- mass * 2.0      # mass?
+## age  <- age - 20        # age?
+## mass_index <- mass/age  # mass_index?
 ```
 
 ### Functions and their arguments
@@ -140,7 +163,9 @@ number, and the return value (in fact, the output) is the square root of that
 number. Executing a function ('running it') is called *calling* the function. An
 example of a function call is:
 
-`b <- sqrt(a)`
+```{r, eval=FALSE, purl=FALSE}
+b <- sqrt(a)
+```
 
 Here, the value of `a` is given to the `sqrt()` function, the `sqrt()` function
 calculates the square root, and returns the value which is then assigned to
@@ -289,26 +314,26 @@ factors (`factor`).
 > ### Challenge
 >
 >
-> * **Question**: We’ve seen that atomic vectors can be of type character,
+> * We’ve seen that atomic vectors can be of type character,
 >   numeric, integer, and logical. But what happens if we try to mix these types in
 >   a single vector?
 > <!-- * _Answer_: R implicitly converts them to all be the same type -->
 >
-> * **Question**: What will happen in each of these examples? (hint: use `class()`
+> * What will happen in each of these examples? (hint: use `class()`
 >   to check the data type of your objects):
 >
-> ```r
-> num_char <- c(1, 2, 3, 'a')
-> num_logical <- c(1, 2, 3, TRUE)
-> char_logical <- c('a', 'b', 'c', TRUE)
-> tricky <- c(1, 2, 3, '4')
-> ```
+>     ```r
+>     num_char <- c(1, 2, 3, 'a')
+>     num_logical <- c(1, 2, 3, TRUE)
+>     char_logical <- c('a', 'b', 'c', TRUE)
+>     tricky <- c(1, 2, 3, '4')
+>     ```
 >
-> * **Question**: Why do you think it happens?
+> * Why do you think it happens?
 > <!-- * _Answer_: Vectors can be of only one data type. R tries to convert (coerce)
 >   the content of this vector to find a "common denominator". -->
 >
-> * **Question**: Can you draw a diagram that represents the hierarchy of the data
+> * Can you draw a diagram that represents the hierarchy of the data
 >   types?
 > <!-- * _Answer_: `logical -> numeric -> character <-- logical` -->
 
@@ -332,12 +357,14 @@ tricky <- c(1, 2, 3, "4")
 ## Can you draw a diagram that represents the hierarchy of the data
 ## types?
 ```
-> ### Challenge (optional ){.challenge}
+> ### Challenge (optional){.challenge}
 >
 > * Can you figure out why `"four" > "five"` returns `TRUE`?
 
 ```{r, echo=FALSE, purl=TRUE}
-# * Can you figure out why `"four" > "five"` returns `TRUE`? (optional)
+### Challenge (optional)
+##
+## * Can you figure out why `"four" > "five"` returns `TRUE`? (optional)
 ```
 
 <!--
@@ -402,9 +429,9 @@ weight_g[weight_g >= 30 & weight_g == 21]
 ```
 
 Here, `<` stands for "smaller than", `>` or "bigger than", `>=` for "bigger or
-equal to", and `==` for "equal to". The double equal sign `==` should not be confused
-with the single `=` sign, which assigns to a variable (roughly speaking the same as
-"<-").
+equal to", and `==` for "equal to". The double equal sign `==` should not be
+confused with the single `=` sign, which assigns to a variable (roughly speaking
+the same as "`<-`").
 
 A common task is to search for certain strings in a vector. One could use the "or"
 operator `|` but this can become quickly tedious. The function `%in%` allows you to test
@@ -465,7 +492,7 @@ heights[complete.cases(heights)]
 >     lengths <- c(10,24,NA,18,NA,20)
 >     ```
 >
-> 2. Use the function `median()` to calculate the median of the lengths vector.
+> 2. Use the function `median()` to calculate the median of the `lengths` vector.
 
 
 ```{r, purl=TRUE, echo=FALSE}
@@ -475,8 +502,9 @@ heights[complete.cases(heights)]
 ##
 ##    lengths <- c(10,24,NA,18,NA,20)
 ##
-## 2. Use the function `median()` to calculate the median of the lengths vector.
+## 2. Use the function `median()` to calculate the median of the `lengths` vector.
 ```
 
-Next, we will use the "surveys" dataset to explore the `data.frame` data
-structure, which is one of the most common types of R objects.
+Now that we have learned how to write scripts, and the basics of R's data
+structures, we are ready to start working with the Portal dataset we have been
+using in the other lessons, and learn about data frames.

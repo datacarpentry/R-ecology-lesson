@@ -16,27 +16,104 @@ knitr::opts_chunk$set(results='hide', fig.path='img/r-lesson-')
 >
 > * Describe the purpose of the RStudio script, console, environment, and plot windows.
 > * Organize files and directories for a set of analysis in an R Project.
-> * Define the following terms as they relate to R: script, function, working directory, assign, object, variable.
-> * Assign values to variables.
-> * Call functions with zero or more named or unnamed arguments.
 > * Use the built-in RStudio help interface to search for more information on R
 >   functions.
 > * Demonstrate how to provide sufficient information for troubleshooting with the R user community.
 
 ------------
 
+## What is R? What is RStudio?
+
+The term "R" is used to refer to both the programming language and the software
+that interprets the scripts written using it.
+
+RStudio is currently a very popular way to not only write your R scripts but
+also to interact with the R software. To function correctly, RStudio needs R and
+therefore both need to be installed on your computer.
 
 
-# Presentation of RStudio
+## Why learning R?
+
+### R is not a GUI, and that's a good thing
+
+The learning curve might be steeper than with other software, but with R, you
+can save all the steps you used to go from the data to the results. So, if you
+want to redo your analysis because you collected more data, you don't have to
+remember which button you clicked in which order to obtain your results, you
+just have to run your script again.
+
+Working with scripts makes the steps you used in your analysis clear, and the
+code you write can be inspected by someone else who can give you feedback and
+spot mistakes.
+
+Working with scripts forces you to have deeper understanding of what you are
+doing, and facilitates your learning and comprehension of the methods you use.
+
+### R code is great for reproducibility
+
+Reproducibility is when someone else (including your future self) can obtain the
+same results from the same dataset when using the same analysis.
+
+R integrates with other tools to generate manuscripts from your code. If you
+collect more data, or fix a mistake in your dataset, the figures and the
+statistical tests in your manuscript are updated automatically.
+
+An increasing number of journals and funding agencies expect analyses to be
+reproducible, knowing R will give you an edge with these requirements.
+
+
+### R is interdisciplinary and extensible
+
+With 10,000+ packages that can be installed to extend its capabilities, R
+provides a framework that allows you to combine analyses across many scientific
+disciplines to best suit the analyses you want to use on your data. For
+instance, R has packages for image analysis, GIS, time series, population
+genetics, and a lot more.
+
+
+### R works on data of all shapes and size
+
+The skills you learn with R scale easily with the size of your dataset. Whether
+your dataset has hundreds or millions of lines, it won't make much difference to
+you.
+
+R is designed for data analysis. It comes with special data structures and data
+types that make handling of missing data and statistical factors convenient.
+
+R can connect to spreadsheets, databases, and many other data formats, on your
+computer or on the web.
+
+
+### R produces high-quality graphics
+
+The plotting functionalities in R are endless, and allow you to adjust any
+aspect of your graph to convey most effectively the message from your data.
+
+
+### R has a large community
+
+Thousands of people use R daily. Many of them are willing to help you through
+mailing lists and stack overflow.
+
+
+### Not only R is free, but it is also open-source and cross-platform
+
+Anyone can inspect the source code to see how R works. Because of this
+transparency, there is less chance for mistakes, and if you (or someone else)
+find some, you can report and fix bugs.
+
+
+
+## Knowing your way around RStudio
 
 Let's start by learning about [RStudio](https://www.rstudio.com/), the
 Integrated Development Environment (IDE).
 
 The RStudio IDE open source product is free under
 the
-[Affero General Public License (AGPL) v3](https://www.gnu.org/licenses/agpl-3.0.en.html). RStudio
-IDE is also available with a commercial license and priority email support from
-RStudio, Inc.
+[Affero General Public License (AGPL) v3](https://www.gnu.org/licenses/agpl-3.0.en.html).
+RStudio IDE is also available with a commercial license and priority email
+support from RStudio, Inc.
 
 We will use RStudio IDE to write code, navigate the files found on our computer,
 inspect the variables we are going to create, and visualize the plots we will
@@ -56,7 +133,7 @@ a single window. Additionally, with many shortcuts, autocompletion, and
 highlighting for the major file types you use while developing in R, RStudio
 will make typing easier and less error-prone.
 
-# Before we get started
+## Before we get started
 
 It is good practice to keep a set of related data, analyses, and text
 self-contained in a single folder, called the **working directory**. All of the
@@ -68,10 +145,10 @@ others without worrying about whether or not the underlying scripts will still
 work.
 
 RStudio provides a helpful set of tools to do this through its "Projects"
-interface, which not only creates a working directory for you but also
-remembers its location (allowing you to quickly navigate to it) and optionally
-preserves custom settings and open files to make it easier to resume work after
-a break. Below, we will go through the steps for creating an RProject for this
+interface, which not only creates a working directory for you but also remembers
+its location (allowing you to quickly navigate to it) and optionally preserves
+custom settings and open files to make it easier to resume work after a
+break. Below, we will go through the steps for creating an "R Project" for this
 tutorial.
 
 * Start RStudio (presentation of RStudio -below- should happen here)
@@ -90,7 +167,7 @@ Your working directory should now look like this:
 
 ![How it should look like at the beginning of this lesson](img/r_starting_how_it_should_like.png)
 
-## Organizing your working directory
+### Organizing your working directory
 
 Using a consistent folder structure across your projects will
 help keep things organized, and will also make it easy find/file things in the
@@ -115,12 +192,14 @@ general, you may create directories (folders) for **scripts**, **data**, and
 
 You may want additional directories or subdirectories depending on your project
 needs, but these should form the backbone of your working directory. For this
-workshop, you only need a `data/` folder.
+workshop, we will need a `data/` folder to store our raw data, and we will
+create later a `data_output/` folder when we learn how to export data as CSV
+files.
 
 ![Example of a working directory structure](img/R-ecology-work_dir_structure.png)
 
 
-# Interacting with R
+## Interacting with R
 
 The basis of programming is that we write down instructions for the computer to
 follow, and then we tell the computer to follow those instructions. We write, or
@@ -168,24 +247,9 @@ right-parentheses, or the same number of opening and closing quotation marks. If
 you're in RStudio and this happens, click inside the console window and press
 `Esc`; this will cancel the incomplete command and return you to the `>` prompt.
 
-# Basics of R
+## Seeking help
 
-R is a versatile, open source programming/scripting language inspired by the
-programming language S, which is useful both for statistics and data science.
-
-* Free/Libre/Open Source Software under the [GPL version 2](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html).
-* Superior (if not just comparable) to commercial alternatives. R has over 7,000
-  user contributed packages at this time. It's widely used both in academia and
-  industry.
-* Available on all platforms.
-* Not just for statistics, but also general purpose programming.
-* For people who have experience in programmming: R is both an object-oriented
-  and a so-called [functional language](http://adv-r.had.co.nz/Functional-programming.html).
-* Large and growing community of peers.
-
-# Seeking help
-
-## I know the name of the function I want to use, but I'm not sure how to use it
+### I know the name of the function I want to use, but I'm not sure how to use it
 
 If you need help with a specific function, let's say `barplot()`, you can type:
 
@@ -199,7 +263,7 @@ If you just need to remind yourself of the names of the arguments, you can use:
 args(lm)
 ```
 
-## I want to use a function that does X, there must be a function for it but I don't know which one...
+### I want to use a function that does X, there must be a function for it but I don't know which one...
 
 If you are looking for a function to do a particular task, you can use
 `help.search()` function, which is called by the double question mark `??`.
@@ -216,7 +280,7 @@ the help files across all packages available.
 
 Finally, a generic Google or internet search "R \<task\>" will often either send you to the appropriate package documentation or a helpful forum question that someone else already asked.
 
-## I am stuck... I get an error message that I don't understand
+### I am stuck... I get an error message that I don't understand
 
 Start by googling the error message. However, this doesn't always work very well
 because often, package developers rely on the error catching provided by R. You
@@ -236,7 +300,7 @@ place to understand the underpinnings of the R language.
 The [R FAQ](http://cran.r-project.org/doc/FAQ/R-FAQ.html) is dense and technical
 but it is full of useful information.
 
-## Asking for help
+### Asking for help
 
 The key to get help from someone is for them to grasp your problem rapidly. You
 should make it as easy as possible to pinpoint where the issue might be.
@@ -290,8 +354,12 @@ to understand your problem.
 sessionInfo()
 ```
 
-## Where to ask for help?
+### Where to ask for help?
 
+* The person sitting next to you during the workshop. Don't hesitate to talk to
+  your neighbor during theh workshop, compare your answers, and ask for
+  help. You might also be interested in organizing regular meetings following
+  the workshop to keep learning from each others.
 * Your friendly colleagues: if you know someone with more experience than you,
   they might be able and willing to help you.
 * [Stack Overflow](http://stackoverflow.com/questions/tagged/r): if your question
@@ -315,7 +383,7 @@ sessionInfo()
 * There are also some topic-specific mailing lists (GIS, phylogenetics, etc...),
   the complete list is [here](http://www.r-project.org/mail.html).
 
-## More resources
+### More resources
 
 * The [Posting Guide](http://www.r-project.org/posting-guide.html) for the R
   mailing lists.
