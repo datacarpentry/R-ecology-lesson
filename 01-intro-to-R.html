@@ -319,16 +319,13 @@ div.tocify {
   <a href="02-starting-with-data.html">Starting with data</a>
 </li>
 <li>
-  <a href="03-data-frames.html">Introducing data frames</a>
+  <a href="03-dplyr.html">Manipulating data frames</a>
 </li>
 <li>
-  <a href="04-dplyr.html">Manipulating data</a>
+  <a href="04-visualization-ggplot2.html">Visualizing data</a>
 </li>
 <li>
-  <a href="05-visualization-ggplot2.html">Visualizing data</a>
-</li>
-<li>
-  <a href="06-r-and-sql.html">R and SQL</a>
+  <a href="05-r-and-databases.html">R and SQL</a>
 </li>
 <li>
   <a href="handout-script.R">Handout</a>
@@ -360,6 +357,8 @@ div.tocify {
 <blockquote>
 <h2 id="learning-objectives">Learning Objectives</h2>
 <ul>
+<li>Define the following terms as they relate to R: script, function, working directory, assign, object, variable.</li>
+<li>Call functions with zero or more named or unnamed arguments.</li>
 <li>Solve mathematical operations in R.</li>
 <li>Assign values to objects and variables in R.</li>
 <li>Describe what vectors are and how they are manipulated in R.</li>
@@ -377,7 +376,9 @@ div.tocify {
 <span class="dv">12</span>/<span class="dv">7</span></code></pre></div>
 <p>However, to do useful and interesting things, we need to assign <em>values</em> to <em>objects</em>. To create an object, we need to give it a name followed by the assignment operator <code>&lt;-</code>, and the value we want to give it:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">weight_kg &lt;-<span class="st"> </span><span class="dv">55</span></code></pre></div>
-<p>Objects can be given any name such as <code>x</code>, <code>current_temperature</code>, or <code>subject_id</code>. You want your object names to be explicit and not too long. They cannot start with a number (<code>2x</code> is not valid, but <code>x2</code> is). R is case sensitive (e.g., <code>weight_kg</code> is different from <code>Weight_kg</code>). There are some names that cannot be used because they are the names of fundamental functions in R (e.g., <code>if</code>, <code>else</code>, <code>for</code>, see <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/Reserved.html">here</a> for a complete list). In general, even if it’s allowed, it’s best to not use other function names (e.g., <code>c</code>, <code>T</code>, <code>mean</code>, <code>data</code>, <code>df</code>, <code>weights</code>). In doubt check the help to see if the name is already in use. It’s also best to avoid dots (<code>.</code>) within a variable name as in <code>my.dataset</code>. There are many functions in R with dots in their names for historical reasons, but because dots have a special meaning in R (for methods) and other programming languages, it’s best to avoid them. It is also recommended to use nouns for variable names, and verbs for function names. It’s important to be consistent in the styling of your code (where you put spaces, how you name variable, etc.). In R, two popular style guides are <a href="http://adv-r.had.co.nz/Style.html">Hadley Wickham’s</a> and <a href="https://google-styleguide.googlecode.com/svn/trunk/Rguide.xml">Google’s</a>.</p>
+<p><code>&lt;-</code> is the assignment operator. It assigns values on the right to objects on the left. So, after executing <code>x &lt;- 3</code>, the value of <code>x</code> is <code>3</code>. The arrow can be read as 3 <strong>goes into</strong> <code>x</code>. For historical reasons, you can also use <code>=</code> for assignments, but not in every context. Because of the <a href="http://blog.revolutionanalytics.com/2008/12/use-equals-or-arrow-for-assignment.html">slight</a> <a href="https://web.archive.org/web/20130610005305/https://stat.ethz.ch/pipermail/r-help/2009-March/191462.html">differences</a> in syntax, it is good practice to use always <code>&lt;-</code> for assignments.</p>
+<p>In RStudio, typing <kbd>Alt</kbd> + <kbd>-</kbd> (push <kbd>Alt</kbd> at the same time as the <kbd>-</kbd> key) will write <code>&lt;-</code> in a single keystroke.</p>
+<p>Objects can be given any name such as <code>x</code>, <code>current_temperature</code>, or <code>subject_id</code>. You want your object names to be explicit and not too long. They cannot start with a number (<code>2x</code> is not valid, but <code>x2</code> is). R is case sensitive (e.g., <code>weight_kg</code> is different from <code>Weight_kg</code>). There are some names that cannot be used because they are the names of fundamental functions in R (e.g., <code>if</code>, <code>else</code>, <code>for</code>, see <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/Reserved.html">here</a> for a complete list). In general, even if it’s allowed, it’s best to not use other function names (e.g., <code>c</code>, <code>T</code>, <code>mean</code>, <code>data</code>, <code>df</code>, <code>weights</code>). In doubt check the help to see if the name is already in use. It’s also best to avoid dots (<code>.</code>) within a variable name as in <code>my.dataset</code>. There are many functions in R with dots in their names for historical reasons, but because dots have a special meaning in R (for methods) and other programming languages, it’s best to avoid them. It is also recommended to use nouns for variable names, and verbs for function names. It’s important to be consistent in the styling of your code (where you put spaces, how you name variable, etc.). Using a consistent coding style, make your code clearer to read for your future self and your collaborators. In R, two popular style guides are <a href="http://adv-r.had.co.nz/Style.html">Hadley Wickham’s</a> and <a href="https://google-styleguide.googlecode.com/svn/trunk/Rguide.xml">Google’s</a> (this <a href="http://jef.works/R-style-guide/">one</a> is also comprehensive).</p>
 <p>When assigning a value to an object, R does not print anything. You can force to print the value by using parentheses or by typing the name:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">weight_kg &lt;-<span class="st"> </span><span class="dv">55</span>    <span class="co"># doesn&#39;t print anything</span>
 (weight_kg &lt;-<span class="st"> </span><span class="dv">55</span>)  <span class="co"># but putting parenthesis around the call prints the value of `weight_kg`</span>
@@ -392,14 +393,48 @@ weight_kg          <span class="co"># and so does typing the name of the object<
 <p>and then change <code>weight_kg</code> to 100.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">weight_kg &lt;-<span class="st"> </span><span class="dv">100</span></code></pre></div>
 <p>What do you think is the current content of the object <code>weight_lb</code>? 126.5 or 200?</p>
-<div id="challenge" class="section level3">
-<h3>Challenge</h3>
+<blockquote>
+<h3 id="comments">Comments</h3>
+<p>The comment character in R is <code>#</code>, anything to the right of a <code>#</code> in a script will be ignored by R. It is useful to leave notes, and explanations in your scripts. RStudio makes it easy to comment or uncomment a paragraph: after selecting the lines you want to comment, press at the same time on your keyboard <kbd>Crtl</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd>.</p>
+</blockquote>
+<blockquote>
+<h3 id="challenge">Challenge</h3>
 <p>What are the values after each statement in the following?</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mass &lt;-<span class="st"> </span><span class="fl">47.5</span>            <span class="co"># mass?</span>
 age  &lt;-<span class="st"> </span><span class="dv">122</span>             <span class="co"># age?</span>
 mass &lt;-<span class="st"> </span>mass *<span class="st"> </span><span class="fl">2.0</span>      <span class="co"># mass?</span>
 age  &lt;-<span class="st"> </span>age -<span class="st"> </span><span class="dv">20</span>        <span class="co"># age?</span>
 mass_index &lt;-<span class="st"> </span>mass/age  <span class="co"># mass_index?</span></code></pre></div>
+</blockquote>
+<div id="functions-and-their-arguments" class="section level3">
+<h3>Functions and their arguments</h3>
+<p>Functions are “canned scripts” that automate something complicated or convenient or both. Many functions are predefined, or can be made available by importing R <em>packages</em> (more on that later). A function usually gets one or more inputs called <em>arguments</em>. Functions often (but not always) return a <em>value</em>. A typical example would be the function <code>sqrt()</code>. The input (the argument) must be a number, and the return value (in fact, the output) is the square root of that number. Executing a function (‘running it’) is called <em>calling</em> the function. An example of a function call is:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">b &lt;-<span class="st"> </span><span class="kw">sqrt</span>(a)</code></pre></div>
+<p>Here, the value of <code>a</code> is given to the <code>sqrt()</code> function, the <code>sqrt()</code> function calculates the square root, and returns the value which is then assigned to variable <code>b</code>. This function is very simple, because it takes just one argument.</p>
+<p>The return ‘value’ of a function need not be numerical (like that of <code>sqrt()</code>), and it also does not need to be a single item: it can be a set of things, or even a data set. We’ll see that when we read data files into R.</p>
+<p>Arguments can be anything, not only numbers or filenames, but also other objects. Exactly what each argument means differs per function, and must be looked up in the documentation (see below). Some functions take arguments which may either be specified by the user, or if left out, take on a <em>default</em> value: these are called <em>options</em>. Options are typically used to alter the way the function operates, such as whether it ignores ‘bad values’, or what symbol to use in a plot. However, if you want something specific, you can specify a value of your choice which will be used instead of the default.</p>
+<p>Let’s try a function that can take multiple arguments: <code>round()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">round</span>(<span class="fl">3.14159</span>)</code></pre></div>
+<pre><code>#&gt; [1] 3</code></pre>
+<p>Here, we’ve called <code>round()</code> with just one argument, <code>3.14159</code>, and it has returned the value <code>3</code>. That’s because the default is to round to the nearest whole number. If we want more digits we can see how to do that by getting information about the <code>round</code> function. We can use <code>args(round)</code> or look at the help for this function using <code>?round</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">args</span>(round)</code></pre></div>
+<pre><code>#&gt; function (x, digits = 0) 
+#&gt; NULL</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">?round</code></pre></div>
+<p>We see that if we want a different number of digits, we can type <code>digits=2</code> or however many we want.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">round</span>(<span class="fl">3.14159</span>, <span class="dt">digits=</span><span class="dv">2</span>)</code></pre></div>
+<pre><code>#&gt; [1] 3.14</code></pre>
+<p>If you provide the arguments in the exact same order as they are defined you don’t have to name them:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">round</span>(<span class="fl">3.14159</span>, <span class="dv">2</span>)</code></pre></div>
+<pre><code>#&gt; [1] 3.14</code></pre>
+<p>And if you do name the arguments, you can switch their order:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">round</span>(<span class="dt">digits=</span><span class="dv">2</span>, <span class="dt">x=</span><span class="fl">3.14159</span>)</code></pre></div>
+<pre><code>#&gt; [1] 3.14</code></pre>
+<p>It’s good practice to put the non-optional arguments (like the number you’re rounding) first in your function call, and to specify the names of all optional arguments. If you don’t, someone reading your code might have to look up the definition of a function with unfamiliar arguments to understand what you’re doing.</p>
+<blockquote>
+<h3 id="call-out">Call out</h3>
+<p>What is called <code>objects</code> in <code>R</code> is known as <code>variables</code> in many other programming languages. Depending on the context <code>object</code> and <code>variable</code> can have drastically different meanings. However, in this lesson the two words are used synonymously. For more information see: <a href="https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Objects" class="uri">https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Objects</a></p>
+</blockquote>
 </div>
 </div>
 <div id="vectors-and-data-types" class="section level2">
@@ -433,22 +468,34 @@ weight_g</code></pre></div>
 <li><code>&quot;raw&quot;</code> that we won’t discuss further</li>
 </ul>
 <p>Vectors are one of the many <strong>data structures</strong> that R uses. Other important ones are lists (<code>list</code>), matrices (<code>matrix</code>), data frames (<code>data.frame</code>) and factors (<code>factor</code>).</p>
-<div id="challenge-1" class="section level3">
-<h3>Challenge</h3>
+<blockquote>
+<h3 id="challenge-1">Challenge</h3>
 <ul>
-<li><p><strong>Question</strong>: We’ve seen that atomic vectors can be of type character, numeric, integer, and logical. But what happens if we try to mix these types in a single vector? <!-- * _Answer_: R implicitly converts them to all be the same type --></p></li>
-<li><p><strong>Question</strong>: What will happen in each of these examples? (hint: use <code>class()</code> to check the data type of your objects):</p></li>
-</ul>
+<li><p>We’ve seen that atomic vectors can be of type character, numeric, integer, and logical. But what happens if we try to mix these types in a single vector? <!-- * _Answer_: R implicitly converts them to all be the same type --></p></li>
+<li><p>What will happen in each of these examples? (hint: use <code>class()</code> to check the data type of your objects):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">num_char &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="st">&#39;a&#39;</span>)
 num_logical &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="ot">TRUE</span>)
 char_logical &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;a&#39;</span>, <span class="st">&#39;b&#39;</span>, <span class="st">&#39;c&#39;</span>, <span class="ot">TRUE</span>)
-tricky &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="st">&#39;4&#39;</span>)</code></pre></div>
-<ul>
-<li><p><strong>Question</strong>: Why do you think it happens? <!-- * _Answer_: Vectors can be of only one data type. R tries to convert (coerce)
+tricky &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="st">&#39;4&#39;</span>)</code></pre></div></li>
+<li><p>Why do you think it happens? <!-- * _Answer_: Vectors can be of only one data type. R tries to convert (coerce)
   the content of this vector to find a "common denominator". --></p></li>
-<li><p><strong>Question</strong>: Can you draw a diagram that represents the hierarchy of the data types? <!-- * _Answer_: `logical -> numeric -> character <-- logical` --></p></li>
+<li><p>Can you draw a diagram that represents the hierarchy of the data types? <!-- * _Answer_: `logical -> numeric -> character <-- logical` --></p></li>
 </ul>
-</div>
+</blockquote>
+<blockquote>
+<h3 id="challenge-optional" class="challenge">Challenge (optional)</h3>
+<ul>
+<li>Can you figure out why <code>&quot;four&quot; &gt; &quot;five&quot;</code> returns <code>TRUE</code>?</li>
+</ul>
+</blockquote>
+<!--
+
+```r
+## Answers
+## * When using ">" or "<" on strings, R compares their alphabetical order. Here
+##   "four" comes after "five", and therefore is "greater than" it.
+```
+-->
 </div>
 <div id="subsetting-vectors" class="section level2">
 <h2>Subsetting vectors</h2>
@@ -480,7 +527,7 @@ weight_g[weight_g &gt;<span class="st"> </span><span class="dv">50</span>]</code
 <pre><code>#&gt; [1] 21 54 55</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">weight_g[weight_g &gt;=<span class="st"> </span><span class="dv">30</span> &amp;<span class="st"> </span>weight_g ==<span class="st"> </span><span class="dv">21</span>]</code></pre></div>
 <pre><code>#&gt; numeric(0)</code></pre>
-<p>Here, <code>&lt;</code> stands for “smaller than”, <code>&gt;</code> or “bigger than”, <code>&gt;=</code> for “bigger or equal to”, and <code>==</code> for “equal to”. The double equal sign <code>==</code> should not be confused with the single <code>=</code> sign, which assigns to a variable (roughly speaking the same as “&lt;-”).</p>
+<p>Here, <code>&lt;</code> stands for “smaller than”, <code>&gt;</code> or “bigger than”, <code>&gt;=</code> for “bigger or equal to”, and <code>==</code> for “equal to”. The double equal sign <code>==</code> should not be confused with the single <code>=</code> sign, which assigns to a variable (roughly speaking the same as “<code>&lt;-</code>”).</p>
 <p>A common task is to search for certain strings in a vector. One could use the “or” operator <code>|</code> but this can become quickly tedious. The function <code>%in%</code> allows you to test if a value is found in a vector:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">animals &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;mouse&quot;</span>, <span class="st">&quot;rat&quot;</span>, <span class="st">&quot;dog&quot;</span>, <span class="st">&quot;cat&quot;</span>)
 animals[animals ==<span class="st"> &quot;cat&quot;</span> |<span class="st"> </span>animals ==<span class="st"> &quot;rat&quot;</span>] <span class="co"># returns both rat and cat</span></code></pre></div>
@@ -489,30 +536,12 @@ animals[animals ==<span class="st"> &quot;cat&quot;</span> |<span class="st"> </
 <pre><code>#&gt; [1] FALSE  TRUE  TRUE  TRUE</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">animals[animals %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;rat&quot;</span>, <span class="st">&quot;cat&quot;</span>, <span class="st">&quot;dog&quot;</span>, <span class="st">&quot;duck&quot;</span>)]</code></pre></div>
 <pre><code>#&gt; [1] &quot;rat&quot; &quot;dog&quot; &quot;cat&quot;</code></pre>
-<blockquote>
-<h3 id="challenge-2" class="challenge">Challenge</h3>
-<ul>
-<li>Can you figure out why <code>&quot;four&quot; &gt; &quot;five&quot;</code> returns <code>TRUE</code>?</li>
-</ul>
-</blockquote>
-<!--
-
-```r
-## Answers
-## * When using ">" or "<" on strings, R compares their alphabetical order. Here
-##   "four" comes after "five", and therefore is "greater than" it.
-```
--->
 </div>
 </div>
 <div id="missing-data" class="section level2">
 <h2>Missing data</h2>
 <p>As R was designed to analyze datasets, it includes the concept of missing data (which is uncommon in other programming languages). Missing data are represented in vectors as <code>NA</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">planets &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Mercury&quot;</span>, <span class="st">&quot;Venus&quot;</span>, <span class="st">&quot;Earth&quot;</span>, <span class="st">&quot;Mars&quot;</span>, <span class="st">&quot;Jupiter&quot;</span>, <span class="st">&quot;Saturn&quot;</span>, <span class="st">&quot;Uranus&quot;</span>,
-             <span class="st">&quot;Neptune&quot;</span>, <span class="ot">NA</span>)</code></pre></div>
-<p>The default setting for most base functions that read data into R is to interpret <code>NA</code> as a missing value. If there are multiple types of missing values in your dataset, you can extend what R considers a missing value when it reads the file in. To do this you supply additional values to the “<code>na.strings</code>” argument of the command to read in the data. For instance, if you wanted to read in a CSV file named <code>planets.csv</code> that had missing values represented as empty cell, a single blank space, and the value -999, you would use:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">planets_df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="dt">file =</span> <span class="st">&quot;planets.csv&quot;</span>, <span class="dt">na.strings =</span> <span class="kw">c</span>(<span class="st">&quot;&quot;</span>, <span class="st">&quot; &quot;</span>, <span class="st">&quot;-999&quot;</span>))</code></pre></div>
-<p>When doing operations on numbers, most functions will return <code>NA</code> if the data you are working with include missing values. It is a safer behavior as otherwise you may overlook the fact that you are dealing with missing data. You can add the argument <code>na.rm=TRUE</code> to calculate the result while ignoring the missing values.</p>
+<p>When doing operations on numbers, most functions will return <code>NA</code> if the data you are working with include missing values. This feature makes it harder to overlook the cases where you are dealing with missing data. You can add the argument <code>na.rm=TRUE</code> to calculate the result while ignoring the missing values.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">heights &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="ot">NA</span>, <span class="dv">6</span>)
 <span class="kw">mean</span>(heights)
 <span class="kw">max</span>(heights)
@@ -527,26 +556,20 @@ heights[!<span class="kw">is.na</span>(heights)]
 
 ## Extract those elements which are complete cases.
 heights[<span class="kw">complete.cases</span>(heights)]</code></pre></div>
-<div id="challenge-3" class="section level3">
-<h3>Challenge</h3>
-<ul>
-<li><strong>Question</strong>: Why does the following piece of code give a warning?</li>
-</ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sample &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="st">&quot;NA&quot;</span>, <span class="dv">6</span>)
-<span class="kw">mean</span>(sample, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</code></pre></div>
-<pre><code>#&gt; Warning in mean.default(sample, na.rm = TRUE): argument is not numeric or
-#&gt; logical: returning NA</code></pre>
-<!-- * _Answer_: Because R recognizes the NA in quotes as a character. -->
-<ul>
-<li><strong>Question</strong>: Why does the warning message say the argument is not numeric? <!-- * _Answer_: R converts the entire vector to character because of the "NA", and doesn't recognize it as numeric. --></li>
-</ul>
-<p>Next, we will use the “surveys” dataset to explore the <code>data.frame</code> data structure, which is one of the most common types of R objects.</p>
-</div>
+<blockquote>
+<h3 id="challenge-2">Challenge</h3>
+<ol style="list-style-type: decimal">
+<li><p>Using this vector of length measurements, create a new vector with the NAs removed.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lengths &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>,<span class="dv">24</span>,<span class="ot">NA</span>,<span class="dv">18</span>,<span class="ot">NA</span>,<span class="dv">20</span>)</code></pre></div></li>
+<li><p>Use the function <code>median()</code> to calculate the median of the <code>lengths</code> vector.</p></li>
+</ol>
+</blockquote>
+<p>Now that we have learned how to write scripts, and the basics of R’s data structures, we are ready to start working with the Portal dataset we have been using in the other lessons, and learn about data frames.</p>
 </div>
 
 <hr/>
 
-<p><a href="http://datacarpentry.org/">Data Carpentry</a>, 2016. <a href="LICENSE.html">License</a>. Questions?
+<p><a href="http://datacarpentry.org/">Data Carpentry</a>, 2017. <a href="LICENSE.html">License</a>. Questions?
   Feedback? Please <a href="https://github.com/datacarpentry/R-ecology-lesson/issues/new">file an issue on GitHub</a>.</p>
 
 
