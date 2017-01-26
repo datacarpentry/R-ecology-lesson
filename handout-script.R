@@ -3,6 +3,15 @@
 
 ### Creating objects in R
 
+### Challenge
+##
+## What are the values after each statement in the following?
+##
+## mass <- 47.5            # mass?
+## age  <- 122             # age?
+## mass <- mass * 2.0      # mass?
+## age  <- age - 20        # age?
+## mass_index <- mass/age  # mass_index?
 ### Vectors and data types
 ## ## We’ve seen that atomic vectors can be of type character, numeric, integer, and
 ## ## logical. But what happens if we try to mix these types in a single
@@ -10,19 +19,28 @@
 ## 
 ## ## What will happen in each of these examples? (hint: use `class()` to
 ## ## check the data type of your object)
-## num_char <- c(1, 2, 3, 'a')
+## num_char <- c(1, 2, 3, "a")
 ## 
 ## num_logical <- c(1, 2, 3, TRUE)
 ## 
-## char_logical <- c('a', 'b', 'c', TRUE)
+## char_logical <- c("a", "b", "c", TRUE)
 ## 
-## tricky <- c(1, 2, 3, '4')
+## tricky <- c(1, 2, 3, "4")
 ## 
 ## ## Why do you think it happens?
 ## 
 ## ## Can you draw a diagram that represents the hierarchy of the data
 ## ## types?
-# * Can you figure out why `"four" > "five"` returns `TRUE`?
+### Challenge (optional)
+##
+## * Can you figure out why `"four" > "five"` returns `TRUE`? (optional)
+## ### Challenge
+## 1. Using this vector of length measurements, create a new vector with the NAs
+## removed.
+##
+##    lengths <- c(10,24,NA,18,NA,20)
+##
+## 2. Use the function `median()` to calculate the median of the `lengths` vector.
 
 
 ### Presentation of the survey data
@@ -35,51 +53,47 @@
 ## * How many rows and how many columns are in this object?
 ## * How many species have been recorded during these surveys?
 
+
+## Indexing and subsetting data frames
+### Challenges:
+### 1. Create a `data.frame` (`surveys_200`) containing only the observations from row 200 of the
+###    `surveys` dataset.
+###
+### 2. Notice how `nrow()` gave you the number of rows in a `data.frame`?
+###
+###      * Use that number to pull out just that last row in the data frame
+###      * Compare that with what you see as the last row using `tail()` to make
+###        sure it's meeting expectations.
+###      * Pull out that last row using `nrow()` instead of the row number
+###      * Create a new data frame object (`surveys_last`) from that last row
+###
+### 3. Use `nrow()` in conjunction with the `:` function to create a new
+###    data frame called `surveys_last_100` that includes the 100 rows of the
+###    `surveys` data frame.
+###
+### 4. Combine `nrow()` with the `-` notation above to reproduce the behavior of
+###    `head(surveys)` keeping just the first through 7th rows of the surveys
+###    dataset.
+
 ### Factors
 sex <- factor(c("male", "female", "female", "male"))
-food <- factor(c("low", "high", "medium", "high", "low", "medium", "high"))
-levels(food)
-food <- factor(food, levels=c("low", "medium", "high"))
-levels(food)
-min(food) ## doesn't work
-food <- factor(food, levels=c("low", "medium", "high"), ordered=TRUE)
-levels(food)
-min(food) ## works!
-f <- factor(c(1, 5, 10, 2))
-as.numeric(f)               ## wrong! and there is no warning...
-as.numeric(as.character(f)) ## works...
-as.numeric(levels(f))[f]    ## The recommended way.
-## The function `plot()` can be used to quickly create a bar plot of a factor.
-## For instance, for a factor
-exprmt <- factor(c("treat1", "treat2", "treat1", "treat3", "treat1",
-		   "control", "treat1", "treat2", "treat3"))
-## the code `plot(exprmt)`
-## gives you a barplot of the number of observations, as shown below.
-
-## * What determines the order in which the treatments are listed in the plot?
-## * How can you recreate this plot with "control" listed last instead
-## of first?
-plot(exprmt)
-
-
-## The data.frame class
-## Compare the output of these examples, and compare the difference between when
-## the data are being read as `character`, and when they are being read as
-## `factor`.
-example_data <- data.frame(animal=c("dog", "cat", "sea cucumber", "sea urchin"),
-                           feel=c("furry", "furry", "squishy", "spiny"),
-                           weight=c(45, 8, 1.1, 0.8))
-str(example_data)
-example_data <- data.frame(animal=c("dog", "cat", "sea cucumber", "sea urchin"),
-                           feel=c("furry", "furry", "squishy", "spiny"),
-                           weight=c(45, 8, 1.1, 0.8), stringsAsFactors=FALSE)
-str(example_data)
+f <- factor(c(1990, 1983, 1977, 1998, 1990))
+as.numeric(f)               # wrong! and there is no warning...
+as.numeric(as.character(f)) # works...
+as.numeric(levels(f))[f]    # The recommended way.
+## bar plot of the number of females and males captured during the experiment:
+plot(surveys$sex)
+## Challenges
+##
+## * Rename "F" and "M" to "female" and "male" respectively.
+## * Now that we have renamed the factor level to "missing", can you recreate the
+##   barplot such that "missing" is last (after "male")
 ## ## Challenge:
-## ##  There are a few mistakes in this hand crafted `data.frame`,
+## ##  There are a few mistakes in this hand-crafted `data.frame`,
 ## ##  can you spot and fix them? Don't hesitate to experiment!
-## author_book <- data.frame(author_first=c("Charles", "Ernst", "Theodosius"),
-##                               author_last=c(Darwin, Mayr, Dobzhansky),
-##                               year=c(1942, 1970))
+## animal_data <- data.frame(animal=c(dog, cat, sea cucumber, sea urchin),
+##                           feel=c("furry", "squishy", "spiny"),
+##                           weight=c(45, 8 1.1, 0.8))
 ## ## Challenge:
 ## ##   Can you predict the class for each of the columns in the following
 ## ##   example?
@@ -94,34 +108,6 @@ str(example_data)
 ##                                temperature=c(10, 30, 18, "15"),
 ##                                northern_hemisphere=c(TRUE, TRUE, FALSE, "FALSE"),
 ##                                has_kangaroo=c(FALSE, FALSE, FALSE, 1))
-##  ## Challenge:
-##  ##   We introduced you to the `data.frame()` function and `read.csv()`,
-##  ##   but what if we are starting with some vectors? The best way to do
-##  ##   this is to pass those vectors to the `data.frame()` function, similar
-##  ##   to the above.
-##  color <- c("red", "green", "blue", "yellow")
-##  counts <- c(50, 60, 65, 82)
-##  new_datarame <- data.frame(colors = color, counts = counts)
-##  ##    Try making your own new data frame from some vectors. You can check
-##  ##    the data type of the new object using `class()`.
-
-## Sequences and Subsetting data frames
-### Challenges:
-### 1. The function `nrow()` on a `data.frame` returns the number of
-### rows. Use it, in conjuction with `seq()` to create a new
-### `data.frame` called `surveys_by_10` that includes every 10th row
-### of the survey data frame starting at row 10 (10, 20, 30, ...)
-###
-### 2. Create a data.frame containing only the observation from row 1999 of the -->
-### surveys dataset.
-###
-### 3. Notice how `nrow()` gave you the number of rows in a `data.frame`? Use `nrow()`
-###   instead of a row number to make a `data.frame` with observations from only the last
-###   row of the `surveys` dataset.
-###
-### 4. Now that you've seen how `nrow()` can be used to stand in for a row index, let's combine
-###   that behavior with the `-` notation above to reproduce the behavior of `head(surveys)`
-###   excluding the 7th through final row of the `surveys` dataset.
 
 
 ## The dplyr lesson
@@ -175,6 +161,9 @@ str(example_data)
 
 
 ## The ggplot2 lesson
+## install.packages("hexbin")
+## surveys_plot +
+##  geom_hex()
 ## ## Challenges:
 ## ##  Start with the boxplot we created:
 ## ggplot(data = surveys_complete, aes(x = species_id, y = hindfoot_length)) +
