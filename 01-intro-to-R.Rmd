@@ -65,7 +65,8 @@ Objects can be given any name such as `x`, `current_temperature`, or
 cannot start with a number (`2x` is not valid, but `x2` is). R is case sensitive
 (e.g., `weight_kg` is different from `Weight_kg`). There are some names that
 cannot be used because they are the names of fundamental functions in R (e.g.,
-`if`, `else`, `for`, see
+`if`, `else`, `for`,
+see
 [here](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Reserved.html)
 for a complete list). In general, even if it's allowed, it's best to not use
 other function names (e.g., `c`, `T`, `mean`, `data`, `df`, `weights`). In doubt
@@ -75,9 +76,12 @@ in R with dots in their names for historical reasons, but because dots have a
 special meaning in R (for methods) and other programming languages, it's best to
 avoid them. It is also recommended to use nouns for variable names, and verbs
 for function names. It's important to be consistent in the styling of your code
-(where you put spaces, how you name variable, etc.). In R, two popular style
-guides are [Hadley Wickham's](http://adv-r.had.co.nz/Style.html) and
-[Google's](https://google-styleguide.googlecode.com/svn/trunk/Rguide.xml).
+(where you put spaces, how you name variable, etc.). Using a consistent coding
+style, make your code clearer to read for your future self and your
+collaborators. In R, two popular style guides
+are [Hadley Wickham's](http://adv-r.had.co.nz/Style.html)
+and [Google's](https://google-styleguide.googlecode.com/svn/trunk/Rguide.xml)
+(this [one](http://jef.works/R-style-guide/) is also comprehensive).
 
 When assigning a value to an object, R does not print anything. You can force to
 print the value by using parentheses or by typing the name:
