@@ -234,6 +234,12 @@ arguments.  If you don't, someone reading your code might have to look up the
 definition of a function with unfamiliar arguments to understand what you're
 doing.
 
+> ### Call out
+> 
+> What is called `objects` in `R` is known as `variables` in many other programming languages.
+> Depending on the context `object` and `variable` can have drastically different meanings.
+> However, in this lesson the two words are used synonymously.
+> For more information see: https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Objects
 
 ## Vectors and data types
 
