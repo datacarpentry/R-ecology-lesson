@@ -47,10 +47,9 @@ for each level and a very brief introduction to plotting.
 1. [Lesson 00 Before we start](00-before-we-start.html)
 2. [Lesson 01 Introduction to R](01-intro-to-R.html)
 3. [Lesson 02 Starting with data](02-starting-with-data.html)
-4. [Lesson 03 Introducing `data.frame`](03-data-frames.html)
-5. [Lesson 04 Aggregating and analyzing data with dplyr](04-dplyr.html)
-6. [Lesson 05 Data visualization with ggplot2](05-visualization-ggplot2.html)
-7. [Lesson 06 R and SQL](06-r-and-sql.html)
+5. [Lesson 03 Aggregating and analyzing data with dplyr](03-dplyr.html)
+6. [Lesson 04 Data visualization with ggplot2](04-visualization-ggplot2.html)
+7. [Lesson 05 R and Databases](05-r-and-databases.html)
 
 
 ## Data
