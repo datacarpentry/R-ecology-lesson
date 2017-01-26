@@ -6,26 +6,25 @@ root: .
 
 ## Dataset
 
+## The handout
 
 ### Narrative
 
-**In 00-before-we-start.Rmd**
+#### Before we start
 
-Help the learners be comfortable with the Rstudio interface. We use RStudio because it helps make using R more organized and user friendly but RStudio is just a wrapper for R.
+Help the learners be comfortable with the RStudio interface. We use RStudio
+because it helps make using R more organized and user friendly but RStudio is
+just a wrapper for R.
 
-**In 01-intro-to-R.Rmd**
+#### Intro to R
 
-**In 02-starting-with-data.Rmd**
+#### Starting with data
 
-**In 03-data-frames.Rmd**
+#### Manipulating data with dplyr
 
-**In 04-dyplyr.Rmd**
+#### Visualizing data with ggplot2
 
-**In 05-visualization-ggplot2.Rmd**
-
-**In 06-r-and-sql.Rmd**
-
-**Concluding points**
+#### Using databases from R
 
 ### Potential issues & solutions
 
@@ -37,8 +36,6 @@ Sometimes a package will not install, try a different CRAN mirror
 - Tools > Global Options > Packages > CRAN Mirror
 
 Alternatively you can go to CRAN and download the package and install from ZIP file
--   Tools > Install Packages > set ti 'from Zip/TAR'
+-   Tools > Install Packages > set to 'from Zip/TAR'
 
 ### Other Resources
-
-##
