@@ -1,5 +1,5 @@
 
-all: pages handout-script.R
+all: pages code-handout.R
 
 skeleton-%.R: %.Rmd _site.yml
 	Rscript -e "knitr::purl('$<', output='$@', documentation=0L)"
@@ -10,7 +10,7 @@ skeleton-%.R: %.Rmd _site.yml
 %.html: %.md
 	Rscript -e "rmarkdown::render_site(input='$<')"
 
-handout-script.R: skeleton-00-before-we-start.R skeleton-01-intro-to-R.R skeleton-02-starting-with-data.R skeleton-03-dplyr.R skeleton-04-visualization-ggplot2.R
+code-handout.R: skeleton-00-before-we-start.R skeleton-01-intro-to-R.R skeleton-02-starting-with-data.R skeleton-03-dplyr.R skeleton-04-visualization-ggplot2.R
 	for f in $^; do cat $$f; echo "\n"; done > $@
 	make clean-skeleton
 

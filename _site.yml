@@ -12,8 +12,8 @@ navbar:
       href: 04-visualization-ggplot2.html
     - text: "R and SQL"
       href: 05-r-and-databases.html
-    - text: "Handout"
-      href: handout-script.R
+    - text: "Code Handout"
+      href: code-handout.R
   right:
     - icon: fa-github fa-lg
       href: https://github.com/datacarpentry/R-ecology-lesson
