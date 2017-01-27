@@ -328,7 +328,7 @@ plots %>%
   collect()
 ```
 
-**Importnat Note:** Without the `collect()` statement, only the first 10
+**Important Note:** Without the `collect()` statement, only the first 10
 matching rows are returned. By adding `collect()`, the full set of 1,985 is
 retrieved.
 
