@@ -17,7 +17,9 @@ source("setup.R")
 if (file.exists("portalR.sqlite")) file.remove("portalR.sqlite")
 ```
 
-> ## Learning Objectives
+------------
+
+> ### Learning Objectives
 >
 >  By the end of this lesson the learner will know how to:
 >

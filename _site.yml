@@ -1,5 +1,7 @@
 navbar:
   left:
+    - text: "Home"
+      href: index.html
     - text: "Before we start"
       href: 00-before-we-start.html
     - text: "Intro to R"

@@ -14,7 +14,7 @@ surveys <- read.csv("data/portal_data_joined.csv")
 
 ------------
 
-> ## Learning Objectives
+> ### Learning Objectives
 >
 > By the end of this lesson the learner will:
 >

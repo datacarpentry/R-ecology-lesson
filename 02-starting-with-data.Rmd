@@ -10,7 +10,7 @@ source("setup.R")
 
 ------------
 
-> ## Learning Objectives
+> ### Learning Objectives
 >
 > * Describe what a data frame is.
 > * Summarize the contents of a data frame in R.
