@@ -35,22 +35,24 @@ for each level and a very brief introduction to plotting.
 6. [R and Databases](05-r-and-databases.html)
 
 
-## Data
+
+## Requirements
+
+Data Carpentry's teaching is hands-on, so participants are encouraged to use
+their own computers to insure the proper setup of tools for an efficient
+workflow.  *These lessons assume no prior knowledge of the skills or tools*, but
+working through this lesson requires working copies of the software described
+below.  To most effectively use these materials, please make sure to download
+the data and install everything *before* working through this lesson.
+
+### Data
 
 Data files for the lesson are available here: <http://dx.doi.org/10.6084/m9.figshare.1314459>
 
 Please download the *\*.csv* (Comma Separated Value) files: *species.csv*, *plots.csv*, *surveys.csv*, and *combined.csv*.
 
-## Requirements
 
-Data Carpentry's teaching is hands-on, so participants are encouraged to use
-their own computers to insure the proper setup of tools for an efficient workflow.
-*These lessons assume no prior knowledge of the skills or tools*, but working
-through this lesson requires working copies of the software described below.
-To most effectively use these materials, please make sure to install everything
-*before* working through this lesson.
-
-## Setup instructions
+### Setup instructions
 
 **R** and **RStudio** are separate downloads and installations. R is the
 underlying statistical computing environment, but using R alone is no
@@ -60,9 +62,9 @@ install RStudio. After installing both of the programs, you will need to install
 the `tidyverse` package within RStudio. Follow the instructions below for your
 operating system, and then follow the instructions to install `tidyverse`.
 
-### Windows
+#### Windows
 
-#### If you already have R and RStudio installed
+##### If you already have R and RStudio installed
 
 * Open RStudio, and click on "Help" > "Check for updates". If a new version is
 	available, quit RStudio, and download the latest version for RStudio.
@@ -75,10 +77,10 @@ operating system, and then follow the instructions to install `tidyverse`.
   [check here](https://cran.r-project.org/bin/windows/base/rw-FAQ.html#How-do-I-UNinstall-R_003f) for
   more information.
 
-#### If you don't have R and RStudio installed
+##### If you don't have R and RStudio installed
 
 * Download R from
-  the [CRAN website](http://cran.r-project.org/bin/windows/base/release.htm).*
+  the [CRAN website](http://cran.r-project.org/bin/windows/base/release.htm).
 * Run the `.exe` file that was just downloaded
 * Go to the [RStudio download page](https://www.rstudio.com/products/rstudio/download/#download)
 * Under *Installers* select **RStudio x.yy.zzz - Windows
@@ -88,9 +90,9 @@ operating system, and then follow the instructions to install `tidyverse`.
   error messages.
 
 
-### MacOS X
+#### MacOS X
 
-#### If you already have R and RStudio installed
+##### If you already have R and RStudio installed
 
 * Open RStudio, and click on "Help" > "Check for updates". If a new version is
 	available, quit RStudio, and download the latest version for RStudio.
@@ -103,7 +105,7 @@ operating system, and then follow the instructions to install `tidyverse`.
   [check here](https://cran.r-project.org/bin/windows/base/rw-FAQ.html#How-do-I-UNinstall-R_003f) for
   more information.
 
-#### If you don't have R and RStudio installed
+##### If you don't have R and RStudio installed
 
 * Download R from
   the [CRAN website](http://cran.r-project.org/bin/macosx).
@@ -118,7 +120,7 @@ operating system, and then follow the instructions to install `tidyverse`.
   error messages.
 
 
-### Linux
+#### Linux
 
 * Follow the instructions for your distribution
   from [CRAN](https://cloud.r-project.org/bin/linux), they provide information
@@ -135,7 +137,7 @@ operating system, and then follow the instructions to install `tidyverse`.
   error messages.
 
 
-### For everyone
+#### For everyone
 
 **In any case you will also need to install the "tidyverse" package.**
 
