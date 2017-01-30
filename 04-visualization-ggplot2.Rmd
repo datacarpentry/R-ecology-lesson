@@ -1,5 +1,6 @@
 ---
 title: Data visualization with ggplot2
+author: Data Carpentry contributors
 subtitle: Visualizing data in R with the ggplot2 package
 minutes: 60
 ---
@@ -17,12 +18,8 @@ surveys_complete <- read.csv(file = "data_output/surveys_complete.csv")
 ## The ggplot2 lesson
 ```
 
-#### Disclaimer
 
-We will be using the functions in the ggplot2 package. R has powerful built-in
-plotting capabilities, but for this exercise, we will be using the ggplot2
-package, which facilitates the creation of highly-informative plots of
-structured data.
+------------
 
 > ### Learning Objectives
 >
@@ -33,6 +30,7 @@ structured data.
 > * Modify the aesthetics of an existing ggplot plot (including axis labels and color).
 > * Build complex and customized plots from data in a dataframe.
 
+--------------
 
 We start by loading the required packages.
 

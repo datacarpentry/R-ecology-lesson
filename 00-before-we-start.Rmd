@@ -4,13 +4,14 @@ author: Data Carpentry contributors
 minutes: 15
 ---
 
+
 ```{r, echo=FALSE, purl=FALSE}
 knitr::opts_chunk$set(results='hide', fig.path='img/r-lesson-')
 ```
 
 ------------
 
-> ## Learning Objectives
+> ### Learning Objectives
 >
 > After completing this module, the learner should be able to:
 >
@@ -21,6 +22,7 @@ knitr::opts_chunk$set(results='hide', fig.path='img/r-lesson-')
 > * Demonstrate how to provide sufficient information for troubleshooting with the R user community.
 
 ------------
+
 
 ## What is R? What is RStudio?
 
