@@ -11,17 +11,19 @@ source("setup.R")
 
 ------------
 
-> ### Learning Objectives
->
-> * Define the following terms as they relate to R: script, function, working directory, assign, object, variable.
-> * Call functions with zero or more named or unnamed arguments.
-> * Solve mathematical operations in R.
-> * Assign values to objects and variables in R.
-> * Describe what vectors are and how they are manipulated in R.
-> * Inspect the content of vectors in R and manipulate their content.
-> * Extract values from vectors in R.
-> * Employ logic (i.e. TRUE, FALSE) to subset data in a vector.
-> * Analyze vectors with missing data.
+> ### Learning Objectives  
+  
+> At the end of this lesson the learner will  be able to:   
+  
+> * Define the following terms as they relate to R: object, assign, call, function, arguments, options.
+> * Create objects and and assign values to them.
+> * Commenting scripts.
+> * Do simple arithmetic operations in R using values and objects.
+> * Call functions and define them with arguments and their options.
+> * Create and manipulate vectors.
+> * Inspect the content of vectors and manipulate their content.
+> * Subset and extract values from vectors.
+> * Correctly define and handle missing values in vectors.
 
 ------------
 
@@ -247,10 +249,8 @@ doing.
 ### Vectors and data types
 ```
 
-A vector is the most common and basic data structure in R, and is pretty much
-the workhorse of R. It's a group of values, mainly either numbers or
-characters. You can assign this list of values to a variable, just like you
-would for one item. For example we can create a vector of animal weights:
+A vector is the most common and basic data type in R, and is pretty much
+the workhorse of R. A vector is composed by a series of values, which can be   either numbers or characters. We can assign a series of values to a vector using the `c()` function, with the values to combine in the vector as its argument. For example we can create a vector of animal weights and assign it to a new object `weight_g`:
 
 ```{r, purl=FALSE}
 weight_g <- c(50, 60, 65, 82)
@@ -265,7 +265,7 @@ animals
 ```
 
 The quotes around "mouse", "rat", etc. are essential here. Without the quotes R
-will assume there is a variable called mouse, rat, etc.
+will assume there are objects called mouse, rat and dog and launch and error message as it can not find them.
 
 There are many functions that allow you to inspect the content of a
 vector. `length()` tells you how many elements are in a particular vector:
@@ -292,8 +292,7 @@ str(weight_g)
 str(animals)
 ```
 
-You can add elements to your vector by using the `c()` function:
-
+You can use the `c()` function to add other elements to your vector:
 ```{r, purl=FALSE}
 weight_g <- c(weight_g, 90) # adding at the end of the vector
 weight_g <- c(30, weight_g) # adding at the beginning of the vector
@@ -306,7 +305,7 @@ the beginning. We can do this over and over again to grow a vector, or assemble
 a dataset. As we program, this may be useful to add results that we are
 collecting or calculating.
 
-We just saw 2 of the 6 **atomic vector** types that R uses: `"character"` and
+We just saw 2 of the 6 main **atomic vector** types (or simply **data types**) that R uses: `"character"` and
 `"numeric"`. These are the basic building blocks that all R objects are built
 from. The other 4 are:
 
@@ -316,9 +315,11 @@ from. The other 4 are:
   `1+4i`) and that's all we're going to say about them
 * `"raw"` that we won't discuss further
 
+A particular and very useful data type is `"factor"` which encodes categorical variables (e.g. Habitat types, Gender etc.) 
+
 Vectors are one of the many **data structures** that R uses. Other important
 ones are lists (`list`), matrices (`matrix`), data frames (`data.frame`) and
-factors (`factor`).
+arrays (`array`).
 
 
 > ### Challenge
