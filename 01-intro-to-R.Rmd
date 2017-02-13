@@ -343,8 +343,14 @@ factors (`factor`).
 > <!-- * _Answer_: Vectors can be of only one data type. R tries to convert (coerce)
 >   the content of this vector to find a "common denominator". -->
 >
-> * Can you draw a diagram that represents the hierarchy of the data
->   types?
+
+> * You've probably noticed that objects of different types get
+>   converted into a single, shared type within a vector. In R, we
+>   call converting objects from one class into another class
+>   _coercion_. These conversions happen according to a hierarchy,
+>   whereby some types get preferentially coerced into other
+>   types. Can you draw a diagram that represents the hierarchy of how
+>   these data types are coerced?
 > <!-- * _Answer_: `logical -> numeric -> character <-- logical` -->
 
 ```{r, echo=FALSE, eval=FALSE, purl=TRUE}
@@ -364,8 +370,14 @@ tricky <- c(1, 2, 3, "4")
 
 ## Why do you think it happens?
 
-## Can you draw a diagram that represents the hierarchy of the data
-## types?
+## You've probably noticed that objects of different types get
+## converted into a single, shared type within a vector. In R, we call
+## converting objects from one class into another class
+## _coercion_. These conversions happen according to a hierarchy,
+## whereby some types get preferentially coerced into other types. Can
+## you draw a diagram that represents the hierarchy of how these data
+## types are coerced?
+
 ```
 > ### Challenge (optional){.challenge}
 >
