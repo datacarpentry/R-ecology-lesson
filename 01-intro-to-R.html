@@ -483,7 +483,11 @@ char_logical &lt;-<span class="st"> </span><span class="kw">c</span>(<span class
 tricky &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="st">&#39;4&#39;</span>)</code></pre></div></li>
 <li><p>Why do you think it happens? <!-- * _Answer_: Vectors can be of only one data type. R tries to convert (coerce)
   the content of this vector to find a "common denominator". --></p></li>
-<li><p>Can you draw a diagram that represents the hierarchy of the data types? <!-- * _Answer_: `logical -> numeric -> character <-- logical` --></p></li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>You’ve probably noticed that objects of different types get converted into a single, shared type within a vector. In R, we call converting objects from one class into another class <em>coercion</em>. These conversions happen according to a hierarchy, whereby some types get preferentially coerced into other types. Can you draw a diagram that represents the hierarchy of how these data types are coerced? <!-- * _Answer_: `logical -> numeric -> character <-- logical` --></li>
 </ul>
 </blockquote>
 <blockquote>
