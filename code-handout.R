@@ -29,8 +29,14 @@
 ## 
 ## ## Why do you think it happens?
 ## 
-## ## Can you draw a diagram that represents the hierarchy of the data
-## ## types?
+## ## You've probably noticed that objects of different types get
+## ## converted into a single, shared type within a vector. In R, we call
+## ## converting objects from one class into another class
+## ## _coercion_. These conversions happen according to a hierarchy,
+## ## whereby some types get preferentially coerced into other types. Can
+## ## you draw a diagram that represents the hierarchy of how these data
+## ## types are coerced?
+## 
 ### Challenge (optional)
 ##
 ## * Can you figure out why `"four" > "five"` returns `TRUE`? (optional)
