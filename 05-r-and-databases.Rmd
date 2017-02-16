@@ -393,7 +393,7 @@ tbl(mammals, sql(query))
 
 <!-- answer
 ```{r genus_by_type, results='markup'}
-genus.counts <- left_join(surveys, plots) %>%
+genus_counts <- left_join(surveys, plots) %>%
   left_join(species) %>%
   group_by(plot_type, genus) %>%
   tally %>%
