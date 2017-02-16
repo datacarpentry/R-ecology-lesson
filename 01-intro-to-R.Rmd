@@ -379,23 +379,7 @@ tricky <- c(1, 2, 3, "4")
 ## types are coerced?
 
 ```
-> ### Challenge (optional){.challenge}
->
-> * Can you figure out why `"four" > "five"` returns `TRUE`?
 
-```{r, echo=FALSE, purl=TRUE}
-### Challenge (optional)
-##
-## * Can you figure out why `"four" > "five"` returns `TRUE`? (optional)
-```
-
-<!--
-```{r, purl=FALSE}
-## Answers
-## * When using ">" or "<" on strings, R compares their alphabetical order. Here
-##   "four" comes after "five", and therefore is "greater than" it.
-```
--->
 
 
 ## Subsetting vectors
@@ -466,7 +450,23 @@ animals %in% c("rat", "cat", "dog", "duck")
 animals[animals %in% c("rat", "cat", "dog", "duck")]
 ```
 
+> ### Challenge (optional){.challenge}
+>
+> * Can you figure out why `"four" > "five"` returns `TRUE`?
 
+```{r, echo=FALSE, purl=TRUE}
+### Challenge (optional)
+##
+## * Can you figure out why `"four" > "five"` returns `TRUE`?
+```
+
+<!--
+```{r, purl=FALSE}
+## Answers
+## * When using ">" or "<" on strings, R compares their alphabetical order. Here
+##   "four" comes after "five", and therefore is "greater than" it.
+```
+-->
 
 
 ## Missing data
