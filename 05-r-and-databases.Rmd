@@ -145,6 +145,9 @@ head(surveys, n = 10)
 
 This output of the `head` command looks just like a regular `data.frame`:
 The table has 9 columns and the `head()` command shows us the first 10 rows.
+Note that the columns `plot_type`, `taxa`, `genus`, and `species` are missing.
+These are now located in the tables `plots` and `species` which we will join 
+together in a moment. 
 
 However, some functions don't work quite as expected. For instance, let's check
 how many rows there are in total using `nrow()`:
@@ -340,7 +343,7 @@ retrieved.
 > each year.
 >
 > Hint: Connect to the species table and write a query that joins the species
-> and survey tables together.
+> and survey tables together to exclude all non-rodents. 
 > The query should return counts of rodents by year.
 >
 > Optional: Write a query in SQL that will produce the same result. You can join
@@ -382,7 +385,8 @@ tbl(mammals, sql(query))
 
 > ### Challenge
 >
->  Write a query that returns counts of genus by `plot_id`
+>  Write a query that returns the total number of rodents in each genus caught 
+>  in the different plot types.
 >
 >  Hint: Write a query that joins the species, plot, and survey tables together.
 >  The query should return counts of genus by plot type.
