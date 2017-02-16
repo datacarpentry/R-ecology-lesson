@@ -521,11 +521,11 @@ surveys %&gt;%
 </blockquote>
 <p>When you construct a <code>dplyr</code> query, you can connect multiple verbs into a single pipeline. For example, we combined the <code>filter()</code> and <code>select()</code> verbs using the <code>%&gt;%</code> pipe.</p>
 <p>If we wanted to, we could add on even more steps, e.g. remove the <code>sex</code> column in an additional <code>select</code> call:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data.subset &lt;-<span class="st"> </span>surveys %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data_subset &lt;-<span class="st"> </span>surveys %&gt;%
 <span class="st">  </span><span class="kw">filter</span>(weight &lt;<span class="st"> </span><span class="dv">5</span>) %&gt;%
 <span class="st">  </span><span class="kw">select</span>(species_id, sex, weight)
 
-data.subset %&gt;%
+data_subset %&gt;%
 <span class="st">  </span><span class="kw">select</span>(-sex)</code></pre></div>
 <pre><code>#&gt; Source:   query [?? x 2]
 #&gt; Database: sqlite 3.11.1 [data/portal_mammals.sqlite]
@@ -546,7 +546,7 @@ data.subset %&gt;%
 <p>Just like the first <code>select(species_id, sex, weight)</code> call, the <code>select(-sex)</code> command is not executed by R. It is sent to the database instead. Only the <em>final</em> result is retrieved and displayed to you.</p>
 <p>Of course, we could always add on more steps, e.g. we could filter by <code>species_id</code> or minimum <code>weight</code>. That’s why R doesn’t retrieve the full set of results - instead it only retrieves the first 10 results from the database by default. (After all, you might want to add an additional step and get the database to do more work…)</p>
 <p>To instruct R to stop being lazy, e.g. to retrieve all of the query results from the database, we add the <code>collect()</code> command to our pipe. It indicates that our database query is finished: time to get the <em>final</em> results and load them into the R session.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data.subset &lt;-<span class="st"> </span>surveys %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data_subset &lt;-<span class="st"> </span>surveys %&gt;%
 <span class="st">  </span><span class="kw">filter</span>(weight &lt;<span class="st"> </span><span class="dv">5</span>) %&gt;%
 <span class="st">  </span><span class="kw">select</span>(species_id, sex, weight) %&gt;%
 <span class="st">  </span><span class="kw">collect</span>()</code></pre></div>
