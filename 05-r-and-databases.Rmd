@@ -401,6 +401,24 @@ genus_counts <- left_join(surveys, plots) %>%
 ```
 --->
 
+This is useful if we are interested in estimating the number of individuals
+belonging to each genus found in each plot type, but what if we were interested
+in the number of genera found in each plot type. Using `tally()` gives the
+number of individuals, instead we need to use `n_distinct()` to count the
+number of unique values found in a column.
+
+```{r count_unique_genera}
+unique_genera <- left_join(surveys, plots) %>%
+    left_join(species) %>%
+    group_by(plot_type) %>%
+    summarize(
+        n_genera = n_distinct(genus)
+    ) %>%
+    collect()
+
+```
+
+
 
 ## Creating a new SQLite database
 
