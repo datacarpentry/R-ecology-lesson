@@ -256,11 +256,11 @@ If we wanted to, we could add on even more steps, e.g. remove the `sex` column
 in an additional `select` call:
 
 ```{r pipe2, results='markup'}
-data.subset <- surveys %>%
+data_subset <- surveys %>%
   filter(weight < 5) %>%
   select(species_id, sex, weight)
 
-data.subset %>%
+data_subset %>%
   select(-sex)
 ```
 
@@ -280,7 +280,7 @@ database query is finished: time to get the _final_ results and load them into
 the R session.
 
 ```{r collect, results='markup'}
-data.subset <- surveys %>%
+data_subset <- surveys %>%
   filter(weight < 5) %>%
   select(species_id, sex, weight) %>%
   collect()
