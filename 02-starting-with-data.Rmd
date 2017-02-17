@@ -205,8 +205,8 @@ feature to get the full and correct column name.
 
 > ### Challenge
 >
-> 1. Create a `data.frame` (`surveys_200`) containing only the observations from row 200 of the
->    `surveys` dataset.
+> 1. Create a `data.frame` (`surveys_200`) containing only the observations from
+>    row 200 of the `surveys` dataset.
 >
 > 2. Notice how `nrow()` gave you the number of rows in a `data.frame`?
 >
@@ -216,19 +216,19 @@ feature to get the full and correct column name.
 >      * Pull out that last row using `nrow()` instead of the row number
 >      * Create a new data frame object (`surveys_last`) from that last row>
 >
-> 3. Use `nrow()` in conjunction with the `:` function to create a new
->    data frame called `surveys_last_100` that includes the 100 rows of the
->    `surveys` data frame.
+> 3. Use `nrow()` to extract the row that is in the middle of the data
+>    frame. Store the content of this row in an object named `surveys_middle`.
 >
 > 4. Combine `nrow()` with the `-` notation above to reproduce the behavior of
->    `head(surveys)` keeping just the first through 7th rows of the surveys
+>    `head(surveys)` keeping just the first through 6th rows of the surveys
 >    dataset.
 
 
 ```{r, echo=FALSE, purl=TRUE}
 ### Challenges:
-### 1. Create a `data.frame` (`surveys_200`) containing only the observations from row 200 of the
-###    `surveys` dataset.
+###
+### 1. Create a `data.frame` (`surveys_200`) containing only the
+###    observations from row 200 of the `surveys` dataset.
 ###
 ### 2. Notice how `nrow()` gave you the number of rows in a `data.frame`?
 ###
@@ -238,12 +238,12 @@ feature to get the full and correct column name.
 ###      * Pull out that last row using `nrow()` instead of the row number
 ###      * Create a new data frame object (`surveys_last`) from that last row
 ###
-### 3. Use `nrow()` in conjunction with the `:` function to create a new
-###    data frame called `surveys_last_100` that includes the 100 rows of the
-###    `surveys` data frame.
+### 3. Use `nrow()` to extract the row that is in the middle of the
+###    data frame. Store the content of this row in an object named
+###    `surveys_middle`.
 ###
 ### 4. Combine `nrow()` with the `-` notation above to reproduce the behavior of
-###    `head(surveys)` keeping just the first through 7th rows of the surveys
+###    `head(surveys)` keeping just the first through 6th rows of the surveys
 ###    dataset.
 
 ```
@@ -253,7 +253,7 @@ feature to get the full and correct column name.
 ## Answers
 surveys_200 <- surveys[200, ]
 surveys_last <- surveys[nrow(surveys), ]
-surveys_last_100 <- surveys[(nrow(surveys)-99):nrow(surveys), ]
+surveys_middle <- surveys[nrow(surveys)/2, ]
 surveys_head <- surveys[-c(7:nrow(surveys)),]
 ```
 --->
