@@ -537,8 +537,8 @@ surveys$species_id          <span class="co"># Result is a vector</span></code><
 <li>Pull out that last row using <code>nrow()</code> instead of the row number</li>
 <li>Create a new data frame object (<code>surveys_last</code>) from that last row&gt;</li>
 </ul></li>
-<li><p>Use <code>nrow()</code> in conjunction with the <code>:</code> function to create a new data frame called <code>surveys_last_100</code> that includes the 100 rows of the <code>surveys</code> data frame.</p></li>
-<li><p>Combine <code>nrow()</code> with the <code>-</code> notation above to reproduce the behavior of <code>head(surveys)</code> keeping just the first through 7th rows of the surveys dataset.</p></li>
+<li><p>Use <code>nrow()</code> to extract the row that is in the middle of the data frame. Store the content of this row in an object named <code>surveys_middle</code>.</p></li>
+<li><p>Combine <code>nrow()</code> with the <code>-</code> notation above to reproduce the behavior of <code>head(surveys)</code> keeping just the first through 6th rows of the surveys dataset.</p></li>
 </ol>
 </blockquote>
 <!---
@@ -547,7 +547,7 @@ surveys$species_id          <span class="co"># Result is a vector</span></code><
 ## Answers
 surveys_200 <- surveys[200, ]
 surveys_last <- surveys[nrow(surveys), ]
-surveys_last_100 <- surveys[(nrow(surveys)-99):nrow(surveys), ]
+surveys_middle <- surveys[nrow(surveys)/2, ]
 surveys_head <- surveys[-c(7:nrow(surveys)),]
 ```
 --->

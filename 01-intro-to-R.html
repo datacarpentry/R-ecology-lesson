@@ -490,20 +490,6 @@ tricky &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">
 <li>You’ve probably noticed that objects of different types get converted into a single, shared type within a vector. In R, we call converting objects from one class into another class <em>coercion</em>. These conversions happen according to a hierarchy, whereby some types get preferentially coerced into other types. Can you draw a diagram that represents the hierarchy of how these data types are coerced? <!-- * _Answer_: `logical -> numeric -> character <-- logical` --></li>
 </ul>
 </blockquote>
-<blockquote>
-<h3 id="challenge-optional" class="challenge">Challenge (optional)</h3>
-<ul>
-<li>Can you figure out why <code>&quot;four&quot; &gt; &quot;five&quot;</code> returns <code>TRUE</code>?</li>
-</ul>
-</blockquote>
-<!--
-
-```r
-## Answers
-## * When using ">" or "<" on strings, R compares their alphabetical order. Here
-##   "four" comes after "five", and therefore is "greater than" it.
-```
--->
 </div>
 <div id="subsetting-vectors" class="section level2">
 <h2>Subsetting vectors</h2>
@@ -544,6 +530,20 @@ animals[animals ==<span class="st"> &quot;cat&quot;</span> |<span class="st"> </
 <pre><code>#&gt; [1] FALSE  TRUE  TRUE  TRUE</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">animals[animals %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;rat&quot;</span>, <span class="st">&quot;cat&quot;</span>, <span class="st">&quot;dog&quot;</span>, <span class="st">&quot;duck&quot;</span>)]</code></pre></div>
 <pre><code>#&gt; [1] &quot;rat&quot; &quot;dog&quot; &quot;cat&quot;</code></pre>
+<blockquote>
+<h3 id="challenge-optional" class="challenge">Challenge (optional)</h3>
+<ul>
+<li>Can you figure out why <code>&quot;four&quot; &gt; &quot;five&quot;</code> returns <code>TRUE</code>?</li>
+</ul>
+</blockquote>
+<!--
+
+```r
+## Answers
+## * When using ">" or "<" on strings, R compares their alphabetical order. Here
+##   "four" comes after "five", and therefore is "greater than" it.
+```
+-->
 </div>
 </div>
 <div id="missing-data" class="section level2">

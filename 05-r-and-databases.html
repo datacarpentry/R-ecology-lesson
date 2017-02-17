@@ -409,7 +409,7 @@ mammals &lt;-<span class="st"> </span><span class="kw">src_sqlite</span>(<span c
 </div>
 <div id="querying-the-database-with-the-dplyr-syntax" class="section level3">
 <h3>Querying the database with the dplyr syntax</h3>
-<p>One of the strengths of dplyr, is that the same operation can be done using using the dplyr’s verbs instead of writing SQL. First, we select the table on which to do the operations by creating the <code>surveys</code> object, and then we use the standard dplyr syntax as if it were a data frame:</p>
+<p>One of the strengths of dplyr, is that the same operation can be done using the dplyr’s verbs instead of writing SQL. First, we select the table on which to do the operations by creating the <code>surveys</code> object, and then we use the standard dplyr syntax as if it were a data frame:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys &lt;-<span class="st"> </span><span class="kw">tbl</span>(mammals, <span class="st">&quot;surveys&quot;</span>)
 surveys %&gt;%
 <span class="st">    </span><span class="kw">select</span>(year, species_id, plot_id)</code></pre></div>
@@ -431,7 +431,7 @@ surveys %&gt;%
 #&gt; 9          9     7    16  1977       1         DM     F              34
 #&gt; 10        10     7    16  1977       6         PF     F              20
 #&gt; # ... with more rows, and 1 more variables: weight &lt;int&gt;</code></pre>
-<p>This output of the <code>head</code> command looks just like a regular <code>data.frame</code>: The table has 9 columns and the <code>head()</code> command shows us the first 10 rows.</p>
+<p>This output of the <code>head</code> command looks just like a regular <code>data.frame</code>: The table has 9 columns and the <code>head()</code> command shows us the first 10 rows. Note that the columns <code>plot_type</code>, <code>taxa</code>, <code>genus</code>, and <code>species</code> are missing. These are now located in the tables <code>plots</code> and <code>species</code> which we will join together in a moment.</p>
 <p>However, some functions don’t work quite as expected. For instance, let’s check how many rows there are in total using <code>nrow()</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nrow</span>(tbl)</code></pre></div>
 <pre><code>#&gt; NULL</code></pre>
@@ -617,7 +617,7 @@ plots</code></pre></div>
 <blockquote>
 <h3 id="challenge">Challenge</h3>
 <p>Write a query that returns the number of rodents observed in each plot in each year.</p>
-<p>Hint: Connect to the species table and write a query that joins the species and survey tables together. The query should return counts of rodents by year.</p>
+<p>Hint: Connect to the species table and write a query that joins the species and survey tables together to exclude all non-rodents. The query should return counts of rodents by year.</p>
 <p>Optional: Write a query in SQL that will produce the same result. You can join multiple tables together uusing the following syntax where foreign key refers to your unique id (e.g., <code>species_id</code>):</p>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">SELECT</span> table.col, table.col
 <span class="kw">FROM</span> table1 <span class="kw">JOIN</span> table2
@@ -651,19 +651,28 @@ tbl(mammals, sql(query))
 --->
 <blockquote>
 <h3 id="challenge-1">Challenge</h3>
-<p>Write a query that returns counts of genus by <code>plot_id</code></p>
+<p>Write a query that returns the total number of rodents in each genus caught in the different plot types.</p>
 <p>Hint: Write a query that joins the species, plot, and survey tables together. The query should return counts of genus by plot type.</p>
 </blockquote>
 <!-- answer
 
 ```r
-genus.counts <- left_join(surveys, plots) %>%
+genus_counts <- left_join(surveys, plots) %>%
   left_join(species) %>%
   group_by(plot_type, genus) %>%
   tally %>%
   collect()
 ```
 --->
+<p>This is useful if we are interested in estimating the number of individuals belonging to each genus found in each plot type, but what if we were interested in the number of genera found in each plot type. Using <code>tally()</code> gives the number of individuals, instead we need to use <code>n_distinct()</code> to count the number of unique values found in a column.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">unique_genera &lt;-<span class="st"> </span><span class="kw">left_join</span>(surveys, plots) %&gt;%
+<span class="st">    </span><span class="kw">left_join</span>(species) %&gt;%
+<span class="st">    </span><span class="kw">group_by</span>(plot_type) %&gt;%
+<span class="st">    </span><span class="kw">summarize</span>(
+        <span class="dt">n_genera =</span> <span class="kw">n_distinct</span>(genus)
+    ) %&gt;%
+<span class="st">    </span><span class="kw">collect</span>()</code></pre></div>
+<p><code>n_distinct</code>, like the other dplyr functions we have used in this lesson, works not only on database connections but also on regular data frames.</p>
 </div>
 <div id="creating-a-new-sqlite-database" class="section level2">
 <h2>Creating a new SQLite database</h2>
