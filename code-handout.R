@@ -39,7 +39,7 @@
 ## 
 ### Challenge (optional)
 ##
-## * Can you figure out why `"four" > "five"` returns `TRUE`? (optional)
+## * Can you figure out why `"four" > "five"` returns `TRUE`?
 ## ### Challenge
 ## 1. Using this vector of length measurements, create a new vector with the NAs
 ## removed.
@@ -62,8 +62,9 @@
 
 ## Indexing and subsetting data frames
 ### Challenges:
-### 1. Create a `data.frame` (`surveys_200`) containing only the observations from row 200 of the
-###    `surveys` dataset.
+###
+### 1. Create a `data.frame` (`surveys_200`) containing only the
+###    observations from row 200 of the `surveys` dataset.
 ###
 ### 2. Notice how `nrow()` gave you the number of rows in a `data.frame`?
 ###
@@ -73,12 +74,12 @@
 ###      * Pull out that last row using `nrow()` instead of the row number
 ###      * Create a new data frame object (`surveys_last`) from that last row
 ###
-### 3. Use `nrow()` in conjunction with the `:` function to create a new
-###    data frame called `surveys_last_100` that includes the 100 rows of the
-###    `surveys` data frame.
+### 3. Use `nrow()` to extract the row that is in the middle of the
+###    data frame. Store the content of this row in an object named
+###    `surveys_middle`.
 ###
 ### 4. Combine `nrow()` with the `-` notation above to reproduce the behavior of
-###    `head(surveys)` keeping just the first through 7th rows of the surveys
+###    `head(surveys)` keeping just the first through 6th rows of the surveys
 ###    dataset.
 
 ### Factors
