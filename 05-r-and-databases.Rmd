@@ -122,10 +122,10 @@ database lesson.
 
 ### Querying the database with the dplyr syntax
 
-One of the strengths of dplyr, is that the same operation can be done using
-using the dplyr's verbs instead of writing SQL. First, we select the table on
-which to do the operations by creating the `surveys` object, and then we use the
-standard dplyr syntax as if it were a data frame:
+One of the strengths of dplyr, is that the same operation can be done using the
+dplyr's verbs instead of writing SQL. First, we select the table on which to do
+the operations by creating the `surveys` object, and then we use the standard
+dplyr syntax as if it were a data frame:
 
 ```{r use-dplyr-syntax}
 surveys <- tbl(mammals, "surveys")
@@ -146,8 +146,8 @@ head(surveys, n = 10)
 This output of the `head` command looks just like a regular `data.frame`:
 The table has 9 columns and the `head()` command shows us the first 10 rows.
 Note that the columns `plot_type`, `taxa`, `genus`, and `species` are missing.
-These are now located in the tables `plots` and `species` which we will join 
-together in a moment. 
+These are now located in the tables `plots` and `species` which we will join
+together in a moment.
 
 However, some functions don't work quite as expected. For instance, let's check
 how many rows there are in total using `nrow()`:
@@ -343,7 +343,7 @@ retrieved.
 > each year.
 >
 > Hint: Connect to the species table and write a query that joins the species
-> and survey tables together to exclude all non-rodents. 
+> and survey tables together to exclude all non-rodents.
 > The query should return counts of rodents by year.
 >
 > Optional: Write a query in SQL that will produce the same result. You can join
@@ -385,7 +385,7 @@ tbl(mammals, sql(query))
 
 > ### Challenge
 >
->  Write a query that returns the total number of rodents in each genus caught 
+>  Write a query that returns the total number of rodents in each genus caught
 >  in the different plot types.
 >
 >  Hint: Write a query that joins the species, plot, and survey tables together.
@@ -393,13 +393,33 @@ tbl(mammals, sql(query))
 
 <!-- answer
 ```{r genus_by_type, results='markup'}
-genus.counts <- left_join(surveys, plots) %>%
+genus_counts <- left_join(surveys, plots) %>%
   left_join(species) %>%
   group_by(plot_type, genus) %>%
   tally %>%
   collect()
 ```
 --->
+
+This is useful if we are interested in estimating the number of individuals
+belonging to each genus found in each plot type, but what if we were interested
+in the number of genera found in each plot type. Using `tally()` gives the
+number of individuals, instead we need to use `n_distinct()` to count the
+number of unique values found in a column.
+
+```{r count_unique_genera}
+unique_genera <- left_join(surveys, plots) %>%
+    left_join(species) %>%
+    group_by(plot_type) %>%
+    summarize(
+        n_genera = n_distinct(genus)
+    ) %>%
+    collect()
+
+```
+
+`n_distinct`, like the other dplyr functions we have used in this lesson, works
+not only on database connections but also on regular data frames.
 
 
 ## Creating a new SQLite database
