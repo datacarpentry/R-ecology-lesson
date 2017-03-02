@@ -11,7 +11,7 @@ import CSV files, the structure of data.frame, how to deal with factors, how to
 add/remove rows and columns, and finish with how to calculate summary statistics
 for each level and a very brief introduction to plotting.
 
-> ## Prerequisites
+## Prerequisites
 >
 > * Having RStudio installed
 
@@ -20,12 +20,9 @@ for each level and a very brief introduction to plotting.
 * [Before we start](00-before-we-start.html)
 * [Introduction to R](01-intro-to-R.html)
 * [Starting with data](02-starting-with-data.html)
-* [The `data.frame` class](03-data-frames.html)
-* [Aggregating and analyzing data with dplyr](04-dplyr.html)
-
-## Other resources
-
-* [Motivation](motivation.html)
+* [Aggregating and analyzing data with dplyr](03-dplyr.html)
+* [Data visualization with ggplot2](04-visualization-ggplot2.html)
+* [R and Databases](05-r-and-databases.html)
 
 ## Organization of the repository
 
