@@ -27,14 +27,14 @@ for each level and a very brief introduction to plotting.
 ## Organization of the repository
 
 The lessons are written in Rmarkdown. A Makefile generates an html page for each
-topic using knitr. In the process, knitr creates an intermediate markdown
-file. These are removed by the Makefile to avoid clutter.
+topic using rmarkdown. In the process, rmarkdown creates an intermediate
+markdown file. These are removed by the Makefile to avoid clutter.
 
-The Makefile also generates a "skeleton" file that is intended to be distributed
-to the participants. This file includes some of the examples used during
-teaching and the titles of the section. It provides a guide that the
+The Makefile also generates a "code handout" file that is intended to be
+distributed to the participants. This file includes some of the examples used
+during teaching and the titles of the section. It provides a guide that the
 participants can fill in as the lesson progresses. It also avoids typos while
-typing more complex examples. Each topic generates a skeleton file, and the
+typing more complex examples. Each topic generates a code handout file, and the
 files produced are then concatenated to create a single file and the
-intermediate files are deleted. To be included in the skeleton file, a chunk of
-code needs to have the arguments `purl=TRUE`.
+intermediate files are deleted. To be included in the code handout file, a chunk
+of code needs to have the arguments `purl=TRUE`.
