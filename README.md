@@ -1,7 +1,7 @@
 ---
 layout: lesson
 title: Data carpentry -- Starting with R for data analysis
-keywords: ["R", "subset", "data.frame", "read.csv"]
+keywords: ["R", "subset", "data.frame", "read.csv", "dplyr", "ggplot2"]
 ---
 
 This is an introduction to R designed for participants with no programming
