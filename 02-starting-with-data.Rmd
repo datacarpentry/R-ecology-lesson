@@ -13,11 +13,10 @@ source("setup.R")
 > ### Learning Objectives
 >
 > * Describe what a data frame is.
+> * Load external data from a .csv file into a data frame in R.
 > * Summarize the contents of a data frame in R.
-> * Load external data from a .csv file into R.
 > * Manipulate categorical data in R
-> * Read data from a file into a data.frame.
-> * Change how character strings are handled in a data.frame.
+> * Change how character strings are handled in a data frame.
 
 ------------
 
