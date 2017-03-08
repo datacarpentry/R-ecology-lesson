@@ -139,11 +139,11 @@ operating system, and then follow the instructions to install `tidyverse`.
 
 #### For everyone
 
-**In any case you will also need to install the "tidyverse" package.**
+**In any case you will also need to install the "tidyverse" and "RSQLite" packages.**
 
 * After starting RStudio, at the terminal type:
-  `install.packages("tidyverse")`
+  `install.packages(c("tidyverse", "RSQLite"))`
 
 ## Contributors
 
-The list of contributors to this lesson is available [here](AUTHORS).
+The list of contributors to this lesson is available [here](AUTHORS),
