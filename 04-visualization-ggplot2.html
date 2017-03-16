@@ -516,12 +516,11 @@ surveys_plot
        <span class="dt">panel.grid.major.y =</span> <span class="kw">element_blank</span>(),
        <span class="dt">panel.grid.minor.y =</span> <span class="kw">element_blank</span>())</code></pre></div>
 <p><img src="img/R-ecology-facet-by-species-and-sex-white-bg-1.png" width="672" /></p>
-<blockquote>
-<h2 id="the-ggplot2-themes">The ggplot2 themes</h2>
+</div>
+<div id="the-ggplot2-themes" class="section level2">
+<h2>The ggplot2 themes</h2>
 <p>In addition of <code>theme_bw()</code> that changes the plot background to white, ggplot2 comes with several other themes, which can be useful to quickly change the look and feel of your visualization. The complete list of themes is available at <a href="http://docs.ggplot2.org/current/ggtheme.html" class="uri">http://docs.ggplot2.org/current/ggtheme.html</a>. <code>theme_minimal()</code> and <code>theme_light()</code> are popular, and <code>theme_void()</code> can be useful as a starting point to create a new hand-crafted theme.</p>
-<p>The <a href="https://cran.r-project.org/web/packages/ggthemes/vignettes/ggthemes.html">ggthemes</a> package provides a wide variety of options (including an Excel 2003 theme).</p>
-<p>The <a href="https://www.ggplot2-exts.org">ggplot2 extensions website</a> provides a list of packages that extend the capabilities of ggplot2, including additional themes.</p>
-</blockquote>
+<p>The <a href="https://cran.r-project.org/web/packages/ggthemes/vignettes/ggthemes.html">ggthemes</a> package provides a wide variety of options (including an Excel 2003 theme). The <a href="https://www.ggplot2-exts.org">ggplot2 extensions website</a> provides a list of packages that extend the capabilities of ggplot2, including additional themes.</p>
 <p>To make the plot easier to read, we can color by sex instead of species (species are already in separate plots, so we don’t need to distinguish them further).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> yearly_sex_counts, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> n, <span class="dt">color =</span> sex, <span class="dt">group =</span> sex)) +
 <span class="st">    </span><span class="kw">geom_line</span>() +
