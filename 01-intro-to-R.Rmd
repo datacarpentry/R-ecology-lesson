@@ -37,7 +37,7 @@ You can get output from R simply by typing in math in the console
 
 ```{r, purl=FALSE}
 3 + 5
-12/7
+12 / 7
 ```
 
 However, to do useful and interesting things, we need to assign _values_ to
@@ -80,7 +80,7 @@ for function names. It's important to be consistent in the styling of your code
 style, make your code clearer to read for your future self and your
 collaborators. In R, two popular style guides
 are [Hadley Wickham's](http://adv-r.had.co.nz/Style.html)
-and [Google's](https://google-styleguide.googlecode.com/svn/trunk/Rguide.xml)
+and [Google's](https://google.github.io/styleguide/Rguide.xml)
 (this [one](http://jef.works/R-style-guide/) is also comprehensive).
 
 When assigning a value to an object, R does not print anything. You can force to
