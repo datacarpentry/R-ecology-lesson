@@ -34,7 +34,7 @@ also to interact with the R software. To function correctly, RStudio needs R and
 therefore both need to be installed on your computer.
 
 
-## Why learning R?
+## Why learn R?
 
 ### R is not a GUI, and that's a good thing
 
