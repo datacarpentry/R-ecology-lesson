@@ -61,7 +61,7 @@ collect more data, or fix a mistake in your dataset, the figures and the
 statistical tests in your manuscript are updated automatically.
 
 An increasing number of journals and funding agencies expect analyses to be
-reproducible, knowing R will give you an edge with these requirements.
+reproducible, so knowing R will give you an edge with these requirements.
 
 
 ### R is interdisciplinary and extensible
