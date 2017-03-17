@@ -69,7 +69,7 @@ cannot be used because they are the names of fundamental functions in R (e.g.,
 see
 [here](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Reserved.html)
 for a complete list). In general, even if it's allowed, it's best to not use
-other function names (e.g., `c`, `T`, `mean`, `data`, `df`, `weights`). In doubt
+other function names (e.g., `c`, `T`, `mean`, `data`, `df`, `weights`). If in doubt,
 check the help to see if the name is already in use. It's also best to avoid
 dots (`.`) within a variable name as in `my.dataset`. There are many functions
 in R with dots in their names for historical reasons, but because dots have a
