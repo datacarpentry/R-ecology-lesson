@@ -182,7 +182,7 @@ even a data set. We'll see that when we read data files into R.
 Arguments can be anything, not only numbers or filenames, but also other
 objects. Exactly what each argument means differs per function, and must be
 looked up in the documentation (see below). Some functions take arguments which
-may either be specified by the user, or if left out, take on a *default* value:
+may either be specified by the user, or, if left out, take on a *default* value:
 these are called *options*. Options are typically used to alter the way the
 function operates, such as whether it ignores 'bad values', or what symbol to
 use in a plot.  However, if you want something specific, you can specify a value
