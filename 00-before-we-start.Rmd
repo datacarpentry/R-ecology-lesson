@@ -34,7 +34,7 @@ also to interact with the R software. To function correctly, RStudio needs R and
 therefore both need to be installed on your computer.
 
 
-## Why learning R?
+## Why learn R?
 
 ### R is not a GUI, and that's a good thing
 
@@ -61,7 +61,7 @@ collect more data, or fix a mistake in your dataset, the figures and the
 statistical tests in your manuscript are updated automatically.
 
 An increasing number of journals and funding agencies expect analyses to be
-reproducible, knowing R will give you an edge with these requirements.
+reproducible, so knowing R will give you an edge with these requirements.
 
 
 ### R is interdisciplinary and extensible
@@ -95,7 +95,7 @@ aspect of your graph to convey most effectively the message from your data.
 ### R has a large community
 
 Thousands of people use R daily. Many of them are willing to help you through
-mailing lists and stack overflow.
+mailing lists and [Stack Overflow](https://stackoverflow.com/).
 
 
 ### Not only R is free, but it is also open-source and cross-platform
@@ -210,7 +210,7 @@ and we can understand. We call the instructions *commands* and we tell the
 computer to follow the instructions by *executing* (also called *running*) those
 commands.
 
-There are two main ways of interacting with R: using the console or by using
+There are two main ways of interacting with R: by using the console or by using
 script files (plain text files that contain your code). We want our code and
 workflow to be reproducible. In other words, we want to write code in a way that
 anyone can easily replicate our results on their computer.

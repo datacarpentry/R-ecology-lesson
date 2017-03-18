@@ -39,7 +39,7 @@ for each level and a very brief introduction to plotting.
 ## Requirements
 
 Data Carpentry's teaching is hands-on, so participants are encouraged to use
-their own computers to insure the proper setup of tools for an efficient
+their own computers to ensure the proper setup of tools for an efficient
 workflow.  *These lessons assume no prior knowledge of the skills or tools*, but
 working through this lesson requires working copies of the software described
 below.  To most effectively use these materials, please make sure to download
@@ -57,9 +57,9 @@ Please download the *\*.csv* (Comma Separated Value) files: *species.csv*, *plot
 **R** and **RStudio** are separate downloads and installations. R is the
 underlying statistical computing environment, but using R alone is no
 fun. RStudio is a graphical integrated development environment (IDE) that makes
-using R much easier and more interactive. You need R installed before you
-install RStudio. After installing both of the programs, you will need to install
-the `tidyverse` package within RStudio. Follow the instructions below for your
+using R much easier and more interactive. You need to install R before you
+install RStudio. After installing both programs, you will need to install
+the `tidyverse` package from within RStudio. Follow the instructions below for your
 operating system, and then follow the instructions to install `tidyverse`.
 
 #### Windows
@@ -68,8 +68,8 @@ operating system, and then follow the instructions to install `tidyverse`.
 
 * Open RStudio, and click on "Help" > "Check for updates". If a new version is
 	available, quit RStudio, and download the latest version for RStudio.
-* To check the version of R you are using, start RStudio and the first thing
-  that appears on the terminal indicates the version of R you are running. Go on
+* To check which version of R you are using, start RStudio and the first thing
+  that appears in the console indicates the version of R you are running. Alternatively, you can type `sessionInfo()`, which will also display which version of R you are running. Go on
   the [CRAN website](https://cran.r-project.org/bin/windows/base/) and check
   whether a more recent version is available. If so, please download and install
   it. You may also want to consider removing your old version of R. You
@@ -97,7 +97,7 @@ operating system, and then follow the instructions to install `tidyverse`.
 * Open RStudio, and click on "Help" > "Check for updates". If a new version is
 	available, quit RStudio, and download the latest version for RStudio.
 * To check the version of R you are using, start RStudio and the first thing
-  that appears on the terminal indicates the version of R you are running. Go on
+  that appears on the terminal indicates the version of R you are running. Alternatively, you can type `sessionInfo()`, which will also display which version of R you are running. Go on
   the [CRAN website](https://cran.r-project.org/bin/macosx/) and check
   whether a more recent version is available. If so, please download and install
   it. You may also want to consider removing your old version of R. You
@@ -139,9 +139,9 @@ operating system, and then follow the instructions to install `tidyverse`.
 
 #### For everyone
 
-**In any case you will also need to install the "tidyverse" and "RSQLite" packages.**
+**After installing R and Rstudio, you need to install the "tidyverse" and "RSQLite" packages.**
 
-* After starting RStudio, at the terminal type:
+* After starting RStudio, at the console type:
   `install.packages(c("tidyverse", "RSQLite"))`
 
 ## Contributors

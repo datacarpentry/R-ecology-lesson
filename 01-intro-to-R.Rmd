@@ -69,15 +69,15 @@ cannot be used because they are the names of fundamental functions in R (e.g.,
 see
 [here](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Reserved.html)
 for a complete list). In general, even if it's allowed, it's best to not use
-other function names (e.g., `c`, `T`, `mean`, `data`, `df`, `weights`). In doubt
+other function names (e.g., `c`, `T`, `mean`, `data`, `df`, `weights`). If in doubt,
 check the help to see if the name is already in use. It's also best to avoid
 dots (`.`) within a variable name as in `my.dataset`. There are many functions
 in R with dots in their names for historical reasons, but because dots have a
 special meaning in R (for methods) and other programming languages, it's best to
 avoid them. It is also recommended to use nouns for variable names, and verbs
 for function names. It's important to be consistent in the styling of your code
-(where you put spaces, how you name variable, etc.). Using a consistent coding
-style, make your code clearer to read for your future self and your
+(where you put spaces, how you name variables, etc.). Using a consistent coding
+style makes your code clearer to read for your future self and your
 collaborators. In R, two popular style guides
 are [Hadley Wickham's](http://adv-r.had.co.nz/Style.html)
 and [Google's](https://google.github.io/styleguide/Rguide.xml)
@@ -182,7 +182,7 @@ even a data set. We'll see that when we read data files into R.
 Arguments can be anything, not only numbers or filenames, but also other
 objects. Exactly what each argument means differs per function, and must be
 looked up in the documentation (see below). Some functions take arguments which
-may either be specified by the user, or if left out, take on a *default* value:
+may either be specified by the user, or, if left out, take on a *default* value:
 these are called *options*. Options are typically used to alter the way the
 function operates, such as whether it ignores 'bad values', or what symbol to
 use in a plot.  However, if you want something specific, you can specify a value
