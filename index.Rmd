@@ -49,7 +49,8 @@ the data and install everything *before* working through this lesson.
 
 Data files for the lesson are available here: <http://dx.doi.org/10.6084/m9.figshare.1314459>
 
-Please download the *\*.csv* (Comma Separated Value) files: *species.csv*, *plots.csv*, *surveys.csv*, and *combined.csv*.
+Please download the *\*.csv* (Comma Separated Value) files: *species.csv*,
+*plots.csv*, *surveys.csv*, and *combined.csv*.
 
 
 ### Setup instructions
@@ -58,9 +59,10 @@ Please download the *\*.csv* (Comma Separated Value) files: *species.csv*, *plot
 underlying statistical computing environment, but using R alone is no
 fun. RStudio is a graphical integrated development environment (IDE) that makes
 using R much easier and more interactive. You need to install R before you
-install RStudio. After installing both programs, you will need to install
-the `tidyverse` package from within RStudio. Follow the instructions below for your
-operating system, and then follow the instructions to install `tidyverse`.
+install RStudio. After installing both programs, you will need to install the
+`tidyverse` package from within RStudio. Follow the instructions below for your
+operating system, and then follow the instructions to install `tidyverse` and
+`RSQLite`.
 
 #### Windows
 
@@ -139,7 +141,8 @@ operating system, and then follow the instructions to install `tidyverse`.
 
 #### For everyone
 
-**After installing R and Rstudio, you need to install the "tidyverse" and "RSQLite" packages.**
+**After installing R and RStudio, you need to install the "tidyverse" and
+"RSQLite" packages.**
 
 * After starting RStudio, at the console type:
   `install.packages(c("tidyverse", "RSQLite"))`
