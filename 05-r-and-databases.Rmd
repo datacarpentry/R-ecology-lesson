@@ -104,7 +104,7 @@ output above:
 * surveys
 
 Now that we know that we can connect to the database, let's explore how to get
-the data from its tables in R.
+the data from its tables into R.
 
 ### Querying the database with the SQL syntax
 
@@ -207,7 +207,7 @@ Instead, it merely sends the query to the database, waits for its response and
 returns it to us.
 
 That way, R never gets to see the full `surveys` table - and that's why it could
-tell us how many rows it contains. On the bright side, this allows us to work
+not tell us how many rows it contains. On the bright side, this allows us to work
 with large datasets - even too large to fit into our computer's memory.
 
 `dplyr` can translate many different query types into SQL allowing us e.g.
@@ -298,7 +298,7 @@ to work with them exclusively in R, without communicating with the database.
 the same single- and multiple-table verbs you encountered previously. This means
 you can use the same commands regardless of whether you interact with a remote
 database or local dataset! This is a really useful feature if you work with
-large datasets, you can first prototype your code on a small subset that fits
+large datasets: you can first prototype your code on a small subset that fits
 into memory, and when your code is ready, you can change the input dataset to
 your full database without having to change the syntax.
 
@@ -402,8 +402,8 @@ genus_counts <- left_join(surveys, plots) %>%
 --->
 
 This is useful if we are interested in estimating the number of individuals
-belonging to each genus found in each plot type, but what if we were interested
-in the number of genera found in each plot type. Using `tally()` gives the
+belonging to each genus found in each plot type. But what if we were interested
+in the number of genera found in each plot type? Using `tally()` gives the
 number of individuals, instead we need to use `n_distinct()` to count the
 number of unique values found in a column.
 
