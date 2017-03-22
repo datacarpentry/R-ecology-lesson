@@ -400,7 +400,7 @@ mammals &lt;-<span class="st"> </span><span class="kw">src_sqlite</span>(<span c
 <li>species</li>
 <li>surveys</li>
 </ul>
-<p>Now that we know that we can connect to the database, let’s explore how to get the data from its tables in R.</p>
+<p>Now that we know that we can connect to the database, let’s explore how to get the data from its tables into R.</p>
 <div id="querying-the-database-with-the-sql-syntax" class="section level3">
 <h3>Querying the database with the SQL syntax</h3>
 <p>To connect to tables within a database, you can use the <code>tbl()</code> function from dplyr. This function can be used to send SQL queries to the database. To demonstrate this functionality, let’s select the columns “year”, “species_id”, and “plot_id” from the <code>surveys</code> table:</p>
@@ -476,7 +476,7 @@ surveys %&gt;%
 <p>The first part of the output shows the actual SQL query sent to the database; it matches our manually constructed <code>SELECT</code> statement above.</p>
 <p>Instead of having to formulate the SQL query ourselves - and having to mentally switch back and forth between R and SQL syntax - we can delegate this translation to <code>dplyr</code>. (You don’t even need to know SQL to interact with a database via <code>dplyr</code>!)</p>
 <p><code>dplyr</code>, in turn, doesn’t do the real work of subsetting the table, either. Instead, it merely sends the query to the database, waits for its response and returns it to us.</p>
-<p>That way, R never gets to see the full <code>surveys</code> table - and that’s why it could tell us how many rows it contains. On the bright side, this allows us to work with large datasets - even too large to fit into our computer’s memory.</p>
+<p>That way, R never gets to see the full <code>surveys</code> table - and that’s why it could not tell us how many rows it contains. On the bright side, this allows us to work with large datasets - even too large to fit into our computer’s memory.</p>
 <p><code>dplyr</code> can translate many different query types into SQL allowing us e.g. to <code>select()</code> specific columns, <code>filter()</code> rows or join tables.</p>
 <p>To see this in action, let’s compose a few queries with <code>dplyr</code>.</p>
 </div>
@@ -554,7 +554,7 @@ data_subset %&gt;%
 </div>
 <div id="complex-database-queries" class="section level2">
 <h2>Complex database queries</h2>
-<p><code>dplyr</code> enables database queries across one or multiple database tables, using the same single- and multiple-table verbs you encountered previously. This means you can use the same commands regardless of whether you interact with a remote database or local dataset! This is a really useful feature if you work with large datasets, you can first prototype your code on a small subset that fits into memory, and when your code is ready, you can change the input dataset to your full database without having to change the syntax.</p>
+<p><code>dplyr</code> enables database queries across one or multiple database tables, using the same single- and multiple-table verbs you encountered previously. This means you can use the same commands regardless of whether you interact with a remote database or local dataset! This is a really useful feature if you work with large datasets: you can first prototype your code on a small subset that fits into memory, and when your code is ready, you can change the input dataset to your full database without having to change the syntax.</p>
 <p>On the other hand, being able use SQL queries directly can be useful if your collaborators have already put together complex queries to prepare the dataset that you need for your analysis.</p>
 <p>To illustrate how to use dplyr with these complex queries, we are going to join the <code>plots</code> and <code>surveys</code> tables. The <code>plots</code> table in the database contains information about the different plots surveyed by the reseachers. To access it, we point the <code>tbl()</code> command to it:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">plots &lt;-<span class="st"> </span><span class="kw">tbl</span>(mammals, <span class="st">&quot;plots&quot;</span>)
@@ -664,7 +664,7 @@ genus_counts <- left_join(surveys, plots) %>%
   collect()
 ```
 --->
-<p>This is useful if we are interested in estimating the number of individuals belonging to each genus found in each plot type, but what if we were interested in the number of genera found in each plot type. Using <code>tally()</code> gives the number of individuals, instead we need to use <code>n_distinct()</code> to count the number of unique values found in a column.</p>
+<p>This is useful if we are interested in estimating the number of individuals belonging to each genus found in each plot type. But what if we were interested in the number of genera found in each plot type? Using <code>tally()</code> gives the number of individuals, instead we need to use <code>n_distinct()</code> to count the number of unique values found in a column.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">unique_genera &lt;-<span class="st"> </span><span class="kw">left_join</span>(surveys, plots) %&gt;%
 <span class="st">    </span><span class="kw">left_join</span>(species) %&gt;%
 <span class="st">    </span><span class="kw">group_by</span>(plot_type) %&gt;%
