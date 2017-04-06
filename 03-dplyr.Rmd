@@ -82,7 +82,7 @@ frame (`surveys`), and the subsequent arguments are the columns to keep.
 select(surveys, plot_id, species_id, weight)
 ```
 
-To choose rows, use `filter()`:
+To choose rows based on specific criteria, use `filter()`:
 
 ```{r, purl = FALSE}
 filter(surveys, year == 1995)
