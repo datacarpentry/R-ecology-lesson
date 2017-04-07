@@ -30,7 +30,7 @@ surveys <- read.csv("data/portal_data_joined.csv")
 
 Bracket subsetting is handy, but it can be cumbersome and difficult to read,
 especially for complicated operations. Enter `dplyr`. `dplyr` is a package for
-making data manipulation easier.
+making tabular data manipulation easier.
 
 Packages in R are basically sets of additional functions that let you do more
 stuff. The functions we've been using so far, like `str()` or `data.frame()`,
