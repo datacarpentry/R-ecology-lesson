@@ -15,8 +15,8 @@ source("setup.R")
 >
 > * Define the following terms as they relate to R: script, function, working directory, assign, object, variable.
 > * Call functions with zero or more named or unnamed arguments.
-> * Solve mathematical operations in R.
-> * Assign values to objects and variables in R.
+> * Perform mathematical computations in R.
+> * Assign values to variables in R.
 > * Describe what vectors are and how they are manipulated in R.
 > * Inspect the content of vectors in R and manipulate their content.
 > * Extract values from vectors in R.
@@ -250,7 +250,10 @@ doing.
 A vector is the most common and basic data structure in R, and is pretty much
 the workhorse of R. It's a group of values, mainly either numbers or
 characters. You can assign this list of values to a variable, just like you
-would for one item. For example we can create a vector of animal weights:
+would for one item. (In fact the basic variables we used previously are simply 
+vectors with just a single element.)
+
+For example we can create a vector that contains 4 animal weights:
 
 ```{r, purl=FALSE}
 weight_g <- c(50, 60, 65, 82)
@@ -283,8 +286,8 @@ class(weight_g)
 class(animals)
 ```
 
-The function `str()` provides an overview of the object and the elements it
-contains. It is a really useful function when working with large and complex
+The function `str()` provides an overview of the structure of an object and its 
+elements. It is a useful function when working with large and complex
 objects:
 
 ```{r, purl=FALSE}
@@ -300,11 +303,14 @@ weight_g <- c(30, weight_g) # adding at the beginning of the vector
 weight_g
 ```
 
-What happens here is that we take the original vector `weight_g`, and we are
-adding another item first to the end of the other ones, and then another item at
-the beginning. We can do this over and over again to grow a vector, or assemble
-a dataset. As we program, this may be useful to add results that we are
-collecting or calculating.
+In the first line, what happens is that we take the original vector `weight_g`, 
+adding the value `90` to the end of it, and saving the result back into 
+`weight_g`. Then we add the value `30` to the beginning, again saving the result 
+back into `weight_g`.
+
+We can do this over and over again to grow a vector, or assemble a dataset. 
+As we program, this may be useful to add results that we are collecting or 
+calculating.
 
 We just saw 2 of the 6 **atomic vector** types that R uses: `"character"` and
 `"numeric"`. These are the basic building blocks that all R objects are built
@@ -434,20 +440,22 @@ weight_g[weight_g < 30 | weight_g > 50]
 weight_g[weight_g >= 30 & weight_g == 21]
 ```
 
-Here, `<` stands for "smaller than", `>` or "bigger than", `>=` for "bigger or
-equal to", and `==` for "equal to". The double equal sign `==` should not be
-confused with the single `=` sign, which assigns to a variable (roughly speaking
-the same as "`<-`").
+Here, `<` stands for "less than", `>` for "greater than", `>=` for "greater than 
+or equal to", and `==` for "equal to". The double equal sign `==` is a test for 
+numerical equality between the left and right hand sides, and should not be
+confused with the single `=` sign, which performs variable assignment (similar 
+to `<-`).
 
-A common task is to search for certain strings in a vector. One could use the "or"
-operator `|` but this can become quickly tedious. The function `%in%` allows you to test
-if a value is found in a vector:
+A common task is to search for certain strings in a vector.  One could use the 
+"or" operator `|` to test for equality to multiple values, but this can quickly 
+become tedious. The function `%in%` allows you to test if any of the elements of 
+a search vector are found:
 
 ```{r, results='show', purl=FALSE}
 animals <- c("mouse", "rat", "dog", "cat")
 animals[animals == "cat" | animals == "rat"] # returns both rat and cat
-animals %in% c("rat", "cat", "dog", "duck")
-animals[animals %in% c("rat", "cat", "dog", "duck")]
+animals %in% c("rat", "cat", "dog", "duck", "goat")
+animals[animals %in% c("rat", "cat", "dog", "duck", "goat")]
 ```
 
 > ### Challenge (optional){.challenge}
