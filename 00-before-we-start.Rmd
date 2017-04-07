@@ -15,8 +15,8 @@ knitr::opts_chunk$set(results='hide', fig.path='img/r-lesson-')
 >
 > After completing this module, the learner should be able to:
 >
-> * Describe the purpose of the RStudio script, console, environment, and plot windows.
-> * Organize files and directories for a set of analysis in an R Project.
+> * Describe the purpose of the RStudio Script, Console, Environment, and Plots panes.
+> * Organize files and directories for a set of analyses as an R Project.
 > * Use the built-in RStudio help interface to search for more information on R
 >   functions.
 > * Demonstrate how to provide sufficient information for troubleshooting with the R user community.
@@ -233,7 +233,7 @@ the structure of an object, without necessarily keeping a record of it in your
 script. You can type these commands and execute them directly in the console.
 RStudio provides the <kbd>`Ctrl`</kbd> + <kbd>`1`</kbd> and <kbd>`Ctrl`</kbd> +
 <kbd>`2`</kbd> shortcuts allow you to jump between the script and the console
-windows.
+panes.
 
 If R is ready to accept commands, the R console shows a `>` prompt. If it
 receives a command (by typing, copy-pasting or sent from the script editor using
