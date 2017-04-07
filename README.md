@@ -14,9 +14,10 @@ rows and columns), and finishing with calculating summary statistics and a
 brief introduction to plotting.
 
 ## Prerequisites
->
-> * Having R and RStudio installed (though see the first lesson, [Before we start](00-before-we-start.html)
-for installation instructions)
+
+> * Having R and RStudio installed (though see the first
+> lesson, [Before we start](00-before-we-start.html) for installation
+> instructions)
 
 ## Topics
 
@@ -30,9 +31,8 @@ for installation instructions)
 ## Organization of the repository
 
 The lessons are written in Rmarkdown format. A Makefile generates the
-corresponding html page for each lesson by running rmarkdown from within R. In
-the process, rmarkdown creates an intermediate markdown file. These are removed
-by the Makefile to avoid clutter.
+corresponding html page for each lesson using the rmarkdown package from within
+R.
 
 The Makefile also generates a "code handout" file that is intended to be
 distributed to the participants. This file includes some of the examples used
