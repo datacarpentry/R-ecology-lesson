@@ -15,8 +15,8 @@ source("setup.R")
 >
 > * Define the following terms as they relate to R: script, function, working directory, assign, object, variable.
 > * Call functions with zero or more named or unnamed arguments.
-> * Solve mathematical operations in R.
-> * Assign values to objects and variables in R.
+> * Perform mathematical computations in R.
+> * Assign values to variables in R.
 > * Describe what vectors are and how they are manipulated in R.
 > * Inspect the content of vectors in R and manipulate their content.
 > * Extract values from vectors in R.
@@ -434,20 +434,22 @@ weight_g[weight_g < 30 | weight_g > 50]
 weight_g[weight_g >= 30 & weight_g == 21]
 ```
 
-Here, `<` stands for "smaller than", `>` or "bigger than", `>=` for "bigger or
-equal to", and `==` for "equal to". The double equal sign `==` should not be
-confused with the single `=` sign, which assigns to a variable (roughly speaking
-the same as "`<-`").
+Here, `<` stands for "less than", `>` for "greater than", `>=` for "greater than 
+or equal to", and `==` for "equal to". The double equal sign `==` is a test for 
+numerical equality between the left and right hand sides, and should not be
+confused with the single `=` sign, which performs variable assignment (similar 
+to `<-`).
 
-A common task is to search for certain strings in a vector. One could use the "or"
-operator `|` but this can become quickly tedious. The function `%in%` allows you to test
-if a value is found in a vector:
+A common task is to search for certain strings in a vector.  One could use the 
+"or" operator `|` to test for equality to multiple values, but this can quickly 
+become tedious. The function `%in%` allows you to test if any of the elements of 
+a search vector are found:
 
 ```{r, results='show', purl=FALSE}
 animals <- c("mouse", "rat", "dog", "cat")
 animals[animals == "cat" | animals == "rat"] # returns both rat and cat
-animals %in% c("rat", "cat", "dog", "duck")
-animals[animals %in% c("rat", "cat", "dog", "duck")]
+animals %in% c("rat", "cat", "dog", "duck", "goat")
+animals[animals %in% c("rat", "cat", "dog", "duck", "goat")]
 ```
 
 > ### Challenge (optional){.challenge}
