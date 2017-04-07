@@ -93,7 +93,7 @@ weight_kg          # and so does typing the name of the object
 ```
 
 Now that R has `weight_kg` in memory, we can do arithmetic with it. For
-instance, we may want to convert this weight in pounds (weight in pounds is 2.2
+instance, we may want to convert this weight to pounds (weight in pounds is 2.2
 times the weight in kg):
 
 ```{r, purl=FALSE}
@@ -158,14 +158,14 @@ What do you think is the current content of the object `weight_lb`? 126.5 or 200
 
 ### Functions and their arguments
 
-Functions are "canned scripts" that automate something complicated or convenient
-or both.  Many functions are predefined, or can be made available by importing R
-*packages* (more on that later). A function usually gets one or more inputs
-called *arguments*. Functions often (but not always) return a *value*. A typical
-example would be the function `sqrt()`. The input (the argument) must be a
-number, and the return value (in fact, the output) is the square root of that
-number. Executing a function ('running it') is called *calling* the function. An
-example of a function call is:
+Functions are "canned scripts" that automate more complicated sets of commands
+including operations assignments, etc. Many functions are predefined, or can be
+made available by importing R *packages* (more on that later). A function
+usually gets one or more inputs called *arguments*. Functions often (but not
+always) return a *value*. A typical example would be the function `sqrt()`. The
+input (the argument) must be a number, and the return value (in fact, the
+output) is the square root of that number. Executing a function ('running it')
+is called *calling* the function. An example of a function call is:
 
 ```{r, eval=FALSE, purl=FALSE}
 b <- sqrt(a)
@@ -236,7 +236,7 @@ doing.
 
 > ### Call out
 >
-> What is called `objects` in `R` is known as `variables` in many other programming languages.
+> What are called `objects` in `R` are known as `variables` in many other programming languages.
 > Depending on the context `object` and `variable` can have drastically different meanings.
 > However, in this lesson the two words are used synonymously.
 > For more information see: https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Objects
