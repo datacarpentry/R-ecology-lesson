@@ -5,7 +5,7 @@ navbar:
     - text: "Before we start"
       href: 00-before-we-start.html
     - text: "Intro to R"
-      href: 01-intro-to-R.html
+      href: 01-intro-to-r.html
     - text: "Starting with data"
       href: 02-starting-with-data.html
     - text: "Manipulating data frames"

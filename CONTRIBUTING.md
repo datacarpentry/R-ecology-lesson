@@ -47,7 +47,7 @@ we'd rather have you doing the former.
 ## File Locations and Formats
 
 Each lesson is composed of files such as `00-before-we-start.Rmd`,
- `01-intro-to-R.Rmd` and so on. (We use two digits followed by a
+ `01-intro-to-r.Rmd` and so on. (We use two digits followed by a
  topic key to ensure files appear in the right order when listed.)
 
 For the R material, lessons must be written in RMarkdown (ending in

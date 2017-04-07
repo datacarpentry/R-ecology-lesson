@@ -317,7 +317,7 @@ div.tocify {
   <a href="00-before-we-start.html">Before we start</a>
 </li>
 <li>
-  <a href="01-intro-to-R.html">Intro to R</a>
+  <a href="01-intro-to-r.html">Intro to R</a>
 </li>
 <li>
   <a href="02-starting-with-data.html">Starting with data</a>
@@ -370,10 +370,10 @@ div.tocify {
 <hr />
 <div id="introduction" class="section level2">
 <h2>Introduction</h2>
-<p>So far, we have dealt with small datasets that easily fit into your computer’s memory. But what about datasets that are too large for your computer to handle as a whole? In this case, storing the data outside of R and organizing it in a database is helpful: connecting to the database allows you to retrieve only the chunks needed for the current analysis.</p>
+<p>So far, we have dealt with small datasets that easily fit into your computer’s memory. But what about datasets that are too large for your computer to handle as a whole? In this case, storing the data outside of R and organizing it in a database is helpful. Connecting to the database allows you to retrieve only the chunks needed for the current analysis.</p>
 <p>Even better, many large datasets are already available in public or private databases. You can query them without having to download the data first.</p>
-<p>R can connect to almost any existing database type. Most common database types have R packages that allow you to connect to them (e.g., RSQLite, RMySQL, etc). Futhermore, the <a href="https://cran.r-project.org/web/packages/dplyr/index.html">dplyr</a> package you used in the previous chapter supports connecting to the widely-used open source databases <a href="https://sqlite.org/">sqlite</a>, <a href="https://www.mysql.com/">mysql</a> and <a href="https://www.postgresql.org/">postgresql</a>, as well as Google’s <a href="https://cloud.google.com/bigquery/">bigquery</a>, and it can also be extended to other database types (a vignette in the dplyr package explains how to do it).</p>
-<p>Interfacing with databases using <code>dplyr</code> focusses on retrieving and analyzing datasets by generating <code>SELECT</code> SQL statements, but it doesn’t modify the database itself. <code>dplyr</code> does not offer functions to <code>UPDATE</code> or <code>DELETE</code> entries. If you need these functionalities, you will need to use the dedicated R packages (e.g., RSQLite). Here we will demonstrate how to interact with a database using dplyr, using both the dplyr’s verb syntax and the SQL syntax.</p>
+<p>R can connect to almost any existing database type. Most common database types have R packages that allow you to connect to them (e.g., RSQLite, RMySQL, etc). Futhermore, the <a href="https://cran.r-project.org/web/packages/dplyr/index.html">dplyr</a> package you used in the previous chapter supports connecting to the widely-used open source databases <a href="https://sqlite.org/">sqlite</a>, <a href="https://www.mysql.com/">mysql</a> and <a href="https://www.postgresql.org/">postgresql</a>, as well as Google’s <a href="https://cloud.google.com/bigquery/">bigquery</a>, and it can also be extended to other database types (a <a href="https://cran.r-project.org/web/packages/dplyr/vignettes/databases.html">vignette</a> in the dplyr package explains how to do it).</p>
+<p>Interfacing with databases using <code>dplyr</code> focuses on retrieving and analyzing datasets by generating <code>SELECT</code> SQL statements, but it doesn’t modify the database itself. <code>dplyr</code> does not offer functions to <code>UPDATE</code> or <code>DELETE</code> entries. If you need these functionalities, you will need to use additional R packages (e.g., RSQLite). Here we will demonstrate how to interact with a database using dplyr, using both the dplyr’s verb syntax and the SQL syntax.</p>
 <div id="the-portal_mammals-database" class="section level3">
 <h3>The portal_mammals database</h3>
 <p>We will continue to explore the <code>surveys</code> data you are already familiar with from previous lessons.</p>
@@ -400,7 +400,7 @@ mammals &lt;-<span class="st"> </span><span class="kw">src_sqlite</span>(<span c
 <li>species</li>
 <li>surveys</li>
 </ul>
-<p>Now that we know that we can connect to the database, let’s explore how to get the data from its tables into R.</p>
+<p>Now that we know we can connect to the database, let’s explore how to get the data from its tables into R.</p>
 <div id="querying-the-database-with-the-sql-syntax" class="section level3">
 <h3>Querying the database with the SQL syntax</h3>
 <p>To connect to tables within a database, you can use the <code>tbl()</code> function from dplyr. This function can be used to send SQL queries to the database. To demonstrate this functionality, let’s select the columns “year”, “species_id”, and “plot_id” from the <code>surveys</code> table:</p>
@@ -409,11 +409,11 @@ mammals &lt;-<span class="st"> </span><span class="kw">src_sqlite</span>(<span c
 </div>
 <div id="querying-the-database-with-the-dplyr-syntax" class="section level3">
 <h3>Querying the database with the dplyr syntax</h3>
-<p>One of the strengths of dplyr, is that the same operation can be done using the dplyr’s verbs instead of writing SQL. First, we select the table on which to do the operations by creating the <code>surveys</code> object, and then we use the standard dplyr syntax as if it were a data frame:</p>
+<p>One of the strengths of dplyr is that the same operation can be done using dplyr’s verbs instead of writing SQL. First, we select the table on which to do the operations by creating the <code>surveys</code> object, and then we use the standard dplyr syntax as if it were a data frame:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys &lt;-<span class="st"> </span><span class="kw">tbl</span>(mammals, <span class="st">&quot;surveys&quot;</span>)
 surveys %&gt;%
 <span class="st">    </span><span class="kw">select</span>(year, species_id, plot_id)</code></pre></div>
-<p>In this case, the <code>surveys</code> object behaves like a data frame, and several of the functions that can used with data frames, can also be used on tables from a database. For instance, the <code>head()</code> function can be used to check the first 10 rows of the table:</p>
+<p>In this case, the <code>surveys</code> object behaves like a data frame. Several functions that can be used with data frames can also be used on tables from a database. For instance, the <code>head()</code> function can be used to check the first 10 rows of the table:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(surveys, <span class="dt">n =</span> <span class="dv">10</span>)</code></pre></div>
 <pre><code>#&gt; Source:   query [?? x 9]
 #&gt; Database: sqlite 3.11.1 [data/portal_mammals.sqlite]
@@ -447,7 +447,7 @@ surveys %&gt;%
 <span class="kw">LIMIT</span> <span class="dv">10</span></code></pre></div>
 <p>Behind the scenes, <code>dplyr</code>:</p>
 <ol style="list-style-type: decimal">
-<li>translates your R code into SQL,</li>
+<li>translates your R code into SQL</li>
 <li>submits it to the database</li>
 <li>translates the database’s response into an R data frame</li>
 </ol>
@@ -477,7 +477,7 @@ surveys %&gt;%
 <p>Instead of having to formulate the SQL query ourselves - and having to mentally switch back and forth between R and SQL syntax - we can delegate this translation to <code>dplyr</code>. (You don’t even need to know SQL to interact with a database via <code>dplyr</code>!)</p>
 <p><code>dplyr</code>, in turn, doesn’t do the real work of subsetting the table, either. Instead, it merely sends the query to the database, waits for its response and returns it to us.</p>
 <p>That way, R never gets to see the full <code>surveys</code> table - and that’s why it could not tell us how many rows it contains. On the bright side, this allows us to work with large datasets - even too large to fit into our computer’s memory.</p>
-<p><code>dplyr</code> can translate many different query types into SQL allowing us e.g. to <code>select()</code> specific columns, <code>filter()</code> rows or join tables.</p>
+<p><code>dplyr</code> can translate many different query types into SQL allowing us to, e.g., <code>select()</code> specific columns, <code>filter()</code> rows, or join tables.</p>
 <p>To see this in action, let’s compose a few queries with <code>dplyr</code>.</p>
 </div>
 </div>
@@ -509,14 +509,14 @@ surveys %&gt;%
 <pre><code># ... with more rows</code></pre>
 <p>indicates that there are more results that fit our filtering criterion. Why was R lazy and only retrieved 10 of them?</p>
 </div>
-<div id="lazyness" class="section level2">
-<h2>Lazyness</h2>
+<div id="laziness" class="section level2">
+<h2>Laziness</h2>
 <p>Hadley Wickham, the author of <code>dplyr</code> <a href="https://cran.r-project.org/web/packages/dplyr/vignettes/databases.html">explains</a>:</p>
 <blockquote>
 <p>When working with databases, dplyr tries to be as lazy as possible:</p>
 <ul>
 <li>It never pulls data into R unless you explicitly ask for it.</li>
-<li>It delays doing any work until the last possible moment: it collects together everything you want to do and then sends it to the database in one step.</li>
+<li>It delays doing any work until the last possible moment - it collects together everything you want to do and then sends it to the database in one step.</li>
 </ul>
 </blockquote>
 <p>When you construct a <code>dplyr</code> query, you can connect multiple verbs into a single pipeline. For example, we combined the <code>filter()</code> and <code>select()</code> verbs using the <code>%&gt;%</code> pipe.</p>
@@ -544,7 +544,7 @@ data_subset %&gt;%
 #&gt; 10         RM      4
 #&gt; # ... with more rows</code></pre>
 <p>Just like the first <code>select(species_id, sex, weight)</code> call, the <code>select(-sex)</code> command is not executed by R. It is sent to the database instead. Only the <em>final</em> result is retrieved and displayed to you.</p>
-<p>Of course, we could always add on more steps, e.g. we could filter by <code>species_id</code> or minimum <code>weight</code>. That’s why R doesn’t retrieve the full set of results - instead it only retrieves the first 10 results from the database by default. (After all, you might want to add an additional step and get the database to do more work…)</p>
+<p>Of course, we could always add on more steps, e.g., we could filter by <code>species_id</code> or minimum <code>weight</code>. That’s why R doesn’t retrieve the full set of results - instead it only retrieves the first 10 results from the database by default. (After all, you might want to add an additional step and get the database to do more work…)</p>
 <p>To instruct R to stop being lazy, e.g. to retrieve all of the query results from the database, we add the <code>collect()</code> command to our pipe. It indicates that our database query is finished: time to get the <em>final</em> results and load them into the R session.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data_subset &lt;-<span class="st"> </span>surveys %&gt;%
 <span class="st">  </span><span class="kw">filter</span>(weight &lt;<span class="st"> </span><span class="dv">5</span>) %&gt;%
@@ -575,7 +575,7 @@ plots</code></pre></div>
 #&gt; 9        9         Spectab exclosure
 #&gt; 10      10          Rodent Exclosure
 #&gt; # ... with more rows</code></pre>
-<p>The <code>plot_id</code> column also features in the <code>surveys</code> table.</p>
+<p>The <code>plot_id</code> column also features in the <code>surveys</code> table:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys</code></pre></div>
 <pre><code>#&gt; Source:   query [?? x 9]
 #&gt; Database: sqlite 3.11.1 [data/portal_mammals.sqlite]

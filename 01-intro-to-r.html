@@ -317,7 +317,7 @@ div.tocify {
   <a href="00-before-we-start.html">Before we start</a>
 </li>
 <li>
-  <a href="01-intro-to-R.html">Intro to R</a>
+  <a href="01-intro-to-r.html">Intro to R</a>
 </li>
 <li>
   <a href="02-starting-with-data.html">Starting with data</a>
@@ -361,7 +361,7 @@ div.tocify {
 <blockquote>
 <h3 id="learning-objectives">Learning Objectives</h3>
 <ul>
-<li>Define the following terms as they relate to R: script, function, working directory, assign, object, variable.</li>
+<li>Define the following terms as they relate to R: script, function, assign, object, variable.</li>
 <li>Call functions with zero or more named or unnamed arguments.</li>
 <li>Perform mathematical computations in R.</li>
 <li>Assign values to variables in R.</li>
@@ -387,7 +387,7 @@ div.tocify {
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">weight_kg &lt;-<span class="st"> </span><span class="dv">55</span>    <span class="co"># doesn&#39;t print anything</span>
 (weight_kg &lt;-<span class="st"> </span><span class="dv">55</span>)  <span class="co"># but putting parenthesis around the call prints the value of `weight_kg`</span>
 weight_kg          <span class="co"># and so does typing the name of the object</span></code></pre></div>
-<p>Now that R has <code>weight_kg</code> in memory, we can do arithmetic with it. For instance, we may want to convert this weight in pounds (weight in pounds is 2.2 times the weight in kg):</p>
+<p>Now that R has <code>weight_kg</code> in memory, we can do arithmetic with it. For instance, we may want to convert this weight to pounds (weight in pounds is 2.2 times the weight in kg):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="fl">2.2</span> *<span class="st"> </span>weight_kg</code></pre></div>
 <p>We can also change a variable’s value by assigning it a new one:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">weight_kg &lt;-<span class="st"> </span><span class="fl">57.5</span>
@@ -412,7 +412,7 @@ mass_index &lt;-<span class="st"> </span>mass/age  <span class="co"># mass_index
 </blockquote>
 <div id="functions-and-their-arguments" class="section level3">
 <h3>Functions and their arguments</h3>
-<p>Functions are “canned scripts” that automate something complicated or convenient or both. Many functions are predefined, or can be made available by importing R <em>packages</em> (more on that later). A function usually gets one or more inputs called <em>arguments</em>. Functions often (but not always) return a <em>value</em>. A typical example would be the function <code>sqrt()</code>. The input (the argument) must be a number, and the return value (in fact, the output) is the square root of that number. Executing a function (‘running it’) is called <em>calling</em> the function. An example of a function call is:</p>
+<p>Functions are “canned scripts” that automate more complicated sets of commands including operations assignments, etc. Many functions are predefined, or can be made available by importing R <em>packages</em> (more on that later). A function usually gets one or more inputs called <em>arguments</em>. Functions often (but not always) return a <em>value</em>. A typical example would be the function <code>sqrt()</code>. The input (the argument) must be a number, and the return value (in fact, the output) is the square root of that number. Executing a function (‘running it’) is called <em>calling</em> the function. An example of a function call is:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">b &lt;-<span class="st"> </span><span class="kw">sqrt</span>(a)</code></pre></div>
 <p>Here, the value of <code>a</code> is given to the <code>sqrt()</code> function, the <code>sqrt()</code> function calculates the square root, and returns the value which is then assigned to variable <code>b</code>. This function is very simple, because it takes just one argument.</p>
 <p>The return ‘value’ of a function need not be numerical (like that of <code>sqrt()</code>), and it also does not need to be a single item: it can be a set of things, or even a data set. We’ll see that when we read data files into R.</p>
@@ -437,7 +437,7 @@ mass_index &lt;-<span class="st"> </span>mass/age  <span class="co"># mass_index
 <p>It’s good practice to put the non-optional arguments (like the number you’re rounding) first in your function call, and to specify the names of all optional arguments. If you don’t, someone reading your code might have to look up the definition of a function with unfamiliar arguments to understand what you’re doing.</p>
 <blockquote>
 <h3 id="call-out">Call out</h3>
-<p>What is called <code>objects</code> in <code>R</code> is known as <code>variables</code> in many other programming languages. Depending on the context <code>object</code> and <code>variable</code> can have drastically different meanings. However, in this lesson the two words are used synonymously. For more information see: <a href="https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Objects" class="uri">https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Objects</a></p>
+<p>What are called <code>objects</code> in <code>R</code> are known as <code>variables</code> in many other programming languages. Depending on the context <code>object</code> and <code>variable</code> can have drastically different meanings. However, in this lesson the two words are used synonymously. For more information see: <a href="https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Objects" class="uri">https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Objects</a></p>
 </blockquote>
 </div>
 </div>

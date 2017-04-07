@@ -317,7 +317,7 @@ div.tocify {
   <a href="00-before-we-start.html">Before we start</a>
 </li>
 <li>
-  <a href="01-intro-to-R.html">Intro to R</a>
+  <a href="01-intro-to-r.html">Intro to R</a>
 </li>
 <li>
   <a href="02-starting-with-data.html">Starting with data</a>
@@ -362,8 +362,8 @@ div.tocify {
 <h3 id="learning-objectives">Learning Objectives</h3>
 <p>After completing this module, the learner should be able to:</p>
 <ul>
-<li>Describe the purpose of the RStudio script, console, environment, and plot windows.</li>
-<li>Organize files and directories for a set of analysis in an R Project.</li>
+<li>Describe the purpose of the RStudio Script, Console, Environment, and Plots panes.</li>
+<li>Organize files and directories for a set of analyses as an R Project and understand the purpose of the working directory.</li>
 <li>Use the built-in RStudio help interface to search for more information on R functions.</li>
 <li>Demonstrate how to provide sufficient information for troubleshooting with the R user community.</li>
 </ul>
@@ -376,11 +376,11 @@ div.tocify {
 </div>
 <div id="why-learn-r" class="section level2">
 <h2>Why learn R?</h2>
-<div id="r-is-not-a-gui-and-thats-a-good-thing" class="section level3">
-<h3>R is not a GUI, and that’s a good thing</h3>
-<p>The learning curve might be steeper than with other software, but with R, you can save all the steps you used to go from the data to the results. So, if you want to redo your analysis because you collected more data, you don’t have to remember which button you clicked in which order to obtain your results, you just have to run your script again.</p>
+<div id="r-does-not-involve-lots-of-pointing-and-clicking-and-thats-a-good-thing" class="section level3">
+<h3>R does not involve lots of pointing and clicking, and that’s a good thing</h3>
+<p>The learning curve might be steeper than with other software, but with R, the results of your analysis does not rely on remembering a succession of pointing and clicking but instead in a series of written commands, and that’s a good thing! So, if you want to redo your analysis because you collected more data, you don’t have to remember which button you clicked in which order to obtain your results, you just have to run your script again.</p>
 <p>Working with scripts makes the steps you used in your analysis clear, and the code you write can be inspected by someone else who can give you feedback and spot mistakes.</p>
-<p>Working with scripts forces you to have deeper understanding of what you are doing, and facilitates your learning and comprehension of the methods you use.</p>
+<p>Working with scripts forces you to have a deeper understanding of what you are doing, and facilitates your learning and comprehension of the methods you use.</p>
 </div>
 <div id="r-code-is-great-for-reproducibility" class="section level3">
 <h3>R code is great for reproducibility</h3>
@@ -390,10 +390,10 @@ div.tocify {
 </div>
 <div id="r-is-interdisciplinary-and-extensible" class="section level3">
 <h3>R is interdisciplinary and extensible</h3>
-<p>With 10,000+ packages that can be installed to extend its capabilities, R provides a framework that allows you to combine analyses across many scientific disciplines to best suit the analyses you want to use on your data. For instance, R has packages for image analysis, GIS, time series, population genetics, and a lot more.</p>
+<p>With 10,000+ packages that can be installed to extend its capabilities, R provides a framework that allows you to combine statistical approaches from many scientific disciplines to best suit the analytical framework you need to analyze your data. For instance, R has packages for image analysis, GIS, time series, population genetics, and a lot more.</p>
 </div>
-<div id="r-works-on-data-of-all-shapes-and-size" class="section level3">
-<h3>R works on data of all shapes and size</h3>
+<div id="r-works-on-data-of-all-shapes-and-sizes" class="section level3">
+<h3>R works on data of all shapes and sizes</h3>
 <p>The skills you learn with R scale easily with the size of your dataset. Whether your dataset has hundreds or millions of lines, it won’t make much difference to you.</p>
 <p>R is designed for data analysis. It comes with special data structures and data types that make handling of missing data and statistical factors convenient.</p>
 <p>R can connect to spreadsheets, databases, and many other data formats, on your computer or on the web.</p>
@@ -406,21 +406,22 @@ div.tocify {
 <h3>R has a large community</h3>
 <p>Thousands of people use R daily. Many of them are willing to help you through mailing lists and websites such as <a href="https://stackoverflow.com/">Stack Overflow</a>.</p>
 </div>
-<div id="not-only-r-is-free-but-it-is-also-open-source-and-cross-platform" class="section level3">
-<h3>Not only R is free, but it is also open-source and cross-platform</h3>
+<div id="not-only-is-r-free-but-it-is-also-open-source-and-cross-platform" class="section level3">
+<h3>Not only is R free, but it is also open-source and cross-platform</h3>
 <p>Anyone can inspect the source code to see how R works. Because of this transparency, there is less chance for mistakes, and if you (or someone else) find some, you can report and fix bugs.</p>
 </div>
 </div>
 <div id="knowing-your-way-around-rstudio" class="section level2">
 <h2>Knowing your way around RStudio</h2>
 <p>Let’s start by learning about <a href="https://www.rstudio.com/">RStudio</a>, which is an Integrated Development Environment (IDE) for working with R.</p>
-<p>The RStudio IDE open source product is free under the <a href="https://www.gnu.org/licenses/agpl-3.0.en.html">Affero General Public License (AGPL) v3</a>. The RStudio IDE is also available with a commercial license and priority email support from RStudio, Inc.</p>
+<p>The RStudio IDE open-source product is free under the <a href="https://www.gnu.org/licenses/agpl-3.0.en.html">Affero General Public License (AGPL) v3</a>. The RStudio IDE is also available with a commercial license and priority email support from RStudio, Inc.</p>
 <p>We will use RStudio IDE to write code, navigate the files on our computer, inspect the variables we are going to create, and visualize the plots we will generate. RStudio can also be used for other things (e.g., version control, developing packages, writting Shiny apps) that we will not cover during the workshop.</p>
 <div class="figure">
 <img src="img/rstudio_screenshot.png" alt="RStudio interface screeshot" />
 <p class="caption">RStudio interface screeshot</p>
 </div>
-<p>RStudio is divided into 4 “panes”: the editor for your scripts and documents (top-left, in the default layout), the R console (bottom-left), your environment/history (top-right), and your files/plots/packages/help/viewer (bottom-right). The placement of these panes and their content can be customized (see menu, RStudio -&gt; Preferences -&gt; Pane Layout). One of the advantages of using RStudio is that all the information you need to write code is available in a single window. Additionally, with many shortcuts, autocompletion, and highlighting for the major file types you use while developing in R, RStudio will make typing easier and less error-prone.</p>
+<p>RStudio is divided into 4 “Panes”: the <strong>Source</strong> for your scripts and documents (top-left, in the default layout), the R <strong>Console</strong> (bottom-left), your <strong>Environment/History</strong> (top-right), and your <strong>Files/Plots/Packages/Help/Viewer</strong></p>
+<p>(bottom-right). The placement of these panes and their content can be customized (see menu, RStudio -&gt; Preferences -&gt; Pane Layout). One of the advantages of using RStudio is that all the information you need to write code is available in a single window. Additionally, with many shortcuts, autocompletion, and highlighting for the major file types you use while developing in R, RStudio will make typing easier and less error-prone.</p>
 </div>
 <div id="before-we-get-started" class="section level2">
 <h2>Before we get started</h2>
@@ -431,7 +432,7 @@ div.tocify {
 <li>Under the <code>File</code> menu, click on <code>New project</code>, choose <code>New directory</code>, then <code>Empty project</code></li>
 <li>Enter a name for this new folder (or “directory”), and choose a convenient location for it. This will be your <strong>working directory</strong> for the rest of the day (e.g., <code>~/data-carpentry</code>)</li>
 <li>Click on <code>Create project</code></li>
-<li>Under the <code>Files</code> tab on the right of the screen, click on <code>New Folder</code> and create a folder named <code>data</code> within your newly created working directory. (e.g., <code>~/data-carpentry/data</code>)</li>
+<li>Under the <code>Files</code> tab on the right of the screen, click on <code>New Folder</code> and create a folder named <code>data</code> within your newly created working directory (e.g., <code>~/data-carpentry/data</code>)</li>
 <li>Create a new R script (File -&gt; New File -&gt; R script) and save it in your working directory (e.g., <code>data-carpentry-script.R</code>)</li>
 </ul>
 <p>Your working directory should now look like this:</p>
@@ -460,9 +461,9 @@ div.tocify {
 <p>There are two main ways of interacting with R: by using the console or by using script files (plain text files that contain your code). The console pane (in RStudio, the bottom left panel) is the place where commands written in the R language can be typed and executed immediately by the computer. It is also where the results will be shown for commands that have been executed. You can type commands directly into the console and press <code>Enter</code> to execute those commands, but they will be forgotten when you close the session.</p>
 <p>Because we want our code and workflow to be reproducible, it is better to type the commands we want in the script editor, and save the script. This way, there is a complete record of what we did, and anyone (including our future selves!) can easily replicate the results on their computer.</p>
 <p>RStudio allows you to execute commands directly from the script editor by using the <kbd><code>Ctrl</code></kbd> + <kbd><code>Enter</code></kbd> shortcut (on Macs, <kbd><code>Cmd</code></kbd> + <kbd><code>Return</code></kbd> will work, too). The command on the current line in the script (indicated by the cursor) or all of the commands in the currently selected text will be sent to the console and executed when you press <kbd><code>Ctrl</code></kbd> + <kbd><code>Enter</code></kbd>.</p>
-<p>At some point in your analysis you may want to check the content of a variable or the structure of an object, without necessarily keeping a record of it in your script. You can type these commands and execute them directly in the console. RStudio provides the <kbd><code>Ctrl</code></kbd> + <kbd><code>1</code></kbd> and <kbd><code>Ctrl</code></kbd> + <kbd><code>2</code></kbd> shortcuts allow you to jump between the script and the console windows.</p>
-<p>If R is ready to accept commands, the R console shows a <code>&gt;</code> prompt. If it receives a command (by typing, copy-pasting or sent from the script editor using <kbd><code>Ctrl</code></kbd> + <kbd><code>Enter</code></kbd>), R will try to execute it, and when ready, will show the results and come back with a new <code>&gt;</code>-prompt to wait for new commands.</p>
-<p>If R is still waiting for you to enter more data because it isn’t complete yet, the console will show a <code>+</code> prompt. It means that you haven’t finished entering a complete command. This is because you have not ‘closed’ a parenthesis or quotation, i.e., you have fewer right-parentheses than left-parentheses, or fewer closing quotation marks than opening ones. If you’re in RStudio and this happens, click inside the console window and press <code>Esc</code>; this will cancel the incomplete command and return you to the <code>&gt;</code> prompt.</p>
+<p>At some point in your analysis you may want to check the content of a variable or the structure of an object, without necessarily keeping a record of it in your script. You can type these commands and execute them directly in the console. RStudio provides the <kbd><code>Ctrl</code></kbd> + <kbd><code>1</code></kbd> and <kbd><code>Ctrl</code></kbd> + <kbd><code>2</code></kbd> shortcuts allow you to jump between the script and the console panes.</p>
+<p>If R is ready to accept commands, the R console shows a <code>&gt;</code> prompt. If it receives a command (by typing, copy-pasting or sent from the script editor using <kbd><code>Ctrl</code></kbd> + <kbd><code>Enter</code></kbd>), R will try to execute it, and when ready, will show the results and come back with a new <code>&gt;</code> prompt to wait for new commands.</p>
+<p>If R is still waiting for you to enter more data because it isn’t complete yet, the console will show a <code>+</code> prompt. It means that you haven’t finished entering a complete command. This is because you have not ‘closed’ a parenthesis or quotation, i.e. you don’t have the same number of left-parentheses as right-parentheses, or the same number of opening and closing quotation marks. When this happens, and you thought you finished typing your command, click inside the console window and press <code>Esc</code>; this will cancel the incomplete command and return you to the <code>&gt;</code> prompt.</p>
 </div>
 <div id="seeking-help" class="section level2">
 <h2>Seeking help</h2>
@@ -475,10 +476,10 @@ div.tocify {
 </div>
 <div id="i-want-to-use-a-function-that-does-x-there-must-be-a-function-for-it-but-i-dont-know-which-one" class="section level3">
 <h3>I want to use a function that does X, there must be a function for it but I don’t know which one…</h3>
-<p>If you are looking for a function to do a particular task, you can use <code>help.search()</code> function, which is called by the double question mark <code>??</code>. However, this only looks through the installed packages for help pages with a match to your search request</p>
+<p>If you are looking for a function to do a particular task, you can use the <code>help.search()</code> function, which is called by the double question mark <code>??</code>. However, this only looks through the installed packages for help pages with a match to your search request</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">??kruskal</code></pre></div>
 <p>If you can’t find what you are looking for, you can use the <a href="http://www.rdocumentation.org">rdocumentation.org</a> website that searches through the help files across all packages available.</p>
-<p>Finally, a generic Google or internet search “R &lt;task&gt;” will often either send you to the appropriate package documentation or a helpful forum question that someone else already asked.</p>
+<p>Finally, a generic Google or internet search “R &lt;task&gt;” will often either send you to the appropriate package documentation or a helpful forum where someone else has already asked your question.</p>
 </div>
 <div id="i-am-stuck-i-get-an-error-message-that-i-dont-understand" class="section level3">
 <h3>I am stuck… I get an error message that I don’t understand</h3>
@@ -489,17 +490,17 @@ div.tocify {
 </div>
 <div id="asking-for-help" class="section level3">
 <h3>Asking for help</h3>
-<p>The key to get help from someone is for them to grasp your problem rapidly. You should make it as easy as possible to pinpoint where the issue might be.</p>
+<p>The key to receiving help from someone is for them to rapidly grasp your problem. You should make it as easy as possible to pinpoint where the issue might be.</p>
 <p>Try to use the correct words to describe your problem. For instance, a package is not the same thing as a library. Most people will understand what you meant, but others have really strong feelings about the difference in meaning. The key point is that it can make things confusing for people trying to help you. Be as precise as possible when describing your problem.</p>
-<p>If possible, try to reduce what doesn’t work to a simple <em>reproducible example</em>. If you can reproduce the problem using a very small <code>data.frame</code> instead of your 50,000 rows and 10,000 columns one, provide the small one with the description of your problem. When appropriate, try to generalize what you are doing so even people who are not in your field can understand the question. For instance instead of using a subset of your real dataset, create a small (3 columns, 5 row) generic one. For more information on how to write a reproducible example see <a href="http://adv-r.had.co.nz/Reproducibility.html">this article by Hadley Wickham</a>.</p>
+<p>If possible, try to reduce what doesn’t work to a simple <em>reproducible example</em>. If you can reproduce the problem using a very small <code>data.frame</code> instead of your 50,000 rows and 10,000 columns one, provide the small one with the description of your problem. When appropriate, try to generalize what you are doing so even people who are not in your field can understand the question. For instance instead of using a subset of your real dataset, create a small (3 columns, 5 rows) generic one. For more information on how to write a reproducible example see <a href="http://adv-r.had.co.nz/Reproducibility.html">this article by Hadley Wickham</a>.</p>
 <p>To share an object with someone else, if it’s relatively small, you can use the function <code>dput()</code>. It will output R code that can be used to recreate the exact same object as the one in memory:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dput</span>(<span class="kw">head</span>(iris)) <span class="co"># iris is an example data.frame that comes with R</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dput</span>(<span class="kw">head</span>(iris)) <span class="co">#iris is an example data.frame that comes with R and head() is a function that returns the first part of the data.frame</span></code></pre></div>
 <pre><code>## structure(list(Sepal.Length = c(5.1, 4.9, 4.7, 4.6, 5, 5.4), 
 ##     Sepal.Width = c(3.5, 3, 3.2, 3.1, 3.6, 3.9), Petal.Length = c(1.4, 
 ##   ...</code></pre>
-<p>If the object is larger, provide either the raw file (i.e., your CSV file) with your script up to the point of the error (and after removing everything that is not relevant to your issue). Alternatively, in particular if your questions is not related to a <code>data.frame</code>, you can save any R object to a file:</p>
+<p>If the object is larger, provide either the raw file (i.e., your CSV file) with your script up to the point of the error (and after removing everything that is not relevant to your issue). Alternatively, in particular if your question is not related to a <code>data.frame</code>, you can save any R object to a file:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">saveRDS</span>(iris, <span class="dt">file=</span><span class="st">&quot;/tmp/iris.rds&quot;</span>)</code></pre></div>
-<p>The content of this file is however not human readable and cannot be posted directly on Stack Overflow. It can however be sent to someone by email who can read it with the <code>readRDS()</code> command (here it is assumed that the downloaded file is in a <code>Downloads</code> folder in the user’s home directory):</p>
+<p>The content of this file is however not human readable and cannot be posted directly on Stack Overflow. Instead, it can be sent to someone by email who can read it with the <code>readRDS()</code> command (here it is assumed that the downloaded file is in a <code>Downloads</code> folder in the user’s home directory):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">some_data &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="dt">file=</span><span class="st">&quot;~/Downloads/iris.rds&quot;</span>)</code></pre></div>
 <p>Last, but certainly not least, <strong>always include the output of <code>sessionInfo()</code></strong> as it provides critical information about your platform, the versions of R and the packages that you are using, and other information that can be very helpful to understand your problem.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sessionInfo</span>()</code></pre></div>
@@ -531,10 +532,10 @@ div.tocify {
 <div id="where-to-ask-for-help" class="section level3">
 <h3>Where to ask for help?</h3>
 <ul>
-<li>The person sitting next to you during the workshop. Don’t hesitate to talk to your neighbor during theh workshop, compare your answers, and ask for help. You might also be interested in organizing regular meetings following the workshop to keep learning from each others.</li>
+<li>The person sitting next to you during the workshop. Don’t hesitate to talk to your neighbor during the workshop, compare your answers, and ask for help. You might also be interested in organizing regular meetings following the workshop to keep learning from each other.</li>
 <li>Your friendly colleagues: if you know someone with more experience than you, they might be able and willing to help you.</li>
 <li><a href="http://stackoverflow.com/questions/tagged/r">Stack Overflow</a>: if your question hasn’t been answered before and is well crafted, chances are you will get an answer in less than 5 min. Remember to follow their guidelines on <a href="http://stackoverflow.com/help/how-to-ask">how to ask a good question</a>.</li>
-<li>The <a href="https://stat.ethz.ch/mailman/listinfo/r-help">R-help mailing list</a>: it is read by a lot of people (including most of the R core team), a lot of people post to it, but the tone can be pretty dry, and it is not always very welcoming to new users. If your question is valid, you are likely to get an answer very fast but don’t expect that it will come with smiley faces. Also, here more than everywhere else, be sure to use correct vocabulary (otherwise you might get an answer pointing to the misuse of your words rather than answering your question). You will also have more success if your question is about a base function rather than a specific package.</li>
+<li>The <a href="https://stat.ethz.ch/mailman/listinfo/r-help">R-help mailing list</a>: it is read by a lot of people (including most of the R core team), a lot of people post to it, but the tone can be pretty dry, and it is not always very welcoming to new users. If your question is valid, you are likely to get an answer very fast but don’t expect that it will come with smiley faces. Also, here more than anywhere else, be sure to use correct vocabulary (otherwise you might get an answer pointing to the misuse of your words rather than answering your question). You will also have more success if your question is about a base function rather than a specific package.</li>
 <li>If your question is about a specific package, see if there is a mailing list for it. Usually it’s included in the DESCRIPTION file of the package that can be accessed using <code>packageDescription(&quot;name-of-package&quot;)</code>. You may also want to try to email the author of the package directly, or open an issue on the code repository (e.g., GitHub).</li>
 <li>There are also some topic-specific mailing lists (GIS, phylogenetics, etc…), the complete list is <a href="http://www.r-project.org/mail.html">here</a>.</li>
 </ul>
