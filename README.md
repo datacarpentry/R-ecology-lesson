@@ -25,7 +25,7 @@ for installation instructions)
 * [Starting with data](02-starting-with-data.html)
 * [Aggregating and analyzing data with dplyr](03-dplyr.html)
 * [Data visualization with ggplot2](04-visualization-ggplot2.html)
-* [R and Databases](05-R-and-databases.html)
+* [R and Databases](05-r-and-databases.html)
 
 ## Organization of the repository
 
