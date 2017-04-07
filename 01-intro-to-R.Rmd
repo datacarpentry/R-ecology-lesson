@@ -13,7 +13,7 @@ source("setup.R")
 
 > ### Learning Objectives
 >
-> * Define the following terms as they relate to R: script, function, working directory, assign, object, variable.
+> * Define the following terms as they relate to R: script, function, assign, object, variable.
 > * Call functions with zero or more named or unnamed arguments.
 > * Perform mathematical computations in R.
 > * Assign values to variables in R.
