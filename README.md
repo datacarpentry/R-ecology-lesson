@@ -22,7 +22,7 @@ brief introduction to plotting.
 ## Topics
 
 * [Before we start](00-before-we-start.html)
-* [Introduction to R](01-intro-to-R.html)
+* [Introduction to R](01-intro-to-r.html)
 * [Starting with data](02-starting-with-data.html)
 * [Aggregating and analyzing data with dplyr](03-dplyr.html)
 * [Data visualization with ggplot2](04-visualization-ggplot2.html)
