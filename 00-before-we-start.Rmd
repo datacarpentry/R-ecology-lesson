@@ -247,7 +247,7 @@ the console will show a `+` prompt. It means that you haven't finished entering
 a complete command. This is because you have not 'closed' a parenthesis or
 quotation, i.e. you don't have the same number of left-parentheses as
 right-parentheses, or the same number of opening and closing quotation marks.
-When this happens, and you though you finsihed typing your command, click inside
+When this happens, and you thought you finished typing your command, click inside
 the console window and press `Esc`; this will cancel the incomplete command and
 return you to the `>` prompt.
 
