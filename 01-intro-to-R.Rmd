@@ -134,7 +134,7 @@ What do you think is the current content of the object `weight_lb`? 126.5 or 200
 
 > ### Challenge
 >
-> What are the values after each statement in the following?
+> 1. What are the values after each statement in the following?
 >
 > ```{r, purl=FALSE}
 > mass <- 47.5            # mass?
@@ -147,7 +147,7 @@ What do you think is the current content of the object `weight_lb`? 126.5 or 200
 ```{r, echo=FALSE, purl=TRUE}
 ### Challenge
 ##
-## What are the values after each statement in the following?
+## 1. What are the values after each statement in the following?
 ##
 ## mass <- 47.5            # mass?
 ## age  <- 122             # age?
@@ -155,6 +155,18 @@ What do you think is the current content of the object `weight_lb`? 126.5 or 200
 ## age  <- age - 20        # age?
 ## mass_index <- mass/age  # mass_index?
 ```
+
+<!---
+```{r, purl=FALSE}
+## Answers
+##
+## 1. mass will be 47.5
+##    age will be 122
+##    mass will be 95
+##    age will be 102
+##    mass_index will be 0.9313725
+```
+--->
 
 ### Functions and their arguments
 
@@ -323,13 +335,11 @@ factors (`factor`).
 
 > ### Challenge
 >
->
-> * We’ve seen that atomic vectors can be of type character,
+> 1. We’ve seen that atomic vectors can be of type character,
 >   numeric, integer, and logical. But what happens if we try to mix these types in
 >   a single vector?
-> <!-- * _Answer_: R implicitly converts them to all be the same type -->
->
-> * What will happen in each of these examples? (hint: use `class()`
+> 
+> 2. What will happen in each of these examples? (hint: use `class()`
 >   to check the data type of your objects):
 >
 >     ```r
@@ -338,27 +348,23 @@ factors (`factor`).
 >     char_logical <- c('a', 'b', 'c', TRUE)
 >     tricky <- c(1, 2, 3, '4')
 >     ```
->
-> * Why do you think it happens?
-> <!-- * _Answer_: Vectors can be of only one data type. R tries to convert (coerce)
->   the content of this vector to find a "common denominator". -->
->
-
-> * You've probably noticed that objects of different types get
+> 
+> 3. Why do you think it happens?
+> 
+> 4. You've probably noticed that objects of different types get
 >   converted into a single, shared type within a vector. In R, we
 >   call converting objects from one class into another class
 >   _coercion_. These conversions happen according to a hierarchy,
 >   whereby some types get preferentially coerced into other
 >   types. Can you draw a diagram that represents the hierarchy of how
 >   these data types are coerced?
-> <!-- * _Answer_: `logical -> numeric -> character <-- logical` -->
 
 ```{r, echo=FALSE, eval=FALSE, purl=TRUE}
-## We’ve seen that atomic vectors can be of type character, numeric, integer, and
+## 1. We’ve seen that atomic vectors can be of type character, numeric, integer, and
 ## logical. But what happens if we try to mix these types in a single
 ## vector?
 
-## What will happen in each of these examples? (hint: use `class()` to
+## 2. What will happen in each of these examples? (hint: use `class()` to
 ## check the data type of your object)
 num_char <- c(1, 2, 3, "a")
 
@@ -368,9 +374,9 @@ char_logical <- c("a", "b", "c", TRUE)
 
 tricky <- c(1, 2, 3, "4")
 
-## Why do you think it happens?
+## 3. Why do you think it happens?
 
-## You've probably noticed that objects of different types get
+## 4. You've probably noticed that objects of different types get
 ## converted into a single, shared type within a vector. In R, we call
 ## converting objects from one class into another class
 ## _coercion_. These conversions happen according to a hierarchy,
@@ -379,6 +385,21 @@ tricky <- c(1, 2, 3, "4")
 ## types are coerced?
 
 ```
+
+<!---
+```{r, purl=FALSE}
+## Answers
+##
+## 1. R implicitly converts them to all be the same type
+## 2. `num_char` will be a vector of characters,
+##    `num_logical` will be a vector of numerics, 
+##    `char_logical` will be a vector of characters, 
+##    `tricky` will be a vector of characters
+## 3. Vectors can be of only one data type. R tries to convert (coerce)
+##    the content of this vector to find a "common denominator".
+## 4. logical -> numeric -> character <- logical
+```
+--->
 
 
 
@@ -450,7 +471,7 @@ animals %in% c("rat", "cat", "dog", "duck")
 animals[animals %in% c("rat", "cat", "dog", "duck")]
 ```
 
-> ### Challenge (optional){.challenge}
+> ### Challenge
 >
 > * Can you figure out why `"four" > "five"` returns `TRUE`?
 
@@ -526,6 +547,15 @@ heights[complete.cases(heights)]
 ##
 ## 2. Use the function `median()` to calculate the median of the `lengths` vector.
 ```
+
+<!---
+```{r, purl=FALSE}
+## Answers
+##
+## 1. finite_lengths <- lengths[!is.NA(lengths)]
+## 2. median(lengths, na.rm = TRUE)
+```
+--->
 
 Now that we have learned how to write scripts, and the basics of R's data
 structures, we are ready to start working with the Portal dataset we have been
