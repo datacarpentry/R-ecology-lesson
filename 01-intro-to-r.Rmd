@@ -177,7 +177,7 @@ variable `b`. This function is very simple, because it takes just one argument.
 
 The return 'value' of a function need not be numerical (like that of `sqrt()`),
 and it also does not need to be a single item: it can be a set of things, or
-even a data set. We'll see that when we read data files into R.
+even a dataset. We'll see that when we read data files into R.
 
 Arguments can be anything, not only numbers or filenames, but also other
 objects. Exactly what each argument means differs per function, and must be

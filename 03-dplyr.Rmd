@@ -100,7 +100,7 @@ things are evaluated from the inside out.
 
 The last option, pipes, are a fairly recent addition to R. Pipes let you take
 the output of one function and send it directly to the next, which is useful
-when you need to do many things to the same data set.  Pipes in R look like
+when you need to do many things to the same dataset.  Pipes in R look like
 `%>%` and are made available via the `magrittr` package, installed automatically
 with `dplyr`.
 
@@ -110,7 +110,7 @@ surveys %>%
   select(species_id, sex, weight)
 ```
 
-In the above, we use the pipe to send the `surveys` data set first through
+In the above, we use the pipe to send the `surveys` dataset first through
 `filter()` to keep rows where `weight` is less than 5, then through `select()`
 to keep only the `species_id`, `sex`, and `weight` columns. Since `%>%` takes
 the object on its left and passes it as the first argument to the function on
