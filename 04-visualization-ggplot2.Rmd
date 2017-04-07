@@ -27,7 +27,7 @@ surveys_complete <- read.csv(file = "data_output/surveys_complete.csv")
 > * Produce scatter plots, bloxplots, and time series plots using ggplot.
 > * Set universal plot settings.
 > * Modify the aesthetics of an existing ggplot plot (including axis labels and color).
-> * Build complex and customized plots from data in a dataframe.
+> * Build complex and customized plots from data in a data frame.
 
 --------------
 
@@ -43,7 +43,7 @@ library(dplyr)
 ## Plotting with ggplot2
 
 `ggplot2` is a plotting package that makes it simple to create complex plots
-from data in a dataframe. It provides a more programmatic interface for 
+from data in a data frame. It provides a more programmatic interface for 
 specifying what variables to plot, how they are displayed, and general visual 
 properties, so we only need minimal changes if the underlying data change or if 
 we decide to change from a bar plot to a scatterplot. This helps in creating 
