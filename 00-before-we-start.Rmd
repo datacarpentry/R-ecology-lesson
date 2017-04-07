@@ -67,9 +67,9 @@ reproducible, so knowing R will give you an edge with these requirements.
 ### R is interdisciplinary and extensible
 
 With 10,000+ packages that can be installed to extend its capabilities, R
-provides a framework that allows you to combine analyses across many scientific
-disciplines to best suit the analyses you want to use on your data. For
-instance, R has packages for image analysis, GIS, time series, population
+provides a framework that allows you to combine statistical approaches from many 
+scientific disciplines to best suit the analytical framework you need to analyze your 
+data. For instance, R has packages for image analysis, GIS, time series, population
 genetics, and a lot more.
 
 
