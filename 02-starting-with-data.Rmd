@@ -313,7 +313,7 @@ informative than integers because factors are self describing: `"female"`,
 `"male"` is more descriptive than `1`, `2`. Which one is "male"?  You wouldn't
 be able to tell just from the integer data. Factors, on the other hand, have
 this information built in. It is particularly helpful when there are many levels
-(like the species names in our example data set).
+(like the species names in our example dataset).
 
 ### Converting factors
 
