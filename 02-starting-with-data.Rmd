@@ -85,7 +85,7 @@ functions `read.csv()` or `read.table()`; in other words, when importing
 spreadsheets from your hard drive (or the web).
 
 A `data.frame` is the representation of data in the format of a table where the
-columns are vectors that all have the same length. Because the column are
+columns are vectors that all have the same length. Because the columns are
 vectors, they all contain the same type of data (e.g., characters, integers,
 factors). We can see this when inspecting the <b>str</b>ucture of a `data.frame`
 with the function `str()`:
@@ -129,17 +129,22 @@ objects besides `data.frame`.
 >
 > Based on the output of `str(surveys)`, can you answer the following questions?
 >
-> * What is the class of the object `surveys`?
-> * How many rows and how many columns are in this object?
-> * How many species have been recorded during these surveys?
+> 1. What is the class of the object `surveys`?
+> 
+> 2. How many rows and how many columns are in this object?
+> 
+> 3. How many species have been recorded during these surveys?
 
 ```{r, echo=FALSE, purl=TRUE}
-
-## Challenge
+### Challenge
+## 
 ## Based on the output of `str(surveys)`, can you answer the following questions?
-## * What is the class of the object `surveys`?
-## * How many rows and how many columns are in this object?
-## * How many species have been recorded during these surveys?
+## 
+## 1. What is the class of the object `surveys`?
+## 
+## 2. How many rows and how many columns are in this object?
+## 
+## 3. How many species have been recorded during these surveys?
 
 ```
 
@@ -147,9 +152,9 @@ objects besides `data.frame`.
 ```{r, echo=FALSE, purl=FALSE}
 ## Answers
 ##
-## * class: data frame
-## * how many rows: 34786,  how many columns: 13
-## * how many species: 48
+## 1. class: data.frame
+## 2. how many rows: 34786,  how many columns: 13
+## 3. how many species: 48
 ```
 --->
 
@@ -184,8 +189,8 @@ or decreasing order, test `1:10` and `10:1` for instance.
 You can also exclude certain parts of a data frame using the "`-`" sign:
 
 ```{r, purl=FALSE}
-surveys[,-1]   #The whole data frame, except the first column
-surveys[-c(7:34786),] #equivalent to head(surveys)
+surveys[,-1]   # The whole data frame, except the first column
+surveys[-c(7:34786),] # equivalent to head(surveys)
 ```
 
 As well as using numeric values to subset a `data.frame` (or `matrix`), columns
@@ -199,7 +204,7 @@ surveys$species_id          # Result is a vector
 ```
 
 For our purposes, the last three notations are equivalent. RStudio knows about
-the columns in your data frame, so you can take advantage of the autocompetion
+the columns in your data frame, so you can take advantage of the autocompletion
 feature to get the full and correct column name.
 
 > ### Challenge
@@ -224,36 +229,39 @@ feature to get the full and correct column name.
 
 
 ```{r, echo=FALSE, purl=TRUE}
-### Challenges:
-###
-### 1. Create a `data.frame` (`surveys_200`) containing only the
-###    observations from row 200 of the `surveys` dataset.
-###
-### 2. Notice how `nrow()` gave you the number of rows in a `data.frame`?
-###
-###      * Use that number to pull out just that last row in the data frame
-###      * Compare that with what you see as the last row using `tail()` to make
-###        sure it's meeting expectations.
-###      * Pull out that last row using `nrow()` instead of the row number
-###      * Create a new data frame object (`surveys_last`) from that last row
-###
-### 3. Use `nrow()` to extract the row that is in the middle of the
-###    data frame. Store the content of this row in an object named
-###    `surveys_middle`.
-###
-### 4. Combine `nrow()` with the `-` notation above to reproduce the behavior of
-###    `head(surveys)` keeping just the first through 6th rows of the surveys
-###    dataset.
+### Challenge
+##
+## 1. Create a `data.frame` (`surveys_200`) containing only the
+##    observations from row 200 of the `surveys` dataset.
+##
+## 2. Notice how `nrow()` gave you the number of rows in a `data.frame`?
+##
+##      * Use that number to pull out just that last row in the data frame
+##      * Compare that with what you see as the last row using `tail()` to make
+##        sure it's meeting expectations.
+##      * Pull out that last row using `nrow()` instead of the row number
+##      * Create a new data frame object (`surveys_last`) from that last row
+##
+## 3. Use `nrow()` to extract the row that is in the middle of the
+##    data frame. Store the content of this row in an object named
+##    `surveys_middle`.
+##
+## 4. Combine `nrow()` with the `-` notation above to reproduce the behavior of
+##    `head(surveys)` keeping just the first through 6th rows of the surveys
+##    dataset.
 
 ```
 
 <!---
 ```{r, purl=FALSE}
 ## Answers
-surveys_200 <- surveys[200, ]
-surveys_last <- surveys[nrow(surveys), ]
-surveys_middle <- surveys[nrow(surveys)/2, ]
-surveys_head <- surveys[-c(7:nrow(surveys)),]
+## 1. surveys_200 <- surveys[200, ]
+## 2. * surveys[34786, ]
+##    * tail(surveys)
+##    * surveys[nrow(surveys), ]
+##    * surveys_last <- surveys[nrow(surveys), ]
+## 3. surveys_middle <- surveys[nrow(surveys)/2, ]
+## 4. surveys_head <- surveys[-c(7:nrow(surveys)), ]
 ```
 --->
 
@@ -276,8 +284,8 @@ plotting.
 
 Factors are stored as integers, and have labels (text) associated with these
 unique integers. While factors look (and often behave) like character vectors,
-they are actually integers under the hood, and you need to be careful when
-treating them like strings.
+they are actually integers under the hood, and you need to be careful to not
+treat them like strings.
 
 Once created, factors can only contain a pre-defined set of values, known as
 *levels*. By default, R always sorts *levels* in alphabetical order. For
@@ -288,7 +296,7 @@ sex <- factor(c("male", "female", "female", "male"))
 ```
 
 R will assign `1` to the level `"female"` and `2` to the level `"male"` (because
-`f` comes before `m`, even though the first element in this vector is
+`f` comes before `m`; even though the first element in this vector is
 `"male"`). You can check this by using the function `levels()`, and check the
 number of levels using `nlevels()`:
 
@@ -336,12 +344,17 @@ as.numeric(as.character(f)) # works...
 as.numeric(levels(f))[f]    # The recommended way.
 ```
 
-Notice that in the `levels()` approach, three important steps occur:
+Notice that in the last approach (using `levels()`), three important steps occur:
 
 * We obtain all the factor levels using `levels(f)`
 * We convert these levels to numeric values using `as.numeric(levels(f))`
 * We then access these numeric values using the underlying integers of the
-  vector `f` inside the square brackets
+  vector `f` inside the square brackets. This works because each value of f is 
+  also a way of indexing into the appropriate factor.
+  
+Because `f[1]` is `"1990"`, which is the 3rd factor level, its integer 
+representation is 3. Thus, it will produce the numerical value `1990` when used 
+as an index into `as.numeric(levels(f))`.
 
 ### Renaming factors
 
@@ -356,7 +369,7 @@ plot(surveys$sex)
 ```
 
 In addition of males and females, there are about 1700 individuals for which the
-sex information hasn't been recorded. Additionally, for the these individuals,
+sex information hasn't been recorded. Additionally, for these individuals,
 there is no label to indicate that the information is missing. Let's rename this
 label to something more meaningful. Before doing that, we're going to pull out
 the data on sex and work with that data, so we're not modifying the working copy
@@ -374,26 +387,27 @@ head(sex)
 
 > ### Challenge
 >
-> * Rename "F" and "M" to "female" and "male" respectively.
-> * Now that we have renamed the factor level to "missing", can you recreate the
+> 1. Rename "F" and "M" to "female" and "male" respectively.
+> 2. Now that we have renamed the factor level to "missing", can you recreate the
 >  barplot such that "missing" is last (after "male")
 
 
 ```{r wrong-order, results='show', echo=FALSE, purl=TRUE}
-## Challenges
+### Challenge
 ##
-## * Rename "F" and "M" to "female" and "male" respectively.
-## * Now that we have renamed the factor level to "missing", can you recreate the
-##   barplot such that "missing" is last (after "male")
+## 1. Rename "F" and "M" to "female" and "male" respectively.
+## 
+## 2. Now that we have renamed the factor level to "missing", can you recreate the
+##    barplot such that "missing" is last (after "male")
 ```
 
 
 <!---
 ```{r correct-order, purl=FALSE}
 ## Answers
-levels(sex)[2:3] <- c("female", "male")
-sex <- factor(sex, levels = c("female", "male", "missing"))
-plot(sex)
+## 1. levels(sex)[2:3] <- c("female", "male")
+## 2. sex <- factor(sex, levels = c("female", "male", "missing"))
+##    plot(sex)
 ```
 --->
 
@@ -406,8 +420,8 @@ columns as `character`. To do so, `read.csv()` and `read.table()` have an
 argument called `stringsAsFactors` which can be set to `FALSE`.
 
 In most cases, it's preferrable to set `stringsAsFactors = FALSE` when importing
-your data, and converting as a factor only the columns that require this data
-type.
+your data, and converting the data to a factor only for the columns that require 
+this data type.
 
 Compare the output of `str(surveys)` when setting `stringsAsFactors = TRUE`
 (default) and `stringsAsFactors = FALSE`:
@@ -438,15 +452,6 @@ surveys$plot_type <- factor(surveys$plot_type)
 >                               weight=c(45, 8 1.1, 0.8))
 >     ```
 >
->     ```{r, eval=FALSE, purl=TRUE, echo=FALSE}
->     ## Challenge:
->     ##  There are a few mistakes in this hand-crafted `data.frame`,
->     ##  can you spot and fix them? Don't hesitate to experiment!
->     animal_data <- data.frame(animal=c(dog, cat, sea cucumber, sea urchin),
->                               feel=c("furry", "squishy", "spiny"),
->                               weight=c(45, 8 1.1, 0.8))
->     ```
->
 > 2. Can you predict the class for each of the columns in the following example?
 >    Check your guesses using `str(country_climate)`:
 >      * Are they what you expected?  Why? Why not?
@@ -460,44 +465,45 @@ surveys$plot_type <- factor(surveys$plot_type)
 >                                    northern_hemisphere=c(TRUE, TRUE, FALSE, "FALSE"),
 >                                    has_kangaroo=c(FALSE, FALSE, FALSE, 1))
 >     ```
->
->    ```{r, eval=FALSE, purl=TRUE, echo=FALSE}
->    ## Challenge:
->    ##   Can you predict the class for each of the columns in the following
->    ##   example?
->    ##   Check your guesses using `str(country_climate)`:
->    ##   * Are they what you expected? Why? why not?
->    ##   * What would have been different if we had added `stringsAsFactors = FALSE`
->    ##     to this call?
->    ##   * What would you need to change to ensure that each column had the
->    ##     accurate data type?
->    country_climate <- data.frame(country=c("Canada", "Panama", "South Africa", "Australia"),
->                                   climate=c("cold", "hot", "temperate", "hot/temperate"),
->                                   temperature=c(10, 30, 18, "15"),
->                                   northern_hemisphere=c(TRUE, TRUE, FALSE, "FALSE"),
->                                   has_kangaroo=c(FALSE, FALSE, FALSE, 1))
->    ```
->
->    <!--- Answers
->
->    ```{r, eval=FALSE, echo=FALSE, purl=FALSE}
->    ## Answers
->    ## * missing quotations around the names of the animals
->    ## * missing one entry in the "feel" column (probably for one of the furry animals)
->    ## * missing one comma in the weight column
->
->    ## Answers
->    ## * `country`, `climate`, `temperature`, and `northern_hemisphere` are
->    ##    factors; `has_kangaroo` is numeric.
->    ## * using `stringsAsFactors=FALSE` would have made them character instead of
->    ##   factors
->    ## * removing the quotes in temperature, northern_hemisphere, and replacing 1
->    ##   by TRUE in the `has_kangaroo` column would probably what was originally
->    ##   intended.
->    ```
->
->    -->
->
+
+```{r, echo=FALSE, purl=TRUE}
+### Challenge:
+##  1. There are a few mistakes in this hand-crafted `data.frame`,
+##  can you spot and fix them? Don't hesitate to experiment!
+# animal_data <- data.frame(animal=c(dog, cat, sea cucumber, sea urchin),
+#                           feel=c("furry", "squishy", "spiny"), 
+#                           weight=c(45, 8 1.1, 0.8))
+##  2. Can you predict the class for each of the columns in the following
+##   example?
+##   Check your guesses using `str(country_climate)`:
+##   * Are they what you expected? Why? why not?
+##   * What would have been different if we had added `stringsAsFactors = FALSE`
+##     to this call?
+##   * What would you need to change to ensure that each column had the
+##     accurate data type?
+country_climate <- data.frame(country=c("Canada", "Panama", "South Africa", "Australia"),
+                              climate=c("cold", "hot", "temperate", "hot/temperate"),
+                              temperature=c(10, 30, 18, "15"),
+                              northern_hemisphere=c(TRUE, TRUE, FALSE, "FALSE"),
+                              has_kangaroo=c(FALSE, FALSE, FALSE, 1))
+```
+
+<!---
+```{r, purl=FALSE}
+## Answers
+## 1. * missing quotations around the names of the animals
+##    * missing one entry in the "feel" column (probably for one of the furry animals)
+##    * missing one comma in the weight column
+##
+## 2. * `country`, `climate`, `temperature`, and `northern_hemisphere` are
+##      factors; `has_kangaroo` is numeric.
+##    * using `stringsAsFactors=FALSE` would have made the first four columns 
+##      characters instead of factors
+##    * removing the quotes in temperature, northern_hemisphere, and replacing 1
+##      by TRUE in the `has_kangaroo` column would probably accomplish what was 
+##      originally intended.
+```
+-->
 
 The automatic conversion of data type is sometimes a blessing, sometimes an
 annoyance. Be aware that it exists, learn the rules, and double check that data

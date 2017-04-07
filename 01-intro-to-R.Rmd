@@ -149,11 +149,11 @@ What do you think is the current content of the object `weight_lb`? 126.5 or 200
 ##
 ## 1. What are the values after each statement in the following?
 ##
-## mass <- 47.5            # mass?
-## age  <- 122             # age?
-## mass <- mass * 2.0      # mass?
-## age  <- age - 20        # age?
-## mass_index <- mass/age  # mass_index?
+mass <- 47.5            # mass?
+age  <- 122             # age?
+mass <- mass * 2.0      # mass?
+age  <- age - 20        # age?
+mass_index <- mass/age  # mass_index?
 ```
 
 <!---
@@ -360,10 +360,12 @@ factors (`factor`).
 >   these data types are coerced?
 
 ```{r, echo=FALSE, eval=FALSE, purl=TRUE}
+## ### Challenge
+## 
 ## 1. We’ve seen that atomic vectors can be of type character, numeric, integer, and
 ## logical. But what happens if we try to mix these types in a single
 ## vector?
-
+## 
 ## 2. What will happen in each of these examples? (hint: use `class()` to
 ## check the data type of your object)
 num_char <- c(1, 2, 3, "a")
@@ -375,7 +377,7 @@ char_logical <- c("a", "b", "c", TRUE)
 tricky <- c(1, 2, 3, "4")
 
 ## 3. Why do you think it happens?
-
+## 
 ## 4. You've probably noticed that objects of different types get
 ## converted into a single, shared type within a vector. In R, we call
 ## converting objects from one class into another class
@@ -476,15 +478,15 @@ animals[animals %in% c("rat", "cat", "dog", "duck")]
 > * Can you figure out why `"four" > "five"` returns `TRUE`?
 
 ```{r, echo=FALSE, purl=TRUE}
-### Challenge (optional)
+## ### Challenge
 ##
-## * Can you figure out why `"four" > "five"` returns `TRUE`?
+## 1. Can you figure out why `"four" > "five"` returns `TRUE`?
 ```
 
 <!--
 ```{r, purl=FALSE}
 ## Answers
-## * When using ">" or "<" on strings, R compares their alphabetical order. Here
+## 1. When using ">" or "<" on strings, R compares their alphabetical order. Here
 ##   "four" comes after "five", and therefore is "greater than" it.
 ```
 -->
@@ -543,7 +545,7 @@ heights[complete.cases(heights)]
 ## 1. Using this vector of length measurements, create a new vector with the NAs
 ## removed.
 ##
-##    lengths <- c(10,24,NA,18,NA,20)
+lengths <- c(10,24,NA,18,NA,20)
 ##
 ## 2. Use the function `median()` to calculate the median of the `lengths` vector.
 ```
