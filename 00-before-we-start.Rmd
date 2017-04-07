@@ -125,9 +125,9 @@ workshop.
 
 ![RStudio interface screeshot](img/rstudio_screenshot.png)
 
-RStudio is divided into 4 "Panes": the editor for your scripts and documents
-(top-left, in the default layout), the R console (bottom-left), your
-environment/history (top-right), and your files/plots/packages/help/viewer
+RStudio is divided into 4 "Panes": the **Source** for your scripts and documents
+(top-left, in the default layout), the R **Console** (bottom-left), your
+**Environment/History** (top-right), and your **Files/Plots/Packages/Help/Viewer**
 (bottom-right). The placement of these panes and their content can be customized
 (see menu, RStudio -> Preferences -> Pane Layout). One of the advantages of
 using RStudio is that all the information you need to write code is available in
