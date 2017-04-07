@@ -404,7 +404,7 @@ div.tocify {
 </div>
 <div id="r-has-a-large-community" class="section level3">
 <h3>R has a large community</h3>
-<p>Thousands of people use R daily. Many of them are willing to help you through mailing lists and <a href="https://stackoverflow.com/">Stack Overflow</a>.</p>
+<p>Thousands of people use R daily. Many of them are willing to help you through mailing lists and websites such as <a href="https://stackoverflow.com/">Stack Overflow</a>.</p>
 </div>
 <div id="not-only-r-is-free-but-it-is-also-open-source-and-cross-platform" class="section level3">
 <h3>Not only R is free, but it is also open-source and cross-platform</h3>
@@ -413,14 +413,14 @@ div.tocify {
 </div>
 <div id="knowing-your-way-around-rstudio" class="section level2">
 <h2>Knowing your way around RStudio</h2>
-<p>Let’s start by learning about <a href="https://www.rstudio.com/">RStudio</a>, the Integrated Development Environment (IDE).</p>
-<p>The RStudio IDE open source product is free under the <a href="https://www.gnu.org/licenses/agpl-3.0.en.html">Affero General Public License (AGPL) v3</a>. RStudio IDE is also available with a commercial license and priority email support from RStudio, Inc.</p>
-<p>We will use RStudio IDE to write code, navigate the files found on our computer, inspect the variables we are going to create, and visualize the plots we will generate. RStudio can also be used for other things (e.g., version control, developing packages, writting Shiny apps) that we will not cover during the workshop.</p>
+<p>Let’s start by learning about <a href="https://www.rstudio.com/">RStudio</a>, which is an Integrated Development Environment (IDE) for working with R.</p>
+<p>The RStudio IDE open source product is free under the <a href="https://www.gnu.org/licenses/agpl-3.0.en.html">Affero General Public License (AGPL) v3</a>. The RStudio IDE is also available with a commercial license and priority email support from RStudio, Inc.</p>
+<p>We will use RStudio IDE to write code, navigate the files on our computer, inspect the variables we are going to create, and visualize the plots we will generate. RStudio can also be used for other things (e.g., version control, developing packages, writting Shiny apps) that we will not cover during the workshop.</p>
 <div class="figure">
 <img src="img/rstudio_screenshot.png" alt="RStudio interface screeshot" />
 <p class="caption">RStudio interface screeshot</p>
 </div>
-<p>RStudio is divided into 4 “Panes”: the editor for your scripts and documents (top-left, in the default layout), the R console (bottom-left), your environment/history (top-right), and your files/plots/packages/help/viewer (bottom-right). The placement of these panes and their content can be customized (see menu, RStudio -&gt; Preferences -&gt; Pane Layout). One of the advantages of using RStudio is that all the information you need to write code is available in a single window. Additionally, with many shortcuts, autocompletion, and highlighting for the major file types you use while developing in R, RStudio will make typing easier and less error-prone.</p>
+<p>RStudio is divided into 4 “panes”: the editor for your scripts and documents (top-left, in the default layout), the R console (bottom-left), your environment/history (top-right), and your files/plots/packages/help/viewer (bottom-right). The placement of these panes and their content can be customized (see menu, RStudio -&gt; Preferences -&gt; Pane Layout). One of the advantages of using RStudio is that all the information you need to write code is available in a single window. Additionally, with many shortcuts, autocompletion, and highlighting for the major file types you use while developing in R, RStudio will make typing easier and less error-prone.</p>
 </div>
 <div id="before-we-get-started" class="section level2">
 <h2>Before we get started</h2>
@@ -429,10 +429,10 @@ div.tocify {
 <ul>
 <li>Start RStudio (presentation of RStudio -below- should happen here)</li>
 <li>Under the <code>File</code> menu, click on <code>New project</code>, choose <code>New directory</code>, then <code>Empty project</code></li>
-<li>Enter a name for this new folder (or “directory”, in computer science), and choose a convenient location for it. This will be your <strong>working directory</strong> for the rest of the day (e.g., <code>~/data-carpentry</code>)</li>
-<li>Click on “Create project”</li>
+<li>Enter a name for this new folder (or “directory”), and choose a convenient location for it. This will be your <strong>working directory</strong> for the rest of the day (e.g., <code>~/data-carpentry</code>)</li>
+<li>Click on <code>Create project</code></li>
 <li>Under the <code>Files</code> tab on the right of the screen, click on <code>New Folder</code> and create a folder named <code>data</code> within your newly created working directory. (e.g., <code>~/data-carpentry/data</code>)</li>
-<li>Create a new R script (File &gt; New File &gt; R script) and save it in your working directory (e.g. <code>data-carpentry-script.R</code>)</li>
+<li>Create a new R script (File -&gt; New File -&gt; R script) and save it in your working directory (e.g., <code>data-carpentry-script.R</code>)</li>
 </ul>
 <p>Your working directory should now look like this:</p>
 <div class="figure">
@@ -441,9 +441,9 @@ div.tocify {
 </div>
 <div id="organizing-your-working-directory" class="section level3">
 <h3>Organizing your working directory</h3>
-<p>Using a consistent folder structure across your projects will help keep things organized, and will also make it easy find/file things in the future. This can be especially helpful when you have multiple projects. In general, you may create directories (folders) for <strong>scripts</strong>, <strong>data</strong>, and <strong>documents</strong>.</p>
+<p>Using a consistent folder structure across your projects will help keep things organized, and will also make it easy to find/file things in the future. This can be especially helpful when you have multiple projects. In general, you may create directories (folders) for <strong>scripts</strong>, <strong>data</strong>, and <strong>documents</strong>.</p>
 <ul>
-<li><strong><code>data/</code></strong> Use this folder to store your raw data and intermediate datasets you may create for the need of a particular analysis. For the sake of transparency and <a href="https://en.wikipedia.org/wiki/Provenance">provenance</a>, you should <em>always</em> keep a copy of your raw data accessible and do as much of your data cleanup and preprocessing programmatically (i.e. with scripts, rather than manually) as possible. Separating raw data from processed data is also a good idea. For example, you could have files <code>data/raw/tree_survey.plot1.txt</code> and <code>...plot2.txt</code> kept separate from a <code>data/processed/tree.survey.csv</code> file generated by the <code>scripts/01.preprocess.tree_survey.R</code> script.</li>
+<li><strong><code>data/</code></strong> Use this folder to store your raw data and intermediate datasets you may create for the need of a particular analysis. For the sake of transparency and <a href="https://en.wikipedia.org/wiki/Provenance">provenance</a>, you should <em>always</em> keep a copy of your raw data accessible and do as much of your data cleanup and preprocessing programmatically (i.e., with scripts, rather than manually) as possible. Separating raw data from processed data is also a good idea. For example, you could have files <code>data/raw/tree_survey.plot1.txt</code> and <code>...plot2.txt</code> kept separate from a <code>data/processed/tree.survey.csv</code> file generated by the <code>scripts/01.preprocess.tree_survey.R</code> script.</li>
 <li><strong><code>documents/</code></strong> This would be a place to keep outlines, drafts, and other text.</li>
 <li><strong><code>scripts/</code></strong> This would be the location to keep your R scripts for different analyses or plotting, and potentially a separate folder for your functions (more on that later).</li>
 </ul>
@@ -457,11 +457,12 @@ div.tocify {
 <div id="interacting-with-r" class="section level2">
 <h2>Interacting with R</h2>
 <p>The basis of programming is that we write down instructions for the computer to follow, and then we tell the computer to follow those instructions. We write, or <em>code</em>, instructions in R because it is a common language that both the computer and we can understand. We call the instructions <em>commands</em> and we tell the computer to follow the instructions by <em>executing</em> (also called <em>running</em>) those commands.</p>
-<p>There are two main ways of interacting with R: by using the console or by using script files (plain text files that contain your code). We want our code and workflow to be reproducible. In other words, we want to write code in a way that anyone can easily replicate our results on their computer.</p>
-<p>The console pane (in RStudio, the bottom left panel) is the place where R is waiting for you to tell it what to do, and where it will show the results of a command that has been executed. You can type commands directly into the console and press <code>Enter</code> to execute those commands, but they will be forgotten when you close the session. It is better to enter the commands in the script editor, and save the script. This way, you have a complete record of what you did, you can easily show others how you did it and you can do it again later on if needed. RStudio allows you to execute commands directly from the script editor by using the <kbd><code>Ctrl</code></kbd> + <kbd><code>Enter</code></kbd> shortcut. The command on the current line in the script or all of the commands in the currently selected text will be sent to the console and executed when you press <kbd><code>Ctrl</code></kbd> + <kbd><code>Enter</code></kbd>.</p>
+<p>There are two main ways of interacting with R: by using the console or by using script files (plain text files that contain your code). The console pane (in RStudio, the bottom left panel) is the place where commands written in the R language can be typed and executed immediately by the computer. It is also where the results will be shown for commands that have been executed. You can type commands directly into the console and press <code>Enter</code> to execute those commands, but they will be forgotten when you close the session.</p>
+<p>Because we want our code and workflow to be reproducible, it is better to type the commands we want in the script editor, and save the script. This way, there is a complete record of what we did, and anyone (including our future selves!) can easily replicate the results on their computer.</p>
+<p>RStudio allows you to execute commands directly from the script editor by using the <kbd><code>Ctrl</code></kbd> + <kbd><code>Enter</code></kbd> shortcut (on Macs, <kbd><code>Cmd</code></kbd> + <kbd><code>Return</code></kbd> will work, too). The command on the current line in the script (indicated by the cursor) or all of the commands in the currently selected text will be sent to the console and executed when you press <kbd><code>Ctrl</code></kbd> + <kbd><code>Enter</code></kbd>.</p>
 <p>At some point in your analysis you may want to check the content of a variable or the structure of an object, without necessarily keeping a record of it in your script. You can type these commands and execute them directly in the console. RStudio provides the <kbd><code>Ctrl</code></kbd> + <kbd><code>1</code></kbd> and <kbd><code>Ctrl</code></kbd> + <kbd><code>2</code></kbd> shortcuts allow you to jump between the script and the console windows.</p>
 <p>If R is ready to accept commands, the R console shows a <code>&gt;</code> prompt. If it receives a command (by typing, copy-pasting or sent from the script editor using <kbd><code>Ctrl</code></kbd> + <kbd><code>Enter</code></kbd>), R will try to execute it, and when ready, will show the results and come back with a new <code>&gt;</code>-prompt to wait for new commands.</p>
-<p>If R is still waiting for you to enter more data because it isn’t complete yet, the console will show a <code>+</code> prompt. It means that you haven’t finished entering a complete command. This is because you have not ‘closed’ a parenthesis or quotation, i.e. you don’t have the same number of left-parentheses as right-parentheses, or the same number of opening and closing quotation marks. If you’re in RStudio and this happens, click inside the console window and press <code>Esc</code>; this will cancel the incomplete command and return you to the <code>&gt;</code> prompt.</p>
+<p>If R is still waiting for you to enter more data because it isn’t complete yet, the console will show a <code>+</code> prompt. It means that you haven’t finished entering a complete command. This is because you have not ‘closed’ a parenthesis or quotation, i.e., you have fewer right-parentheses than left-parentheses, or fewer closing quotation marks than opening ones. If you’re in RStudio and this happens, click inside the console window and press <code>Esc</code>; this will cancel the incomplete command and return you to the <code>&gt;</code> prompt.</p>
 </div>
 <div id="seeking-help" class="section level2">
 <h2>Seeking help</h2>
@@ -495,36 +496,37 @@ div.tocify {
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dput</span>(<span class="kw">head</span>(iris)) <span class="co"># iris is an example data.frame that comes with R</span></code></pre></div>
 <pre><code>## structure(list(Sepal.Length = c(5.1, 4.9, 4.7, 4.6, 5, 5.4), 
 ##     Sepal.Width = c(3.5, 3, 3.2, 3.1, 3.6, 3.9), Petal.Length = c(1.4, 
-##     1.4, 1.3, 1.5, 1.4, 1.7), Petal.Width = c(0.2, 0.2, 0.2, 
-##     0.2, 0.2, 0.4), Species = structure(c(1L, 1L, 1L, 1L, 1L, 
-##     1L), .Label = c(&quot;setosa&quot;, &quot;versicolor&quot;, &quot;virginica&quot;), class = &quot;factor&quot;)), .Names = c(&quot;Sepal.Length&quot;, 
-## &quot;Sepal.Width&quot;, &quot;Petal.Length&quot;, &quot;Petal.Width&quot;, &quot;Species&quot;), row.names = c(NA, 
-## 6L), class = &quot;data.frame&quot;)</code></pre>
+##   ...</code></pre>
 <p>If the object is larger, provide either the raw file (i.e., your CSV file) with your script up to the point of the error (and after removing everything that is not relevant to your issue). Alternatively, in particular if your questions is not related to a <code>data.frame</code>, you can save any R object to a file:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">saveRDS</span>(iris, <span class="dt">file=</span><span class="st">&quot;/tmp/iris.rds&quot;</span>)</code></pre></div>
-<p>The content of this file is however not human readable and cannot be posted directly on Stack Overflow. It can however be sent to someone by email who can read it with this command:</p>
+<p>The content of this file is however not human readable and cannot be posted directly on Stack Overflow. It can however be sent to someone by email who can read it with the <code>readRDS()</code> command (here it is assumed that the downloaded file is in a <code>Downloads</code> folder in the user’s home directory):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">some_data &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="dt">file=</span><span class="st">&quot;~/Downloads/iris.rds&quot;</span>)</code></pre></div>
 <p>Last, but certainly not least, <strong>always include the output of <code>sessionInfo()</code></strong> as it provides critical information about your platform, the versions of R and the packages that you are using, and other information that can be very helpful to understand your problem.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sessionInfo</span>()</code></pre></div>
 <pre><code>## R version 3.3.3 (2017-03-06)
-## Platform: x86_64-w64-mingw32/x64 (64-bit)
-## Running under: Windows 7 x64 (build 7601) Service Pack 1
+## Platform: x86_64-pc-linux-gnu (64-bit)
+## Running under: Ubuntu 16.10
 ## 
 ## locale:
-## [1] LC_COLLATE=English_United Kingdom.1252 
-## [2] LC_CTYPE=English_United Kingdom.1252   
-## [3] LC_MONETARY=English_United Kingdom.1252
-## [4] LC_NUMERIC=C                           
-## [5] LC_TIME=English_United Kingdom.1252    
+##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+##  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+##  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+##  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
 ## 
 ## attached base packages:
-## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## [1] stats     graphics  grDevices utils     datasets  base     
+## 
+## other attached packages:
+## [1] BiocInstaller_1.24.0
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] backports_1.0.5 magrittr_1.5    rprojroot_1.2   tools_3.3.3    
-##  [5] htmltools_0.3.5 yaml_2.1.14     Rcpp_0.12.10    stringi_1.1.3  
-##  [9] rmarkdown_1.4   knitr_1.15.1    stringr_1.2.0   digest_0.6.12  
-## [13] evaluate_0.10</code></pre>
+##  [1] backports_1.0.5      magrittr_1.5         rprojroot_1.2       
+##  [4] tools_3.3.3          htmltools_0.3.5      yaml_2.1.14         
+##  [7] Rcpp_0.12.10         stringi_1.1.3        rmarkdown_1.4.0.9000
+## [10] knitr_1.15.1         methods_3.3.3        stringr_1.2.0       
+## [13] digest_0.6.12        evaluate_0.10</code></pre>
 </div>
 <div id="where-to-ask-for-help" class="section level3">
 <h3>Where to ask for help?</h3>
