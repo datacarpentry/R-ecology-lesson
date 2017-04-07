@@ -34,7 +34,7 @@ if (file.exists("portalR.sqlite")) file.remove("portalR.sqlite")
 So far, we have dealt with small datasets that easily fit into your computer's
 memory. But what about datasets that are too large for your computer to
 handle as a whole? In this case, storing the data outside of R and organizing it
-in a database is helpful: connecting to the database allows you to retrieve only
+in a database is helpful. Connecting to the database allows you to retrieve only
 the chunks needed for the current analysis.
 
 Even better, many large datasets are already available in public or private
@@ -47,14 +47,14 @@ the [dplyr](https://cran.r-project.org/web/packages/dplyr/index.html) package
 you used in the previous chapter supports connecting to the widely-used open
 source databases [sqlite](https://sqlite.org/), [mysql](https://www.mysql.com/)
 and [postgresql](https://www.postgresql.org/), as well as
-google’s [bigquery](https://cloud.google.com/bigquery/), and it can also be
-extended to other database types (a vignette in the dplyr package explains how
+Google’s [bigquery](https://cloud.google.com/bigquery/), and it can also be
+extended to other database types (a [vignette](https://cran.r-project.org/web/packages/dplyr/vignettes/databases.html) in the dplyr package explains how
 to do it).
 
-Interfacing with databases using `dplyr` focusses on retrieving and analyzing
+Interfacing with databases using `dplyr` focuses on retrieving and analyzing
 datasets by generating `SELECT` SQL statements, but it doesn't modify the
 database itself. `dplyr` does not offer functions to `UPDATE` or `DELETE`
-entries. If you need these functionalities, you will need to use the dedicated R
+entries. If you need these functionalities, you will need to use additional R
 packages (e.g., RSQLite). Here we will demonstrate how to interact with a
 database using dplyr, using both the dplyr's verb syntax and the SQL syntax.
 
@@ -103,8 +103,8 @@ output above:
 * species
 * surveys
 
-Now that we know that we can connect to the database, let's explore how to get
-the data from its tables in R.
+Now that we know we can connect to the database, let's explore how to get
+the data from its tables into R.
 
 ### Querying the database with the SQL syntax
 
@@ -122,7 +122,7 @@ database lesson.
 
 ### Querying the database with the dplyr syntax
 
-One of the strengths of dplyr, is that the same operation can be done using the
+One of the strengths of dplyr is that the same operation can be done using
 dplyr's verbs instead of writing SQL. First, we select the table on which to do
 the operations by creating the `surveys` object, and then we use the standard
 dplyr syntax as if it were a data frame:
@@ -133,8 +133,8 @@ surveys %>%
     select(year, species_id, plot_id)
 ```
 
-In this case, the `surveys` object behaves like a data frame, and several of the
-functions that can used with data frames, can also be used on tables from a
+In this case, the `surveys` object behaves like a data frame. Several
+functions that can be used with data frames can also be used on tables from a
 database. For instance, the `head()` function can be used to check the first 10
 rows of the table:
 
@@ -183,7 +183,7 @@ LIMIT 10
 
 Behind the scenes, `dplyr`:
 
-1. translates your R code into SQL,
+1. translates your R code into SQL
 2. submits it to the database
 3. translates the database's response into an R data frame
 
@@ -207,11 +207,11 @@ Instead, it merely sends the query to the database, waits for its response and
 returns it to us.
 
 That way, R never gets to see the full `surveys` table - and that's why it could
-tell us how many rows it contains. On the bright side, this allows us to work
+not tell us how many rows it contains. On the bright side, this allows us to work
 with large datasets - even too large to fit into our computer's memory.
 
-`dplyr` can translate many different query types into SQL allowing us e.g.
-to `select()` specific columns, `filter()` rows or join tables.
+`dplyr` can translate many different query types into SQL allowing us to, e.g.,
+`select()` specific columns, `filter()` rows, or join tables.
 
 To see this in action, let's compose a few queries with `dplyr`.
 
@@ -240,7 +240,7 @@ The last line:
 indicates that there are more results that fit our filtering criterion. Why was
 R lazy and only retrieved 10 of them?
 
-## Lazyness
+## Laziness
 
 Hadley Wickham, the author of `dplyr`
 [explains](https://cran.r-project.org/web/packages/dplyr/vignettes/databases.html):
@@ -248,7 +248,7 @@ Hadley Wickham, the author of `dplyr`
 > When working with databases, dplyr tries to be as lazy as possible:
 >
 > * It never pulls data into R unless you explicitly ask for it.
-> * It delays doing any work until the last possible moment: it collects together
+> * It delays doing any work until the last possible moment - it collects together
 > everything you want to do and then sends it to the database in one step.
 
 When you construct a `dplyr` query, you can connect multiple verbs into a single
@@ -271,7 +271,7 @@ Just like the first `select(species_id, sex, weight)` call, the `select(-sex)`
 command is not executed by R. It is sent to the database instead. Only the
 _final_ result is retrieved and displayed to you.
 
-Of course, we could always add on more steps, e.g. we could filter by
+Of course, we could always add on more steps, e.g., we could filter by
 `species_id` or  minimum `weight`. That's why R doesn't retrieve the full set
 of results - instead it only retrieves the first 10 results from the database
 by default. (After all, you might want to add an additional step and get the
@@ -298,7 +298,7 @@ to work with them exclusively in R, without communicating with the database.
 the same single- and multiple-table verbs you encountered previously. This means
 you can use the same commands regardless of whether you interact with a remote
 database or local dataset! This is a really useful feature if you work with
-large datasets, you can first prototype your code on a small subset that fits
+large datasets: you can first prototype your code on a small subset that fits
 into memory, and when your code is ready, you can change the input dataset to
 your full database without having to change the syntax.
 
@@ -316,7 +316,7 @@ plots <- tbl(mammals, "plots")
 plots
 ```
 
-The `plot_id` column also features in the `surveys` table.
+The `plot_id` column also features in the `surveys` table:
 
 ```{r surveys, results='markup'}
 surveys
@@ -402,8 +402,8 @@ genus_counts <- left_join(surveys, plots) %>%
 --->
 
 This is useful if we are interested in estimating the number of individuals
-belonging to each genus found in each plot type, but what if we were interested
-in the number of genera found in each plot type. Using `tally()` gives the
+belonging to each genus found in each plot type. But what if we were interested
+in the number of genera found in each plot type? Using `tally()` gives the
 number of individuals, instead we need to use `n_distinct()` to count the
 number of unique values found in a column.
 
