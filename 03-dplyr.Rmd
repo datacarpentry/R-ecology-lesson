@@ -53,13 +53,12 @@ library("dplyr")    ## load the package
 ## What is `dplyr`?
 
 The package `dplyr` provides easy tools for the most common data manipulation
-tasks. It is built to work directly with data frames. The thinking behind it was
-largely inspired by the package `plyr` which has been in use for some time but
-suffered from being slow in some cases.` dplyr` addresses this by porting much
-of the computation to C++. An additional feature is the ability to work directly
-with data stored in an external database. The benefits of doing this are
-that the data can be managed natively in a relational database, queries can be
-conducted on that database, and only the results of the query are returned.
+tasks. It is built to work directly with data frames, with many common tasks  
+optimized by being written in a compiled language (C++). An additional feature is the 
+ability to work directly with data stored in an external database. The benefits of 
+doing this are that the data can be managed natively in a relational database, 
+queries can be conducted on that database, and only the results of the query are 
+returned.
 
 This addresses a common problem with R in that all operations are conducted
 in-memory and thus the amount of data you can work with is limited by available
@@ -245,6 +244,13 @@ surveys %>%
   group_by(sex) %>%
   summarize(mean_weight = mean(weight, na.rm = TRUE))
 ```
+
+You may also have noticed that the output from these calls doesn't run off the
+screen anymore. That's because dplyr has changed our `data.frame` object to an
+object of class `tbl_df`, also known as a "tibble". Tibble's data structure is
+very similar to a data frame. For our purposes the only differences is that, (1)
+in addition to displaying the data type of each column under its name, it only
+	prints the first few rows of data and only as many columns as fit on one screen, (2) columns of class `character` are never converted into factors.
 
 You can also group by multiple columns:
 
