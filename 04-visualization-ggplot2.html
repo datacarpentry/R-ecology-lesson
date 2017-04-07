@@ -4,7 +4,7 @@
 
 <head>
 
-<meta charset="utf-8">
+<meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 
@@ -565,7 +565,7 @@ yearly_sex_weight &lt;-<span class="st"> </span>surveys_complete %&gt;%
 </div>
 <div id="customization" class="section level2">
 <h2>Customization</h2>
-<p>Take a look at the ggplot2 cheat sheet (<a href="https://www.rstudio.com/wp-content/uploads/2015/08/ggplot2-cheatsheet.pdf" class="uri">https://www.rstudio.com/wp-content/uploads/2015/08/ggplot2-cheatsheet.pdf</a>), and think of ways to improve the plot. You can write down some of your ideas as comments in the Etherpad.</p>
+<p>Take a look at the <a href="https://www.rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf">ggplot2 cheat sheet</a>, and think of ways to improve the plot. You can write down some of your ideas as comments in the Etherpad.</p>
 <p>Now, let’s change names of axes to something more informative than ‘year’ and ‘n’ and add a title to this figure:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> yearly_sex_counts, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> n, <span class="dt">color =</span> sex, <span class="dt">group =</span> sex)) +
 <span class="st">    </span><span class="kw">geom_line</span>() +
@@ -584,6 +584,45 @@ yearly_sex_weight &lt;-<span class="st"> </span>surveys_complete %&gt;%
         <span class="dt">y =</span> <span class="st">&#39;Number of species&#39;</span>) +
 <span class="st">    </span><span class="kw">theme_bw</span>() +
 <span class="st">    </span><span class="kw">theme</span>(<span class="dt">text=</span><span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">16</span>, <span class="dt">family=</span><span class="st">&quot;Arial&quot;</span>))</code></pre></div>
+<pre><code>#&gt; Warning in grid.Call(L_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+#&gt; font family not found in Windows font database
+
+#&gt; Warning in grid.Call(L_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+#&gt; font family not found in Windows font database
+
+#&gt; Warning in grid.Call(L_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+#&gt; font family not found in Windows font database
+
+#&gt; Warning in grid.Call(L_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+#&gt; font family not found in Windows font database
+
+#&gt; Warning in grid.Call(L_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+#&gt; font family not found in Windows font database
+
+#&gt; Warning in grid.Call(L_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+#&gt; font family not found in Windows font database
+
+#&gt; Warning in grid.Call(L_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+#&gt; font family not found in Windows font database
+
+#&gt; Warning in grid.Call(L_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+#&gt; font family not found in Windows font database
+
+#&gt; Warning in grid.Call(L_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+#&gt; font family not found in Windows font database
+
+#&gt; Warning in grid.Call(L_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+#&gt; font family not found in Windows font database</code></pre>
+<pre><code>#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database</code></pre>
+<pre><code>#&gt; Warning in grid.Call(L_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+#&gt; font family not found in Windows font database</code></pre>
 <p><img src="img/R-ecology-number_species_year_with_right_labels_xfont_size-1.png" width="672" /></p>
 <p>After our manipulations we notice that the values on the x-axis are still not properly readable. Let’s change the orientation of the labels and adjust them vertically and horizontally so they don’t overlap. You can use a 90 degree angle, or experiment to find the appropriate angle for diagonally oriented labels.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> yearly_sex_counts, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> n, <span class="dt">color =</span> sex, <span class="dt">group =</span> sex)) +
@@ -596,6 +635,163 @@ yearly_sex_weight &lt;-<span class="st"> </span>surveys_complete %&gt;%
 <span class="st">    </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">colour=</span><span class="st">&quot;grey20&quot;</span>, <span class="dt">size=</span><span class="dv">12</span>, <span class="dt">angle=</span><span class="dv">90</span>, <span class="dt">hjust=</span>.<span class="dv">5</span>, <span class="dt">vjust=</span>.<span class="dv">5</span>),
                         <span class="dt">axis.text.y =</span> <span class="kw">element_text</span>(<span class="dt">colour=</span><span class="st">&quot;grey20&quot;</span>, <span class="dt">size=</span><span class="dv">12</span>),
           <span class="dt">text=</span><span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">16</span>, <span class="dt">family=</span><span class="st">&quot;Arial&quot;</span>))</code></pre></div>
+<pre><code>#&gt; Warning in grid.Call(L_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+#&gt; font family not found in Windows font database
+
+#&gt; Warning in grid.Call(L_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+#&gt; font family not found in Windows font database
+
+#&gt; Warning in grid.Call(L_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+#&gt; font family not found in Windows font database
+
+#&gt; Warning in grid.Call(L_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+#&gt; font family not found in Windows font database
+
+#&gt; Warning in grid.Call(L_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+#&gt; font family not found in Windows font database
+
+#&gt; Warning in grid.Call(L_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+#&gt; font family not found in Windows font database
+
+#&gt; Warning in grid.Call(L_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+#&gt; font family not found in Windows font database
+
+#&gt; Warning in grid.Call(L_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+#&gt; font family not found in Windows font database
+
+#&gt; Warning in grid.Call(L_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+#&gt; font family not found in Windows font database
+
+#&gt; Warning in grid.Call(L_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+#&gt; font family not found in Windows font database
+
+#&gt; Warning in grid.Call(L_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+#&gt; font family not found in Windows font database</code></pre>
+<pre><code>#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database</code></pre>
+<pre><code>#&gt; Warning in grid.Call(L_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+#&gt; font family not found in Windows font database</code></pre>
+<pre><code>#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database</code></pre>
+<pre><code>#&gt; Warning in grid.Call(L_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+#&gt; font family not found in Windows font database</code></pre>
+<pre><code>#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database</code></pre>
+<pre><code>#&gt; Warning in grid.Call(L_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+#&gt; font family not found in Windows font database</code></pre>
+<pre><code>#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database</code></pre>
+<pre><code>#&gt; Warning in grid.Call(L_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+#&gt; font family not found in Windows font database
+
+#&gt; Warning in grid.Call(L_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+#&gt; font family not found in Windows font database</code></pre>
+<pre><code>#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database</code></pre>
+<pre><code>#&gt; Warning in grid.Call(L_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+#&gt; font family not found in Windows font database</code></pre>
 <p><img src="img/R-ecology-number_species_year_with_theme-1.png" width="672" /></p>
 <p>If you like the changes you created to the default theme, you can save them as an object to easily apply them to other plots you may create:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">arial_grey_theme &lt;-<span class="st"> </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">colour=</span><span class="st">&quot;grey20&quot;</span>, <span class="dt">size=</span><span class="dv">12</span>, <span class="dt">angle=</span><span class="dv">90</span>, <span class="dt">hjust=</span>.<span class="dv">5</span>, <span class="dt">vjust=</span>.<span class="dv">5</span>),
@@ -604,6 +800,107 @@ yearly_sex_weight &lt;-<span class="st"> </span>surveys_complete %&gt;%
 <span class="kw">ggplot</span>(surveys_complete, <span class="kw">aes</span>(<span class="dt">x =</span> species_id, <span class="dt">y =</span> hindfoot_length)) +
 <span class="st">    </span><span class="kw">geom_boxplot</span>() +
 <span class="st">    </span>arial_grey_theme</code></pre></div>
+<pre><code>#&gt; Warning in grid.Call(L_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+#&gt; font family not found in Windows font database
+
+#&gt; Warning in grid.Call(L_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+#&gt; font family not found in Windows font database
+
+#&gt; Warning in grid.Call(L_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+#&gt; font family not found in Windows font database
+
+#&gt; Warning in grid.Call(L_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+#&gt; font family not found in Windows font database
+
+#&gt; Warning in grid.Call(L_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+#&gt; font family not found in Windows font database
+
+#&gt; Warning in grid.Call(L_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+#&gt; font family not found in Windows font database</code></pre>
+<pre><code>#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database
+
+#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database</code></pre>
+<pre><code>#&gt; Warning in grid.Call(L_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+#&gt; font family not found in Windows font database</code></pre>
+<pre><code>#&gt; Warning in grid.Call.graphics(L_text, as.graphicsAnnot(x$label), x$x, x
+#&gt; $y, : font family not found in Windows font database</code></pre>
 <p><img src="img/R-ecology-number_species_year_with_right_labels_xfont_orientation-1.png" width="672" /></p>
 <p>With all of this information in hand, please take another five minutes to either improve one of the plots generated in this exercise or create a beautiful graph of your own. Use the RStudio ggplot2 cheat sheet, which we linked earlier for inspiration.</p>
 <p>Here are some ideas:</p>

@@ -277,7 +277,7 @@ match to your search request
 ```
 
 If you can't find what you are looking for, you can use the
-[rdocumention.org](http://www.rdocumentation.org) website that searches through
+[rdocumentation.org](http://www.rdocumentation.org) website that searches through
 the help files across all packages available.
 
 Finally, a generic Google or internet search "R \<task\>" will often either send you to the appropriate package documentation or a helpful forum question that someone else already asked.

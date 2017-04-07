@@ -402,8 +402,7 @@ ggplot(data = yearly_sex_weight, aes(x=year, y=avg_weight, color = species_id, g
 
 ## Customization
 
-Take a look at the ggplot2 cheat sheet
-(https://www.rstudio.com/wp-content/uploads/2015/08/ggplot2-cheatsheet.pdf), and
+Take a look at the [ggplot2 cheat sheet](https://www.rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf), and
 think of ways to improve the plot. You can write down some of your ideas as
 comments in the Etherpad.
 
