@@ -394,3 +394,5 @@ sessionInfo()
   useful guidelines
 * [This blog post by Jon Skeet](http://codeblog.jonskeet.uk/2010/08/29/writing-the-perfect-question/)
   has quite comprehensive advice on how to ask programming questions.
+* The [reprex](https://cran.rstudio.com/web/packages/reprex/) package is very helpful to create reproducible examples when asking for help.
+
