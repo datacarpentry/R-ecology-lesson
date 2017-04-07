@@ -4,7 +4,7 @@
 
 <head>
 
-<meta charset="utf-8">
+<meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 
@@ -387,7 +387,7 @@ div.tocify {
 <h2>Selecting columns and filtering rows</h2>
 <p>We’re going to learn some of the most common <code>dplyr</code> functions: <code>select()</code>, <code>filter()</code>, <code>mutate()</code>, <code>group_by()</code>, and <code>summarize()</code>. To select columns of a data frame, use <code>select()</code>. The first argument to this function is the data frame (<code>surveys</code>), and the subsequent arguments are the columns to keep.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">select</span>(surveys, plot_id, species_id, weight)</code></pre></div>
-<p>To choose rows, use <code>filter()</code>:</p>
+<p>To choose rows based on specific criteria, use <code>filter()</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">filter</span>(surveys, year ==<span class="st"> </span><span class="dv">1995</span>)</code></pre></div>
 </div>
 <div id="pipes" class="section level2">
@@ -462,6 +462,7 @@ surveys_hindfoot_half <- surveys %>%
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys %&gt;%
 <span class="st">  </span><span class="kw">group_by</span>(sex) %&gt;%
 <span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_weight =</span> <span class="kw">mean</span>(weight, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</code></pre></div>
+<p>You may also have noticed that the output from these calls doesn’t run off the screen anymore. That’s because dplyr has changed our <code>data.frame</code> object to an object of class <code>tbl_df</code>, also known as a “tibble”. Tibble’s data structure is very similar to a data frame. For our purposes the only differences is that, (1) in addition to displaying the data type of each column under its name, it only prints the first few rows of data and only as many columns as fit on one screen, (2) columns of class <code>character</code> are never converted into factors.</p>
 <p>You can also group by multiple columns:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys %&gt;%
 <span class="st">  </span><span class="kw">group_by</span>(sex, species_id) %&gt;%
