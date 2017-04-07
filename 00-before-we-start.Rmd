@@ -36,13 +36,14 @@ therefore both need to be installed on your computer.
 
 ## Why learning R?
 
-### R is not a GUI, and that's a good thing
+### R does not involve lots of pointing and clicking, and that's a good thing
 
-The learning curve might be steeper than with other software, but with R, you
-can save all the steps you used to go from the data to the results. So, if you
-want to redo your analysis because you collected more data, you don't have to
-remember which button you clicked in which order to obtain your results, you
-just have to run your script again.
+The learning curve might be steeper than with other software, but with R, the
+results of your analysis does not rely on remembering a succession of pointing
+and clicking but instead in a series of written commands, and that's a good
+thing!. So, if you want to redo your analysis because you collected more data,
+you don't have to remember which button you clicked in which order to obtain
+your results, you just have to run your script again.
 
 Working with scripts makes the steps you used in your analysis clear, and the
 code you write can be inspected by someone else who can give you feedback and
