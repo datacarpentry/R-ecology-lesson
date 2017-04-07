@@ -82,7 +82,7 @@ frame (`surveys`), and the subsequent arguments are the columns to keep.
 select(surveys, plot_id, species_id, weight)
 ```
 
-To choose rows, use `filter()`:
+To choose rows based on specific criteria, use `filter()`:
 
 ```{r, purl = FALSE}
 filter(surveys, year == 1995)
@@ -245,6 +245,13 @@ surveys %>%
   group_by(sex) %>%
   summarize(mean_weight = mean(weight, na.rm = TRUE))
 ```
+
+You may also have noticed that the output from these calls doesn't run off the
+screen anymore. That's because dplyr has changed our `data.frame` object to an
+object of class `tbl_df`, also known as a "tibble". Tibble's data structure is
+very similar to a data frame. For our purposes the only differences is that, (1)
+in addition to displaying the data type of each column under its name, it only
+	prints the first few rows of data and only as many columns as fit on one screen, (2) columns of class `character` are never converted into factors.
 
 You can also group by multiple columns:
 
