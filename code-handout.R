@@ -123,7 +123,7 @@ plot(surveys$sex)
 ## ##  before 1995, and retain the columns `year`, `sex`, and `weight.`
 ## 
 ## ## Mutate Challenge:
-## ##  Create a new dataframe from the survey data that meets the following
+## ##  Create a new data frame from the survey data that meets the following
 ## ##  criteria: contains only the `species_id` column and a column that
 ## ##  contains values that are half the `hindfoot_length` values (e.g. a
 ## ##  new column `hindfoot_half`). In this `hindfoot_half` column, there are

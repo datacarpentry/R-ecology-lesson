@@ -53,11 +53,11 @@ library("dplyr")    ## load the package
 ## What is `dplyr`?
 
 The package `dplyr` provides easy tools for the most common data manipulation
-tasks. It is built to work directly with data frames, with many common tasks  
-optimized by being written in a compiled language (C++). An additional feature is the 
-ability to work directly with data stored in an external database. The benefits of 
-doing this are that the data can be managed natively in a relational database, 
-queries can be conducted on that database, and only the results of the query are 
+tasks. It is built to work directly with data frames, with many common tasks
+optimized by being written in a compiled language (C++). An additional feature is the
+ability to work directly with data stored in an external database. The benefits of
+doing this are that the data can be managed natively in a relational database,
+queries can be conducted on that database, and only the results of the query are
 returned.
 
 This addresses a common problem with R in that all operations are conducted
@@ -214,7 +214,7 @@ surveys_hindfoot_half <- surveys %>%
 
     ```{r, eval=FALSE, purl=TRUE, echo=FALSE}
     ## Mutate Challenge:
-    ##  Create a new dataframe from the survey data that meets the following
+    ##  Create a new data frame from the survey data that meets the following
     ##  criteria: contains only the `species_id` column and a column that
     ##  contains values that are half the `hindfoot_length` values (e.g. a
     ##  new column `hindfoot_half`). In this `hindfoot_half` column, there are
