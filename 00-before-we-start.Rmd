@@ -16,7 +16,7 @@ knitr::opts_chunk$set(results='hide', fig.path='img/r-lesson-')
 > After completing this module, the learner should be able to:
 >
 > * Describe the purpose of the RStudio Script, Console, Environment, and Plots panes.
-> * Organize files and directories for a set of analyses as an R Project.
+> * Organize files and directories for a set of analyses as an R Project and understand the purpose of the working directory.
 > * Use the built-in RStudio help interface to search for more information on R
 >   functions.
 > * Demonstrate how to provide sufficient information for troubleshooting with the R user community.
