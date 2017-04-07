@@ -379,8 +379,7 @@ div.tocify {
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;dplyr&quot;</span>)    ## load the package</code></pre></div>
 <div id="what-is-dplyr" class="section level2">
 <h2>What is <code>dplyr</code>?</h2>
-<p>The package <code>dplyr</code> provides easy tools for the most common data manipulation tasks. It is built to work directly with data frames, with many common tasks<br />
-optimized by being written in a compiled language (C++). An additional feature is the ability to work directly with data stored in an external database. The benefits of doing this are that the data can be managed natively in a relational database, queries can be conducted on that database, and only the results of the query are returned.</p>
+<p>The package <code>dplyr</code> provides easy tools for the most common data manipulation tasks. It is built to work directly with data frames, with many common tasks optimized by being written in a compiled language (C++). An additional feature is the ability to work directly with data stored in an external database. The benefits of doing this are that the data can be managed natively in a relational database, queries can be conducted on that database, and only the results of the query are returned.</p>
 <p>This addresses a common problem with R in that all operations are conducted in-memory and thus the amount of data you can work with is limited by available memory. The database connections essentially remove that limitation in that you can have a database of many 100s GB, conduct queries on it directly, and pull back into R only what you need for analysis.</p>
 <p>To learn more about <code>dplyr</code> after the workshop, you may want to check out this <a href="http://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">handy dplyr cheatsheet</a>.</p>
 </div>
