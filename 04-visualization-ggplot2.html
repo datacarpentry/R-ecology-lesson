@@ -414,7 +414,7 @@ surveys_plot
   +<span class="st"> </span><span class="kw">geom_point</span>()</code></pre></div>
 <blockquote>
 <h3 id="challenge-optional">Challenge (optional)</h3>
-<p>Scatter plots can be useful exploratory tools for small data sets. For data sets with large numbers of observations, such as the <code>surveys_complete</code> data set, overplotting of points can be a limitation of scatter plots. One strategy for handling such settings is to use hexagonal binning of observations. The plot space is tesselated into hexagons. Each hexagon is assigned a color based on the number of observations that fall within its boundaries. To use hexagonal binning with <code>ggplot2</code>, first install the R package <code>hexbin</code> from CRAN:</p>
+<p>Scatter plots can be useful exploratory tools for small datasets. For data sets with large numbers of observations, such as the <code>surveys_complete</code> data set, overplotting of points can be a limitation of scatter plots. One strategy for handling such settings is to use hexagonal binning of observations. The plot space is tesselated into hexagons. Each hexagon is assigned a color based on the number of observations that fall within its boundaries. To use hexagonal binning with <code>ggplot2</code>, first install the R package <code>hexbin</code> from CRAN:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;hexbin&quot;</span>)</code></pre></div>
 <p>Then use <code>geom_hex()</code> function from the <code>ggplot2</code> package.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys_plot +

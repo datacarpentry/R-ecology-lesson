@@ -569,7 +569,7 @@ surveys_head <- surveys[-c(7:nrow(surveys)),]
 sex <span class="co"># after re-ordering</span></code></pre></div>
 <pre><code>#&gt; [1] male   female female male  
 #&gt; Levels: male female</code></pre>
-<p>In R’s memory, these factors are represented by integers (1, 2, 3), but are more informative than integers because factors are self describing: <code>&quot;female&quot;</code>, <code>&quot;male&quot;</code> is more descriptive than <code>1</code>, <code>2</code>. Which one is “male”? You wouldn’t be able to tell just from the integer data. Factors, on the other hand, have this information built in. It is particularly helpful when there are many levels (like the species names in our example data set).</p>
+<p>In R’s memory, these factors are represented by integers (1, 2, 3), but are more informative than integers because factors are self describing: <code>&quot;female&quot;</code>, <code>&quot;male&quot;</code> is more descriptive than <code>1</code>, <code>2</code>. Which one is “male”? You wouldn’t be able to tell just from the integer data. Factors, on the other hand, have this information built in. It is particularly helpful when there are many levels (like the species names in our example dataset).</p>
 <div id="converting-factors" class="section level3">
 <h3>Converting factors</h3>
 <p>If you need to convert a factor to a character vector, you use <code>as.character(x)</code>.</p>
