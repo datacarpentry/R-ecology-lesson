@@ -26,14 +26,9 @@ source("setup.R")
 ------------
 
 
-## Creating objects
+## Creating objects in R
 
-```{r, echo=FALSE, purl=TRUE}
-### Creating objects in R
-
-```
-
-You can get output from R simply by typing in math in the console
+You can get output from R simply by typing math in the console:
 
 ```{r, purl=FALSE}
 3 + 5
@@ -83,8 +78,7 @@ are [Hadley Wickham's](http://adv-r.had.co.nz/Style.html)
 and [Google's](https://google.github.io/styleguide/Rguide.xml)
 (this [one](http://jef.works/R-style-guide/) is also comprehensive).
 
-When assigning a value to an object, R does not print anything. You can force R to
-print the value by using parentheses or by typing the name:
+When assigning a value to an object, R does not print anything. You can force R to print the value by using parentheses or by typing the object name:
 
 ```{r, purl=FALSE}
 weight_kg <- 55    # doesn't print anything
@@ -93,8 +87,7 @@ weight_kg          # and so does typing the name of the object
 ```
 
 Now that R has `weight_kg` in memory, we can do arithmetic with it. For
-instance, we may want to convert this weight to pounds (weight in pounds is 2.2
-times the weight in kg):
+instance, we may want to convert this weight into pounds (weight in pounds is 2.2 times the weight in kg):
 
 ```{r, purl=FALSE}
 2.2 * weight_kg
@@ -121,16 +114,16 @@ and then change `weight_kg` to 100.
 weight_kg <- 100
 ```
 
-What do you think is the current content of the object `weight_lb`? 126.5 or 200?
+What do you think is the current content of the object `weight_lb`? 126.5 or 220?
 
-> ### Comments
->
-> The comment character in R is `#`, anything to the right of a `#` in a script
-> will be ignored by R. It is useful to leave notes, and explanations in your
-> scripts.
-> RStudio makes it easy to comment or uncomment a paragraph: after selecting the
-> lines you  want to comment, press at the same time on your keyboard
-> <kbd>Crtl</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd>.
+### Comments
+
+The comment character in R is `#`, anything to the right of a `#` in a script
+will be ignored by R. It is useful to leave notes, and explanations in your
+scripts.
+RStudio makes it easy to comment or uncomment a paragraph: after selecting the
+lines you  want to comment, press at the same time on your keyboard
+<kbd>Crtl</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd>.
 
 > ### Challenge
 >
@@ -234,23 +227,20 @@ arguments.  If you don't, someone reading your code might have to look up the
 definition of a function with unfamiliar arguments to understand what you're
 doing.
 
-> ### Call out
->
-> What are called `objects` in `R` are known as `variables` in many other programming languages.
-> Depending on the context `object` and `variable` can have drastically different meanings.
-> However, in this lesson the two words are used synonymously.
-> For more information see: https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Objects
+### Objects vs. variables
+
+What are known as `objects` in `R` are known as `variables` in many other
+programming languages.  Depending on the context, `object` and `variable` can
+have drastically different meanings.  However, in this lesson, the two words are
+used synonymously.  For more information see:
+https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Objects
 
 ## Vectors and data types
 
-```{r, echo=FALSE, purl=TRUE}
-### Vectors and data types
-```
-
-A vector is the most common and basic data structure in R, and is pretty much
+A vector is the most common and basic data structure in R, and can be considered
 the workhorse of R. It's a group of values, mainly either numbers or
 characters. You can assign this list of values to a variable, just like you
-would for one item. (In fact the basic variables we used previously are simply 
+would for one item. (In fact, the basic variables we used previously are simply
 vectors with just a single element.)
 
 For example we can create a vector that contains 4 animal weights:
@@ -286,7 +276,7 @@ class(weight_g)
 class(animals)
 ```
 
-The function `str()` provides an overview of the structure of an object and its 
+The function `str()` provides an overview of the structure of an object and its
 elements. It is a useful function when working with large and complex
 objects:
 
@@ -298,18 +288,18 @@ str(animals)
 You can add elements to your vector by using the `c()` function:
 
 ```{r, purl=FALSE}
-weight_g <- c(weight_g, 90) # adding at the end of the vector
-weight_g <- c(30, weight_g) # adding at the beginning of the vector
+weight_g <- c(weight_g, 90) # add to the end of the vector
+weight_g <- c(30, weight_g) # add to the beginning of the vector
 weight_g
 ```
 
-In the first line, what happens is that we take the original vector `weight_g`, 
-adding the value `90` to the end of it, and saving the result back into 
-`weight_g`. Then we add the value `30` to the beginning, again saving the result 
+In the first line, we take the original vector `weight_g`,
+add the value `90` to the end of it, and save the result back into
+`weight_g`. Then we add the value `30` to the beginning, again saving the result
 back into `weight_g`.
 
-We can do this over and over again to grow a vector, or assemble a dataset. 
-As we program, this may be useful to add results that we are collecting or 
+We can do this over and over again to grow a vector, or assemble a dataset.
+As we program, this may be useful to add results that we are collecting or
 calculating.
 
 We just saw 2 of the 6 **atomic vector** types that R uses: `"character"` and
@@ -359,7 +349,7 @@ factors (`factor`).
 >   these data types are coerced?
 > <!-- * _Answer_: `logical -> numeric -> character <-- logical` -->
 
-```{r, echo=FALSE, eval=FALSE, purl=TRUE}
+```{r, purl=FALSE}
 ## We’ve seen that atomic vectors can be of type character, numeric, integer, and
 ## logical. But what happens if we try to mix these types in a single
 ## vector?
@@ -383,10 +373,7 @@ tricky <- c(1, 2, 3, "4")
 ## whereby some types get preferentially coerced into other types. Can
 ## you draw a diagram that represents the hierarchy of how these data
 ## types are coerced?
-
 ```
-
-
 
 ## Subsetting vectors
 
@@ -414,7 +401,7 @@ simpler for computers to do.
 
 ### Conditional subsetting
 
-Another common way of subsetting is by using a logical vector: `TRUE` will
+Another common way of subsetting is by using a logical vector. `TRUE` will
 select the element with the same index, while `FALSE` will not:
 
 ```{r, results='show', purl=FALSE}
@@ -440,15 +427,15 @@ weight_g[weight_g < 30 | weight_g > 50]
 weight_g[weight_g >= 30 & weight_g == 21]
 ```
 
-Here, `<` stands for "less than", `>` for "greater than", `>=` for "greater than 
-or equal to", and `==` for "equal to". The double equal sign `==` is a test for 
+Here, `<` stands for "less than", `>` for "greater than", `>=` for "greater than
+or equal to", and `==` for "equal to". The double equal sign `==` is a test for
 numerical equality between the left and right hand sides, and should not be
-confused with the single `=` sign, which performs variable assignment (similar 
+confused with the single `=` sign, which performs variable assignment (similar
 to `<-`).
 
-A common task is to search for certain strings in a vector.  One could use the 
-"or" operator `|` to test for equality to multiple values, but this can quickly 
-become tedious. The function `%in%` allows you to test if any of the elements of 
+A common task is to search for certain strings in a vector.  One could use the
+"or" operator `|` to test for equality to multiple values, but this can quickly
+become tedious. The function `%in%` allows you to test if any of the elements of
 a search vector are found:
 
 ```{r, results='show', purl=FALSE}
@@ -524,8 +511,7 @@ heights[complete.cases(heights)]
 >
 > 2. Use the function `median()` to calculate the median of the `lengths` vector.
 
-
-```{r, purl=TRUE, echo=FALSE}
+```{r,echo=FALSE, purl=TRUE}
 ## ### Challenge
 ## 1. Using this vector of length measurements, create a new vector with the NAs
 ## removed.
