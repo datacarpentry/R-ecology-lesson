@@ -201,7 +201,7 @@ hidden?
 > boxplot. An alternative to the boxplot is the violin plot (sometimes known as a
 > beanplot), where the shape (of the density of points) is drawn.
 >
-> - Replace the box plot with a violin plot; see `geom_violin()`
+> - Replace the box plot with a violin plot; see `geom_violin()`.
 >
 > In many types of data, it is important to consider the *scale* of the
 > observations.  For example, it may be worth changing the scale of the axis to
@@ -209,12 +209,12 @@ hidden?
 > of the axes is done similarly to adding/modifying other components (i.e., by
 > incrementally adding commands). Try making these modifications:
 >
-> - Represent weight on the log10 scale; see `scale_y_log10()`
+> - Represent weight on the log10 scale; see `scale_y_log10()`.
 >
 > - Create boxplot for `hindfoot_length`.
 >
 > - Add color to the datapoints on your boxplot according to the plot from which
->   the sample was taken (`plot_id`)
+>   the sample was taken (`plot_id`).
 
 Hint: Check the class for `plot_id`. Consider changing the class of `plot_id`
 from integer to factor. Why does this change how R makes the graph?
@@ -472,7 +472,7 @@ Here are some ideas:
 
 * See if you can change the thickness of the lines.
 * Can you find a way to change the name of the legend? What about its labels?
-* Try using a different color palette (see http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/)
+* Try using a different color palette (see http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/).
 
 After creating your plot, you can save it to a file in your favorite format.
 You can easily change the dimension (and resolution) of your plot by
