@@ -28,6 +28,11 @@ source("setup.R")
 
 ## Creating objects in R
 
+```{r, echo=FALSE, purl=TRUE}
+You can get output from R simply by typing math in the console:
+### Creating objects in R
+```
+
 You can get output from R simply by typing math in the console:
 
 ```{r, purl=FALSE}
@@ -237,6 +242,10 @@ https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Objects
 
 ## Vectors and data types
 
+```{r, echo=FALSE, purl=TRUE}
+### Vectors and data types
+```
+
 A vector is the most common and basic data structure in R, and can be considered
 the workhorse of R. It's a group of values, mainly either numbers or
 characters. You can assign this list of values to a variable, just like you
@@ -349,7 +358,7 @@ factors (`factor`).
 >   these data types are coerced?
 > <!-- * _Answer_: `logical -> numeric -> character <-- logical` -->
 
-```{r, purl=FALSE}
+```{r, echo=FALSE, eval=FALSE, purl=TRUE}
 ## We’ve seen that atomic vectors can be of type character, numeric, integer, and
 ## logical. But what happens if we try to mix these types in a single
 ## vector?
