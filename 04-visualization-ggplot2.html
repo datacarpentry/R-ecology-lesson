@@ -459,13 +459,13 @@ surveys_plot
 <h3 id="challenges-optional">Challenges (optional)</h3>
 <p>Boxplots are useful summaries, but hide the <em>shape</em> of the distribution. For example, if there is a bimodal distribution, it would not be observed with a boxplot. An alternative to the boxplot is the violin plot (sometimes known as a beanplot), where the shape (of the density of points) is drawn.</p>
 <ul>
-<li>Replace the box plot with a violin plot; see <code>geom_violin()</code></li>
+<li>Replace the box plot with a violin plot; see <code>geom_violin()</code>.</li>
 </ul>
 <p>In many types of data, it is important to consider the <em>scale</em> of the observations. For example, it may be worth changing the scale of the axis to better distribute the observations in the space of the plot. Changing the scale of the axes is done similarly to adding/modifying other components (i.e., by incrementally adding commands). Try making these modifications:</p>
 <ul>
-<li><p>Represent weight on the log10 scale; see <code>scale_y_log10()</code></p></li>
+<li><p>Represent weight on the log10 scale; see <code>scale_y_log10()</code>.</p></li>
 <li><p>Create boxplot for <code>hindfoot_length</code>.</p></li>
-<li><p>Add color to the datapoints on your boxplot according to the plot from which the sample was taken (<code>plot_id</code>)</p></li>
+<li><p>Add color to the datapoints on your boxplot according to the plot from which the sample was taken (<code>plot_id</code>).</p></li>
 </ul>
 </blockquote>
 <p>Hint: Check the class for <code>plot_id</code>. Consider changing the class of <code>plot_id</code> from integer to factor. Why does this change how R makes the graph?</p>
@@ -609,7 +609,7 @@ yearly_sex_weight &lt;-<span class="st"> </span>surveys_complete %&gt;%
 <ul>
 <li>See if you can change the thickness of the lines.</li>
 <li>Can you find a way to change the name of the legend? What about its labels?</li>
-<li>Try using a different color palette (see <a href="http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/" class="uri">http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/</a>)</li>
+<li>Try using a different color palette (see <a href="http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/" class="uri">http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/</a>).</li>
 </ul>
 <p>After creating your plot, you can save it to a file in your favorite format. You can easily change the dimension (and resolution) of your plot by adjusting the appropriate arguments (<code>width</code>, <code>height</code> and <code>dpi</code>):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_plot &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> yearly_sex_counts, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> n, <span class="dt">color =</span> sex, <span class="dt">group =</span> sex)) +

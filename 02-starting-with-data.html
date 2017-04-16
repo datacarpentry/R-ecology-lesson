@@ -364,7 +364,7 @@ div.tocify {
 <li>Describe what a data frame is.</li>
 <li>Load external data from a .csv file into a data frame in R.</li>
 <li>Summarize the contents of a data frame in R.</li>
-<li>Manipulate categorical data in R</li>
+<li>Manipulate categorical data in R.</li>
 <li>Change how character strings are handled in a data frame.</li>
 </ul>
 </blockquote>
@@ -531,10 +531,10 @@ surveys$species_id          <span class="co"># Result is a vector</span></code><
 <li><p>Create a <code>data.frame</code> (<code>surveys_200</code>) containing only the observations from row 200 of the <code>surveys</code> dataset.</p></li>
 <li><p>Notice how <code>nrow()</code> gave you the number of rows in a <code>data.frame</code>?</p>
 <ul>
-<li>Use that number to pull out just that last row in the data frame</li>
+<li>Use that number to pull out just that last row in the data frame.</li>
 <li>Compare that with what you see as the last row using <code>tail()</code> to make sure it’s meeting expectations.</li>
-<li>Pull out that last row using <code>nrow()</code> instead of the row number</li>
-<li>Create a new data frame object (<code>surveys_last</code>) from that last row&gt;</li>
+<li>Pull out that last row using <code>nrow()</code> instead of the row number.</li>
+<li>Create a new data frame object (<code>surveys_last</code>) from that last row.</li>
 </ul></li>
 <li><p>Use <code>nrow()</code> to extract the row that is in the middle of the data frame. Store the content of this row in an object named <code>surveys_middle</code>.</p></li>
 <li><p>Combine <code>nrow()</code> with the <code>-</code> notation above to reproduce the behavior of <code>head(surveys)</code> keeping just the first through 6th rows of the surveys dataset.</p></li>
@@ -592,7 +592,7 @@ sex <span class="co"># after re-ordering</span></code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## bar plot of the number of females and males captured during the experiment:
 <span class="kw">plot</span>(surveys$sex)</code></pre></div>
 <p><img src="img/R-ecology-unnamed-chunk-21-1.png" width="672" /></p>
-<p>In addition of males and females, there are about 1700 individuals for which the sex information hasn’t been recorded. Additionally, for the these individuals, there is no label to indicate that the information is missing. Let’s rename this label to something more meaningful. Before doing that, we’re going to pull out the data on sex and work with that data, so we’re not modifying the working copy of the data frame:</p>
+<p>In addition to males and females, there are about 1700 individuals for which the sex information hasn’t been recorded. Additionally, for the these individuals, there is no label to indicate that the information is missing. Let’s rename this label to something more meaningful. Before doing that, we’re going to pull out the data on sex and work with that data, so we’re not modifying the working copy of the data frame:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sex &lt;-<span class="st"> </span>surveys$sex
 <span class="kw">head</span>(sex)</code></pre></div>
 <pre><code>#&gt; [1] M M        
@@ -609,7 +609,7 @@ sex <span class="co"># after re-ordering</span></code></pre></div>
 <h3 id="challenge-2">Challenge</h3>
 <ul>
 <li>Rename “F” and “M” to “female” and “male” respectively.</li>
-<li>Now that we have renamed the factor level to “missing”, can you recreate the barplot such that “missing” is last (after “male”)</li>
+<li>Now that we have renamed the factor level to “missing”, can you recreate the barplot such that “missing” is last (after “male”)?</li>
 </ul>
 </blockquote>
 <!---

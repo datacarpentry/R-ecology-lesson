@@ -472,7 +472,7 @@ surveys_hindfoot_half <- surveys %>%
 <span class="st">  </span><span class="kw">filter</span>(!<span class="kw">is.na</span>(weight)) %&gt;%
 <span class="st">  </span><span class="kw">group_by</span>(sex, species_id) %&gt;%
 <span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_weight =</span> <span class="kw">mean</span>(weight))</code></pre></div>
-<p>You may also have noticed that the output from these calls doesn’t run off the screen anymore. That’s because <code>dplyr</code> has changed our <code>data.frame</code> to a <code>tbl_df</code>. The <code>tbl</code> data structure is very similar to a data frame; for our purposes the only difference is that, in addition to displaying the data type of each column under its name, it only prints the first few rows of data and only as many columns as fit on one screen. If you want to display more data, you use the <code>print()</code> function at the end of your chain with the argument <code>n</code> specifying the number of rows to display:</p>
+<p>Here, again, the output from these calls doesn’t run off the screen anymore. Recall that <code>dplyr</code> has changed our <code>data.frame</code> to a <code>tbl_df</code>. If you want to display more data, you can use the <code>print()</code> function at the end of your chain with the argument <code>n</code> specifying the number of rows to display:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys %&gt;%
 <span class="st">  </span><span class="kw">filter</span>(!<span class="kw">is.na</span>(weight)) %&gt;%
 <span class="st">  </span><span class="kw">group_by</span>(sex, species_id) %&gt;%

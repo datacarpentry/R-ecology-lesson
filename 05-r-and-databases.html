@@ -362,7 +362,7 @@ div.tocify {
 <h3 id="learning-objectives">Learning Objectives</h3>
 <p>By the end of this lesson the learner will know how to:</p>
 <ul>
-<li>Access a database from R</li>
+<li>Access a database from R.</li>
 <li>Run SQL queries in R using RSQLite and dplyr.</li>
 <li>Create an SQLite database from existing .csv files.</li>
 </ul>
@@ -390,7 +390,7 @@ div.tocify {
 mammals &lt;-<span class="st"> </span><span class="kw">src_sqlite</span>(<span class="st">&quot;data/portal_mammals.sqlite&quot;</span>)</code></pre></div>
 <p>The <code>src_sqlite()</code> command does not load the data into the R session (as the <code>read.csv()</code> function did). Instead, it merely instructs R to connect to the <code>SQLite</code> database contained in the <code>portal_mammals.sqlite</code> file.</p>
 <p>(You can use the <code>src_mysql()</code>, <code>src_postgres()</code> and <code>src_bigquery()</code> to connect to the other database types supported by <code>dplyr</code>.)</p>
-<p>Let’s take a closer look at the <code>mammals</code> database we just connected to</p>
+<p>Let’s take a closer look at the <code>mammals</code> database we just connected to:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mammals</code></pre></div>
 <pre><code>#&gt; src:  sqlite 3.11.1 [data/portal_mammals.sqlite]
 #&gt; tbls: plots, species, surveys</code></pre>
@@ -451,7 +451,7 @@ surveys %&gt;%
 <li>submits it to the database</li>
 <li>translates the database’s response into an R data frame</li>
 </ol>
-<p>To lift the curtain, we can use <code>dplyr's</code> <code>explain()</code> function to show which SQL commands are actually sent to the database:</p>
+<p>To lift the curtain, we can use <code>dplyr</code>’s <code>explain()</code> function to show which SQL commands are actually sent to the database:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">explain</span>(<span class="kw">head</span>(surveys, <span class="dt">n =</span> <span class="dv">10</span>))</code></pre></div>
 <pre><code>#&gt; &lt;SQL&gt;
 #&gt; SELECT *
@@ -672,7 +672,7 @@ genus_counts <- left_join(surveys, plots) %>%
         <span class="dt">n_genera =</span> <span class="kw">n_distinct</span>(genus)
     ) %&gt;%
 <span class="st">    </span><span class="kw">collect</span>()</code></pre></div>
-<p><code>n_distinct</code>, like the other dplyr functions we have used in this lesson, works not only on database connections but also on regular data frames.</p>
+<p><code>n_distinct</code>, like the other <code>dplyr</code> functions we have used in this lesson, works not only on database connections but also on regular data frames.</p>
 </div>
 <div id="creating-a-new-sqlite-database" class="section level2">
 <h2>Creating a new SQLite database</h2>
@@ -697,7 +697,7 @@ my_db</code></pre></div>
 <h3 id="challenge-2">Challenge</h3>
 <p>Add the remaining species table to the my_db database and run some of your queries from earlier in the lesson to verify that you have faithfully recreated the mammals database.</p>
 </blockquote>
-<p><strong>Note:</strong> In this example, we first loaded all of the data into the R session by reading the three csv files. Because all the data has to flow through R, this is not suitable for very large datasets.</p>
+<p><strong>Note:</strong> In this example, we first loaded all of the data into the R session by reading the three <code>csv</code> files. Because all the data has to flow through R, this is not suitable for very large datasets.</p>
 </div>
 
 <hr/>

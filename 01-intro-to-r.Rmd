@@ -29,7 +29,6 @@ source("setup.R")
 ## Creating objects in R
 
 ```{r, echo=FALSE, purl=TRUE}
-You can get output from R simply by typing math in the console:
 ### Creating objects in R
 ```
 

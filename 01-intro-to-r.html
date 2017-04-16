@@ -373,21 +373,21 @@ div.tocify {
 </ul>
 </blockquote>
 <hr />
-<div id="creating-objects" class="section level2">
-<h2>Creating objects</h2>
-<p>You can get output from R simply by typing in math in the console</p>
+<div id="creating-objects-in-r" class="section level2">
+<h2>Creating objects in R</h2>
+<p>You can get output from R simply by typing math in the console:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">3</span> +<span class="st"> </span><span class="dv">5</span>
 <span class="dv">12</span> /<span class="st"> </span><span class="dv">7</span></code></pre></div>
 <p>However, to do useful and interesting things, we need to assign <em>values</em> to <em>objects</em>. To create an object, we need to give it a name followed by the assignment operator <code>&lt;-</code>, and the value we want to give it:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">weight_kg &lt;-<span class="st"> </span><span class="dv">55</span></code></pre></div>
-<p><code>&lt;-</code> is the assignment operator. It assigns values on the right to objects on the left. So, after executing <code>x &lt;- 3</code>, the value of <code>x</code> is <code>3</code>. The arrow can be read as 3 <strong>goes into</strong> <code>x</code>. For historical reasons, you can also use <code>=</code> for assignments, but not in every context. Because of the <a href="http://blog.revolutionanalytics.com/2008/12/use-equals-or-arrow-for-assignment.html">slight</a> <a href="https://web.archive.org/web/20130610005305/https://stat.ethz.ch/pipermail/r-help/2009-March/191462.html">differences</a> in syntax, it is good practice to use always <code>&lt;-</code> for assignments.</p>
+<p><code>&lt;-</code> is the assignment operator. It assigns values on the right to objects on the left. So, after executing <code>x &lt;- 3</code>, the value of <code>x</code> is <code>3</code>. The arrow can be read as 3 <strong>goes into</strong> <code>x</code>. For historical reasons, you can also use <code>=</code> for assignments, but not in every context. Because of the <a href="http://blog.revolutionanalytics.com/2008/12/use-equals-or-arrow-for-assignment.html">slight</a> <a href="https://web.archive.org/web/20130610005305/https://stat.ethz.ch/pipermail/r-help/2009-March/191462.html">differences</a> in syntax, it is good practice to always use <code>&lt;-</code> for assignments.</p>
 <p>In RStudio, typing <kbd>Alt</kbd> + <kbd>-</kbd> (push <kbd>Alt</kbd> at the same time as the <kbd>-</kbd> key) will write <code>&lt;-</code> in a single keystroke.</p>
 <p>Objects can be given any name such as <code>x</code>, <code>current_temperature</code>, or <code>subject_id</code>. You want your object names to be explicit and not too long. They cannot start with a number (<code>2x</code> is not valid, but <code>x2</code> is). R is case sensitive (e.g., <code>weight_kg</code> is different from <code>Weight_kg</code>). There are some names that cannot be used because they are the names of fundamental functions in R (e.g., <code>if</code>, <code>else</code>, <code>for</code>, see <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/Reserved.html">here</a> for a complete list). In general, even if it’s allowed, it’s best to not use other function names (e.g., <code>c</code>, <code>T</code>, <code>mean</code>, <code>data</code>, <code>df</code>, <code>weights</code>). If in doubt, check the help to see if the name is already in use. It’s also best to avoid dots (<code>.</code>) within a variable name as in <code>my.dataset</code>. There are many functions in R with dots in their names for historical reasons, but because dots have a special meaning in R (for methods) and other programming languages, it’s best to avoid them. It is also recommended to use nouns for variable names, and verbs for function names. It’s important to be consistent in the styling of your code (where you put spaces, how you name variables, etc.). Using a consistent coding style makes your code clearer to read for your future self and your collaborators. In R, two popular style guides are <a href="http://adv-r.had.co.nz/Style.html">Hadley Wickham’s</a> and <a href="https://google.github.io/styleguide/Rguide.xml">Google’s</a> (this <a href="http://jef.works/R-style-guide/">one</a> is also comprehensive).</p>
-<p>When assigning a value to an object, R does not print anything. You can force to print the value by using parentheses or by typing the name:</p>
+<p>When assigning a value to an object, R does not print anything. You can force R to print the value by using parentheses or by typing the object name:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">weight_kg &lt;-<span class="st"> </span><span class="dv">55</span>    <span class="co"># doesn&#39;t print anything</span>
 (weight_kg &lt;-<span class="st"> </span><span class="dv">55</span>)  <span class="co"># but putting parenthesis around the call prints the value of `weight_kg`</span>
 weight_kg          <span class="co"># and so does typing the name of the object</span></code></pre></div>
-<p>Now that R has <code>weight_kg</code> in memory, we can do arithmetic with it. For instance, we may want to convert this weight to pounds (weight in pounds is 2.2 times the weight in kg):</p>
+<p>Now that R has <code>weight_kg</code> in memory, we can do arithmetic with it. For instance, we may want to convert this weight into pounds (weight in pounds is 2.2 times the weight in kg):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="fl">2.2</span> *<span class="st"> </span>weight_kg</code></pre></div>
 <p>We can also change a variable’s value by assigning it a new one:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">weight_kg &lt;-<span class="st"> </span><span class="fl">57.5</span>
@@ -396,11 +396,10 @@ weight_kg          <span class="co"># and so does typing the name of the object<
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">weight_lb &lt;-<span class="st"> </span><span class="fl">2.2</span> *<span class="st"> </span>weight_kg</code></pre></div>
 <p>and then change <code>weight_kg</code> to 100.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">weight_kg &lt;-<span class="st"> </span><span class="dv">100</span></code></pre></div>
-<p>What do you think is the current content of the object <code>weight_lb</code>? 126.5 or 200?</p>
-<blockquote>
-<h3 id="comments">Comments</h3>
+<p>What do you think is the current content of the object <code>weight_lb</code>? 126.5 or 220?</p>
+<div id="comments" class="section level3">
+<h3>Comments</h3>
 <p>The comment character in R is <code>#</code>, anything to the right of a <code>#</code> in a script will be ignored by R. It is useful to leave notes, and explanations in your scripts. RStudio makes it easy to comment or uncomment a paragraph: after selecting the lines you want to comment, press at the same time on your keyboard <kbd>Crtl</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd>.</p>
-</blockquote>
 <blockquote>
 <h3 id="challenge">Challenge</h3>
 <p>What are the values after each statement in the following?</p>
@@ -410,6 +409,7 @@ mass &lt;-<span class="st"> </span>mass *<span class="st"> </span><span class="f
 age  &lt;-<span class="st"> </span>age -<span class="st"> </span><span class="dv">20</span>        <span class="co"># age?</span>
 mass_index &lt;-<span class="st"> </span>mass/age  <span class="co"># mass_index?</span></code></pre></div>
 </blockquote>
+</div>
 <div id="functions-and-their-arguments" class="section level3">
 <h3>Functions and their arguments</h3>
 <p>Functions are “canned scripts” that automate more complicated sets of commands including operations assignments, etc. Many functions are predefined, or can be made available by importing R <em>packages</em> (more on that later). A function usually gets one or more inputs called <em>arguments</em>. Functions often (but not always) return a <em>value</em>. A typical example would be the function <code>sqrt()</code>. The input (the argument) must be a number, and the return value (in fact, the output) is the square root of that number. Executing a function (‘running it’) is called <em>calling</em> the function. An example of a function call is:</p>
@@ -435,15 +435,15 @@ mass_index &lt;-<span class="st"> </span>mass/age  <span class="co"># mass_index
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">round</span>(<span class="dt">digits=</span><span class="dv">2</span>, <span class="dt">x=</span><span class="fl">3.14159</span>)</code></pre></div>
 <pre><code>#&gt; [1] 3.14</code></pre>
 <p>It’s good practice to put the non-optional arguments (like the number you’re rounding) first in your function call, and to specify the names of all optional arguments. If you don’t, someone reading your code might have to look up the definition of a function with unfamiliar arguments to understand what you’re doing.</p>
-<blockquote>
-<h3 id="call-out">Call out</h3>
-<p>What are called <code>objects</code> in <code>R</code> are known as <code>variables</code> in many other programming languages. Depending on the context <code>object</code> and <code>variable</code> can have drastically different meanings. However, in this lesson the two words are used synonymously. For more information see: <a href="https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Objects" class="uri">https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Objects</a></p>
-</blockquote>
+</div>
+<div id="objects-vs.variables" class="section level3">
+<h3>Objects vs. variables</h3>
+<p>What are known as <code>objects</code> in <code>R</code> are known as <code>variables</code> in many other programming languages. Depending on the context, <code>object</code> and <code>variable</code> can have drastically different meanings. However, in this lesson, the two words are used synonymously. For more information see: <a href="https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Objects" class="uri">https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Objects</a></p>
 </div>
 </div>
 <div id="vectors-and-data-types" class="section level2">
 <h2>Vectors and data types</h2>
-<p>A vector is the most common and basic data structure in R, and is pretty much the workhorse of R. It’s a group of values, mainly either numbers or characters. You can assign this list of values to a variable, just like you would for one item. (In fact the basic variables we used previously are simply vectors with just a single element.)</p>
+<p>A vector is the most common and basic data structure in R, and can be considered the workhorse of R. It’s a group of values, mainly either numbers or characters. You can assign this list of values to a variable, just like you would for one item. (In fact, the basic variables we used previously are simply vectors with just a single element.)</p>
 <p>For example we can create a vector that contains 4 animal weights:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">weight_g &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">65</span>, <span class="dv">82</span>)
 weight_g</code></pre></div>
@@ -461,10 +461,10 @@ animals</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(weight_g)
 <span class="kw">str</span>(animals)</code></pre></div>
 <p>You can add elements to your vector by using the <code>c()</code> function:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">weight_g &lt;-<span class="st"> </span><span class="kw">c</span>(weight_g, <span class="dv">90</span>) <span class="co"># adding at the end of the vector</span>
-weight_g &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">30</span>, weight_g) <span class="co"># adding at the beginning of the vector</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">weight_g &lt;-<span class="st"> </span><span class="kw">c</span>(weight_g, <span class="dv">90</span>) <span class="co"># add to the end of the vector</span>
+weight_g &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">30</span>, weight_g) <span class="co"># add to the beginning of the vector</span>
 weight_g</code></pre></div>
-<p>In the first line, what happens is that we take the original vector <code>weight_g</code>, adding the value <code>90</code> to the end of it, and saving the result back into <code>weight_g</code>. Then we add the value <code>30</code> to the beginning, again saving the result back into <code>weight_g</code>.</p>
+<p>In the first line, we take the original vector <code>weight_g</code>, add the value <code>90</code> to the end of it, and save the result back into <code>weight_g</code>. Then we add the value <code>30</code> to the beginning, again saving the result back into <code>weight_g</code>.</p>
 <p>We can do this over and over again to grow a vector, or assemble a dataset. As we program, this may be useful to add results that we are collecting or calculating.</p>
 <p>We just saw 2 of the 6 <strong>atomic vector</strong> types that R uses: <code>&quot;character&quot;</code> and <code>&quot;numeric&quot;</code>. These are the basic building blocks that all R objects are built from. The other 4 are:</p>
 <ul>
@@ -505,10 +505,10 @@ animals[<span class="dv">2</span>]</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">more_animals &lt;-<span class="st"> </span>animals[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">4</span>)]
 more_animals</code></pre></div>
 <pre><code>#&gt; [1] &quot;mouse&quot; &quot;rat&quot;   &quot;dog&quot;   &quot;rat&quot;   &quot;mouse&quot; &quot;cat&quot;</code></pre>
-<p>R indexes start at 1. Programming languages like Fortran, MATLAB, and R start counting at 1, because that’s what human beings typically do. Languages in the C family (including C++, Java, Perl, and Python) count from 0 because that’s simpler for computers to do.</p>
+<p>R indices start at 1. Programming languages like Fortran, MATLAB, and R start counting at 1, because that’s what human beings typically do. Languages in the C family (including C++, Java, Perl, and Python) count from 0 because that’s simpler for computers to do.</p>
 <div id="conditional-subsetting" class="section level3">
 <h3>Conditional subsetting</h3>
-<p>Another common way of subsetting is by using a logical vector: <code>TRUE</code> will select the element with the same index, while <code>FALSE</code> will not:</p>
+<p>Another common way of subsetting is by using a logical vector. <code>TRUE</code> will select the element with the same index, while <code>FALSE</code> will not:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">weight_g &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">21</span>, <span class="dv">34</span>, <span class="dv">39</span>, <span class="dv">54</span>, <span class="dv">55</span>)
 weight_g[<span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>)]</code></pre></div>
 <pre><code>#&gt; [1] 21 39 54</code></pre>

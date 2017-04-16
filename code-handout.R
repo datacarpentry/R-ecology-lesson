@@ -2,7 +2,6 @@
 
 
 ### Creating objects in R
-
 ### Challenge
 ##
 ## What are the values after each statement in the following?
@@ -36,7 +35,6 @@
 ## ## whereby some types get preferentially coerced into other types. Can
 ## ## you draw a diagram that represents the hierarchy of how these data
 ## ## types are coerced?
-## 
 ### Challenge (optional)
 ##
 ## * Can you figure out why `"four" > "five"` returns `TRUE`?
