@@ -23,7 +23,7 @@ if (file.exists("portalR.sqlite")) file.remove("portalR.sqlite")
 >
 >  By the end of this lesson the learner will know how to:
 >
-> * Access a database from R
+> * Access a database from R.
 > * Run SQL queries in R using RSQLite and dplyr.
 > * Create an SQLite database from existing .csv files.
 
@@ -89,7 +89,7 @@ the `SQLite` database contained in the `portal_mammals.sqlite` file.
 (You can use the `src_mysql()`, `src_postgres()` and `src_bigquery()` to connect
 to the other database types supported by `dplyr`.)
 
-Let's take a closer look at the `mammals` database we just connected to
+Let's take a closer look at the `mammals` database we just connected to:
 
 ```{r tables, results="markup"}
 mammals
@@ -187,7 +187,7 @@ Behind the scenes, `dplyr`:
 2. submits it to the database
 3. translates the database's response into an R data frame
 
-To lift the curtain, we can use `dplyr's` `explain()` function to show which SQL
+To lift the curtain, we can use `dplyr`'s `explain()` function to show which SQL
 commands are actually sent to the database:
 
 ```{r explain, message=TRUE, results='hide'}
@@ -418,7 +418,7 @@ unique_genera <- left_join(surveys, plots) %>%
 
 ```
 
-`n_distinct`, like the other dplyr functions we have used in this lesson, works
+`n_distinct`, like the other `dplyr` functions we have used in this lesson, works
 not only on database connections but also on regular data frames.
 
 
@@ -473,5 +473,5 @@ from flat files!
 > faithfully recreated the mammals database.
 
 **Note:** In this example, we first loaded all of the data into the R session by
-reading the three csv files. Because all the data has to flow through R,
+reading the three `csv` files. Because all the data has to flow through R,
 this is not suitable for very large datasets.

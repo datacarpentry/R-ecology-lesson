@@ -274,12 +274,9 @@ surveys %>%
   summarize(mean_weight = mean(weight))
 ```
 
-You may also have noticed that the output from these calls doesn't run off the
-screen anymore. That's because `dplyr` has changed our `data.frame` to a
-`tbl_df`. The `tbl` data structure is very similar to a data frame; for our
-purposes the only difference is that, in addition to displaying the data type
-of each column under its name, it only prints the first few rows of data and
-only as many columns as fit on one screen. If you want to display more data, you
+Here, again, the output from these calls doesn't run off the
+screen anymore. Recall that `dplyr` has changed our `data.frame` to a
+`tbl_df`. If you want to display more data, you can 
 use the `print()` function at the end of your chain with the argument `n`
 specifying the number of rows to display:
 

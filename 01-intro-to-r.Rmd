@@ -54,7 +54,7 @@ be read as 3 **goes into** `x`.  For historical reasons, you can also use `=`
 for assignments, but not in every context. Because of
 the
 [slight](http://blog.revolutionanalytics.com/2008/12/use-equals-or-arrow-for-assignment.html) [differences](https://web.archive.org/web/20130610005305/https://stat.ethz.ch/pipermail/r-help/2009-March/191462.html) in
-syntax, it is good practice to use always `<-` for assignments.
+syntax, it is good practice to always use `<-` for assignments.
 
 In RStudio, typing <kbd>Alt</kbd> + <kbd>-</kbd> (push <kbd>Alt</kbd> at the
 same time as the <kbd>-</kbd> key) will write ` <- ` in a single keystroke.
@@ -83,7 +83,7 @@ are [Hadley Wickham's](http://adv-r.had.co.nz/Style.html)
 and [Google's](https://google.github.io/styleguide/Rguide.xml)
 (this [one](http://jef.works/R-style-guide/) is also comprehensive).
 
-When assigning a value to an object, R does not print anything. You can force to
+When assigning a value to an object, R does not print anything. You can force R to
 print the value by using parentheses or by typing the name:
 
 ```{r, purl=FALSE}
@@ -407,7 +407,7 @@ more_animals <- animals[c(1, 2, 3, 2, 1, 4)]
 more_animals
 ```
 
-R indexes start at 1. Programming languages like Fortran, MATLAB, and R start
+R indices start at 1. Programming languages like Fortran, MATLAB, and R start
 counting at 1, because that's what human beings typically do. Languages in the C
 family (including C++, Java, Perl, and Python) count from 0 because that's
 simpler for computers to do.

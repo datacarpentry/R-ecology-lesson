@@ -15,7 +15,7 @@ source("setup.R")
 > * Describe what a data frame is.
 > * Load external data from a .csv file into a data frame in R.
 > * Summarize the contents of a data frame in R.
-> * Manipulate categorical data in R
+> * Manipulate categorical data in R.
 > * Change how character strings are handled in a data frame.
 
 ------------
@@ -209,11 +209,11 @@ feature to get the full and correct column name.
 >
 > 2. Notice how `nrow()` gave you the number of rows in a `data.frame`?
 >
->      * Use that number to pull out just that last row in the data frame
+>      * Use that number to pull out just that last row in the data frame.
 >      * Compare that with what you see as the last row using `tail()` to make
 >        sure it's meeting expectations.
->      * Pull out that last row using `nrow()` instead of the row number
->      * Create a new data frame object (`surveys_last`) from that last row>
+>      * Pull out that last row using `nrow()` instead of the row number.
+>      * Create a new data frame object (`surveys_last`) from that last row.
 >
 > 3. Use `nrow()` to extract the row that is in the middle of the data
 >    frame. Store the content of this row in an object named `surveys_middle`.
@@ -355,7 +355,7 @@ the experiment:
 plot(surveys$sex)
 ```
 
-In addition of males and females, there are about 1700 individuals for which the
+In addition to males and females, there are about 1700 individuals for which the
 sex information hasn't been recorded. Additionally, for the these individuals,
 there is no label to indicate that the information is missing. Let's rename this
 label to something more meaningful. Before doing that, we're going to pull out
@@ -376,7 +376,7 @@ head(sex)
 >
 > * Rename "F" and "M" to "female" and "male" respectively.
 > * Now that we have renamed the factor level to "missing", can you recreate the
->  barplot such that "missing" is last (after "male")
+>  barplot such that "missing" is last (after "male")?
 
 
 ```{r wrong-order, results='show', echo=FALSE, purl=TRUE}
