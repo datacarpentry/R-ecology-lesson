@@ -115,7 +115,7 @@ plot(surveys$sex)
 ##                                has_kangaroo=c(FALSE, FALSE, FALSE, 1))
 
 
-## The dplyr lesson
+### Manipulating and analyzing data with dplyr
 ## ## Pipes Challenge:
 ## ##  Using pipes, subset the data to include individuals collected
 ## ##  before 1995, and retain the columns `year`, `sex`, and `weight.`
@@ -165,7 +165,7 @@ plot(surveys$sex)
 ## 
 
 
-## The ggplot2 lesson
+### Data Visualization with ggplot2
 ## install.packages("hexbin")
 ## surveys_plot +
 ##  geom_hex()
@@ -198,5 +198,79 @@ plot(surveys$sex)
 ## ##  ggplot2 cheat sheet for inspiration:
 ## ##  https://www.rstudio.com/wp-content/uploads/2015/08/ggplot2-cheatsheet.pdf
 ## 
+
+
+## SQL databases and R
+library(dplyr)
+mammals <- src_sqlite("data/portal_mammals.sqlite")
+mammals
+tbl(mammals, sql("SELECT year, species_id, plot_id FROM surveys"))
+surveys <- tbl(mammals, "surveys")
+surveys %>%
+    select(year, species_id, plot_id)
+
+### Challenge
+## Write a query that returns the number of rodents observed in each
+## plot in each year.
+
+##  Hint: Connect to the species table and write a query that joins
+##  the species and survey tables together to exclude all
+##  non-rodents. The query should return counts of rodents by year.
+
+## Optional: Write a query in SQL that will produce the same
+## result. You can join multiple tables together using the following
+## syntax where foreign key refers to your unique id (e.g.,
+## `species_id`):
+
+## SELECT table.col, table.col
+## FROM table1 JOIN table2
+## ON table1.key = table2.key
+## JOIN table3 ON table2.key = table3.key
+
+## with dplyr syntax
+species <- tbl(mammals, "species")
+
+left_join(surveys, species) %>%
+  filter(taxa == "Rodent") %>%
+  group_by(taxa, year) %>%
+  tally %>%
+  collect()
+
+## with SQL syntax
+query <- paste("
+SELECT a.year, b.taxa,count(*) as count
+FROM surveys a
+JOIN species b
+ON a.species_id = b.species_id
+AND b.taxa = 'Rodent'
+GROUP BY a.year, b.taxa",
+sep = "" )
+
+tbl(mammals, sql(query))
+
+### Challenge
+
+## Write a query that returns the total number of rodents in each
+## genus caught in the different plot types.
+
+##  Hint: Write a query that joins the species, plot, and survey
+##  tables together.  The query should return counts of genus by plot
+##  type.
+genus_counts <- left_join(surveys, plots) %>%
+  left_join(species) %>%
+  group_by(plot_type, genus) %>%
+  tally %>%
+  collect()
+species <- read.csv("data/species.csv")
+surveys <- read.csv("data/surveys.csv")
+plots <- read.csv("data/plots.csv")
+my_db_file <- "portal-database.sqlite"
+my_db <- src_sqlite(my_db_file, create = TRUE)
+my_db
+### Challenge
+
+## Add the remaining species table to the my_db database and run some
+## of your queries from earlier in the lesson to verify that you
+## have faithfully recreated the mammals database.
 
 
