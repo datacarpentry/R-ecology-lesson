@@ -4,9 +4,6 @@ author: Data Carpentry contributors
 minutes: 60
 ---
 
-```{r, echo=FALSE, purl=FALSE}
-knitr::opts_chunk$set(fig.keep='last')
-```
 
 ```{r setup, echo=FALSE, purl=FALSE}
 source("setup.R")
@@ -14,7 +11,7 @@ surveys_complete <- read.csv(file = "data_output/surveys_complete.csv")
 ```
 
 ```{r, echo=FALSE, purl=TRUE}
-## The ggplot2 lesson
+### Data Visualization with ggplot2
 ```
 
 
@@ -33,7 +30,7 @@ surveys_complete <- read.csv(file = "data_output/surveys_complete.csv")
 
 We start by loading the required packages.
 
-```{r, message=FALSE, purl=FALSE}
+```{r load-package, message=FALSE, purl=FALSE}
 # plotting package
 library(ggplot2)
 # modern data frame manipulations
@@ -43,10 +40,10 @@ library(dplyr)
 ## Plotting with ggplot2
 
 `ggplot2` is a plotting package that makes it simple to create complex plots
-from data in a data frame. It provides a more programmatic interface for 
-specifying what variables to plot, how they are displayed, and general visual 
-properties, so we only need minimal changes if the underlying data change or if 
-we decide to change from a bar plot to a scatterplot. This helps in creating 
+from data in a data frame. It provides a more programmatic interface for
+specifying what variables to plot, how they are displayed, and general visual
+properties, so we only need minimal changes if the underlying data change or if
+we decide to change from a bar plot to a scatterplot. This helps in creating
 publication quality plots with minimal amounts of adjustments and tweaking.
 
 ggplot graphics are built step by step by adding new elements.
@@ -382,7 +379,7 @@ a placeholder that indicates only one row or column).
 Let's modify the previous plot to compare how the weights of male and females
 has changed through time:
 
-```{r average-weight-time-facet_sex_rows, purl=FALSE}
+```{r average-weight-time-facet-sex-rows, purl=FALSE}
 # One column, facet by rows
 yearly_sex_weight <- surveys_complete %>%
     group_by(year, sex, species_id) %>%
@@ -392,7 +389,7 @@ ggplot(data = yearly_sex_weight, aes(x=year, y=avg_weight, color = species_id, g
     facet_grid(sex ~ .)
 ```
 
-```{r average-weight-time-facet_sex_columns, purl=FALSE}
+```{r average-weight-time-facet-sex-columns, purl=FALSE}
 # One row, facet by column
 ggplot(data = yearly_sex_weight, aes(x=year, y=avg_weight, color = species_id, group = species_id)) +
     geom_line() +
@@ -407,7 +404,7 @@ think of ways you could improve the plot.
 Now, let's change names of axes to something more informative than 'year'
 and 'n' and add a title to the figure:
 
-```{r number_species_year_with_right_labels, purl=FALSE}
+```{r number-species-year-with-right-labels, purl=FALSE}
 ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex, group = sex)) +
     geom_line() +
     facet_wrap(~ species_id) +
@@ -420,7 +417,7 @@ ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex, group = sex))
 The axes have more informative names, but their readability can be improved by
 increasing the font size. While we're at it, we'll also change the font family:
 
-```{r number_species_year_with_right_labels_xfont_size, purl=FALSE}
+```{r number-species-year-with-right-labels-xfont-size, purl=FALSE}
 ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex, group = sex)) +
     geom_line() +
     facet_wrap(~ species_id) +
@@ -437,7 +434,7 @@ vertically and horizontally so they don't overlap. You can use a 90 degree
 angle, or experiment to find the appropriate angle for diagonally oriented
 labels:
 
-```{r number_species_year_with_theme, purl=FALSE}
+```{r number-species-year-with-theme, purl=FALSE}
 ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex, group = sex)) +
     geom_line() +
     facet_wrap(~ species_id) +
@@ -454,7 +451,7 @@ If you like the changes you created better than the default theme, you can save 
 an object to be able to easily apply them to other plots you may create:
 
 
-```{r number_species_year_with_right_labels_xfont_orientation, purl=FALSE}
+```{r number-species-year-with-right-labels-xfont-orientation, purl=FALSE}
 arial_grey_theme <- theme(axis.text.x = element_text(colour="grey20", size=12, angle=90, hjust=.5, vjust=.5),
                           axis.text.y = element_text(colour="grey20", size=12),
                           text=element_text(size=16, family="Arial"))

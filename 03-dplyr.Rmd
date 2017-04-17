@@ -9,7 +9,7 @@ surveys <- read.csv("data/portal_data_joined.csv")
 ```
 
 ```{r, echo=FALSE, purl=TRUE}
-## The dplyr lesson
+### Manipulating and analyzing data with dplyr
 ```
 
 ------------
@@ -276,7 +276,7 @@ surveys %>%
 
 Here, again, the output from these calls doesn't run off the
 screen anymore. Recall that `dplyr` has changed our `data.frame` to a
-`tbl_df`. If you want to display more data, you can 
+`tbl_df`. If you want to display more data, you can
 use the `print()` function at the end of your chain with the argument `n`
 specifying the number of rows to display:
 

@@ -6,7 +6,7 @@ author: François Michonneau & Auriel Fournier (Lesson Maintainers)
 <p></p>
 
 <div style="text-align: center; margin-top: 30px; margin-bottom: 30px;">
-![](./img/DC_logo_vision.png)
+![](./img/DC-logo-vision.png)
 </div>
 
 <p></p>
