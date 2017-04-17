@@ -28,4 +28,4 @@ if (!file.exists("data/portal_mammals.sqlite")) {
 library(knitr)
 library(methods)
 knitr::opts_chunk$set(results='hide', fig.path='img/R-ecology-',
-                      comment = "#>")
+                      comment = "#>", purl = FALSE, fig.keep='last')
