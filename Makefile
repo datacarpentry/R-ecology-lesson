@@ -1,3 +1,6 @@
+# RMarkdown files
+RMD_SRC = $(wildcard *.Rmd)
+RMD_DST = $(patsubst %.Rmd,%.md,$(RMD_SRC))
 
 all: pages code-handout.R
 
@@ -21,12 +24,15 @@ clean-skeleton:
 	-rm skeleton-*-*.R
 
 clean-md:
-	-rm *-*.md
+	@rm -rf ${RMD_DST}
 
 clean-html:
 	-rm *-*.html
 
-clean: clean-skeleton clean-html clean-md
+clean-img:
+	@find . -path './img/R-ecology-*.png' -exec rm {} \;
+
+clean: clean-skeleton clean-html clean-md clean-img
 
 clean-data:
 	-rm -rf data
