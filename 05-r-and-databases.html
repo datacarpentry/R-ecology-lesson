@@ -386,8 +386,16 @@ div.tocify {
 <div id="connecting-to-databases-with-dplyr" class="section level2">
 <h2>Connecting to databases with dplyr</h2>
 <p>We can point R to this database with <code>dplyr's</code> <code>src_sqlite()</code> command.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
-mammals &lt;-<span class="st"> </span><span class="kw">src_sqlite</span>(<span class="st">&quot;data/portal_mammals.sqlite&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)</code></pre></div>
+<pre><code>#&gt; 
+#&gt; Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>#&gt; The following objects are masked from &#39;package:stats&#39;:
+#&gt; 
+#&gt;     filter, lag</code></pre>
+<pre><code>#&gt; The following objects are masked from &#39;package:base&#39;:
+#&gt; 
+#&gt;     intersect, setdiff, setequal, union</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mammals &lt;-<span class="st"> </span><span class="kw">src_sqlite</span>(<span class="st">&quot;data/portal_mammals.sqlite&quot;</span>)</code></pre></div>
 <p>The <code>src_sqlite()</code> command does not load the data into the R session (as the <code>read.csv()</code> function did). Instead, it merely instructs R to connect to the <code>SQLite</code> database contained in the <code>portal_mammals.sqlite</code> file.</p>
 <p>(You can use the <code>src_mysql()</code>, <code>src_postgres()</code> and <code>src_bigquery()</code> to connect to the other database types supported by <code>dplyr</code>.)</p>
 <p>Let’s take a closer look at the <code>mammals</code> database we just connected to:</p>
@@ -598,6 +606,7 @@ plots</code></pre></div>
 <span class="st">  </span><span class="kw">filter</span>(plot_id ==<span class="st"> </span><span class="dv">1</span>) %&gt;%
 <span class="st">  </span><span class="kw">inner_join</span>(surveys) %&gt;%
 <span class="st">  </span><span class="kw">collect</span>()</code></pre></div>
+<pre><code>#&gt; Joining, by = &quot;plot_id&quot;</code></pre>
 <pre><code>#&gt; # A tibble: 1,995 × 10
 #&gt;    plot_id         plot_type record_id month   day  year species_id   sex
 #&gt;      &lt;int&gt;             &lt;chr&gt;     &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;      &lt;chr&gt; &lt;chr&gt;
@@ -618,7 +627,7 @@ plots</code></pre></div>
 <h3 id="challenge">Challenge</h3>
 <p>Write a query that returns the number of rodents observed in each plot in each year.</p>
 <p>Hint: Connect to the species table and write a query that joins the species and survey tables together to exclude all non-rodents. The query should return counts of rodents by year.</p>
-<p>Optional: Write a query in SQL that will produce the same result. You can join multiple tables together uusing the following syntax where foreign key refers to your unique id (e.g., <code>species_id</code>):</p>
+<p>Optional: Write a query in SQL that will produce the same result. You can join multiple tables together using the following syntax where foreign key refers to your unique id (e.g., <code>species_id</code>):</p>
 <div class="sourceCode"><pre class="sourceCode sql"><code class="sourceCode sql"><span class="kw">SELECT</span> table.col, table.col
 <span class="kw">FROM</span> table1 <span class="kw">JOIN</span> table2
 <span class="kw">ON</span> table1.key = table2.key
@@ -635,7 +644,13 @@ left_join(surveys, species) %>%
   group_by(taxa, year) %>%
   tally %>%
   collect()
+```
 
+```
+#> Joining, by = "species_id"
+```
+
+```r
 ## with SQL syntax
 query <- paste("
 SELECT a.year, b.taxa,count(*) as count
@@ -663,6 +678,14 @@ genus_counts <- left_join(surveys, plots) %>%
   tally %>%
   collect()
 ```
+
+```
+#> Joining, by = "plot_id"
+```
+
+```
+#> Joining, by = "species_id"
+```
 --->
 <p>This is useful if we are interested in estimating the number of individuals belonging to each genus found in each plot type. But what if we were interested in the number of genera found in each plot type? Using <code>tally()</code> gives the number of individuals, instead we need to use <code>n_distinct()</code> to count the number of unique values found in a column.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">unique_genera &lt;-<span class="st"> </span><span class="kw">left_join</span>(surveys, plots) %&gt;%
@@ -672,6 +695,8 @@ genus_counts <- left_join(surveys, plots) %>%
         <span class="dt">n_genera =</span> <span class="kw">n_distinct</span>(genus)
     ) %&gt;%
 <span class="st">    </span><span class="kw">collect</span>()</code></pre></div>
+<pre><code>#&gt; Joining, by = &quot;plot_id&quot;</code></pre>
+<pre><code>#&gt; Joining, by = &quot;species_id&quot;</code></pre>
 <p><code>n_distinct</code>, like the other <code>dplyr</code> functions we have used in this lesson, works not only on database connections but also on regular data frames.</p>
 </div>
 <div id="creating-a-new-sqlite-database" class="section level2">
@@ -682,11 +707,11 @@ surveys &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span cla
 plots &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/plots.csv&quot;</span>)</code></pre></div>
 <p>Creating a new SQLite database with <code>dplyr</code> is easy. You can re-use the same command we used above to open an existing <code>.sqlite</code> file. The <code>create = TRUE</code> argument instructs R to create a new, empty database instead.</p>
 <p><strong>Caution:</strong> When <code>create = TRUE</code> is added, any existing database at the same location is overwritten <em>without warning</em>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">myDB &lt;-<span class="st"> &quot;portalR.sqlite&quot;</span>
-my_db &lt;-<span class="st"> </span><span class="kw">src_sqlite</span>(myDB, <span class="dt">create =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_db_file &lt;-<span class="st"> &quot;portal-database.sqlite&quot;</span>
+my_db &lt;-<span class="st"> </span><span class="kw">src_sqlite</span>(my_db_file, <span class="dt">create =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <p>Currently, our new databse is empty, it doesn’t contain any tables:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_db</code></pre></div>
-<pre><code>#&gt; src:  sqlite 3.11.1 [portalR.sqlite]
+<pre><code>#&gt; src:  sqlite 3.11.1 [portal-database.sqlite]
 #&gt; tbls:</code></pre>
 <p>To add tables, we copy the existing data.frames into the database one by one:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">copy_to</span>(my_db, surveys)
@@ -695,7 +720,7 @@ my_db</code></pre></div>
 <p>If you check the location of our database you’ll see that data is automatically being written to disk. R and <code>dplyr</code> not only provide easy ways to query existing databases, they also allows you to easily create your own databases from flat files!</p>
 <blockquote>
 <h3 id="challenge-2">Challenge</h3>
-<p>Add the remaining species table to the my_db database and run some of your queries from earlier in the lesson to verify that you have faithfully recreated the mammals database.</p>
+<p>Add the remaining species table to the <code>my_db</code> database and run some of your queries from earlier in the lesson to verify that you have faithfully recreated the mammals database.</p>
 </blockquote>
 <p><strong>Note:</strong> In this example, we first loaded all of the data into the R session by reading the three <code>csv</code> files. Because all the data has to flow through R, this is not suitable for very large datasets.</p>
 </div>

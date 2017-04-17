@@ -555,12 +555,12 @@ yearly_sex_weight &lt;-<span class="st"> </span>surveys_complete %&gt;%
 <span class="kw">ggplot</span>(<span class="dt">data =</span> yearly_sex_weight, <span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>avg_weight, <span class="dt">color =</span> species_id, <span class="dt">group =</span> species_id)) +
 <span class="st">    </span><span class="kw">geom_line</span>() +
 <span class="st">    </span><span class="kw">facet_grid</span>(sex ~<span class="st"> </span>.)</code></pre></div>
-<p><img src="img/R-ecology-average-weight-time-facet_sex_rows-1.png" width="672" /></p>
+<p><img src="img/R-ecology-average-weight-time-facet-sex-rows-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># One row, facet by column</span>
 <span class="kw">ggplot</span>(<span class="dt">data =</span> yearly_sex_weight, <span class="kw">aes</span>(<span class="dt">x=</span>year, <span class="dt">y=</span>avg_weight, <span class="dt">color =</span> species_id, <span class="dt">group =</span> species_id)) +
 <span class="st">    </span><span class="kw">geom_line</span>() +
 <span class="st">    </span><span class="kw">facet_grid</span>(. ~<span class="st"> </span>sex)</code></pre></div>
-<p><img src="img/R-ecology-average-weight-time-facet_sex_columns-1.png" width="672" /></p>
+<p><img src="img/R-ecology-average-weight-time-facet-sex-columns-1.png" width="672" /></p>
 </div>
 <div id="customization" class="section level2">
 <h2>Customization</h2>
@@ -573,7 +573,7 @@ yearly_sex_weight &lt;-<span class="st"> </span>surveys_complete %&gt;%
          <span class="dt">x =</span> <span class="st">&#39;Year of observation&#39;</span>,
          <span class="dt">y =</span> <span class="st">&#39;Number of species&#39;</span>) +
 <span class="st">    </span><span class="kw">theme_bw</span>()</code></pre></div>
-<p><img src="img/R-ecology-number_species_year_with_right_labels-1.png" width="672" /></p>
+<p><img src="img/R-ecology-number-species-year-with-right-labels-1.png" width="672" /></p>
 <p>The axes have more informative names, but their readability can be improved by increasing the font size. While we’re at it, we’ll also change the font family:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> yearly_sex_counts, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> n, <span class="dt">color =</span> sex, <span class="dt">group =</span> sex)) +
 <span class="st">    </span><span class="kw">geom_line</span>() +
@@ -583,7 +583,7 @@ yearly_sex_weight &lt;-<span class="st"> </span>surveys_complete %&gt;%
         <span class="dt">y =</span> <span class="st">&#39;Number of species&#39;</span>) +
 <span class="st">    </span><span class="kw">theme_bw</span>() +
 <span class="st">    </span><span class="kw">theme</span>(<span class="dt">text=</span><span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">16</span>, <span class="dt">family=</span><span class="st">&quot;Arial&quot;</span>))</code></pre></div>
-<p><img src="img/R-ecology-number_species_year_with_right_labels_xfont_size-1.png" width="672" /></p>
+<p><img src="img/R-ecology-number-species-year-with-right-labels-xfont-size-1.png" width="672" /></p>
 <p>After our manipulations, you may notice that the values on the x-axis are still not properly readable. Let’s change the orientation of the labels and adjust them vertically and horizontally so they don’t overlap. You can use a 90 degree angle, or experiment to find the appropriate angle for diagonally oriented labels:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> yearly_sex_counts, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> n, <span class="dt">color =</span> sex, <span class="dt">group =</span> sex)) +
 <span class="st">    </span><span class="kw">geom_line</span>() +
@@ -595,7 +595,7 @@ yearly_sex_weight &lt;-<span class="st"> </span>surveys_complete %&gt;%
 <span class="st">    </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">colour=</span><span class="st">&quot;grey20&quot;</span>, <span class="dt">size=</span><span class="dv">12</span>, <span class="dt">angle=</span><span class="dv">90</span>, <span class="dt">hjust=</span>.<span class="dv">5</span>, <span class="dt">vjust=</span>.<span class="dv">5</span>),
                         <span class="dt">axis.text.y =</span> <span class="kw">element_text</span>(<span class="dt">colour=</span><span class="st">&quot;grey20&quot;</span>, <span class="dt">size=</span><span class="dv">12</span>),
           <span class="dt">text=</span><span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">16</span>, <span class="dt">family=</span><span class="st">&quot;Arial&quot;</span>))</code></pre></div>
-<p><img src="img/R-ecology-number_species_year_with_theme-1.png" width="672" /></p>
+<p><img src="img/R-ecology-number-species-year-with-theme-1.png" width="672" /></p>
 <p>If you like the changes you created better than the default theme, you can save them as an object to be able to easily apply them to other plots you may create:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">arial_grey_theme &lt;-<span class="st"> </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">colour=</span><span class="st">&quot;grey20&quot;</span>, <span class="dt">size=</span><span class="dv">12</span>, <span class="dt">angle=</span><span class="dv">90</span>, <span class="dt">hjust=</span>.<span class="dv">5</span>, <span class="dt">vjust=</span>.<span class="dv">5</span>),
                           <span class="dt">axis.text.y =</span> <span class="kw">element_text</span>(<span class="dt">colour=</span><span class="st">&quot;grey20&quot;</span>, <span class="dt">size=</span><span class="dv">12</span>),
@@ -603,7 +603,7 @@ yearly_sex_weight &lt;-<span class="st"> </span>surveys_complete %&gt;%
 <span class="kw">ggplot</span>(surveys_complete, <span class="kw">aes</span>(<span class="dt">x =</span> species_id, <span class="dt">y =</span> hindfoot_length)) +
 <span class="st">    </span><span class="kw">geom_boxplot</span>() +
 <span class="st">    </span>arial_grey_theme</code></pre></div>
-<p><img src="img/R-ecology-number_species_year_with_right_labels_xfont_orientation-1.png" width="672" /></p>
+<p><img src="img/R-ecology-number-species-year-with-right-labels-xfont-orientation-1.png" width="672" /></p>
 <p>With all of this information in hand, please take another five minutes to either improve one of the plots generated in this exercise or create a beautiful graph of your own. Use the RStudio <a href="https://www.rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf">ggplot2 cheat sheet</a> for inspiration.</p>
 <p>Here are some ideas:</p>
 <ul>
