@@ -10,7 +10,7 @@ skeleton-%.R: %.Rmd _site.yml
 %.html: %.md
 	Rscript -e "rmarkdown::render_site(input='$<')"
 
-code-handout.R: skeleton-00-before-we-start.R skeleton-01-intro-to-r.R skeleton-02-starting-with-data.R skeleton-03-dplyr.R skeleton-04-visualization-ggplot2.R
+code-handout.R: skeleton-00-before-we-start.R skeleton-01-intro-to-r.R skeleton-02-starting-with-data.R skeleton-03-dplyr.R skeleton-04-visualization-ggplot2.R skeleton-05-r-and-databases.R
 	for f in $^; do cat $$f; echo "\n"; done > $@
 	make clean-skeleton
 
