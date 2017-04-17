@@ -5,7 +5,7 @@ author: Data Carpentry contributors
 
 ```{r source, include=FALSE, purl=FALSE}
 source("setup.R")
-if (file.exists("portal_database.sqlite")) file.remove("portal_database.sqlite")
+if (file.exists("portal-database.sqlite")) file.remove("portal-database.sqlite")
 ```
 
 ```{r, purl=TRUE, echo=FALSE}
@@ -476,7 +476,7 @@ argument instructs R to create a new, empty database instead.
 location is overwritten _without warning_.
 
 ```{r create_database, purl=TRUE}
-my_db_file <- "portal_database.sqlite"
+my_db_file <- "portal-database.sqlite"
 my_db <- src_sqlite(my_db_file, create = TRUE)
 ```
 
