@@ -17,7 +17,8 @@ For all pull requests, please confirm that:
 
 - [ ] I have read & followed the [instructions to contributors](/CONTRIBUTING.md)
 - [ ] I have used the correct formatting
-- [ ] This pull request refers to discussion in #[insert issue number].
+- [ ] This pull request refers to discussion in #[remove square brackets and
+  insert issue number] (if appropriate).
 
 If you are proposing a **change to one of the lessons**, please confirm that:
 
