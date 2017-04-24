@@ -13,10 +13,16 @@ by submitting this contribution.
 
 ---
 
-For all pull requests, please confirm that:
+To make the review of your pull request easier, we kindly ask that you try to follow the recommendations listed in our [contributing guide](./CONTRIBUTING.md), and tick the checkboxes bellow (by adding a 'x' inside the square bracket).
 
-- [ ] I have read & followed the [instructions to contributors](/CONTRIBUTING.md)
+However, if you have questions, or are unsure on how to do something, you can either (1) open an issue to ask your question, (2) send the lesson maintainers an email (francois.michonneau@gmail.com and/or aurielfournier@gmail.com), or (3) indicate in your pull request what you are concerned about.
+
+Please confirm that:
+
+- [ ] I have read & followed (the best I could) the [instructions to contributors](/CONTRIBUTING.md)
 - [ ] I have used the correct formatting
+
+
 - [ ] This pull request refers to discussion in #[remove square brackets and
   insert issue number] (if appropriate).
 
