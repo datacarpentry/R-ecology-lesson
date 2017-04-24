@@ -256,6 +256,12 @@ command and return you to the `>` prompt.
 
 ## Seeking help
 
+### Use the built-in RStudio help interface to search for more information on R functions
+
+![RStudio help interface](img/rstudiohelp.png)
+
+One of the most fastest ways to get help, is to use the RStudio help interface. This panel by default can be found at the lower right hand panel of RStudio. As seen in the screenshot, by typing the word "Mean", RStudio tries to also give a number of suggestions that you might be interested in. The description is then shown in the display window.
+
 ### I know the name of the function I want to use, but I'm not sure how to use it
 
 If you need help with a specific function, let's say `barplot()`, you can type:
