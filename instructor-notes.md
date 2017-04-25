@@ -62,18 +62,40 @@ this file, so the participants can follow along.
 
 ### Intro to R
 
+* When going over the section on assignments, make
+  sure to pause for at least 30 seconds when asking "What do you think is the
+  current content of the object weight_lb? 126.5 or 220?". For learners with no
+  programming experience, this is a new and important concept.
+* Given that the concept of missing data is an important feature of the R
+  language, it is worth spending enough time on it.
+
 ### Starting with data
+
+The two main goals for this lessons are:
+
+* To make sure that learners are comfortable with working with data frames, and
+  can use the bracket notation to select slices/columns
+* To expose learners to factors. Their behavior is not necessarily intuitive,
+  and so it is important that they are guided through it the first time they are
+  exposed to it. The content of the lesson should be enough for learners to
+  avoid common mistakes with them.
 
 ### Manipulating data with dplyr
 
+* For this lesson make sure that learners are comfortable using pipes.
+* There is also sometimes some confusion on what the arguments of `group_by`
+  should be.
+
 ### Visualizing data with ggplot2
+
+*
 
 ### Using databases from R
 
-* Ideally this lesson is best taught at the end of the workshop to illustrate
-  how the tools covered can integrate with each others. Depending on the
-  audience, and the pace of the workshop, it can be suitable to be shown as a
-  demonstration rather than a typically lesson.
+* Ideally this lesson is best taught at the end of the workshop (as a capstone
+  example) to illustrate how the tools covered can integrate with each
+  others. Depending on the audience, and the pace of the workshop, it can be
+  shown as a demonstration rather than a typically lesson.
 * The explanation of how dplyr's verb syntax is translated into SQL statements,
   and the section on lazyness are optional and don't need to be taught in detail
   during a workshop. They can be useful after a workshop for learners interested
@@ -89,12 +111,21 @@ of the Rmd files on GitHub.
 
 ## Technical Tips and Tricks
 
-Show how to use the 'zoom' button to blow up graphs without constantly resizing windows
+Show how to use the 'zoom' button to blow up graphs without constantly resizing
+windows
 
 Sometimes a package will not install, try a different CRAN mirror
 - Tools > Global Options > Packages > CRAN Mirror
 
-Alternatively you can go to CRAN and download the package and install from ZIP file
+Alternatively you can go to CRAN and download the package and install from ZIP
+file
 -   Tools > Install Packages > set to 'from Zip/TAR'
 
 ## Other Resources
+
+If you encounter a problem during a workshop, feel free to contact the
+maintainers by email
+or
+[open an issue](https://github.com/datacarpentry/R-ecology-lesson/issues/new).
+
+For a more in-depth coverage of topics of the workshops, you may want to read "[R for Data Science](http://r4ds.had.co.nz/)" by Hadley Wickham and Garrett Grolemund.
