@@ -416,7 +416,7 @@ ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex, group = sex))
 ```
 
 The axes have more informative names, but their readability can be improved by
-increasing the font size. While we're at it, we'll also change the font family:
+increasing the font size:
 
 ```{r number-species-year-with-right-labels-xfont-size, purl=FALSE}
 ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex, group = sex)) +
@@ -426,7 +426,7 @@ ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex, group = sex))
         x = 'Year of observation',
         y = 'Number of species') +
     theme_bw() +
-    theme(text=element_text(size=16, family="Arial"))
+    theme(text=element_text(size=16))
 ```
 
 After our manipulations, you may notice that the values on the x-axis are still not
@@ -445,7 +445,7 @@ ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex, group = sex))
     theme_bw() +
     theme(axis.text.x = element_text(colour="grey20", size=12, angle=90, hjust=.5, vjust=.5),
                         axis.text.y = element_text(colour="grey20", size=12),
-          text=element_text(size=16, family="Arial"))
+          text=element_text(size=16))
 ```
 
 If you like the changes you created better than the default theme, you can save them as
@@ -453,12 +453,12 @@ an object to be able to easily apply them to other plots you may create:
 
 
 ```{r number-species-year-with-right-labels-xfont-orientation, purl=FALSE}
-arial_grey_theme <- theme(axis.text.x = element_text(colour="grey20", size=12, angle=90, hjust=.5, vjust=.5),
+grey_theme <- theme(axis.text.x = element_text(colour="grey20", size=12, angle=90, hjust=.5, vjust=.5),
                           axis.text.y = element_text(colour="grey20", size=12),
-                          text=element_text(size=16, family="Arial"))
+                          text=element_text(size=16))
 ggplot(surveys_complete, aes(x = species_id, y = hindfoot_length)) +
     geom_boxplot() +
-    arial_grey_theme
+    grey_theme
 ```
 
 With all of this information in hand, please take another five minutes to either
@@ -486,7 +486,7 @@ my_plot <- ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex, gr
     theme_bw() +
     theme(axis.text.x = element_text(colour="grey20", size=12, angle=90, hjust=.5, vjust=.5),
                         axis.text.y = element_text(colour="grey20", size=12),
-          text=element_text(size=16, family="Arial"))
+          text=element_text(size=16))
 ggsave("name_of_file.png", my_plot, width=15, height=10)
 ```
 
