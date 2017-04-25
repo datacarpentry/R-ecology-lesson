@@ -199,7 +199,7 @@ surveys$species_id          # Result is a vector
 ```
 
 For our purposes, the last three notations are equivalent. RStudio knows about
-the columns in your data frame, so you can take advantage of the autocompetion
+the columns in your data frame, so you can take advantage of the autocompletion
 feature to get the full and correct column name.
 
 > ### Challenge
@@ -405,7 +405,7 @@ type. Depending on what you want to do with the data, you may want to keep these
 columns as `character`. To do so, `read.csv()` and `read.table()` have an
 argument called `stringsAsFactors` which can be set to `FALSE`.
 
-In most cases, it's preferrable to set `stringsAsFactors = FALSE` when importing
+In most cases, it's preferable to set `stringsAsFactors = FALSE` when importing
 your data, and converting as a factor only the columns that require this data
 type.
 

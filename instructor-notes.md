@@ -14,7 +14,7 @@ This lesson uses mostly `combined.csv`. The 3 other csv files: `plots.csv`,
 `combined.csv` is downloaded directly in the chapter "Starting with Data" and
 does not need to be downloaded before hand. It however requires that there is a
 decent internet connection in the room where the workshop is being taught. To
-faciliate the download process, the chunk of code that includes the URL where
+facilitate the download process, the chunk of code that includes the URL where
 the csv file lives, and where the file should go and be named is included in the
 code handout (see next paragraph). Using this approach ensures that the file
 will be where the lesson expects it to be, and teaches good/reproducible
@@ -99,7 +99,7 @@ The two main goals for this lessons are:
 * The explanation of how dplyr's verb syntax is translated into SQL statements,
   and the section on lazyness are optional and don't need to be taught in detail
   during a workshop. They can be useful after a workshop for learners interested
-  in learninig more about the topics or for instructors to answer questions from
+  in learning more about the topics or for instructors to answer questions from
   the workshop participants.
 
 
