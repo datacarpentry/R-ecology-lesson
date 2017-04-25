@@ -454,11 +454,13 @@ surveys$plot_type <- factor(surveys$plot_type)
 >      * What would you need to change to ensure that each column had the accurate data type?
 >
 >     ```{r, eval=FALSE, purl=FALSE}
->     country_climate <- data.frame(country=c("Canada", "Panama", "South Africa", "Australia"),
->                                    climate=c("cold", "hot", "temperate", "hot/temperate"),
->                                    temperature=c(10, 30, 18, "15"),
->                                    northern_hemisphere=c(TRUE, TRUE, FALSE, "FALSE"),
->                                    has_kangaroo=c(FALSE, FALSE, FALSE, 1))
+>     country_climate <- data.frame(
+>            country=c("Canada", "Panama", "South Africa", "Australia"),
+>            climate=c("cold", "hot", "temperate", "hot/temperate"),
+>            temperature=c(10, 30, 18, "15"),
+>            northern_hemisphere=c(TRUE, TRUE, FALSE, "FALSE"),
+>            has_kangaroo=c(FALSE, FALSE, FALSE, 1)
+>            )
 >     ```
 >
 >    ```{r, eval=FALSE, purl=TRUE, echo=FALSE}
