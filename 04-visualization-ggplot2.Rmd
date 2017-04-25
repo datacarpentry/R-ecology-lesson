@@ -429,6 +429,11 @@ ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex, group = sex))
     theme(text=element_text(size=16))
 ```
 
+Note that it is also possible to change the fonts of your plots. If you are on
+Windows, you may have to install
+the [**extrafont** package](https://github.com/wch/extrafont), and follow the
+instructions included in the README for this package.
+
 After our manipulations, you may notice that the values on the x-axis are still not
 properly readable. Let's change the orientation of the labels and adjust them
 vertically and horizontally so they don't overlap. You can use a 90 degree
