@@ -25,18 +25,17 @@ words_to_ignore <- c("AGPL", "Affero", "Arial", "Auriel", "Barneche",
                      "hexbin", "hindfoot", "hjust", "htm", "http",
                      "https", "hyperlink", "im", "img", "indices",
                      "introR", "io", "isn", "jef", "jonskeet", "kbd",
-                     "knitr", "kruskal", "lang", "lazyness",
-                     "legalcode", "linux", "listinfo", "lm", "macosx",
-                     "magrittr", "mailto", "md", "mit", "mysql", "na",
-                     "ncol", "ndownloader", "nlevels", "nrow",
-                     "nrows", "num", "nz", "opensource", "org",
-                     "packageDescription", "personList",
-                     "phylogenetics", "pipermail", "png", "postgres",
-                     "postgresql", "pre", "preprocess",
-                     "programmatically", "px", "py", "rdocumentation",
-                     "rds", "readLines", "readRDS", "reprex",
-                     "revolutionanalytics", "rmarkdown", "rstudio",
-                     "rw", "saveRDS", "screenshot", "sep",
+                     "knitr", "kruskal", "lang", "legalcode", "linux",
+                     "listinfo", "lm", "macosx", "magrittr", "mailto",
+                     "md", "mit", "mysql", "na", "ncol",
+                     "ndownloader", "nlevels", "nrow", "nrows", "num",
+                     "nz", "opensource", "org", "packageDescription",
+                     "personList", "phylogenetics", "pipermail",
+                     "png", "postgres", "postgresql", "pre",
+                     "preprocess", "programmatically", "px", "py",
+                     "rdocumentation", "rds", "readLines", "readRDS",
+                     "reprex", "revolutionanalytics", "rmarkdown",
+                     "rstudio", "rw", "saveRDS", "screenshot", "sep",
                      "sessionInfo", "showWarnings", "sml", "sql",
                      "sqlite", "src", "stackoverflow", "str",
                      "stringsAsFactors", "styleguide", "subfolder",
@@ -47,9 +46,9 @@ words_to_ignore <- c("AGPL", "Affero", "Arial", "Auriel", "Barneche",
                      "xfont", "yy", "zzz")
 
 check_spelling <- function(ignore = words_to_ignore) {
-    if (require(hunspell) &&
-        require(purrr) &&
-        require(readr)) {
+    if (suppressPackageStartupMessages(require(hunspell)) &&
+        suppressPackageStartupMessages(require(purrr))  &&
+        suppressPackageStartupMessages(require(readr))) {
         files <- list.files(pattern = "md$")
         bad_words <- files %>%
             map(function(x) {
@@ -67,4 +66,13 @@ check_spelling <- function(ignore = words_to_ignore) {
     }
 }
 
-print(check_spelling())
+res <- check_spelling()
+
+with_bad <- map_int(res, length)
+
+if (any(with_bad) > 0) {
+    message("Possibly misspelled words: ")
+    print(res[with_bad > 0])
+} else {
+    message("No misspelled words found.")
+}
