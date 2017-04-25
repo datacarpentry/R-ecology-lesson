@@ -63,9 +63,9 @@ Cheat sheet of functions used in the lessons
   *
 ## Lesson 6 -- R and SQL
 
-  * `dbConnect()`    # connect to the database
-  * `dbGetQuery()`   # run the query and access data returned in a data frame object
-  * `dbListTables()` # list tables
-  * `dbListFields()` # get list of fields in the table
-  * `dbDisconnect()` # Disconnect from the database
-  * `dbWriteTable()` # add the data frame to database
+  * `src_sqlite`  # connect dplyr to a SQLite database file
+  * `tbl`         # connect to a table within a database
+  * `collect`     # retrieve all the results from the database
+  * `explain`     # show the SQL translation of a dplyr query
+  * `inner_join`  # perform an inner join between two tables
+  * `copy_to`     # copy a data frame as a table into a database
