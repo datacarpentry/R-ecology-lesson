@@ -46,6 +46,11 @@ this file, so the participants can follow along.
 * The "Why learning R?" section contains suggestions of what you could tell your
   learners about the benefits of learning R. However, it's best if you can talk
   here about what has worked for you personally.
+* Go very slowly in the "Getting setup section". Make sure everyone is following
+  along (remind learners to use the stickies). Plan with the helpers at this
+  point to go around the room, and be available to help. It's important to make
+  sure that learners are in the correct working directory, and that they create
+  a `data`  (all lowercase) subfolder.
 * The seeking help section is relatively long, and while it's useful to
   demonstrate a couple of ways to get help from within R, you may want to mostly
   point the workshop participants to this useful reference so that they can
