@@ -36,9 +36,9 @@ lesson. As an instructor, we encourage you to do the live coding directly in
 this file, so the participants can follow along.
 
 
-### Narrative
+## Narrative
 
-#### Before we start
+### Before we start
 
 * The main goal here is to help the learners be comfortable with the RStudio
   interface. We use RStudio because it helps make using R more organized and
@@ -55,15 +55,15 @@ this file, so the participants can follow along.
   can help each others during and after the workshop.
 
 
-#### Intro to R
+### Intro to R
 
-#### Starting with data
+### Starting with data
 
-#### Manipulating data with dplyr
+### Manipulating data with dplyr
 
-#### Visualizing data with ggplot2
+### Visualizing data with ggplot2
 
-#### Using databases from R
+### Using databases from R
 
 * Ideally this lesson is best taught at the end of the workshop to illustrate
   how the tools covered can integrate with each others. Depending on the
@@ -76,13 +76,13 @@ this file, so the participants can follow along.
   the workshop participants.
 
 
-### Potential issues & solutions
+## Potential issues & solutions
 
 As it stands, the solutions to all the challenges are commented out in the Rmd
 files. If you want to double check your answer, you can look at the source code
 of the Rmd files on GitHub.
 
-### Technical Tips and Tricks
+## Technical Tips and Tricks
 
 Show how to use the 'zoom' button to blow up graphs without constantly resizing windows
 
@@ -92,4 +92,4 @@ Sometimes a package will not install, try a different CRAN mirror
 Alternatively you can go to CRAN and download the package and install from ZIP file
 -   Tools > Install Packages > set to 'from Zip/TAR'
 
-### Other Resources
+## Other Resources
