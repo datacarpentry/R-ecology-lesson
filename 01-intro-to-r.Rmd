@@ -341,7 +341,6 @@ factors (`factor`) and arrays (`array`).
 > <!-- * _Answer_: Vectors can be of only one data type. R tries to convert (coerce)
 >   the content of this vector to find a "common denominator". -->
 >
-
 > * You've probably noticed that objects of different types get
 >   converted into a single, shared type within a vector. In R, we
 >   call converting objects from one class into another class
