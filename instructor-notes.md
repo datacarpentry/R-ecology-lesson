@@ -99,7 +99,7 @@ The two main goals for this lessons are:
   others. Depending on the audience, and the pace of the workshop, it can be
   shown as a demonstration rather than a typically lesson.
 * The explanation of how dplyr's verb syntax is translated into SQL statements,
-  and the section on lazyness are optional and don't need to be taught in detail
+  and the section on laziness are optional and don't need to be taught in detail
   during a workshop. They can be useful after a workshop for learners interested
   in learning more about the topics or for instructors to answer questions from
   the workshop participants.
