@@ -136,7 +136,7 @@ a single window. Additionally, with many shortcuts, autocompletion, and
 highlighting for the major file types you use while developing in R, RStudio
 will make typing easier and less error-prone.
 
-## Before we get started
+## Getting set up
 
 It is good practice to keep a set of related data, analyses, and text
 self-contained in a single folder, called the **working directory**. All of the
@@ -163,8 +163,7 @@ tutorial.
 * Click on `Create project`
 * Under the `Files` tab on the right of the screen, click on `New Folder` and
   create a folder named `data` within your newly created working directory (e.g., `~/data-carpentry/data`)
-* Create a new R script (File -> New File -> R script) and save it in your working
-  directory (e.g., `data-carpentry-script.R`)
+* Download the [code handout](./code-handout.R), place it in your working directory and rename it (e.g., `data-carpentry-script.R`).
 
 Your working directory should now look like this:
 
