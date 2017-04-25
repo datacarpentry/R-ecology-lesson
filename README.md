@@ -10,8 +10,8 @@ with some basic information about syntax for the R programming language, the
 RStudio interface, and move through to specific programming tasks, such as
 importing CSV files, the structure of data frame objects in R, dealing with
 categorical variables (i.e. factors), basic data manipulation (adding/removing
-rows and columns), and finishing with calculating summary statistics and a
-brief introduction to plotting.
+rows and columns), and finishing with calculating summary statistics and a brief
+introduction to plotting. There is also a lesson on how to use databases from R that is intended to be taught after the SQL lesson, and ideally at the end of a Data Carpentry workshop.
 
 ## Prerequisites
 
@@ -28,23 +28,23 @@ brief introduction to plotting.
 * [Data visualization with ggplot2](04-visualization-ggplot2.html)
 * [R and Databases](05-r-and-databases.html)
 
-## Organization of the repository
+## Code handout
 
-The lessons are written in Rmarkdown format. A Makefile generates the
-corresponding html page for each lesson using the **rmarkdown** package from
-within R.
+There is "[code handout](code-handout.R)" (`code-handout.R`) that is intended to
+be distributed to the participants. This file includes some of the examples used
+during teaching and the titles of the section. It provides a guide that the
+participants can fill in as the lesson progresses. Participants can also source
+code from this file to avoid typos in more complex examples.
 
-The Makefile also generates a "code handout" file (`code-handout.R`) that is
-intended to be distributed to the participants. This file includes some of the
-examples used during teaching and the titles of the section. It provides a guide
-that the participants can fill in as the lesson progresses. Participants can
-also copy and paste from this file to avoids typos for more complex
-examples. Each lesson generates a code handout file, and the files produced are
-then concatenated to create a single file (the intermediate files are
-deleted). To be included in the code handout file, a code chunk in the Rmarkdown
-lesson file needs to have the arguments `purl=TRUE`.
+## Contributing
 
- ## Contributing
+If you would like to contribute to the content and development of these lessons,
+we encourage you to review our [contributing guide](CONTRIBUTING.md).
 
- If you would like to contribute to the content and development of these
- lessons, we encourage you to review our [contributing guide](CONTRIBUTING.md).
+## Questions
+
+If you have any questions or feedback, please open an issue or contact the
+maintainers:
+
+* François Michonneau
+* Auriel Fournier
