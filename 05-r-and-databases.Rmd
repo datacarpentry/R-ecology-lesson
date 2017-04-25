@@ -39,7 +39,7 @@ databases. You can query them without having to download the data first.
 
 R can connect to almost any existing database type. Most common database types
 have R packages that allow you to connect to them (e.g., RSQLite, RMySQL,
-etc). Futhermore,
+etc). Furthermore,
 the [dplyr](https://cran.r-project.org/web/packages/dplyr/index.html) package
 you used in the previous chapter supports connecting to the widely-used open
 source databases [sqlite](https://sqlite.org/), [mysql](https://www.mysql.com/)
@@ -305,7 +305,7 @@ that you need for your analysis.
 
 To illustrate how to use dplyr with these complex queries, we are going to join
 the `plots` and `surveys` tables. The `plots` table in the database contains
-information about the different plots surveyed by the reseachers. To access it,
+information about the different plots surveyed by the researchers. To access it,
 we point the `tbl()` command to it:
 
 ```{r plots, results='markup', purl=FALSE}
@@ -378,7 +378,7 @@ retrieved.
 
 
 
-<!-- answser
+<!-- answer
 ```{r left_join}
 ## with dplyr syntax
 species <- tbl(mammals, "species")
@@ -487,7 +487,7 @@ my_db_file <- "portal-database.sqlite"
 my_db <- src_sqlite(my_db_file, create = TRUE)
 ```
 
-Currently, our new databse is empty, it doesn't contain any tables:
+Currently, our new database is empty, it doesn't contain any tables:
 
 ```{r empty, results='show'}
 my_db

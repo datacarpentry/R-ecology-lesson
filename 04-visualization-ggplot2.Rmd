@@ -21,7 +21,7 @@ surveys_complete <- read.csv(file = "data_output/surveys_complete.csv")
 >
 > By the end of this lesson the learner will:
 >
-> * Produce scatter plots, bloxplots, and time series plots using ggplot.
+> * Produce scatter plots, boxplots, and time series plots using ggplot.
 > * Set universal plot settings.
 > * Modify the aesthetics of an existing ggplot plot (including axis labels and color).
 > * Build complex and customized plots from data in a data frame.
@@ -117,10 +117,11 @@ surveys_plot
 > sets with large numbers of observations, such as the `surveys_complete` data
 > set, overplotting of points can be a limitation of scatter plots. One strategy
 > for handling such settings is to use hexagonal binning of observations. The
-> plot space is tesselated into hexagons. Each hexagon is assigned a color based
-> on the number of observations that fall within its boundaries.  To use
+> plot space is tessellated into hexagons. Each hexagon is assigned a color
+> based on the number of observations that fall within its boundaries.  To use
 > hexagonal binning with `ggplot2`, first install the R package `hexbin` from
 > CRAN:
+>
 >
 > ```{r, eval = FALSE}
 > install.packages("hexbin")
@@ -249,7 +250,7 @@ yearly_counts <- surveys_complete %>%
                  tally
 ```
 
-Timelapse data can be visualised as a line plot with years on the x axis and counts
+Timelapse data can be visualized as a line plot with years on the x axis and counts
 on the y axis:
 
 ```{r first-time-series, purl=FALSE}
@@ -352,10 +353,10 @@ ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex, group = sex))
 > of each species changes through the years.
 
 <!-- Answer
-```{r average-weight-timeseries, purl=FALSE}
+```{r average-weight-time-series, purl=FALSE}
 yearly_weight <- surveys_complete %>%
                  group_by(year, species_id) %>%
-                 summarise(avg_weight = mean(weight))
+                 summarize(avg_weight = mean(weight))
 ggplot(data = yearly_weight, aes(x=year, y=avg_weight, color = species_id, group = species_id)) +
     geom_line() +
     facet_wrap(~ species_id) +

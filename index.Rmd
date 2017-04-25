@@ -111,7 +111,7 @@ operating system, and then follow the instructions to install `tidyverse` and
   the [CRAN website](http://cran.r-project.org/bin/macosx).
 * Select the `.pkg` file for the version of OS X that you have and the file will
   download
-* Double clik on the downloaded file to install R
+* Double click on the downloaded file to install R
 * Go to the [RStudio download page](https://www.rstudio.com/products/rstudio/download/#download)
 * Under *Installers* select **RStudio x.yy.zzz - Mac OS X 10.6+ (64-bit)**
   (where x, y, and z represent version numbers)

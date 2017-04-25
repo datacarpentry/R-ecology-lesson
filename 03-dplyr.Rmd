@@ -386,8 +386,8 @@ Now that you have learned how to use `dplyr` to extract information from or
 summarize your raw data, you may want to export these new datasets to share
 them with your collaborators or for archival.
 
-Similar to the `read.csv()` function used for reading CSVs into R, there is a
-`write.csv()` function that generates CSV files from data frames.
+Similar to the `read.csv()` function used for reading CSV files into R, there is
+a `write.csv()` function that generates CSV files from data frames.
 
 Before using `write.csv()`, we are going to create a new folder, `data_output`,
 in our working directory that will store this generated dataset. We don't want

@@ -120,7 +120,7 @@ support from RStudio, Inc.
 We will use RStudio IDE to write code, navigate the files on our computer,
 inspect the variables we are going to create, and visualize the plots we will
 generate. RStudio can also be used for other things (e.g., version control,
-developing packages, writting Shiny apps) that we will not cover during the
+developing packages, writing Shiny apps) that we will not cover during the
 workshop.
 
 ![RStudio interface screenshot](img/rstudio-screenshot.png)
