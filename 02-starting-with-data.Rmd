@@ -184,8 +184,8 @@ or decreasing order, test `1:10` and `10:1` for instance.
 You can also exclude certain parts of a data frame using the "`-`" sign:
 
 ```{r, purl=FALSE}
-surveys[,-1]   #The whole data frame, except the first column
-surveys[-c(7:34786),] #equivalent to head(surveys)
+surveys[,-1]          # The whole data frame, except the first column
+surveys[-c(7:34786),] # Equivalent to head(surveys)
 ```
 
 As well as using numeric values to subset a `data.frame` (or `matrix`), columns
