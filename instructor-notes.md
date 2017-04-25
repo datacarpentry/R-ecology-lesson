@@ -17,9 +17,24 @@ decent internet connection in the room where the workshop is being taught. To
 faciliate the download process, the chunk of code that includes the URL where
 the csv file lives, and where the file should go and be named is included in the
 code handout (see next paragraph). Using this approach ensures that the file
-will be where the lesson expects it to be, and teaches good/reproducible practice of automating the download. If the learners haven't created the `data/` directory and/or are not in the correct working directory, the `download.file` command will produce an error. Therefore, it is important to use the stickies at this point.
+will be where the lesson expects it to be, and teaches good/reproducible
+practice of automating the download. If the learners haven't created the `data/`
+directory and/or are not in the correct working directory, the `download.file`
+command will produce an error. Therefore, it is important to use the stickies at
+this point.
 
 ## The handout
+
+The [code handout](http://www.datacarpentry.org/R-ecology-lesson/code-handout.R)
+(a link to download it is also available on the top bar of the lesson website)
+is useful for Data Carpentry workshops. It includes an outline of the lesson
+content, the text for the challenges, the links for the files that need to be
+downloaded for the lesson, and pieces of code that may be difficult to type for
+learners with no programming experience/who are unfamiliar with R's syntax. We
+encourage you to distribute it to the learners at the beginning of the
+lesson. As an instructor, we encourage you to do the live coding directly in
+this file, so the participants can follow along.
+
 
 ### Narrative
 
