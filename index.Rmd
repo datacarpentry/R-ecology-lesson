@@ -47,11 +47,9 @@ the data and install everything *before* working through this lesson.
 
 ### Data
 
-Data files for the lesson are available here: <http://dx.doi.org/10.6084/m9.figshare.1314459>
+Data files for the lesson are available and can be downloaded manually here: <http://dx.doi.org/10.6084/m9.figshare.1314459>
 
-Please download the *\*.csv* (Comma Separated Value) files: *species.csv*,
-*plots.csv*, *surveys.csv*, and *combined.csv*.
-
+We will download them directly from R during the lessons when we need them.
 
 ### Setup instructions
 

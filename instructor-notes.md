@@ -6,6 +6,19 @@ root: .
 
 ## Dataset
 
+The data used for this lesson are in the figshare repository at: https://doi.org/10.6084/m9.figshare.1314459
+
+This lesson uses mostly `combined.csv`. The 3 other csv files: `plots.csv`,
+`species.csv` and `surveys.csv` are only needed for the lesson on databases.
+
+`combined.csv` is downloaded directly in the chapter "Starting with Data" and
+does not need to be downloaded before hand. It however requires that there is a
+decent internet connection in the room where the workshop is being taught. To
+faciliate the download process, the chunk of code that includes the URL where
+the csv file lives, and where the file should go and be named is included in the
+code handout (see next paragraph). Using this approach ensures that the file
+will be where the lesson expects it to be, and teaches good/reproducible practice of automating the download. If the learners haven't created the `data/` directory and/or are not in the correct working directory, the `download.file` command will produce an error. Therefore, it is important to use the stickies at this point.
+
 ## The handout
 
 ### Narrative
