@@ -13,11 +13,14 @@ knitr::opts_chunk$set(results='hide', fig.path='img/r-lesson-')
 
 > ### Learning Objectives
 >
-> * Describe the purpose of the RStudio Script, Console, Environment, and Plots panes.
-> * Organize files and directories for a set of analyses as an R Project and understand the purpose of the working directory.
+> * Describe the purpose of the RStudio Script, Console, Environment, and Plots
+>   panes.
+> * Organize files and directories for a set of analyses as an R
+>   Project, and understand the purpose of the working directory.
 > * Use the built-in RStudio help interface to search for more information on R
 >   functions.
-> * Demonstrate how to provide sufficient information for troubleshooting with the R user community.
+>  * Demonstrate how to provide sufficient information for
+>   troubleshooting with the R user community.
 
 ------------
 
@@ -38,7 +41,7 @@ therefore both need to be installed on your computer.
 
 The learning curve might be steeper than with other software, but with R, the
 results of your analysis does not rely on remembering a succession of pointing
-and clicking but instead in a series of written commands, and that's a good
+and clicking, but instead on a series of written commands, and that's a good
 thing! So, if you want to redo your analysis because you collected more data,
 you don't have to remember which button you clicked in which order to obtain
 your results, you just have to run your script again.
@@ -125,14 +128,13 @@ workshop.
 
 RStudio is divided into 4 "Panes": the **Source** for your scripts and documents
 (top-left, in the default layout), the R **Console** (bottom-left), your
-**Environment/History** (top-right), and your **Files/Plots/Packages/Help/Viewer**
-
-(bottom-right). The placement of these panes and their content can be customized
-(see menu, Tools -> Global Options -> Pane Layout). One of the advantages of
-using RStudio is that all the information you need to write code is available in
-a single window. Additionally, with many shortcuts, autocompletion, and
-highlighting for the major file types you use while developing in R, RStudio
-will make typing easier and less error-prone.
+**Environment/History** (top-right), and your
+**Files/Plots/Packages/Help/Viewer** (bottom-right). The placement of these
+panes and their content can be customized (see menu, Tools -> Global Options ->
+Pane Layout). One of the advantages of using RStudio is that all the information
+you need to write code is available in a single window. Additionally, with many
+shortcuts, autocompletion, and highlighting for the major file types you use
+while developing in R, RStudio will make typing easier and less error-prone.
 
 ## Getting set up
 

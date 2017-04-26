@@ -18,7 +18,7 @@ if (file.exists("portal-database.sqlite")) file.remove("portal-database.sqlite")
 > ### Learning Objectives
 >
 > * Access a database from R.
-> * Run SQL queries in R using RSQLite and dplyr.
+> * Run SQL queries in R using **`RSQLite`** and **`dplyr`**.
 > * Create an SQLite database from existing .csv files.
 
 ------------
@@ -36,22 +36,22 @@ Even better, many large datasets are already available in public or private
 databases. You can query them without having to download the data first.
 
 R can connect to almost any existing database type. Most common database types
-have R packages that allow you to connect to them (e.g., RSQLite, RMySQL,
+have R packages that allow you to connect to them (e.g., **`RSQLite`**, RMySQL,
 etc). Furthermore,
-the [dplyr](https://cran.r-project.org/web/packages/dplyr/index.html) package
+the [**`dplyr`**](https://cran.r-project.org/web/packages/dplyr/index.html) package
 you used in the previous chapter supports connecting to the widely-used open
 source databases [sqlite](https://sqlite.org/), [mysql](https://www.mysql.com/)
 and [postgresql](https://www.postgresql.org/), as well as
 Google’s [bigquery](https://cloud.google.com/bigquery/), and it can also be
-extended to other database types (a [vignette](https://cran.r-project.org/web/packages/dplyr/vignettes/databases.html) in the dplyr package explains how
+extended to other database types (a [vignette](https://cran.r-project.org/web/packages/dplyr/vignettes/databases.html) in the **`dplyr`** package explains how
 to do it).
 
-Interfacing with databases using `dplyr` focuses on retrieving and analyzing
+Interfacing with databases using **`dplyr`** focuses on retrieving and analyzing
 datasets by generating `SELECT` SQL statements, but it doesn't modify the
-database itself. `dplyr` does not offer functions to `UPDATE` or `DELETE`
+database itself. **`dplyr`** does not offer functions to `UPDATE` or `DELETE`
 entries. If you need these functionalities, you will need to use additional R
-packages (e.g., RSQLite). Here we will demonstrate how to interact with a
-database using dplyr, using both the dplyr's verb syntax and the SQL syntax.
+packages (e.g., **`RSQLite`**). Here we will demonstrate how to interact with a
+database using **`dplyr`**, using both the **`dplyr`**'s verb syntax and the SQL syntax.
 
 ### The portal_mammals database
 
@@ -68,9 +68,9 @@ download.file(url = "https://ndownloader.figshare.com/files/2292171",
               destfile = "data/portal_mammals.sqlite")
 ```
 
-## Connecting to databases with dplyr
+## Connecting to databases with **`dplyr`**
 
-We can point R to this database with `dplyr's` `src_sqlite()` command.
+We can point R to this database with **`dplyr`**'s `src_sqlite()` command.
 
 ```{r connect, purl=TRUE}
 library(dplyr)
@@ -82,7 +82,7 @@ The `src_sqlite()` command does not load the data into the R session (as the
 the `SQLite` database contained in the `portal_mammals.sqlite` file.
 
 (You can use the `src_mysql()`, `src_postgres()` and `src_bigquery()` to connect
-to the other database types supported by `dplyr`.)
+to the other database types supported by **`dplyr`**.)
 
 Let's take a closer look at the `mammals` database we just connected to:
 
@@ -104,7 +104,7 @@ the data from its tables into R.
 ### Querying the database with the SQL syntax
 
 To connect to tables within a database, you can use the `tbl()` function from
-dplyr. This function can be used to send SQL queries to the database. To
+**`dplyr`**. This function can be used to send SQL queries to the database. To
 demonstrate this functionality, let's select the columns "year", "species_id",
 and "plot_id" from the `surveys` table:
 
@@ -117,10 +117,10 @@ database lesson.
 
 ### Querying the database with the dplyr syntax
 
-One of the strengths of dplyr is that the same operation can be done using
-dplyr's verbs instead of writing SQL. First, we select the table on which to do
+One of the strengths of **`dplyr`** is that the same operation can be done using
+**`dplyr`**'s verbs instead of writing SQL. First, we select the table on which to do
 the operations by creating the `surveys` object, and then we use the standard
-dplyr syntax as if it were a data frame:
+**`dplyr`** syntax as if it were a data frame:
 
 ```{r use-dplyr-syntax}
 surveys <- tbl(mammals, "surveys")
@@ -156,10 +156,10 @@ returns `NULL` instead. You might have already noticed that the first line of
 the `head()` output included `??` indicating that the number of rows wasn't
 known.
 
-The reason for this behavior highlights a key difference between using `dplyr`
-on datasets in memory (e.g. loaded into your R session via `read.csv()`) and
-those provided by a database. To understand it, we take a closer look at how
-`dplyr` communicates with our SQLite database.
+The reason for this behavior highlights a key difference between using
+**`dplyr`** on datasets in memory (e.g. loaded into your R session via
+`read.csv()`) and those provided by a database. To understand it, we take a
+closer look at how **`dplyr`** communicates with our SQLite database.
 
 ### SQL translation
 
@@ -176,13 +176,13 @@ FROM `surveys`
 LIMIT 10
 ```
 
-Behind the scenes, `dplyr`:
+Behind the scenes, **`dplyr`**:
 
 1. translates your R code into SQL
 2. submits it to the database
 3. translates the database's response into an R data frame
 
-To lift the curtain, we can use `dplyr`'s `explain()` function to show which SQL
+To lift the curtain, we can use **`dplyr`**'s `explain()` function to show which SQL
 commands are actually sent to the database:
 
 ```{r explain, message=TRUE, purl=FALSE}
@@ -194,10 +194,10 @@ it matches our manually constructed `SELECT` statement above.
 
 Instead of having to formulate the SQL query ourselves - and
 having to mentally switch back and forth between R and SQL syntax - we can
-delegate this translation to `dplyr`. (You don't even need to know SQL to interact
-with a database via `dplyr`!)
+delegate this translation to **`dplyr`**. (You don't even need to know SQL to interact
+with a database via **`dplyr`**!)
 
-`dplyr`, in turn, doesn't do the real work of subsetting the table, either.
+**`dplyr`**, in turn, doesn't do the real work of subsetting the table, either.
 Instead, it merely sends the query to the database, waits for its response and
 returns it to us.
 
@@ -205,10 +205,10 @@ That way, R never gets to see the full `surveys` table - and that's why it could
 not tell us how many rows it contains. On the bright side, this allows us to work
 with large datasets - even too large to fit into our computer's memory.
 
-`dplyr` can translate many different query types into SQL allowing us to, e.g.,
+**`dplyr`** can translate many different query types into SQL allowing us to, e.g.,
 `select()` specific columns, `filter()` rows, or join tables.
 
-To see this in action, let's compose a few queries with `dplyr`.
+To see this in action, let's compose a few queries with **`dplyr`**.
 
 ## Simple database queries
 
@@ -237,16 +237,16 @@ R lazy and only retrieved 10 of them?
 
 ## Laziness
 
-Hadley Wickham, the author of `dplyr`
+Hadley Wickham, the author of **`dplyr`**
 [explains](https://cran.r-project.org/web/packages/dplyr/vignettes/databases.html):
 
-> When working with databases, dplyr tries to be as lazy as possible:
+> When working with databases, **`dplyr`** tries to be as lazy as possible:
 >
 > * It never pulls data into R unless you explicitly ask for it.
 > * It delays doing any work until the last possible moment - it collects together
 > everything you want to do and then sends it to the database in one step.
 
-When you construct a `dplyr` query, you can connect multiple verbs into a single
+When you construct a **`dplyr`** query, you can connect multiple verbs into a single
 pipeline. For example, we combined the `filter()` and `select()` verbs using the
 `%>%` pipe.
 
@@ -289,7 +289,7 @@ to work with them exclusively in R, without communicating with the database.
 
 ## Complex database queries
 
-`dplyr` enables database queries across one or multiple database tables, using
+**`dplyr`** enables database queries across one or multiple database tables, using
 the same single- and multiple-table verbs you encountered previously. This means
 you can use the same commands regardless of whether you interact with a remote
 database or local dataset! This is a really useful feature if you work with
@@ -301,7 +301,7 @@ On the other hand, being able use SQL queries directly can be useful if your
 collaborators have already put together complex queries to prepare the dataset
 that you need for your analysis.
 
-To illustrate how to use dplyr with these complex queries, we are going to join
+To illustrate how to use **`dplyr`** with these complex queries, we are going to join
 the `plots` and `surveys` tables. The `plots` table in the database contains
 information about the different plots surveyed by the researchers. To access it,
 we point the `tbl()` command to it:
@@ -449,7 +449,7 @@ unique_genera <- left_join(surveys, plots) %>%
 
 ```
 
-`n_distinct`, like the other `dplyr` functions we have used in this lesson, works
+`n_distinct`, like the other **`dplyr`** functions we have used in this lesson, works
 not only on database connections but also on regular data frames.
 
 
@@ -473,7 +473,7 @@ surveys <- read.csv("data/surveys.csv")
 plots <- read.csv("data/plots.csv")
 ```
 
-Creating a new SQLite database with `dplyr` is easy. You can re-use the same
+Creating a new SQLite database with **`dplyr`** is easy. You can re-use the same
 command we used above to open an existing `.sqlite` file. The `create = TRUE`
 argument instructs R to create a new, empty database instead.
 
@@ -500,7 +500,7 @@ my_db
 ```
 
 If you check the location of our database you'll see that data is automatically
-being written to disk. R and `dplyr` not only provide easy ways to query
+being written to disk. R and **`dplyr`** not only provide easy ways to query
 existing databases, they also allows you to easily create your own databases
 from flat files!
 

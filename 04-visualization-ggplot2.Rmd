@@ -35,9 +35,9 @@ library(ggplot2)
 library(dplyr)
 ```
 
-## Plotting with ggplot2
+## Plotting with **`ggplot2`**
 
-`ggplot2` is a plotting package that makes it simple to create complex plots
+**`ggplot2`** is a plotting package that makes it simple to create complex plots
 from data in a data frame. It provides a more programmatic interface for
 specifying what variables to plot, how they are displayed, and general visual
 properties, so we only need minimal changes if the underlying data change or if
@@ -69,7 +69,7 @@ ggplot(data = surveys_complete, aes(x = weight, y = hindfoot_length)) +
   geom_point()
 ```
 
-The `+` in the `ggplot2` package is particularly useful because it allows you
+The `+` in the **`ggplot2`** package is particularly useful because it allows you
 to modify existing `ggplot` objects. This means you can easily set up plot
 "templates" and conveniently explore different types of plots, so the above
 plot can also be generated with code like this:
@@ -97,7 +97,7 @@ Notes:
   aesthetics defined globally in the `ggplot()` function.
 - The `+` sign used to add layers must be placed at the end of each line containing
 a layer. If, instead, the `+` sign is added in the line before the other layer,
-`ggplot2` will not add the new layer and will return an error message.
+**`ggplot2`** will not add the new layer and will return an error message.
 
 ```{r, ggplot-with-plus-position, eval=FALSE, purl=FALSE}
 # this is the correct syntax for adding layers
@@ -117,7 +117,7 @@ surveys_plot
 > for handling such settings is to use hexagonal binning of observations. The
 > plot space is tessellated into hexagons. Each hexagon is assigned a color
 > based on the number of observations that fall within its boundaries.  To use
-> hexagonal binning with `ggplot2`, first install the R package `hexbin` from
+> hexagonal binning with **`ggplot2`**, first install the R package `hexbin` from
 > CRAN:
 >
 >
@@ -125,7 +125,7 @@ surveys_plot
 > install.packages("hexbin")
 > ```
 >
-> Then use `geom_hex()` function from the `ggplot2` package.
+> Then use `geom_hex()` function from the **`ggplot2`** package.
 >
 > ```{r, eval = FALSE}
 > surveys_plot +
@@ -317,9 +317,9 @@ the grid:
 	   panel.grid.minor.y = element_blank())
 ```
 
-## `ggplot2` themes
+## **`ggplot2`** themes
 
-In addition to `theme_bw()`, which changes the plot background to white, ggplot2
+In addition to `theme_bw()`, which changes the plot background to white, **`ggplot2`**
 comes with several other themes which can be useful to quickly change the look
 of your visualization. The complete list of themes is available
 at <http://docs.ggplot2.org/current/ggtheme.html>. `theme_minimal()` and
@@ -329,8 +329,8 @@ point to create a new hand-crafted theme.
 The
 [ggthemes](https://cran.r-project.org/web/packages/ggthemes/vignettes/ggthemes.html) package
 provides a wide variety of options (including an Excel 2003 theme).
-The [ggplot2 extensions website](https://www.ggplot2-exts.org) provides a list
-of packages that extend the capabilities of ggplot2, including additional
+The [**`ggplot2`** extensions website](https://www.ggplot2-exts.org) provides a list
+of packages that extend the capabilities of **`ggplot2`**, including additional
 themes.
 
 
@@ -397,7 +397,7 @@ ggplot(data = yearly_sex_weight, aes(x=year, y=avg_weight, color = species_id, g
 
 ## Customization
 
-Take a look at the [ggplot2 cheat sheet](https://www.rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf), and
+Take a look at the [**`ggplot2`** cheat sheet](https://www.rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf), and
 think of ways you could improve the plot.
 
 Now, let's change names of axes to something more informative than 'year'
@@ -466,7 +466,7 @@ ggplot(surveys_complete, aes(x = species_id, y = hindfoot_length)) +
 
 With all of this information in hand, please take another five minutes to either
 improve one of the plots generated in this exercise or create a beautiful graph
-of your own. Use the RStudio [ggplot2 cheat sheet](https://www.rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf) for
+of your own. Use the RStudio [**`ggplot2`** cheat sheet](https://www.rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf) for
 inspiration.
 
 Here are some ideas:
