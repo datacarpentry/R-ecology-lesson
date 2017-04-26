@@ -29,10 +29,7 @@ surveys_complete <- read.csv(file = "data_output/surveys_complete.csv")
 We start by loading the required packages.
 
 ```{r load-package, message=FALSE, purl=FALSE}
-# plotting package
-library(ggplot2)
-# modern data frame manipulations
-library(dplyr)
+library(tidyverse)
 ```
 
 ## Plotting with **`ggplot2`**
