@@ -3,7 +3,8 @@
 ```{r, echo=FALSE, results='hide'}
 generate_citation <- function(authors = "AUTHORS",
                               editors = personList(person(given = "Francois", family = "Michonneau"),
-                                                   person(given = "Auriel", family = "Fournier"))) {
+                                                   person(given = "Auriel", family = "Fournier")),
+                              doi = "10.5281/zenodo.569338") {
     aut <- readLines(authors)
 
     # remove first line
@@ -18,7 +19,8 @@ generate_citation <- function(authors = "AUTHORS",
         editor = editors,
         month = format(Sys.Date(), "%B"),
         year = format(Sys.Date(), "%Y"),
-        url = "http://datacarpentry.org/R-ecology-lesson"
+        url = "http://datacarpentry.org/R-ecology-lesson",
+        doi = doi
     )
 
 }
