@@ -1,4 +1,6 @@
+
 # Contributing
+
 
 [Data Carpentry](http://datacarpentry.org) in an open source project, and we
 welcome contributions of all kinds: new lessons, fixes to existing material, bug
@@ -26,7 +28,7 @@ our
 2.  Clone that repository to your own machine. (It is also possible
     to make minor edits right on GitHub.) *At your terminal:*
 
-	```shell
+	```bash
 	git clone https://github.com/your_username/R-ecology-lesson.git R-ecology-lesson
 	cd R-ecology-lesson
 	git remote add upstream https://github.com/datacarpentry/R-ecology-lesson.git
@@ -37,7 +39,7 @@ our
     such as `fix-typos-dplyr-lesson`
     or `add-tutorial-on-visualization`. *At your terminal:*
 
-	```shell
+	```bash
 	git checkout -b fix-typos-dplyr-lesson`
 	```
 
