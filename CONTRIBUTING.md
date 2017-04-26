@@ -131,8 +131,8 @@ following guidelines:
 * Wrap lines at 80 characters (unless it breaks URLs)
 * Use consistent capitalization (e.g., R not r, RStudio not rstudio
 or Rstudio)
-* Function names are written as `function()` while variables and
-packages are written as `variable`
+* Function names are written as `function()` while variables packages are
+written as `variable`, and package names as **`package`**.
 * Use unclosed atx style headers (see below):
 
 ```

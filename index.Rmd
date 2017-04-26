@@ -32,7 +32,7 @@ how to work with databases directly from R.
 2. [Introduction to R](01-intro-to-r.html)
 3. [Starting with data](02-starting-with-data.html)
 4. [Aggregating and analyzing data with dplyr](03-dplyr.html)
-5. [Data visualization with ggplot2](04-visualization-ggplot2.html)
+5. [Data visualization with **`ggplot2`**](04-visualization-ggplot2.html)
 6. [R and Databases](05-r-and-databases.html)
 
 
@@ -60,9 +60,9 @@ underlying statistical computing environment, but using R alone is no
 fun. RStudio is a graphical integrated development environment (IDE) that makes
 using R much easier and more interactive. You need to install R before you
 install RStudio. After installing both programs, you will need to install the
-`tidyverse` package from within RStudio. Follow the instructions below for your
-operating system, and then follow the instructions to install `tidyverse` and
-`RSQLite`.
+**`tidyverse`** package from within RStudio. Follow the instructions below for
+your operating system, and then follow the instructions to install
+**`tidyverse`** and **`RSQLite`**.
 
 #### Windows
 
@@ -140,8 +140,8 @@ operating system, and then follow the instructions to install `tidyverse` and
 
 #### For everyone
 
-**After installing R and RStudio, you need to install the "tidyverse" and
-"RSQLite" packages.**
+**After installing R and RStudio, you need to install the `tidyverse` and
+`RSQLite` packages.**
 
 * After starting RStudio, at the console type:
   `install.packages(c("tidyverse", "RSQLite"))`
