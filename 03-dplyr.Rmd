@@ -16,8 +16,6 @@ surveys <- read.csv("data/portal_data_joined.csv")
 
 > ### Learning Objectives
 >
-> By the end of this lesson the learner will:
->
 > * Recall the six data manipulation ‘verbs’ in the dplyr package and know what they do.
 > * Select subsets of columns and filter rows in a data.frame according to a condition(s).
 > * Employ the ‘pipe’ operator to link together a sequence of dplyr commands.
