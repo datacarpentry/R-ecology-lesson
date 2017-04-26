@@ -24,7 +24,7 @@ exclude: ["CONTRIBUT*.md","index.md","README.md","*.db"]
 include: ["*.Rmd","LICENSE.md"]
 output:
   html_document:
-    highlight: tango
+    highlight: pygments
     toc: true
     toc_float:
       collapsed: false
