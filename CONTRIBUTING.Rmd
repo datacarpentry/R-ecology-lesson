@@ -1,18 +1,21 @@
-# Contributing New Material
+# Contributing
 
-Data Carpentry is an open source project, and we welcome
-contributions of all kinds: new and improved lessons, bug reports,
-and small fixes to existing material are all useful.
+[Data Carpentry](http://datacarpentry.org) in an open source project, and we
+welcome contributions of all kinds: new lessons, fixes to existing material, bug
+reports, and reviews of proposed changes are all welcome.
+
+## Contributor Agreement
+
+By contributing, you agree that we may redistribute your work
+under [our license](LICENSE.html).  In exchange, we will address your issues
+and/or assess your change proposal as promptly as we can, and help you become a
+member of our community.  Everyone involved
+in [Software Carpentry](https://software-carpentry.org)
+and [Data Carpentry](http://datacarpentry.org) agrees to abide by
+our [code of conduct](CONDUCT.html).
 
 By contributing, you are agreeing that Data Carpentry may
 redistribute your work under [these licenses](LICENSE.Rmd).
-
-
-**Table of Contents**
-
-*   [Working With GitHub](#working-with-github)
-*   [File Locations and Formats](#file-locations-and-formats)
-*   [FAQ](#faq)
 
 
 ## Working With GitHub
