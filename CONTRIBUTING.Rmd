@@ -7,15 +7,13 @@ reports, and reviews of proposed changes are all welcome.
 ## Contributor Agreement
 
 By contributing, you agree that we may redistribute your work
-under [our license](LICENSE.html).  In exchange, we will address your issues
-and/or assess your change proposal as promptly as we can, and help you become a
-member of our community.  Everyone involved
-in [Software Carpentry](https://software-carpentry.org)
+under [our license](http://www.datacarpentry.org/R-ecology-lesson/LICENSE.html).
+In exchange, we will address your issues and/or assess your change proposal as
+promptly as we can, and help you become a member of our community.  Everyone
+involved in [Software Carpentry](https://software-carpentry.org)
 and [Data Carpentry](http://datacarpentry.org) agrees to abide by
-our [code of conduct](CONDUCT.html).
-
-By contributing, you are agreeing that Data Carpentry may
-redistribute your work under [these licenses](LICENSE.Rmd).
+our
+[code of conduct](http://www.datacarpentry.org/R-ecology-lesson/CONDUCT.html).
 
 
 ## Working With GitHub
@@ -28,7 +26,7 @@ redistribute your work under [these licenses](LICENSE.Rmd).
 2.  Clone that repository to your own machine. (It is also possible
     to make minor edits right on GitHub.) *At your terminal:*
 
-	```
+	```shell
 	git clone https://github.com/your_username/R-ecology-lesson.git R-ecology-lesson
 	cd R-ecology-lesson
 	git remote add upstream https://github.com/datacarpentry/R-ecology-lesson.git
@@ -39,7 +37,7 @@ redistribute your work under [these licenses](LICENSE.Rmd).
     such as `fix-typos-dplyr-lesson`
     or `add-tutorial-on-visualization`. *At your terminal:*
 
-	```
+	```shell
 	git checkout -b fix-typos-dplyr-lesson`
 	```
 
@@ -81,7 +79,7 @@ Each lesson is composed of files such as `00-before-we-start.Rmd`,
 For the R material, lessons must be written in RMarkdown (ending in
 `Rmd`). A Makefile converts the Rmd files into HTML that are
 processed by Jekyll (the tool GitHub uses to create websites) as
-explained in [the README file](README.md).
+explained in [the README file](https://github.com/datacarpentry/R-ecology-lesson#readme).
 
 _Important Note:_ We use the `purl()` function from `knitr` to
 generate a skeleton file that contains code to be distributed to
