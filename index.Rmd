@@ -18,11 +18,12 @@ time, and with less pain. The lessons below were designed for those interested
 in working with ecology data in R.
 
 This is an introduction to R designed for participants with no programming
-experience. These lessons can be taught in a day. They start with some basic
-information about R syntax, the RStudio interface, and move through how to
-import CSV files, the structure of data frames, how to deal with factors, how to
-add/remove rows and columns, and finish with how to calculate summary statistics
-for each level and a very brief introduction to plotting.
+experience. These lessons can be taught in a day (~ 6 hours). They start with
+some basic information about R syntax, the RStudio interface, and move through
+how to import CSV files, the structure of data frames, how to deal with factors,
+how to add/remove rows and columns, how to calculate summary statistics from a
+data frame, and a brief introduction to plotting. The last lesson demonstrates
+how to work with databases directly from R.
 
 
 ## Chapters
@@ -49,7 +50,8 @@ the data and install everything *before* working through this lesson.
 
 Data files for the lesson are available and can be downloaded manually here: <http://dx.doi.org/10.6084/m9.figshare.1314459>
 
-We will download them directly from R during the lessons when we need them.
+However, we will download them directly from R during the lessons when we need
+them.
 
 ### Setup instructions
 
@@ -122,12 +124,13 @@ operating system, and then follow the instructions to install `tidyverse` and
 
 * Follow the instructions for your distribution
   from [CRAN](https://cloud.r-project.org/bin/linux), they provide information
-  to get the most recent version of R for your distribution. For most
+  to get the most recent version of R for common distributions. For most
   distributions, you could use your package manager (e.g., for Debian/Ubuntu run
-  `sudo apt-get install r-base`, and for Fedora `sudo yum install R`), but the
-  versions provided by this approach are usually out of date. In any case, make
-  sure you have at least R 3.3.1
-* Go to the [RStudio download page](https://www.rstudio.com/products/rstudio/download/#download)
+  `sudo apt-get install r-base`, and for Fedora `sudo yum install R`), but we
+  don't recommend this approach as the versions provided by this are
+  usually out of date. In any case, make sure you have at least R 3.3.1.
+* Go to the
+  [RStudio download page](https://www.rstudio.com/products/rstudio/download/#download)
 * Under *Installers* select the version that matches your distribution, and
   install it with your preferred method (e.g., with Debian/Ubuntu `sudo dpkg -i
   rstudio-x.yy.zzz-amd64.deb` at the terminal).
@@ -145,4 +148,4 @@ operating system, and then follow the instructions to install `tidyverse` and
 
 ## Contributors
 
-The list of contributors to this lesson is available [here](AUTHORS),
+The list of contributors to this lesson is available [here](http://datacarpentry.org/R-ecology-lesson/CITATION),
