@@ -17,10 +17,10 @@ surveys <- read.csv("data/portal_data_joined.csv")
 > ### Learning Objectives
 >
 > * Recall the six data manipulation ‘verbs’ in the **`dplyr`** package and know what they do.
-> * Select subsets of columns and filter rows in a data.frame according to a condition(s).
+> * Select subsets of columns and filter rows in a data frame according to a condition(s).
 > * Employ the ‘pipe’ operator to link together a sequence of **`dplyr`** commands.
 > * Employ the ‘mutate’ command to apply functions to existing columns and create new columns of data.
-> * Export a data.frame to a .csv file.
+> * Export a data frame to a .csv file.
 
 ------------
 
@@ -241,11 +241,13 @@ surveys %>%
 ```
 
 You may also have noticed that the output from these calls doesn't run off the
-screen anymore. That's because **`dplyr`** has changed our `data.frame` object to an
-object of class `tbl_df`, also known as a "tibble". Tibble's data structure is
-very similar to a data frame. For our purposes the only differences is that, (1)
-in addition to displaying the data type of each column under its name, it only
-	prints the first few rows of data and only as many columns as fit on one screen, (2) columns of class `character` are never converted into factors.
+screen anymore. That's because **`dplyr`** has changed our `data.frame` object
+to an object of class `tbl_df`, also known as a "tibble". Tibble's data
+structure is very similar to a data frame. For our purposes the only differences
+is that, (1) in addition to displaying the data type of each column under its
+name, it only prints the first few rows of data and only as many columns as fit
+on one screen, (2) columns of class `character` are never converted into
+factors.
 
 You can also group by multiple columns:
 
@@ -269,11 +271,11 @@ surveys %>%
   summarize(mean_weight = mean(weight))
 ```
 
-Here, again, the output from these calls doesn't run off the
-screen anymore. Recall that **`dplyr`** has changed our `data.frame` to a
-`tbl_df`. If you want to display more data, you can
-use the `print()` function at the end of your chain with the argument `n`
-specifying the number of rows to display:
+Here, again, the output from these calls doesn't run off the screen
+anymore. Recall that **`dplyr`** has changed our object from`data.frame` to
+`tbl_df`. If you want to display more data, you can use the `print()` function
+at the end of your chain with the argument `n` specifying the number of rows to
+display:
 
 ```{r, purl = FALSE}
 surveys %>%
