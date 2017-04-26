@@ -18,7 +18,7 @@ source("setup.R")
 > * Create objects and and assign values to them.
 > * Use comments to inform script.
 > * Do simple arithmetic operations in R using values and objects.
-> * Call functions and define them with arguments and their options.
+> * Call functions and use arguments to change their default options.
 > * Inspect the content of vectors and manipulate their content.
 > * Subset and extract values from vectors.
 > * Correctly define and handle missing values in vectors.
