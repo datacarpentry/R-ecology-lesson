@@ -127,7 +127,7 @@ will be ignored by R. It is useful to leave notes, and explanations in your
 scripts.
 RStudio makes it easy to comment or uncomment a paragraph: after selecting the
 lines you  want to comment, press at the same time on your keyboard
-<kbd>Crtl</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd>.
+<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd>.
 
 > ### Challenge
 >
@@ -341,7 +341,6 @@ factors (`factor`) and arrays (`array`).
 > <!-- * _Answer_: Vectors can be of only one data type. R tries to convert (coerce)
 >   the content of this vector to find a "common denominator". -->
 >
-
 > * You've probably noticed that objects of different types get
 >   converted into a single, shared type within a vector. In R, we
 >   call converting objects from one class into another class

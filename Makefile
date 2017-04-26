@@ -20,6 +20,9 @@ code-handout.R: skeleton-00-before-we-start.R skeleton-01-intro-to-r.R skeleton-
 pages: 00-before-we-start.html 01-intro-to-r.html 02-starting-with-data.html 03-dplyr.html 04-visualization-ggplot2.html 05-r-and-databases.html index.html LICENSE.html CITATION.html
 	make clean-md
 
+check-spelling:
+	Rscript -e "source('check-spelling.R')"
+
 clean-skeleton:
 	-rm skeleton-*-*.R
 

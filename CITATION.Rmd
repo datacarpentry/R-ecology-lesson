@@ -50,13 +50,13 @@ Simpson, Tracy Teal, Greg Wilson, Diego Barneche, Stephen Turner, and Karthik
 Ram. This original material has been modified and expanded by Francois
 Michonneau.
 
-The dplyr lesson was created by Kara Woo, who copied and modified and modified
-from Jeff Hollister's
-[materials](http://usepa.github.io/introR/2015/01/14/03-Clean/).
+The **`dplyr`** lesson was created by Kara Woo, who copied and modified and
+modified from Jeff
+Hollister's [materials](http://usepa.github.io/introR/2015/01/14/03-Clean/).
 
-The ggplot2 lesson was initially created by Mateusz Kuzak, Diana Marek, and Hedi
-Peterson, during a Hackathon in Espoo, Finland on March 16-17, 2015, sponsored
-by the [ELIXIR project](http://elixir-europe.org/).
+The **`ggplot2`** lesson was initially created by Mateusz Kuzak, Diana Marek,
+and Hedi Peterson, during a Hackathon in Espoo, Finland on March 16-17, 2015,
+sponsored by the [ELIXIR project](http://elixir-europe.org/).
 
 You can cite this Data Carpentry lesson as follow:
 
