@@ -19,8 +19,6 @@ surveys_complete <- read.csv(file = "data_output/surveys_complete.csv")
 
 > ### Learning Objectives
 >
-> By the end of this lesson the learner will:
->
 > * Produce scatter plots, boxplots, and time series plots using ggplot.
 > * Set universal plot settings.
 > * Modify the aesthetics of an existing ggplot plot (including axis labels and color).
