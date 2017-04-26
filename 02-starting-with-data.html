@@ -517,14 +517,14 @@ surveys[<span class="dv">3</span>, ]    <span class="co"># the 3rd element for a
 head_surveys &lt;-<span class="st"> </span>surveys[<span class="dv">1</span>:<span class="dv">6</span>, ] <span class="co"># equivalent to head(surveys)</span></code></pre></div>
 <p><code>:</code> is a special function that creates numeric vectors of integers in increasing or decreasing order, test <code>1:10</code> and <code>10:1</code> for instance.</p>
 <p>You can also exclude certain parts of a data frame using the “<code>-</code>” sign:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys[,-<span class="dv">1</span>]   <span class="co">#The whole data frame, except the first column</span>
-surveys[-<span class="kw">c</span>(<span class="dv">7</span>:<span class="dv">34786</span>),] <span class="co">#equivalent to head(surveys)</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys[,-<span class="dv">1</span>]          <span class="co"># The whole data frame, except the first column</span>
+surveys[-<span class="kw">c</span>(<span class="dv">7</span>:<span class="dv">34786</span>),] <span class="co"># Equivalent to head(surveys)</span></code></pre></div>
 <p>As well as using numeric values to subset a <code>data.frame</code> (or <code>matrix</code>), columns can be called by name, using one of the four following notations:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys[<span class="st">&quot;species_id&quot;</span>]       <span class="co"># Result is a data.frame</span>
 surveys[, <span class="st">&quot;species_id&quot;</span>]     <span class="co"># Result is a vector</span>
 surveys[[<span class="st">&quot;species_id&quot;</span>]]     <span class="co"># Result is a vector</span>
 surveys$species_id          <span class="co"># Result is a vector</span></code></pre></div>
-<p>For our purposes, the last three notations are equivalent. RStudio knows about the columns in your data frame, so you can take advantage of the autocompetion feature to get the full and correct column name.</p>
+<p>For our purposes, the last three notations are equivalent. RStudio knows about the columns in your data frame, so you can take advantage of the autocompletion feature to get the full and correct column name.</p>
 <blockquote>
 <h3 id="challenge-1">Challenge</h3>
 <ol style="list-style-type: decimal">
@@ -627,7 +627,7 @@ plot(sex)
 <div id="using-stringsasfactorsfalse" class="section level3">
 <h3>Using <code>stringsAsFactors=FALSE</code></h3>
 <p>By default, when building or importing a data frame, the columns that contain characters (i.e., text) are coerced (=converted) into the <code>factor</code> data type. Depending on what you want to do with the data, you may want to keep these columns as <code>character</code>. To do so, <code>read.csv()</code> and <code>read.table()</code> have an argument called <code>stringsAsFactors</code> which can be set to <code>FALSE</code>.</p>
-<p>In most cases, it’s preferrable to set <code>stringsAsFactors = FALSE</code> when importing your data, and converting as a factor only the columns that require this data type.</p>
+<p>In most cases, it’s preferable to set <code>stringsAsFactors = FALSE</code> when importing your data, and converting as a factor only the columns that require this data type.</p>
 <p>Compare the output of <code>str(surveys)</code> when setting <code>stringsAsFactors = TRUE</code> (default) and <code>stringsAsFactors = FALSE</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Compare the difference between when the data are being read as
 ## `factor`, and when they are being read as `character`.
@@ -650,11 +650,13 @@ surveys$plot_type &lt;-<span class="st"> </span><span class="kw">factor</span>(s
 <li>What would have been different if we had added <code>stringsAsFactors = FALSE</code> to this call?</li>
 <li>What would you need to change to ensure that each column had the accurate data type?</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">country_climate &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">country=</span><span class="kw">c</span>(<span class="st">&quot;Canada&quot;</span>, <span class="st">&quot;Panama&quot;</span>, <span class="st">&quot;South Africa&quot;</span>, <span class="st">&quot;Australia&quot;</span>),
-                               <span class="dt">climate=</span><span class="kw">c</span>(<span class="st">&quot;cold&quot;</span>, <span class="st">&quot;hot&quot;</span>, <span class="st">&quot;temperate&quot;</span>, <span class="st">&quot;hot/temperate&quot;</span>),
-                               <span class="dt">temperature=</span><span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">30</span>, <span class="dv">18</span>, <span class="st">&quot;15&quot;</span>),
-                               <span class="dt">northern_hemisphere=</span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="st">&quot;FALSE&quot;</span>),
-                               <span class="dt">has_kangaroo=</span><span class="kw">c</span>(<span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="dv">1</span>))</code></pre></div></li>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">country_climate &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
+       <span class="dt">country=</span><span class="kw">c</span>(<span class="st">&quot;Canada&quot;</span>, <span class="st">&quot;Panama&quot;</span>, <span class="st">&quot;South Africa&quot;</span>, <span class="st">&quot;Australia&quot;</span>),
+       <span class="dt">climate=</span><span class="kw">c</span>(<span class="st">&quot;cold&quot;</span>, <span class="st">&quot;hot&quot;</span>, <span class="st">&quot;temperate&quot;</span>, <span class="st">&quot;hot/temperate&quot;</span>),
+       <span class="dt">temperature=</span><span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">30</span>, <span class="dv">18</span>, <span class="st">&quot;15&quot;</span>),
+       <span class="dt">northern_hemisphere=</span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="st">&quot;FALSE&quot;</span>),
+       <span class="dt">has_kangaroo=</span><span class="kw">c</span>(<span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="dv">1</span>)
+       )</code></pre></div></li>
 </ol>
 <p><!--- Answers
 

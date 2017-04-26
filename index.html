@@ -325,7 +325,7 @@ div.tocify {
 <p>
 </p>
 <p>Data Carpentry’s aim is to teach researchers basic concepts, skills, and tools for working with data so that they can get more done in less time, and with less pain. The lessons below were designed for those interested in working with ecology data in R.</p>
-<p>This is an introduction to R designed for participants with no programming experience. These lessons can be taught in a day. They start with some basic information about R syntax, the RStudio interface, and move through how to import CSV files, the structure of data frames, how to deal with factors, how to add/remove rows and columns, and finish with how to calculate summary statistics for each level and a very brief introduction to plotting.</p>
+<p>This is an introduction to R designed for participants with no programming experience. These lessons can be taught in a day (~ 6 hours). They start with some basic information about R syntax, the RStudio interface, and move through how to import CSV files, the structure of data frames, how to deal with factors, how to add/remove rows and columns, how to calculate summary statistics from a data frame, and a brief introduction to plotting. The last lesson demonstrates how to work with databases directly from R.</p>
 <div id="chapters" class="section level2">
 <h2>Chapters</h2>
 <ol style="list-style-type: decimal">
@@ -333,7 +333,7 @@ div.tocify {
 <li><a href="01-intro-to-r.html">Introduction to R</a></li>
 <li><a href="02-starting-with-data.html">Starting with data</a></li>
 <li><a href="03-dplyr.html">Aggregating and analyzing data with dplyr</a></li>
-<li><a href="04-visualization-ggplot2.html">Data visualization with ggplot2</a></li>
+<li><a href="04-visualization-ggplot2.html">Data visualization with <strong><code>ggplot2</code></strong></a></li>
 <li><a href="05-r-and-databases.html">R and Databases</a></li>
 </ol>
 </div>
@@ -342,12 +342,12 @@ div.tocify {
 <p>Data Carpentry’s teaching is hands-on, so participants are encouraged to use their own computers to ensure the proper setup of tools for an efficient workflow. <em>These lessons assume no prior knowledge of the skills or tools</em>, but working through this lesson requires working copies of the software described below. To most effectively use these materials, please make sure to download the data and install everything <em>before</em> working through this lesson.</p>
 <div id="data" class="section level3">
 <h3>Data</h3>
-<p>Data files for the lesson are available here: <a href="http://dx.doi.org/10.6084/m9.figshare.1314459" class="uri">http://dx.doi.org/10.6084/m9.figshare.1314459</a></p>
-<p>Please download the <em>*.csv</em> (Comma Separated Value) files: <em>species.csv</em>, <em>plots.csv</em>, <em>surveys.csv</em>, and <em>combined.csv</em>.</p>
+<p>Data files for the lesson are available and can be downloaded manually here: <a href="http://dx.doi.org/10.6084/m9.figshare.1314459" class="uri">http://dx.doi.org/10.6084/m9.figshare.1314459</a></p>
+<p>However, we will download them directly from R during the lessons when we need them.</p>
 </div>
 <div id="setup-instructions" class="section level3">
 <h3>Setup instructions</h3>
-<p><strong>R</strong> and <strong>RStudio</strong> are separate downloads and installations. R is the underlying statistical computing environment, but using R alone is no fun. RStudio is a graphical integrated development environment (IDE) that makes using R much easier and more interactive. You need to install R before you install RStudio. After installing both programs, you will need to install the <code>tidyverse</code> package from within RStudio. Follow the instructions below for your operating system, and then follow the instructions to install <code>tidyverse</code> and <code>RSQLite</code>.</p>
+<p><strong>R</strong> and <strong>RStudio</strong> are separate downloads and installations. R is the underlying statistical computing environment, but using R alone is no fun. RStudio is a graphical integrated development environment (IDE) that makes using R much easier and more interactive. You need to install R before you install RStudio. After installing both programs, you will need to install the <strong><code>tidyverse</code></strong> package from within RStudio. Follow the instructions below for your operating system, and then follow the instructions to install <strong><code>tidyverse</code></strong> and <strong><code>RSQLite</code></strong>.</p>
 <div id="windows" class="section level4">
 <h4>Windows</h4>
 <div id="if-you-already-have-r-and-rstudio-installed" class="section level5">
@@ -369,21 +369,22 @@ div.tocify {
 </ul>
 </div>
 </div>
-<div id="macos-x" class="section level4">
-<h4>MacOS X</h4>
+<div id="macos" class="section level4">
+<h4>macOS</h4>
 <div id="if-you-already-have-r-and-rstudio-installed-1" class="section level5">
 <h5>If you already have R and RStudio installed</h5>
 <ul>
 <li>Open RStudio, and click on “Help” &gt; “Check for updates”. If a new version is available, quit RStudio, and download the latest version for RStudio.</li>
-<li>To check the version of R you are using, start RStudio and the first thing that appears on the terminal indicates the version of R you are running. Alternatively, you can type <code>sessionInfo()</code>, which will also display which version of R you are running. Go on the <a href="https://cran.r-project.org/bin/macosx/">CRAN website</a> and check whether a more recent version is available. If so, please download and install it. You may also want to consider removing your old version of R. You can <a href="https://cran.r-project.org/bin/windows/base/rw-FAQ.html#How-do-I-UNinstall-R_003f">check here</a> for more information.</li>
+<li>To check the version of R you are using, start RStudio and the first thing that appears on the terminal indicates the version of R you are running. Alternatively, you can type <code>sessionInfo()</code>, which will also display which version of R you are running. Go on the <a href="https://cran.r-project.org/bin/macosx/">CRAN website</a> and check whether a more recent version is available. If so, please download and install it.</li>
 </ul>
 </div>
 <div id="if-you-dont-have-r-and-rstudio-installed-1" class="section level5">
 <h5>If you don’t have R and RStudio installed</h5>
 <ul>
 <li>Download R from the <a href="http://cran.r-project.org/bin/macosx">CRAN website</a>.</li>
-<li>Select the <code>.pkg</code> file for the version of OS X that you have and the file will download</li>
-<li>Double clik on the downloaded file to install R</li>
+<li>Select the <code>.pkg</code> file for the latest R version</li>
+<li>Double click on the downloaded file to install R</li>
+<li>It is also a good idea to install <a href="https://www.xquartz.org/">XQuartz</a> (needed by some packages)</li>
 <li>Go to the <a href="https://www.rstudio.com/products/rstudio/download/#download">RStudio download page</a></li>
 <li>Under <em>Installers</em> select <strong>RStudio x.yy.zzz - Mac OS X 10.6+ (64-bit)</strong> (where x, y, and z represent version numbers)</li>
 <li>Double click the file to install RStudio</li>
@@ -394,7 +395,7 @@ div.tocify {
 <div id="linux" class="section level4">
 <h4>Linux</h4>
 <ul>
-<li>Follow the instructions for your distribution from <a href="https://cloud.r-project.org/bin/linux">CRAN</a>, they provide information to get the most recent version of R for your distribution. For most distributions, you could use your package manager (e.g., for Debian/Ubuntu run <code>sudo apt-get install r-base</code>, and for Fedora <code>sudo yum install R</code>), but the versions provided by this approach are usually out of date. In any case, make sure you have at least R 3.3.1</li>
+<li>Follow the instructions for your distribution from <a href="https://cloud.r-project.org/bin/linux">CRAN</a>, they provide information to get the most recent version of R for common distributions. For most distributions, you could use your package manager (e.g., for Debian/Ubuntu run <code>sudo apt-get install r-base</code>, and for Fedora <code>sudo yum install R</code>), but we don’t recommend this approach as the versions provided by this are usually out of date. In any case, make sure you have at least R 3.3.1.</li>
 <li>Go to the <a href="https://www.rstudio.com/products/rstudio/download/#download">RStudio download page</a></li>
 <li>Under <em>Installers</em> select the version that matches your distribution, and install it with your preferred method (e.g., with Debian/Ubuntu <code>sudo dpkg -i   rstudio-x.yy.zzz-amd64.deb</code> at the terminal).</li>
 <li>Once it’s installed, open RStudio to make sure it works and you don’t get any error messages.</li>
@@ -402,7 +403,7 @@ div.tocify {
 </div>
 <div id="for-everyone" class="section level4">
 <h4>For everyone</h4>
-<p><strong>After installing R and RStudio, you need to install the “tidyverse” and “RSQLite” packages.</strong></p>
+<p><strong>After installing R and RStudio, you need to install the <code>tidyverse</code> and <code>RSQLite</code> packages.</strong></p>
 <ul>
 <li>After starting RStudio, at the console type: <code>install.packages(c(&quot;tidyverse&quot;, &quot;RSQLite&quot;))</code></li>
 </ul>
@@ -411,7 +412,7 @@ div.tocify {
 </div>
 <div id="contributors" class="section level2">
 <h2>Contributors</h2>
-<p>The list of contributors to this lesson is available <a href="AUTHORS">here</a>,</p>
+<p>The list of contributors to this lesson is available <a href="http://datacarpentry.org/R-ecology-lesson/CITATION">here</a>,</p>
 </div>
 
 <hr/>

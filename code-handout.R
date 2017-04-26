@@ -261,6 +261,13 @@ genus_counts <- left_join(surveys, plots) %>%
   group_by(plot_type, genus) %>%
   tally %>%
   collect()
+## if you haven't downloaded  the csv files yet, you can do:
+download.file("https://ndownloader.figshare.com/files/3299474",
+              "data/plots.csv")
+download.file("https://ndownloader.figshare.com/files/3299483",
+              "data/species.csv")
+download.file("https://ndownloader.figshare.com/files/2292172",
+              "data/surveys.csv")
 species <- read.csv("data/species.csv")
 surveys <- read.csv("data/surveys.csv")
 plots <- read.csv("data/plots.csv")

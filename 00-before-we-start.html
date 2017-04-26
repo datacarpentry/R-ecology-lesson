@@ -360,10 +360,9 @@ div.tocify {
 <hr />
 <blockquote>
 <h3 id="learning-objectives">Learning Objectives</h3>
-<p>After completing this module, the learner should be able to:</p>
 <ul>
 <li>Describe the purpose of the RStudio Script, Console, Environment, and Plots panes.</li>
-<li>Organize files and directories for a set of analyses as an R Project and understand the purpose of the working directory.</li>
+<li>Organize files and directories for a set of analyses as an R Project, and understand the purpose of the working directory.</li>
 <li>Use the built-in RStudio help interface to search for more information on R functions.</li>
 <li>Demonstrate how to provide sufficient information for troubleshooting with the R user community.</li>
 </ul>
@@ -378,7 +377,7 @@ div.tocify {
 <h2>Why learn R?</h2>
 <div id="r-does-not-involve-lots-of-pointing-and-clicking-and-thats-a-good-thing" class="section level3">
 <h3>R does not involve lots of pointing and clicking, and that’s a good thing</h3>
-<p>The learning curve might be steeper than with other software, but with R, the results of your analysis does not rely on remembering a succession of pointing and clicking but instead in a series of written commands, and that’s a good thing! So, if you want to redo your analysis because you collected more data, you don’t have to remember which button you clicked in which order to obtain your results, you just have to run your script again.</p>
+<p>The learning curve might be steeper than with other software, but with R, the results of your analysis does not rely on remembering a succession of pointing and clicking, but instead on a series of written commands, and that’s a good thing! So, if you want to redo your analysis because you collected more data, you don’t have to remember which button you clicked in which order to obtain your results, you just have to run your script again.</p>
 <p>Working with scripts makes the steps you used in your analysis clear, and the code you write can be inspected by someone else who can give you feedback and spot mistakes.</p>
 <p>Working with scripts forces you to have a deeper understanding of what you are doing, and facilitates your learning and comprehension of the methods you use.</p>
 </div>
@@ -415,16 +414,15 @@ div.tocify {
 <h2>Knowing your way around RStudio</h2>
 <p>Let’s start by learning about <a href="https://www.rstudio.com/">RStudio</a>, which is an Integrated Development Environment (IDE) for working with R.</p>
 <p>The RStudio IDE open-source product is free under the <a href="https://www.gnu.org/licenses/agpl-3.0.en.html">Affero General Public License (AGPL) v3</a>. The RStudio IDE is also available with a commercial license and priority email support from RStudio, Inc.</p>
-<p>We will use RStudio IDE to write code, navigate the files on our computer, inspect the variables we are going to create, and visualize the plots we will generate. RStudio can also be used for other things (e.g., version control, developing packages, writting Shiny apps) that we will not cover during the workshop.</p>
+<p>We will use RStudio IDE to write code, navigate the files on our computer, inspect the variables we are going to create, and visualize the plots we will generate. RStudio can also be used for other things (e.g., version control, developing packages, writing Shiny apps) that we will not cover during the workshop.</p>
 <div class="figure">
 <img src="img/rstudio-screenshot.png" alt="RStudio interface screenshot" />
 <p class="caption">RStudio interface screenshot</p>
 </div>
-<p>RStudio is divided into 4 “Panes”: the <strong>Source</strong> for your scripts and documents (top-left, in the default layout), the R <strong>Console</strong> (bottom-left), your <strong>Environment/History</strong> (top-right), and your <strong>Files/Plots/Packages/Help/Viewer</strong></p>
-<p>(bottom-right). The placement of these panes and their content can be customized (see menu, RStudio -&gt; Preferences -&gt; Pane Layout). One of the advantages of using RStudio is that all the information you need to write code is available in a single window. Additionally, with many shortcuts, autocompletion, and highlighting for the major file types you use while developing in R, RStudio will make typing easier and less error-prone.</p>
+<p>RStudio is divided into 4 “Panes”: the <strong>Source</strong> for your scripts and documents (top-left, in the default layout), the R <strong>Console</strong> (bottom-left), your <strong>Environment/History</strong> (top-right), and your <strong>Files/Plots/Packages/Help/Viewer</strong> (bottom-right). The placement of these panes and their content can be customized (see menu, Tools -&gt; Global Options -&gt; Pane Layout). One of the advantages of using RStudio is that all the information you need to write code is available in a single window. Additionally, with many shortcuts, autocompletion, and highlighting for the major file types you use while developing in R, RStudio will make typing easier and less error-prone.</p>
 </div>
-<div id="before-we-get-started" class="section level2">
-<h2>Before we get started</h2>
+<div id="getting-set-up" class="section level2">
+<h2>Getting set up</h2>
 <p>It is good practice to keep a set of related data, analyses, and text self-contained in a single folder, called the <strong>working directory</strong>. All of the scripts within this folder can then use <em>relative paths</em> to files that indicate where inside the project a file is located (as opposed to absolute paths, which point to where a file is on a specific computer). Working this way makes it a lot easier to move your project around on your computer and share it with others without worrying about whether or not the underlying scripts will still work.</p>
 <p>RStudio provides a helpful set of tools to do this through its “Projects” interface, which not only creates a working directory for you but also remembers its location (allowing you to quickly navigate to it) and optionally preserves custom settings and open files to make it easier to resume work after a break. Below, we will go through the steps for creating an “R Project” for this tutorial.</p>
 <ul>
@@ -433,7 +431,7 @@ div.tocify {
 <li>Enter a name for this new folder (or “directory”), and choose a convenient location for it. This will be your <strong>working directory</strong> for the rest of the day (e.g., <code>~/data-carpentry</code>)</li>
 <li>Click on <code>Create project</code></li>
 <li>Under the <code>Files</code> tab on the right of the screen, click on <code>New Folder</code> and create a folder named <code>data</code> within your newly created working directory (e.g., <code>~/data-carpentry/data</code>)</li>
-<li>Create a new R script (File -&gt; New File -&gt; R script) and save it in your working directory (e.g., <code>data-carpentry-script.R</code>)</li>
+<li>Download the <a href="./code-handout.R">code handout</a>, place it in your working directory and rename it (e.g., <code>data-carpentry-script.R</code>).</li>
 </ul>
 <p>Your working directory should now look like this:</p>
 <div class="figure">
@@ -467,6 +465,14 @@ div.tocify {
 </div>
 <div id="seeking-help" class="section level2">
 <h2>Seeking help</h2>
+<div id="use-the-built-in-rstudio-help-interface-to-search-for-more-information-on-r-functions" class="section level3">
+<h3>Use the built-in RStudio help interface to search for more information on R functions</h3>
+<div class="figure">
+<img src="img/rstudiohelp.png" alt="RStudio help interface" />
+<p class="caption">RStudio help interface</p>
+</div>
+<p>One of the most fastest ways to get help, is to use the RStudio help interface. This panel by default can be found at the lower right hand panel of RStudio. As seen in the screenshot, by typing the word “Mean”, RStudio tries to also give a number of suggestions that you might be interested in. The description is then shown in the display window.</p>
+</div>
 <div id="i-know-the-name-of-the-function-i-want-to-use-but-im-not-sure-how-to-use-it" class="section level3">
 <h3>I know the name of the function I want to use, but I’m not sure how to use it</h3>
 <p>If you need help with a specific function, let’s say <code>barplot()</code>, you can type:</p>
@@ -497,16 +503,24 @@ div.tocify {
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dput</span>(<span class="kw">head</span>(iris)) <span class="co"># iris is an example data.frame that comes with R and head() is a function that returns the first part of the data.frame</span></code></pre></div>
 <pre><code>## structure(list(Sepal.Length = c(5.1, 4.9, 4.7, 4.6, 5, 5.4), 
 ##     Sepal.Width = c(3.5, 3, 3.2, 3.1, 3.6, 3.9), Petal.Length = c(1.4, 
-##   ...</code></pre>
+##     1.4, 1.3, 1.5, 1.4, 1.7), Petal.Width = c(0.2, 0.2, 0.2, 
+##     0.2, 0.2, 0.4), Species = structure(c(1L, 1L, 1L, 1L, 1L, 
+##     1L), .Label = c(&quot;setosa&quot;, &quot;versicolor&quot;, &quot;virginica&quot;), class = &quot;factor&quot;)), .Names = c(&quot;Sepal.Length&quot;, 
+## &quot;Sepal.Width&quot;, &quot;Petal.Length&quot;, &quot;Petal.Width&quot;, &quot;Species&quot;), row.names = c(NA, 
+## 6L), class = &quot;data.frame&quot;)</code></pre>
 <p>If the object is larger, provide either the raw file (i.e., your CSV file) with your script up to the point of the error (and after removing everything that is not relevant to your issue). Alternatively, in particular if your question is not related to a <code>data.frame</code>, you can save any R object to a file:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">saveRDS</span>(iris, <span class="dt">file=</span><span class="st">&quot;/tmp/iris.rds&quot;</span>)</code></pre></div>
 <p>The content of this file is however not human readable and cannot be posted directly on Stack Overflow. Instead, it can be sent to someone by email who can read it with the <code>readRDS()</code> command (here it is assumed that the downloaded file is in a <code>Downloads</code> folder in the user’s home directory):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">some_data &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="dt">file=</span><span class="st">&quot;~/Downloads/iris.rds&quot;</span>)</code></pre></div>
 <p>Last, but certainly not least, <strong>always include the output of <code>sessionInfo()</code></strong> as it provides critical information about your platform, the versions of R and the packages that you are using, and other information that can be very helpful to understand your problem.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sessionInfo</span>()</code></pre></div>
-<pre><code>## R version 3.3.3 (2017-03-06)
+<pre><code>## R version 3.4.0 (2017-04-21)
 ## Platform: x86_64-pc-linux-gnu (64-bit)
-## Running under: Ubuntu 16.10
+## Running under: Ubuntu 17.04
+## 
+## Matrix products: default
+## BLAS: /usr/lib/libblas/libblas.so.3.7.0
+## LAPACK: /usr/lib/lapack/liblapack.so.3.7.0
 ## 
 ## locale:
 ##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
@@ -523,11 +537,11 @@ div.tocify {
 ## [1] BiocInstaller_1.24.0
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] backports_1.0.5      magrittr_1.5         rprojroot_1.2       
-##  [4] tools_3.3.3          htmltools_0.3.5      yaml_2.1.14         
-##  [7] Rcpp_0.12.10         stringi_1.1.3        rmarkdown_1.4.0.9000
-## [10] knitr_1.15.1         methods_3.3.3        stringr_1.2.0       
-## [13] digest_0.6.12        evaluate_0.10</code></pre>
+##  [1] compiler_3.4.0       backports_1.0.5      magrittr_1.5        
+##  [4] rprojroot_1.2        tools_3.4.0          htmltools_0.3.5     
+##  [7] yaml_2.1.14          Rcpp_0.12.10         stringi_1.1.5       
+## [10] rmarkdown_1.4.0.9000 knitr_1.15.1         methods_3.4.0       
+## [13] stringr_1.2.0        digest_0.6.12        evaluate_0.10</code></pre>
 </div>
 <div id="where-to-ask-for-help" class="section level3">
 <h3>Where to ask for help?</h3>

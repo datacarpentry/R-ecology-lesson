@@ -360,32 +360,29 @@ div.tocify {
 <hr />
 <blockquote>
 <h3 id="learning-objectives">Learning Objectives</h3>
-<p>By the end of this lesson the learner will:</p>
 <ul>
-<li>Recall the six data manipulation ‘verbs’ in the dplyr package and know what they do.</li>
+<li>Recall the six data manipulation ‘verbs’ in the <strong><code>dplyr</code></strong> package and know what they do.</li>
 <li>Select subsets of columns and filter rows in a data.frame according to a condition(s).</li>
-<li>Employ the ‘pipe’ operator to link together a sequence of dplyr commands.</li>
+<li>Employ the ‘pipe’ operator to link together a sequence of <strong><code>dplyr</code></strong> commands.</li>
 <li>Employ the ‘mutate’ command to apply functions to existing columns and create new columns of data.</li>
 <li>Export a data.frame to a .csv file.</li>
 </ul>
 </blockquote>
 <hr />
 <div id="data-manipulation-using-dplyr" class="section level1">
-<h1>Data Manipulation using dplyr</h1>
-<p>Bracket subsetting is handy, but it can be cumbersome and difficult to read, especially for complicated operations. Enter <code>dplyr</code>. <code>dplyr</code> is a package for making tabular data manipulation easier.</p>
-<p>Packages in R are basically sets of additional functions that let you do more stuff. The functions we’ve been using so far, like <code>str()</code> or <code>data.frame()</code>, come built into R; packages give you access to more of them. Before you use a package for the first time you need to install it on your machine, and then you should import it in every subsequent R session when you need it.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;dplyr&quot;</span>)</code></pre></div>
-<p>You might get asked to choose a CRAN mirror – this is basically asking you to choose a site to download the package from. The choice doesn’t matter too much; we recommend the RStudio mirror (<code>1: 0-Cloud</code>).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;dplyr&quot;</span>)    ## load the package</code></pre></div>
+<h1>Data Manipulation using <strong><code>dplyr</code></strong></h1>
+<p>Bracket subsetting is handy, but it can be cumbersome and difficult to read, especially for complicated operations. Enter <strong><code>dplyr</code></strong>. <strong><code>dplyr</code></strong> is a package for making tabular data manipulation easier.</p>
+<p>Packages in R are basically sets of additional functions that let you do more stuff. The functions we’ve been using so far, like <code>str()</code> or <code>data.frame()</code>, come built into R; packages give you access to more of them. Before you use a package for the first time you need to install it on your machine, and then you should import it in every subsequent R session when you need it. You should already have installed the <strong><code>tidyverse</code></strong> package. This is an “umbrella-package” that installs several packages useful for data analysis which work together well such as <strong><code>tidyr</code></strong>, <strong><code>dplyr</code></strong>, <strong><code>ggplot2</code></strong>, etc. To load the package type:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;tidyverse&quot;</span>)    ## load the tidyverse packages, incl. dplyr</code></pre></div>
 <div id="what-is-dplyr" class="section level2">
-<h2>What is <code>dplyr</code>?</h2>
-<p>The package <code>dplyr</code> provides easy tools for the most common data manipulation tasks. It is built to work directly with data frames, with many common tasks optimized by being written in a compiled language (C++). An additional feature is the ability to work directly with data stored in an external database. The benefits of doing this are that the data can be managed natively in a relational database, queries can be conducted on that database, and only the results of the query are returned.</p>
+<h2>What is <strong><code>dplyr</code></strong>?</h2>
+<p>The package <strong><code>dplyr</code></strong> provides easy tools for the most common data manipulation tasks. It is built to work directly with data frames, with many common tasks optimized by being written in a compiled language (C++). An additional feature is the ability to work directly with data stored in an external database. The benefits of doing this are that the data can be managed natively in a relational database, queries can be conducted on that database, and only the results of the query are returned.</p>
 <p>This addresses a common problem with R in that all operations are conducted in-memory and thus the amount of data you can work with is limited by available memory. The database connections essentially remove that limitation in that you can have a database of many 100s GB, conduct queries on it directly, and pull back into R only what you need for analysis.</p>
-<p>To learn more about <code>dplyr</code> after the workshop, you may want to check out this <a href="http://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">handy dplyr cheatsheet</a>.</p>
+<p>To learn more about <strong><code>dplyr</code></strong> after the workshop, you may want to check out this <a href="http://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">handy <strong><code>dplyr</code></strong> cheatsheet</a>.</p>
 </div>
 <div id="selecting-columns-and-filtering-rows" class="section level2">
 <h2>Selecting columns and filtering rows</h2>
-<p>We’re going to learn some of the most common <code>dplyr</code> functions: <code>select()</code>, <code>filter()</code>, <code>mutate()</code>, <code>group_by()</code>, and <code>summarize()</code>. To select columns of a data frame, use <code>select()</code>. The first argument to this function is the data frame (<code>surveys</code>), and the subsequent arguments are the columns to keep.</p>
+<p>We’re going to learn some of the most common <strong><code>dplyr</code></strong> functions: <code>select()</code>, <code>filter()</code>, <code>mutate()</code>, <code>group_by()</code>, and <code>summarize()</code>. To select columns of a data frame, use <code>select()</code>. The first argument to this function is the data frame (<code>surveys</code>), and the subsequent arguments are the columns to keep.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">select</span>(surveys, plot_id, species_id, weight)</code></pre></div>
 <p>To choose rows based on a specific criteria, use <code>filter()</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">filter</span>(surveys, year ==<span class="st"> </span><span class="dv">1995</span>)</code></pre></div>
@@ -394,7 +391,7 @@ div.tocify {
 <h2>Pipes</h2>
 <p>But what if you wanted to select and filter at the same time? There are three ways to do this: use intermediate steps, nested functions, or pipes.</p>
 <p>With intermediate steps, you essentially create a temporary data frame and use that as input to the next function. This can clutter up your workspace with lots of objects. You can also nest functions (i.e. one function inside of another). This is handy, but can be difficult to read if too many functions are nested as things are evaluated from the inside out.</p>
-<p>The last option, pipes, are a fairly recent addition to R. Pipes let you take the output of one function and send it directly to the next, which is useful when you need to do many things to the same dataset. Pipes in R look like <code>%&gt;%</code> and are made available via the <code>magrittr</code> package, installed automatically with <code>dplyr</code>.</p>
+<p>The last option, pipes, are a fairly recent addition to R. Pipes let you take the output of one function and send it directly to the next, which is useful when you need to do many things to the same dataset. Pipes in R look like <code>%&gt;%</code> and are made available via the <code>magrittr</code> package, installed automatically with <strong><code>dplyr</code></strong>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys %&gt;%
 <span class="st">  </span><span class="kw">filter</span>(weight &lt;<span class="st"> </span><span class="dv">5</span>) %&gt;%
 <span class="st">  </span><span class="kw">select</span>(species_id, sex, weight)</code></pre></div>
@@ -425,7 +422,7 @@ surveys %>%
 <p>To create a new column of weight in kg:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys %&gt;%
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">weight_kg =</span> weight /<span class="st"> </span><span class="dv">1000</span>)</code></pre></div>
-<p>If this runs off your screen and you just want to see the first few rows, you can use a pipe to view the <code>head()</code> of the data. (Pipes work with non-dplyr functions, too, as long as the <code>dplyr</code> or <code>magrittr</code> package is loaded).</p>
+<p>If this runs off your screen and you just want to see the first few rows, you can use a pipe to view the <code>head()</code> of the data. (Pipes work with non-<strong><code>dplyr</code></strong> functions, too, as long as the <strong><code>dplyr</code></strong> or <code>magrittr</code> package is loaded).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys %&gt;%
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">weight_kg =</span> weight /<span class="st"> </span><span class="dv">1000</span>) %&gt;%
 <span class="st">  </span>head</code></pre></div>
@@ -455,14 +452,14 @@ surveys_hindfoot_half <- surveys %>%
 </div>
 <div id="split-apply-combine-data-analysis-and-the-summarize-function" class="section level3">
 <h3>Split-apply-combine data analysis and the summarize() function</h3>
-<p>Many data analysis tasks can be approached using the <em>split-apply-combine</em> paradigm: split the data into groups, apply some analysis to each group, and then combine the results. <code>dplyr</code> makes this very easy through the use of the <code>group_by()</code> function.</p>
+<p>Many data analysis tasks can be approached using the <em>split-apply-combine</em> paradigm: split the data into groups, apply some analysis to each group, and then combine the results. <strong><code>dplyr</code></strong> makes this very easy through the use of the <code>group_by()</code> function.</p>
 <div id="the-summarize-function" class="section level4">
 <h4>The <code>summarize()</code> function</h4>
 <p><code>group_by()</code> is often used together with <code>summarize()</code>, which collapses each group into a single-row summary of that group. <code>group_by()</code> takes as arguments the column names that contain the <strong>categorical</strong> variables for which you want to calculate the summary statistics. So to view the mean <code>weight</code> by sex:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys %&gt;%
 <span class="st">  </span><span class="kw">group_by</span>(sex) %&gt;%
 <span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_weight =</span> <span class="kw">mean</span>(weight, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</code></pre></div>
-<p>You may also have noticed that the output from these calls doesn’t run off the screen anymore. That’s because dplyr has changed our <code>data.frame</code> object to an object of class <code>tbl_df</code>, also known as a “tibble”. Tibble’s data structure is very similar to a data frame. For our purposes the only differences is that, (1) in addition to displaying the data type of each column under its name, it only prints the first few rows of data and only as many columns as fit on one screen, (2) columns of class <code>character</code> are never converted into factors.</p>
+<p>You may also have noticed that the output from these calls doesn’t run off the screen anymore. That’s because <strong><code>dplyr</code></strong> has changed our <code>data.frame</code> object to an object of class <code>tbl_df</code>, also known as a “tibble”. Tibble’s data structure is very similar to a data frame. For our purposes the only differences is that, (1) in addition to displaying the data type of each column under its name, it only prints the first few rows of data and only as many columns as fit on one screen, (2) columns of class <code>character</code> are never converted into factors.</p>
 <p>You can also group by multiple columns:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys %&gt;%
 <span class="st">  </span><span class="kw">group_by</span>(sex, species_id) %&gt;%
@@ -472,7 +469,7 @@ surveys_hindfoot_half <- surveys %>%
 <span class="st">  </span><span class="kw">filter</span>(!<span class="kw">is.na</span>(weight)) %&gt;%
 <span class="st">  </span><span class="kw">group_by</span>(sex, species_id) %&gt;%
 <span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_weight =</span> <span class="kw">mean</span>(weight))</code></pre></div>
-<p>Here, again, the output from these calls doesn’t run off the screen anymore. Recall that <code>dplyr</code> has changed our <code>data.frame</code> to a <code>tbl_df</code>. If you want to display more data, you can use the <code>print()</code> function at the end of your chain with the argument <code>n</code> specifying the number of rows to display:</p>
+<p>Here, again, the output from these calls doesn’t run off the screen anymore. Recall that <strong><code>dplyr</code></strong> has changed our <code>data.frame</code> to a <code>tbl_df</code>. If you want to display more data, you can use the <code>print()</code> function at the end of your chain with the argument <code>n</code> specifying the number of rows to display:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys %&gt;%
 <span class="st">  </span><span class="kw">filter</span>(!<span class="kw">is.na</span>(weight)) %&gt;%
 <span class="st">  </span><span class="kw">group_by</span>(sex, species_id) %&gt;%
@@ -487,7 +484,7 @@ surveys_hindfoot_half <- surveys %>%
 </div>
 <div id="tallying" class="section level4">
 <h4>Tallying</h4>
-<p>When working with data, it is also common to want to know the number of observations found for each factor or combination of factors. For this, <code>dplyr</code> provides <code>tally()</code>. For example, if we wanted to group by sex and find the number of rows of data for each sex, we would do:</p>
+<p>When working with data, it is also common to want to know the number of observations found for each factor or combination of factors. For this, <strong><code>dplyr</code></strong> provides <code>tally()</code>. For example, if we wanted to group by sex and find the number of rows of data for each sex, we would do:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys %&gt;%
 <span class="st">  </span><span class="kw">group_by</span>(sex) %&gt;%
 <span class="st">  </span>tally</code></pre></div>
@@ -510,8 +507,8 @@ surveys_hindfoot_half <- surveys %>%
 </div>
 <div id="exporting-data" class="section level1">
 <h1>Exporting data</h1>
-<p>Now that you have learned how to use <code>dplyr</code> to extract information from or summarize your raw data, you may want to export these new datasets to share them with your collaborators or for archival.</p>
-<p>Similar to the <code>read.csv()</code> function used for reading CSVs into R, there is a <code>write.csv()</code> function that generates CSV files from data frames.</p>
+<p>Now that you have learned how to use <strong><code>dplyr</code></strong> to extract information from or summarize your raw data, you may want to export these new datasets to share them with your collaborators or for archival.</p>
+<p>Similar to the <code>read.csv()</code> function used for reading CSV files into R, there is a <code>write.csv()</code> function that generates CSV files from data frames.</p>
 <p>Before using <code>write.csv()</code>, we are going to create a new folder, <code>data_output</code>, in our working directory that will store this generated dataset. We don’t want to write generated datasets in the same directory as our raw data. It’s good practice to keep them separate. The <code>data</code> folder should only contain the raw, unaltered data, and should be left alone to make sure we don’t delete or modify it. In contrast, our script will generate the contents of the <code>data_output</code> directory, so even if the files it contains are deleted, we can always re-generate them.</p>
 <p>In preparation for our next lesson on plotting, we are going to prepare a cleaned up version of the dataset that doesn’t include any missing data.</p>
 <p>Let’s start by removing observations for which the <code>species_id</code> is missing. In this dataset, the missing species are represented by an empty string and not an <code>NA</code>. Let’s also remove observations for which <code>weight</code> and the <code>hindfoot_length</code> are missing. This dataset should also only contain observations of animals for which the sex has been determined:</p>
