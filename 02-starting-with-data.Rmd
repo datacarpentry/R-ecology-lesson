@@ -184,8 +184,8 @@ or decreasing order, test `1:10` and `10:1` for instance.
 You can also exclude certain parts of a data frame using the "`-`" sign:
 
 ```{r, purl=FALSE}
-surveys[,-1]   #The whole data frame, except the first column
-surveys[-c(7:34786),] #equivalent to head(surveys)
+surveys[,-1]          # The whole data frame, except the first column
+surveys[-c(7:34786),] # Equivalent to head(surveys)
 ```
 
 As well as using numeric values to subset a `data.frame` (or `matrix`), columns
@@ -199,7 +199,7 @@ surveys$species_id          # Result is a vector
 ```
 
 For our purposes, the last three notations are equivalent. RStudio knows about
-the columns in your data frame, so you can take advantage of the autocompetion
+the columns in your data frame, so you can take advantage of the autocompletion
 feature to get the full and correct column name.
 
 > ### Challenge
@@ -405,7 +405,7 @@ type. Depending on what you want to do with the data, you may want to keep these
 columns as `character`. To do so, `read.csv()` and `read.table()` have an
 argument called `stringsAsFactors` which can be set to `FALSE`.
 
-In most cases, it's preferrable to set `stringsAsFactors = FALSE` when importing
+In most cases, it's preferable to set `stringsAsFactors = FALSE` when importing
 your data, and converting as a factor only the columns that require this data
 type.
 
@@ -454,11 +454,13 @@ surveys$plot_type <- factor(surveys$plot_type)
 >      * What would you need to change to ensure that each column had the accurate data type?
 >
 >     ```{r, eval=FALSE, purl=FALSE}
->     country_climate <- data.frame(country=c("Canada", "Panama", "South Africa", "Australia"),
->                                    climate=c("cold", "hot", "temperate", "hot/temperate"),
->                                    temperature=c(10, 30, 18, "15"),
->                                    northern_hemisphere=c(TRUE, TRUE, FALSE, "FALSE"),
->                                    has_kangaroo=c(FALSE, FALSE, FALSE, 1))
+>     country_climate <- data.frame(
+>            country=c("Canada", "Panama", "South Africa", "Australia"),
+>            climate=c("cold", "hot", "temperate", "hot/temperate"),
+>            temperature=c(10, 30, 18, "15"),
+>            northern_hemisphere=c(TRUE, TRUE, FALSE, "FALSE"),
+>            has_kangaroo=c(FALSE, FALSE, FALSE, 1)
+>            )
 >     ```
 >
 >    ```{r, eval=FALSE, purl=TRUE, echo=FALSE}

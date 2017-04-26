@@ -16,43 +16,38 @@ surveys <- read.csv("data/portal_data_joined.csv")
 
 > ### Learning Objectives
 >
-> By the end of this lesson the learner will:
->
-> * Recall the six data manipulation ‘verbs’ in the dplyr package and know what they do.
+> * Recall the six data manipulation ‘verbs’ in the **`dplyr`** package and know what they do.
 > * Select subsets of columns and filter rows in a data.frame according to a condition(s).
-> * Employ the ‘pipe’ operator to link together a sequence of dplyr commands.
+> * Employ the ‘pipe’ operator to link together a sequence of **`dplyr`** commands.
 > * Employ the ‘mutate’ command to apply functions to existing columns and create new columns of data.
 > * Export a data.frame to a .csv file.
 
 ------------
 
-# Data Manipulation using dplyr
+# Data Manipulation using **`dplyr`**
 
 Bracket subsetting is handy, but it can be cumbersome and difficult to read,
-especially for complicated operations. Enter `dplyr`. `dplyr` is a package for
+especially for complicated operations. Enter **`dplyr`**. **`dplyr`** is a package for
 making tabular data manipulation easier.
 
 Packages in R are basically sets of additional functions that let you do more
 stuff. The functions we've been using so far, like `str()` or `data.frame()`,
 come built into R; packages give you access to more of them. Before you use a
 package for the first time you need to install it on your machine, and then you
-should import it in every subsequent R session when you need it.
+should import it in every subsequent R session when you need it. You should
+already have installed the **`tidyverse`** package. This is an
+"umbrella-package" that installs several packages useful for data analysis which
+work together well such as **`tidyr`**, **`dplyr`**, **`ggplot2`**, etc. To load
+the package type:
 
-```{r, eval = FALSE, purl = FALSE}
-install.packages("dplyr")
-```
-
-You might get asked to choose a CRAN mirror -- this is basically asking you to
-choose a site to download the package from. The choice doesn't matter too much;
-we recommend the RStudio mirror (`1: 0-Cloud`).
 
 ```{r, message = FALSE, purl = FALSE}
-library("dplyr")    ## load the package
+library("tidyverse")    ## load the tidyverse packages, incl. dplyr
 ```
 
-## What is `dplyr`?
+## What is **`dplyr`**?
 
-The package `dplyr` provides easy tools for the most common data manipulation
+The package **`dplyr`** provides easy tools for the most common data manipulation
 tasks. It is built to work directly with data frames, with many common tasks
 optimized by being written in a compiled language (C++). An additional feature is the
 ability to work directly with data stored in an external database. The benefits of
@@ -66,13 +61,13 @@ memory. The database connections essentially remove that limitation in that you
 can have a database of many 100s GB, conduct queries on it directly, and pull
 back into R only what you need for analysis.
 
-To learn more about `dplyr` after the workshop, you may want to check out this
-[handy dplyr cheatsheet](http://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf).
+To learn more about **`dplyr`** after the workshop, you may want to check out this
+[handy **`dplyr`** cheatsheet](http://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf).
 
 
 ## Selecting columns and filtering rows
 
-We're going to learn some of the most common `dplyr` functions: `select()`,
+We're going to learn some of the most common **`dplyr`** functions: `select()`,
 `filter()`, `mutate()`, `group_by()`, and `summarize()`. To select columns of a
 data frame, use `select()`. The first argument to this function is the data
 frame (`surveys`), and the subsequent arguments are the columns to keep.
@@ -102,7 +97,7 @@ The last option, pipes, are a fairly recent addition to R. Pipes let you take
 the output of one function and send it directly to the next, which is useful
 when you need to do many things to the same dataset.  Pipes in R look like
 `%>%` and are made available via the `magrittr` package, installed automatically
-with `dplyr`.
+with **`dplyr`**.
 
 ```{r, purl = FALSE}
 surveys %>%
@@ -165,8 +160,8 @@ surveys %>%
 ```
 
 If this runs off your screen and you just want to see the first few rows, you
-can use a pipe to view the `head()` of the data. (Pipes work with non-dplyr
-functions, too, as long as the `dplyr` or `magrittr` package is loaded).
+can use a pipe to view the `head()` of the data. (Pipes work with non-**`dplyr`**
+functions, too, as long as the **`dplyr`** or `magrittr` package is loaded).
 
 ```{r, purl = FALSE}
 surveys %>%
@@ -228,7 +223,7 @@ surveys_hindfoot_half <- surveys %>%
 
 Many data analysis tasks can be approached using the *split-apply-combine*
 paradigm: split the data into groups, apply some analysis to each group, and
-then combine the results. `dplyr` makes this very easy through the use of the
+then combine the results. **`dplyr`** makes this very easy through the use of the
 `group_by()` function.
 
 
@@ -246,7 +241,7 @@ surveys %>%
 ```
 
 You may also have noticed that the output from these calls doesn't run off the
-screen anymore. That's because dplyr has changed our `data.frame` object to an
+screen anymore. That's because **`dplyr`** has changed our `data.frame` object to an
 object of class `tbl_df`, also known as a "tibble". Tibble's data structure is
 very similar to a data frame. For our purposes the only differences is that, (1)
 in addition to displaying the data type of each column under its name, it only
@@ -275,7 +270,7 @@ surveys %>%
 ```
 
 Here, again, the output from these calls doesn't run off the
-screen anymore. Recall that `dplyr` has changed our `data.frame` to a
+screen anymore. Recall that **`dplyr`** has changed our `data.frame` to a
 `tbl_df`. If you want to display more data, you can
 use the `print()` function at the end of your chain with the argument `n`
 specifying the number of rows to display:
@@ -304,7 +299,7 @@ surveys %>%
 #### Tallying
 
 When working with data, it is also common to want to know the number of
-observations found for each factor or combination of factors. For this, `dplyr`
+observations found for each factor or combination of factors. For this, **`dplyr`**
 provides `tally()`. For example, if we wanted to group by sex and find the
 number of rows of data for each sex, we would do:
 
@@ -382,12 +377,12 @@ surveys %>%
 
 # Exporting data
 
-Now that you have learned how to use `dplyr` to extract information from or
-summarize your raw data, you may want to export these new datasets to share
+Now that you have learned how to use **`dplyr`** to extract information from
+or summarize your raw data, you may want to export these new datasets to share
 them with your collaborators or for archival.
 
-Similar to the `read.csv()` function used for reading CSVs into R, there is a
-`write.csv()` function that generates CSV files from data frames.
+Similar to the `read.csv()` function used for reading CSV files into R, there is
+a `write.csv()` function that generates CSV files from data frames.
 
 Before using `write.csv()`, we are going to create a new folder, `data_output`,
 in our working directory that will store this generated dataset. We don't want
