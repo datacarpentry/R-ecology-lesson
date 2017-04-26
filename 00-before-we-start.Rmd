@@ -329,7 +329,7 @@ point is that it can make things confusing for people trying to help you. Be as
 precise as possible when describing your problem.
 
 If possible, try to reduce what doesn't work to a simple *reproducible
-example*. If you can reproduce the problem using a very small `data.frame`
+example*. If you can reproduce the problem using a very small data frame
 instead of your 50,000 rows and 10,000 columns one, provide the small one with
 the description of your problem. When appropriate, try to generalize what you
 are doing so even people who are not in your field can understand the
@@ -342,13 +342,13 @@ function `dput()`. It will output R code that can be used to recreate the exact
 same object as the one in memory:
 
 ```{r, results='show', purl=FALSE}
-dput(head(iris)) # iris is an example data.frame that comes with R and head() is a function that returns the first part of the data.frame
+dput(head(iris)) # iris is an example data frame that comes with R and head() is a function that returns the first part of the data frame
 ```
 
 If the object is larger, provide either the raw file (i.e., your CSV file) with
 your script up to the point of the error (and after removing everything that is
 not relevant to your issue). Alternatively, in particular if your question is
-not related to a `data.frame`, you can save any R object to a file:
+not related to a data frame, you can save any R object to a file:
 
 ```{r, eval=FALSE, purl=FALSE}
 saveRDS(iris, file="/tmp/iris.rds")
