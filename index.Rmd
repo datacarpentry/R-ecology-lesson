@@ -90,7 +90,7 @@ operating system, and then follow the instructions to install `tidyverse` and
   error messages.
 
 
-#### MacOS X
+#### macOS
 
 ##### If you already have R and RStudio installed
 
@@ -100,18 +100,16 @@ operating system, and then follow the instructions to install `tidyverse` and
   that appears on the terminal indicates the version of R you are running. Alternatively, you can type `sessionInfo()`, which will also display which version of R you are running. Go on
   the [CRAN website](https://cran.r-project.org/bin/macosx/) and check
   whether a more recent version is available. If so, please download and install
-  it. You may also want to consider removing your old version of R. You
-  can
-  [check here](https://cran.r-project.org/bin/windows/base/rw-FAQ.html#How-do-I-UNinstall-R_003f) for
-  more information.
+  it.
 
 ##### If you don't have R and RStudio installed
 
 * Download R from
   the [CRAN website](http://cran.r-project.org/bin/macosx).
-* Select the `.pkg` file for the version of OS X that you have and the file will
-  download
+* Select the `.pkg` file for the latest R version
 * Double click on the downloaded file to install R
+* It is also a good idea to install [XQuartz](https://www.xquartz.org/) (needed
+  by some packages)
 * Go to the [RStudio download page](https://www.rstudio.com/products/rstudio/download/#download)
 * Under *Installers* select **RStudio x.yy.zzz - Mac OS X 10.6+ (64-bit)**
   (where x, y, and z represent version numbers)
