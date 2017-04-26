@@ -362,10 +362,10 @@ div.tocify {
 <h3 id="learning-objectives">Learning Objectives</h3>
 <ul>
 <li>Recall the six data manipulation ‘verbs’ in the <strong><code>dplyr</code></strong> package and know what they do.</li>
-<li>Select subsets of columns and filter rows in a data.frame according to a condition(s).</li>
+<li>Select subsets of columns and filter rows in a data frame according to a condition(s).</li>
 <li>Employ the ‘pipe’ operator to link together a sequence of <strong><code>dplyr</code></strong> commands.</li>
 <li>Employ the ‘mutate’ command to apply functions to existing columns and create new columns of data.</li>
-<li>Export a data.frame to a .csv file.</li>
+<li>Export a data frame to a .csv file.</li>
 </ul>
 </blockquote>
 <hr />
@@ -469,7 +469,7 @@ surveys_hindfoot_half <- surveys %>%
 <span class="st">  </span><span class="kw">filter</span>(!<span class="kw">is.na</span>(weight)) %&gt;%
 <span class="st">  </span><span class="kw">group_by</span>(sex, species_id) %&gt;%
 <span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_weight =</span> <span class="kw">mean</span>(weight))</code></pre></div>
-<p>Here, again, the output from these calls doesn’t run off the screen anymore. Recall that <strong><code>dplyr</code></strong> has changed our <code>data.frame</code> to a <code>tbl_df</code>. If you want to display more data, you can use the <code>print()</code> function at the end of your chain with the argument <code>n</code> specifying the number of rows to display:</p>
+<p>Here, again, the output from these calls doesn’t run off the screen anymore. Recall that <strong><code>dplyr</code></strong> has changed our object from<code>data.frame</code> to <code>tbl_df</code>. If you want to display more data, you can use the <code>print()</code> function at the end of your chain with the argument <code>n</code> specifying the number of rows to display:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys %&gt;%
 <span class="st">  </span><span class="kw">filter</span>(!<span class="kw">is.na</span>(weight)) %&gt;%
 <span class="st">  </span><span class="kw">group_by</span>(sex, species_id) %&gt;%
@@ -535,11 +535,12 @@ surveys_complete &lt;-<span class="st"> </span>surveys_complete %&gt;%
 
 <hr/>
 
-<p><a href="http://datacarpentry.org/">Data Carpentry</a>, 2017. <br/>
-  <a href="LICENSE.html">License</a>. Questions?  Feedback?
+<p><a href="http://datacarpentry.org/">Data Carpentry</a>,
+  2017. <a href="LICENSE.html">License</a>. <a href="CONTRIBUTING.html">Contributing</a>. <br/>
+  Questions?  Feedback?
   Please <a href="https://github.com/datacarpentry/R-ecology-lesson/issues/new">file
-    an issue on GitHub</a>. <br/>
-  On Twitter: <a href="https://twitter.com/datacarpentry">@datacarpentry</a></p>
+  an issue on GitHub</a>. <br/> On
+  Twitter: <a href="https://twitter.com/datacarpentry">@datacarpentry</a></p>
 
 
 </div>
