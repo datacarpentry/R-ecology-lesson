@@ -25,24 +25,35 @@ generate_citation <- function(authors = "AUTHORS",
 
 }
 
-generate_zenodo_json <- function(authors = "AUTHORS") {
-    aut <- readLines(authors)
-    aut <- aut[-1]
-    aut <- as.person(aut)
+generate_zenodo_json <- function(repo = ".") {
+    tfile <- tempfile()
+    system(paste("git shortlog -n -e -s >", tfile))
+    aut <- read.table(file = tfile, sep = "\t")
+    aut <- as.person(aut[, 2])
     pp <- lapply(aut,  function(x) {
         res <- gsub("^\\s", "", paste(paste(x$given, collapse = " "),
                                       x$family))
         list(name =  res)
     })
+
     res <- list(
-        metadata = list(
+        contributors = list(
+            list(
+                type = "Editor",
+                name = "Francois Michonneau"
+            ),
+            list(
+                type = "Editor",
+                name = "Auriel Fournier"
+            )
+        ),
             creators = pp
         )
-    )
     cat(jsonlite::toJSON(res, auto_unbox = TRUE), file = ".zenodo.json")
 }
 
 system("python3 /usr/local/bin/update-copyright.py")
+generate_zenodo_json()
 ```
 
 
