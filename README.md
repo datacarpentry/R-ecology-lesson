@@ -39,7 +39,7 @@ code from this file to avoid typos in more complex examples.
 ## Contributing
 
 If you would like to contribute to the content and development of these lessons,
-we encourage you to review our [contributing guide](CONTRIBUTING.md).
+we encourage you to review our [contributing guide](CONTRIBUTING.Rmd).
 
 ## Questions
 
