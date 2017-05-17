@@ -1,9 +1,11 @@
 # CITATION
 
 ```{r, echo=FALSE, results='hide'}
+eds <- personList(person(given = "Francois", family = "Michonneau"),
+                      person(given = "Auriel", family = "Fournier"))
+
 generate_citation <- function(authors = "AUTHORS",
-                              editors = personList(person(given = "Francois", family = "Michonneau"),
-                                                   person(given = "Auriel", family = "Fournier")),
+                              editors = eds,
                               doi = "10.5281/zenodo.569338") {
     aut <- readLines(authors)
 
@@ -25,7 +27,7 @@ generate_citation <- function(authors = "AUTHORS",
 
 }
 
-generate_zenodo_json <- function(repo = ".") {
+generate_zenodo_json <- function(editors) {
     tfile <- tempfile()
     system(paste("git shortlog -n -e -s >", tfile))
     aut <- read.table(file = tfile, sep = "\t")
@@ -35,25 +37,19 @@ generate_zenodo_json <- function(repo = ".") {
                                       x$family))
         list(name =  res)
     })
+    eds <- paste(editors$given, editors$family)
+    res <- list(creators = pp)
 
-    res <- list(
-        contributors = list(
-            list(
-                type = "Editor",
-                name = "Francois Michonneau"
-            ),
-            list(
-                type = "Editor",
-                name = "Auriel Fournier"
-            )
-        ),
-            creators = pp
-        )
+    if (!is.null(editors)) {
+        ctb <- lapply(paste(editors$given, editors$family),
+                      function(x) list(type = "Editor", name = x))
+        res <- c(list(contributors = ctb), res)
+    }
     cat(jsonlite::toJSON(res, auto_unbox = TRUE), file = ".zenodo.json")
 }
 
 system("python3 /usr/local/bin/update-copyright.py")
-generate_zenodo_json()
+generate_zenodo_json(editors = eds)
 ```
 
 
