@@ -142,6 +142,16 @@ plot(surveys$sex)
 ## ## combination of `group_by()` and `tally()`. How could you get the same result
 ## ## using `group_by()` and `summarize()`? Hint: see `?n`.
 ## 
+## ## Reshaping challenges
+## 
+## ## 1. Make a wide data frame with `year` as columns, `plot_id`` as rows, and the values are the number of genera per plot. You will need to summarize before reshaping, and use the function `n_distinct` to get the number of unique types of a genera. It's a powerful function! See `?n_distinct` for more.
+## 
+## ## 2. Now take that data frame, and make it long again, so each row is a unique `plot_id` `year` combination
+## 
+## ## 3. The `surveys` data set is note truly wide or long because both there are two columns of measurement - `hindfoot_length` and `weight`.  This makes it difficult to do things like look at the relationship between mean values of each measurement per year in different plot types. Let's walk through a common solution for this type of problem. First, use `gather` to create a truly long dataset where we have a key column called `measurement` and a `value` column that takes on the value of either `hindfoot_length` or `weight`. Hint: You'll need to specify which columns are being gathered.
+## 
+## ## 4. With this new truly long data set, calculate the average of each `measurement` in each `year` for each different `plot_type`. Then `spread` them into a wide data set with a column for `hindfoot_length` and `weight`. Hint: Remember, you only need to specify the key and value columns for `spread`.
+## 
 ## ### Create the dataset for exporting:
 ## ##  Start by removing observations for which the `species_id`, `weight`,
 ## ##  `hindfoot_length`, or `sex` data are missing:

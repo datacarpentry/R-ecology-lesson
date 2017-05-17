@@ -4,7 +4,7 @@
 
 <head>
 
-<meta charset="utf-8">
+<meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 
@@ -365,14 +365,14 @@ div.tocify {
 <li>Select subsets of columns and filter rows in a data frame according to a condition(s).</li>
 <li>Employ the ‘pipe’ operator to link together a sequence of <strong><code>dplyr</code></strong> commands.</li>
 <li>Employ the ‘mutate’ command to apply functions to existing columns and create new columns of data.</li>
-<li>Employ the ‘spread’ and ‘gather’ commands to move data between long to wide formats.</li>
+<li>Employ the ‘spread’ and ‘gather’ commands from <strong><code>tidyr</code></strong> to move data between long to wide formats.</li>
 <li>Export a data frame to a .csv file.</li>
 </ul>
 </blockquote>
 <hr />
 <div id="data-manipulation-using-dplyr-and-tidyr" class="section level1">
 <h1>Data Manipulation using <strong><code>dplyr</code></strong> and <strong><code>tidyr</code></strong></h1>
-<p>Bracket subsetting is handy, but it can be cumbersome and difficult to read, especially for complicated operations. Enter <strong><code>dplyr</code></strong>. <strong><code>dplyr</code></strong> is a package for making tabular data manipulation easier. It pairs nicely with <strong><code>tidyr</code></strong> which enables you to siwftly convert between different data formats for plotting and analysis.</p>
+<p>Bracket subsetting is handy, but it can be cumbersome and difficult to read, especially for complicated operations. Enter <strong><code>dplyr</code></strong>. <strong><code>dplyr</code></strong> is a package for making tabular data manipulation easier. It pairs nicely with <strong><code>tidyr</code></strong> which enables you to swiftly convert between different data formats for plotting and analysis.</p>
 <p>Packages in R are basically sets of additional functions that let you do more stuff. The functions we’ve been using so far, like <code>str()</code> or <code>data.frame()</code>, come built into R; packages give you access to more of them. Before you use a package for the first time you need to install it on your machine, and then you should import it in every subsequent R session when you need it. You should already have installed the <strong><code>tidyverse</code></strong> package. This is an “umbrella-package” that installs several packages useful for data analysis which work together well such as <strong><code>tidyr</code></strong>, <strong><code>dplyr</code></strong>, <strong><code>ggplot2</code></strong>, etc. To load the package type:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;tidyverse&quot;</span>)    ## load the tidyverse packages, incl. dplyr</code></pre></div>
 <div id="what-are-dplyr-and-tidyr" class="section level2">
@@ -380,7 +380,7 @@ div.tocify {
 <p>The package <strong><code>dplyr</code></strong> provides easy tools for the most common data manipulation tasks. It is built to work directly with data frames, with many common tasks optimized by being written in a compiled language (C++). An additional feature is the ability to work directly with data stored in an external database. The benefits of doing this are that the data can be managed natively in a relational database, queries can be conducted on that database, and only the results of the query are returned.</p>
 <p>This addresses a common problem with R in that all operations are conducted in-memory and thus the amount of data you can work with is limited by available memory. The database connections essentially remove that limitation in that you can have a database of many 100s GB, conduct queries on it directly, and pull back into R only what you need for analysis.</p>
 <p>The package <strong><code>tidyr</code></strong> addresses the common problem of wanting to reshape your data for plotting and use by different R functions. Sometimes we want data sets where we have one row per measurement. Sometimes we want a data frame where each measurement type has its own column, and rows are instead more aggregated groups - like plots or aquaria. Moving back and forth between these formats is nontrivial, and <strong><code>tidyr</code></strong> gives you tools for this and more sophisticated data manipulation.</p>
-<p>To learn more about <strong><code>dplyr</code></strong> and <strong><code>tidyr</code></strong> after the workshop, you may want to check out this <a href="http://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">handy data wrangling cheatsheet</a>.</p>
+<p>To learn more about <strong><code>dplyr</code></strong> and <strong><code>tidyr</code></strong> after the workshop, you may want to check out this <a href="https://github.com/rstudio/cheatsheets/raw/master/source/pdfs/data-transformation-cheatsheet.pdf">handy data wrangling cheatsheet</a>.</p>
 </div>
 <div id="selecting-columns-and-filtering-rows" class="section level2">
 <h2>Selecting columns and filtering rows</h2>
@@ -509,25 +509,25 @@ surveys_hindfoot_half <- surveys %>%
 <h3>Reshaping with gather and spread</h3>
 <p><strong><code>dplyr</code></strong> is one part of a larger <strong><code>tidyverse</code></strong> that enables you to work with data in tidy data formats. <strong><code>tidyr</code></strong> enables a wide range of manipulations of the structure data itself. For example, the survey data presented here is in almost in what we call a <strong>long</strong> format - every observation of every individual is its own row. This is an ideal format for data with a rich set of information per observation. It makes it difficult, however, to look at the relationships between measurements across plots. For example, what is the relationship between mean weights of different genera across the entire data set?</p>
 <p>To answer that question, we’d want each plot to have a single row, with all of the measurements in a single plot having their own column. This is called a <strong>wide</strong> data format. For the <code>surveys</code> data as we have it right now, this is going to be one heck of a wide data frame! However, if we were to summarize data within plots and species, we might begin to have some relationships we’d want to examine.</p>
-<p>Let’s see this in action. First, using dplyr, let’s create a data frame with the mean body weight of each genera by plot.</p>
+<p>Let’s see this in action. First, using <strong><code>dplyr</code></strong>, let’s create a data frame with the mean body weight of each genera by plot.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys_gw &lt;-<span class="st"> </span>surveys %&gt;%
-<span class="kw">filter</span>(!<span class="kw">is.na</span>(weight)) %&gt;%
-<span class="kw">group_by</span>(genus, plot_id) %&gt;%
-<span class="kw">summarize</span>(<span class="dt">mean_weight =</span> <span class="kw">mean</span>(weight))
+<span class="st">    </span><span class="kw">filter</span>(!<span class="kw">is.na</span>(weight)) %&gt;%
+<span class="st">    </span><span class="kw">group_by</span>(genus, plot_id) %&gt;%
+<span class="st">    </span><span class="kw">summarize</span>(<span class="dt">mean_weight =</span> <span class="kw">mean</span>(weight))
 
 <span class="kw">head</span>(surveys_gw)</code></pre></div>
 <div id="long-to-wide-with-spread" class="section level4">
 <h4>Long to Wide with <code>spread</code></h4>
 <p>Now, to make this long data wide, we use <code>spread</code> from <code>tidyr</code> to spread out the different taxa into columns. <code>spread</code> takes three arguments - the data, the <em>key</em> column, or column with identifying information, the <em>values</em> column - the one with the numbers. We’ll use a pipe so we can ignore the data argument.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys_gw_wide &lt;-<span class="st"> </span>surveys_gw %&gt;%
-<span class="st">  </span><span class="kw">spread</span>(genus, mean_weight) 
+<span class="st">  </span><span class="kw">spread</span>(genus, mean_weight)
 
 <span class="kw">head</span>(surveys_gw_wide)</code></pre></div>
-<p>Notice that some genera have NA values. That’s because some of those genera don’t have any record in that plot. Sometimes it is fine to leave those as NA. Sometimes we want to fill them as zeros, in which case we would add the argument <code>fill=0</code>.</p>
+<p>Notice that some genera have <code>NA</code> values. That’s because some of those genera don’t have any record in that plot. Sometimes it is fine to leave those as <code>NA</code>. Sometimes we want to fill them as zeros, in which case we would add the argument <code>fill=0</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys_gw %&gt;%
 <span class="st">  </span><span class="kw">spread</span>(genus, mean_weight, <span class="dt">fill=</span><span class="dv">0</span>) %&gt;%
 <span class="st">  </span>head</code></pre></div>
-<p>We can now do things like plot the weight of Baiomys against Chaetodipus or examine their correlation.</p>
+<p>We can now do things like plot the weight of <em>Baiomys</em> against <em>Chaetodipus</em> or examine their correlation.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys_gw %&gt;%
 <span class="st">  </span><span class="kw">spread</span>(genus, mean_weight, <span class="dt">fill=</span><span class="dv">0</span>) %&gt;%
 <span class="st">  </span><span class="kw">cor</span>(<span class="dt">use =</span> <span class="st">&quot;pairwise.complete&quot;</span>)</code></pre></div>
@@ -621,7 +621,7 @@ $(document).ready(function () {
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>

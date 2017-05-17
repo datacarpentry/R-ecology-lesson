@@ -366,6 +366,7 @@ div.tocify {
 <li>Summarize the contents of a data frame in R.</li>
 <li>Manipulate categorical data in R.</li>
 <li>Change how character strings are handled in a data frame.</li>
+<li>Format dates in R</li>
 </ul>
 </blockquote>
 <hr />
@@ -667,6 +668,23 @@ surveys$plot_type &lt;-<span class="st"> </span><span class="kw">factor</span>(s
 <p>The automatic conversion of data type is sometimes a blessing, sometimes an annoyance. Be aware that it exists, learn the rules, and double check that data you import in R are of the correct type within your data frame. If not, use it to your advantage to detect mistakes that might have been introduced during data entry (a letter in a column that should only contain numbers for instance.).</p>
 </div>
 </div>
+<div id="formatting-dates" class="section level2">
+<h2>Formatting Dates</h2>
+<p>One of the most common issues that new (and experienced!) R users have is converting date and date time information into a variable that is appropriate and usable during analyses. As a reminder from earlier in this lesson, the best practice for dealing with date data is to ensure that each component of your date is stored as a separate variable. Using <code>str()</code>, We can confirm that our data frame has a separate column for day, month, and year, and each contains integer values.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(surveys)</code></pre></div>
+<p>We’re going to be using the <code>ymd()</code> function from the package <strong><code>lubridate</code></strong>. This function is designed to take a vector representing year, month, and day and convert that information to a POSIXct vector. POSIXct is a class of data recognized by R as being a date or date and time. The argument that the function requires is relatively flexible, but, as a best practice, is a character vector formatted as “YYYY-MM-DD”.</p>
+<p>Start by loading the required package:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(lubridate)</code></pre></div>
+<p>Create a character vector from the <code>year</code>, <code>month</code>, and <code>day</code> columns of <code>surveys</code> using <code>paste()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">paste</span>(surveys$year, surveys$month, surveys$day, <span class="dt">sep=</span><span class="st">&quot;-&quot;</span>)
+<span class="co"># sep indicates the character to use to separate each component</span></code></pre></div>
+<p>This character vector can be used as the argument for <code>ymd()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ymd</span>(<span class="kw">paste</span>(surveys$year, surveys$month, surveys$day, <span class="dt">sep=</span><span class="st">&quot;-&quot;</span>))</code></pre></div>
+<p>The resulting POSIXct vector can be added to <code>surveys</code> as a new column called <code>date</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys$date&lt;-<span class="kw">ymd</span>(<span class="kw">paste</span>(surveys$year, surveys$month, surveys$day, <span class="dt">sep=</span><span class="st">&quot;-&quot;</span>))
+
+<span class="kw">str</span>(surveys) <span class="co"># notice the new column, with POSIXct as the class</span></code></pre></div>
+</div>
 
 <hr/>
 
@@ -701,7 +719,7 @@ $(document).ready(function () {
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>
