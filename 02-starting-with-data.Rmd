@@ -511,7 +511,7 @@ entry (a letter in a column that should only contain numbers for instance.).
 ## Formatting Dates
 
 One of the most common issues that new (and experienced!) R users have is converting
-date and date time information into a variable that is appropriate and useable during
+date and date time information into a variable that is appropriate and usable during
 analyses. As a reminder from earlier in this lesson, the best practice for dealing
 with date data is to ensure that each component of your date is stored as a separate
 variable. Using `str()`, We can confirm that our data frame has a separate column for
