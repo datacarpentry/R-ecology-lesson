@@ -17,6 +17,7 @@ source("setup.R")
 > * Summarize the contents of a data frame in R.
 > * Manipulate categorical data in R.
 > * Change how character strings are handled in a data frame.
+> * Format dates in R
 
 ------------
 
@@ -506,3 +507,49 @@ annoyance. Be aware that it exists, learn the rules, and double check that data
 you import in R are of the correct type within your data frame. If not, use it
 to your advantage to detect mistakes that might have been introduced during data
 entry (a letter in a column that should only contain numbers for instance.).
+
+## Formatting Dates
+
+One of the most common issues that new (and experienced!) R users have is converting
+date and date time information into a variable that is appropriate and useable during
+analyses. As a reminder from earlier in this lesson, the best practice for dealing
+with date data is to ensure that each component of your date is stored as a separate
+variable. Using `str()`, We can confirm that our data frame has a separate column for
+day, month, and year, and each contains integer values.
+
+```{r, eval=FALSE, purl=FALSE}
+str(surveys)
+```
+
+We're going to be using the `ymd()` function from the package **`lubridate`**. This
+function is designed to take a vector representing year, month, and day and convert
+that information to a POSIXct vector. POSIXct is a class of data recognized by R as
+being a date or date and time. The argument that the function requires is relatively
+flexible, but, as a best practice, is a character vector formatted as "YYYY-MM-DD".
+
+Start by loading the required package:
+
+```{r load-package, message=FALSE, purl=FALSE}
+library(lubridate)
+```
+
+Create a character vector from the `year`, `month`, and `day` columns of `surveys` using `paste()`:
+
+```{r, eval=FALSE, purl=FALSE}
+paste(surveys$year, surveys$month, surveys$day, sep="-")
+# sep indicates the character to use to separate each component
+```
+
+This character vector can be used as the argument for `ymd()`:
+
+```{r, eval=FALSE, purl=FALSE}
+ymd(paste(surveys$year, surveys$month, surveys$day, sep="-"))
+```
+
+The resulting POSIXct vector can be added to `surveys` as a new column called `date`:
+
+```{r, eval=FALSE, purl=FALSE}
+surveys$date<-ymd(paste(surveys$year, surveys$month, surveys$day, sep="-"))
+
+str(surveys) # notice the new column, with POSIXct as the class
+```
