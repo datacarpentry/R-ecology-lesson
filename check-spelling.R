@@ -44,8 +44,11 @@ words_to_ignore <- c("AGPL", "Affero", "Arial", "Auriel", "Barneche",
                      "usr", "ve", "vjust", "wasn", "wiki",
                      "wikipedia", "workflow", "wouldn", "wp", "www",
                      "xfont", "yy", "zzz", "css", "javascript",
-                     "screenshots", "tidyr", "extrafont", "wch", "macOS",
-                     "xquartz", "XQuartz")
+                     "screenshots", "tidyr", "extrafont", "wch",
+                     "macOS", "xquartz", "XQuartz", "Baiomys",
+                     "Chaetodipus", "cor", "gw", "Spermophilus",
+                     "lubridate", "POSIXct",  "ymd", "YYYY", "rstudiohelp",
+                     )
 
 check_spelling <- function(ignore = words_to_ignore) {
     if (suppressPackageStartupMessages(require(hunspell)) &&
