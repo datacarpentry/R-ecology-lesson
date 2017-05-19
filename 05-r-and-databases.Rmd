@@ -65,7 +65,7 @@ it from Figshare into the `data` subdirectory using:
 ```{r download, eval = FALSE, purl=FALSE}
 dir.create("data", showWarnings = FALSE)
 download.file(url = "https://ndownloader.figshare.com/files/2292171",
-              destfile = "data/portal_mammals.sqlite")
+              destfile = "data/portal_mammals.sqlite", mode = "wb")
 ```
 
 ## Connecting to databases with **`dplyr`**
