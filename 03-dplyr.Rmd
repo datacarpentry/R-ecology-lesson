@@ -16,12 +16,18 @@ surveys <- read.csv("data/portal_data_joined.csv")
 
 > ### Learning Objectives
 >
-> * Recall the six data manipulation ‘verbs’ in the **`dplyr`** package and know what they do.
-> * Select subsets of columns and filter rows in a data frame according to a condition(s).
-> * Employ the ‘pipe’ operator to link together a sequence of **`dplyr`** commands.
-> * Employ the ‘mutate’ command to apply functions to existing columns and create new columns of data.
-> * Employ the ‘spread’ and ‘gather’ commands from **`tidyr`** to move data between long to wide formats.
+> * Understand the purpose of the **`dplyr`** and **`tidyr`** packages.
+> * Select certain columns in a data frame with the **`dplyr`** function `select`.
+> * Select certain rows in a data frame according to filtering conditions with the **`dplyr`** function `filter` .
+> * Link the output of one **`dplyr`** function to the input of another function with the 'pipe' operator `%>%`.
+> * Add new columns to a data frame that are functions of existing columns with `mutate`.
+> * Understand the split-apply-combine concept for data analysis.
+> * Use `summarize`, `group_by`, and `tally` to split a data frame into groups of observations, apply a summary statistics for each group, and then combine the results.
+> * Understand the concept of a wide and a long table format and for which purpose those formats are useful.
+> * Understand what key-value pairs are. 
+> * Reshape a data frame from long to wide format and back with the `spread` and `gather` commands from the **`tidyr`** package.
 > * Export a data frame to a .csv file.
+
 
 ------------
 
