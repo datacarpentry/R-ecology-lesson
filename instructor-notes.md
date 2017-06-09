@@ -35,6 +35,28 @@ encourage you to distribute it to the learners at the beginning of the
 lesson. As an instructor, we encourage you to do the live coding directly in
 this file, so the participants can follow along.
 
+## RStudio and Multiple R Installs
+
+Some learners may have previous R installations. On Mac, if a new install
+is performed, the learner's system will create a symbolic link, pointing to the
+new install as 'Current.' Sometimes this process does not occur, and, even though
+a new R is installed and can be accessed via the R console, RStudio does not find it.
+The net result of this is that the learner's RStudio will be running an older R install.
+This will cause package installations to fail. This can be fixed at the terminal. First,
+check for the appropriate R installation in the library;
+
+```
+ls -l /Library/Frameworks/R.framework/Versions/
+```
+
+We are currently using R 3.4.x. If it isn't there, they will need to install it. If it
+is present, you will need to set the symbolic link to Current to point to the 3.4.x 
+directory:
+
+```
+ln -s /Library/Frameworks/R.framework/Versions/3.4.x /Library/Frameworks/R.framework/Version/Current
+```
+Then restart RStudio.
 
 ## Narrative
 
