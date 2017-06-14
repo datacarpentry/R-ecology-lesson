@@ -551,5 +551,5 @@ The resulting POSIXct vector can be added to `surveys` as a new column called `d
 ```{r, eval=FALSE, purl=FALSE}
 surveys$date<-ymd(paste(surveys$year, surveys$month, surveys$day, sep="-"))
 
-str(surveys) # notice the new column, with POSIXct as the class
+str(surveys) # notice the new column, with 'Date' as the class
 ```
