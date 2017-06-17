@@ -40,7 +40,7 @@ our
     or `add-tutorial-on-visualization`. *At your terminal:*
 
 	```bash
-	git checkout -b fix-typos-dplyr-lesson`
+	git checkout -b fix-typos-dplyr-lesson
 	```
 
 4.  Make your changes to the Rmd file. If you'd like to check the rendered
