@@ -170,7 +170,7 @@ ggplot(data = surveys_complete, aes(x = weight, y = hindfoot_length)) +
 We can use boxplots to visualize the distribution of weight within each species:
 
 ```{r boxplot, purl=FALSE}
-ggplot(data = surveys_complete, aes(x = species_id, y = hindfoot_length)) +
+ggplot(data = surveys_complete, aes(x = species_id, y = weight)) +
     geom_boxplot()
 ```
 
@@ -178,7 +178,7 @@ By adding points to boxplot, we can have a better idea of the number of
 measurements and of their distribution:
 
 ```{r boxplot-with-points, purl=FALSE}
-ggplot(data = surveys_complete, aes(x = species_id, y = hindfoot_length)) +
+ggplot(data = surveys_complete, aes(x = species_id, y = weight)) +
     geom_boxplot(alpha = 0) +
     geom_jitter(alpha = 0.3, color = "tomato")
 ```
@@ -204,7 +204,10 @@ hidden?
 >
 > - Represent weight on the log10 scale; see `scale_y_log10()`.
 >
-> - Create boxplot for `hindfoot_length`.
+> So far, we've looked at the distribution of weight within species.  Try making a 
+> new plot to explore the distribution of another variable within each species.
+>
+> - Create boxplot for `hindfoot_length`.  Overlay the boxplot layer on a jitter layer to show actual measurements.
 >
 > - Add color to the datapoints on your boxplot according to the plot from which
 >   the sample was taken (`plot_id`).
@@ -215,7 +218,7 @@ from integer to factor. Why does this change how R makes the graph?
 ```{r, eval=FALSE, purl=TRUE, echo=FALSE}
 ## Challenges:
 ##  Start with the boxplot we created:
-ggplot(data = surveys_complete, aes(x = species_id, y = hindfoot_length)) +
+ggplot(data = surveys_complete, aes(x = species_id, y = weight)) +
   geom_boxplot(alpha = 0) +
   geom_jitter(alpha = 0.3, color = "tomato")
 
@@ -223,7 +226,7 @@ ggplot(data = surveys_complete, aes(x = species_id, y = hindfoot_length)) +
 
 ##  2. Represent weight on the log10 scale; see `scale_y_log10()`.
 
-##  3. Create boxplot for `hindfoot_length`.
+##  3. Create boxplot for `hindfoot_length` overlaid on a jitter layer.
 
 ##  4. Add color to the datapoints on your boxplot according to the
 ##  plot from which the sample was taken (`plot_id`).
