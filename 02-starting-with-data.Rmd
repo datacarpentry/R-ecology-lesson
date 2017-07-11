@@ -533,18 +533,6 @@ Start by loading the required package:
 library(lubridate)
 ```
 
-> If you get an error message
->
-> ```
-> Error in library(lubridate) : there is no package called 'lubridate'
-> ```
->
-> then you will need to install the package before loading it.
->
-> ```{r, eval=FALSE, purl=FALSE}
-> install.packages("lubridate")
-> ```
-
 Create a character vector from the `year`, `month`, and `day` columns of `surveys` using `paste()`:
 
 ```{r, eval=FALSE, purl=FALSE}
