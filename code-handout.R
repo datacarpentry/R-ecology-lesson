@@ -121,7 +121,7 @@ plot(surveys$sex)
 ## ##  before 1995, and retain the columns `year`, `sex`, and `weight.`
 ## 
 ## ## Mutate Challenge:
-## ##  Create a new data frame from the survey data that meets the following
+## ##  Create a new data frame from the `surveys` data that meets the following
 ## ##  criteria: contains only the `species_id` column and a column that
 ## ##  contains values that are half the `hindfoot_length` values (e.g. a
 ## ##  new column `hindfoot_half`). In this `hindfoot_half` column, there are
@@ -181,7 +181,7 @@ plot(surveys$sex)
 ##  geom_hex()
 ## ## Challenges:
 ## ##  Start with the boxplot we created:
-## ggplot(data = surveys_complete, aes(x = species_id, y = hindfoot_length)) +
+## ggplot(data = surveys_complete, aes(x = species_id, y = weight)) +
 ##   geom_boxplot(alpha = 0) +
 ##   geom_jitter(alpha = 0.3, color = "tomato")
 ## 
@@ -189,7 +189,7 @@ plot(surveys$sex)
 ## 
 ## ##  2. Represent weight on the log10 scale; see `scale_y_log10()`.
 ## 
-## ##  3. Create boxplot for `hindfoot_length`.
+## ##  3. Create boxplot for `hindfoot_length` overlaid on a jitter layer.
 ## 
 ## ##  4. Add color to the datapoints on your boxplot according to the
 ## ##  plot from which the sample was taken (`plot_id`).

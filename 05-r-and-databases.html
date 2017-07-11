@@ -379,7 +379,7 @@ div.tocify {
 <p>The SQLite database is contained in a single file <code>portal_mammals.sqlite</code> that you generated during the SQL lesson. If you don’t have it, you can download it from Figshare into the <code>data</code> subdirectory using:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dir.create</span>(<span class="st">&quot;data&quot;</span>, <span class="dt">showWarnings =</span> <span class="ot">FALSE</span>)
 <span class="kw">download.file</span>(<span class="dt">url =</span> <span class="st">&quot;https://ndownloader.figshare.com/files/2292171&quot;</span>,
-              <span class="dt">destfile =</span> <span class="st">&quot;data/portal_mammals.sqlite&quot;</span>)</code></pre></div>
+              <span class="dt">destfile =</span> <span class="st">&quot;data/portal_mammals.sqlite&quot;</span>, <span class="dt">mode =</span> <span class="st">&quot;wb&quot;</span>)</code></pre></div>
 </div>
 </div>
 <div id="connecting-to-databases-with-dplyr" class="section level2">
@@ -399,7 +399,7 @@ div.tocify {
 <p>(You can use the <code>src_mysql()</code>, <code>src_postgres()</code> and <code>src_bigquery()</code> to connect to the other database types supported by <strong><code>dplyr</code></strong>.)</p>
 <p>Let’s take a closer look at the <code>mammals</code> database we just connected to:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mammals</code></pre></div>
-<pre><code>#&gt; src:  sqlite 3.11.1 [data/portal_mammals.sqlite]
+<pre><code>#&gt; src:  sqlite 3.19.3 [/home/francois/sandbox/R-ecology-lesson/data/portal_mammals.sqlite]
 #&gt; tbls: plots, species, surveys</code></pre>
 <p>Just like a spreadsheet with multiple worksheets, a SQLite database can contain multiple tables. In this case three of them are listed in the <code>tbls</code> row in the output above:</p>
 <ul>
@@ -422,20 +422,20 @@ surveys %&gt;%
 <span class="st">    </span><span class="kw">select</span>(year, species_id, plot_id)</code></pre></div>
 <p>In this case, the <code>surveys</code> object behaves like a data frame. Several functions that can be used with data frames can also be used on tables from a database. For instance, the <code>head()</code> function can be used to check the first 10 rows of the table:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(surveys, <span class="dt">n =</span> <span class="dv">10</span>)</code></pre></div>
-<pre><code>#&gt; Source:   query [?? x 9]
-#&gt; Database: sqlite 3.11.1 [data/portal_mammals.sqlite]
-#&gt; 
+<pre><code>#&gt; # Source:   lazy query [?? x 9]
+#&gt; # Database: sqlite 3.19.3
+#&gt; #   [/home/francois/sandbox/R-ecology-lesson/data/portal_mammals.sqlite]
 #&gt;    record_id month   day  year plot_id species_id   sex hindfoot_length
 #&gt;        &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;   &lt;int&gt;      &lt;chr&gt; &lt;chr&gt;           &lt;int&gt;
-#&gt; 1          1     7    16  1977       2         NL     M              32
-#&gt; 2          2     7    16  1977       3         NL     M              33
-#&gt; 3          3     7    16  1977       2         DM     F              37
-#&gt; 4          4     7    16  1977       7         DM     M              36
-#&gt; 5          5     7    16  1977       3         DM     M              35
-#&gt; 6          6     7    16  1977       1         PF     M              14
-#&gt; 7          7     7    16  1977       2         PE     F              NA
-#&gt; 8          8     7    16  1977       1         DM     M              37
-#&gt; 9          9     7    16  1977       1         DM     F              34
+#&gt;  1         1     7    16  1977       2         NL     M              32
+#&gt;  2         2     7    16  1977       3         NL     M              33
+#&gt;  3         3     7    16  1977       2         DM     F              37
+#&gt;  4         4     7    16  1977       7         DM     M              36
+#&gt;  5         5     7    16  1977       3         DM     M              35
+#&gt;  6         6     7    16  1977       1         PF     M              14
+#&gt;  7         7     7    16  1977       2         PE     F              NA
+#&gt;  8         8     7    16  1977       1         DM     M              37
+#&gt;  9         9     7    16  1977       1         DM     F              34
 #&gt; 10        10     7    16  1977       6         PF     F              20
 #&gt; # ... with more rows, and 1 more variables: weight &lt;int&gt;</code></pre>
 <p>This output of the <code>head</code> command looks just like a regular <code>data.frame</code>: The table has 9 columns and the <code>head()</code> command shows us the first 10 rows. Note that the columns <code>plot_type</code>, <code>taxa</code>, <code>genus</code>, and <code>species</code> are missing. These are now located in the tables <code>plots</code> and <code>species</code> which we will join together in a moment.</p>
@@ -466,20 +466,20 @@ surveys %&gt;%
 #&gt; LIMIT 10</code></pre>
 <pre><code>#&gt; </code></pre>
 <pre><code>#&gt; &lt;PLAN&gt;
-#&gt;    addr       opcode p1 p2 p3      p4 p5 comment
-#&gt; 1     0         Init  0 18  0         00      NA
-#&gt; 2     1      Integer 10  1  0         00      NA
-#&gt; 3     2     OpenRead  0  2  0       9 00      NA
-#&gt; 4     3       Rewind  0 16  0         00      NA
-#&gt; 5     4       Column  0  0  2         00      NA
-#&gt; 6     5       Column  0  1  3         00      NA
-#&gt; 7     6       Column  0  2  4         00      NA
-#&gt; 8     7       Column  0  3  5         00      NA
-#&gt; 9     8       Column  0  4  6         00      NA
-#&gt; 10    9       Column  0  5  7         00      NA
-#&gt; 11   10       Column  0  6  8         00      NA
-#&gt; 12   11       Column  0  7  9         00      NA
-#&gt;  [ reached getOption(&quot;max.print&quot;) -- omitted 9 rows ]</code></pre>
+#&gt;    addr       opcode p1 p2 p3 p4 p5 comment
+#&gt; 1     0         Init  0 17  0    00      NA
+#&gt; 2     1      Integer 10  1  0    00      NA
+#&gt; 3     2     OpenRead  0  2  0  9 00      NA
+#&gt; 4     3       Rewind  0 16  0    00      NA
+#&gt; 5     4       Column  0  0  2    00      NA
+#&gt; 6     5       Column  0  1  3    00      NA
+#&gt; 7     6       Column  0  2  4    00      NA
+#&gt; 8     7       Column  0  3  5    00      NA
+#&gt; 9     8       Column  0  4  6    00      NA
+#&gt; 10    9       Column  0  5  7    00      NA
+#&gt; 11   10       Column  0  6  8    00      NA
+#&gt; 12   11       Column  0  7  9    00      NA
+#&gt;  [ reached getOption(&quot;max.print&quot;) -- omitted 7 rows ]</code></pre>
 <p>The first part of the output shows the actual SQL query sent to the database; it matches our manually constructed <code>SELECT</code> statement above.</p>
 <p>Instead of having to formulate the SQL query ourselves - and having to mentally switch back and forth between R and SQL syntax - we can delegate this translation to <strong><code>dplyr</code></strong>. (You don’t even need to know SQL to interact with a database via <strong><code>dplyr</code></strong>!)</p>
 <p><strong><code>dplyr</code></strong>, in turn, doesn’t do the real work of subsetting the table, either. Instead, it merely sends the query to the database, waits for its response and returns it to us.</p>
@@ -494,20 +494,20 @@ surveys %&gt;%
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys %&gt;%
 <span class="st">  </span><span class="kw">filter</span>(weight &lt;<span class="st"> </span><span class="dv">5</span>) %&gt;%
 <span class="st">  </span><span class="kw">select</span>(species_id, sex, weight)</code></pre></div>
-<pre><code>#&gt; Source:   query [?? x 3]
-#&gt; Database: sqlite 3.11.1 [data/portal_mammals.sqlite]
-#&gt; 
+<pre><code>#&gt; # Source:   lazy query [?? x 3]
+#&gt; # Database: sqlite 3.19.3
+#&gt; #   [/home/francois/sandbox/R-ecology-lesson/data/portal_mammals.sqlite]
 #&gt;    species_id   sex weight
 #&gt;         &lt;chr&gt; &lt;chr&gt;  &lt;int&gt;
-#&gt; 1          PF     M      4
-#&gt; 2          PF     F      4
-#&gt; 3          PF  &lt;NA&gt;      4
-#&gt; 4          PF     F      4
-#&gt; 5          PF     F      4
-#&gt; 6          RM     M      4
-#&gt; 7          RM     F      4
-#&gt; 8          RM     M      4
-#&gt; 9          RM     M      4
+#&gt;  1         PF     M      4
+#&gt;  2         PF     F      4
+#&gt;  3         PF  &lt;NA&gt;      4
+#&gt;  4         PF     F      4
+#&gt;  5         PF     F      4
+#&gt;  6         RM     M      4
+#&gt;  7         RM     F      4
+#&gt;  8         RM     M      4
+#&gt;  9         RM     M      4
 #&gt; 10         RM     M      4
 #&gt; # ... with more rows</code></pre>
 <p>Executing this command will return a table with 10 rows and the requested <code>species_id</code>, <code>sex</code> and <code>weight</code> columns. Great!</p>
@@ -534,20 +534,20 @@ surveys %&gt;%
 
 data_subset %&gt;%
 <span class="st">  </span><span class="kw">select</span>(-sex)</code></pre></div>
-<pre><code>#&gt; Source:   query [?? x 2]
-#&gt; Database: sqlite 3.11.1 [data/portal_mammals.sqlite]
-#&gt; 
+<pre><code>#&gt; # Source:   lazy query [?? x 2]
+#&gt; # Database: sqlite 3.19.3
+#&gt; #   [/home/francois/sandbox/R-ecology-lesson/data/portal_mammals.sqlite]
 #&gt;    species_id weight
 #&gt;         &lt;chr&gt;  &lt;int&gt;
-#&gt; 1          PF      4
-#&gt; 2          PF      4
-#&gt; 3          PF      4
-#&gt; 4          PF      4
-#&gt; 5          PF      4
-#&gt; 6          RM      4
-#&gt; 7          RM      4
-#&gt; 8          RM      4
-#&gt; 9          RM      4
+#&gt;  1         PF      4
+#&gt;  2         PF      4
+#&gt;  3         PF      4
+#&gt;  4         PF      4
+#&gt;  5         PF      4
+#&gt;  6         RM      4
+#&gt;  7         RM      4
+#&gt;  8         RM      4
+#&gt;  9         RM      4
 #&gt; 10         RM      4
 #&gt; # ... with more rows</code></pre>
 <p>Just like the first <code>select(species_id, sex, weight)</code> call, the <code>select(-sex)</code> command is not executed by R. It is sent to the database instead. Only the <em>final</em> result is retrieved and displayed to you.</p>
@@ -566,38 +566,38 @@ data_subset %&gt;%
 <p>To illustrate how to use <strong><code>dplyr</code></strong> with these complex queries, we are going to join the <code>plots</code> and <code>surveys</code> tables. The <code>plots</code> table in the database contains information about the different plots surveyed by the researchers. To access it, we point the <code>tbl()</code> command to it:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">plots &lt;-<span class="st"> </span><span class="kw">tbl</span>(mammals, <span class="st">&quot;plots&quot;</span>)
 plots</code></pre></div>
-<pre><code>#&gt; Source:   query [?? x 2]
-#&gt; Database: sqlite 3.11.1 [data/portal_mammals.sqlite]
-#&gt; 
+<pre><code>#&gt; # Source:   table&lt;plots&gt; [?? x 2]
+#&gt; # Database: sqlite 3.19.3
+#&gt; #   [/home/francois/sandbox/R-ecology-lesson/data/portal_mammals.sqlite]
 #&gt;    plot_id                 plot_type
 #&gt;      &lt;int&gt;                     &lt;chr&gt;
-#&gt; 1        1         Spectab exclosure
-#&gt; 2        2                   Control
-#&gt; 3        3  Long-term Krat Exclosure
-#&gt; 4        4                   Control
-#&gt; 5        5          Rodent Exclosure
-#&gt; 6        6 Short-term Krat Exclosure
-#&gt; 7        7          Rodent Exclosure
-#&gt; 8        8                   Control
-#&gt; 9        9         Spectab exclosure
+#&gt;  1       1         Spectab exclosure
+#&gt;  2       2                   Control
+#&gt;  3       3  Long-term Krat Exclosure
+#&gt;  4       4                   Control
+#&gt;  5       5          Rodent Exclosure
+#&gt;  6       6 Short-term Krat Exclosure
+#&gt;  7       7          Rodent Exclosure
+#&gt;  8       8                   Control
+#&gt;  9       9         Spectab exclosure
 #&gt; 10      10          Rodent Exclosure
 #&gt; # ... with more rows</code></pre>
 <p>The <code>plot_id</code> column also features in the <code>surveys</code> table:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys</code></pre></div>
-<pre><code>#&gt; Source:   query [?? x 9]
-#&gt; Database: sqlite 3.11.1 [data/portal_mammals.sqlite]
-#&gt; 
+<pre><code>#&gt; # Source:   table&lt;surveys&gt; [?? x 9]
+#&gt; # Database: sqlite 3.19.3
+#&gt; #   [/home/francois/sandbox/R-ecology-lesson/data/portal_mammals.sqlite]
 #&gt;    record_id month   day  year plot_id species_id   sex hindfoot_length
 #&gt;        &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;   &lt;int&gt;      &lt;chr&gt; &lt;chr&gt;           &lt;int&gt;
-#&gt; 1          1     7    16  1977       2         NL     M              32
-#&gt; 2          2     7    16  1977       3         NL     M              33
-#&gt; 3          3     7    16  1977       2         DM     F              37
-#&gt; 4          4     7    16  1977       7         DM     M              36
-#&gt; 5          5     7    16  1977       3         DM     M              35
-#&gt; 6          6     7    16  1977       1         PF     M              14
-#&gt; 7          7     7    16  1977       2         PE     F              NA
-#&gt; 8          8     7    16  1977       1         DM     M              37
-#&gt; 9          9     7    16  1977       1         DM     F              34
+#&gt;  1         1     7    16  1977       2         NL     M              32
+#&gt;  2         2     7    16  1977       3         NL     M              33
+#&gt;  3         3     7    16  1977       2         DM     F              37
+#&gt;  4         4     7    16  1977       7         DM     M              36
+#&gt;  5         5     7    16  1977       3         DM     M              35
+#&gt;  6         6     7    16  1977       1         PF     M              14
+#&gt;  7         7     7    16  1977       2         PE     F              NA
+#&gt;  8         8     7    16  1977       1         DM     M              37
+#&gt;  9         9     7    16  1977       1         DM     F              34
 #&gt; 10        10     7    16  1977       6         PF     F              20
 #&gt; # ... with more rows, and 1 more variables: weight &lt;int&gt;</code></pre>
 <p>Because <code>plot_id</code> is listed in both tables, we can use it to look up matching records, and join the two tables. For example, to extract all surveys for the first plot, which has <code>plot_id</code> 1, we can do:</p>
@@ -606,18 +606,18 @@ plots</code></pre></div>
 <span class="st">  </span><span class="kw">inner_join</span>(surveys) %&gt;%
 <span class="st">  </span><span class="kw">collect</span>()</code></pre></div>
 <pre><code>#&gt; Joining, by = &quot;plot_id&quot;</code></pre>
-<pre><code>#&gt; # A tibble: 1,995 × 10
+<pre><code>#&gt; # A tibble: 1,995 x 10
 #&gt;    plot_id         plot_type record_id month   day  year species_id   sex
 #&gt;      &lt;int&gt;             &lt;chr&gt;     &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;      &lt;chr&gt; &lt;chr&gt;
-#&gt; 1        1 Spectab exclosure         6     7    16  1977         PF     M
-#&gt; 2        1 Spectab exclosure         8     7    16  1977         DM     M
-#&gt; 3        1 Spectab exclosure         9     7    16  1977         DM     F
-#&gt; 4        1 Spectab exclosure        78     8    19  1977         PF     M
-#&gt; 5        1 Spectab exclosure        80     8    19  1977         DS     M
-#&gt; 6        1 Spectab exclosure       218     9    13  1977         PF     M
-#&gt; 7        1 Spectab exclosure       222     9    13  1977         DS     M
-#&gt; 8        1 Spectab exclosure       239     9    13  1977         DS     M
-#&gt; 9        1 Spectab exclosure       263    10    16  1977         DM     M
+#&gt;  1       1 Spectab exclosure         6     7    16  1977         PF     M
+#&gt;  2       1 Spectab exclosure         8     7    16  1977         DM     M
+#&gt;  3       1 Spectab exclosure         9     7    16  1977         DM     F
+#&gt;  4       1 Spectab exclosure        78     8    19  1977         PF     M
+#&gt;  5       1 Spectab exclosure        80     8    19  1977         DS     M
+#&gt;  6       1 Spectab exclosure       218     9    13  1977         PF     M
+#&gt;  7       1 Spectab exclosure       222     9    13  1977         DS     M
+#&gt;  8       1 Spectab exclosure       239     9    13  1977         DS     M
+#&gt;  9       1 Spectab exclosure       263    10    16  1977         DM     M
 #&gt; 10       1 Spectab exclosure       270    10    16  1977         DM     F
 #&gt; # ... with 1,985 more rows, and 2 more variables: hindfoot_length &lt;int&gt;,
 #&gt; #   weight &lt;int&gt;</code></pre>
@@ -717,7 +717,7 @@ plots &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class
 my_db &lt;-<span class="st"> </span><span class="kw">src_sqlite</span>(my_db_file, <span class="dt">create =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <p>Currently, our new database is empty, it doesn’t contain any tables:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_db</code></pre></div>
-<pre><code>#&gt; src:  sqlite 3.11.1 [portal-database.sqlite]
+<pre><code>#&gt; src:  sqlite 3.19.3 [portal-database.sqlite]
 #&gt; tbls:</code></pre>
 <p>To add tables, we copy the existing data.frames into the database one by one:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">copy_to</span>(my_db, surveys)
@@ -764,7 +764,7 @@ $(document).ready(function () {
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>

@@ -361,11 +361,16 @@ div.tocify {
 <blockquote>
 <h3 id="learning-objectives">Learning Objectives</h3>
 <ul>
-<li>Recall the six data manipulation ‘verbs’ in the <strong><code>dplyr</code></strong> package and know what they do.</li>
-<li>Select subsets of columns and filter rows in a data frame according to a condition(s).</li>
-<li>Employ the ‘pipe’ operator to link together a sequence of <strong><code>dplyr</code></strong> commands.</li>
-<li>Employ the ‘mutate’ command to apply functions to existing columns and create new columns of data.</li>
-<li>Employ the ‘spread’ and ‘gather’ commands from <strong><code>tidyr</code></strong> to move data between long to wide formats.</li>
+<li>Understand the purpose of the <strong><code>dplyr</code></strong> and <strong><code>tidyr</code></strong> packages.</li>
+<li>Select certain columns in a data frame with the <strong><code>dplyr</code></strong> function <code>select</code>.</li>
+<li>Select certain rows in a data frame according to filtering conditions with the <strong><code>dplyr</code></strong> function <code>filter</code> .</li>
+<li>Link the output of one <strong><code>dplyr</code></strong> function to the input of another function with the ‘pipe’ operator <code>%&gt;%</code>.</li>
+<li>Add new columns to a data frame that are functions of existing columns with <code>mutate</code>.</li>
+<li>Understand the split-apply-combine concept for data analysis.</li>
+<li>Use <code>summarize</code>, <code>group_by</code>, and <code>tally</code> to split a data frame into groups of observations, apply a summary statistics for each group, and then combine the results.</li>
+<li>Understand the concept of a wide and a long table format and for which purpose those formats are useful.</li>
+<li>Understand what key-value pairs are.</li>
+<li>Reshape a data frame from long to wide format and back with the <code>spread</code> and <code>gather</code> commands from the <strong><code>tidyr</code></strong> package.</li>
 <li>Export a data frame to a .csv file.</li>
 </ul>
 </blockquote>
@@ -437,7 +442,7 @@ surveys %>%
 <p><code>is.na()</code> is a function that determines whether something is an <code>NA</code>. The <code>!</code> symbol negates the result, so we’re asking for everything that <em>is not</em> an <code>NA</code>.</p>
 <blockquote>
 <h3 id="challenge-1" class="challenge">Challenge</h3>
-<p>Create a new data frame from the <code>survey</code> data that meets the following criteria: contains only the <code>species_id</code> column and a new column called <code>hindfoot_half</code> containing values that are half the <code>hindfoot_length</code> values. In this <code>hindfoot_half</code> column, there are no <code>NA</code>s and all values are less than 30.</p>
+<p>Create a new data frame from the <code>surveys</code> data that meets the following criteria: contains only the <code>species_id</code> column and a new column called <code>hindfoot_half</code> containing values that are half the <code>hindfoot_length</code> values. In this <code>hindfoot_half</code> column, there are no <code>NA</code>s and all values are less than 30.</p>
 <p><strong>Hint</strong>: think about how the commands should be ordered to produce this data frame!</p>
 </blockquote>
 <!---

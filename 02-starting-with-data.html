@@ -683,7 +683,7 @@ surveys$plot_type &lt;-<span class="st"> </span><span class="kw">factor</span>(s
 <p>The resulting POSIXct vector can be added to <code>surveys</code> as a new column called <code>date</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys$date&lt;-<span class="kw">ymd</span>(<span class="kw">paste</span>(surveys$year, surveys$month, surveys$day, <span class="dt">sep=</span><span class="st">&quot;-&quot;</span>))
 
-<span class="kw">str</span>(surveys) <span class="co"># notice the new column, with POSIXct as the class</span></code></pre></div>
+<span class="kw">str</span>(surveys) <span class="co"># notice the new column, with &#39;Date&#39; as the class</span></code></pre></div>
 </div>
 
 <hr/>

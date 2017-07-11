@@ -427,7 +427,7 @@ div.tocify {
 <p>RStudio provides a helpful set of tools to do this through its “Projects” interface, which not only creates a working directory for you but also remembers its location (allowing you to quickly navigate to it) and optionally preserves custom settings and open files to make it easier to resume work after a break. Below, we will go through the steps for creating an “R Project” for this tutorial.</p>
 <ul>
 <li>Start RStudio (presentation of RStudio -below- should happen here)</li>
-<li>Under the <code>File</code> menu, click on <code>New project</code>, choose <code>New directory</code>, then <code>Empty project</code></li>
+<li>Under the <code>File</code> menu, click on <code>New project</code>, choose <code>New directory</code>, then <code>New project</code></li>
 <li>Enter a name for this new folder (or “directory”), and choose a convenient location for it. This will be your <strong>working directory</strong> for the rest of the day (e.g., <code>~/data-carpentry</code>)</li>
 <li>Click on <code>Create project</code></li>
 <li>Under the <code>Files</code> tab on the right of the screen, click on <code>New Folder</code> and create a folder named <code>data</code> within your newly created working directory (e.g., <code>~/data-carpentry/data</code>)</li>
@@ -514,7 +514,7 @@ div.tocify {
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">some_data &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="dt">file=</span><span class="st">&quot;~/Downloads/iris.rds&quot;</span>)</code></pre></div>
 <p>Last, but certainly not least, <strong>always include the output of <code>sessionInfo()</code></strong> as it provides critical information about your platform, the versions of R and the packages that you are using, and other information that can be very helpful to understand your problem.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sessionInfo</span>()</code></pre></div>
-<pre><code>## R version 3.4.0 (2017-04-21)
+<pre><code>## R version 3.4.1 (2017-06-30)
 ## Platform: x86_64-pc-linux-gnu (64-bit)
 ## Running under: Ubuntu 17.04
 ## 
@@ -534,14 +534,13 @@ div.tocify {
 ## [1] stats     graphics  grDevices utils     datasets  base     
 ## 
 ## other attached packages:
-## [1] BiocInstaller_1.24.0
+## [1] BiocInstaller_1.26.0
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] compiler_3.4.0       backports_1.0.5      magrittr_1.5        
-##  [4] rprojroot_1.2        tools_3.4.0          htmltools_0.3.5     
-##  [7] yaml_2.1.14          Rcpp_0.12.10         stringi_1.1.5       
-## [10] rmarkdown_1.4.0.9000 knitr_1.15.1         methods_3.4.0       
-## [13] stringr_1.2.0        digest_0.6.12        evaluate_0.10</code></pre>
+##  [1] compiler_3.4.1  backports_1.1.0 magrittr_1.5    rprojroot_1.2  
+##  [5] tools_3.4.1     htmltools_0.3.6 yaml_2.1.14     Rcpp_0.12.11   
+##  [9] stringi_1.1.5   rmarkdown_1.6   knitr_1.16.5    methods_3.4.1  
+## [13] stringr_1.2.0   digest_0.6.12   evaluate_0.10.1</code></pre>
 </div>
 <div id="where-to-ask-for-help" class="section level3">
 <h3>Where to ask for help?</h3>
@@ -560,7 +559,7 @@ div.tocify {
 <li>The <a href="http://www.r-project.org/posting-guide.html">Posting Guide</a> for the R mailing lists.</li>
 <li><a href="http://blog.revolutionanalytics.com/2014/01/how-to-ask-for-r-help.html">How to ask for R help</a> useful guidelines</li>
 <li><a href="http://codeblog.jonskeet.uk/2010/08/29/writing-the-perfect-question/">This blog post by Jon Skeet</a> has quite comprehensive advice on how to ask programming questions.</li>
-<li>The <a href="https://cran.rstudio.com/web/packages/reprex/">reprex</a> package is very helpful to create reproducible examples when asking for help.</li>
+<li>The <a href="https://cran.rstudio.com/web/packages/reprex/">reprex</a> package is very helpful to create reproducible examples when asking for help. The [rOpenSci community call “How to ask questions so they get answered”], <a href="https://github.com/ropensci/commcalls/issues/14">Github link</a> and <a href="https://vimeo.com/208749032">video recording</a> includes a presentation of the reprex package and of its philosophy.</li>
 </ul>
 </div>
 </div>
@@ -598,7 +597,7 @@ $(document).ready(function () {
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>

@@ -442,11 +442,11 @@ surveys_plot
 <div id="boxplot" class="section level2">
 <h2>Boxplot</h2>
 <p>We can use boxplots to visualize the distribution of weight within each species:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> surveys_complete, <span class="kw">aes</span>(<span class="dt">x =</span> species_id, <span class="dt">y =</span> hindfoot_length)) +
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> surveys_complete, <span class="kw">aes</span>(<span class="dt">x =</span> species_id, <span class="dt">y =</span> weight)) +
 <span class="st">    </span><span class="kw">geom_boxplot</span>()</code></pre></div>
 <p><img src="img/R-ecology-boxplot-1.png" width="672" /></p>
 <p>By adding points to boxplot, we can have a better idea of the number of measurements and of their distribution:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> surveys_complete, <span class="kw">aes</span>(<span class="dt">x =</span> species_id, <span class="dt">y =</span> hindfoot_length)) +
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> surveys_complete, <span class="kw">aes</span>(<span class="dt">x =</span> species_id, <span class="dt">y =</span> weight)) +
 <span class="st">    </span><span class="kw">geom_boxplot</span>(<span class="dt">alpha =</span> <span class="dv">0</span>) +
 <span class="st">    </span><span class="kw">geom_jitter</span>(<span class="dt">alpha =</span> <span class="fl">0.3</span>, <span class="dt">color =</span> <span class="st">&quot;tomato&quot;</span>)</code></pre></div>
 <p><img src="img/R-ecology-boxplot-with-points-1.png" width="672" /></p>
@@ -459,8 +459,11 @@ surveys_plot
 </ul>
 <p>In many types of data, it is important to consider the <em>scale</em> of the observations. For example, it may be worth changing the scale of the axis to better distribute the observations in the space of the plot. Changing the scale of the axes is done similarly to adding/modifying other components (i.e., by incrementally adding commands). Try making these modifications:</p>
 <ul>
-<li><p>Represent weight on the log10 scale; see <code>scale_y_log10()</code>.</p></li>
-<li><p>Create boxplot for <code>hindfoot_length</code>.</p></li>
+<li>Represent weight on the log10 scale; see <code>scale_y_log10()</code>.</li>
+</ul>
+<p>So far, we’ve looked at the distribution of weight within species. Try making a new plot to explore the distribution of another variable within each species.</p>
+<ul>
+<li><p>Create boxplot for <code>hindfoot_length</code>. Overlay the boxplot layer on a jitter layer to show actual measurements.</p></li>
 <li><p>Add color to the datapoints on your boxplot according to the plot from which the sample was taken (<code>plot_id</code>).</p></li>
 </ul>
 </blockquote>
