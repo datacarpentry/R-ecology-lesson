@@ -88,7 +88,13 @@ spreadsheets from your hard drive (or the web).
 A data frame is the representation of data in the format of a table where the
 columns are vectors that all have the same length. Because the column are
 vectors, they all contain the same type of data (e.g., characters, integers,
-factors). We can see this when inspecting the <b>str</b>ucture of a data frame
+factors). For example, here is a figure depicting a data frame comprising of a
+numeric, a character and a logical vector.
+
+![](./img/R-ecology-data-frame.svg)
+
+
+We can see this when inspecting the <b>str</b>ucture of a data frame
 with the function `str()`:
 
 ```{r, purl=FALSE}
