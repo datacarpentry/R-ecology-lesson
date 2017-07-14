@@ -24,7 +24,7 @@ surveys <- read.csv("data/portal_data_joined.csv")
 > * Understand the split-apply-combine concept for data analysis.
 > * Use `summarize`, `group_by`, and `tally` to split a data frame into groups of observations, apply a summary statistics for each group, and then combine the results.
 > * Understand the concept of a wide and a long table format and for which purpose those formats are useful.
-> * Understand what key-value pairs are. 
+> * Understand what key-value pairs are.
 > * Reshape a data frame from long to wide format and back with the `spread` and `gather` commands from the **`tidyr`** package.
 > * Export a data frame to a .csv file.
 
@@ -106,7 +106,7 @@ The last option, pipes, are a fairly recent addition to R. Pipes let you take
 the output of one function and send it directly to the next, which is useful
 when you need to do many things to the same dataset.  Pipes in R look like
 `%>%` and are made available via the `magrittr` package, installed automatically
-with **`dplyr`**.
+with **`dplyr`**. If you use RStudio, you can type the pipe with <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>M</kbd> if you have a PC or <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd> if you have a Mac.
 
 ```{r, purl = FALSE}
 surveys %>%
@@ -166,6 +166,14 @@ To create a new column of weight in kg:
 ```{r, purl = FALSE}
 surveys %>%
   mutate(weight_kg = weight / 1000)
+```
+
+You can also create a second new column based on the first new column within the same call of `mutate()`:
+
+```{r, purl = FALSE}
+surveys %>%
+  mutate(weight_kg = weight / 1000,
+         weight_kg2 = weight_kg * 2)
 ```
 
 If this runs off your screen and you just want to see the first few rows, you
@@ -253,7 +261,7 @@ You may also have noticed that the output from these calls doesn't run off the
 screen anymore. That's because **`dplyr`** has changed our `data.frame` object
 to an object of class `tbl_df`, also known as a "tibble". Tibble's data
 structure is very similar to a data frame. For our purposes the only differences
-is that, (1) in addition to displaying the data type of each column under its
+are that, (1) in addition to displaying the data type of each column under its
 name, it only prints the first few rows of data and only as many columns as fit
 on one screen, (2) columns of class `character` are never converted into
 factors.
@@ -438,7 +446,7 @@ argument `fill=0`.
 
 ```{r, purl=FALSE}
 surveys_gw %>%
-  spread(genus, mean_weight, fill=0) %>%
+  spread(genus, mean_weight, fill = 0) %>%
   head
 ```
 
@@ -447,7 +455,7 @@ examine their correlation.
 
 ```{r, purl=FALSE}
 surveys_gw %>%
-  spread(genus, mean_weight, fill=0) %>%
+  spread(genus, mean_weight, fill = 0) %>%
   cor(use = "pairwise.complete")
 ```
 
@@ -636,7 +644,7 @@ they are not included:
 
 ```{r, purl=FALSE, eval=FALSE}
 write.csv(surveys_complete, file = "data_output/surveys_complete.csv",
-          row.names=FALSE)
+          row.names = FALSE)
 ```
 
 ```{r, purl=FALSE, eval=TRUE, echo=FALSE}
