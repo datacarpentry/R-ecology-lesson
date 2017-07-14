@@ -209,7 +209,7 @@ We see that if we want a different number of digits, we can
 type `digits=2` or however many we want.
 
 ```{r, results='show', purl=FALSE}
-round(3.14159, digits=2)
+round(3.14159, digits = 2)
 ```
 
 If you provide the arguments in the exact same order as they are defined you
@@ -222,7 +222,7 @@ round(3.14159, 2)
 And if you do name the arguments, you can switch their order:
 
 ```{r, results='show', purl=FALSE}
-round(digits=2, x=3.14159)
+round(digits = 2, x = 3.14159)
 ```
 
 It's good practice to put the non-optional arguments (like the number you're
@@ -311,7 +311,7 @@ all R objects are built from. The other 4 are:
 * `"logical"` for `TRUE` and `FALSE` (the boolean data type)
 * `"integer"` for integer numbers (e.g., `2L`, the `L` indicates to R that it's an integer)
 * `"complex"` to represent complex numbers with real and imaginary parts (e.g.,
-  `1+4i`) and that's all we're going to say about them
+  `1 + 4i`) and that's all we're going to say about them
 * `"raw"` that we won't discuss further
 
 Vectors are one of the many **data structures** that R uses. Other important
