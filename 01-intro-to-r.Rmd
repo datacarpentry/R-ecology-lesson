@@ -395,7 +395,7 @@ more_animals <- animals[c(1, 2, 3, 2, 1, 4)]
 more_animals
 ```
 
-R indices start at 1. Programming languages like Fortran, MATLAB, and R start
+R indices start at 1. Programming languages like Fortran, MATLAB, Julia, and R start
 counting at 1, because that's what human beings typically do. Languages in the C
 family (including C++, Java, Perl, and Python) count from 0 because that's
 simpler for computers to do.
