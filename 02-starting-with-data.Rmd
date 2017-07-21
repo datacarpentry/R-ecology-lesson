@@ -91,7 +91,7 @@ vectors, they all contain the same type of data (e.g., characters, integers,
 factors). For example, here is a figure depicting a data frame comprising of a
 numeric, a character and a logical vector.
 
-![](./img/R-ecology-data-frame.svg)
+![](./img/data-frame.svg)
 
 
 We can see this when inspecting the <b>str</b>ucture of a data frame

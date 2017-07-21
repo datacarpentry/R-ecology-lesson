@@ -318,8 +318,14 @@ surveys
 ```
 
 Because `plot_id` is listed in both tables, we can use it to look up matching
-records, and join the two tables. For example, to extract all surveys for the
-first plot, which has `plot_id` 1, we can do:
+records, and join the two tables.
+
+
+<img src="img/joins.svg" alt="diagram illustrating inner and left joins"/>
+
+
+For example, to extract all surveys for the first plot, which has `plot_id` 1,
+we can do:
 
 ```{r join, results='markup', purl=FALSE}
 plots %>%
@@ -327,6 +333,8 @@ plots %>%
   inner_join(surveys) %>%
   collect()
 ```
+
+
 
 **Important Note:** Without the `collect()` statement, only the first 10
 matching rows are returned. By adding `collect()`, the full set of 1,985 is
@@ -461,13 +469,6 @@ the mammals database that we've been working with, in R. First let's read in the
 `csv` files.
 
 ```{r data_frames, purl=TRUE}
-## if you haven't downloaded  the csv files yet, you can do:
-download.file("https://ndownloader.figshare.com/files/3299474",
-              "data/plots.csv")
-download.file("https://ndownloader.figshare.com/files/3299483",
-              "data/species.csv")
-download.file("https://ndownloader.figshare.com/files/2292172",
-              "data/surveys.csv")
 species <- read.csv("data/species.csv")
 surveys <- read.csv("data/surveys.csv")
 plots <- read.csv("data/plots.csv")
