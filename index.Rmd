@@ -149,3 +149,5 @@ your operating system, and then follow the instructions to install
 ## Contributors
 
 The list of contributors to this lesson is available [here](http://datacarpentry.org/R-ecology-lesson/CITATION),
+
+<p style="text-align: right; font-size: small;">Page build on: `r format(Sys.time())`</p>

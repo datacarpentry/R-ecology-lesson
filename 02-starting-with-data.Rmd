@@ -559,3 +559,5 @@ surveys$date<-ymd(paste(surveys$year, surveys$month, surveys$day, sep="-"))
 
 str(surveys) # notice the new column, with 'Date' as the class
 ```
+
+<p style="text-align: right; font-size: small;">Page build on: `r format(Sys.time())`</p>

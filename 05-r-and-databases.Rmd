@@ -321,7 +321,7 @@ Because `plot_id` is listed in both tables, we can use it to look up matching
 records, and join the two tables.
 
 
-<img src="img/joins.svg" alt="diagram illustrating inner and left joins"/>
+![diagram illustrating inner and left joins](./img/joins.svg)
 
 
 For example, to extract all surveys for the first plot, which has `plot_id` 1,
@@ -523,3 +523,5 @@ from flat files!
 **Note:** In this example, we first loaded all of the data into the R session by
 reading the three `csv` files. Because all the data has to flow through R,
 this is not suitable for very large datasets.
+
+<p style="text-align: right; font-size: small;">Page build on: `r format(Sys.time())`</p>
