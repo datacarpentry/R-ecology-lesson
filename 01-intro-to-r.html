@@ -398,7 +398,7 @@ weight_kg          <span class="co"># and so does typing the name of the object<
 <p>What do you think is the current content of the object <code>weight_lb</code>? 126.5 or 220?</p>
 <div id="comments" class="section level3">
 <h3>Comments</h3>
-<p>The comment character in R is <code>#</code>, anything to the right of a <code>#</code> in a script will be ignored by R. It is useful to leave notes, and explanations in your scripts. RStudio makes it easy to comment or uncomment a paragraph: after selecting the lines you want to comment, press at the same time on your keyboard <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd>.</p>
+<p>The comment character in R is <code>#</code>, anything to the right of a <code>#</code> in a script will be ignored by R. It is useful to leave notes, and explanations in your scripts. RStudio makes it easy to comment or uncomment a paragraph: after selecting the lines you want to comment, press at the same time on your keyboard <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd>. If you only want to comment out one line, you can put the cursor at any location of that line (i.e. no need to select the whole line), then press kbd&gt;Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd>.</p>
 <blockquote>
 <h3 id="challenge">Challenge</h3>
 <p>What are the values after each statement in the following?</p>
@@ -425,13 +425,13 @@ mass_index &lt;-<span class="st"> </span>mass/age  <span class="co"># mass_index
 #&gt; NULL</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">?round</code></pre></div>
 <p>We see that if we want a different number of digits, we can type <code>digits=2</code> or however many we want.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">round</span>(<span class="fl">3.14159</span>, <span class="dt">digits=</span><span class="dv">2</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">round</span>(<span class="fl">3.14159</span>, <span class="dt">digits =</span> <span class="dv">2</span>)</code></pre></div>
 <pre><code>#&gt; [1] 3.14</code></pre>
 <p>If you provide the arguments in the exact same order as they are defined you don’t have to name them:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">round</span>(<span class="fl">3.14159</span>, <span class="dv">2</span>)</code></pre></div>
 <pre><code>#&gt; [1] 3.14</code></pre>
 <p>And if you do name the arguments, you can switch their order:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">round</span>(<span class="dt">digits=</span><span class="dv">2</span>, <span class="dt">x=</span><span class="fl">3.14159</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">round</span>(<span class="dt">digits =</span> <span class="dv">2</span>, <span class="dt">x =</span> <span class="fl">3.14159</span>)</code></pre></div>
 <pre><code>#&gt; [1] 3.14</code></pre>
 <p>It’s good practice to put the non-optional arguments (like the number you’re rounding) first in your function call, and to specify the names of all optional arguments. If you don’t, someone reading your code might have to look up the definition of a function with unfamiliar arguments to understand what you’re doing.</p>
 </div>
@@ -468,7 +468,7 @@ weight_g</code></pre></div>
 <ul>
 <li><code>&quot;logical&quot;</code> for <code>TRUE</code> and <code>FALSE</code> (the boolean data type)</li>
 <li><code>&quot;integer&quot;</code> for integer numbers (e.g., <code>2L</code>, the <code>L</code> indicates to R that it’s an integer)</li>
-<li><code>&quot;complex&quot;</code> to represent complex numbers with real and imaginary parts (e.g., <code>1+4i</code>) and that’s all we’re going to say about them</li>
+<li><code>&quot;complex&quot;</code> to represent complex numbers with real and imaginary parts (e.g., <code>1 + 4i</code>) and that’s all we’re going to say about them</li>
 <li><code>&quot;raw&quot;</code> that we won’t discuss further</li>
 </ul>
 <p>Vectors are one of the many <strong>data structures</strong> that R uses. Other important ones are lists (<code>list</code>), matrices (<code>matrix</code>), data frames (<code>data.frame</code>), factors (<code>factor</code>) and arrays (<code>array</code>).</p>
@@ -499,7 +499,7 @@ animals[<span class="dv">2</span>]</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">more_animals &lt;-<span class="st"> </span>animals[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">4</span>)]
 more_animals</code></pre></div>
 <pre><code>#&gt; [1] &quot;mouse&quot; &quot;rat&quot;   &quot;dog&quot;   &quot;rat&quot;   &quot;mouse&quot; &quot;cat&quot;</code></pre>
-<p>R indices start at 1. Programming languages like Fortran, MATLAB, and R start counting at 1, because that’s what human beings typically do. Languages in the C family (including C++, Java, Perl, and Python) count from 0 because that’s simpler for computers to do.</p>
+<p>R indices start at 1. Programming languages like Fortran, MATLAB, Julia, and R start counting at 1, because that’s what human beings typically do. Languages in the C family (including C++, Java, Perl, and Python) count from 0 because that’s simpler for computers to do.</p>
 <div id="conditional-subsetting" class="section level3">
 <h3>Conditional subsetting</h3>
 <p>Another common way of subsetting is by using a logical vector. <code>TRUE</code> will select the element with the same index, while <code>FALSE</code> will not:</p>
@@ -569,6 +569,9 @@ heights[<span class="kw">complete.cases</span>(heights)]</code></pre></div>
 </ol>
 </blockquote>
 <p>Now that we have learned how to write scripts, and the basics of R’s data structures, we are ready to start working with the Portal dataset we have been using in the other lessons, and learn about data frames.</p>
+<p style="text-align: right; font-size: small;">
+Page build on: 2017-07-21 07:30:41
+</p>
 </div>
 
 <hr/>
@@ -604,7 +607,7 @@ $(document).ready(function () {
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>
