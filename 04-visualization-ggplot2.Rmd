@@ -41,8 +41,8 @@ properties, so we only need minimal changes if the underlying data change or if
 we decide to change from a bar plot to a scatterplot. This helps in creating
 publication quality plots with minimal amounts of adjustments and tweaking.
 
-ggplot likes data in the 'long' format: i.e., a column for every dimension, 
-and a row for every observation. Well stuctured data will save you lots of time 
+ggplot likes data in the 'long' format: i.e., a column for every dimension,
+and a row for every observation. Well stuctured data will save you lots of time
 when making figures with ggplot.
 
 ggplot graphics are built step by step by adding new elements.
@@ -208,7 +208,7 @@ hidden?
 >
 > - Represent weight on the log10 scale; see `scale_y_log10()`.
 >
-> So far, we've looked at the distribution of weight within species.  Try making a 
+> So far, we've looked at the distribution of weight within species.  Try making a
 > new plot to explore the distribution of another variable within each species.
 >
 > - Create boxplot for `hindfoot_length`.  Overlay the boxplot layer on a jitter layer to show actual measurements.
@@ -506,3 +506,5 @@ ggsave("name_of_file.png", my_plot, width=15, height=10)
 ##  https://www.rstudio.com/wp-content/uploads/2015/08/ggplot2-cheatsheet.pdf
 
 ```
+
+<p style="text-align: right; font-size: small;">Page build on: `r format(Sys.time())`</p>

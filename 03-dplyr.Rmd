@@ -651,3 +651,5 @@ write.csv(surveys_complete, file = "data_output/surveys_complete.csv",
 if (!file.exists("data_output")) dir.create("data_output")
 write.csv(surveys_complete, file = "data_output/surveys_complete.csv")
 ```
+
+<p style="text-align: right; font-size: small;">Page build on: `r format(Sys.time())`</p>
