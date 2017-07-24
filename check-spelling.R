@@ -13,8 +13,11 @@ words_to_ignore <- c("AGPL", "Affero", "Arial", "Auriel", "Barneche",
                      "asis", "atx", "aurielfournier", "aut",
                      "autocompletion", "beanplot", "bg", "bibentry",
                      "bibtex", "bibtype", "bigquery", "blog", "br",
-                     "bw", "cd", "cheatsheet", "codeblog", "colour",
-                     "cran", "creativecommons", "csv",
+                     "bw", "cd", "cheatsheet", "cheatsheets",
+                     "commcalls", "pdfs", "ropensci", "rOpenSci",
+                     "vimeo", "jimhester", "lintr", "svg", "codeblog",
+                     "aquaria", "CoC", "readme", "ln",
+                     "colour", "cran", "creativecommons", "csv",
                      "datacarpentry", "de", "destfile", "df", "dir",
                      "doesn", "doi", "dpi", "dpkg", "dplyr", "dput",
                      "ds", "dx", "ensions", "esapubs", "ethz",
@@ -47,8 +50,8 @@ words_to_ignore <- c("AGPL", "Affero", "Arial", "Auriel", "Barneche",
                      "screenshots", "tidyr", "extrafont", "wch",
                      "macOS", "xquartz", "XQuartz", "Baiomys",
                      "Chaetodipus", "cor", "gw", "Spermophilus",
-                     "lubridate", "POSIXct",  "ymd", "YYYY", "rstudiohelp",
-                     )
+                     "lubridate", "POSIXct",  "ymd", "YYYY",
+                     "rstudiohelp")
 
 check_spelling <- function(ignore = words_to_ignore) {
     if (suppressPackageStartupMessages(require(hunspell)) &&
