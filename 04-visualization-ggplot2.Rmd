@@ -42,7 +42,7 @@ we decide to change from a bar plot to a scatterplot. This helps in creating
 publication quality plots with minimal amounts of adjustments and tweaking.
 
 ggplot likes data in the 'long' format: i.e., a column for every dimension,
-and a row for every observation. Well stuctured data will save you lots of time
+and a row for every observation. Well structured data will save you lots of time
 when making figures with ggplot.
 
 ggplot graphics are built step by step by adding new elements.
