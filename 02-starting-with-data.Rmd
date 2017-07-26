@@ -363,7 +363,7 @@ plot(surveys$sex)
 ```
 
 In addition to males and females, there are about 1700 individuals for which the
-sex information hasn't been recorded. Additionally, for the these individuals,
+sex information hasn't been recorded. Additionally, for these individuals,
 there is no label to indicate that the information is missing. Let's rename this
 label to something more meaningful. Before doing that, we're going to pull out
 the data on sex and work with that data, so we're not modifying the working copy
@@ -512,12 +512,12 @@ The automatic conversion of data type is sometimes a blessing, sometimes an
 annoyance. Be aware that it exists, learn the rules, and double check that data
 you import in R are of the correct type within your data frame. If not, use it
 to your advantage to detect mistakes that might have been introduced during data
-entry (a letter in a column that should only contain numbers for instance.).
+entry (a letter in a column that should only contain numbers for instance).
 
 ## Formatting Dates
 
 One of the most common issues that new (and experienced!) R users have is converting
-date and date time information into a variable that is appropriate and usable during
+date and time information into a variable that is appropriate and usable during
 analyses. As a reminder from earlier in this lesson, the best practice for dealing
 with date data is to ensure that each component of your date is stored as a separate
 variable. Using `str()`, We can confirm that our data frame has a separate column for
@@ -555,9 +555,9 @@ ymd(paste(surveys$year, surveys$month, surveys$day, sep="-"))
 The resulting POSIXct vector can be added to `surveys` as a new column called `date`:
 
 ```{r, eval=FALSE, purl=FALSE}
-surveys$date<-ymd(paste(surveys$year, surveys$month, surveys$day, sep="-"))
+surveys$date <- ymd(paste(surveys$year, surveys$month, surveys$day, sep="-"))
 
-str(surveys) # notice the new column, with 'Date' as the class
+str(surveys) # notice the new column, with 'date' as the class
 ```
 
 <p style="text-align: right; font-size: small;">Page build on: `r format(Sys.time())`</p>
