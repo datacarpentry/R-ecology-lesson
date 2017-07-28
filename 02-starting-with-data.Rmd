@@ -176,10 +176,10 @@ that different ways of specifying these coordinates lead to results with
 different classes.
 
 ```{r, purl=FALSE}
-surveys[1]      # first column in the data frame (as a data.frame)
-surveys[, 1]    # first column in the data frame (as a vector)
 surveys[1, 1]   # first element in the first column of the data frame (as a vector)
 surveys[1, 6]   # first element in the 6th column (as a vector)
+surveys[, 1]    # first column in the data frame (as a vector)
+surveys[1]      # first column in the data frame (as a data.frame)
 surveys[1:3, 7] # first three elements in the 7th column (as a vector)
 surveys[3, ]    # the 3rd element for all columns (as a data.frame)
 head_surveys <- surveys[1:6, ] # equivalent to head(surveys)
