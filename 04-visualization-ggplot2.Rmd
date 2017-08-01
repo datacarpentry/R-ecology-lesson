@@ -33,7 +33,7 @@ library(tidyverse)
 ```
 
 If not still in the workspace, load the data we saved in the previous lesson.
-```{r, eval=FALSE,  purl=FALSE}
+```{r load-data, eval=FALSE,  purl=FALSE}
 surveys_complete <- read.csv('data_output/surveys_complete.csv')
 ```
 
@@ -493,7 +493,7 @@ my_plot <- ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex)) +
     theme(axis.text.x = element_text(colour="grey20", size=12, angle=90, hjust=.5, vjust=.5),
                         axis.text.y = element_text(colour="grey20", size=12),
           text=element_text(size=16))
-ggsave("name_of_fileb.png", my_plot, width=15, height=10)
+ggsave("name_of_file.png", my_plot, width=15, height=10)
 ```
 
 Note: The parameters `width` and `height` also determine the font size in the saved plot.  
