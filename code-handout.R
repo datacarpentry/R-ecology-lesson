@@ -176,10 +176,23 @@ plot(surveys$sex)
 
 
 ### Data Visualization with ggplot2
+## ## Challenge with hexbin:
+## ## To use hexagonal binning with **`ggplot2`**, first install the 
+## ## R package `hexbin` from CRAN:
 ## install.packages("hexbin")
+## ## Then use `geom_hex()` function from the **`ggplot2`** package.
 ## surveys_plot +
 ##  geom_hex()
-## ## Challenges:
+## ## What are the relative strengths and weaknesses of a hexagonal 
+## ## bin plot compared to a scatter plot? Examine the above scatter 
+## ## plot and compare it with the hexagonal bin plot that you created.
+##
+## ## Challenge with scatter plot:
+## ##  Use what you just learned to create a scatter plot of `weight` 
+## ## over `species_id` with the plot types showing in different colors. 
+## ## Is this a good way to show this type of data?
+##
+## ## Challenges with boxplots:
 ## ##  Start with the boxplot we created:
 ## ggplot(data = surveys_complete, aes(x = species_id, y = weight)) +
 ##   geom_boxplot(alpha = 0) +
