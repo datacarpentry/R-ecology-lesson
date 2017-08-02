@@ -558,8 +558,8 @@ surveys_hindfoot_half <- surveys %>%
 <ol style="list-style-type: decimal">
 <li><p>Make a wide data frame with <code>year</code> as columns, <code>plot_id</code> as rows, and the values are the number of genera per plot. You will need to summarize before reshaping, and use the function <code>n_distinct</code> to get the number of unique types of a genera. It’s a powerful function! See <code>?n_distinct</code> for more.</p></li>
 <li><p>Now take that data frame, and make it long again, so each row is a unique <code>plot_id</code> <code>year</code> combination.</p></li>
-<li><p>The <code>surveys</code> data set is note truly wide or long because both there are two columns of measurement - <code>hindfoot_length</code> and <code>weight</code>. This makes it difficult to do things like look at the relationship between mean values of each measurement per year in different plot types. Let’s walk through a common solution for this type of problem. First, use <code>gather</code> to create a truly long dataset where we have a key column called <code>measurement</code> and a <code>value</code> column that takes on the value of either <code>hindfoot_length</code> or <code>weight</code>. Hint: You’ll need to specify which columns are being gathered.</p></li>
-<li><p>With this new truly long data set, calculate the average of each <code>measurement</code> in each <code>year</code> &gt; for each different <code>plot_type</code>. Then <code>spread</code> them into a wide data set with a column for <code>hindfoot_length</code> and <code>weight</code>. Hint: Remember, you only need to specify the key and value columns for <code>spread</code>.</p></li>
+<li><p>The <code>surveys</code> data set is not truly wide or long because there are two columns of measurement - <code>hindfoot_length</code> and <code>weight</code>. This makes it difficult to do things like look at the relationship between mean values of each measurement per year in different plot types. Let’s walk through a common solution for this type of problem. First, use <code>gather</code> to create a truly long dataset where we have a key column called <code>measurement</code> and a <code>value</code> column that takes on the value of either <code>hindfoot_length</code> or <code>weight</code>. Hint: You’ll need to specify which columns are being gathered.</p></li>
+<li><p>With this new truly long data set, calculate the average of each <code>measurement</code> in each <code>year</code> for each different <code>plot_type</code>. Then <code>spread</code> them into a wide data set with a column for <code>hindfoot_length</code> and <code>weight</code>. Hint: Remember, you only need to specify the key and value columns for <code>spread</code>.</p></li>
 </ol>
 </blockquote>
 <!---
@@ -596,7 +596,7 @@ surveys_complete &lt;-<span class="st"> </span>surveys_complete %&gt;%
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write.csv</span>(surveys_complete, <span class="dt">file =</span> <span class="st">&quot;data_output/surveys_complete.csv&quot;</span>,
           <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</code></pre></div>
 <p style="text-align: right; font-size: small;">
-Page build on: 2017-07-21 07:38:54
+Page build on: 2017-08-02 13:24:23
 </p>
 </div>
 
