@@ -176,23 +176,29 @@ plot(surveys$sex)
 
 
 ### Data Visualization with ggplot2
-## ## Challenge with hexbin:
-## ## To use hexagonal binning with **`ggplot2`**, first install the 
-## ## R package `hexbin` from CRAN:
 ## install.packages("hexbin")
-## ## Then use `geom_hex()` function from the **`ggplot2`** package.
 ## surveys_plot +
 ##  geom_hex()
-## ## What are the relative strengths and weaknesses of a hexagonal 
-## ## bin plot compared to a scatter plot? Examine the above scatter 
-## ## plot and compare it with the hexagonal bin plot that you created.
-##
-## ## Challenge with scatter plot:
-## ##  Use what you just learned to create a scatter plot of `weight` 
-## ## over `species_id` with the plot types showing in different colors. 
+## ### Challenge with hexbin
+## ##
+## ## To use the hexagonal binning with **`ggplot2`**, first install the `hexbin`
+## ## package from CRAN:
+## 
+## install.pacakges("hexbin")
+## 
+## ## Then use the `geom_hex()` function:
+## 
+## surveys_plot +
+##     geom_hex()
+## 
+## ## What are the relatvie strenghts and weaknesses of a hexagonal bin plot
+## ## compared to a scatter plot?
+## ### Challenge with scatter plot:
+## ##
+## ##  Use what you just learned to create a scatter plot of `weight`
+## ## over `species_id` with the plot types showing in different colors.
 ## ## Is this a good way to show this type of data?
-##
-## ## Challenges with boxplots:
+## ## Challenge with boxplots:
 ## ##  Start with the boxplot we created:
 ## ggplot(data = surveys_complete, aes(x = species_id, y = weight)) +
 ##   geom_boxplot(alpha = 0) +
@@ -210,17 +216,17 @@ plot(surveys$sex)
 ## ##  of `plot_id` from integer to factor. Why does this change how R
 ## ##  makes the graph?
 ## 
-## ## Plotting time series challenge:
+## ### Plotting time series challenge:
+## ##
 ## ##  Use what you just learned to create a plot that depicts how the
 ## ##  average weight of each species changes through the years.
 ## 
-## ## Final plotting challenge:
+## ### Final plotting challenge:
 ## ##  With all of this information in hand, please take another five
 ## ##  minutes to either improve one of the plots generated in this
 ## ##  exercise or create a beautiful graph of your own. Use the RStudio
 ## ##  ggplot2 cheat sheet for inspiration:
 ## ##  https://www.rstudio.com/wp-content/uploads/2015/08/ggplot2-cheatsheet.pdf
-## 
 
 
 ## SQL databases and R
