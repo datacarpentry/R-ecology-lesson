@@ -26,10 +26,15 @@ surveys_complete <- read.csv(file = "data_output/surveys_complete.csv")
 
 --------------
 
-We start by loading the required packages.
+We start by loading the required packages. **`ggplot2`** is included in the **`tidyverse`** package.
 
 ```{r load-package, message=FALSE, purl=FALSE}
 library(tidyverse)
+```
+
+If not still in the workspace, load the data we saved in the previous lesson.
+```{r load-data, eval=FALSE,  purl=FALSE}
+surveys_complete <- read.csv('data_output/surveys_complete.csv')
 ```
 
 ## Plotting with **`ggplot2`**
@@ -148,7 +153,7 @@ ggplot(data = surveys_complete, aes(x = weight, y = hindfoot_length)) +
 ```
 
 Then, we start modifying this plot to extract more information from it. For
-instance, we can add transparency (alpha) to avoid overplotting:
+instance, we can add transparency (`alpha`) to avoid overplotting:
 
 ```{r adding-transparency, purl=FALSE}
 ggplot(data = surveys_complete, aes(x = weight, y = hindfoot_length)) +
@@ -168,6 +173,12 @@ Or to color each species in the plot differently:
 ggplot(data = surveys_complete, aes(x = weight, y = hindfoot_length)) +
     geom_point(alpha = 0.1, aes(color=species_id))
 ```
+
+> ### Challenge
+>
+> Use what you just learned to create a scatter plot of `weight` over `species_id` with the plot types showing in different colors.
+> Is this a good way to show this type of data?
+
 
 ## Boxplot
 
@@ -191,7 +202,7 @@ Notice how the boxplot layer is behind the jitter layer? What do you need to
 change in the code to put the boxplot in front of the points such that it's not
 hidden?
 
-> ### Challenges (optional)
+> ### Challenges
 >
 > Boxplots are useful summaries, but hide the *shape* of the distribution. For
 > example, if there is a bimodal distribution, it would not be observed with a
@@ -216,8 +227,7 @@ hidden?
 > - Add color to the datapoints on your boxplot according to the plot from which
 >   the sample was taken (`plot_id`).
 
-Hint: Check the class for `plot_id`. Consider changing the class of `plot_id`
-from integer to factor. Why does this change how R makes the graph?
+> Hint: Check the class for `plot_id`. Consider changing the class of `plot_id` from integer to factor. Why does this change how R makes the graph?
 
 ```{r, eval=FALSE, purl=TRUE, echo=FALSE}
 ## Challenges:
@@ -269,10 +279,10 @@ ggplot(data = yearly_counts, aes(x = year, y = n, group = species_id)) +
     geom_line()
 ```
 
-We will be able to distinguish species in the plot if we add colors:
+We will be able to distinguish species in the plot if we add colors (using `color` also automatically groups the data):
 
 ```{r time-series-with-colors, purl=FALSE}
-ggplot(data = yearly_counts, aes(x = year, y = n, group = species_id, colour = species_id)) +
+ggplot(data = yearly_counts, aes(x = year, y = n, color = species_id)) +
     geom_line()
 ```
 
@@ -283,14 +293,14 @@ into multiple plots based on a factor included in the dataset. We will use it to
 make a time series plot for each species:
 
 ```{r first-facet, purl=FALSE}
-ggplot(data = yearly_counts, aes(x = year, y = n, group = species_id, colour = species_id)) +
+ggplot(data = yearly_counts, aes(x = year, y = n)) +
     geom_line() +
     facet_wrap(~ species_id)
 ```
 
 Now we would like to split the line in each plot by the sex of each individual
-measured. To do that we need to make counts in the data frame grouped by year,
-species_id, and sex:
+measured. To do that we need to make counts in the data frame grouped by `year`,
+`species_id`, and `sex`:
 
 ```{r, purl=FALSE}
  yearly_sex_counts <- surveys_complete %>%
@@ -298,10 +308,10 @@ species_id, and sex:
                       tally
 ```
 
-We can now make the faceted plot by splitting further by sex (within a single plot):
+We can now make the faceted plot by splitting further by sex using `color` (within a single plot):
 
 ```{r facet-by-species-and-sex, purl=FALSE}
- ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = species_id, group = sex)) +
+ ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex)) +
      geom_line() +
      facet_wrap(~ species_id)
 ```
@@ -311,14 +321,11 @@ the background to white using the function `theme_bw()`. Additionally, you can r
 the grid:
 
 ```{r facet-by-species-and-sex-white-bg, purl=FALSE}
- ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = species_id, group = sex)) +
+ ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex)) +
      geom_line() +
      facet_wrap(~ species_id) +
      theme_bw() +
-     theme(panel.grid.major.x = element_blank(),
-	   panel.grid.minor.x = element_blank(),
-	   panel.grid.major.y = element_blank(),
-	   panel.grid.minor.y = element_blank())
+     theme(panel.grid = element_blank())
 ```
 
 ## **`ggplot2`** themes
@@ -338,18 +345,7 @@ of packages that extend the capabilities of **`ggplot2`**, including additional
 themes.
 
 
-To make the plot easier to read, we can color by sex instead of species (species
-are already in separate plots, so we don't need to distinguish them further):
-
-```{r facet-by-species-and-sex-colored, purl=FALSE}
-ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex, group = sex)) +
-    geom_line() +
-    facet_wrap(~ species_id) +
-    theme_bw()
-```
-
-
-## Challenge (optional)
+> ### Challenge
 
 > Use what you just learned to create a plot that depicts how the average weight
 > of each species changes through the years.
@@ -359,7 +355,7 @@ ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex, group = sex))
 yearly_weight <- surveys_complete %>%
                  group_by(year, species_id) %>%
                  summarize(avg_weight = mean(weight))
-ggplot(data = yearly_weight, aes(x=year, y=avg_weight, color = species_id, group = species_id)) +
+ggplot(data = yearly_weight, aes(x=year, y=avg_weight)) +
     geom_line() +
     facet_wrap(~ species_id) +
     theme_bw()
@@ -379,7 +375,7 @@ geometry allows you to explicitly specify how you want your plots to be
 arranged via formula notation (`rows ~ columns`; a `.` can be used as
 a placeholder that indicates only one row or column).
 
-Let's modify the previous plot to compare how the weights of male and females
+Let's modify the previous plot to compare how the weights of males and females
 has changed through time:
 
 ```{r average-weight-time-facet-sex-rows, purl=FALSE}
@@ -387,14 +383,14 @@ has changed through time:
 yearly_sex_weight <- surveys_complete %>%
     group_by(year, sex, species_id) %>%
     summarize(avg_weight = mean(weight))
-ggplot(data = yearly_sex_weight, aes(x=year, y=avg_weight, color = species_id, group = species_id)) +
+ggplot(data = yearly_sex_weight, aes(x=year, y=avg_weight, color = species_id)) +
     geom_line() +
     facet_grid(sex ~ .)
 ```
 
 ```{r average-weight-time-facet-sex-columns, purl=FALSE}
 # One row, facet by column
-ggplot(data = yearly_sex_weight, aes(x=year, y=avg_weight, color = species_id, group = species_id)) +
+ggplot(data = yearly_sex_weight, aes(x=year, y=avg_weight, color = species_id)) +
     geom_line() +
     facet_grid(. ~ sex)
 ```
@@ -408,7 +404,7 @@ Now, let's change names of axes to something more informative than 'year'
 and 'n' and add a title to the figure:
 
 ```{r number-species-year-with-right-labels, purl=FALSE}
-ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex, group = sex)) +
+ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex)) +
     geom_line() +
     facet_wrap(~ species_id) +
     labs(title = 'Observed species in time',
@@ -421,7 +417,7 @@ The axes have more informative names, but their readability can be improved by
 increasing the font size:
 
 ```{r number-species-year-with-right-labels-xfont-size, purl=FALSE}
-ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex, group = sex)) +
+ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex)) +
     geom_line() +
     facet_wrap(~ species_id) +
     labs(title = 'Observed species in time',
@@ -443,7 +439,7 @@ angle, or experiment to find the appropriate angle for diagonally oriented
 labels:
 
 ```{r number-species-year-with-theme, purl=FALSE}
-ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex, group = sex)) +
+ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex)) +
     geom_line() +
     facet_wrap(~ species_id) +
     labs(title = 'Observed species in time',
@@ -468,23 +464,26 @@ ggplot(surveys_complete, aes(x = species_id, y = hindfoot_length)) +
     grey_theme
 ```
 
-With all of this information in hand, please take another five minutes to either
-improve one of the plots generated in this exercise or create a beautiful graph
-of your own. Use the RStudio [**`ggplot2`** cheat sheet](https://www.rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf) for
-inspiration.
+> ### Challange
 
-Here are some ideas:
+> With all of this information in hand, please take another five minutes to either
+> improve one of the plots generated in this exercise or create a beautiful graph
+> of your own. Use the RStudio [**`ggplot2`** cheat sheet](https://www.rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf) for
+> inspiration.
 
-* See if you can change the thickness of the lines.
-* Can you find a way to change the name of the legend? What about its labels?
-* Try using a different color palette (see http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/).
+> Here are some ideas:
+
+> * See if you can change the thickness of the lines.
+> * Can you find a way to change the name of the legend? What about its labels?
+> * Try using a different color palette (see http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/).
+
 
 After creating your plot, you can save it to a file in your favorite format.
 You can easily change the dimension (and resolution) of your plot by
 adjusting the appropriate arguments (`width`, `height` and `dpi`):
 
 ```{r ggsave-example, eval=FALSE, purl=FALSE}
-my_plot <- ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex, group = sex)) +
+my_plot <- ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex)) +
     geom_line() +
     facet_wrap(~ species_id) +
     labs(title = 'Observed species in time',
@@ -496,6 +495,9 @@ my_plot <- ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex, gr
           text=element_text(size=16))
 ggsave("name_of_file.png", my_plot, width=15, height=10)
 ```
+
+Note: The parameters `width` and `height` also determine the font size in the saved plot.  
+
 
 ```{r, eval=FALSE, purl=TRUE, echo=FALSE}
 ## Final plotting challenge:
