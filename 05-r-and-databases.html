@@ -600,7 +600,12 @@ plots</code></pre></div>
 #&gt;  9         9     7    16  1977       1         DM     F              34
 #&gt; 10        10     7    16  1977       6         PF     F              20
 #&gt; # ... with more rows, and 1 more variables: weight &lt;int&gt;</code></pre>
-<p>Because <code>plot_id</code> is listed in both tables, we can use it to look up matching records, and join the two tables. For example, to extract all surveys for the first plot, which has <code>plot_id</code> 1, we can do:</p>
+<p>Because <code>plot_id</code> is listed in both tables, we can use it to look up matching records, and join the two tables.</p>
+<div class="figure">
+<img src="img/joins.svg" alt="diagram illustrating inner and left joins" />
+<p class="caption">diagram illustrating inner and left joins</p>
+</div>
+<p>For example, to extract all surveys for the first plot, which has <code>plot_id</code> 1, we can do:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">plots %&gt;%
 <span class="st">  </span><span class="kw">filter</span>(plot_id ==<span class="st"> </span><span class="dv">1</span>) %&gt;%
 <span class="st">  </span><span class="kw">inner_join</span>(surveys) %&gt;%
@@ -701,14 +706,7 @@ genus_counts <- left_join(surveys, plots) %>%
 <div id="creating-a-new-sqlite-database" class="section level2">
 <h2>Creating a new SQLite database</h2>
 <p>So far, we have used a previously prepared SQLite database. But we can also use R to create a new database, e.g. from existing <code>csv</code> files. Let’s recreate the mammals database that we’ve been working with, in R. First let’s read in the <code>csv</code> files.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## if you haven&#39;t downloaded  the csv files yet, you can do:
-<span class="kw">download.file</span>(<span class="st">&quot;https://ndownloader.figshare.com/files/3299474&quot;</span>,
-              <span class="st">&quot;data/plots.csv&quot;</span>)
-<span class="kw">download.file</span>(<span class="st">&quot;https://ndownloader.figshare.com/files/3299483&quot;</span>,
-              <span class="st">&quot;data/species.csv&quot;</span>)
-<span class="kw">download.file</span>(<span class="st">&quot;https://ndownloader.figshare.com/files/2292172&quot;</span>,
-              <span class="st">&quot;data/surveys.csv&quot;</span>)
-species &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/species.csv&quot;</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">species &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/species.csv&quot;</span>)
 surveys &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/surveys.csv&quot;</span>)
 plots &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/plots.csv&quot;</span>)</code></pre></div>
 <p>Creating a new SQLite database with <strong><code>dplyr</code></strong> is easy. You can re-use the same command we used above to open an existing <code>.sqlite</code> file. The <code>create = TRUE</code> argument instructs R to create a new, empty database instead.</p>
@@ -729,6 +727,9 @@ my_db</code></pre></div>
 <p>Add the remaining species table to the <code>my_db</code> database and run some of your queries from earlier in the lesson to verify that you have faithfully recreated the mammals database.</p>
 </blockquote>
 <p><strong>Note:</strong> In this example, we first loaded all of the data into the R session by reading the three <code>csv</code> files. Because all the data has to flow through R, this is not suitable for very large datasets.</p>
+<p style="text-align: right; font-size: small;">
+Page build on: 2017-07-21 07:39:24
+</p>
 </div>
 
 <hr/>

@@ -71,7 +71,7 @@ back into R only what you need for analysis.
 The package **`tidyr`** addresses the common problem of wanting to reshape your data for plotting and use by different R functions. Sometimes we want data sets where we have one row per measurement. Sometimes we want a data frame where each measurement type has its own column, and rows are instead more aggregated groups - like plots or aquaria. Moving back and forth between these formats is nontrivial, and **`tidyr`** gives you tools for this and more sophisticated  data manipulation.
 
 To learn more about **`dplyr`** and **`tidyr`** after the workshop, you may want to check out this
-[handy data wrangling cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/source/pdfs/data-transformation-cheatsheet.pdf).
+[handy data transformation with **`dplyr`** cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/source/pdfs/data-transformation-cheatsheet.pdf) and this [one about **`tidyr`**](https://github.com/rstudio/cheatsheets/blob/master/source/pdfs/data-import-cheatsheet.pdf).
 
 
 ## Selecting columns and filtering rows
@@ -106,7 +106,9 @@ The last option, pipes, are a fairly recent addition to R. Pipes let you take
 the output of one function and send it directly to the next, which is useful
 when you need to do many things to the same dataset.  Pipes in R look like
 `%>%` and are made available via the `magrittr` package, installed automatically
-with **`dplyr`**. If you use RStudio, you can type the pipe with <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>M</kbd> if you have a PC or <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>M</kbd> if you have a Mac.
+with **`dplyr`**. If you use RStudio, you can type the pipe with <kbd>Ctrl</kbd>
++ <kbd>Shift</kbd> + <kbd>M</kbd> if you have a PC or <kbd>Cmd</kbd> + 
+<kbd>Shift</kbd> + <kbd>M</kbd> if you have a Mac.
 
 ```{r, purl = FALSE}
 surveys %>%
@@ -500,7 +502,7 @@ surveys_gw_wide %>%
 > 2. Now take that data frame, and make it long again, so each row is a unique
 >    `plot_id` `year` combination.
 >
-> 3. The `surveys` data set is note truly wide or long because both there are
+> 3. The `surveys` data set is not truly wide or long because there are
 >    two columns of measurement - `hindfoot_length` and `weight`.  This makes it
 >    difficult to do things like look at the relationship between mean values of
 >    each measurement per year in different plot types. Let's walk through a
@@ -510,7 +512,7 @@ surveys_gw_wide %>%
 >    `weight`. Hint: You'll need to specify which columns are being gathered.
 >
 > 4. With this new truly long data set, calculate the average of each
->    `measurement` in each `year` > for each different `plot_type`. Then
+>    `measurement` in each `year` for each different `plot_type`. Then
 >    `spread` them into a wide data set with a column for `hindfoot_length` and
 >    `weight`. Hint: Remember, you only need to specify the key and value
 >    columns for `spread`.
@@ -522,7 +524,7 @@ surveys_gw_wide %>%
 
 ## 2. Now take that data frame, and make it long again, so each row is a unique `plot_id` `year` combination
 
-## 3. The `surveys` data set is note truly wide or long because both there are two columns of measurement - `hindfoot_length` and `weight`.  This makes it difficult to do things like look at the relationship between mean values of each measurement per year in different plot types. Let's walk through a common solution for this type of problem. First, use `gather` to create a truly long dataset where we have a key column called `measurement` and a `value` column that takes on the value of either `hindfoot_length` or `weight`. Hint: You'll need to specify which columns are being gathered.
+## 3. The `surveys` data set is not truly wide or long because there are two columns of measurement - `hindfoot_length` and `weight`.  This makes it difficult to do things like look at the relationship between mean values of each measurement per year in different plot types. Let's walk through a common solution for this type of problem. First, use `gather` to create a truly long dataset where we have a key column called `measurement` and a `value` column that takes on the value of either `hindfoot_length` or `weight`. Hint: You'll need to specify which columns are being gathered.
 
 ## 4. With this new truly long data set, calculate the average of each `measurement` in each `year` for each different `plot_type`. Then `spread` them into a wide data set with a column for `hindfoot_length` and `weight`. Hint: Remember, you only need to specify the key and value columns for `spread`.
 
@@ -651,3 +653,5 @@ write.csv(surveys_complete, file = "data_output/surveys_complete.csv",
 if (!file.exists("data_output")) dir.create("data_output")
 write.csv(surveys_complete, file = "data_output/surveys_complete.csv")
 ```
+
+<p style="text-align: right; font-size: small;">Page build on: `r format(Sys.time())`</p>

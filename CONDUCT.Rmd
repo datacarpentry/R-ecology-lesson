@@ -21,5 +21,7 @@ maintainers who do not follow the Code of Conduct may be removed from the
 project team.
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
-reported by following
-	our [reporting guidelines](https://software-carpentry.org/CoC-reporting/).
+reported by following our [reporting guidelines](https://software-carpentry.org/CoC-reporting/).
+
+
+<p style="text-align: right; font-size: small;">Page build on: `r format(Sys.time())`</p>

@@ -39,7 +39,7 @@ R can connect to almost any existing database type. Most common database types
 have R packages that allow you to connect to them (e.g., **`RSQLite`**, RMySQL,
 etc). Furthermore,
 the [**`dplyr`**](https://cran.r-project.org/web/packages/dplyr/index.html) package
-you used in the previous chapter supports connecting to the widely-used open
+you used in the previous chapter, in conjunction with [**`dbplyr`**](https://cran.r-project.org/package=dbplyr) supports connecting to the widely-used open
 source databases [sqlite](https://sqlite.org/), [mysql](https://www.mysql.com/)
 and [postgresql](https://www.postgresql.org/), as well as
 Google’s [bigquery](https://cloud.google.com/bigquery/), and it can also be
@@ -56,7 +56,12 @@ database using **`dplyr`**, using both the **`dplyr`**'s verb syntax and the SQL
 ### The portal_mammals database
 
 We will continue to explore the `surveys` data you are already familiar with
-from previous lessons.
+from previous lessons. First, we are going to install the **`dbplyr`** package:
+
+```{r dbplyr-install, eval=FALSE, purl=TRUE}
+install.packages("dbplyr")
+library(dbplyr)
+```
 
 The SQLite database is contained in a single file `portal_mammals.sqlite`
 that you generated during the SQL lesson. If you don't have it, you can download
@@ -182,11 +187,11 @@ Behind the scenes, **`dplyr`**:
 2. submits it to the database
 3. translates the database's response into an R data frame
 
-To lift the curtain, we can use **`dplyr`**'s `explain()` function to show which SQL
+To lift the curtain, we can use **`dplyr`**'s `show_query()` function to show which SQL
 commands are actually sent to the database:
 
-```{r explain, message=TRUE, purl=FALSE}
-explain(head(surveys, n = 10))
+```{r show_query, message=TRUE, purl=FALSE}
+show_query(head(surveys, n = 10))
 ```
 
 The first part of the output shows the actual SQL query sent to the database;
@@ -318,8 +323,14 @@ surveys
 ```
 
 Because `plot_id` is listed in both tables, we can use it to look up matching
-records, and join the two tables. For example, to extract all surveys for the
-first plot, which has `plot_id` 1, we can do:
+records, and join the two tables.
+
+
+![diagram illustrating inner and left joins](./img/joins.svg)
+
+
+For example, to extract all surveys for the first plot, which has `plot_id` 1,
+we can do:
 
 ```{r join, results='markup', purl=FALSE}
 plots %>%
@@ -327,6 +338,8 @@ plots %>%
   inner_join(surveys) %>%
   collect()
 ```
+
+
 
 **Important Note:** Without the `collect()` statement, only the first 10
 matching rows are returned. By adding `collect()`, the full set of 1,985 is
@@ -461,13 +474,6 @@ the mammals database that we've been working with, in R. First let's read in the
 `csv` files.
 
 ```{r data_frames, purl=TRUE}
-## if you haven't downloaded  the csv files yet, you can do:
-download.file("https://ndownloader.figshare.com/files/3299474",
-              "data/plots.csv")
-download.file("https://ndownloader.figshare.com/files/3299483",
-              "data/species.csv")
-download.file("https://ndownloader.figshare.com/files/2292172",
-              "data/surveys.csv")
 species <- read.csv("data/species.csv")
 surveys <- read.csv("data/surveys.csv")
 plots <- read.csv("data/plots.csv")
@@ -522,3 +528,5 @@ from flat files!
 **Note:** In this example, we first loaded all of the data into the R session by
 reading the three `csv` files. Because all the data has to flow through R,
 this is not suitable for very large datasets.
+
+<p style="text-align: right; font-size: small;">Page build on: `r format(Sys.time())`</p>
