@@ -148,15 +148,15 @@ surveys_plot
 ## To use the hexagonal binning with **`ggplot2`**, first install the `hexbin`
 ## package from CRAN:
 
-install.pacakges("hexbin")
+install.packages("hexbin")
 
 ## Then use the `geom_hex()` function:
 
 surveys_plot +
     geom_hex()
 
-## What are the relatvie strenghts and weaknesses of a hexagonal bin plot
-## compared to a scatter plot?
+## What are the relative strengths and weaknesses of a hexagonal bin
+## plot compared to a scatter plot?
 ```
 
 ## Building your plots iteratively
@@ -490,7 +490,7 @@ ggplot(surveys_complete, aes(x = species_id, y = hindfoot_length)) +
     grey_theme
 ```
 
-> ### Challange
+> ### Challenge
 
 > With all of this information in hand, please take another five minutes to either
 > improve one of the plots generated in this exercise or create a beautiful graph
