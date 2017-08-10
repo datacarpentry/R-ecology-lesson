@@ -182,11 +182,11 @@ Behind the scenes, **`dplyr`**:
 2. submits it to the database
 3. translates the database's response into an R data frame
 
-To lift the curtain, we can use **`dplyr`**'s `explain()` function to show which SQL
+To lift the curtain, we can use **`dplyr`**'s `show_query()` function to show which SQL
 commands are actually sent to the database:
 
-```{r explain, message=TRUE, purl=FALSE}
-explain(head(surveys, n = 10))
+```{r show_query, message=TRUE, purl=FALSE}
+show_query(head(surveys, n = 10))
 ```
 
 The first part of the output shows the actual SQL query sent to the database;
