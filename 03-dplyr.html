@@ -398,7 +398,7 @@ div.tocify {
 <h2>Pipes</h2>
 <p>But what if you wanted to select and filter at the same time? There are three ways to do this: use intermediate steps, nested functions, or pipes.</p>
 <p>With intermediate steps, you essentially create a temporary data frame and use that as input to the next function. This can clutter up your workspace with lots of objects. You can also nest functions (i.e. one function inside of another). This is handy, but can be difficult to read if too many functions are nested as things are evaluated from the inside out.</p>
-<p>The last option, pipes, are a fairly recent addition to R. Pipes let you take the output of one function and send it directly to the next, which is useful when you need to do many things to the same dataset. Pipes in R look like <code>%&gt;%</code> and are made available via the <code>magrittr</code> package, installed automatically with <strong><code>dplyr</code></strong>. If you use RStudio, you can type the pipe with <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>M</kbd> if you have a PC or <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd> if you have a Mac.</p>
+<p>The last option, pipes, are a fairly recent addition to R. Pipes let you take the output of one function and send it directly to the next, which is useful when you need to do many things to the same dataset. Pipes in R look like <code>%&gt;%</code> and are made available via the <code>magrittr</code> package, installed automatically with <strong><code>dplyr</code></strong>. If you use RStudio, you can type the pipe with <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>M</kbd> if you have a PC or <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>M</kbd> if you have a Mac.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys %&gt;%
 <span class="st">  </span><span class="kw">filter</span>(weight &lt;<span class="st"> </span><span class="dv">5</span>) %&gt;%
 <span class="st">  </span><span class="kw">select</span>(species_id, sex, weight)</code></pre></div>
@@ -596,7 +596,7 @@ surveys_complete &lt;-<span class="st"> </span>surveys_complete %&gt;%
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write.csv</span>(surveys_complete, <span class="dt">file =</span> <span class="st">&quot;data_output/surveys_complete.csv&quot;</span>,
           <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</code></pre></div>
 <p style="text-align: right; font-size: small;">
-Page build on: 2017-08-02 13:24:23
+Page build on: 2017-08-10 13:02:22
 </p>
 </div>
 

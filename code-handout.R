@@ -184,15 +184,15 @@ plot(surveys$sex)
 ## ## To use the hexagonal binning with **`ggplot2`**, first install the `hexbin`
 ## ## package from CRAN:
 ## 
-## install.pacakges("hexbin")
+## install.packages("hexbin")
 ## 
 ## ## Then use the `geom_hex()` function:
 ## 
 ## surveys_plot +
 ##     geom_hex()
 ## 
-## ## What are the relatvie strenghts and weaknesses of a hexagonal bin plot
-## ## compared to a scatter plot?
+## ## What are the relative strengths and weaknesses of a hexagonal bin
+## ## plot compared to a scatter plot?
 ## ### Challenge with scatter plot:
 ## ##
 ## ##  Use what you just learned to create a scatter plot of `weight`
@@ -230,6 +230,8 @@ plot(surveys$sex)
 
 
 ## SQL databases and R
+## install.packages("dbplyr")
+## library(dbplyr)
 library(dplyr)
 mammals <- src_sqlite("data/portal_mammals.sqlite")
 mammals
