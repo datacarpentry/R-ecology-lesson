@@ -39,7 +39,7 @@ R can connect to almost any existing database type. Most common database types
 have R packages that allow you to connect to them (e.g., **`RSQLite`**, RMySQL,
 etc). Furthermore,
 the [**`dplyr`**](https://cran.r-project.org/web/packages/dplyr/index.html) package
-you used in the previous chapter supports connecting to the widely-used open
+you used in the previous chapter, in conjunction with [**`dbplyr`**](https://cran.r-project.org/package=dbplyr) supports connecting to the widely-used open
 source databases [sqlite](https://sqlite.org/), [mysql](https://www.mysql.com/)
 and [postgresql](https://www.postgresql.org/), as well as
 Google’s [bigquery](https://cloud.google.com/bigquery/), and it can also be
@@ -56,7 +56,12 @@ database using **`dplyr`**, using both the **`dplyr`**'s verb syntax and the SQL
 ### The portal_mammals database
 
 We will continue to explore the `surveys` data you are already familiar with
-from previous lessons.
+from previous lessons. First, we are going to install the **`dbplyr`** package:
+
+```{r dbplyr-install, eval=FALSE, purl=TRUE}
+install.packages("dbplyr")
+library(dbplyr)
+```
 
 The SQLite database is contained in a single file `portal_mammals.sqlite`
 that you generated during the SQL lesson. If you don't have it, you can download
