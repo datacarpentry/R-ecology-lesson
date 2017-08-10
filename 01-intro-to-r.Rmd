@@ -81,7 +81,10 @@ collaborators. In R, three popular style guides
 are
 [Google's](https://google.github.io/styleguide/Rguide.xml),
 [Jean Fan's](http://jef.works/R-style-guide/) and
-the [tidyverse's](http://style.tidyverse.org/). The tidyverse's is very comprehensive and may seem overwhelming at first. You can install the [**`lintr`**](https://github.com/jimhester/lintr) to automatically check for issues in the styling of your code.
+the [tidyverse's](http://style.tidyverse.org/). The tidyverse's is very comprehensive
+and may seem overwhelming at first. You can install the 
+[**`lintr`**](https://github.com/jimhester/lintr) to automatically check for issues 
+in the styling of your code.
 
 
 When assigning a value to an object, R does not print anything. You can force R to print the value by using parentheses or by typing the object name:
@@ -129,7 +132,10 @@ will be ignored by R. It is useful to leave notes, and explanations in your
 scripts.
 RStudio makes it easy to comment or uncomment a paragraph: after selecting the
 lines you  want to comment, press at the same time on your keyboard
-<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd>. If you only want to comment out one line, you can put the cursor at any location of that line (i.e. no need to select the whole line), then press kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd>.
+<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd>. If you only want to comment
+out one line, you can put the cursor at any location of that line (i.e. no need 
+to select the whole line), then press <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + 
+<kbd>C</kbd>.
 
 > ### Challenge
 >
@@ -248,7 +254,10 @@ https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Objects
 ```
 
 A vector is the most common and basic data type in R, and is pretty much
-the workhorse of R. A vector is composed by a series of values, which can be   either numbers or characters. We can assign a series of values to a vector using the `c()` function. For example we can create a vector of animal weights and assign it to a new object `weight_g`:
+the workhorse of R. A vector is composed by a series of values, which can be
+either numbers or characters. We can assign a series of values to a vector using
+the `c()` function. For example we can create a vector of animal weights and assign
+it to a new object `weight_g`:
 
 ```{r, purl=FALSE}
 weight_g <- c(50, 60, 65, 82)
@@ -263,7 +272,8 @@ animals
 ```
 
 The quotes around "mouse", "rat", etc. are essential here. Without the quotes R
-will assume there are objects called `mouse`, `rat` and `dog`. As these objects don't exist in R's memory, there will be an error message.
+will assume there are objects called `mouse`, `rat` and `dog`. As these objects
+don't exist in R's memory, there will be an error message.
 
 There are many functions that allow you to inspect the content of a
 vector. `length()` tells you how many elements are in a particular vector:
