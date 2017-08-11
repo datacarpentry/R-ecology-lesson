@@ -466,7 +466,7 @@ surveys %&gt;%
 #&gt; SELECT *
 #&gt; FROM `surveys`
 #&gt; LIMIT 10</code></pre>
-<p>The first part of the output shows the actual SQL query sent to the database; it matches our manually constructed <code>SELECT</code> statement above.</p>
+<p>The output shows the actual SQL query sent to the database; it matches our manually constructed <code>SELECT</code> statement above.</p>
 <p>Instead of having to formulate the SQL query ourselves - and having to mentally switch back and forth between R and SQL syntax - we can delegate this translation to <strong><code>dplyr</code></strong>. (You don’t even need to know SQL to interact with a database via <strong><code>dplyr</code></strong>!)</p>
 <p><strong><code>dplyr</code></strong>, in turn, doesn’t do the real work of subsetting the table, either. Instead, it merely sends the query to the database, waits for its response and returns it to us.</p>
 <p>That way, R never gets to see the full <code>surveys</code> table - and that’s why it could not tell us how many rows it contains. On the bright side, this allows us to work with large datasets - even too large to fit into our computer’s memory.</p>
@@ -714,7 +714,7 @@ my_db</code></pre></div>
 </blockquote>
 <p><strong>Note:</strong> In this example, we first loaded all of the data into the R session by reading the three <code>csv</code> files. Because all the data has to flow through R, this is not suitable for very large datasets.</p>
 <p style="text-align: right; font-size: small;">
-Page build on: 2017-08-10 13:02:26
+Page build on: 2017-08-11 10:24:30
 </p>
 </div>
 
