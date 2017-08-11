@@ -194,8 +194,8 @@ commands are actually sent to the database:
 show_query(head(surveys, n = 10))
 ```
 
-The first part of the output shows the actual SQL query sent to the database;
-it matches our manually constructed `SELECT` statement above.
+The output shows the actual SQL query sent to the database; it matches our
+manually constructed `SELECT` statement above.
 
 Instead of having to formulate the SQL query ourselves - and
 having to mentally switch back and forth between R and SQL syntax - we can
