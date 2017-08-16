@@ -503,10 +503,31 @@ ggplot(surveys_complete, aes(x = species_id, y = hindfoot_length)) +
 > * Can you find a way to change the name of the legend? What about its labels?
 > * Try using a different color palette (see http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/).
 
+## Arranging and exporting plots
 
-After creating your plot, you can save it to a file in your favorite format.
-You can easily change the dimension (and resolution) of your plot by
-adjusting the appropriate arguments (`width`, `height` and `dpi`):
+Faceting is a great tool for splitting one plot into multiple plots, but sometimes you may want to produce a single figure that contains multiple plots using different variables or even different data frames. The **`gridExtra`** package allows us to combine separate ggplots into a single figure using `grid.arrange()`:
+
+```{r gridarrange-example, message=FALSE, purl=FALSE, fig.width=10}
+library(gridExtra)
+
+spp_weight_boxplot <- ggplot(data = surveys_complete, aes(x = species_id, y = weight)) +
+  geom_boxplot() +
+  xlab("Species") + ylab("Weight (g)") +
+  scale_y_log10()
+
+spp_count_plot <- ggplot(data = yearly_counts, aes(x = year, y = n, color = species_id)) +
+  geom_line() + 
+  xlab("Year") + ylab("Abundance")
+
+grid.arrange(spp_weight_boxplot, spp_count_plot, ncol = 2, widths = c(4,6))
+
+```
+
+In addition to the `ncol` and `nrow` arguments, used to make simple arrangements, there are tools for [constucting more complex layouts](https://cran.r-project.org/web/packages/gridExtra/vignettes/arrangeGrob.html). 
+
+After creating your plot, you can save it to a file in your favorite format. The Export tab in the **Plot** pane in RStudio will save your plots at low resolution, which will not be accepted by many journals and will not scale well for posters. 
+
+Instead, use the `ggsave()` function, which allows you easily change the dimension and resolution of your plot by adjusting the appropriate arguments (`width`, `height` and `dpi`):
 
 ```{r ggsave-example, eval=FALSE, purl=FALSE}
 my_plot <- ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex)) +
@@ -520,6 +541,10 @@ my_plot <- ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex)) +
                         axis.text.y = element_text(colour="grey20", size=12),
           text=element_text(size=16))
 ggsave("name_of_file.png", my_plot, width=15, height=10)
+
+## This also works for grid.arrange() plots
+combo_plot <- grid.arrange(spp_weight_boxplot, spp_count_plot, ncol = 2, widths = c(4,6))
+ggsave("combo_plot_abun_weight.png", combo_plot, width = 10, dpi = 300)
 ```
 
 Note: The parameters `width` and `height` also determine the font size in the saved plot.
