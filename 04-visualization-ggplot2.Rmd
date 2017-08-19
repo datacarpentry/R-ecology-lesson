@@ -21,6 +21,7 @@ surveys_complete <- read.csv(file = "data_output/surveys_complete.csv")
 >
 > * Produce scatter plots, boxplots, and time series plots using ggplot.
 > * Set universal plot settings.
+> * Understand and apply faceting in ggplot.
 > * Modify the aesthetics of an existing ggplot plot (including axis labels and color).
 > * Build complex and customized plots from data in a data frame.
 
@@ -42,33 +43,42 @@ surveys_complete <- read.csv('data_output/surveys_complete.csv')
 **`ggplot2`** is a plotting package that makes it simple to create complex plots
 from data in a data frame. It provides a more programmatic interface for
 specifying what variables to plot, how they are displayed, and general visual
-properties, so we only need minimal changes if the underlying data change or if
-we decide to change from a bar plot to a scatterplot. This helps in creating
+properties. Therefore, we only need minimal changes if the underlying data change  
+or if we decide to change from a bar plot to a scatterplot. This helps in creating
 publication quality plots with minimal amounts of adjustments and tweaking.
 
 ggplot likes data in the 'long' format: i.e., a column for every dimension,
 and a row for every observation. Well structured data will save you lots of time
 when making figures with ggplot.
 
-ggplot graphics are built step by step by adding new elements.
+ggplot graphics are built step by step by adding new elements. Adding layers in
+this fashion allows for extensive flexibility and customization of plots.
 
-To build a ggplot we need to:
+To build a ggplot, we need to:
 
-- bind the plot to a specific data frame using the `data` argument
+- use the `ggplot()` function and bind the plot to a specific data frame using the  
+      `data` argument
 
 ```{r, eval=FALSE, purl=FALSE}
 ggplot(data = surveys_complete)
 ```
 
-- define aesthetics (`aes`), by selecting the variables to be plotted and the variables to define the presentation
-     such as plotting size, shape color, etc.
+- define aesthetics (`aes`), by selecting the variables to be plotted and the  
+      variables to define the presentation such as plotting size, shape color, etc.
 
 ```{r, eval=FALSE, purl=FALSE}
 ggplot(data = surveys_complete, aes(x = weight, y = hindfoot_length))
 ```
 
 - add `geoms` -- graphical representation of the data in the plot (points,
-     lines, bars). To add a geom to the plot use `+` operator
+      lines, bars). **`ggplot2`** offers many different geoms; we will use some 
+      common ones today, including:
+      * `geom_point()` for scatter plots, dot plots, etc.
+      * `geom_boxplot()` for, well, boxplots!
+      * `geom_line()` for trend lines, time-series, etc.  
+
+To add a geom to the plot use `+` operator. Because we have two continuous variables,  
+let's use `geom_point()` first:
 
 ```{r first-ggplot, purl=FALSE}
 ggplot(data = surveys_complete, aes(x = weight, y = hindfoot_length)) +
