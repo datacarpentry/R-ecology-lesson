@@ -7,7 +7,7 @@ minutes: 60
 
 ```{r setup, echo=FALSE, purl=FALSE}
 source("setup.R")
-surveys_complete <- read_csv(file = "data_output/surveys_complete.csv")
+surveys_complete <- read.csv(file = "data_output/surveys_complete.csv")
 ```
 
 ```{r, echo=FALSE, purl=TRUE}
@@ -35,7 +35,7 @@ library(tidyverse)
 
 If not still in the workspace, load the data we saved in the previous lesson.
 ```{r load-data, eval=FALSE,  purl=FALSE}
-surveys_complete <- read_csv('data_output/surveys_complete.csv')
+surveys_complete <- read.csv('data_output/surveys_complete.csv')
 ```
 
 ## Plotting with **`ggplot2`**
