@@ -316,15 +316,18 @@ We can do this over and over again to grow a vector, or assemble a dataset.
 As we program, this may be useful to add results that we are collecting or
 calculating.
 
-We just saw 2 of the 6 main **atomic vector** types (or **data types**) that R
-uses: `"character"` and `"numeric"`. These are the basic building blocks that
-all R objects are built from. The other 4 are:
+An **atomic vector** is the simplest R **data type** and is a linear vector of a single type. Above, we saw 
+2 of the 6 main **atomic vector** types  that R
+uses: `"character"` and `"numeric"` (or `"double"`). These are the basic building blocks that
+all R objects are built from. The other 4 **atomic vector** types are:
 
 * `"logical"` for `TRUE` and `FALSE` (the boolean data type)
 * `"integer"` for integer numbers (e.g., `2L`, the `L` indicates to R that it's an integer)
 * `"complex"` to represent complex numbers with real and imaginary parts (e.g.,
   `1 + 4i`) and that's all we're going to say about them
-* `"raw"` that we won't discuss further
+* `"raw"` for bitstreams that we won't discuss further
+
+You can check the type of your vector using the `typeof()` function and inputting your vector as the argument.
 
 Vectors are one of the many **data structures** that R uses. Other important
 ones are lists (`list`), matrices (`matrix`), data frames (`data.frame`),
@@ -335,7 +338,7 @@ factors (`factor`) and arrays (`array`).
 >
 >
 > * We’ve seen that atomic vectors can be of type character,
->   numeric, integer, and logical. But what happens if we try to mix these types in
+>   numeric (or double), integer, and logical. But what happens if we try to mix these types in
 >   a single vector?
 > <!-- * _Answer_: R implicitly converts them to all be the same type -->
 >
@@ -506,12 +509,13 @@ examples.
 ## Extract those elements which are not missing values.
 heights[!is.na(heights)]
 
-## Returns the object with incomplete cases removed. The returned object is atomic.
+## Returns the object with incomplete cases removed. The returned object is an atomic vector of type `"numeric"` (or `"double"`).
 na.omit(heights)
 
-## Extract those elements which are complete cases.
+## Extract those elements which are complete cases. The returned object is an atomic vector of type `"numeric"` (or `"double"`).
 heights[complete.cases(heights)]
 ```
+Recall that you can use the `typeof()` function to find the type of your atomic vector.
 
 > ### Challenge
 >
