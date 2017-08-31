@@ -406,8 +406,8 @@ of variables, or whether an observation associated with a single unit is
 spread across multiple rows. 
 
 The rows of `surveys` contain the values of variables associated with each
-record (the unit), values such as the genus names. This makes is straighforward
-to compare records. 
+record (the unit), values such the weight or sex of each animal associated with
+each record. This makes it straighforward to compare records. 
 
 However `surveys` contains multiple observational types. There are data
 relating to time (`month`, `day`, `year`), data relating to the plots 
