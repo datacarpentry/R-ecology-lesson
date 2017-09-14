@@ -363,6 +363,7 @@ div.tocify {
 <ul>
 <li>Produce scatter plots, boxplots, and time series plots using ggplot.</li>
 <li>Set universal plot settings.</li>
+<li>Understand and apply faceting in ggplot.</li>
 <li>Modify the aesthetics of an existing ggplot plot (including axis labels and color).</li>
 <li>Build complex and customized plots from data in a data frame.</li>
 </ul>
@@ -374,21 +375,31 @@ div.tocify {
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys_complete &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;data_output/surveys_complete.csv&#39;</span>)</code></pre></div>
 <div id="plotting-with-ggplot2" class="section level2">
 <h2>Plotting with <strong><code>ggplot2</code></strong></h2>
-<p><strong><code>ggplot2</code></strong> is a plotting package that makes it simple to create complex plots from data in a data frame. It provides a more programmatic interface for specifying what variables to plot, how they are displayed, and general visual properties, so we only need minimal changes if the underlying data change or if we decide to change from a bar plot to a scatterplot. This helps in creating publication quality plots with minimal amounts of adjustments and tweaking.</p>
+<p><strong><code>ggplot2</code></strong> is a plotting package that makes it simple to create complex plots from data in a data frame. It provides a more programmatic interface for specifying what variables to plot, how they are displayed, and general visual properties. Therefore, we only need minimal changes if the underlying data change<br />
+or if we decide to change from a bar plot to a scatterplot. This helps in creating publication quality plots with minimal amounts of adjustments and tweaking.</p>
 <p>ggplot likes data in the ‘long’ format: i.e., a column for every dimension, and a row for every observation. Well structured data will save you lots of time when making figures with ggplot.</p>
-<p>ggplot graphics are built step by step by adding new elements.</p>
-<p>To build a ggplot we need to:</p>
+<p>ggplot graphics are built step by step by adding new elements. Adding layers in this fashion allows for extensive flexibility and customization of plots.</p>
+<p>To build a ggplot, we need to:</p>
 <ul>
-<li>bind the plot to a specific data frame using the <code>data</code> argument</li>
+<li>use the <code>ggplot()</code> function and bind the plot to a specific data frame using the<br />
+<code>data</code> argument</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> surveys_complete)</code></pre></div>
 <ul>
-<li>define aesthetics (<code>aes</code>), by selecting the variables to be plotted and the variables to define the presentation such as plotting size, shape color, etc.</li>
+<li>define aesthetics (<code>aes</code>), by selecting the variables to be plotted and the<br />
+variables to define the presentation such as plotting size, shape color, etc.</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> surveys_complete, <span class="kw">aes</span>(<span class="dt">x =</span> weight, <span class="dt">y =</span> hindfoot_length))</code></pre></div>
 <ul>
-<li>add <code>geoms</code> – graphical representation of the data in the plot (points, lines, bars). To add a geom to the plot use <code>+</code> operator</li>
+<li>add <code>geoms</code> – graphical representation of the data in the plot (points, lines, bars). <strong><code>ggplot2</code></strong> offers many different geoms; we will use some common ones today, including:
+<ul>
+<li><code>geom_point()</code> for scatter plots, dot plots, etc.</li>
+<li><code>geom_boxplot()</code> for, well, boxplots!</li>
+<li><code>geom_line()</code> for trend lines, time-series, etc.</li>
+</ul></li>
 </ul>
+<p>To add a geom to the plot use <code>+</code> operator. Because we have two continuous variables,<br />
+let’s use <code>geom_point()</code> first:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> surveys_complete, <span class="kw">aes</span>(<span class="dt">x =</span> weight, <span class="dt">y =</span> hindfoot_length)) +
 <span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
 <p><img src="img/R-ecology-first-ggplot-1.png" width="672" /></p>
@@ -414,7 +425,8 @@ surveys_plot
 <blockquote>
 <h3 id="challenge-optional">Challenge (optional)</h3>
 <p>Scatter plots can be useful exploratory tools for small datasets. For data sets with large numbers of observations, such as the <code>surveys_complete</code> data set, overplotting of points can be a limitation of scatter plots. One strategy for handling such settings is to use hexagonal binning of observations. The plot space is tessellated into hexagons. Each hexagon is assigned a color based on the number of observations that fall within its boundaries. To use hexagonal binning with <strong><code>ggplot2</code></strong>, first install the R package <code>hexbin</code> from CRAN:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;hexbin&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;hexbin&quot;</span>)
+<span class="kw">library</span>(hexbin)</code></pre></div>
 <p>Then use the <code>geom_hex()</code> function:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys_plot +
 <span class="st"> </span><span class="kw">geom_hex</span>()</code></pre></div>
@@ -483,7 +495,7 @@ surveys_plot
 <p>Let’s calculate number of counts per year for each species. First we need to group the data and count records within each group:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">yearly_counts &lt;-<span class="st"> </span>surveys_complete %&gt;%
 <span class="st">                 </span><span class="kw">group_by</span>(year, species_id) %&gt;%
-<span class="st">                 </span>tally</code></pre></div>
+<span class="st">                 </span><span class="kw">tally</span>()</code></pre></div>
 <p>Timelapse data can be visualized as a line plot with years on the x axis and counts on the y axis:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> yearly_counts, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> n)) +
 <span class="st">     </span><span class="kw">geom_line</span>()</code></pre></div>
@@ -507,7 +519,7 @@ surveys_plot
 <p>Now we would like to split the line in each plot by the sex of each individual measured. To do that we need to make counts in the data frame grouped by <code>year</code>, <code>species_id</code>, and <code>sex</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"> yearly_sex_counts &lt;-<span class="st"> </span>surveys_complete %&gt;%
 <span class="st">                      </span><span class="kw">group_by</span>(year, species_id, sex) %&gt;%
-<span class="st">                      </span>tally</code></pre></div>
+<span class="st">                      </span><span class="kw">tally</span>()</code></pre></div>
 <p>We can now make the faceted plot by splitting further by sex using <code>color</code> (within a single plot):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"> <span class="kw">ggplot</span>(<span class="dt">data =</span> yearly_sex_counts, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> n, <span class="dt">color =</span> sex)) +
 <span class="st">     </span><span class="kw">geom_line</span>() +
@@ -620,7 +632,26 @@ yearly_sex_weight &lt;-<span class="st"> </span>surveys_complete %&gt;%
 <li>Try using a different color palette (see <a href="http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/" class="uri">http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/</a>).</li>
 </ul>
 </blockquote>
-<p>After creating your plot, you can save it to a file in your favorite format. You can easily change the dimension (and resolution) of your plot by adjusting the appropriate arguments (<code>width</code>, <code>height</code> and <code>dpi</code>):</p>
+</div>
+<div id="arranging-and-exporting-plots" class="section level2">
+<h2>Arranging and exporting plots</h2>
+<p>Faceting is a great tool for splitting one plot into multiple plots, but sometimes you may want to produce a single figure that contains multiple plots using different variables or even different data frames. The <strong><code>gridExtra</code></strong> package allows us to combine separate ggplots into a single figure using <code>grid.arrange()</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(gridExtra)
+
+spp_weight_boxplot &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> surveys_complete, <span class="kw">aes</span>(<span class="dt">x =</span> species_id, <span class="dt">y =</span> weight)) +
+<span class="st">  </span><span class="kw">geom_boxplot</span>() +
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Species&quot;</span>) +<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Weight (g)&quot;</span>) +
+<span class="st">  </span><span class="kw">scale_y_log10</span>()
+
+spp_count_plot &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> yearly_counts, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> n, <span class="dt">color =</span> species_id)) +
+<span class="st">  </span><span class="kw">geom_line</span>() +<span class="st"> </span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Year&quot;</span>) +<span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Abundance&quot;</span>)
+
+<span class="kw">grid.arrange</span>(spp_weight_boxplot, spp_count_plot, <span class="dt">ncol =</span> <span class="dv">2</span>, <span class="dt">widths =</span> <span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">6</span>))</code></pre></div>
+<p><img src="img/R-ecology-gridarrange-example-1.png" width="960" /></p>
+<p>In addition to the <code>ncol</code> and <code>nrow</code> arguments, used to make simple arrangements, there are tools for <a href="https://cran.r-project.org/web/packages/gridExtra/vignettes/arrangeGrob.html">constucting more complex layouts</a>.</p>
+<p>After creating your plot, you can save it to a file in your favorite format. The Export tab in the <strong>Plot</strong> pane in RStudio will save your plots at low resolution, which will not be accepted by many journals and will not scale well for posters.</p>
+<p>Instead, use the <code>ggsave()</code> function, which allows you easily change the dimension and resolution of your plot by adjusting the appropriate arguments (<code>width</code>, <code>height</code> and <code>dpi</code>):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_plot &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> yearly_sex_counts, <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> n, <span class="dt">color =</span> sex)) +
 <span class="st">    </span><span class="kw">geom_line</span>() +
 <span class="st">    </span><span class="kw">facet_wrap</span>(~<span class="st"> </span>species_id) +
@@ -631,10 +662,14 @@ yearly_sex_weight &lt;-<span class="st"> </span>surveys_complete %&gt;%
 <span class="st">    </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">colour=</span><span class="st">&quot;grey20&quot;</span>, <span class="dt">size=</span><span class="dv">12</span>, <span class="dt">angle=</span><span class="dv">90</span>, <span class="dt">hjust=</span>.<span class="dv">5</span>, <span class="dt">vjust=</span>.<span class="dv">5</span>),
                         <span class="dt">axis.text.y =</span> <span class="kw">element_text</span>(<span class="dt">colour=</span><span class="st">&quot;grey20&quot;</span>, <span class="dt">size=</span><span class="dv">12</span>),
           <span class="dt">text=</span><span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">16</span>))
-<span class="kw">ggsave</span>(<span class="st">&quot;name_of_file.png&quot;</span>, my_plot, <span class="dt">width=</span><span class="dv">15</span>, <span class="dt">height=</span><span class="dv">10</span>)</code></pre></div>
+<span class="kw">ggsave</span>(<span class="st">&quot;name_of_file.png&quot;</span>, my_plot, <span class="dt">width=</span><span class="dv">15</span>, <span class="dt">height=</span><span class="dv">10</span>)
+
+## This also works for grid.arrange() plots
+combo_plot &lt;-<span class="st"> </span><span class="kw">grid.arrange</span>(spp_weight_boxplot, spp_count_plot, <span class="dt">ncol =</span> <span class="dv">2</span>, <span class="dt">widths =</span> <span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">6</span>))
+<span class="kw">ggsave</span>(<span class="st">&quot;combo_plot_abun_weight.png&quot;</span>, combo_plot, <span class="dt">width =</span> <span class="dv">10</span>, <span class="dt">dpi =</span> <span class="dv">300</span>)</code></pre></div>
 <p>Note: The parameters <code>width</code> and <code>height</code> also determine the font size in the saved plot.</p>
 <p style="text-align: right; font-size: small;">
-Page build on: 2017-08-10 13:05:24
+Page build on: 2017-09-14 17:37:07
 </p>
 </div>
 

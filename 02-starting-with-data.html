@@ -458,6 +458,10 @@ div.tocify {
 #&gt; 4 Neotoma albigula Rodent   Control
 #&gt; 5 Neotoma albigula Rodent   Control
 #&gt; 6 Neotoma albigula Rodent   Control</code></pre>
+<blockquote>
+<h3 id="note">Note</h3>
+<p><code>read.csv</code> assumes that fields are delineated by commas, however, in several countries, the comma is used as a decimal separator and the semicolon (;) is used as a field delineator. If you want to read in this type of files in R, you can use the <code>read.csv2</code> function. It behaves exactly like <code>read.csv</code> but uses different parameters for the decimal and the field separators. If you are working with other format, they can be both specified by the user. Check out the help for <code>read.csv()</code> to learn more.</p>
+</blockquote>
 </div>
 <div id="what-are-data-frames" class="section level2">
 <h2>What are data frames?</h2>
@@ -677,7 +681,7 @@ surveys$plot_type &lt;-<span class="st"> </span><span class="kw">factor</span>(s
 <h2>Formatting Dates</h2>
 <p>One of the most common issues that new (and experienced!) R users have is converting date and time information into a variable that is appropriate and usable during analyses. As a reminder from earlier in this lesson, the best practice for dealing with date data is to ensure that each component of your date is stored as a separate variable. Using <code>str()</code>, We can confirm that our data frame has a separate column for day, month, and year, and each contains integer values.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(surveys)</code></pre></div>
-<p>We’re going to be using the <code>ymd()</code> function from the package <strong><code>lubridate</code></strong>. This function is designed to take a vector representing year, month, and day and convert that information to a POSIXct vector. POSIXct is a class of data recognized by R as being a date or date and time. The argument that the function requires is relatively flexible, but, as a best practice, is a character vector formatted as “YYYY-MM-DD”.</p>
+<p>We’re going to be using the <code>ymd()</code> function from the package <strong><code>lubridate</code></strong> (this package gets installed during the installation of the <strong><code>tidyverse</code></strong> package). This function is designed to take a vector representing year, month, and day and convert that information to a POSIXct vector. POSIXct is a class of data recognized by R as being a date or date and time. The argument that the function requires is relatively flexible, but, as a best practice, is a character vector formatted as “YYYY-MM-DD”.</p>
 <p>Start by loading the required package:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(lubridate)</code></pre></div>
 <p>Create a character vector from the <code>year</code>, <code>month</code>, and <code>day</code> columns of <code>surveys</code> using <code>paste()</code>:</p>
@@ -686,11 +690,17 @@ surveys$plot_type &lt;-<span class="st"> </span><span class="kw">factor</span>(s
 <p>This character vector can be used as the argument for <code>ymd()</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ymd</span>(<span class="kw">paste</span>(surveys$year, surveys$month, surveys$day, <span class="dt">sep=</span><span class="st">&quot;-&quot;</span>))</code></pre></div>
 <p>The resulting POSIXct vector can be added to <code>surveys</code> as a new column called <code>date</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys$date &lt;-<span class="st"> </span><span class="kw">ymd</span>(<span class="kw">paste</span>(surveys$year, surveys$month, surveys$day, <span class="dt">sep=</span><span class="st">&quot;-&quot;</span>))
-
-<span class="kw">str</span>(surveys) <span class="co"># notice the new column, with &#39;date&#39; as the class</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys$date &lt;-<span class="st"> </span><span class="kw">ymd</span>(<span class="kw">paste</span>(surveys$year, surveys$month, surveys$day, <span class="dt">sep=</span><span class="st">&quot;-&quot;</span>))</code></pre></div>
+<pre><code>#&gt; Warning: 129 failed to parse.</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(surveys) <span class="co"># notice the new column, with &#39;date&#39; as the class</span></code></pre></div>
+<p>Did you notice the warning message? Let’s investigate what is happening. When <strong><code>lubridate</code></strong> fails to parse a date, it will return <code>NA</code>. We can use the functions we saw previously to deal with missing data to identify the rows in our data frame that are failing. First, let’s create a vector that contains our dates as a character vector:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys_dates &lt;-<span class="st"> </span><span class="kw">paste</span>(surveys$year, surveys$month, surveys$day, <span class="dt">sep =</span> <span class="st">&quot;-&quot;</span>)
+<span class="kw">head</span>(surveys_dates)</code></pre></div>
+<p>The vector <code>surveys_dates</code> contains all the dates from our dataset, in the same order as they are in the data frame. We can therefore use the <code>is.na()</code> function on the <code>surveys</code> data frame to locate the elements in the vectors <code>surveys_dates</code> that failed to parse:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys_dates[<span class="kw">is.na</span>(surveys$date)]</code></pre></div>
+<p>Why did these dates fail to parse? If you had to use these data for your analyses, how would you deal with this situation?</p>
 <p style="text-align: right; font-size: small;">
-Page build on: 2017-08-02 13:20:20
+Page build on: 2017-09-14 17:34:10
 </p>
 </div>
 
