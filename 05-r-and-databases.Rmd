@@ -44,7 +44,7 @@ source databases [sqlite](https://sqlite.org/), [mysql](https://www.mysql.com/)
 and [postgresql](https://www.postgresql.org/), as well as
 Google’s [bigquery](https://cloud.google.com/bigquery/), and it can also be
 extended to other database types (a [vignette](https://cran.r-project.org/web/packages/dplyr/vignettes/databases.html) in the **`dplyr`** package explains how
-to do it).
+to do it). RStudio has created [a website](http://db.rstudio.com/) that provides documentation and best practices to work on database interfaces.
 
 Interfacing with databases using **`dplyr`** focuses on retrieving and analyzing
 datasets by generating `SELECT` SQL statements, but it doesn't modify the
@@ -59,7 +59,7 @@ We will continue to explore the `surveys` data you are already familiar with
 from previous lessons. First, we are going to install the **`dbplyr`** package:
 
 ```{r dbplyr-install, eval=FALSE, purl=TRUE}
-install.packages("dbplyr")
+install.packages(c("dbplyr", "RSQLite"))
 library(dbplyr)
 ```
 
@@ -73,21 +73,21 @@ download.file(url = "https://ndownloader.figshare.com/files/2292171",
               destfile = "data/portal_mammals.sqlite", mode = "wb")
 ```
 
-## Connecting to databases with **`dplyr`**
+## Connecting to databases
 
-We can point R to this database with **`dplyr`**'s `src_sqlite()` command.
+We can point R to this database using:
 
 ```{r connect, purl=TRUE}
-library(dplyr)
-mammals <- src_sqlite("data/portal_mammals.sqlite")
+mammals <- DBI::dbConnect(RSQLite::SQLite(), "data/portal_mammals.sqlite")
 ```
 
-The `src_sqlite()` command does not load the data into the R session (as the
+This command uses 2 packages that helps **`dbplyr`** and **`dplyr`** talk to the SQLite database. **`DBI`** is not something that you'll use directly as a user. It allows R to send commands to databases irrespective of the database management system used. The **`RSQLite`** package allows R to interface with SQLite databases.
+
+This command does not load the data into the R session (as the
 `read.csv()` function did). Instead, it merely instructs R to connect to
 the `SQLite` database contained in the `portal_mammals.sqlite` file.
 
-(You can use the `src_mysql()`, `src_postgres()` and `src_bigquery()` to connect
-to the other database types supported by **`dplyr`**.)
+Using a similar approach, you could connect to many other database management systems that are supported by R including MySQL, PostgreSQL, BigQuery, etc.
 
 Let's take a closer look at the `mammals` database we just connected to:
 
