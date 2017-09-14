@@ -60,7 +60,6 @@ from previous lessons. First, we are going to install the **`dbplyr`** package:
 
 ```{r dbplyr-install, eval=FALSE, purl=TRUE}
 install.packages(c("dbplyr", "RSQLite"))
-library(dbplyr)
 ```
 
 The SQLite database is contained in a single file `portal_mammals.sqlite`
@@ -78,6 +77,8 @@ download.file(url = "https://ndownloader.figshare.com/files/2292171",
 We can point R to this database using:
 
 ```{r connect, purl=TRUE}
+library(dplyr)
+library(dbplyr)
 mammals <- DBI::dbConnect(RSQLite::SQLite(), "data/portal_mammals.sqlite")
 ```
 
