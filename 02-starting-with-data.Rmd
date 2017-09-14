@@ -76,6 +76,17 @@ function `head()`:
 head(surveys)
 ```
 
+> ### Note
+>
+> `read.csv` assumes that fields are delineated by commas, however, in several
+> countries, the comma is used as a decimal separator and the semicolon (;) is
+> used as a field delineator. If you want to read in this type of files in R,
+> you can use the `read.csv2` function. It behaves exactly like `read.csv` but
+> uses different parameters for the decimal and the field separators. If you are
+> working with other format, they can be both specified by the user. Check out
+> the help for `read.csv()` to learn more.
+
+
 ## What are data frames?
 
 Data frames are the _de facto_ data structure for most tabular data, and what we
