@@ -35,7 +35,7 @@ library(tidyverse)
 
 If not still in the workspace, load the data we saved in the previous lesson.
 ```{r load-data, eval=FALSE,  purl=FALSE}
-surveys_complete <- read.csv('data_output/surveys_complete.csv')
+surveys_complete <- read_csv('data_output/surveys_complete.csv')
 ```
 
 ## Plotting with **`ggplot2`**
@@ -139,6 +139,8 @@ surveys_plot
 >
 > ```{r, eval = FALSE}
 > install.packages("hexbin")
+library(hexbin)
+
 > ```
 >
 > Then use the `geom_hex()` function:
@@ -294,7 +296,7 @@ to group the data and count records within each group:
 ```{r, purl=FALSE}
 yearly_counts <- surveys_complete %>%
                  group_by(year, species_id) %>%
-                 tally
+                 tally()
 ```
 
 Timelapse data can be visualized as a line plot with years on the x axis and counts
@@ -340,7 +342,7 @@ measured. To do that we need to make counts in the data frame grouped by `year`,
 ```{r, purl=FALSE}
  yearly_sex_counts <- surveys_complete %>%
                       group_by(year, species_id, sex) %>%
-                      tally
+                      tally()
 ```
 
 We can now make the faceted plot by splitting further by sex using `color` (within a single plot):
