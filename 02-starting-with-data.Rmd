@@ -516,22 +516,25 @@ entry (a letter in a column that should only contain numbers for instance).
 
 ## Formatting Dates
 
-One of the most common issues that new (and experienced!) R users have is converting
-date and time information into a variable that is appropriate and usable during
-analyses. As a reminder from earlier in this lesson, the best practice for dealing
-with date data is to ensure that each component of your date is stored as a separate
-variable. Using `str()`, We can confirm that our data frame has a separate column for
-day, month, and year, and each contains integer values.
+One of the most common issues that new (and experienced!) R users have is
+converting date and time information into a variable that is appropriate and
+usable during analyses. As a reminder from earlier in this lesson, the best
+practice for dealing with date data is to ensure that each component of your
+date is stored as a separate variable. Using `str()`, We can confirm that our
+data frame has a separate column for day, month, and year, and each contains
+integer values.
 
 ```{r, eval=FALSE, purl=FALSE}
 str(surveys)
 ```
 
-We're going to be using the `ymd()` function from the package **`lubridate`**. This
-function is designed to take a vector representing year, month, and day and convert
-that information to a POSIXct vector. POSIXct is a class of data recognized by R as
-being a date or date and time. The argument that the function requires is relatively
-flexible, but, as a best practice, is a character vector formatted as "YYYY-MM-DD".
+We're going to be using the `ymd()` function from the package **`lubridate`**
+(this package gets installed during the installation of the **`tidyverse`**
+package). This function is designed to take a vector representing year, month,
+and day and convert that information to a POSIXct vector. POSIXct is a class of
+data recognized by R as being a date or date and time. The argument that the
+function requires is relatively flexible, but, as a best practice, is a
+character vector formatted as "YYYY-MM-DD".
 
 Start by loading the required package:
 
@@ -539,7 +542,8 @@ Start by loading the required package:
 library(lubridate)
 ```
 
-Create a character vector from the `year`, `month`, and `day` columns of `surveys` using `paste()`:
+Create a character vector from the `year`, `month`, and `day` columns of
+`surveys` using `paste()`:
 
 ```{r, eval=FALSE, purl=FALSE}
 paste(surveys$year, surveys$month, surveys$day, sep="-")
@@ -554,10 +558,32 @@ ymd(paste(surveys$year, surveys$month, surveys$day, sep="-"))
 
 The resulting POSIXct vector can be added to `surveys` as a new column called `date`:
 
-```{r, eval=FALSE, purl=FALSE}
+```{r, eval=TRUE, purl=FALSE}
 surveys$date <- ymd(paste(surveys$year, surveys$month, surveys$day, sep="-"))
-
 str(surveys) # notice the new column, with 'date' as the class
 ```
+
+Did you notice the warning message? Let's investigate what is happening. When
+**`lubridate`** fails to parse a date, it will return `NA`. We can use the
+functions we saw previously to deal with missing data to identify the rows in
+our data frame that are failing. First, let's create a vector that contains our
+dates as a character vector:
+
+```{r, eval=TRUE, purl=FALSE}
+surveys_dates <- paste(surveys$year, surveys$month, surveys$day, sep = "-")
+head(surveys_dates)
+```
+
+The vector `surveys_dates` contains all the dates from our dataset, in the same
+order as they are in the data frame. We can therefore use the `is.na()` function
+on the `surveys` data frame to locate the elements in the vectors
+`surveys_dates` that failed to parse:
+
+```{r, eval=TRUE, purl=FALSE}
+surveys_dates[is.na(surveys$date)]
+```
+
+Why did these dates fail to parse? If you had to use these data for your
+analyses, how would you deal with this situation?
 
 <p style="text-align: right; font-size: small;">Page build on: `r format(Sys.time())`</p>
