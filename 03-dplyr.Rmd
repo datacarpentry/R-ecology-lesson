@@ -388,61 +388,35 @@ surveys %>%
 
 ### Reshaping with gather and spread
 
-Tidy data as characterised by Hadley Wickham in his *Tidy Data* paper 
-[http://www.jstatsoft.org/v59/i10/paper](http://www.jstatsoft.org/v59/i10/paper)
-organises data values such that a variable contains all values measuring
-the same attribute e.g. `year` or `sex` across units. And an observation 
-contains all values measured on the same unit e.g. the variables associated with
-a specific `record_id` in the `surveys` data.
-
-This leads to the three rules defining a tidy dataset:
+In the 
+<span style="background:yellow">[spreadsheet lesson](http://www.datacarpentry.org/spreadsheet-ecology-lesson/01-format-data/)</span> we discussed how to 
+structure our data leading to the four rules defining a tidy dataset:
 
 1. Each variable has its own column
 2. Each observation has its own row
 3. Each value must have its own cell
+4. Each type of observational unit forms a table
 
-However, it's not always clear whether column names are names or in fact values
-of variables, or whether an observation associated with a single unit is 
-spread across multiple rows. 
+Here we examine the fourth rule: Each type of observational unit forms a table.
 
-The rows of `surveys` contain the values of variables associated with each
-record (the unit), values such the weight or sex of each animal associated with
-each record. This makes it straighforward to compare records. 
+In `surveys` , the rows of `surveys` contain the values of variables associated
+with each record (the unit), values such the weight or sex of each animal 
+associated with each record. What if instead of comparing records, we 
+wanted to compare the different mean weight of each species between plots? (Ignoring `plot_type` for simplicity).
 
-However `surveys` contains multiple observational types. There are data
-relating to time (`month`, `day`, `year`), data relating to the plots 
-(`plot_id`, `plot_type`), data relating to the rodent demographics 
-(`sex`,`genus` etc.) and data about each animal (`weight`,
-`hindfoot_length`)
+We'd need to create a new table where each row (the unit) comprises of values of variables associated with each plot. In practical terms this means the values
+of the species in `genus` would become the names of column variables and the cells would contain the values of the mean weight observed on each plot.
 
-So if instead of comparing records, what if we wanted to compare the different 
-mean weight of each species between plots instead? (Ignoring `plot_type` for
-simplicity).
+Having created a new table, it is therefore straightforward to explore the 
+relationship between the weight of different species within, and between, the
+plots. The key point here is that we are still following a tidy data structure,
+but we have **reshaped** the data according to the observations of interest:
+average species weight per plot instead of recordings per date.
 
-Our observational unit would be values of variables associated with each plot. 
-Therefore, to be consistent with tidy data principles we'd need to construct a
-data frame where each row represents a set of observations associated with each
-plot. This would transform the data such that it attributed the mean weight of
-each of the species in `genus` on each plot. Therefore the values of `genus`
-would become the names of column variables with the cells containing values of 
-the mean weight observed on each plot.
-
-Concretely, we would first need to preform a grouped summary with `genus` 
-and `plot_id`, and then summarising by `weight` to calculate the variable
-`mean_weight`. This yields a data frame where the observation for each plot is
-spread across multiple rows, but for tidy data we require all observations for 
-each plot on a single row. We therefore transform the values of `genus` column 
-into the  variable names of columns containing rows with the values from the 
-`mean_weight` variable. This yields a new tidy data frame transformed so that 
-the unit on which all values are measured is now `plot_id` with variables of the
-genus species with mean weight as values. In this form we can then explore the
-relationships between the weight of different species within and between the
-plots.
-
-The opposite transformation would be to transform colunn names into values of
+The opposite transformation would be to transform column names into values of
 a variable.
 
-We can do both theses of transformations with two `tidyr` functions, `spread()`
+We can do both these of transformations with two `tidyr` functions, `spread()`
 and `gather()`.
 
 #### Spreading
@@ -468,7 +442,7 @@ surveys_gw <- surveys %>%
   group_by(genus, plot_id) %>%
   summarize(mean_weight = mean(weight))
 
-glimpse(surveys_gw)
+str(surveys_gw)
 ```
 
 This yields `surveys_gw` where the observation for each plot is spread across
@@ -482,7 +456,7 @@ before too.
 surveys_spread <- surveys_gw %>%
   spread(key = genus, value = mean_weight)
 
-glimpse(surveys_spread)
+str(surveys_spread)
 ```
 
 ![](img/spread_data_R.png)
@@ -516,7 +490,7 @@ the key variable. Here we drop `plot_id` column with a minus sign.
 surveys_gather <- surveys_spread %>%
   gather(key = genus, value = mean_weight, -plot_id)
 
-glimpse(surveys_gather)
+str(surveys_gather)
 ```
 
 ![](img/gather_data_R.png)
