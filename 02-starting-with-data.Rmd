@@ -193,7 +193,7 @@ surveys[, 1]    # first column in the data frame (as a vector)
 surveys[1]      # first column in the data frame (as a data.frame)
 surveys[1:3, 7] # first three elements in the 7th column (as a vector)
 surveys[3, ]    # the 3rd element for all columns (as a data.frame)
-head_surveys <- surveys[1:6, ] # equivalent to head(surveys)
+head_surveys <- surveys[1:6, ] # equivalent to head_surveys <- head(surveys)
 ```
 
 `:` is a special function that creates numeric vectors of integers in increasing
@@ -343,14 +343,16 @@ as.character(sex)
 ```
 
 Converting factors where the levels appear as numbers (such as concentration
-levels, or years) to a numeric vector is a little trickier.  One method is to
-convert factors to characters and then numbers.  Another method is to use the
-`levels()` function. Compare:
+levels, or years) to a numeric vector is a little trickier. The `as.numeric()` 
+function returns the index values of the factor, not its levels, so it will 
+result in an entirely new (and unwanted in this case) set of numbers. 
+One method to avoid this is to convert factors to characters and then numbers.  
+Another method is to use the `levels()` function. Compare:
 
 ```{r, purl=TRUE}
 f <- factor(c(1990, 1983, 1977, 1998, 1990))
-as.numeric(f)               # wrong! and there is no warning...
-as.numeric(as.character(f)) # works...
+as.numeric(f)               # Wrong! And there is no warning...
+as.numeric(as.character(f)) # Works...
 as.numeric(levels(f))[f]    # The recommended way.
 ```
 
