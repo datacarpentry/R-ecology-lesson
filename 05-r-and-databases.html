@@ -371,36 +371,43 @@ div.tocify {
 <h2>Introduction</h2>
 <p>So far, we have dealt with small datasets that easily fit into your computer’s memory. But what about datasets that are too large for your computer to handle as a whole? In this case, storing the data outside of R and organizing it in a database is helpful. Connecting to the database allows you to retrieve only the chunks needed for the current analysis.</p>
 <p>Even better, many large datasets are already available in public or private databases. You can query them without having to download the data first.</p>
-<p>R can connect to almost any existing database type. Most common database types have R packages that allow you to connect to them (e.g., <strong><code>RSQLite</code></strong>, RMySQL, etc). Furthermore, the <a href="https://cran.r-project.org/web/packages/dplyr/index.html"><strong><code>dplyr</code></strong></a> package you used in the previous chapter supports connecting to the widely-used open source databases <a href="https://sqlite.org/">sqlite</a>, <a href="https://www.mysql.com/">mysql</a> and <a href="https://www.postgresql.org/">postgresql</a>, as well as Google’s <a href="https://cloud.google.com/bigquery/">bigquery</a>, and it can also be extended to other database types (a <a href="https://cran.r-project.org/web/packages/dplyr/vignettes/databases.html">vignette</a> in the <strong><code>dplyr</code></strong> package explains how to do it).</p>
+<p>R can connect to almost any existing database type. Most common database types have R packages that allow you to connect to them (e.g., <strong><code>RSQLite</code></strong>, RMySQL, etc). Furthermore, the <a href="https://cran.r-project.org/web/packages/dplyr/index.html"><strong><code>dplyr</code></strong></a> package you used in the previous chapter, in conjunction with <a href="https://cran.r-project.org/package=dbplyr"><strong><code>dbplyr</code></strong></a> supports connecting to the widely-used open source databases <a href="https://sqlite.org/">sqlite</a>, <a href="https://www.mysql.com/">mysql</a> and <a href="https://www.postgresql.org/">postgresql</a>, as well as Google’s <a href="https://cloud.google.com/bigquery/">bigquery</a>, and it can also be extended to other database types (a <a href="https://cran.r-project.org/web/packages/dplyr/vignettes/databases.html">vignette</a> in the <strong><code>dplyr</code></strong> package explains how to do it). RStudio has created <a href="http://db.rstudio.com/">a website</a> that provides documentation and best practices to work on database interfaces.</p>
 <p>Interfacing with databases using <strong><code>dplyr</code></strong> focuses on retrieving and analyzing datasets by generating <code>SELECT</code> SQL statements, but it doesn’t modify the database itself. <strong><code>dplyr</code></strong> does not offer functions to <code>UPDATE</code> or <code>DELETE</code> entries. If you need these functionalities, you will need to use additional R packages (e.g., <strong><code>RSQLite</code></strong>). Here we will demonstrate how to interact with a database using <strong><code>dplyr</code></strong>, using both the <strong><code>dplyr</code></strong>’s verb syntax and the SQL syntax.</p>
 <div id="the-portal_mammals-database" class="section level3">
 <h3>The portal_mammals database</h3>
-<p>We will continue to explore the <code>surveys</code> data you are already familiar with from previous lessons.</p>
+<p>We will continue to explore the <code>surveys</code> data you are already familiar with from previous lessons. First, we are going to install the <strong><code>dbplyr</code></strong> package:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="kw">c</span>(<span class="st">&quot;dbplyr&quot;</span>, <span class="st">&quot;RSQLite&quot;</span>))</code></pre></div>
 <p>The SQLite database is contained in a single file <code>portal_mammals.sqlite</code> that you generated during the SQL lesson. If you don’t have it, you can download it from Figshare into the <code>data</code> subdirectory using:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dir.create</span>(<span class="st">&quot;data&quot;</span>, <span class="dt">showWarnings =</span> <span class="ot">FALSE</span>)
 <span class="kw">download.file</span>(<span class="dt">url =</span> <span class="st">&quot;https://ndownloader.figshare.com/files/2292171&quot;</span>,
               <span class="dt">destfile =</span> <span class="st">&quot;data/portal_mammals.sqlite&quot;</span>, <span class="dt">mode =</span> <span class="st">&quot;wb&quot;</span>)</code></pre></div>
 </div>
 </div>
-<div id="connecting-to-databases-with-dplyr" class="section level2">
-<h2>Connecting to databases with <strong><code>dplyr</code></strong></h2>
-<p>We can point R to this database with <strong><code>dplyr</code></strong>’s <code>src_sqlite()</code> command.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)</code></pre></div>
+<div id="connecting-to-databases" class="section level2">
+<h2>Connecting to databases</h2>
+<p>We can point R to this database using:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dbplyr)
+<span class="kw">library</span>(dplyr)</code></pre></div>
 <pre><code>#&gt; 
 #&gt; Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>#&gt; The following objects are masked from &#39;package:dbplyr&#39;:
+#&gt; 
+#&gt;     ident, sql</code></pre>
 <pre><code>#&gt; The following objects are masked from &#39;package:stats&#39;:
 #&gt; 
 #&gt;     filter, lag</code></pre>
 <pre><code>#&gt; The following objects are masked from &#39;package:base&#39;:
 #&gt; 
 #&gt;     intersect, setdiff, setequal, union</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mammals &lt;-<span class="st"> </span><span class="kw">src_sqlite</span>(<span class="st">&quot;data/portal_mammals.sqlite&quot;</span>)</code></pre></div>
-<p>The <code>src_sqlite()</code> command does not load the data into the R session (as the <code>read.csv()</code> function did). Instead, it merely instructs R to connect to the <code>SQLite</code> database contained in the <code>portal_mammals.sqlite</code> file.</p>
-<p>(You can use the <code>src_mysql()</code>, <code>src_postgres()</code> and <code>src_bigquery()</code> to connect to the other database types supported by <strong><code>dplyr</code></strong>.)</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mammals &lt;-<span class="st"> </span>DBI::<span class="kw">dbConnect</span>(RSQLite::<span class="kw">SQLite</span>(), <span class="st">&quot;data/portal_mammals.sqlite&quot;</span>)</code></pre></div>
+<p>This command uses 2 packages that helps <strong><code>dbplyr</code></strong> and <strong><code>dplyr</code></strong> talk to the SQLite database. <strong><code>DBI</code></strong> is not something that you’ll use directly as a user. It allows R to send commands to databases irrespective of the database management system used. The <strong><code>RSQLite</code></strong> package allows R to interface with SQLite databases.</p>
+<p>This command does not load the data into the R session (as the <code>read.csv()</code> function did). Instead, it merely instructs R to connect to the <code>SQLite</code> database contained in the <code>portal_mammals.sqlite</code> file.</p>
+<p>Using a similar approach, you could connect to many other database management systems that are supported by R including MySQL, PostgreSQL, BigQuery, etc.</p>
 <p>Let’s take a closer look at the <code>mammals</code> database we just connected to:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mammals</code></pre></div>
-<pre><code>#&gt; src:  sqlite 3.19.3 [/home/francois/sandbox/R-ecology-lesson/data/portal_mammals.sqlite]
-#&gt; tbls: plots, species, surveys</code></pre>
+<pre><code>#&gt; &lt;SQLiteConnection&gt;
+#&gt;   Path: /home/francois/sandbox/R-ecology-lesson/data/portal_mammals.sqlite
+#&gt;   Extensions: TRUE</code></pre>
 <p>Just like a spreadsheet with multiple worksheets, a SQLite database can contain multiple tables. In this case three of them are listed in the <code>tbls</code> row in the output above:</p>
 <ul>
 <li>plots</li>
@@ -458,29 +465,13 @@ surveys %&gt;%
 <li>submits it to the database</li>
 <li>translates the database’s response into an R data frame</li>
 </ol>
-<p>To lift the curtain, we can use <strong><code>dplyr</code></strong>’s <code>explain()</code> function to show which SQL commands are actually sent to the database:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">explain</span>(<span class="kw">head</span>(surveys, <span class="dt">n =</span> <span class="dv">10</span>))</code></pre></div>
+<p>To lift the curtain, we can use <strong><code>dplyr</code></strong>’s <code>show_query()</code> function to show which SQL commands are actually sent to the database:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">show_query</span>(<span class="kw">head</span>(surveys, <span class="dt">n =</span> <span class="dv">10</span>))</code></pre></div>
 <pre><code>#&gt; &lt;SQL&gt;
 #&gt; SELECT *
 #&gt; FROM `surveys`
 #&gt; LIMIT 10</code></pre>
-<pre><code>#&gt; </code></pre>
-<pre><code>#&gt; &lt;PLAN&gt;
-#&gt;    addr       opcode p1 p2 p3 p4 p5 comment
-#&gt; 1     0         Init  0 17  0    00      NA
-#&gt; 2     1      Integer 10  1  0    00      NA
-#&gt; 3     2     OpenRead  0  2  0  9 00      NA
-#&gt; 4     3       Rewind  0 16  0    00      NA
-#&gt; 5     4       Column  0  0  2    00      NA
-#&gt; 6     5       Column  0  1  3    00      NA
-#&gt; 7     6       Column  0  2  4    00      NA
-#&gt; 8     7       Column  0  3  5    00      NA
-#&gt; 9     8       Column  0  4  6    00      NA
-#&gt; 10    9       Column  0  5  7    00      NA
-#&gt; 11   10       Column  0  6  8    00      NA
-#&gt; 12   11       Column  0  7  9    00      NA
-#&gt;  [ reached getOption(&quot;max.print&quot;) -- omitted 7 rows ]</code></pre>
-<p>The first part of the output shows the actual SQL query sent to the database; it matches our manually constructed <code>SELECT</code> statement above.</p>
+<p>The output shows the actual SQL query sent to the database; it matches our manually constructed <code>SELECT</code> statement above.</p>
 <p>Instead of having to formulate the SQL query ourselves - and having to mentally switch back and forth between R and SQL syntax - we can delegate this translation to <strong><code>dplyr</code></strong>. (You don’t even need to know SQL to interact with a database via <strong><code>dplyr</code></strong>!)</p>
 <p><strong><code>dplyr</code></strong>, in turn, doesn’t do the real work of subsetting the table, either. Instead, it merely sends the query to the database, waits for its response and returns it to us.</p>
 <p>That way, R never gets to see the full <code>surveys</code> table - and that’s why it could not tell us how many rows it contains. On the bright side, this allows us to work with large datasets - even too large to fit into our computer’s memory.</p>
@@ -600,7 +591,12 @@ plots</code></pre></div>
 #&gt;  9         9     7    16  1977       1         DM     F              34
 #&gt; 10        10     7    16  1977       6         PF     F              20
 #&gt; # ... with more rows, and 1 more variables: weight &lt;int&gt;</code></pre>
-<p>Because <code>plot_id</code> is listed in both tables, we can use it to look up matching records, and join the two tables. For example, to extract all surveys for the first plot, which has <code>plot_id</code> 1, we can do:</p>
+<p>Because <code>plot_id</code> is listed in both tables, we can use it to look up matching records, and join the two tables.</p>
+<div class="figure">
+<img src="img/joins.svg" alt="diagram illustrating inner and left joins" />
+<p class="caption">diagram illustrating inner and left joins</p>
+</div>
+<p>For example, to extract all surveys for the first plot, which has <code>plot_id</code> 1, we can do:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">plots %&gt;%
 <span class="st">  </span><span class="kw">filter</span>(plot_id ==<span class="st"> </span><span class="dv">1</span>) %&gt;%
 <span class="st">  </span><span class="kw">inner_join</span>(surveys) %&gt;%
@@ -701,14 +697,7 @@ genus_counts <- left_join(surveys, plots) %>%
 <div id="creating-a-new-sqlite-database" class="section level2">
 <h2>Creating a new SQLite database</h2>
 <p>So far, we have used a previously prepared SQLite database. But we can also use R to create a new database, e.g. from existing <code>csv</code> files. Let’s recreate the mammals database that we’ve been working with, in R. First let’s read in the <code>csv</code> files.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## if you haven&#39;t downloaded  the csv files yet, you can do:
-<span class="kw">download.file</span>(<span class="st">&quot;https://ndownloader.figshare.com/files/3299474&quot;</span>,
-              <span class="st">&quot;data/plots.csv&quot;</span>)
-<span class="kw">download.file</span>(<span class="st">&quot;https://ndownloader.figshare.com/files/3299483&quot;</span>,
-              <span class="st">&quot;data/species.csv&quot;</span>)
-<span class="kw">download.file</span>(<span class="st">&quot;https://ndownloader.figshare.com/files/2292172&quot;</span>,
-              <span class="st">&quot;data/surveys.csv&quot;</span>)
-species &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/species.csv&quot;</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">species &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/species.csv&quot;</span>)
 surveys &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/surveys.csv&quot;</span>)
 plots &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/plots.csv&quot;</span>)</code></pre></div>
 <p>Creating a new SQLite database with <strong><code>dplyr</code></strong> is easy. You can re-use the same command we used above to open an existing <code>.sqlite</code> file. The <code>create = TRUE</code> argument instructs R to create a new, empty database instead.</p>
@@ -729,6 +718,9 @@ my_db</code></pre></div>
 <p>Add the remaining species table to the <code>my_db</code> database and run some of your queries from earlier in the lesson to verify that you have faithfully recreated the mammals database.</p>
 </blockquote>
 <p><strong>Note:</strong> In this example, we first loaded all of the data into the R session by reading the three <code>csv</code> files. Because all the data has to flow through R, this is not suitable for very large datasets.</p>
+<p style="text-align: right; font-size: small;">
+Page build on: 2017-09-14 17:40:02
+</p>
 </div>
 
 <hr/>

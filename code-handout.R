@@ -148,7 +148,7 @@ plot(surveys$sex)
 ## 
 ## ## 2. Now take that data frame, and make it long again, so each row is a unique `plot_id` `year` combination
 ## 
-## ## 3. The `surveys` data set is note truly wide or long because both there are two columns of measurement - `hindfoot_length` and `weight`.  This makes it difficult to do things like look at the relationship between mean values of each measurement per year in different plot types. Let's walk through a common solution for this type of problem. First, use `gather` to create a truly long dataset where we have a key column called `measurement` and a `value` column that takes on the value of either `hindfoot_length` or `weight`. Hint: You'll need to specify which columns are being gathered.
+## ## 3. The `surveys` data set is not truly wide or long because there are two columns of measurement - `hindfoot_length` and `weight`.  This makes it difficult to do things like look at the relationship between mean values of each measurement per year in different plot types. Let's walk through a common solution for this type of problem. First, use `gather` to create a truly long dataset where we have a key column called `measurement` and a `value` column that takes on the value of either `hindfoot_length` or `weight`. Hint: You'll need to specify which columns are being gathered.
 ## 
 ## ## 4. With this new truly long data set, calculate the average of each `measurement` in each `year` for each different `plot_type`. Then `spread` them into a wide data set with a column for `hindfoot_length` and `weight`. Hint: Remember, you only need to specify the key and value columns for `spread`.
 ## 
@@ -156,30 +156,50 @@ plot(surveys$sex)
 ## ##  Start by removing observations for which the `species_id`, `weight`,
 ## ##  `hindfoot_length`, or `sex` data are missing:
 ## surveys_complete <- surveys %>%
-##   filter(species_id != "",        # remove missing species_id
-##   !is.na(weight),                 # remove missing weight
-## 		  !is.na(hindfoot_length),        # remove missing hindfoot_length
-## 		  sex != "")                      # remove missing sex
+##     filter(species_id != "",        # remove missing species_id
+##            !is.na(weight),                 # remove missing weight
+##            !is.na(hindfoot_length),        # remove missing hindfoot_length
+##            sex != "")                      # remove missing sex
 ## 
 ## ##  Now remove rare species in two steps. First, make a list of species which
 ## ##  appear at least 50 times in our dataset:
 ## species_counts <- surveys_complete %>%
-##               group_by(species_id) %>%
-##               tally %>%
-## 				          filter(n >= 50) %>%
-## 				          select(species_id)
+##     group_by(species_id) %>%
+##     tally %>%
+##     filter(n >= 50) %>%
+##     select(species_id)
 ## 
 ## ##  Second, keep only those species:
 ## surveys_complete <- surveys_complete %>%
-##              filter(species_id %in% species_counts$species_id)
-## 
+##     filter(species_id %in% species_counts$species_id)
 
 
 ### Data Visualization with ggplot2
 ## install.packages("hexbin")
+## library(hexbin)
+## 
 ## surveys_plot +
 ##  geom_hex()
-## ## Challenges:
+## ### Challenge with hexbin
+## ##
+## ## To use the hexagonal binning with **`ggplot2`**, first install the `hexbin`
+## ## package from CRAN:
+## 
+## install.packages("hexbin")
+## 
+## ## Then use the `geom_hex()` function:
+## 
+## surveys_plot +
+##     geom_hex()
+## 
+## ## What are the relative strengths and weaknesses of a hexagonal bin
+## ## plot compared to a scatter plot?
+## ### Challenge with scatter plot:
+## ##
+## ##  Use what you just learned to create a scatter plot of `weight`
+## ## over `species_id` with the plot types showing in different colors.
+## ## Is this a good way to show this type of data?
+## ## Challenge with boxplots:
 ## ##  Start with the boxplot we created:
 ## ggplot(data = surveys_complete, aes(x = species_id, y = weight)) +
 ##   geom_boxplot(alpha = 0) +
@@ -197,22 +217,24 @@ plot(surveys$sex)
 ## ##  of `plot_id` from integer to factor. Why does this change how R
 ## ##  makes the graph?
 ## 
-## ## Plotting time series challenge:
+## ### Plotting time series challenge:
+## ##
 ## ##  Use what you just learned to create a plot that depicts how the
 ## ##  average weight of each species changes through the years.
 ## 
-## ## Final plotting challenge:
+## ### Final plotting challenge:
 ## ##  With all of this information in hand, please take another five
 ## ##  minutes to either improve one of the plots generated in this
 ## ##  exercise or create a beautiful graph of your own. Use the RStudio
 ## ##  ggplot2 cheat sheet for inspiration:
 ## ##  https://www.rstudio.com/wp-content/uploads/2015/08/ggplot2-cheatsheet.pdf
-## 
 
 
 ## SQL databases and R
+## install.packages(c("dbplyr", "RSQLite"))
+library(dbplyr)
 library(dplyr)
-mammals <- src_sqlite("data/portal_mammals.sqlite")
+mammals <- DBI::dbConnect(RSQLite::SQLite(), "data/portal_mammals.sqlite")
 mammals
 tbl(mammals, sql("SELECT year, species_id, plot_id FROM surveys"))
 surveys <- tbl(mammals, "surveys")
@@ -271,13 +293,6 @@ genus_counts <- left_join(surveys, plots) %>%
   group_by(plot_type, genus) %>%
   tally %>%
   collect()
-## if you haven't downloaded  the csv files yet, you can do:
-download.file("https://ndownloader.figshare.com/files/3299474",
-              "data/plots.csv")
-download.file("https://ndownloader.figshare.com/files/3299483",
-              "data/species.csv")
-download.file("https://ndownloader.figshare.com/files/2292172",
-              "data/surveys.csv")
 species <- read.csv("data/species.csv")
 surveys <- read.csv("data/surveys.csv")
 plots <- read.csv("data/plots.csv")

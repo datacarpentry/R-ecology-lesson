@@ -98,3 +98,5 @@ or as a BibTeX entry:
 ```{r, echo=FALSE, comment=''}
 print(generate_citation(), style = "bibtex")
 ```
+
+<p style="text-align: right; font-size: small;">Page build on: `r format(Sys.time())`</p>
