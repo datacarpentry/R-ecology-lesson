@@ -402,88 +402,122 @@ surveys %>%
 
 ### Reshaping with gather and spread
 
-**`dplyr`** is one part of a larger **`tidyverse`** that enables you to work
-with data in tidy data formats. **`tidyr`** enables a wide range of
-manipulations of the structure data itself. For example, the survey data
-presented here is in almost in what we call a **long** format - every
-observation of every individual is its own row. This is an ideal format for data
-with a rich set of information per observation. It makes it difficult, however,
-to look at the relationships between measurements across plots. For example,
-what is the relationship between mean weights of different genera across the
-entire data set?
+In the 
+<span style="background:yellow">[spreadsheet lesson](http://www.datacarpentry.org/spreadsheet-ecology-lesson/01-format-data/)</span> we discussed how to 
+structure our data leading to the four rules defining a tidy dataset:
 
-To answer that question, we'd want each plot to have a single row, with all of
-the measurements in a single plot having their own column. This is called a
-**wide** data format. For the `surveys` data as we have it right now, this is
-going to be one heck of a wide data frame! However, if we were to summarize data
-within plots and species, we might begin to have some relationships we'd want to
-examine.
+1. Each variable has its own column
+2. Each observation has its own row
+3. Each value must have its own cell
+4. Each type of observational unit forms a table
 
-Let's see this in action. First, using **`dplyr`**, let's create a data frame
-with the mean body weight of each genera by plot.
+Here we examine the fourth rule: Each type of observational unit forms a table.
+
+In `surveys` , the rows of `surveys` contain the values of variables associated
+with each record (the unit), values such the weight or sex of each animal 
+associated with each record. What if instead of comparing records, we 
+wanted to compare the different mean weight of each species between plots? (Ignoring `plot_type` for simplicity).
+
+We'd need to create a new table where each row (the unit) comprises of values of variables associated with each plot. In practical terms this means the values
+of the species in `genus` would become the names of column variables and the cells would contain the values of the mean weight observed on each plot.
+
+Having created a new table, it is therefore straightforward to explore the 
+relationship between the weight of different species within, and between, the
+plots. The key point here is that we are still following a tidy data structure,
+but we have **reshaped** the data according to the observations of interest:
+average species weight per plot instead of recordings per date.
+
+The opposite transformation would be to transform column names into values of
+a variable.
+
+We can do both these of transformations with two `tidyr` functions, `spread()`
+and `gather()`.
+
+#### Spreading
+
+`spread()` takes three principal arguments:
+
+1. the data 
+2. the *key* column variable whose values will become new column names.  
+3. the *value* column variable whose values will fill the new column variables.
+
+Further arguements include `fill` which if set, fills in missing values with 
+that provided.
+
+Let's use `spread()` to transform surveys to find the mean weight of each 
+species in each plot over the entire survey period. We use `filter()`,
+`group_by()` and `summarise()` to filter our observations and variables of 
+interest, and create a new variable for the `mean_weight`. We use the pipe as 
+before too.
 
 ```{r, purl=FALSE}
 surveys_gw <- surveys %>%
-    filter(!is.na(weight)) %>%
-    group_by(genus, plot_id) %>%
-    summarize(mean_weight = mean(weight))
+  filter(!is.na(weight)) %>%
+  group_by(genus, plot_id) %>%
+  summarize(mean_weight = mean(weight))
 
-head(surveys_gw)
+str(surveys_gw)
 ```
 
-#### Long to Wide with `spread`
+This yields `surveys_gw` where the observation for each plot is spread across
+multiple rows, 196 observations of 13 variables.
 
-Now, to make this long data wide, we use `spread` from `tidyr` to spread out the
-different taxa into columns. `spread` takes three arguments - the data, the
-*key* column, or column with identifying information, the *values* column - the
-one with the numbers. We'll use a pipe so we can ignore the data argument.
+Using `spread()` to key on `genus` with values from `mean_weight` this becomes
+24 observations of 11 variables, one row for each plot. We use the pipe as
+before too.
 
 ```{r, purl=FALSE}
-surveys_gw_wide <- surveys_gw %>%
-  spread(genus, mean_weight)
+surveys_spread <- surveys_gw %>%
+  spread(key = genus, value = mean_weight)
 
-head(surveys_gw_wide)
+str(surveys_spread)
 ```
 
-Notice that some genera have `NA` values. That's because some of those genera
-don't have any record in that plot. Sometimes it is fine to leave those as
-`NA`. Sometimes we want to fill them as zeros, in which case we would add the
-argument `fill=0`.
+![](img/spread_data_R.png)
 
-```{r, purl=FALSE}
-surveys_gw %>%
-  spread(genus, mean_weight, fill = 0) %>%
-  head
-```
-
-We can now do things like plot the weight of *Baiomys* against *Chaetodipus* or
-examine their correlation.
+We could now plot comparisons between the weight of species on different plots
+for example, although we may wish to fill in the missing values first.
 
 ```{r, purl=FALSE}
 surveys_gw %>%
   spread(genus, mean_weight, fill = 0) %>%
-  cor(use = "pairwise.complete")
+  head()
 ```
 
-#### Wide to long with `gather`
+#### Gathering
 
-What if we had the opposite problem, and wanted to go from a wide to long
-format? For that, we use `gather` to sweep up a set of columns into one
-key-value pair. We give it the arguments of a new key and value column name, and
-then we specify which columns we either want or do not want gathered up. So, to
-go backwards from `surveys_gw_wide`, and exclude `plot_id` from the gathering,
-we would do the following:
+The opposing situation could occur if we had been provided with data in the
+form of `surveys_spread`, where the genus names are column names, but we 
+wish to treat them as values of a genus variable instead.
+
+In this situation we are gathering the column names and turning them into a
+pair of new variables. One variable represents the column names as values, and
+the other variable contains the values previously associated with the column names.
+
+`gather()` takes four principal arguments:
+
+1. the data
+2. the *key* column variable we wish to create from column names.
+3. the *values* column variable we wish to create and fill with values 
+associated with the key.
+4. the names of the columns we use to fill the key variable (or to drop).
+
+To recreate `surveys_gw` from `surveys_spread` we would create a key called
+`genus` and value called `mean_weight` and use all columns except `plot_id` for
+the key variable. Here we drop `plot_id` column with a minus sign.
 
 ```{r, purl=FALSE}
-surveys_gw_long <- surveys_gw_wide %>%
-  gather(genus, mean_weight, -plot_id)
+surveys_gather <- surveys_spread %>%
+  gather(key = genus, value = mean_weight, -plot_id)
 
-head(surveys_gw_long)
+str(surveys_gather)
 ```
 
-Note that now the `NA` genera are included in the long format. Going from wide
-to long to wide can be a useful way to balance out a dataset so every replicate
-has the same composition.
+![](img/gather_data_R.png)
+
+Note that now the `NA` genera are included in the re-gathered format. Spreading
+and then gathering can be a useful way to balance out a dataset so every
+replicate has the same composition.
 
 We could also have used a specification for what columns to include. This can be
 useful if you have a large number of identifying columns, and it's easier to
@@ -491,35 +525,35 @@ specify what to gather than what to leave alone. And if the columns are in a
 row, we don't even need to list them all out - just use the `:` operator!
 
 ```{r, purl=FALSE}
-surveys_gw_wide %>%
-  gather(genus, mean_weight, Baiomys:Spermophilus) %>%
-  head
+surveys_spread %>%
+  gather(key = genus, value = mean_weight, Baiomys:Spermophilus) %>%
+  head()
 ```
 
 > ### Challenge {.challenge}
 >
-> 1. Make a wide data frame with `year` as columns, `plot_id` as rows, and the
+> 1. Spread the data frame with `year` as columns, `plot_id` as rows, and the
 >   values are the number of genera per plot. You will need to summarize before
->   reshaping, and use the function `n_distinct` to get the number of unique
+>   reshaping, and use the function `n_distinct()` to get the number of unique
 >   types of a genera. It's a powerful function! See `?n_distinct` for more.
 >
-> 2. Now take that data frame, and make it long again, so each row is a unique
+> 2. Now take that data frame, and make gather it again, so each row is a unique
 >    `plot_id` `year` combination.
 >
-> 3. The `surveys` data set is not truly wide or long because there are
->    two columns of measurement - `hindfoot_length` and `weight`.  This makes it
+> 3. The `surveys` data set has
+>    two columns of measurement: `hindfoot_length` and `weight`.  This makes it
 >    difficult to do things like look at the relationship between mean values of
 >    each measurement per year in different plot types. Let's walk through a
->    common solution for this type of problem. First, use `gather` to create a
->    truly long dataset where we have a key column called `measurement` and a
+>    common solution for this type of problem. First, use `gather()` to create a
+>     dataset where we have a key column called `measurement` and a
 >    `value` column that takes on the value of either `hindfoot_length` or
 >    `weight`. Hint: You'll need to specify which columns are being gathered.
 >
-> 4. With this new truly long data set, calculate the average of each
->    `measurement` in each `year` for each different `plot_type`. Then
->    `spread` them into a wide data set with a column for `hindfoot_length` and
+> 4. With this new data set, calculate the average of each
+>    `measurement` in each `year` > for each different `plot_type`. Then
+>    `spread()` them into a data set with a column for `hindfoot_length` and
 >    `weight`. Hint: Remember, you only need to specify the key and value
->    columns for `spread`.
+>    columns for `spread()`.
 
 ```{r, eval=FALSE, purl=TRUE, echo=FALSE}
 ## Reshaping challenges
