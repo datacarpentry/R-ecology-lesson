@@ -93,7 +93,7 @@ Using a similar approach, you could connect to many other database management sy
 Let's take a closer look at the `mammals` database we just connected to:
 
 ```{r tables, results="markup"}
-mammals
+src_dbi(mammals)
 ```
 
 Just like a spreadsheet with multiple worksheets, a SQLite database can contain
