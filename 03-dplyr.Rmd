@@ -48,8 +48,18 @@ package for the first time you need to install it on your machine, and then you
 should import it in every subsequent R session when you need it. You should
 already have installed the **`tidyverse`** package. This is an
 "umbrella-package" that installs several packages useful for data analysis which
-work together well such as **`tidyr`**, **`dplyr`**, **`ggplot2`**, etc. To load
-the package type:
+work together well such as **`tidyr`**, **`dplyr`**, **`ggplot2`**, **`tibble`**, etc.
+
+**`tidyverse`** package tries to address 3 major problems with some of base R functions:
+1. The results from a base R function sometimes depends on the type of data.
+2. Using R expressions in a non standard way, which can be confusing for new learners.
+3. Hidden arguments, having default operations that new learners are not aware of.
+
+We have seen in our previous lesson that when building or importing a data frame, the columns that contain characters (i.e., text) are coerced (=converted) into the factor data type. We had to set **`stringsAsFactor`** to **`FALSE`** to avoid this hidden argument to convert our data type. 
+
+This time will use the **`tidyverse`** package to read the data and avoid having to set **`stringsAsFactor`** to **`FALSE`**
+
+To load the package type:
 
 
 ```{r, message = FALSE, purl = FALSE}
@@ -77,6 +87,21 @@ The package **`tidyr`** addresses the common problem of wanting to reshape your 
 To learn more about **`dplyr`** and **`tidyr`** after the workshop, you may want to check out this
 [handy data transformation with **`dplyr`** cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/source/pdfs/data-transformation-cheatsheet.pdf) and this [one about **`tidyr`**](https://github.com/rstudio/cheatsheets/blob/master/source/pdfs/data-import-cheatsheet.pdf).
 
+**`dplyr`**  reads data using read_csv(), instead of read.csv()
+
+```{r,results = 'hide', purl = FALSE}
+surveys <- read_csv('portal_data_joined.csv')
+
+## inspect the data
+str(surveys)
+```
+
+Notice that the class of the data is now `tbl_df`
+This is referred to as a "tibble"
+Tibbles are data frames, but they tweak some of the old behaviors of data frames. The data structure is very similar to a data frame. For our purposes the only differences are that:
+1. In addition to displaying the data type of each column under its name, it only prints the first few rows of data and only as many columns as fit
+on one screen.
+2. Columns of class `character` are never converted into factors.
 
 ## Selecting columns and filtering rows
 
@@ -142,7 +167,7 @@ Note that the final data frame is the leftmost part of this expression.
 
 > ### Challenge {.challenge}
 >
->  Using pipes, subset the `survey` data to include individuals collected before
+>  Using pipes, subset the `surveys` data to include individuals collected before
 >  1995 and retain only the columns `year`, `sex`, and `weight`.
 
 <!---
@@ -264,13 +289,7 @@ surveys %>%
 ```
 
 You may also have noticed that the output from these calls doesn't run off the
-screen anymore. That's because **`dplyr`** has changed our `data.frame` object
-to an object of class `tbl_df`, also known as a "tibble". Tibble's data
-structure is very similar to a data frame. For our purposes the only differences
-are that, (1) in addition to displaying the data type of each column under its
-name, it only prints the first few rows of data and only as many columns as fit
-on one screen, (2) columns of class `character` are never converted into
-factors.
+screen anymore. It's one of the advantages of `tbl_df` over data frame.
 
 You can also group by multiple columns:
 
@@ -295,8 +314,7 @@ surveys %>%
 ```
 
 Here, again, the output from these calls doesn't run off the screen
-anymore. Recall that **`dplyr`** has changed our object from`data.frame` to
-`tbl_df`. If you want to display more data, you can use the `print()` function
+anymore. If you want to display more data, you can use the `print()` function
 at the end of your chain with the argument `n` specifying the number of rows to
 display:
 
@@ -600,10 +618,10 @@ Now that you have learned how to use **`dplyr`** to extract information from
 or summarize your raw data, you may want to export these new datasets to share
 them with your collaborators or for archival.
 
-Similar to the `read.csv()` function used for reading CSV files into R, there is
-a `write.csv()` function that generates CSV files from data frames.
+Similar to the `read_csv()` function used for reading CSV files into R, there is
+a `write_csv()` function that generates CSV files from data frames.
 
-Before using `write.csv()`, we are going to create a new folder, `data_output`,
+Before using `write_csv()`, we are going to create a new folder, `data_output`,
 in our working directory that will store this generated dataset. We don't want
 to write generated datasets in the same directory as our raw data. It's good
 practice to keep them separate. The `data` folder should only contain the raw,
@@ -682,13 +700,13 @@ the names are just the row numbers), so we need to add `row.names = FALSE` so
 they are not included:
 
 ```{r, purl=FALSE, eval=FALSE}
-write.csv(surveys_complete, file = "data_output/surveys_complete.csv",
+write_csv(surveys_complete, file = "data_output/surveys_complete.csv",
           row.names = FALSE)
 ```
 
 ```{r, purl=FALSE, eval=TRUE, echo=FALSE}
 if (!file.exists("data_output")) dir.create("data_output")
-write.csv(surveys_complete, file = "data_output/surveys_complete.csv")
+write_csv(surveys_complete, file = "data_output/surveys_complete.csv")
 ```
 
 <p style="text-align: right; font-size: small;">Page build on: `r format(Sys.time())`</p>
