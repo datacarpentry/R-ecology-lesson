@@ -83,7 +83,8 @@ The package **`tidyr`** addresses the common problem of wanting to reshape your 
 To learn more about **`dplyr`** and **`tidyr`** after the workshop, you may want to check out this
 [handy data transformation with **`dplyr`** cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/source/pdfs/data-transformation-cheatsheet.pdf) and this [one about **`tidyr`**](https://github.com/rstudio/cheatsheets/blob/master/source/pdfs/data-import-cheatsheet.pdf).
 
-**`dplyer`**  reads data using read_csv, instead of read.csv
+**`dplyr`**  reads data using read_csv(), instead of read.csv()
+
 ```{r,results = 'hide', purl = FALSE}
 surveys <- read_csv('portal_data_joined.csv')
 
