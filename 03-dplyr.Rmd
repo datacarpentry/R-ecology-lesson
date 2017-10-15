@@ -695,13 +695,10 @@ has `r nrow(surveys_complete)` rows and `r ncol(surveys_complete)` columns by
 typing `dim(surveys_complete)`.
 
 Now that our dataset is ready, we can save it as a CSV file in our `data_output`
-folder. By default, `write.csv()` includes a column with row names (in our case
-the names are just the row numbers), so we need to add `row.names = FALSE` so
-they are not included:
+folder.
 
 ```{r, purl=FALSE, eval=FALSE}
-write_csv(surveys_complete, file = "data_output/surveys_complete.csv",
-          row.names = FALSE)
+write_csv(surveys_complete, file = "data_output/surveys_complete.csv")
 ```
 
 ```{r, purl=FALSE, eval=TRUE, echo=FALSE}
