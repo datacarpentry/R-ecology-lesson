@@ -524,7 +524,7 @@ surveys[, <span class="dv">1</span>]    <span class="co"># first column in the d
 surveys[<span class="dv">1</span>]      <span class="co"># first column in the data frame (as a data.frame)</span>
 surveys[<span class="dv">1</span>:<span class="dv">3</span>, <span class="dv">7</span>] <span class="co"># first three elements in the 7th column (as a vector)</span>
 surveys[<span class="dv">3</span>, ]    <span class="co"># the 3rd element for all columns (as a data.frame)</span>
-head_surveys &lt;-<span class="st"> </span>surveys[<span class="dv">1</span>:<span class="dv">6</span>, ] <span class="co"># equivalent to head(surveys)</span></code></pre></div>
+head_surveys &lt;-<span class="st"> </span>surveys[<span class="dv">1</span>:<span class="dv">6</span>, ] <span class="co"># equivalent to head_surveys &lt;- head(surveys)</span></code></pre></div>
 <p><code>:</code> is a special function that creates numeric vectors of integers in increasing or decreasing order, test <code>1:10</code> and <code>10:1</code> for instance.</p>
 <p>You can also exclude certain parts of a data frame using the “<code>-</code>” sign:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys[,-<span class="dv">1</span>]          <span class="co"># The whole data frame, except the first column</span>
@@ -584,10 +584,11 @@ sex <span class="co"># after re-ordering</span></code></pre></div>
 <h3>Converting factors</h3>
 <p>If you need to convert a factor to a character vector, you use <code>as.character(x)</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">as.character</span>(sex)</code></pre></div>
-<p>Converting factors where the levels appear as numbers (such as concentration levels, or years) to a numeric vector is a little trickier. One method is to convert factors to characters and then numbers. Another method is to use the <code>levels()</code> function. Compare:</p>
+<p>Converting factors where the levels appear as numbers (such as concentration levels, or years) to a numeric vector is a little trickier. The <code>as.numeric()</code> function returns the index values of the factor, not its levels, so it will result in an entirely new (and unwanted in this case) set of numbers. One method to avoid this is to convert factors to characters and then numbers.<br />
+Another method is to use the <code>levels()</code> function. Compare:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">f &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="dv">1990</span>, <span class="dv">1983</span>, <span class="dv">1977</span>, <span class="dv">1998</span>, <span class="dv">1990</span>))
-<span class="kw">as.numeric</span>(f)               <span class="co"># wrong! and there is no warning...</span>
-<span class="kw">as.numeric</span>(<span class="kw">as.character</span>(f)) <span class="co"># works...</span>
+<span class="kw">as.numeric</span>(f)               <span class="co"># Wrong! And there is no warning...</span>
+<span class="kw">as.numeric</span>(<span class="kw">as.character</span>(f)) <span class="co"># Works...</span>
 <span class="kw">as.numeric</span>(<span class="kw">levels</span>(f))[f]    <span class="co"># The recommended way.</span></code></pre></div>
 <p>Notice that in the <code>levels()</code> approach, three important steps occur:</p>
 <ul>
@@ -700,7 +701,7 @@ surveys$plot_type &lt;-<span class="st"> </span><span class="kw">factor</span>(s
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys_dates[<span class="kw">is.na</span>(surveys$date)]</code></pre></div>
 <p>Why did these dates fail to parse? If you had to use these data for your analyses, how would you deal with this situation?</p>
 <p style="text-align: right; font-size: small;">
-Page build on: 2017-09-14 17:34:10
+Page build on: 2017-10-15 09:48:59
 </p>
 </div>
 

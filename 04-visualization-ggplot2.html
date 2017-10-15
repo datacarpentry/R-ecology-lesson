@@ -357,6 +357,22 @@ div.tocify {
 </div>
 
 
+<pre><code>## Parsed with column specification:
+## cols(
+##   record_id = col_integer(),
+##   month = col_integer(),
+##   day = col_integer(),
+##   year = col_integer(),
+##   plot_id = col_integer(),
+##   species_id = col_character(),
+##   sex = col_character(),
+##   hindfoot_length = col_integer(),
+##   weight = col_integer(),
+##   genus = col_character(),
+##   species = col_character(),
+##   taxa = col_character(),
+##   plot_type = col_character()
+## )</code></pre>
 <hr />
 <blockquote>
 <h3 id="learning-objectives">Learning Objectives</h3>
@@ -372,7 +388,7 @@ div.tocify {
 <p>We start by loading the required packages. <strong><code>ggplot2</code></strong> is included in the <strong><code>tidyverse</code></strong> package.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)</code></pre></div>
 <p>If not still in the workspace, load the data we saved in the previous lesson.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys_complete &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;data_output/surveys_complete.csv&#39;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys_complete &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&#39;data_output/surveys_complete.csv&#39;</span>)</code></pre></div>
 <div id="plotting-with-ggplot2" class="section level2">
 <h2>Plotting with <strong><code>ggplot2</code></strong></h2>
 <p><strong><code>ggplot2</code></strong> is a plotting package that makes it simple to create complex plots from data in a data frame. It provides a more programmatic interface for specifying what variables to plot, how they are displayed, and general visual properties. Therefore, we only need minimal changes if the underlying data change<br />
@@ -669,7 +685,7 @@ combo_plot &lt;-<span class="st"> </span><span class="kw">grid.arrange</span>(sp
 <span class="kw">ggsave</span>(<span class="st">&quot;combo_plot_abun_weight.png&quot;</span>, combo_plot, <span class="dt">width =</span> <span class="dv">10</span>, <span class="dt">dpi =</span> <span class="dv">300</span>)</code></pre></div>
 <p>Note: The parameters <code>width</code> and <code>height</code> also determine the font size in the saved plot.</p>
 <p style="text-align: right; font-size: small;">
-Page build on: 2017-09-14 17:37:07
+Page build on: 2017-10-15 09:50:03
 </p>
 </div>
 

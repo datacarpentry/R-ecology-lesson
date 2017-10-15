@@ -378,7 +378,11 @@ div.tocify {
 <div id="data-manipulation-using-dplyr-and-tidyr" class="section level1">
 <h1>Data Manipulation using <strong><code>dplyr</code></strong> and <strong><code>tidyr</code></strong></h1>
 <p>Bracket subsetting is handy, but it can be cumbersome and difficult to read, especially for complicated operations. Enter <strong><code>dplyr</code></strong>. <strong><code>dplyr</code></strong> is a package for making tabular data manipulation easier. It pairs nicely with <strong><code>tidyr</code></strong> which enables you to swiftly convert between different data formats for plotting and analysis.</p>
-<p>Packages in R are basically sets of additional functions that let you do more stuff. The functions we’ve been using so far, like <code>str()</code> or <code>data.frame()</code>, come built into R; packages give you access to more of them. Before you use a package for the first time you need to install it on your machine, and then you should import it in every subsequent R session when you need it. You should already have installed the <strong><code>tidyverse</code></strong> package. This is an “umbrella-package” that installs several packages useful for data analysis which work together well such as <strong><code>tidyr</code></strong>, <strong><code>dplyr</code></strong>, <strong><code>ggplot2</code></strong>, etc. To load the package type:</p>
+<p>Packages in R are basically sets of additional functions that let you do more stuff. The functions we’ve been using so far, like <code>str()</code> or <code>data.frame()</code>, come built into R; packages give you access to more of them. Before you use a package for the first time you need to install it on your machine, and then you should import it in every subsequent R session when you need it. You should already have installed the <strong><code>tidyverse</code></strong> package. This is an “umbrella-package” that installs several packages useful for data analysis which work together well such as <strong><code>tidyr</code></strong>, <strong><code>dplyr</code></strong>, <strong><code>ggplot2</code></strong>, <strong><code>tibble</code></strong>, etc.</p>
+<p><strong><code>tidyverse</code></strong> package tries to address 3 major problems with some of base R functions: 1. The results from a base R function sometimes depends on the type of data. 2. Using R expressions in a non standard way, which can be confusing for new learners. 3. Hidden arguments, having default operations that new learners are not aware of.</p>
+<p>We have seen in our previous lesson that when building or importing a data frame, the columns that contain characters (i.e., text) are coerced (=converted) into the factor data type. We had to set <strong><code>stringsAsFactor</code></strong> to <strong><code>FALSE</code></strong> to avoid this hidden argument to convert our data type.</p>
+<p>This time will use the <strong><code>tidyverse</code></strong> package to read the data and avoid having to set <strong><code>stringsAsFactor</code></strong> to <strong><code>FALSE</code></strong></p>
+<p>To load the package type:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;tidyverse&quot;</span>)    ## load the tidyverse packages, incl. dplyr</code></pre></div>
 <div id="what-are-dplyr-and-tidyr" class="section level2">
 <h2>What are <strong><code>dplyr</code></strong> and <strong><code>tidyr</code></strong>?</h2>
@@ -386,6 +390,27 @@ div.tocify {
 <p>This addresses a common problem with R in that all operations are conducted in-memory and thus the amount of data you can work with is limited by available memory. The database connections essentially remove that limitation in that you can have a database of many 100s GB, conduct queries on it directly, and pull back into R only what you need for analysis.</p>
 <p>The package <strong><code>tidyr</code></strong> addresses the common problem of wanting to reshape your data for plotting and use by different R functions. Sometimes we want data sets where we have one row per measurement. Sometimes we want a data frame where each measurement type has its own column, and rows are instead more aggregated groups - like plots or aquaria. Moving back and forth between these formats is nontrivial, and <strong><code>tidyr</code></strong> gives you tools for this and more sophisticated data manipulation.</p>
 <p>To learn more about <strong><code>dplyr</code></strong> and <strong><code>tidyr</code></strong> after the workshop, you may want to check out this <a href="https://github.com/rstudio/cheatsheets/raw/master/source/pdfs/data-transformation-cheatsheet.pdf">handy data transformation with <strong><code>dplyr</code></strong> cheatsheet</a> and this <a href="https://github.com/rstudio/cheatsheets/blob/master/source/pdfs/data-import-cheatsheet.pdf">one about <strong><code>tidyr</code></strong></a>.</p>
+<p><strong><code>dplyr</code></strong> reads data using read_csv(), instead of read.csv()</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&#39;data/portal_data_joined.csv&#39;</span>)</code></pre></div>
+<pre><code>#&gt; Parsed with column specification:
+#&gt; cols(
+#&gt;   record_id = col_integer(),
+#&gt;   month = col_integer(),
+#&gt;   day = col_integer(),
+#&gt;   year = col_integer(),
+#&gt;   plot_id = col_integer(),
+#&gt;   species_id = col_character(),
+#&gt;   sex = col_character(),
+#&gt;   hindfoot_length = col_integer(),
+#&gt;   weight = col_integer(),
+#&gt;   genus = col_character(),
+#&gt;   species = col_character(),
+#&gt;   taxa = col_character(),
+#&gt;   plot_type = col_character()
+#&gt; )</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## inspect the data
+<span class="kw">str</span>(surveys)</code></pre></div>
+<p>Notice that the class of the data is now <code>tbl_df</code> This is referred to as a “tibble” Tibbles are data frames, but they tweak some of the old behaviors of data frames. The data structure is very similar to a data frame. For our purposes the only differences are that: 1. In addition to displaying the data type of each column under its name, it only prints the first few rows of data and only as many columns as fit on one screen. 2. Columns of class <code>character</code> are never converted into factors.</p>
 </div>
 <div id="selecting-columns-and-filtering-rows" class="section level2">
 <h2>Selecting columns and filtering rows</h2>
@@ -412,7 +437,7 @@ surveys_sml</code></pre></div>
 <p>Note that the final data frame is the leftmost part of this expression.</p>
 <blockquote>
 <h3 id="challenge" class="challenge">Challenge</h3>
-<p>Using pipes, subset the <code>survey</code> data to include individuals collected before 1995 and retain only the columns <code>year</code>, <code>sex</code>, and <code>weight</code>.</p>
+<p>Using pipes, subset the <code>surveys</code> data to include individuals collected before 1995 and retain only the columns <code>year</code>, <code>sex</code>, and <code>weight</code>.</p>
 </blockquote>
 <!---
 
@@ -470,7 +495,7 @@ surveys_hindfoot_half <- surveys %>%
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys %&gt;%
 <span class="st">  </span><span class="kw">group_by</span>(sex) %&gt;%
 <span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_weight =</span> <span class="kw">mean</span>(weight, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</code></pre></div>
-<p>You may also have noticed that the output from these calls doesn’t run off the screen anymore. That’s because <strong><code>dplyr</code></strong> has changed our <code>data.frame</code> object to an object of class <code>tbl_df</code>, also known as a “tibble”. Tibble’s data structure is very similar to a data frame. For our purposes the only differences are that, (1) in addition to displaying the data type of each column under its name, it only prints the first few rows of data and only as many columns as fit on one screen, (2) columns of class <code>character</code> are never converted into factors.</p>
+<p>You may also have noticed that the output from these calls doesn’t run off the screen anymore. It’s one of the advantages of <code>tbl_df</code> over data frame.</p>
 <p>You can also group by multiple columns:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys %&gt;%
 <span class="st">  </span><span class="kw">group_by</span>(sex, species_id) %&gt;%
@@ -480,7 +505,7 @@ surveys_hindfoot_half <- surveys %>%
 <span class="st">  </span><span class="kw">filter</span>(!<span class="kw">is.na</span>(weight)) %&gt;%
 <span class="st">  </span><span class="kw">group_by</span>(sex, species_id) %&gt;%
 <span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_weight =</span> <span class="kw">mean</span>(weight))</code></pre></div>
-<p>Here, again, the output from these calls doesn’t run off the screen anymore. Recall that <strong><code>dplyr</code></strong> has changed our object from<code>data.frame</code> to <code>tbl_df</code>. If you want to display more data, you can use the <code>print()</code> function at the end of your chain with the argument <code>n</code> specifying the number of rows to display:</p>
+<p>Here, again, the output from these calls doesn’t run off the screen anymore. If you want to display more data, you can use the <code>print()</code> function at the end of your chain with the argument <code>n</code> specifying the number of rows to display:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys %&gt;%
 <span class="st">  </span><span class="kw">filter</span>(!<span class="kw">is.na</span>(weight)) %&gt;%
 <span class="st">  </span><span class="kw">group_by</span>(sex, species_id) %&gt;%
@@ -516,50 +541,83 @@ surveys_hindfoot_half <- surveys %>%
 </div>
 <div id="reshaping-with-gather-and-spread" class="section level3">
 <h3>Reshaping with gather and spread</h3>
-<p><strong><code>dplyr</code></strong> is one part of a larger <strong><code>tidyverse</code></strong> that enables you to work with data in tidy data formats. <strong><code>tidyr</code></strong> enables a wide range of manipulations of the structure data itself. For example, the survey data presented here is in almost in what we call a <strong>long</strong> format - every observation of every individual is its own row. This is an ideal format for data with a rich set of information per observation. It makes it difficult, however, to look at the relationships between measurements across plots. For example, what is the relationship between mean weights of different genera across the entire data set?</p>
-<p>To answer that question, we’d want each plot to have a single row, with all of the measurements in a single plot having their own column. This is called a <strong>wide</strong> data format. For the <code>surveys</code> data as we have it right now, this is going to be one heck of a wide data frame! However, if we were to summarize data within plots and species, we might begin to have some relationships we’d want to examine.</p>
-<p>Let’s see this in action. First, using <strong><code>dplyr</code></strong>, let’s create a data frame with the mean body weight of each genera by plot.</p>
+<p>In the <span style="background:yellow"><a href="http://www.datacarpentry.org/spreadsheet-ecology-lesson/01-format-data/">spreadsheet lesson</a></span> we discussed how to structure our data leading to the four rules defining a tidy dataset:</p>
+<ol style="list-style-type: decimal">
+<li>Each variable has its own column</li>
+<li>Each observation has its own row</li>
+<li>Each value must have its own cell</li>
+<li>Each type of observational unit forms a table</li>
+</ol>
+<p>Here we examine the fourth rule: Each type of observational unit forms a table.</p>
+<p>In <code>surveys</code> , the rows of <code>surveys</code> contain the values of variables associated with each record (the unit), values such the weight or sex of each animal associated with each record. What if instead of comparing records, we wanted to compare the different mean weight of each species between plots? (Ignoring <code>plot_type</code> for simplicity).</p>
+<p>We’d need to create a new table where each row (the unit) comprises of values of variables associated with each plot. In practical terms this means the values of the species in <code>genus</code> would become the names of column variables and the cells would contain the values of the mean weight observed on each plot.</p>
+<p>Having created a new table, it is therefore straightforward to explore the relationship between the weight of different species within, and between, the plots. The key point here is that we are still following a tidy data structure, but we have <strong>reshaped</strong> the data according to the observations of interest: average species weight per plot instead of recordings per date.</p>
+<p>The opposite transformation would be to transform column names into values of a variable.</p>
+<p>We can do both these of transformations with two <code>tidyr</code> functions, <code>spread()</code> and <code>gather()</code>.</p>
+<div id="spreading" class="section level4">
+<h4>Spreading</h4>
+<p><code>spread()</code> takes three principal arguments:</p>
+<ol style="list-style-type: decimal">
+<li>the data</li>
+<li>the <em>key</em> column variable whose values will become new column names.<br />
+</li>
+<li>the <em>value</em> column variable whose values will fill the new column variables.</li>
+</ol>
+<p>Further arguements include <code>fill</code> which if set, fills in missing values with that provided.</p>
+<p>Let’s use <code>spread()</code> to transform surveys to find the mean weight of each species in each plot over the entire survey period. We use <code>filter()</code>, <code>group_by()</code> and <code>summarise()</code> to filter our observations and variables of interest, and create a new variable for the <code>mean_weight</code>. We use the pipe as before too.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys_gw &lt;-<span class="st"> </span>surveys %&gt;%
-<span class="st">    </span><span class="kw">filter</span>(!<span class="kw">is.na</span>(weight)) %&gt;%
-<span class="st">    </span><span class="kw">group_by</span>(genus, plot_id) %&gt;%
-<span class="st">    </span><span class="kw">summarize</span>(<span class="dt">mean_weight =</span> <span class="kw">mean</span>(weight))
+<span class="st">  </span><span class="kw">filter</span>(!<span class="kw">is.na</span>(weight)) %&gt;%
+<span class="st">  </span><span class="kw">group_by</span>(genus, plot_id) %&gt;%
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_weight =</span> <span class="kw">mean</span>(weight))
 
-<span class="kw">head</span>(surveys_gw)</code></pre></div>
-<div id="long-to-wide-with-spread" class="section level4">
-<h4>Long to Wide with <code>spread</code></h4>
-<p>Now, to make this long data wide, we use <code>spread</code> from <code>tidyr</code> to spread out the different taxa into columns. <code>spread</code> takes three arguments - the data, the <em>key</em> column, or column with identifying information, the <em>values</em> column - the one with the numbers. We’ll use a pipe so we can ignore the data argument.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys_gw_wide &lt;-<span class="st"> </span>surveys_gw %&gt;%
-<span class="st">  </span><span class="kw">spread</span>(genus, mean_weight)
+<span class="kw">str</span>(surveys_gw)</code></pre></div>
+<p>This yields <code>surveys_gw</code> where the observation for each plot is spread across multiple rows, 196 observations of 13 variables.</p>
+<p>Using <code>spread()</code> to key on <code>genus</code> with values from <code>mean_weight</code> this becomes 24 observations of 11 variables, one row for each plot. We use the pipe as before too.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys_spread &lt;-<span class="st"> </span>surveys_gw %&gt;%
+<span class="st">  </span><span class="kw">spread</span>(<span class="dt">key =</span> genus, <span class="dt">value =</span> mean_weight)
 
-<span class="kw">head</span>(surveys_gw_wide)</code></pre></div>
-<p>Notice that some genera have <code>NA</code> values. That’s because some of those genera don’t have any record in that plot. Sometimes it is fine to leave those as <code>NA</code>. Sometimes we want to fill them as zeros, in which case we would add the argument <code>fill=0</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys_gw %&gt;%
-<span class="st">  </span><span class="kw">spread</span>(genus, mean_weight, <span class="dt">fill =</span> <span class="dv">0</span>) %&gt;%
-<span class="st">  </span>head</code></pre></div>
-<p>We can now do things like plot the weight of <em>Baiomys</em> against <em>Chaetodipus</em> or examine their correlation.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys_gw %&gt;%
-<span class="st">  </span><span class="kw">spread</span>(genus, mean_weight, <span class="dt">fill =</span> <span class="dv">0</span>) %&gt;%
-<span class="st">  </span><span class="kw">cor</span>(<span class="dt">use =</span> <span class="st">&quot;pairwise.complete&quot;</span>)</code></pre></div>
+<span class="kw">str</span>(surveys_spread)</code></pre></div>
+<div class="figure">
+<img src="img/spread_data_R.png" />
+
 </div>
-<div id="wide-to-long-with-gather" class="section level4">
-<h4>Wide to long with <code>gather</code></h4>
-<p>What if we had the opposite problem, and wanted to go from a wide to long format? For that, we use <code>gather</code> to sweep up a set of columns into one key-value pair. We give it the arguments of a new key and value column name, and then we specify which columns we either want or do not want gathered up. So, to go backwards from <code>surveys_gw_wide</code>, and exclude <code>plot_id</code> from the gathering, we would do the following:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys_gw_long &lt;-<span class="st"> </span>surveys_gw_wide %&gt;%
-<span class="st">  </span><span class="kw">gather</span>(genus, mean_weight, -plot_id)
+<p>We could now plot comparisons between the weight of species on different plots for example, although we may wish to fill in the missing values first.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys_gw %&gt;%
+<span class="st">  </span><span class="kw">spread</span>(genus, mean_weight, <span class="dt">fill =</span> <span class="dv">0</span>) %&gt;%
+<span class="st">  </span><span class="kw">head</span>()</code></pre></div>
+</div>
+<div id="gathering" class="section level4">
+<h4>Gathering</h4>
+<p>The opposing situation could occur if we had been provided with data in the form of <code>surveys_spread</code>, where the genus names are column names, but we wish to treat them as values of a genus variable instead.</p>
+<p>In this situation we are gathering the column names and turning them into a pair of new variables. One variable represents the column names as values, and the other variable contains the values previously associated with the column names.</p>
+<p><code>gather()</code> takes four principal arguments:</p>
+<ol style="list-style-type: decimal">
+<li>the data</li>
+<li>the <em>key</em> column variable we wish to create from column names.</li>
+<li>the <em>values</em> column variable we wish to create and fill with values associated with the key.</li>
+<li>the names of the columns we use to fill the key variable (or to drop).</li>
+</ol>
+<p>To recreate <code>surveys_gw</code> from <code>surveys_spread</code> we would create a key called <code>genus</code> and value called <code>mean_weight</code> and use all columns except <code>plot_id</code> for the key variable. Here we drop <code>plot_id</code> column with a minus sign.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys_gather &lt;-<span class="st"> </span>surveys_spread %&gt;%
+<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> genus, <span class="dt">value =</span> mean_weight, -plot_id)
 
-<span class="kw">head</span>(surveys_gw_long)</code></pre></div>
-<p>Note that now the <code>NA</code> genera are included in the long format. Going from wide to long to wide can be a useful way to balance out a dataset so every replicate has the same composition.</p>
+<span class="kw">str</span>(surveys_gather)</code></pre></div>
+<div class="figure">
+<img src="img/gather_data_R.png" />
+
+</div>
+<p>Note that now the <code>NA</code> genera are included in the re-gathered format. Spreading and then gathering can be a useful way to balance out a dataset so every replicate has the same composition.</p>
 <p>We could also have used a specification for what columns to include. This can be useful if you have a large number of identifying columns, and it’s easier to specify what to gather than what to leave alone. And if the columns are in a row, we don’t even need to list them all out - just use the <code>:</code> operator!</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys_gw_wide %&gt;%
-<span class="st">  </span><span class="kw">gather</span>(genus, mean_weight, Baiomys:Spermophilus) %&gt;%
-<span class="st">  </span>head</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys_spread %&gt;%
+<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> genus, <span class="dt">value =</span> mean_weight, Baiomys:Spermophilus) %&gt;%
+<span class="st">  </span><span class="kw">head</span>()</code></pre></div>
 <blockquote>
 <h3 id="challenge-3" class="challenge">Challenge</h3>
 <ol style="list-style-type: decimal">
-<li><p>Make a wide data frame with <code>year</code> as columns, <code>plot_id</code> as rows, and the values are the number of genera per plot. You will need to summarize before reshaping, and use the function <code>n_distinct</code> to get the number of unique types of a genera. It’s a powerful function! See <code>?n_distinct</code> for more.</p></li>
-<li><p>Now take that data frame, and make it long again, so each row is a unique <code>plot_id</code> <code>year</code> combination.</p></li>
-<li><p>The <code>surveys</code> data set is not truly wide or long because there are two columns of measurement - <code>hindfoot_length</code> and <code>weight</code>. This makes it difficult to do things like look at the relationship between mean values of each measurement per year in different plot types. Let’s walk through a common solution for this type of problem. First, use <code>gather</code> to create a truly long dataset where we have a key column called <code>measurement</code> and a <code>value</code> column that takes on the value of either <code>hindfoot_length</code> or <code>weight</code>. Hint: You’ll need to specify which columns are being gathered.</p></li>
-<li><p>With this new truly long data set, calculate the average of each <code>measurement</code> in each <code>year</code> for each different <code>plot_type</code>. Then <code>spread</code> them into a wide data set with a column for <code>hindfoot_length</code> and <code>weight</code>. Hint: Remember, you only need to specify the key and value columns for <code>spread</code>.</p></li>
+<li><p>Spread the data frame with <code>year</code> as columns, <code>plot_id</code> as rows, and the values are the number of genera per plot. You will need to summarize before reshaping, and use the function <code>n_distinct()</code> to get the number of unique types of a genera. It’s a powerful function! See <code>?n_distinct</code> for more.</p></li>
+<li><p>Now take that data frame, and make gather it again, so each row is a unique <code>plot_id</code> <code>year</code> combination.</p></li>
+<li><p>The <code>surveys</code> data set has two columns of measurement: <code>hindfoot_length</code> and <code>weight</code>. This makes it difficult to do things like look at the relationship between mean values of each measurement per year in different plot types. Let’s walk through a common solution for this type of problem. First, use <code>gather()</code> to create a dataset where we have a key column called <code>measurement</code> and a <code>value</code> column that takes on the value of either <code>hindfoot_length</code> or <code>weight</code>. Hint: You’ll need to specify which columns are being gathered.</p></li>
+<li><p>With this new data set, calculate the average of each <code>measurement</code> in each <code>year</code> &gt; for each different <code>plot_type</code>. Then <code>spread()</code> them into a data set with a column for <code>hindfoot_length</code> and <code>weight</code>. Hint: Remember, you only need to specify the key and value columns for <code>spread()</code>.</p></li>
 </ol>
 </blockquote>
 <!---
@@ -572,8 +630,8 @@ surveys_hindfoot_half <- surveys %>%
 <div id="exporting-data" class="section level1">
 <h1>Exporting data</h1>
 <p>Now that you have learned how to use <strong><code>dplyr</code></strong> to extract information from or summarize your raw data, you may want to export these new datasets to share them with your collaborators or for archival.</p>
-<p>Similar to the <code>read.csv()</code> function used for reading CSV files into R, there is a <code>write.csv()</code> function that generates CSV files from data frames.</p>
-<p>Before using <code>write.csv()</code>, we are going to create a new folder, <code>data_output</code>, in our working directory that will store this generated dataset. We don’t want to write generated datasets in the same directory as our raw data. It’s good practice to keep them separate. The <code>data</code> folder should only contain the raw, unaltered data, and should be left alone to make sure we don’t delete or modify it. In contrast, our script will generate the contents of the <code>data_output</code> directory, so even if the files it contains are deleted, we can always re-generate them.</p>
+<p>Similar to the <code>read_csv()</code> function used for reading CSV files into R, there is a <code>write_csv()</code> function that generates CSV files from data frames.</p>
+<p>Before using <code>write_csv()</code>, we are going to create a new folder, <code>data_output</code>, in our working directory that will store this generated dataset. We don’t want to write generated datasets in the same directory as our raw data. It’s good practice to keep them separate. The <code>data</code> folder should only contain the raw, unaltered data, and should be left alone to make sure we don’t delete or modify it. In contrast, our script will generate the contents of the <code>data_output</code> directory, so even if the files it contains are deleted, we can always re-generate them.</p>
 <p>In preparation for our next lesson on plotting, we are going to prepare a cleaned up version of the dataset that doesn’t include any missing data.</p>
 <p>Let’s start by removing observations for which the <code>species_id</code> is missing. In this dataset, the missing species are represented by an empty string and not an <code>NA</code>. Let’s also remove observations for which <code>weight</code> and the <code>hindfoot_length</code> are missing. This dataset should also only contain observations of animals for which the sex has been determined:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys_complete &lt;-<span class="st"> </span>surveys %&gt;%
@@ -591,12 +649,11 @@ species_counts &lt;-<span class="st"> </span>surveys_complete %&gt;%
 ## Only keep the most common species
 surveys_complete &lt;-<span class="st"> </span>surveys_complete %&gt;%
 <span class="st">  </span><span class="kw">filter</span>(species_id %in%<span class="st"> </span>species_counts$species_id)</code></pre></div>
-<p>To make sure that everyone has the same dataset, check that <code>surveys_complete</code> has 30463 rows and 14 columns by typing <code>dim(surveys_complete)</code>.</p>
-<p>Now that our dataset is ready, we can save it as a CSV file in our <code>data_output</code> folder. By default, <code>write.csv()</code> includes a column with row names (in our case the names are just the row numbers), so we need to add <code>row.names = FALSE</code> so they are not included:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write.csv</span>(surveys_complete, <span class="dt">file =</span> <span class="st">&quot;data_output/surveys_complete.csv&quot;</span>,
-          <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<p>To make sure that everyone has the same dataset, check that <code>surveys_complete</code> has 30463 rows and 13 columns by typing <code>dim(surveys_complete)</code>.</p>
+<p>Now that our dataset is ready, we can save it as a CSV file in our <code>data_output</code> folder.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write_csv</span>(surveys_complete, <span class="dt">path =</span> <span class="st">&quot;data_output/surveys_complete.csv&quot;</span>)</code></pre></div>
 <p style="text-align: right; font-size: small;">
-Page build on: 2017-09-14 16:03:38
+Page build on: 2017-10-15 09:49:03
 </p>
 </div>
 

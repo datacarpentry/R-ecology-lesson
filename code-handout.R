@@ -83,8 +83,8 @@
 ### Factors
 sex <- factor(c("male", "female", "female", "male"))
 f <- factor(c(1990, 1983, 1977, 1998, 1990))
-as.numeric(f)               # wrong! and there is no warning...
-as.numeric(as.character(f)) # works...
+as.numeric(f)               # Wrong! And there is no warning...
+as.numeric(as.character(f)) # Works...
 as.numeric(levels(f))[f]    # The recommended way.
 ## bar plot of the number of females and males captured during the experiment:
 plot(surveys$sex)
@@ -232,10 +232,10 @@ plot(surveys$sex)
 
 ## SQL databases and R
 ## install.packages(c("dbplyr", "RSQLite"))
-library(dbplyr)
 library(dplyr)
+library(dbplyr)
 mammals <- DBI::dbConnect(RSQLite::SQLite(), "data/portal_mammals.sqlite")
-mammals
+src_dbi(mammals)
 tbl(mammals, sql("SELECT year, species_id, plot_id FROM surveys"))
 surveys <- tbl(mammals, "surveys")
 surveys %>%
