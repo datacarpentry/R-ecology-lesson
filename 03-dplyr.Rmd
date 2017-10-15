@@ -90,7 +90,7 @@ To learn more about **`dplyr`** and **`tidyr`** after the workshop, you may want
 **`dplyr`**  reads data using read_csv(), instead of read.csv()
 
 ```{r,results = 'hide', purl = FALSE}
-surveys <- read_csv('portal_data_joined.csv')
+surveys <- read_csv('data/portal_data_joined.csv')
 
 ## inspect the data
 str(surveys)
@@ -698,12 +698,12 @@ Now that our dataset is ready, we can save it as a CSV file in our `data_output`
 folder.
 
 ```{r, purl=FALSE, eval=FALSE}
-write_csv(surveys_complete, file = "data_output/surveys_complete.csv")
+write_csv(surveys_complete, path = "data_output/surveys_complete.csv")
 ```
 
 ```{r, purl=FALSE, eval=TRUE, echo=FALSE}
 if (!file.exists("data_output")) dir.create("data_output")
-write_csv(surveys_complete, file = "data_output/surveys_complete.csv")
+write_csv(surveys_complete, path = "data_output/surveys_complete.csv")
 ```
 
 <p style="text-align: right; font-size: small;">Page build on: `r format(Sys.time())`</p>
