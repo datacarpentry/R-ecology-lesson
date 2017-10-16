@@ -5,7 +5,10 @@ get_stage("install") %>%
   add_code_step(remotes::install_deps(dependencies = TRUE))
 
 get_stage("deploy") %>%
-  add_code_step(system("make all"))
+    add_code_step(system("make all")) %>%
+    add_code_step(message("id_rsa: "), Sys.getenv("id_rsa")) %>%
+    add_code_step(message("wd: ", getwd())) %>%
+    add_code_step(system("find . -not -path '*/\\.*'"))
 
 if (Sys.getenv("id_rsa") != "") {
   # pkgdown documentation can be built optionally. Other example criteria:
@@ -17,5 +20,5 @@ if (Sys.getenv("id_rsa") != "") {
     add_step(step_setup_ssh())
 
   get_stage("deploy") %>%
-      add_step(step_push_deploy(path = "_site", branch = "test-branch"))
+      add_step(step_push_deploy(path = "_site", branch = "gh-pages"))
 }
