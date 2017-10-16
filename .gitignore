@@ -19,3 +19,5 @@
 /data/
 /portalR.db
 data_output/
+.secret/
+_site/

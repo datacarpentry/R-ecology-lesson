@@ -19,9 +19,9 @@ navbar:
   right:
     - icon: fa-github fa-lg
       href: https://github.com/datacarpentry/R-ecology-lesson
-output_dir: "."
-exclude: ["CONTRIBUT*.md","index.md","README.md","*.db"]
-include: ["*.Rmd","LICENSE.md"]
+output_dir: "_site"
+exclude: ["CONTRIBUT*.md","index.md","README.md","NEWS.md","*.db"]
+include: ["*.Rmd","LICENSE.md","code-handout.R"]
 output:
   html_document:
     highlight: pygments
