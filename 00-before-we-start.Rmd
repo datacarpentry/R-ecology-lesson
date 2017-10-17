@@ -94,7 +94,7 @@ The plotting functionalities in R are endless, and allow you to adjust any
 aspect of your graph to convey most effectively the message from your data.
 
 
-### R has a large community
+### R has a large and welcoming community
 
 Thousands of people use R daily. Many of them are willing to help you through
 mailing lists and websites such as [Stack Overflow](https://stackoverflow.com/).
