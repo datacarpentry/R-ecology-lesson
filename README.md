@@ -1,10 +1,6 @@
 [![Build Status](https://travis-ci.org/datacarpentry/R-ecology-lesson.svg?branch=master)](https://travis-ci.org/datacarpentry/R-ecology-lesson)
 
----
-layout: lesson
-title: Data carpentry: R for data analysis and visualization of Ecological Data
-keywords: ["R", "subset", "data.frame", "read.csv", "dplyr", "ggplot2"]
----
+# Data carpentry: R for data analysis and visualization of Ecological Data
 
 This is an introduction to R designed for participants with no programming
 experience. These lessons can be taught in 3/4 of a day (6 hours). They start
