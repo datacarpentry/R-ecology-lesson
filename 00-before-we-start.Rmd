@@ -97,7 +97,7 @@ aspect of your graph to convey most effectively the message from your data.
 ### R has a large and welcoming community
 
 Thousands of people use R daily. Many of them are willing to help you through
-mailing lists and websites such as [Stack Overflow](https://stackoverflow.com/).
+mailing lists and websites such as [Stack Overflow](https://stackoverflow.com/), or on the [RStudio community](https://community.rstudio.com/).
 
 
 ### Not only is R free, but it is also open-source and cross-platform
