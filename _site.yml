@@ -20,7 +20,7 @@ navbar:
     - icon: fa-github fa-lg
       href: https://github.com/datacarpentry/R-ecology-lesson
 output_dir: "_site"
-exclude: ["portal-database.sqlite", "DESCRIPTION", "Makefile", "NEWS.html", "README.html"]
+exclude: ["portal-database.sqlite", "DESCRIPTION", "Makefile"]
 output:
   html_document:
     highlight: pygments
