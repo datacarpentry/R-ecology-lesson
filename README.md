@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/datacarpentry/R-ecology-lesson.svg?branch=master)](https://travis-ci.org/datacarpentry/R-ecology-lesson)
+
 ---
 layout: lesson
 title: Data carpentry: R for data analysis and visualization of Ecological Data
