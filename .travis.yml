@@ -3,9 +3,7 @@
 # Usually you shouldn't need to change the first part of the file
 
 # DO NOT CHANGE THE CODE BELOW
-before_install:
-  - openssl aes-256-cbc -K $encrypted_426f673ef004_key -iv $encrypted_426f673ef004_iv -in tic\+travis_fm.enc -out tic\+travis_fm -d
-  - R -q -e 'install.packages("remotes"); remotes::install_github("ropenscilabs/tic"); tic::prepare_all_stages(); tic::before_install()'
+before_install: R -q -e 'install.packages("remotes"); remotes::install_github("ropenscilabs/tic"); tic::prepare_all_stages(); tic::before_install()'
 install: R -q -e 'tic::install()'
 after_install: R -q -e 'tic::after_install()'
 before_script: R -q -e 'tic::before_script()'
@@ -36,7 +34,6 @@ env:
   global:
   - _R_CHECK_FORCE_SUGGESTS_=false
   - MAKEFLAGS="-j 2"
-  - secure: DuthhGAFnlLr+o50z20W1I8BbE5YSjPNXM/v9aY9o6D/rn+YcOAu5WYIC5qroyJC7ZI5AlIB+B2AZgsz1QMFez64hlgtqloS+zgXuijcfl3EZe2TA4khpSOM6uovw3Xh3t/b/4HOYrGQeJ+a5b4xJHwY/b6tdcuGoPz0SOA/MHc=
-  - secure: a6HtQJFLocxllPK/bG+G1F4EXr1bn85m/k8RDOFl9wuNgCiYJ5JCfrYi/DskeVhF9HC9/S3ilXEbkBn0KeAeJhI3NCsf0yoxc/bNo3xTw5c5v3TmnZjGBUO8BFl5diqgHU+U2CQGd+s11nDIqqA9TeH+cgRJLgkr6ok3EdvNKec=
 
-    #services:
+#services
+services:
