@@ -167,7 +167,9 @@ tutorial.
 
 Your working directory should now look like this:
 
-![How it should look like at the beginning of this lesson](img/r-starting-how-it-should-look-like.png)
+```{r, results='markup',fig.cap="How it should look like at the beginning of this lesson", echo=FALSE, purl=FALSE, out.width='400px', fig.align='center'}
+knitr::include_graphics("img/r-starting-how-it-should-look-like.png")
+```
 
 ### Organizing your working directory
 
