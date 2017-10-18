@@ -21,6 +21,7 @@ navbar:
       href: https://github.com/datacarpentry/R-ecology-lesson
 output_dir: "_site"
 exclude: ["portal-database.sqlite", "DESCRIPTION", "Makefile"]
+include: ["code-handout.R"]
 output:
   html_document:
     highlight: pygments
