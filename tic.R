@@ -7,7 +7,8 @@ get_stage("install") %>%
   add_code_step(remotes::install_deps(dependencies = TRUE))
 
 get_stage("deploy") %>%
-    add_step(build_lesson())
+    add_step(build_lesson()) %>%
+    add_step(check_links())
 
 if (Sys.getenv("id_rsa") != "") {
   # pkgdown documentation can be built optionally. Other example criteria:
