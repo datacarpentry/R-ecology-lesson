@@ -107,7 +107,7 @@ your operating system, and then follow the instructions to install
 ##### If you don't have R and RStudio installed
 
 * Download R from
-  the [CRAN website](http://cran.r-project.org/bin/macosx).
+  the [CRAN website](http://cran.r-project.org/bin/macosx/).
 * Select the `.pkg` file for the latest R version
 * Double click on the downloaded file to install R
 * It is also a good idea to install [XQuartz](https://www.xquartz.org/) (needed
