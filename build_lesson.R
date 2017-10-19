@@ -22,7 +22,7 @@ CheckLinks <- R6::R6Class(
      public = list(
          run = function() {
          ## ignore JS file not included as part of the
-         link_status <- system("linkchecker _site --ignore-url=external\\.+js")
+         link_status <- system("linkchecker --ignore-url=external.+js --ignore-url=^mailto: --ignore-url=^data:  -r 2 _site")
          if (link_status > 0)
              stop("Some links are broken")
      })
