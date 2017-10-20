@@ -21,8 +21,10 @@ CheckLinks <- R6::R6Class(
      "CheckLinks", inherit = TicStep,
      public = list(
          run = function() {
-         ## ignore JS file not included as part of the
-         link_status <- system("linkchecker --ignore-url=external.+js --ignore-url=^mailto: --ignore-url=^data: -r 2 --no-warnings _site")
+         ## ignore JS file not included as part of rmarkdown
+         ## ignore email addresses
+         ## ignore embedded images
+         link_status <- system("linkchecker --ignore-url=external.+js --ignore-url=^mailto: --ignore-url=^data: -r 1 --no-warnings _site")
          if (link_status > 0)
              stop("Some links are broken")
      })
