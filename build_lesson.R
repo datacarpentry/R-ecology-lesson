@@ -17,6 +17,11 @@ build_lesson <- function() {
 }
 
 
+format_url_errors <- function(res_links, idx) {
+    paste("  - broken url:", res_links$urlname[idx], "\n",
+          "          from:", res_links$parentname[idx], "\n")
+}
+
 CheckLinks <- R6::R6Class(
      "CheckLinks", inherit = TicStep,
      public = list(
@@ -31,15 +36,12 @@ CheckLinks <- R6::R6Class(
          system("cat link_res.csv")
          res_links <- readr::read_delim("link_res.csv", delim = ";", comment = "#")
          unique(res_links$result)
-         res_404 <- grepl("^404", res_links$result)
+         res_404 <- grepl("^404|^gaierror", res_links$result)
+         other_errors <- grepl("error", res_link$result, ignore.case = TRUE)
+         if (any(other_errors)) warning("These links might be problematic: \n",
+                                        format_url_errors(res_links, other_errors))
          if (any(res_404)) stop("Some links are broken: \n",
-                                paste("  - broken url:", res_links$urlname[res_404], "\n",
-                                      "    from:  ", res_links$parentname[res_404], "\n"))
-         ## this old version of linkchecker is too strict.  Uncomment when newer
-         ## ubuntu distro available on Travis or use Docker image to build the
-         ## lesson
-         # if (link_status > 0)
-         #    stop("Some links are broken")
+                                format_url_errors(res_links, res_404))
      })
      )
 
