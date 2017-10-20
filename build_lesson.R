@@ -26,9 +26,15 @@ CheckLinks <- R6::R6Class(
          ## ignore embedded images
          link_status <- system("linkchecker --ignore-url=external.+js --ignore-url=^mailto: --ignore-url=^data: --no-warnings  --file-output=csv/link_res.csv _site")
          message("linkchecker exit code: ", link_status)
+         ## write output to CSV file and check error codes
+         ## stop only for 404s
          system("cat link_res.csv")
-         res_links <- read.table("link_res.csv", sep = ";", header = TRUE, stringsAsFactors = FALSE)
-         str(res_links)
+         res_links <- readr::read_delim("link_res.csv", delim = ";", comment = "#")
+         unique(res_links$result)
+         res_404 <- grepl("^404", res_links$result)
+         if (any(res_404)) stop("Some links are broken: \n",
+                                paste("  - broken url:", res_links$urlname[res_404], "\n",
+                                      "    from:  ", res_links$parentname[res_404], "\n"))
          ## this old version of linkchecker is too strict.  Uncomment when newer
          ## ubuntu distro available on Travis or use Docker image to build the
          ## lesson
