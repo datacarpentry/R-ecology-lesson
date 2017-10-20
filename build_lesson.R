@@ -18,8 +18,8 @@ build_lesson <- function() {
 
 
 format_url_errors <- function(res_links, idx) {
-    paste("  - broken url:", res_links$urlname[idx], "\n",
-          "          from:", res_links$parentname[idx], "\n")
+    paste0("  - broken url:", res_links$urlname[idx], "\n",
+           "          from:", res_links$parentname[idx], "\n")
 }
 
 CheckLinks <- R6::R6Class(
