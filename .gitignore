@@ -21,3 +21,6 @@ portal-database.sqlite
 data_output/
 .secret/
 _site/
+
+# output from linkchecker
+link_res.csv
