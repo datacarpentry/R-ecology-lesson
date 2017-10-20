@@ -26,10 +26,6 @@ source("setup.R")
 
 ------------
 
-
-[foo](https://foo.bar)
-[broken](http://datacarpentry.org/R-ecology-lesson/test.html)
-
 ## Creating objects in R
 
 ```{r, echo=FALSE, purl=TRUE}
