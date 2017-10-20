@@ -21,7 +21,7 @@ generate_citation <- function(authors = "AUTHORS",
         editor = editors,
         month = format(Sys.Date(), "%B"),
         year = format(Sys.Date(), "%Y"),
-        url = "http://datacarpentry.org/R-ecology-lesson",
+        url = "http://datacarpentry.org/R-ecology-lesson/",
         doi = doi
     )
 
