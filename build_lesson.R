@@ -33,14 +33,13 @@ CheckLinks <- R6::R6Class(
          message("linkchecker exit code: ", link_status)
          ## write output to CSV file and check error codes
          ## stop only for 404s
-         system("cat link_res.csv")
          res_links <- readr::read_delim("link_res.csv", delim = ";", comment = "#")
          unique(res_links$result)
          res_404 <- grepl("^404|^gaierror", res_links$result)
          other_errors <- grepl("error", res_links$result, ignore.case = TRUE)
          if (any(other_errors)) warning("These links might be problematic: \n",
                                         format_url_errors(res_links, other_errors))
-         if (any(res_404)) stop("Some links are broken: \n",
+         if (any(res_404)) stop("Some links are broken (check log to inspect): \n",
                                 format_url_errors(res_links, res_404))
      })
      )
