@@ -5,7 +5,8 @@
 # DO NOT CHANGE THE CODE BELOW
 before_install:
   - sudo apt-get -qq update && sudo apt-get install -y linkchecker
-  - echo -e "[checking]\nsslverify=0" > ~/.linkchecker/linkcheckerrc
+  - mkdir -p ~/.linkchecker
+  - echo -e '[checking]\nsslverify=0' > ~/.linkchecker/linkcheckerrc
   - R -q -e 'install.packages("remotes"); remotes::install_github("ropenscilabs/tic"); tic::prepare_all_stages(); tic::before_install()'
 install: R -q -e 'tic::install()'
 after_install: R -q -e 'tic::after_install()'
