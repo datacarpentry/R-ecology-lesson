@@ -14,17 +14,17 @@ introduction to plotting. There is also a lesson on how to use databases from R 
 ## Prerequisites
 
 > * Having R and RStudio installed (though see the first
-> lesson, [Before we start](00-before-we-start.html) for installation
+> lesson, [Before we start](http://datacarpentry.org/R-ecology-lesson/00-before-we-start.html) for installation
 > instructions)
 
 ## Topics
 
-* [Before we start](00-before-we-start.html)
-* [Introduction to R](01-intro-to-r.html)
-* [Starting with data](02-starting-with-data.html)
-* [Aggregating and analyzing data with dplyr](03-dplyr.html)
-* [Data visualization with ggplot2](04-visualization-ggplot2.html)
-* [R and Databases](05-r-and-databases.html)
+* [Before we start](http://datacarpentry.org/R-ecology-lesson/00-before-we-start.html)
+* [Introduction to R](http://datacarpentry.org/R-ecology-lesson/01-intro-to-r.html)
+* [Starting with data](http://datacarpentry.org/R-ecology-lesson/02-starting-with-data.html)
+* [Aggregating and analyzing data with dplyr](http://datacarpentry.org/R-ecology-lesson/03-dplyr.html)
+* [Data visualization with ggplot2](http://datacarpentry.org/R-ecology-lesson/04-visualization-ggplot2.html)
+* [R and Databases](http://datacarpentry.org/R-ecology-lesson/05-r-and-databases.html)
 
 ## Code handout
 
