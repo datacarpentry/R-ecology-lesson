@@ -26,7 +26,8 @@ CheckLinks <- R6::R6Class(
          ## ignore embedded images
          link_status <- system("linkchecker --ignore-url=external.+js --ignore-url=^mailto: --ignore-url=^data: --no-warnings  --file-output=csv/link_res.csv _site")
          message("linkchecker exit code: ", link_status)
-         res_links <- read.csv2("link_res.csv", stringsAsFactors = FALSE)
+         readLines("link_res.csv", n = 50)
+         res_links <- read.table("link_res.csv", sep = ";", header = TRUE, stringsAsFactors = FALSE)
          str(res_links)
          ## this old version of linkchecker is too strict.  Uncomment when newer
          ## ubuntu distro available on Travis or use Docker image to build the
