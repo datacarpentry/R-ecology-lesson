@@ -244,7 +244,7 @@ R lazy and only retrieved 10 of them?
 ## Laziness
 
 Hadley Wickham, the author of **`dplyr`**
-[explains](https://cran.r-project.org/web/packages/dplyr/vignettes/databases.html):
+[explains](https://cran.r-project.org/web/packages/dbplyr/vignettes/dbplyr.html):
 
 > When working with databases, **`dplyr`** tries to be as lazy as possible:
 >
