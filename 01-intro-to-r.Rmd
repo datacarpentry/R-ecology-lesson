@@ -523,7 +523,7 @@ Recall that you can use the `typeof()` function to find the type of your atomic 
 > removed.
 >
 >     ```r
->     lengths <- c(10,24,NA,18,NA,20)
+>     lengths <- c(10, 24, NA, 18, NA, 20)
 >     ```
 >
 > 2. Use the function `median()` to calculate the median of the `lengths` vector.
@@ -533,7 +533,7 @@ Recall that you can use the `typeof()` function to find the type of your atomic 
 ## 1. Using this vector of length measurements, create a new vector with the NAs
 ## removed.
 ##
-##    lengths <- c(10,24,NA,18,NA,20)
+##    lengths <- c(10, 24, NA, 18, NA, 20)
 ##
 ## 2. Use the function `median()` to calculate the median of the `lengths` vector.
 ```
