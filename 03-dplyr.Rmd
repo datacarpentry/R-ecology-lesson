@@ -90,7 +90,7 @@ To learn more about **`dplyr`** and **`tidyr`** after the workshop, you may want
 **`dplyr`**  reads data using read_csv(), instead of read.csv()
 
 ```{r,results = 'hide', purl = FALSE}
-surveys <- read_csv('data/portal_data_joined.csv')
+surveys <- read_csv("data/portal_data_joined.csv")
 
 ## inspect the data
 str(surveys)

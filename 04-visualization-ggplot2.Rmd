@@ -36,7 +36,7 @@ library(tidyverse)
 If not still in the workspace, load the data we saved in the previous lesson.
 
 ```{r load-data, eval=FALSE,  purl=FALSE}
-surveys_complete <- read_csv('data_output/surveys_complete.csv')
+surveys_complete <- read_csv("data_output/surveys_complete.csv")
 ```
 
 ## Plotting with **`ggplot2`**
@@ -446,9 +446,9 @@ and 'n' and add a title to the figure:
 ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex)) +
     geom_line() +
     facet_wrap(~ species_id) +
-    labs(title = 'Observed species in time',
-         x = 'Year of observation',
-         y = 'Number of species') +
+    labs(title = "Observed species in time",
+         x = "Year of observation",
+         y = "Number of species") +
     theme_bw()
 ```
 
@@ -459,9 +459,9 @@ increasing the font size:
 ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex)) +
     geom_line() +
     facet_wrap(~ species_id) +
-    labs(title = 'Observed species in time',
-        x = 'Year of observation',
-        y = 'Number of species') +
+    labs(title = "Observed species in time",
+        x = "Year of observation",
+        y = "Number of species") +
     theme_bw() +
     theme(text=element_text(size=16))
 ```
@@ -481,9 +481,9 @@ labels:
 ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex)) +
     geom_line() +
     facet_wrap(~ species_id) +
-    labs(title = 'Observed species in time',
-        x = 'Year of observation',
-        y = 'Number of species') +
+    labs(title = "Observed species in time",
+        x = "Year of observation",
+        y = "Number of species") +
     theme_bw() +
     theme(axis.text.x = element_text(colour="grey20", size=12, angle=90, hjust=.5, vjust=.5),
                         axis.text.y = element_text(colour="grey20", size=12),
@@ -546,9 +546,9 @@ Instead, use the `ggsave()` function, which allows you easily change the dimensi
 my_plot <- ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex)) +
     geom_line() +
     facet_wrap(~ species_id) +
-    labs(title = 'Observed species in time',
-        x = 'Year of observation',
-        y = 'Number of species') +
+    labs(title = "Observed species in time",
+        x = "Year of observation",
+        y = "Number of species") +
     theme_bw() +
     theme(axis.text.x = element_text(colour="grey20", size=12, angle=90, hjust=.5, vjust=.5),
                         axis.text.y = element_text(colour="grey20", size=12),

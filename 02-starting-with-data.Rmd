@@ -61,7 +61,7 @@ download.file("https://ndownloader.figshare.com/files/2292169",
 You are now ready to load the data:
 
 ```{r, eval=TRUE,  purl=FALSE}
-surveys <- read.csv('data/portal_data_joined.csv')
+surveys <- read.csv("data/portal_data_joined.csv")
 ```
 
 This statement doesn't produce any output because, as you might recall,
