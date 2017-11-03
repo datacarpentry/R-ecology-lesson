@@ -599,4 +599,5 @@ surveys_dates[is.na(surveys$date)]
 Why did these dates fail to parse? If you had to use these data for your
 analyses, how would you deal with this situation?
 
-<p style="text-align: right; font-size: small;">Page built on: `r format(Sys.time())`</p>
+```{r, child="_page_built_on.Rmd"}
+```

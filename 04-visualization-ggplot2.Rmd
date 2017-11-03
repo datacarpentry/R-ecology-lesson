@@ -572,4 +572,5 @@ Note: The parameters `width` and `height` also determine the font size in the sa
 ##  https://www.rstudio.com/wp-content/uploads/2015/08/ggplot2-cheatsheet.pdf
 ```
 
-<p style="text-align: right; font-size: small;">Page built on: `r format(Sys.time())`</p>
+```{r, child="_page_built_on.Rmd"}
+```
