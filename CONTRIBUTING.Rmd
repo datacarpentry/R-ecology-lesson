@@ -152,4 +152,6 @@ And not this format
     Mail us at [board@datacarpentry.org](mailto:board@datacarpentry.org)
     or come chat with us on [our Gitter chat](https://gitter.im/data-carpentry/Lobby).
 
-<p style="text-align: right; font-size: small;">Page build on: `r format(Sys.time())`</p>
+
+```{r, child="_page_built_on.Rmd"}
+```
