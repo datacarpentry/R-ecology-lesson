@@ -29,5 +29,6 @@ output:
     toc_float:
       collapsed: false
     include:
+      in_header: header.html
       after_body: footer.html
     css: style.css
