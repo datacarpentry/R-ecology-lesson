@@ -530,4 +530,6 @@ from flat files!
 reading the three `csv` files. Because all the data has to flow through R,
 this is not suitable for very large datasets.
 
-<p style="text-align: right; font-size: small;">Page built on: `r format(Sys.time())`</p>
+
+```{r, child="_page_built_on.Rmd"}
+```

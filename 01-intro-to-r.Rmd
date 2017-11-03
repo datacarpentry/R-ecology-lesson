@@ -541,4 +541,5 @@ structures, we are ready to start working with the Portal dataset we have been
 using in the other lessons, and learn about data frames.
 
 
-<p style="text-align: right; font-size: small;">Page built on: `r format(Sys.time())`</p>
+```{r, child="_page_built_on.Rmd"}
+```
