@@ -706,4 +706,4 @@ if (!file.exists("data_output")) dir.create("data_output")
 write_csv(surveys_complete, path = "data_output/surveys_complete.csv")
 ```
 
-<p style="text-align: right; font-size: small;">Page build on: `r format(Sys.time())`</p>
+<p style="text-align: right; font-size: small;">Page built on: `r format(Sys.time())`</p>
