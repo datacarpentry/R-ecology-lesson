@@ -85,7 +85,7 @@ mammals <- DBI::dbConnect(RSQLite::SQLite(), "data/portal_mammals.sqlite")
 This command uses 2 packages that helps **`dbplyr`** and **`dplyr`** talk to the SQLite database. **`DBI`** is not something that you'll use directly as a user. It allows R to send commands to databases irrespective of the database management system used. The **`RSQLite`** package allows R to interface with SQLite databases.
 
 This command does not load the data into the R session (as the
-`read.csv()` function did). Instead, it merely instructs R to connect to
+`read_csv()` function did). Instead, it merely instructs R to connect to
 the `SQLite` database contained in the `portal_mammals.sqlite` file.
 
 Using a similar approach, you could connect to many other database management systems that are supported by R including MySQL, PostgreSQL, BigQuery, etc.
@@ -164,7 +164,7 @@ known.
 
 The reason for this behavior highlights a key difference between using
 **`dplyr`** on datasets in memory (e.g. loaded into your R session via
-`read.csv()`) and those provided by a database. To understand it, we take a
+`read_csv()`) and those provided by a database. To understand it, we take a
 closer look at how **`dplyr`** communicates with our SQLite database.
 
 ### SQL translation
@@ -475,9 +475,9 @@ the mammals database that we've been working with, in R. First let's read in the
 `csv` files.
 
 ```{r data_frames, purl=TRUE}
-species <- read.csv("data/species.csv")
-surveys <- read.csv("data/surveys.csv")
-plots <- read.csv("data/plots.csv")
+species <- read_csv("data/species.csv")
+surveys <- read_csv("data/surveys.csv")
+plots <- read_csv("data/plots.csv")
 ```
 
 Creating a new SQLite database with **`dplyr`** is easy. You can re-use the same
