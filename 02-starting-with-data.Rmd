@@ -61,7 +61,7 @@ download.file("https://ndownloader.figshare.com/files/2292169",
 You are now ready to load the data:
 
 ```{r, eval=TRUE,  purl=FALSE}
-surveys <- read.csv('data/portal_data_joined.csv')
+surveys <- read.csv("data/portal_data_joined.csv")
 ```
 
 This statement doesn't produce any output because, as you might recall,
@@ -453,18 +453,18 @@ surveys$plot_type <- factor(surveys$plot_type)
 >   Don't hesitate to experiment!
 >
 >     ```{r, eval=FALSE, purl=FALSE}
->     animal_data <- data.frame(animal=c("dog", "cat", "sea cucumber", "sea urchin"),
->                               feel=c("furry", "squishy", "spiny"),
->                               weight=c(45, 8 1.1, 0.8))
+>     animal_data <- data.frame(animal = c("dog", "cat", "sea cucumber", "sea urchin"),
+>                               feel = c("furry", "squishy", "spiny"),
+>                               weight = c(45, 8 1.1, 0.8))
 >     ```
 >
 >     ```{r, eval=FALSE, purl=TRUE, echo=FALSE}
 >     ## Challenge:
 >     ##  There are a few mistakes in this hand-crafted `data.frame`,
 >     ##  can you spot and fix them? Don't hesitate to experiment!
->     animal_data <- data.frame(animal=c(dog, cat, sea cucumber, sea urchin),
->                               feel=c("furry", "squishy", "spiny"),
->                               weight=c(45, 8 1.1, 0.8))
+>     animal_data <- data.frame(animal = c(dog, cat, sea cucumber, sea urchin),
+>                               feel = c("furry", "squishy", "spiny"),
+>                               weight = c(45, 8 1.1, 0.8))
 >     ```
 >
 > 2. Can you predict the class for each of the columns in the following example?
@@ -475,11 +475,11 @@ surveys$plot_type <- factor(surveys$plot_type)
 >
 >     ```{r, eval=FALSE, purl=FALSE}
 >     country_climate <- data.frame(
->            country=c("Canada", "Panama", "South Africa", "Australia"),
->            climate=c("cold", "hot", "temperate", "hot/temperate"),
->            temperature=c(10, 30, 18, "15"),
->            northern_hemisphere=c(TRUE, TRUE, FALSE, "FALSE"),
->            has_kangaroo=c(FALSE, FALSE, FALSE, 1)
+>            country = c("Canada", "Panama", "South Africa", "Australia"),
+>            climate = c("cold", "hot", "temperate", "hot/temperate"),
+>            temperature = c(10, 30, 18, "15"),
+>            northern_hemisphere = c(TRUE, TRUE, FALSE, "FALSE"),
+>            has_kangaroo = c(FALSE, FALSE, FALSE, 1)
 >            )
 >     ```
 >
@@ -493,11 +493,11 @@ surveys$plot_type <- factor(surveys$plot_type)
 >    ##     to this call?
 >    ##   * What would you need to change to ensure that each column had the
 >    ##     accurate data type?
->    country_climate <- data.frame(country=c("Canada", "Panama", "South Africa", "Australia"),
->                                   climate=c("cold", "hot", "temperate", "hot/temperate"),
->                                   temperature=c(10, 30, 18, "15"),
->                                   northern_hemisphere=c(TRUE, TRUE, FALSE, "FALSE"),
->                                   has_kangaroo=c(FALSE, FALSE, FALSE, 1))
+>    country_climate <- data.frame(country = c("Canada", "Panama", "South Africa", "Australia"),
+>                                   climate = c("cold", "hot", "temperate", "hot/temperate"),
+>                                   temperature = c(10, 30, 18, "15"),
+>                                   northern_hemisphere = c(TRUE, TRUE, FALSE, "FALSE"),
+>                                   has_kangaroo = c(FALSE, FALSE, FALSE, 1))
 >    ```
 >
 >    <!--- Answers
@@ -559,20 +559,20 @@ Create a character vector from the `year`, `month`, and `day` columns of
 `surveys` using `paste()`:
 
 ```{r, eval=FALSE, purl=FALSE}
-paste(surveys$year, surveys$month, surveys$day, sep="-")
+paste(surveys$year, surveys$month, surveys$day, sep = "-")
 # sep indicates the character to use to separate each component
 ```
 
 This character vector can be used as the argument for `ymd()`:
 
 ```{r, eval=FALSE, purl=FALSE}
-ymd(paste(surveys$year, surveys$month, surveys$day, sep="-"))
+ymd(paste(surveys$year, surveys$month, surveys$day, sep = "-"))
 ```
 
 The resulting POSIXct vector can be added to `surveys` as a new column called `date`:
 
 ```{r, eval=TRUE, purl=FALSE}
-surveys$date <- ymd(paste(surveys$year, surveys$month, surveys$day, sep="-"))
+surveys$date <- ymd(paste(surveys$year, surveys$month, surveys$day, sep = "-"))
 str(surveys) # notice the new column, with 'date' as the class
 ```
 

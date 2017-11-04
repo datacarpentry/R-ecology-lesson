@@ -55,9 +55,9 @@ work together well such as **`tidyr`**, **`dplyr`**, **`ggplot2`**, **`tibble`**
 2. Using R expressions in a non standard way, which can be confusing for new learners.
 3. Hidden arguments, having default operations that new learners are not aware of.
 
-We have seen in our previous lesson that when building or importing a data frame, the columns that contain characters (i.e., text) are coerced (=converted) into the factor data type. We had to set **`stringsAsFactor`** to **`FALSE`** to avoid this hidden argument to convert our data type. 
+We have seen in our previous lesson that when building or importing a data frame, the columns that contain characters (i.e., text) are coerced (=converted) into the factor data type. We had to set **`stringsAsFactors`** to **`FALSE`** to avoid this hidden argument to convert our data type. 
 
-This time will use the **`tidyverse`** package to read the data and avoid having to set **`stringsAsFactor`** to **`FALSE`**
+This time will use the **`tidyverse`** package to read the data and avoid having to set **`stringsAsFactors`** to **`FALSE`**
 
 To load the package type:
 
@@ -90,7 +90,7 @@ To learn more about **`dplyr`** and **`tidyr`** after the workshop, you may want
 **`dplyr`**  reads data using read_csv(), instead of read.csv()
 
 ```{r,results = 'hide', purl = FALSE}
-surveys <- read_csv('data/portal_data_joined.csv')
+surveys <- read_csv("data/portal_data_joined.csv")
 
 ## inspect the data
 str(surveys)
