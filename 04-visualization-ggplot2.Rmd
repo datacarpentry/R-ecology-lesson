@@ -35,8 +35,8 @@ library(tidyverse)
 
 If not still in the workspace, load the data we saved in the previous lesson.
 
-```{r load-data, eval=FALSE,  purl=FALSE}
-surveys_complete <- read_csv('data_output/surveys_complete.csv')
+```{r load-data, eval=FALSE, purl=FALSE}
+surveys_complete <- read_csv("data_output/surveys_complete.csv")
 ```
 
 ## Plotting with **`ggplot2`**
@@ -96,13 +96,15 @@ plot can also be generated with code like this:
 surveys_plot <- ggplot(data = surveys_complete, aes(x = weight, y = hindfoot_length))
 
 # Draw the plot
-surveys_plot + geom_point()
+surveys_plot + 
+    geom_point()
 ```
 
 ```{r, eval=FALSE, purl=TRUE, echo=FALSE, purl=FALSE}
 ## Create a ggplot and draw it.
 surveys_plot <- ggplot(data = surveys_complete, aes(x = weight, y = hindfoot_length))
-surveys_plot + geom_point()
+surveys_plot + 
+    geom_point()
 ```
 
 Notes:
@@ -201,7 +203,7 @@ Or to color each species in the plot differently:
 
 ```{r color-by-species, purl=FALSE}
 ggplot(data = surveys_complete, aes(x = weight, y = hindfoot_length)) +
-    geom_point(alpha = 0.1, aes(color=species_id))
+    geom_point(alpha = 0.1, aes(color = species_id))
 ```
 
 > ### Challenge
@@ -422,14 +424,14 @@ has changed through time:
 yearly_sex_weight <- surveys_complete %>%
     group_by(year, sex, species_id) %>%
     summarize(avg_weight = mean(weight))
-ggplot(data = yearly_sex_weight, aes(x=year, y=avg_weight, color = species_id)) +
+ggplot(data = yearly_sex_weight, aes(x = year, y = avg_weight, color = species_id)) +
     geom_line() +
     facet_grid(sex ~ .)
 ```
 
 ```{r average-weight-time-facet-sex-columns, purl=FALSE}
 # One row, facet by column
-ggplot(data = yearly_sex_weight, aes(x=year, y=avg_weight, color = species_id)) +
+ggplot(data = yearly_sex_weight, aes(x = year, y = avg_weight, color = species_id)) +
     geom_line() +
     facet_grid(. ~ sex)
 ```
@@ -446,9 +448,9 @@ and 'n' and add a title to the figure:
 ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex)) +
     geom_line() +
     facet_wrap(~ species_id) +
-    labs(title = 'Observed species in time',
-         x = 'Year of observation',
-         y = 'Number of species') +
+    labs(title = "Observed species in time",
+         x = "Year of observation",
+         y = "Number of species") +
     theme_bw()
 ```
 
@@ -459,11 +461,11 @@ increasing the font size:
 ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex)) +
     geom_line() +
     facet_wrap(~ species_id) +
-    labs(title = 'Observed species in time',
-        x = 'Year of observation',
-        y = 'Number of species') +
+    labs(title = "Observed species in time",
+        x = "Year of observation",
+        y = "Number of species") +
     theme_bw() +
-    theme(text=element_text(size=16))
+    theme(text=element_text(size = 16))
 ```
 
 Note that it is also possible to change the fonts of your plots. If you are on
@@ -481,13 +483,13 @@ labels:
 ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex)) +
     geom_line() +
     facet_wrap(~ species_id) +
-    labs(title = 'Observed species in time',
-        x = 'Year of observation',
-        y = 'Number of species') +
+    labs(title = "Observed species in time",
+        x = "Year of observation",
+        y = "Number of species") +
     theme_bw() +
-    theme(axis.text.x = element_text(colour="grey20", size=12, angle=90, hjust=.5, vjust=.5),
-                        axis.text.y = element_text(colour="grey20", size=12),
-          text=element_text(size=16))
+    theme(axis.text.x = element_text(colour = "grey20", size = 12, angle = 90, hjust = 0.5, vjust = 0.5),
+                        axis.text.y = element_text(colour = "grey20", size = 12),
+          text = element_text(size = 16))
 ```
 
 If you like the changes you created better than the default theme, you can save them as
@@ -495,9 +497,9 @@ an object to be able to easily apply them to other plots you may create:
 
 
 ```{r number-species-year-with-right-labels-xfont-orientation, purl=FALSE}
-grey_theme <- theme(axis.text.x = element_text(colour="grey20", size=12, angle=90, hjust=.5, vjust=.5),
-                          axis.text.y = element_text(colour="grey20", size=12),
-                          text=element_text(size=16))
+grey_theme <- theme(axis.text.x = element_text(colour = "grey20", size = 12, angle = 90, hjust = 0.5, vjust = 0.5),
+                          axis.text.y = element_text(colour = "grey20", size = 12),
+                          text = element_text(size = 16))
 ggplot(surveys_complete, aes(x = species_id, y = hindfoot_length)) +
     geom_boxplot() +
     grey_theme
@@ -532,7 +534,7 @@ spp_count_plot <- ggplot(data = yearly_counts, aes(x = year, y = n, color = spec
   geom_line() + 
   xlab("Year") + ylab("Abundance")
 
-grid.arrange(spp_weight_boxplot, spp_count_plot, ncol = 2, widths = c(4,6))
+grid.arrange(spp_weight_boxplot, spp_count_plot, ncol = 2, widths = c(4, 6))
 
 ```
 
@@ -546,17 +548,17 @@ Instead, use the `ggsave()` function, which allows you easily change the dimensi
 my_plot <- ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex)) +
     geom_line() +
     facet_wrap(~ species_id) +
-    labs(title = 'Observed species in time',
-        x = 'Year of observation',
-        y = 'Number of species') +
+    labs(title = "Observed species in time",
+        x = "Year of observation",
+        y = "Number of species") +
     theme_bw() +
-    theme(axis.text.x = element_text(colour="grey20", size=12, angle=90, hjust=.5, vjust=.5),
-                        axis.text.y = element_text(colour="grey20", size=12),
-          text=element_text(size=16))
-ggsave("name_of_file.png", my_plot, width=15, height=10)
+    theme(axis.text.x = element_text(colour = "grey20", size = 12, angle = 90, hjust = 0.5, vjust = 0.5),
+                        axis.text.y = element_text(colour = "grey20", size = 12),
+          text=element_text(size = 16))
+ggsave("name_of_file.png", my_plot, width = 15, height = 10)
 
 ## This also works for grid.arrange() plots
-combo_plot <- grid.arrange(spp_weight_boxplot, spp_count_plot, ncol = 2, widths = c(4,6))
+combo_plot <- grid.arrange(spp_weight_boxplot, spp_count_plot, ncol = 2, widths = c(4, 6))
 ggsave("combo_plot_abun_weight.png", combo_plot, width = 10, dpi = 300)
 ```
 
