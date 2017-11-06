@@ -436,7 +436,7 @@ with each record (the unit), values such the weight or sex of each animal
 associated with each record. What if instead of comparing records, we 
 wanted to compare the different mean weight of each species between plots? (Ignoring `plot_type` for simplicity).
 
-We'd need to create a new table where each row (the unit) comprises of values of variables associated with each plot. In practical terms this means the values
+We'd need to create a new table where each row (the unit) is comprise of values of variables associated with each plot. In practical terms this means the values
 of the species in `genus` would become the names of column variables and the cells would contain the values of the mean weight observed on each plot.
 
 Having created a new table, it is therefore straightforward to explore the 
@@ -459,8 +459,8 @@ and `gather()`.
 2. the *key* column variable whose values will become new column names.  
 3. the *value* column variable whose values will fill the new column variables.
 
-Further arguements include `fill` which if set, fills in missing values with 
-that provided.
+Further arguments include `fill` which, if set, fills in missing values with 
+the value provided.
 
 Let's use `spread()` to transform surveys to find the mean weight of each 
 species in each plot over the entire survey period. We use `filter()`,
