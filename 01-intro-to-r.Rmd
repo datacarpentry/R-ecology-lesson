@@ -15,14 +15,14 @@ source("setup.R")
 >
 > * Define the following terms as they relate to R: object, assign, call,
 >   function, arguments, options.
-> * Create objects and and assign values to them.
+> * Assign values to variables in R.
 > * Learn how to _name_ objects
 > * Use comments to inform script.
-> * Do simple arithmetic operations in R using values and objects.
+> * Solve simple arithmetic operations in R.
 > * Call functions and use arguments to change their default options.
 > * Inspect the content of vectors and manipulate their content.
 > * Subset and extract values from vectors.
-> * Correctly define and handle missing values in vectors.
+> * Analyze vectors with missing data.
 
 ------------
 
