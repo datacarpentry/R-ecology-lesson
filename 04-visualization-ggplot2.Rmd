@@ -264,7 +264,7 @@ hidden?
 >
 > - Create boxplot for `hindfoot_length`.  Overlay the boxplot layer on a jitter layer to show actual measurements.
 >
-> - Add color to the datapoints on your boxplot according to the plot from which
+> - Add color to the data points on your boxplot according to the plot from which
 >   the sample was taken (`plot_id`).
 
 > Hint: Check the class for `plot_id`. Consider changing the class of `plot_id` from integer to factor. Why does this change how R makes the graph?
@@ -282,7 +282,7 @@ ggplot(data = surveys_complete, aes(x = species_id, y = weight)) +
 
 ##  3. Create boxplot for `hindfoot_length` overlaid on a jitter layer.
 
-##  4. Add color to the datapoints on your boxplot according to the
+##  4. Add color to the data points on your boxplot according to the
 ##  plot from which the sample was taken (`plot_id`).
 ##  Hint: Check the class for `plot_id`. Consider changing the class
 ##  of `plot_id` from integer to factor. Why does this change how R
