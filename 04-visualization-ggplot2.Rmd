@@ -21,7 +21,7 @@ surveys_complete <- read_csv(file = "data_output/surveys_complete.csv", col_type
 >
 > * Produce scatter plots, boxplots, and time series plots using ggplot.
 > * Set universal plot settings.
-> * Understand and apply faceting in ggplot.
+> * Describe what faceting is and apply faceting in ggplot.
 > * Modify the aesthetics of an existing ggplot plot (including axis labels and color).
 > * Build complex and customized plots from data in a data frame.
 
