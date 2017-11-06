@@ -15,7 +15,7 @@ source("setup.R")
 >
 > * Define the following terms as they relate to R: object, assign, call,
 >   function, arguments, options.
-> * Assign values to objects and variables in R.
+> * Assign values to variables in R.
 > * Learn how to _name_ objects
 > * Use comments to inform script.
 > * Solve simple arithmetic operations in R.
