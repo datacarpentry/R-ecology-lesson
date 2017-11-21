@@ -87,7 +87,7 @@ The package **`tidyr`** addresses the common problem of wanting to reshape your 
 To learn more about **`dplyr`** and **`tidyr`** after the workshop, you may want to check out this
 [handy data transformation with **`dplyr`** cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf) and this [one about **`tidyr`**](https://github.com/rstudio/cheatsheets/raw/master/data-import.pdf).
 
-**`dplyr`**  reads data using read_csv(), instead of read.csv()
+We'll read in our data using the `read_csv()` function, from the tidyverse package **`readr`**, instead of `read.csv()`.
 
 ```{r,results = 'hide', purl = FALSE}
 surveys <- read_csv("data/portal_data_joined.csv")
@@ -126,9 +126,22 @@ But what if you wanted to select and filter at the same time? There are three
 ways to do this: use intermediate steps, nested functions, or pipes.
 
 With intermediate steps, you essentially create a temporary data frame and use
-that as input to the next function. This can clutter up your workspace with lots
-of objects. You can also nest functions (i.e. one function inside of another).
-This is handy, but can be difficult to read if too many functions are nested as
+that as input to the next function, like this:
+
+```{r, purl = FALSE}
+surveys2 <- filter(surveys, weight < 5)
+surveys_sml <- select(surveys2, species_id, sex, weight)
+```
+
+This is readable, but can clutter up your workspace with lots of objects that you have to name individually. With multiple steps, that can be hard to keep track of.
+
+You can also nest functions (i.e. one function inside of another), like this:
+
+```{r, purl = FALSE}
+surveys_sml <- select(filter(surveys, weight < 5), species_id, sex, weight)
+```
+
+This is handy, but can be difficult to read if too many functions are nested, as
 things are evaluated from the inside out.
 
 The last option, pipes, are a fairly recent addition to R. Pipes let you take
