@@ -147,7 +147,7 @@ things are evaluated from the inside out.
 The last option, pipes, are a fairly recent addition to R. Pipes let you take
 the output of one function and send it directly to the next, which is useful
 when you need to do many things to the same dataset.  Pipes in R look like
-`%>%` and are made available via the `magrittr` package, installed automatically
+`%>%` and are made available via the **`magrittr`** package, installed automatically
 with **`dplyr`**. If you use RStudio, you can type the pipe with <kbd>Ctrl</kbd>
 + <kbd>Shift</kbd> + <kbd>M</kbd> if you have a PC or <kbd>Cmd</kbd> + 
 <kbd>Shift</kbd> + <kbd>M</kbd> if you have a Mac.
@@ -164,6 +164,13 @@ to keep only the `species_id`, `sex`, and `weight` columns. Since `%>%` takes
 the object on its left and passes it as the first argument to the function on
 its right, we don't need to explicitly include it as an argument to the
 `filter()` and `select()` functions anymore.
+
+Some may find it helpful to read the pipe like the word "then". For instance,
+in the above example, we took the data frame `surveys`, *then* we `filter`ed
+for rows with `weight < 5`, *then* we `select`ed columns `species_id`, `sex`,
+and `weight`. The **`dplyr`** functions by themselves are somewhat simple,
+but by combining them into linear workflows with the pipe, we can accomplish
+more complex manipulations of data frames.
 
 If we wanted to create a new object with this smaller version of the data, we
 could do so by assigning it a new name:
