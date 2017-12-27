@@ -83,7 +83,7 @@ head(surveys)
 > used as a field delineator. If you want to read in this type of files in R,
 > you can use the `read.csv2` function. It behaves exactly like `read.csv` but
 > uses different parameters for the decimal and the field separators. If you are
-> working with other format, they can be both specified by the user. Check out
+> working with another format, they can be both specified by the user. Check out
 > the help for `read.csv()` to learn more.
 
 
@@ -99,7 +99,7 @@ spreadsheets from your hard drive (or the web).
 A data frame is the representation of data in the format of a table where the
 columns are vectors that all have the same length. Because the column are
 vectors, they all contain the same type of data (e.g., characters, integers,
-factors). For example, here is a figure depicting a data frame comprising of a
+factors). For example, here is a figure depicting a data frame comprising a
 numeric, a character and a logical vector.
 
 ![](./img/data-frame.svg)
