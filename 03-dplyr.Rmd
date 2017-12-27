@@ -248,7 +248,7 @@ those we could insert a `filter()` in the chain:
 surveys %>%
   filter(!is.na(weight)) %>%
   mutate(weight_kg = weight / 1000) %>%
-  head()
+  head
 ```
 
 `is.na()` is a function that determines whether something is an `NA`. The `!`
@@ -517,7 +517,7 @@ although we may wish to fill in the missing values first.
 ```{r, purl=FALSE}
 surveys_gw %>%
   spread(genus, mean_weight, fill = 0) %>%
-  head()
+  head
 ```
 
 #### Gathering
@@ -563,7 +563,7 @@ row, we don't even need to list them all out - just use the `:` operator!
 ```{r, purl=FALSE}
 surveys_spread %>%
   gather(key = genus, value = mean_weight, Baiomys:Spermophilus) %>%
-  head()
+  head
 ```
 
 > ### Challenge {.challenge}
