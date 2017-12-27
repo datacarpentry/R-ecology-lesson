@@ -244,7 +244,7 @@ those we could insert a `filter()` in the chain:
 surveys %>%
   filter(!is.na(weight)) %>%
   mutate(weight_kg = weight / 1000) %>%
-  head
+  head()
 ```
 
 `is.na()` is a function that determines whether something is an `NA`. The `!`
@@ -391,7 +391,7 @@ counts the total number of records for each category.
 ## Answer 1
 surveys %>%
     group_by(plot_type) %>%
-    tally
+    tally()
 
 ## Answer 2
 surveys %>%
