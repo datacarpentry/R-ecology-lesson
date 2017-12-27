@@ -234,12 +234,8 @@ functions, too, as long as the **`dplyr`** or `magrittr` package is loaded).
 ```{r, purl = FALSE}
 surveys %>%
   mutate(weight_kg = weight / 1000) %>%
-  head
+  head()
 ```
-
-Note that we don't include parentheses at the end of our call to `head()` above.
-When piping into a function with no additional arguments, you can call the
-function with or without parentheses (e.g. `head` or `head()`).
 
 The first few rows of the output are full of `NA`s, so if we wanted to remove
 those we could insert a `filter()` in the chain:
@@ -369,7 +365,7 @@ number of rows of data for each sex, we would do:
 ```{r, purl = FALSE}
 surveys %>%
   group_by(sex) %>%
-  tally
+  tally()
 ```
 
 Here, `tally()` is the action applied to the groups created by `group_by()` and
@@ -679,7 +675,7 @@ observations for these more common species:
 ## Extract the most common species_id
 species_counts <- surveys_complete %>%
   group_by(species_id) %>%
-  tally %>%
+  tally() %>%
   filter(n >= 50)
 
 ## Only keep the most common species
@@ -701,7 +697,7 @@ surveys_complete <- surveys %>%
 ##  appear at least 50 times in our dataset:
 species_counts <- surveys_complete %>%
     group_by(species_id) %>%
-    tally %>%
+    tally() %>%
     filter(n >= 50) %>%
     select(species_id)
 
