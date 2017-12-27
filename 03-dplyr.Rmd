@@ -442,34 +442,125 @@ surveys %>%
 
 In the 
 <span style="background:yellow">[spreadsheet lesson](http://www.datacarpentry.org/spreadsheet-ecology-lesson/01-format-data/)</span> we discussed how to 
-structure our data leading to the four rules defining a tidy dataset:
+structure our data:
 
 1. Each variable has its own column
 2. Each observation has its own row
 3. Each value must have its own cell
-4. Each type of observational unit forms a table
 
-Here we examine the fourth rule: Each type of observational unit forms a table.
+However, these rules a little trickier than they seem: what counts as an "observation"? Is it an individual, or the individual measurements taken on an individual (weight, hindfoot length, etc.), or all the individuals caught in a given plot on a given day? Consider two tables:
 
-In `surveys` , the rows of `surveys` contain the values of variables associated
-with each record (the unit), values such the weight or sex of each animal 
-associated with each record. What if instead of comparing records, we 
-wanted to compare the different mean weight of each species between plots? (Ignoring `plot_type` for simplicity).
+- all of the individuals caught in a given plot one one day count as a single observation (many columns, few rows)
+- every single individual has its own observation (many rows and few columns)
 
-We'd need to create a new table where each row (the unit) is comprise of values of variables associated with each plot. In practical terms this means the values
-of the species in `genus` would become the names of column variables and the cells would contain the values of the mean weight observed on each plot.
+Many researchers store data in the former (wider) format by default, because it's often easier for data entry and for human readability. However, most statistical tools (including R, and especially tidyverse) work better with the latter (longer) format.
 
-Having created a new table, it is therefore straightforward to explore the 
-relationship between the weight of different species within, and between, the
-plots. The key point here is that we are still following a tidy data structure,
-but we have **reshaped** the data according to the observations of interest:
-average species weight per plot instead of recordings per date.
+Suppose we are given a data table with species counts per plot and date for 
+observations taken in 1977, like this:
+```{r widetab,results="asis",echo=FALSE} 
+library(pander)
 
-The opposite transformation would be to transform column names into values of
-a variable.
+## select and summarize: number by species/plot
+svy_w1 <- surveys %>% select(month,day,year,plot_id,species_id) %>%
+    group_by(month,day,year,plot_id,species_id) %>%
+    tally() %>%
+    rename(species_count=n)
 
-We can do both these of transformations with two `tidyr` functions, `spread()`
+## reorder species 
+surveys_wide <- svy_w1 %>% 
+  ungroup() %>% filter(year==1977) %>%
+    mutate(species_id=reorder(factor(species_id),species_count,
+                              FUN=function(x) -mean(x))) %>%
+    spread(species_id,species_count,fill=0)
+
+## just the first few columns
+surveys_wide %>%     select(1:8) %>%
+    mutate(`...`="...") %>% 
+    head() %>%   pander()
+
+## would be nicer to have an example like
+##  date plot  temperature pH
+```
+where each of the column names after `plot_id`
+represents a species abbreviation.
+
+You can get this file by retrieving it from the course web page:
+```{r download_wide,eval=FALSE}
+download.file("tinyurl.com/dcmac2017dec/data/surveys_wide.csv",dest="surveys_wide.csv")
+```
+
+Save it in your working directory and read it in with 
+
+```{r read_wide_surveys}
+surveys_wide <- read.csv("surveys_wide.csv")
+```
+
+In order to work with this data set effectively in R, we need to convert it to long format. We want to convert all of the columns corresponding to species abbreviations into a single pair of columns, one (the **key**) containing the species abbreviation and the other (the **value**) containing the number of that species counted on a given date in a given location. The key point here is that the data structure is tidy, but
+but we are **reshaping** the data according to the observations of interest:
+numbers of a particular species observed in a plot rather than the 
+numbers of all species observed in that plot.
+
+Here's an illustration of how `gather()` works to convert a (relatively) wide data
+set to a longer format:
+
+![](img/14-tidyr-fig3.png)
+
+The opposite transformation would transform a single pair of columns (`species_id` and `count`) with many rows into many columns (one for each species) with fewer rows (only one per plot/date). We can do both these of transformations with two `tidyr` functions, `spread()`
 and `gather()`.
+
+#### Gathering
+
+In this situation we are gathering the column names and turning them into a
+pair of new variables. One variable represents the column names as values, and
+the other variable contains the values previously associated with the column names.
+
+`gather()` takes four principal arguments:
+
+1. the data
+2. the *key* column variable we wish to create from column names.
+3. the *values* column variable we wish to create and fill with values 
+associated with the key.
+4. the names of the columns we use to fill the key variable (or the ones we want to ignore).
+
+To make a longer data set with one species count per row, we would create a key called
+`species_abbrev` and value called `count` from all of the columns except the date columns ( `month`, `day`, `year`) and `plot_id`: we use `c()` preceded by a minus sign to exclude these columns.
+
+```{r, purl=FALSE}
+surveys_gather <- surveys_wide %>%
+  gather(key = species_abbrev, value = count, -c(month, day, year, plot_id))
+
+str(surveys_gather)
+```
+
+<!-- 
+
+![](img/gather_data_R.png)
+
+Note that now the `NA` genera are included in the re-gathered format. Spreading
+and then gathering can be a useful way to balance out a dataset so every
+replicate has the same composition.
+
+-->
+
+There are other ways to specify columns to exclude or include: if you have a small
+number of columns to gather, then specifying which ones to include is easier.
+And if the columns are in a
+row, you don't even need to list them all - just use the `:` operator!
+
+```{r, purl=FALSE}
+surveys_long <- surveys_wide %>%
+  gather(key = species_abbrev, value = count, -(month:plot_id))
+
+## equivalently:
+## specify columns to include (here columns are specified by number:
+##  a dot (.) is a shortcut for the original data set that you can use
+##  inside tidyverse functions)
+surveys_wide %>%
+  gather(key = species_abbrev, value = count, 5:ncol(.))
+```
+
+As desired, the result now has a single row for each combination of
+month/day/year/plot_id/species_abbrev.
 
 #### Spreading
 
@@ -482,11 +573,26 @@ and `gather()`.
 Further arguments include `fill` which, if set, fills in missing values with 
 the value provided.
 
-Let's use `spread()` to transform surveys to find the mean weight of each 
-species in each plot over the entire survey period. We use `filter()`,
+For our first use of `spread()`, we'll show how to reverse the `gather()` operation
+we just did:
+
+```{r spread1}
+spread(surveys_long,key=species_abbrev,value=count)
+```
+
+This takes us back to our previous arrangement.
+
+The second most common use of `tidyr` is to reshape data after summarizing it, so that
+the results are more human-readable (by you, your supervisor/boss, or readers of your
+scientific reports).
+
+As an example, we're going to go back to the original `surveys` data set,
+find the mean weight of each 
+species in each plot over the entire survey period,
+and use `spread()` to reshape the results. We use `filter()`,
 `group_by()` and `summarise()` to filter our observations and variables of 
-interest, and create a new variable for the `mean_weight`. We use the pipe as 
-before too.
+interest, and create a new variable for the `mean_weight`. We use pipes as 
+before too:
 
 ```{r, purl=FALSE}
 surveys_gw <- surveys %>%
@@ -522,51 +628,6 @@ surveys_gw %>%
   head()
 ```
 
-#### Gathering
-
-The opposing situation could occur if we had been provided with data in the
-form of `surveys_spread`, where the genus names are column names, but we 
-wish to treat them as values of a genus variable instead.
-
-In this situation we are gathering the column names and turning them into a
-pair of new variables. One variable represents the column names as values, and
-the other variable contains the values previously associated with the column names.
-
-`gather()` takes four principal arguments:
-
-1. the data
-2. the *key* column variable we wish to create from column names.
-3. the *values* column variable we wish to create and fill with values 
-associated with the key.
-4. the names of the columns we use to fill the key variable (or to drop).
-
-To recreate `surveys_gw` from `surveys_spread` we would create a key called
-`genus` and value called `mean_weight` and use all columns except `plot_id` for
-the key variable. Here we drop `plot_id` column with a minus sign.
-
-```{r, purl=FALSE}
-surveys_gather <- surveys_spread %>%
-  gather(key = genus, value = mean_weight, -plot_id)
-
-str(surveys_gather)
-```
-
-![](img/gather_data_R.png)
-
-Note that now the `NA` genera are included in the re-gathered format. Spreading
-and then gathering can be a useful way to balance out a dataset so every
-replicate has the same composition.
-
-We could also have used a specification for what columns to include. This can be
-useful if you have a large number of identifying columns, and it's easier to
-specify what to gather than what to leave alone. And if the columns are in a
-row, we don't even need to list them all out - just use the `:` operator!
-
-```{r, purl=FALSE}
-surveys_spread %>%
-  gather(key = genus, value = mean_weight, Baiomys:Spermophilus) %>%
-  head()
-```
 
 > ### Challenge {.challenge}
 >
