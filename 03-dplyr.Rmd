@@ -571,7 +571,7 @@ surveys_spread %>%
 > 1. Spread the `surveys` data frame with `year` as columns, `plot_id` as rows, and the
 >   number of genera per plot as the values. You will need to summarize before
 >   reshaping, and use the function `n_distinct()` to get the number of unique
->   types of a genera. It's a powerful function! See `?n_distinct` for more.
+>   genera within a particular chunk of data. It's a powerful function! See `?n_distinct` for more.
 >
 > 2. Now take that data frame and `gather()` it again, so each row is a unique
 >    `plot_id` by `year` combination.
@@ -594,7 +594,7 @@ surveys_spread %>%
 ```{r, eval=FALSE, purl=TRUE, echo=FALSE}
 ## Reshaping challenges
 
-## 1. Make a wide data frame with `year` as columns, `plot_id` as rows, and where the values are the number of genera per plot. You will need to summarize before reshaping, and use the function `n_distinct` to get the number of unique genera within a chunk of data. It's a powerful function! See `?n_distinct` for more.
+## 1. Make a wide data frame with `year` as columns, `plot_id`` as rows, and where the values are the number of genera per plot. You will need to summarize before reshaping, and use the function `n_distinct` to get the number of unique genera within a chunk of data. It's a powerful function! See `?n_distinct` for more.
 
 ## 2. Now take that data frame, and make it long again, so each row is a unique `plot_id` `year` combination
 
