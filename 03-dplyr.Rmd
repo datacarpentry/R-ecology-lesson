@@ -12,9 +12,7 @@ suppressWarnings(surveys$date <- lubridate::ymd(paste(surveys$year,
                                                       sep = "-")))
 ```
 
-```{r, echo=FALSE, purl=TRUE}
 ### Manipulating and analyzing data with dplyr
-```
 
 ------------
 
@@ -50,8 +48,8 @@ already have installed the **`tidyverse`** package. This is an
 "umbrella-package" that installs several packages useful for data analysis which
 work together well such as **`tidyr`**, **`dplyr`**, **`ggplot2`**, **`tibble`**, etc.
 
-**`tidyverse`** package tries to address 3 major problems with some of base R functions:
-1. The results from a base R function sometimes depends on the type of data.
+The **`tidyverse`** package tries to address 3 major problems with some of base R functions:
+1. The results from a base R function sometimes depend on the type of data.
 2. Using R expressions in a non standard way, which can be confusing for new learners.
 3. Hidden arguments, having default operations that new learners are not aware of.
 
@@ -79,7 +77,7 @@ returned.
 This addresses a common problem with R in that all operations are conducted
 in-memory and thus the amount of data you can work with is limited by available
 memory. The database connections essentially remove that limitation in that you
-can have a database of many 100s GB, conduct queries on it directly, and pull
+can connect to a database of many hundreds of GB, conduct queries on it directly, and pull
 back into R only what you need for analysis.
 
 The package **`tidyr`** addresses the common problem of wanting to reshape your data for plotting and use by different R functions. Sometimes we want data sets where we have one row per measurement. Sometimes we want a data frame where each measurement type has its own column, and rows are instead more aggregated groups - like plots or aquaria. Moving back and forth between these formats is nontrivial, and **`tidyr`** gives you tools for this and more sophisticated  data manipulation.
@@ -97,11 +95,13 @@ str(surveys)
 ```
 
 Notice that the class of the data is now `tbl_df`
-This is referred to as a "tibble"
-Tibbles are data frames, but they tweak some of the old behaviors of data frames. The data structure is very similar to a data frame. For our purposes the only differences are that:
-1. In addition to displaying the data type of each column under its name, it only prints the first few rows of data and only as many columns as fit
+This is referred to as a "tibble".
+Tibbles are almost identical to R's standard data frames, but they tweak some of the old behaviors of data frames. For our purposes the only differences between data frames
+and tibbles are that:
+
+1. When you print a tibble, R displays the data type of each column under its name; it prints only the first few rows of data and only as many columns as fit
 on one screen.
-2. Columns of class `character` are never implicitly converted into factors.
+2. Columns of class `character` are never automatically converted into factors.
 
 ## Selecting columns and filtering rows
 
@@ -122,10 +122,10 @@ filter(surveys, year == 1995)
 
 ## Pipes
 
-But what if you wanted to select and filter at the same time? There are three
+What if you want to select and filter at the same time? There are three
 ways to do this: use intermediate steps, nested functions, or pipes.
 
-With intermediate steps, you essentially create a temporary data frame and use
+With intermediate steps, you create a temporary data frame and use
 that as input to the next function, like this:
 
 ```{r, purl = FALSE}
@@ -142,9 +142,9 @@ surveys_sml <- select(filter(surveys, weight < 5), species_id, sex, weight)
 ```
 
 This is handy, but can be difficult to read if too many functions are nested, as
-things are evaluated from the inside out.
+R evaluates the expression from the inside out (in this case, filtering, then selecting).
 
-The last option, pipes, are a fairly recent addition to R. Pipes let you take
+The last option, *pipes*, are a recent addition to R. Pipes let you take
 the output of one function and send it directly to the next, which is useful
 when you need to do many things to the same dataset.  Pipes in R look like
 `%>%` and are made available via the **`magrittr`** package, installed automatically
@@ -158,12 +158,12 @@ surveys %>%
   select(species_id, sex, weight)
 ```
 
-In the above, we use the pipe to send the `surveys` dataset first through
+In the above code, we use the pipe to send the `surveys` dataset first through
 `filter()` to keep rows where `weight` is less than 5, then through `select()`
 to keep only the `species_id`, `sex`, and `weight` columns. Since `%>%` takes
 the object on its left and passes it as the first argument to the function on
-its right, we don't need to explicitly include it as an argument to the
-`filter()` and `select()` functions anymore.
+its right, we don't need to explicitly include the data frame as an argument
+to the `filter()` and `select()` functions any more.
 
 Some may find it helpful to read the pipe like the word "then". For instance,
 in the above example, we took the data frame `surveys`, *then* we `filter`ed
@@ -172,8 +172,8 @@ and `weight`. The **`dplyr`** functions by themselves are somewhat simple,
 but by combining them into linear workflows with the pipe, we can accomplish
 more complex manipulations of data frames.
 
-If we wanted to create a new object with this smaller version of the data, we
-could do so by assigning it a new name:
+If we want to create a new object with this smaller version of the data, we
+can assign it a new name:
 
 ```{r, purl = FALSE}
 surveys_sml <- surveys %>%
@@ -209,7 +209,7 @@ surveys %>%
 ### Mutate
 
 Frequently you'll want to create new columns based on the values in existing
-columns, for example to do unit conversions, or find the ratio of values in two
+columns, for example to do unit conversions, or to find the ratio of values in two
 columns. For this we'll use `mutate()`.
 
 To create a new column of weight in kg:
@@ -252,7 +252,7 @@ surveys %>%
 ```
 
 `is.na()` is a function that determines whether something is an `NA`. The `!`
-symbol negates the result, so we're asking for everything that *is not* an `NA`.
+symbol negates the result, so we're asking for every row where weight *is not* an `NA`.
 
 > ### Challenge {.challenge}
 >
@@ -300,7 +300,7 @@ then combine the results. **`dplyr`** makes this very easy through the use of th
 `group_by()` is often used together with `summarize()`, which collapses each
 group into a single-row summary of that group.  `group_by()` takes as arguments
 the column names that contain the **categorical** variables for which you want
-to calculate the summary statistics. So to view the mean `weight` by sex:
+to calculate the summary statistics. So to compute the mean `weight` by sex:
 
 ```{r, purl = FALSE}
 surveys %>%
@@ -324,7 +324,7 @@ that escaped before their sex could be determined and weighted. You may notice
 that the last column does not contain `NA` but `NaN` (which refers to "Not a
 Number"). To avoid this, we can remove the missing values for weight before we
 attempt to calculate the summary statistics on weight. Because the missing
-values are removed, we can omit `na.rm = TRUE` when computing the mean:
+values are removed first, we can omit `na.rm = TRUE` when computing the mean:
 
 ```{r, purl = FALSE}
 surveys %>%
@@ -361,8 +361,8 @@ surveys %>%
 
 #### Tallying
 
-When working with data, it is also common to want to know the number of
-observations found for each factor or combination of factors. For this, **`dplyr`**
+When working with data, we often want to know the number of
+observations found for each factor or combination of factors. For this task, **`dplyr`**
 provides `tally()`. For example, if we wanted to group by sex and find the
 number of rows of data for each sex, we would do:
 
@@ -497,12 +497,10 @@ surveys_gw <- surveys %>%
 str(surveys_gw)
 ```
 
-This yields `surveys_gw` where the observation for each plot is spread across
-multiple rows, 196 observations of 13 variables.
-
+This yields `surveys_gw` where the observations for each plot are spread across
+multiple rows, 196 observations of 13 variables. 
 Using `spread()` to key on `genus` with values from `mean_weight` this becomes
-24 observations of 11 variables, one row for each plot. We use the pipe as
-before too.
+24 observations of 11 variables, one row for each plot. We again use pipes:
 
 ```{r, purl=FALSE}
 surveys_spread <- surveys_gw %>%
@@ -513,13 +511,13 @@ str(surveys_spread)
 
 ![](img/spread_data_R.png)
 
-We could now plot comparisons between the weight of species on different plots
-for example, although we may wish to fill in the missing values first.
+We could now plot comparisons between the weight of species in different plots, 
+although we may wish to fill in the missing values first.
 
 ```{r, purl=FALSE}
 surveys_gw %>%
   spread(genus, mean_weight, fill = 0) %>%
-  head()
+  head
 ```
 
 #### Gathering
@@ -565,38 +563,38 @@ row, we don't even need to list them all out - just use the `:` operator!
 ```{r, purl=FALSE}
 surveys_spread %>%
   gather(key = genus, value = mean_weight, Baiomys:Spermophilus) %>%
-  head()
+  head
 ```
 
 > ### Challenge {.challenge}
 >
-> 1. Spread the data frame with `year` as columns, `plot_id` as rows, and the
->   values are the number of genera per plot. You will need to summarize before
+> 1. Spread the `surveys` data frame with `year` as columns, `plot_id` as rows, and the
+>   number of genera per plot as the values. You will need to summarize before
 >   reshaping, and use the function `n_distinct()` to get the number of unique
->   types of a genera. It's a powerful function! See `?n_distinct` for more.
+>   genera within a particular chunk of data. It's a powerful function! See `?n_distinct` for more.
 >
-> 2. Now take that data frame, and make gather it again, so each row is a unique
->    `plot_id` `year` combination.
+> 2. Now take that data frame and `gather()` it again, so each row is a unique
+>    `plot_id` by `year` combination.
 >
 > 3. The `surveys` data set has
->    two columns of measurement: `hindfoot_length` and `weight`.  This makes it
+>    two measurement columns: `hindfoot_length` and `weight`.  This makes it
 >    difficult to do things like look at the relationship between mean values of
 >    each measurement per year in different plot types. Let's walk through a
 >    common solution for this type of problem. First, use `gather()` to create a
 >     dataset where we have a key column called `measurement` and a
 >    `value` column that takes on the value of either `hindfoot_length` or
->    `weight`. Hint: You'll need to specify which columns are being gathered.
+>    `weight`. *Hint*: You'll need to specify which columns are being gathered.
 >
 > 4. With this new data set, calculate the average of each
->    `measurement` in each `year` > for each different `plot_type`. Then
+>    `measurement` in each `year` for each different `plot_type`. Then
 >    `spread()` them into a data set with a column for `hindfoot_length` and
->    `weight`. Hint: Remember, you only need to specify the key and value
+>    `weight`. *Hint*: You only need to specify the key and value
 >    columns for `spread()`.
 
 ```{r, eval=FALSE, purl=TRUE, echo=FALSE}
 ## Reshaping challenges
 
-## 1. Make a wide data frame with `year` as columns, `plot_id`` as rows, and the values are the number of genera per plot. You will need to summarize before reshaping, and use the function `n_distinct` to get the number of unique types of a genera. It's a powerful function! See `?n_distinct` for more.
+## 1. Make a wide data frame with `year` as columns, `plot_id`` as rows, and where the values are the number of genera per plot. You will need to summarize before reshaping, and use the function `n_distinct` to get the number of unique genera within a chunk of data. It's a powerful function! See `?n_distinct` for more.
 
 ## 2. Now take that data frame, and make it long again, so each row is a unique `plot_id` `year` combination
 
@@ -635,15 +633,14 @@ surveys_long %>%
 # Exporting data
 
 Now that you have learned how to use **`dplyr`** to extract information from
-or summarize your raw data, you may want to export these new datasets to share
+or summarize your raw data, you may want to export these new data sets to share
 them with your collaborators or for archival.
 
-Similar to the `read_csv()` function used for reading CSV files into R, there is
-a `write_csv()` function that generates CSV files from data frames.
+Similar to the `read_csv()` function used for reading CSV files into R, the tidyverse includes a `write_csv()` function that generates CSV files from data frames.
 
 Before using `write_csv()`, we are going to create a new folder, `data_output`,
-in our working directory that will store this generated dataset. We don't want
-to write generated datasets in the same directory as our raw data. It's good
+in our working directory that will store this generated data set. We don't want
+to write generated data sets in the same directory as our raw data. It's good
 practice to keep them separate. The `data` folder should only contain the raw,
 unaltered data, and should be left alone to make sure we don't delete or modify
 it. In contrast, our script will generate the contents of the `data_output`
@@ -651,12 +648,12 @@ directory, so even if the files it contains are deleted, we can always
 re-generate them.
 
 In preparation for our next lesson on plotting, we are going to prepare a
-cleaned up version of the dataset that doesn't include any missing data.
+cleaned up version of the data set that doesn't include any missing data.
 
 Let's start by removing observations for which the `species_id` is missing. In
-this dataset, the missing species are represented by an empty string and not an
+this data set, the missing species are represented by an empty string and not an
 `NA`. Let's also remove observations for which `weight` and the
-`hindfoot_length` are missing. This dataset should also only contain
+`hindfoot_length` are missing. This data set should also only contain
 observations of animals for which the sex has been determined:
 
 
@@ -671,7 +668,7 @@ surveys_complete <- surveys %>%
 Because we are interested in plotting how species abundances have changed
 through time, we are also going to remove observations for rare species (i.e.,
 that have been observed less than 50 times). We will do this in two steps: first
-we are going to create a dataset that counts how often each species has been
+we are going to create a data set that counts how often each species has been
 observed, and filter out the rare species; then, we will extract only the
 observations for these more common species:
 
@@ -710,11 +707,11 @@ surveys_complete <- surveys_complete %>%
     filter(species_id %in% species_counts$species_id)
 ```
 
-To make sure that everyone has the same dataset, check that `surveys_complete`
+To make sure that everyone has the same data set, check that `surveys_complete`
 has `r nrow(surveys_complete)` rows and `r ncol(surveys_complete)` columns by
 typing `dim(surveys_complete)`.
 
-Now that our dataset is ready, we can save it as a CSV file in our `data_output`
+Now that our data set is ready, we can save it as a CSV file in our `data_output`
 folder.
 
 ```{r, purl=FALSE, eval=FALSE}
