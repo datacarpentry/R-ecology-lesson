@@ -49,7 +49,7 @@ or if we decide to change from a bar plot to a scatterplot. This helps in creati
 publication quality plots with minimal amounts of adjustments and tweaking.
 
 ggplot likes data in the 'long' format: i.e., a column for every dimension,
-and a row for every observation. Well structured data will save you lots of time
+and a row for every observation. Well-structured data will save you lots of time
 when making figures with ggplot.
 
 ggplot graphics are built step by step by adding new elements. Adding layers in
@@ -64,8 +64,7 @@ To build a ggplot, we need to:
 ggplot(data = surveys_complete)
 ```
 
-- define aesthetics (`aes`), by selecting the variables to be plotted and the  
-      variables to define the presentation such as plotting size, shape color, etc.
+- define a mapping (using the aesthetic (`aes`) function), by selecting the variables to be plotted and specifying how to present them in the graph, e.g. as x/y positions or characteristics such as size, shape, color, etc.
 
 ```{r, eval=FALSE, purl=FALSE}
 ggplot(data = surveys_complete, aes(x = weight, y = hindfoot_length))
@@ -76,9 +75,9 @@ ggplot(data = surveys_complete, aes(x = weight, y = hindfoot_length))
       common ones today, including:
       * `geom_point()` for scatter plots, dot plots, etc.
       * `geom_boxplot()` for, well, boxplots!
-      * `geom_line()` for trend lines, time-series, etc.  
+      * `geom_line()` for trend lines, time series, etc.  
 
-To add a geom to the plot use `+` operator. Because we have two continuous variables,  
+To add a geom to the plot use the `+` operator. Because we have two continuous variables,  
 let's use `geom_point()` first:
 
 ```{r first-ggplot, purl=FALSE}
@@ -88,7 +87,7 @@ ggplot(data = surveys_complete, aes(x = weight, y = hindfoot_length)) +
 
 The `+` in the **`ggplot2`** package is particularly useful because it allows you
 to modify existing `ggplot` objects. This means you can easily set up plot
-"templates" and conveniently explore different types of plots, so the above
+templates and conveniently explore different types of plots, so the above
 plot can also be generated with code like this:
 
 ```{r, first-ggplot-with-plus, eval=FALSE, purl=FALSE}
@@ -107,13 +106,13 @@ surveys_plot +
     geom_point()
 ```
 
-Notes:
+**Notes:**
 
 - Anything you put in the `ggplot()` function can be seen by any geom layers
-  that you add (i.e., these are universal plot settings). This includes the x and
-  y axis you set up in `aes()`.
-- You can also specify aesthetics for a given geom independently of the
-  aesthetics defined globally in the `ggplot()` function.
+  that you add (i.e., these are universal plot settings). This includes the x- and
+  y-axis mapping you set up in `aes()`.
+- You can also specify mappings for a given geom independently of the
+  mappings defined globally in the `ggplot()` function.
 - The `+` sign used to add layers must be placed at the end of each line containing
 a layer. If, instead, the `+` sign is added in the line before the other layer,
 **`ggplot2`** will not add the new layer and will return an error message.
@@ -177,7 +176,7 @@ surveys_plot +
 ## Building your plots iteratively
 
 Building plots with ggplot is typically an iterative process. We start by
-defining the dataset we'll use, lay the axes, and choose a geom:
+defining the dataset we'll use, lay out the axes, and choose a geom:
 
 ```{r create-ggplot-object, purl=FALSE}
 ggplot(data = surveys_complete, aes(x = weight, y = hindfoot_length)) +
@@ -245,9 +244,8 @@ hidden?
 > ### Challenges
 >
 > Boxplots are useful summaries, but hide the *shape* of the distribution. For
-> example, if there is a bimodal distribution, it would not be observed with a
-> boxplot. An alternative to the boxplot is the violin plot (sometimes known as a
-> beanplot), where the shape (of the density of points) is drawn.
+> example, if the distribution is bimodal, we would not see it in a
+> boxplot. An alternative to the boxplot is the violin plot where the shape (of the density of points) is drawn.
 >
 > - Replace the box plot with a violin plot; see `geom_violin()`.
 >
@@ -262,12 +260,12 @@ hidden?
 > So far, we've looked at the distribution of weight within species.  Try making a
 > new plot to explore the distribution of another variable within each species.
 >
-> - Create boxplot for `hindfoot_length`.  Overlay the boxplot layer on a jitter layer to show actual measurements.
+> - Create a boxplot for `hindfoot_length`.  Overlay the boxplot layer on a jitter layer to show actual measurements.
 >
 > - Add color to the data points on your boxplot according to the plot from which
 >   the sample was taken (`plot_id`).
 
-> Hint: Check the class for `plot_id`. Consider changing the class of `plot_id` from integer to factor. Why does this change how R makes the graph?
+> *Hint:* Check the class for `plot_id`. Consider changing the class of `plot_id` from integer to factor. Why does this change how R makes the graph?
 
 ```{r boxplot-challenge, eval=FALSE, purl=TRUE, echo=FALSE}
 ## Challenge with boxplots:
@@ -284,7 +282,7 @@ ggplot(data = surveys_complete, aes(x = species_id, y = weight)) +
 
 ##  4. Add color to the data points on your boxplot according to the
 ##  plot from which the sample was taken (`plot_id`).
-##  Hint: Check the class for `plot_id`. Consider changing the class
+##  *Hint:* Check the class for `plot_id`. Consider changing the class
 ##  of `plot_id` from integer to factor. Why does this change how R
 ##  makes the graph?
 
@@ -302,7 +300,7 @@ yearly_counts <- surveys_complete %>%
                  tally()
 ```
 
-Timelapse data can be visualized as a line plot with years on the x axis and counts
+Time series data can be visualized as a line plot with years on the x axis and counts
 on the y axis:
 
 ```{r first-time-series, purl=FALSE}
@@ -538,7 +536,7 @@ grid.arrange(spp_weight_boxplot, spp_count_plot, ncol = 2, widths = c(4, 6))
 
 ```
 
-In addition to the `ncol` and `nrow` arguments, used to make simple arrangements, there are tools for [constucting more complex layouts](https://cran.r-project.org/web/packages/gridExtra/vignettes/arrangeGrob.html). 
+In addition to the `ncol` and `nrow` arguments, used to make simple arrangements, there are tools for [constructing more complex layouts](https://cran.r-project.org/web/packages/gridExtra/vignettes/arrangeGrob.html). 
 
 After creating your plot, you can save it to a file in your favorite format. The Export tab in the **Plot** pane in RStudio will save your plots at low resolution, which will not be accepted by many journals and will not scale well for posters. 
 
