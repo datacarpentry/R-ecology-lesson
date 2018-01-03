@@ -141,6 +141,8 @@ windows
 Sometimes a package will not install, try a different CRAN mirror
 - Tools > Global Options > Packages > CRAN Mirror
 
+It is important that R, and the R packages be installed locally, not on a network drive. If a learner is using a machine with multiple users where their account is not based locally this can create a variety of issues (This often happens on university computers). Hopefully the learner will realize these issues before hand, but depending on the machine and how the IT folks that service the computer have things set up, it may be very difficult to impossible to make R work without their help. 
+
 Alternatively you can go to CRAN and download the package and install from ZIP
 file
 -   Tools > Install Packages > set to 'from Zip/TAR'
