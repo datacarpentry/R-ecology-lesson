@@ -555,7 +555,25 @@ Start by loading the required package:
 library(lubridate)
 ```
 
-Create a character vector from the `year`, `month`, and `day` columns of
+Let's create a date object and inspect the structure:
+```{r eval=FALSE, purl=FALSE}
+my_date <- ymd("2015-01-01")
+str(my_date)
+```
+
+Now let's paste the year, month, and day separately - we get the same result:
+```{r eval=FALSE, purl=FALSE}
+my_date <- ymd(paste("2015", "1", "1", sep = "-"))
+str(my_date)
+```
+
+What happens when we try to define an invalid date? It is worth inspecting the help page for `ymd()`. 
+```{r eval=FALSE, purl=FALSE}
+ymd("2015-02-30", quiet = TRUE) # No warning, even though quiet is TRUE
+?ymd # Note that the default value of quiet is TRUE, which should return a warning if a date failed to parse
+```
+
+Now we will apply this function to the surveys dataset. Create a character vector from the `year`, `month`, and `day` columns of
 `surveys` using `paste()`:
 
 ```{r, eval=FALSE, purl=FALSE}
@@ -576,9 +594,13 @@ surveys$date <- ymd(paste(surveys$year, surveys$month, surveys$day, sep = "-"))
 str(surveys) # notice the new column, with 'date' as the class
 ```
 
-Did you notice the warning message? Let's investigate what is happening. When
-**`lubridate`** fails to parse a date, it will return `NA`. We can use the
-functions we saw previously to deal with missing data to identify the rows in
+Remember, when **`lubridate`** fails to parse a date, it will return `NA` quietly. We can check whether there are missing values using `summary()`:
+
+```{r, eval=TRUE, purl=FALSE}
+summary(surveys$date) # yes, some dates failed to parse
+```
+
+We can use the functions we saw previously to deal with missing data to identify the rows in
 our data frame that are failing. First, let's create a vector that contains our
 dates as a character vector:
 
