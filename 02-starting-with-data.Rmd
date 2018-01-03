@@ -541,9 +541,9 @@ integer values.
 str(surveys)
 ```
 
-We're going to be using the `ymd()` function from the package **`lubridate`**
-(this package gets installed during the installation of the **`tidyverse`**
-package). This function is designed to take a vector representing year, month,
+We're going to be using the `ymd()` function from the package **`lubridate`** (this package gets installed during the installation of the **`tidyverse`** package). **`tidyverse`** is a package of packages. So when you `install.packages("tidyverse")` you are installing all the packages within this one overarching package. All the **`tidyverse`** packages are designed to work together and often we want to use functions from several different packages, so we can install and load **`tidyverse`**, which then loads all the packages, and use what we need. Or we can install **`tidyverse`**, and then load one of the packages within that umbrella, to use on its own. Which is what we are doing here, with **`lubridate`**.
+
+This function is designed to take a vector representing year, month,
 and day and convert that information to a POSIXct vector. POSIXct is a class of
 data recognized by R as being a date or date and time. The argument that the
 function requires is relatively flexible, but, as a best practice, is a
