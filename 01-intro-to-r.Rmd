@@ -1,6 +1,9 @@
 ---
-title: Introduction to R
-author: Data Carpentry contributors
+title: "Introduction to R"
+author: "Data Carpentry contributors"
+output:
+  html_document:
+    df_print: paged
 minutes: 45
 ---
 
@@ -49,7 +52,7 @@ weight_kg <- 55
 
 `<-` is the assignment operator. It assigns values on the right to objects on
 the left. So, after executing `x <- 3`, the value of `x` is `3`. The arrow can
-be read as 3 **goes into** `x`.  For historical reasons, you can also use `=`
+be read as 3 **goes into** `x`. The arrow can also change direction for instance, `->` in this case executing `3 -> x` does the same job as executing `x <- 3`. For historical reasons, you can also use `=`
 for assignments, but not in every context. Because of the
 [slight](http://blog.revolutionanalytics.com/2008/12/use-equals-or-arrow-for-assignment.html)
 [differences](http://r.789695.n4.nabble.com/Is-there-any-difference-between-and-tp878594p878598.html)
