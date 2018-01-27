@@ -556,67 +556,56 @@ library(lubridate)
 ```
 
 Let's create a date object and inspect the structure:
-```{r eval=FALSE, purl=FALSE}
+
+```{r, purl=FALSE}
 my_date <- ymd("2015-01-01")
 str(my_date)
 ```
 
 Now let's paste the year, month, and day separately - we get the same result:
-```{r eval=FALSE, purl=FALSE}
+
+```{r, purl=FALSE}
 my_date <- ymd(paste("2015", "1", "1", sep = "-"))
 str(my_date)
-```
-
-What happens when we try to define an invalid date? It is worth inspecting the help page for `ymd()`. 
-```{r eval=FALSE, purl=FALSE}
-ymd("2015-02-30", quiet = TRUE) # No warning, even though quiet is TRUE
-?ymd # Note that the default value of quiet is TRUE, which should return a warning if a date failed to parse
 ```
 
 Now we will apply this function to the surveys dataset. Create a character vector from the `year`, `month`, and `day` columns of
 `surveys` using `paste()`:
 
-```{r, eval=FALSE, purl=FALSE}
+```{r, purl=FALSE}
 paste(surveys$year, surveys$month, surveys$day, sep = "-")
 # sep indicates the character to use to separate each component
 ```
 
 This character vector can be used as the argument for `ymd()`:
 
-```{r, eval=FALSE, purl=FALSE}
+```{r, purl=FALSE}
 ymd(paste(surveys$year, surveys$month, surveys$day, sep = "-"))
 ```
 
 The resulting POSIXct vector can be added to `surveys` as a new column called `date`:
 
-```{r, eval=TRUE, purl=FALSE}
+```{r, purl=FALSE}
 surveys$date <- ymd(paste(surveys$year, surveys$month, surveys$day, sep = "-"))
 str(surveys) # notice the new column, with 'date' as the class
 ```
 
-Remember, when **`lubridate`** fails to parse a date, it will return `NA` quietly. We can check whether there are missing values using `summary()`:
+Let's make sure everything worked correctly. One way to check the values that got created is to use `summary()` on the new column:
 
-```{r, eval=TRUE, purl=FALSE}
-summary(surveys$date) # yes, some dates failed to parse
+```{r, results=TRUE, purl=FALSE}
+summary(surveys$date)
 ```
 
-We can use the functions we saw previously to deal with missing data to identify the rows in
-our data frame that are failing. First, let's create a vector that contains our
-dates as a character vector:
+Something went wrong as we have some dates that have missing values. Let's try to investigate where they are coming from.
 
-```{r, eval=TRUE, purl=FALSE}
-surveys_dates <- paste(surveys$year, surveys$month, surveys$day, sep = "-")
-head(surveys_dates)
+We can use the functions we saw previously to deal with missing data to identify
+the rows in our data frame that are failing. If we combine them with what we learned about subsetting data frames earlier, we can extract the columns "year, "month", "day" from the records that have `NA` in our new column `date`. We will also use `head()` so we don't clutter the output:
+
+```{r, results=TRUE, purl=FALSE}
+head(surveys[is.na(surveys$date),  c("year", "month", "day")])
 ```
 
-The vector `surveys_dates` contains all the dates from our dataset, in the same
-order as they are in the data frame. We can therefore use the `is.na()` function
-on the `surveys` data frame to locate the elements in the vectors
-`surveys_dates` that failed to parse:
-
-```{r, eval=TRUE, purl=FALSE}
-surveys_dates[is.na(surveys$date)]
-```
+Here, in the square brackets, before the comma, we select only the rows on the data frame that will return `TRUE` when the values in the `date` column will be missing, and we will only select the columns `year`, `month`, `day`.
 
 Why did these dates fail to parse? If you had to use these data for your
 analyses, how would you deal with this situation?
