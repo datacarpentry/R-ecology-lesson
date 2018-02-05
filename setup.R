@@ -30,3 +30,18 @@ library(methods)
 suppressPackageStartupMessages(library(tidyverse))
 knitr::opts_chunk$set(results='hide', fig.path='img/R-ecology-',
                       comment = "#>", purl = FALSE, fig.keep='last')
+
+### Custom hooks
+
+## hook for challenges answers
+
+knitr::knit_hooks$set(answer = function(before, options, envir) {
+    if (before) {
+        paste(
+            "<div class=\"accordion\">",
+              "<h3>Answer</h3>",
+              "<div>",  sep = "\n")
+    } else {
+        paste("</div>", "</div>", sep = "\n")
+    }
+})
