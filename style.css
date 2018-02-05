@@ -9,3 +9,21 @@ p {
 pre {
     font-size: 15px;
 }
+
+blockquote  {
+    background: #efefef;
+    border-left: 5px solid #ddd;
+}
+
+.ui-state-default {
+    background: #ced7e0;
+}
+
+.ui-state-active {
+    border: #ccc;
+    background: #4070A0;
+}
+
+.ui-widget-content {
+    background: #eee;
+}
