@@ -150,6 +150,16 @@ objects besides `data.frame`.
 > * What is the class of the object `surveys`?
 > * How many rows and how many columns are in this object?
 > * How many species have been recorded during these surveys?
+>
+> ```{r, answer=TRUE, results="markup", purl=FALSE}
+>
+> str(surveys)
+>
+> ## * class: data frame
+> ## * how many rows: 34786,  how many columns: 13
+> ## * how many species: 48
+> ```
+
 
 ```{r, echo=FALSE, purl=TRUE}
 
@@ -161,15 +171,6 @@ objects besides `data.frame`.
 
 ```
 
-<!---
-```{r, echo=FALSE, purl=FALSE}
-## Answers
-##
-## * class: data frame
-## * how many rows: 34786,  how many columns: 13
-## * how many species: 48
-```
---->
 
 
 ## Indexing and subsetting data frames
@@ -239,6 +240,17 @@ feature to get the full and correct column name.
 > 4. Combine `nrow()` with the `-` notation above to reproduce the behavior of
 >    `head(surveys)` keeping just the first through 6th rows of the surveys
 >    dataset.
+>
+> ```{r, answer=TRUE, purl=FALSE}
+> ## 1.
+> surveys_200 <- surveys[200, ]
+> ## 2.
+> surveys_last <- surveys[nrow(surveys), ]
+> ## 3.
+> surveys_middle <- surveys[nrow(surveys)/2, ]
+> ## 4.
+> surveys_head <- surveys[-c(7:nrow(surveys)),]
+> ```
 
 
 ```{r, echo=FALSE, purl=TRUE}
@@ -264,17 +276,6 @@ feature to get the full and correct column name.
 ###    dataset.
 
 ```
-
-<!---
-```{r, purl=FALSE}
-## Answers
-surveys_200 <- surveys[200, ]
-surveys_last <- surveys[nrow(surveys), ]
-surveys_middle <- surveys[nrow(surveys)/2, ]
-surveys_head <- surveys[-c(7:nrow(surveys)),]
-```
---->
-
 
 ## Factors
 
@@ -397,6 +398,12 @@ head(sex)
 > * Rename "F" and "M" to "female" and "male" respectively.
 > * Now that we have renamed the factor level to "missing", can you recreate the
 >  barplot such that "missing" is last (after "male")?
+>
+> ```{r correct-order, answer=TRUE, purl=FALSE}
+> levels(sex)[2:3] <- c("female", "male")
+> sex <- factor(sex, levels = c("female", "male", "missing"))
+> plot(sex)
+> ``` 
 
 
 ```{r wrong-order, results='show', echo=FALSE, purl=TRUE}
@@ -407,15 +414,6 @@ head(sex)
 ##   barplot such that "missing" is last (after "male")
 ```
 
-
-<!---
-```{r correct-order, purl=FALSE}
-## Answers
-levels(sex)[2:3] <- c("female", "male")
-sex <- factor(sex, levels = c("female", "male", "missing"))
-plot(sex)
-```
---->
 
 ### Using `stringsAsFactors=FALSE`
 
@@ -500,9 +498,7 @@ surveys$plot_type <- factor(surveys$plot_type)
 >                                   has_kangaroo = c(FALSE, FALSE, FALSE, 1))
 >    ```
 >
->    <!--- Answers
->
->    ```{r, eval=FALSE, echo=FALSE, purl=FALSE}
+>    ```{r, answer=TRUE, purl=FALSE}
 >    ## Answers
 >    ## * missing quotations around the names of the animals
 >    ## * missing one entry in the "feel" column (probably for one of the furry animals)
@@ -517,8 +513,6 @@ surveys$plot_type <- factor(surveys$plot_type)
 >    ##   by TRUE in the `has_kangaroo` column would probably what was originally
 >    ##   intended.
 >    ```
->
->    -->
 >
 
 The automatic conversion of data type is sometimes a blessing, sometimes an
