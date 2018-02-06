@@ -55,7 +55,9 @@ when making figures with ggplot.
 ggplot graphics are built step by step by adding new elements. Adding layers in
 this fashion allows for extensive flexibility and customization of plots.
 
-To build a ggplot, we need to:
+To build a ggplot, we will use the following basic template that can be used for different types of plots:
+
+ggplot(data = <DATA>) +  <GEOM_FUNCTION>(mapping = aes(<MAPPINGS>))
 
 - use the `ggplot()` function and bind the plot to a specific data frame using the  
       `data` argument
