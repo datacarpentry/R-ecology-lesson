@@ -44,5 +44,8 @@ we encourage you to review our [contributing guide](CONTRIBUTING.Rmd).
 If you have any questions or feedback, please open an issue or contact the
 maintainers:
 
-* François Michonneau
+* Ana Costa Conrado
 * Auriel Fournier
+* François Michonneau
+* Brian Seok
+* Shiva Guru
