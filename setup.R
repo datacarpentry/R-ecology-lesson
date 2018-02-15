@@ -39,8 +39,8 @@ knitr::knit_hooks$set(answer = function(before, options, envir) {
     if (before) {
         paste(
             "<div class=\"accordion\">",
-              "<h3>Answer</h3>",
-              "<div>",  sep = "\n")
+              "<h3 class=\"toc-ignore\">Answer</h3>",
+              "<div style=\"background: #fff;\">",  sep = "\n")
     } else {
         paste("</div>", "</div>", sep = "\n")
     }
