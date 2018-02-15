@@ -19,6 +19,15 @@ if (Sys.getenv("id_rsa") != "") {
   get_stage("before_deploy") %>%
       add_step(step_setup_ssh())
 
-  get_stage("deploy") %>%
-    add_step(step_push_deploy(path = "_site", branch = "gh-pages", orphan = TRUE))
+    ## if there is a tag associated with the push, the lesson gets deployed on
+    ## gh-pages, and rendered by GitHub
+    if (ci()$is_tag()) {
+        get_stage("deploy") %>%
+            add_step(step_push_deploy(path = "_site", branch = "gh-pages", orphan = TRUE))
+    }
+
+    ## in all cases, the lesson gets deployed to the development branch, and
+    ## will be rendered by netlify
+    get_stage("deploy") %>%
+        add_step(step_push_deploy(path = "_site", branch = "development", orphan = TRUE))
 }
