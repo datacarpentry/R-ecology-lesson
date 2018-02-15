@@ -338,7 +338,10 @@ factors (`factor`) and arrays (`array`).
 > * We’ve seen that atomic vectors can be of type character,
 >   numeric (or double), integer, and logical. But what happens if we try to mix these types in
 >   a single vector?
-> <!-- * _Answer_: R implicitly converts them to all be the same type -->
+> 
+> ```{text_answer, echo=FALSE, purl=FALSE}
+> R implicitly converts them to all be the same type
+> ```
 >
 > * What will happen in each of these examples? (hint: use `class()`
 >   to check the data type of your objects):
@@ -351,8 +354,11 @@ factors (`factor`) and arrays (`array`).
 >     ```
 >
 > * Why do you think it happens?
-> <!-- * _Answer_: Vectors can be of only one data type. R tries to convert (coerce)
->   the content of this vector to find a "common denominator". -->
+>
+> ```{text_answer, echo=FALSE, purl=FALSE}
+> Vectors can be of only one data type. R tries to
+> convert (coerce) the content of this vector to find a "common denominator".
+> ```
 >
 > * You've probably noticed that objects of different types get
 >   converted into a single, shared type within a vector. In R, we
@@ -361,7 +367,10 @@ factors (`factor`) and arrays (`array`).
 >   whereby some types get preferentially coerced into other
 >   types. Can you draw a diagram that represents the hierarchy of how
 >   these data types are coerced?
-> <!-- * _Answer_: `logical -> numeric -> character <-- logical` -->
+>
+> ```{text_answer, echo=FALSE, purl=FALSE}
+> logical &#8594; numeric &#8594; character &#8592; logical
+> ```
 
 ```{r, echo=FALSE, eval=FALSE, purl=TRUE}
 ## We’ve seen that atomic vectors can be of type character, numeric, integer, and
@@ -462,20 +471,11 @@ animals[animals %in% c("rat", "cat", "dog", "duck", "goat")]
 > ### Challenge (optional){.challenge}
 >
 > * Can you figure out why `"four" > "five"` returns `TRUE`?
-
-```{r, echo=FALSE, purl=TRUE}
-### Challenge (optional)
-##
-## * Can you figure out why `"four" > "five"` returns `TRUE`?
-```
-
-<!--
-```{r, purl=FALSE}
-## Answers
-## * When using ">" or "<" on strings, R compares their alphabetical order. Here
-##   "four" comes after "five", and therefore is "greater than" it.
-```
--->
+> 
+> ```{text_answer, echo=FALSE}
+> When using ">" or "<" on strings, R compares their alphabetical order. 
+> Here "four" comes after "five", and therefore is "greater than" it.
+> ```
 
 
 ## Missing data
@@ -525,6 +525,18 @@ Recall that you can use the `typeof()` function to find the type of your atomic 
 >     ```
 >
 > 2. Use the function `median()` to calculate the median of the `lengths` vector.
+>
+> ```{r, answer=TRUE}
+> lengths <- c(10, 24, NA, 18, NA, 20)
+>
+> # 1.
+> lengths_no_na <- lengths[!is.na(lengths)] 
+> # or
+> lengths_no_na <- na.omit(lengths)
+>
+> # 2.
+> median(lengths, na.rm = TRUE)
+> ```
 
 ```{r,echo=FALSE, purl=TRUE}
 ## ### Challenge

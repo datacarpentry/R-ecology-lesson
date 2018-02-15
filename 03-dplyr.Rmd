@@ -189,22 +189,19 @@ Note that the final data frame is the leftmost part of this expression.
 >
 >  Using pipes, subset the `surveys` data to include individuals collected before
 >  1995 and retain only the columns `year`, `sex`, and `weight`.
+> 
+> 
+> ```{r, answer=TRUE, eval=FALSE, purl=FALSE}
+> surveys %>%
+>     filter(year < 1995) %>%
+>     select(year, sex, weight)
+> ```
 
-<!---
-```{r, eval=FALSE, purl=FALSE}
-## Answer
-surveys %>%
-    filter(year < 1995) %>%
-    select(year, sex, weight)
+```{r, eval=FALSE, purl=TRUE, echo=FALSE}
+## Pipes Challenge:
+##  Using pipes, subset the data to include individuals collected
+##  before 1995, and retain the columns `year`, `sex`, and `weight.`
 ```
---->
-
-    ```{r, eval=FALSE, purl=TRUE, echo=FALSE}
-    ## Pipes Challenge:
-    ##  Using pipes, subset the data to include individuals collected
-    ##  before 1995, and retain the columns `year`, `sex`, and `weight.`
-
-    ```
 
 ### Mutate
 
@@ -259,29 +256,26 @@ symbol negates the result, so we're asking for every row where weight *is not* a
 >  than 30.
 >
 >  **Hint**: think about how the commands should be ordered to produce this data frame!
+> 
+> ```{r, answer=TRUE, eval=FALSE, purl=FALSE}
+> surveys_hindfoot_half <- surveys %>%
+>     filter(!is.na(hindfoot_length)) %>%
+>     mutate(hindfoot_half = hindfoot_length / 2) %>%
+>     filter(hindfoot_half < 30) %>%
+>     select(species_id, hindfoot_half)
+> ```
+ 
 
-<!---
-```{r, eval=FALSE, purl=FALSE}
-## Answer
-surveys_hindfoot_half <- surveys %>%
-    filter(!is.na(hindfoot_length)) %>%
-    mutate(hindfoot_half = hindfoot_length / 2) %>%
-    filter(hindfoot_half < 30) %>%
-    select(species_id, hindfoot_half)
+```{r, eval=FALSE, purl=TRUE, echo=FALSE}
+## Mutate Challenge:
+##  Create a new data frame from the `surveys` data that meets the following
+##  criteria: contains only the `species_id` column and a column that
+##  contains values that are half the `hindfoot_length` values (e.g. a
+##  new column `hindfoot_half`). In this `hindfoot_half` column, there are
+##  no NA values and all values are < 30.
+
+##  Hint: think about how the commands should be ordered to produce this data frame!
 ```
---->
-
-    ```{r, eval=FALSE, purl=TRUE, echo=FALSE}
-    ## Mutate Challenge:
-    ##  Create a new data frame from the `surveys` data that meets the following
-    ##  criteria: contains only the `species_id` column and a column that
-    ##  contains values that are half the `hindfoot_length` values (e.g. a
-    ##  new column `hindfoot_half`). In this `hindfoot_half` column, there are
-    ##  no NA values and all values are < 30.
-
-    ##  Hint: think about how the commands should be ordered to produce this data frame!
-
-    ```
 
 ### Split-apply-combine data analysis and the summarize() function
 
@@ -375,48 +369,48 @@ counts the total number of records for each category.
 >
 > 1. How many individuals were caught in each `plot_type` surveyed?
 >
+> ```{r, answer=TRUE, purl=FALSE}
+> surveys %>%
+>     group_by(plot_type) %>%
+>     tally()
+> ```
+>
 > 2. Use `group_by()` and `summarize()` to find the mean, min, and max hindfoot
 > length for each species (using `species_id`).
+>
+> ```{r, answer=TRUE, purl=FALSE}
+> surveys %>%
+>     filter(!is.na(hindfoot_length)) %>%
+>     group_by(species_id) %>%
+>     summarize(
+>         mean_hindfoot_length = mean(hindfoot_length),
+>         min_hindfoot_length = min(hindfoot_length),
+>         max_hindfoot_length = max(hindfoot_length)
+>     )
+> ```
 >
 > 3. What was the heaviest animal measured in each year? Return the columns `year`,
 > `genus`, `species_id`, and `weight`.
 >
-> 4. You saw above how to count the number of individuals of each `sex` using a
-> combination of `group_by()` and `tally()`. How could you get the same result
-> using `group_by()` and `summarize()`? Hint: see `?n`.
+> ```{r, answer=TRUE, purl=FALSE}
+> surveys %>%
+>     filter(!is.na(weight)) %>%
+>     group_by(year) %>%
+>     filter(weight == max(weight)) %>%
+>     select(year, genus, species, weight) %>%
+>     arrange(year)
+> ```
+>
+> 4. You saw above how to count the number of individuals of each `sex` using 
+> a combination of `group_by()` and `tally()`. How could you get the same 
+> result using `group_by()` and `summarize()`? Hint: see `?n`.
+>
+> ```{r, answer=TRUE, purl=FALSE}
+> surveys %>%
+>   group_by(sex) %>%
+>   summarize(n = n())
+> ```
 
-
-<!---
-```{r, echo=FALSE, purl=FALSE}
-## Answer 1
-surveys %>%
-    group_by(plot_type) %>%
-    tally()
-
-## Answer 2
-surveys %>%
-    filter(!is.na(hindfoot_length)) %>%
-    group_by(species_id) %>%
-    summarize(
-        mean_hindfoot_length = mean(hindfoot_length),
-        min_hindfoot_length = min(hindfoot_length),
-        max_hindfoot_length = max(hindfoot_length)
-    )
-
-## Answer 3
-surveys %>%
-    filter(!is.na(weight)) %>%
-    group_by(year) %>%
-    filter(weight == max(weight)) %>%
-    select(year, genus, species, weight) %>%
-    arrange(year)
-
-## Answer 4
-surveys %>%
-  group_by(sex) %>%
-  summarize(n = n())
-```
---->
 
 ```{r, eval=FALSE, purl=TRUE, echo=FALSE}
 ## Tally Challenges:
@@ -513,7 +507,7 @@ although we may wish to fill in the missing values first.
 ```{r, purl=FALSE}
 surveys_gw %>%
   spread(genus, mean_weight, fill = 0) %>%
-  head
+  head()
 ```
 
 #### Gathering
@@ -564,13 +558,29 @@ surveys_spread %>%
 
 > ### Challenge {.challenge}
 >
-> 1. Spread the `surveys` data frame with `year` as columns, `plot_id` as rows, and the
+> 1. Spread the `surveys` data frame with `year` as columns, `plot_id` 
+>   as rows, and the
 >   number of genera per plot as the values. You will need to summarize before
 >   reshaping, and use the function `n_distinct()` to get the number of unique
->   genera within a particular chunk of data. It's a powerful function! See `?n_distinct` for more.
+>   genera within a particular chunk of data. It's a powerful function! See
+>   `?n_distinct` for more.
+> 
+> ```{r, answer=TRUE, purl=FALSE}
+> rich_time <- surveys %>%
+>   group_by(plot_id, year) %>%
+>   summarize(n_genera = n_distinct(genus)) %>%
+>   spread(year, n_genera)
+> 
+> head(rich_time)
+> ```
 >
 > 2. Now take that data frame and `gather()` it again, so each row is a unique
 >    `plot_id` by `year` combination.
+>
+> ```{r, answer=TRUE, purl=FALSE}
+> rich_time %>%
+>   gather(year, n_genera, -plot_id)
+> ```
 >
 > 3. The `surveys` data set has
 >    two measurement columns: `hindfoot_length` and `weight`.  This makes it
@@ -581,11 +591,23 @@ surveys_spread %>%
 >    `value` column that takes on the value of either `hindfoot_length` or
 >    `weight`. *Hint*: You'll need to specify which columns are being gathered.
 >
+> ```{r, answer=TRUE, purl=FALSE}
+> surveys_long <- surveys %>%
+>   gather(measurement, value, hindfoot_length, weight)
+> ```
+>
 > 4. With this new data set, calculate the average of each
 >    `measurement` in each `year` for each different `plot_type`. Then
 >    `spread()` them into a data set with a column for `hindfoot_length` and
 >    `weight`. *Hint*: You only need to specify the key and value
 >    columns for `spread()`.
+>
+> ```{r, answer=TRUE, purl=FALSE}
+> surveys_long %>%
+>   group_by(year, measurement, plot_type) %>%
+>   summarize(mean_value = mean(value, na.rm=TRUE)) %>%
+>   spread(measurement, mean_value)
+> ```
 
 ```{r, eval=FALSE, purl=TRUE, echo=FALSE}
 ## Reshaping challenges
@@ -599,32 +621,6 @@ surveys_spread %>%
 ## 4. With this new truly long data set, calculate the average of each `measurement` in each `year` for each different `plot_type`. Then `spread` them into a wide data set with a column for `hindfoot_length` and `weight`. Hint: Remember, you only need to specify the key and value columns for `spread`.
 
 ```
-
-<!---
-  ```{r, echo=FALSE, purl=FALSE}
-## Answer 1
-rich_time <- surveys %>%
-  group_by(plot_id, year) %>%
-  summarize(n_genera = n_distinct(genus)) %>%
-  spread(year, n_genera)
-
-head(rich_time)
-
-## Answer 2
-rich_time %>%
-  gather(year, n_genera, -plot_id)
-
-## Answer 3
-surveys_long <- surveys %>%
-  gather(measurement, value, hindfoot_length, weight)
-
-## Answer 4
-surveys_long %>%
-  group_by(year, measurement, plot_type) %>%
-  summarize(mean_value = mean(value, na.rm=TRUE)) %>%
-  spread(measurement, mean_value)
-```
---->
 
 # Exporting data
 
@@ -714,7 +710,7 @@ write_csv(surveys_complete, path = "data_output/surveys_complete.csv")
 ```
 
 ```{r, purl=FALSE, eval=TRUE, echo=FALSE}
-if (!file.exists("data_output")) dir.create("data_output")
+if (!dir.exists("data_output")) dir.create("data_output")
 write_csv(surveys_complete, path = "data_output/surveys_complete.csv")
 ```
 
