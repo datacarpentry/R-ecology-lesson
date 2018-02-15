@@ -27,3 +27,7 @@ blockquote  {
 .ui-widget-content {
     background: #eee;
 }
+
+blockquote p,ul,ol {
+    font-size: .9em;
+}
