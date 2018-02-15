@@ -106,7 +106,7 @@ surveys_plot +
     geom_point()
 ```
 
-**Notes:**
+** Notes: **
 
 - Anything you put in the `ggplot()` function can be seen by any geom layers
   that you add (i.e., these are universal plot settings). This includes the x- and
@@ -141,8 +141,7 @@ surveys_plot
 >
 > ```{r, eval = FALSE}
 > install.packages("hexbin")
-library(hexbin)
-
+> library(hexbin)
 > ```
 >
 > Then use the `geom_hex()` function:
@@ -163,6 +162,7 @@ library(hexbin)
 ## package from CRAN:
 
 install.packages("hexbin")
+library(hexbin)
 
 ## Then use the `geom_hex()` function:
 
@@ -207,8 +207,9 @@ ggplot(data = surveys_complete, aes(x = weight, y = hindfoot_length)) +
 
 > ### Challenge
 >
-> Use what you just learned to create a scatter plot of `weight` over `species_id` with the plot types showing in different colors.
-> Is this a good way to show this type of data?
+> Use what you just learned to create a scatter plot of `weight` over
+> `species_id` with the plot types showing in different colors. Is this a good
+> way to show this type of data?
 
 ```{r scatter-challenge, echo=FALSE, eval=FALSE, purl=TRUE}
 ### Challenge with scatter plot:
@@ -264,7 +265,7 @@ hidden?
 >
 > - Add color to the data points on your boxplot according to the plot from which
 >   the sample was taken (`plot_id`).
-
+>
 > *Hint:* Check the class for `plot_id`. Consider changing the class of `plot_id` from integer to factor. Why does this change how R makes the graph?
 
 ```{r boxplot-challenge, eval=FALSE, purl=TRUE, echo=FALSE}
@@ -387,18 +388,17 @@ themes.
 
 > Use what you just learned to create a plot that depicts how the average weight
 > of each species changes through the years.
+> 
+> ```{r average-weight-time-series, answer=TRUE, purl=FALSE}
+> yearly_weight <- surveys_complete %>%
+>                 group_by(year, species_id) %>%
+>                  summarize(avg_weight = mean(weight))
+> ggplot(data = yearly_weight, aes(x=year, y=avg_weight)) +
+>    geom_line() +
+>    facet_wrap(~ species_id) +
+>    theme_bw()
+>```
 
-<!-- Answer
-```{r average-weight-time-series, purl=FALSE}
-yearly_weight <- surveys_complete %>%
-                 group_by(year, species_id) %>%
-                 summarize(avg_weight = mean(weight))
-ggplot(data = yearly_weight, aes(x=year, y=avg_weight)) +
-    geom_line() +
-    facet_wrap(~ species_id) +
-    theme_bw()
-```
--->
 
 ```{r, eval=FALSE, purl=TRUE, echo=FALSE}
 ### Plotting time series challenge:
@@ -504,17 +504,16 @@ ggplot(surveys_complete, aes(x = species_id, y = hindfoot_length)) +
 ```
 
 > ### Challenge
-
-> With all of this information in hand, please take another five minutes to either
-> improve one of the plots generated in this exercise or create a beautiful graph
-> of your own. Use the RStudio [**`ggplot2`** cheat sheet](https://www.rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf) for
-> inspiration.
-
-> Here are some ideas:
-
+> 
+> With all of this information in hand, please take another five minutes to
+> either improve one of the plots generated in this exercise or create a
+> beautiful graph of your own. Use the RStudio [**`ggplot2`** cheat sheet](https://www.rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf)
+> for inspiration. Here are some ideas:
+>
 > * See if you can change the thickness of the lines.
 > * Can you find a way to change the name of the legend? What about its labels?
-> * Try using a different color palette (see http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/).
+> * Try using a different color palette (see
+>   http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/).
 
 ## Arranging and exporting plots
 

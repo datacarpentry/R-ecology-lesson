@@ -399,7 +399,7 @@ head(sex)
 > * Now that we have renamed the factor level to "missing", can you recreate the
 >  barplot such that "missing" is last (after "male")?
 >
-> ```{r correct-order, answer=TRUE, purl=FALSE}
+> ```{r, answer=TRUE, purl=FALSE}
 > levels(sex)[2:3] <- c("female", "male")
 > sex <- factor(sex, levels = c("female", "male", "missing"))
 > plot(sex)
@@ -498,20 +498,18 @@ surveys$plot_type <- factor(surveys$plot_type)
 >                                   has_kangaroo = c(FALSE, FALSE, FALSE, 1))
 >    ```
 >
->    ```{r, answer=TRUE, purl=FALSE}
->    ## Answers
->    ## * missing quotations around the names of the animals
->    ## * missing one entry in the "feel" column (probably for one of the furry animals)
->    ## * missing one comma in the weight column
+>    ```{text_answer, purl=FALSE}
+>    * missing quotations around the names of the animals
+>    * missing one entry in the "feel" column (probably for one of the furry animals)
+>    * missing one comma in the weight column
 >
->    ## Answers
->    ## * `country`, `climate`, `temperature`, and `northern_hemisphere` are
->    ##    factors; `has_kangaroo` is numeric.
->    ## * using `stringsAsFactors=FALSE` would have made them character instead of
->    ##   factors
->    ## * removing the quotes in temperature, northern_hemisphere, and replacing 1
->    ##   by TRUE in the `has_kangaroo` column would probably what was originally
->    ##   intended.
+>    * `country`, `climate`, `temperature`, and `northern_hemisphere` are
+>       factors; `has_kangaroo` is numeric.
+>    * using `stringsAsFactors=FALSE` would have made them character instead of
+>      factors
+>    * removing the quotes in temperature, northern_hemisphere, and replacing 1
+>      by TRUE in the `has_kangaroo` column would probably what was originally
+>      intended.
 >    ```
 >
 
