@@ -107,6 +107,10 @@ The two main goals for this lessons are:
 * For this lesson make sure that learners are comfortable using pipes.
 * There is also sometimes some confusion on what the arguments of `group_by`
   should be.
+  
+### Using tidyr to reshape data for plotting
+* This lesson uses the tidyr package to reshape data for plotting
+* After this lesson students should be familiar with the spread() and gather() functions available in tidyr
 
 ### Visualizing data with ggplot2
 
