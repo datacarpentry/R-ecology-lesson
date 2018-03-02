@@ -76,6 +76,14 @@ function `head()`:
 head(surveys)
 ```
 
+Or if the first 6 lines is a little too much (or too little) for a brief glance, 
+the head() function has some flexibility. Try with fewer (or more) lines:
+
+```{r, results='show', purl=FALSE}
+head(surveys, 3)
+head(surveys, 12)
+```
+
 > ### Note
 >
 > `read.csv` assumes that fields are delineated by commas, however, in several
