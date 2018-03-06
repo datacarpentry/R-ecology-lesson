@@ -84,7 +84,14 @@ head(surveys)
 > you can use the `read.csv2` function. It behaves exactly like `read.csv` but
 > uses different parameters for the decimal and the field separators. If you are
 > working with another format, they can be both specified by the user. Check out
-> the help for `read.csv()` to learn more.
+> the help for `read.csv()` to learn more. There is also the `read.delim()` for 
+> in tab separated data files. It is important to note that all of these functions 
+> are actually wrapper function for the main `read.table()` with different arguments.
+> As such, the surveys data above could have also been loaded by using `read.table()`
+> with the separation argument as `,` 
+> 'surveys <- read.table(file="data/portal_data_joined.csv", sep=",", header=TRUE)'
+> note that the header argument has to be set to true to be able to get the headers as
+> by default `read.table()` had the header argumetn set to FALSE.
 
 
 ## What are data frames?
