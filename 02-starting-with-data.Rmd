@@ -86,7 +86,7 @@ head(surveys)
 > working with another format, they can be both specified by the user. Check out
 > the help for `read.csv()` to learn more. There is also the `read.delim()` for 
 > in tab separated data files. It is important to note that all of these functions 
-> are actually wrapper functions for the main `read.table()` with different arguments.
+> are actually wrapper functions for the main `read.table()` function with different arguments.
 > As such, the surveys data above could have also been loaded by using `read.table()`
 > with the separation argument as `,`. The code is as follows:
 > `surveys <- read.table(file="data/portal_data_joined.csv", sep=",", header=TRUE)`.
