@@ -48,7 +48,7 @@ the data and install everything *before* working through this lesson.
 
 ### Data
 
-Data files for the lesson are available and can be downloaded manually here: <http://dx.doi.org/10.6084/m9.figshare.1314459>
+Data files for the lesson are available and can be downloaded manually here: <https://doi.org/10.6084/m9.figshare.1314459>
 
 However, we will download them directly from R during the lessons when we need
 them.
