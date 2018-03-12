@@ -364,7 +364,7 @@ plot(surveys$sex)
 
 In addition to males and females, there are about 1700 individuals for which the
 sex information hasn't been recorded. Additionally, for these individuals,
-there is no label to indicate that the information is missing. Let's rename this
+there is no label to indicate that the information is missing or undetermined. Let's rename this
 label to something more meaningful. Before doing that, we're going to pull out
 the data on sex and work with that data, so we're not modifying the working copy
 of the data frame:
@@ -373,7 +373,7 @@ of the data frame:
 sex <- surveys$sex
 head(sex)
 levels(sex)
-levels(sex)[1] <- "missing"
+levels(sex)[1] <- "undetermined"
 levels(sex)
 head(sex)
 ```
@@ -382,16 +382,16 @@ head(sex)
 > ### Challenge
 >
 > * Rename "F" and "M" to "female" and "male" respectively.
-> * Now that we have renamed the factor level to "missing", can you recreate the
->  barplot such that "missing" is last (after "male")?
+> * Now that we have renamed the factor level to "undetermined", can you recreate the
+>  barplot such that "undetermined" is last (after "male")?
 
 
 ```{r wrong-order, results='show', echo=FALSE, purl=TRUE}
 ## Challenges
 ##
 ## * Rename "F" and "M" to "female" and "male" respectively.
-## * Now that we have renamed the factor level to "missing", can you recreate the
-##   barplot such that "missing" is last (after "male")
+## * Now that we have renamed the factor level to "undetermined", can you recreate the
+##   barplot such that "undetermined" is last (after "male")
 ```
 
 
@@ -399,7 +399,7 @@ head(sex)
 ```{r correct-order, purl=FALSE}
 ## Answers
 levels(sex)[2:3] <- c("female", "male")
-sex <- factor(sex, levels = c("female", "male", "missing"))
+sex <- factor(sex, levels = c("female", "male", "undetermined"))
 plot(sex)
 ```
 --->
