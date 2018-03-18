@@ -504,7 +504,7 @@ surveys$plot_type <- factor(surveys$plot_type)
 >                                   has_kangaroo = c(FALSE, FALSE, FALSE, 1))
 >    ```
 >
->    ```{text_answer, purl=FALSE}
+>    ```{text_answer, echo=FALSE, purl=FALSE}
 >    * missing quotations around the names of the animals
 >    * missing one entry in the "feel" column (probably for one of the furry animals)
 >    * missing one comma in the weight column
