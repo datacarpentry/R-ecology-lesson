@@ -200,7 +200,7 @@ surveys[, 1]    # first column of the data frame (as a vector)
 surveys[1]      # first column of the data frame (as a data.frame)
 surveys[1:3, 7] # first three elements in the 7th column (as a vector)
 surveys[3, ]    # the 3rd row of the data frame (as a data.frame)
-surveys[1:6, ]  # the first 6 rows of the data frame. This is equivalent to head(surveys)
+head_surveys <- surveys[1:6, ] # equivalent to head_surveys <- head(surveys)
 ```
 
 `:` is a special function that creates numeric vectors of integers in increasing
@@ -209,12 +209,11 @@ or decreasing order, test `1:10` and `10:1` for instance.
 You can also exclude certain indices of a data frame using the "`-`" sign:
 
 ```{r, purl=FALSE}
-surveys[,-1]          # The whole data frame, except the first column
-surveys[-c(7:34786),] # Equivalent to head(surveys)
+surveys[, -1]          # The whole data frame, except the first column
+surveys[-c(7:34786), ] # Equivalent to head(surveys)
 ```
 
-As well as using numeric values to call indices of a `data.frame` (or `matrix`), columns
-can be called by the names of the variables they contain, using one of the four following notations:
+Data frames can be subset by calling indices (as shown previously), but also by calling their column names directly:
 
 ```{r, eval = FALSE, purl=FALSE}
 surveys["species_id"]       # Result is a data.frame
@@ -293,9 +292,7 @@ of a special class called `factor`. Factors are very useful and actually
 contribute to making R particularly well suited to working with data. So we are
 going to spend a little time introducing them.
 
-Factors represent categorical data. They are stored as integers associated with labels. While factors look (and often behave) like character vectors,
-they are actually integers under the hood. So you need to be very careful when
-treating them as strings.
+Factors represent categorical data. They are stored as integers associated with labels and they can be ordered or unordered. While factors look (and often behave) like character vectors, they are actually integer vectors under the hood. So you need to be very careful when treating them as strings.
 
 Once created, factors can only contain a pre-defined set of values, known as
 *levels*. By default, R always sorts *levels* in alphabetical order. For
@@ -425,11 +422,9 @@ In most cases, it is preferable to set `stringsAsFactors = FALSE` when importing
 data and to convert as a factor only the columns that require this data
 type.
 
-Compare the output of `str(surveys)` when setting `stringsAsFactors = TRUE`
-(default) and `stringsAsFactors = FALSE`:
 
-
-```{r, eval=FALSE, purl=FALSE}
+```{r, eval=FALSE, purl=TRUE}
+## Compare the difference between our data read as `factor` vs `character`.
 surveys <- read.csv("data/portal_data_joined.csv", stringsAsFactors = TRUE)
 str(surveys)
 surveys <- read.csv("data/portal_data_joined.csv", stringsAsFactors = FALSE)
@@ -532,7 +527,7 @@ integer values.
 str(surveys)
 ```
 
-We are going to use the `ymd()` function from the package **`lubridate`**. **`lubridate`** belongs to the **`tidyverse`**-a package containing a group of packages that work well together. You can install **`lubridate`** directly (`install.packages("lubridate")`)) or by installing the **`tidyverse`** (`install.packages("tidyverse")`)). When you load  the **`tidyverse`** (`library(tidyverse)`), the chore packages (the packages used in most data analyses) get loaded. **`lubridate`** however does not belong to the chore tidyverse, so you have to load it explicitly with `library(lubridate)`.
+We are going to use the `ymd()` function from the package **`lubridate`**. **`lubridate`** belongs to the **`tidyverse`**-a package containing a group of packages that work well together. You can install **`lubridate`** directly (`install.packages("lubridate")`)) or by installing the **`tidyverse`** (`install.packages("tidyverse")`)). When you load  the **`tidyverse`** (`library(tidyverse)`), the core packages (the packages used in most data analyses) get loaded. **`lubridate`** however does not belong to the chore tidyverse, so you have to load it explicitly with `library(lubridate)`.
 
 `ymd()` takes a vector representing year, month,
 and day and converts it to a POSIXct vector. POSIXct is a class of
