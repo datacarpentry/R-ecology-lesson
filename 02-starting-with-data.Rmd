@@ -527,7 +527,7 @@ integer values.
 str(surveys)
 ```
 
-We are going to use the `ymd()` function from the package **`lubridate`**. **`lubridate`** belongs to the **`tidyverse`**-a package containing a group of packages that work well together. You can install **`lubridate`** directly (`install.packages("lubridate")`)) or by installing the **`tidyverse`** (`install.packages("tidyverse")`)). When you load  the **`tidyverse`** (`library(tidyverse)`), the core packages (the packages used in most data analyses) get loaded. **`lubridate`** however does not belong to the chore tidyverse, so you have to load it explicitly with `library(lubridate)`.
+We are going to use the `ymd()` function from the package **`lubridate`**. **`lubridate`** belongs to the **`tidyverse`**-a package containing a group of packages that work well together. You can install **`lubridate`** directly (`install.packages("lubridate")`)) or by installing the **`tidyverse`** (`install.packages("tidyverse")`)). When you load  the **`tidyverse`** (`library(tidyverse)`), the core packages (the packages used in most data analyses) get loaded. **`lubridate`** however does not belong to the core tidyverse, so you have to load it explicitly with `library(lubridate)`.
 
 `ymd()` takes a vector representing year, month,
 and day and converts it to a POSIXct vector. POSIXct is a class of
