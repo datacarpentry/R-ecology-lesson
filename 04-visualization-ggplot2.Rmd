@@ -57,7 +57,7 @@ this fashion allows for extensive flexibility and customization of plots.
 
 To build a ggplot, we will use the following basic template that can be used for different types of plots:
 
-ggplot(data = <DATA>) +  <GEOM_FUNCTION>(mapping = aes(<MAPPINGS>))
+ggplot(data = <DATA>, mapping = aes(<MAPPINGS>)) +  <GEOM_FUNCTION>()
 
 - use the `ggplot()` function and bind the plot to a specific data frame using the
       `data` argument
