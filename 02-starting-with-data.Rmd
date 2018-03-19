@@ -58,10 +58,19 @@ download.file("https://ndownloader.figshare.com/files/2292169",
               "data/portal_data_joined.csv")
 ```
 
-You are now ready to load the data:
+You are now ready to load the data. Importing a dataset into R can be challenging. It often results in silent issues that cause severe errors later in your data analysis. Getting this right is important, and also it is simple if you use RStudio and the __readr__ package.
+
+A simple way to import this dataset is from the Environment tab of RStudio, using the option Import Dataset > From Text (readr) ... 
+
+![](https://i.imgur.com/e9gG380.png)
+
+The panel that pops-up will help you to find the file you want to import, and show you useful previews of the data (central panel) and code (bottom left) that the selected options generate.
+
+![](https://i.imgur.com/2aBq0Ei.png)
 
 ```{r, eval=TRUE,  purl=FALSE}
-surveys <- read.csv("data/portal_data_joined.csv")
+library(readr)
+surveys <- read_csv("data/portal_data_joined.csv")
 ```
 
 This statement doesn't produce any output because, as you might recall,
