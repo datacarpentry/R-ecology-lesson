@@ -13,11 +13,11 @@ source("setup.R")
 > ### Learning Objectives
 >
 > * Describe what a data frame is.
-> * Load external data from a .csv file into a data frame in R.
-> * Summarize the contents of a data frame in R.
-> * Manipulate categorical data in R.
+> * Load external data from a .csv file into a data frame.
+> * Summarize the contents of a data frame.
+> * Manipulate categorical data.
 > * Change how character strings are handled in a data frame.
-> * Format dates in R
+> * Format dates.
 
 ------------
 
@@ -27,7 +27,7 @@ source("setup.R")
 ### Presentation of the survey data
 ```
 
-We are studying the species and weight of animals caught in plots in our study
+We are studying the species repartition and weight of animals caught in plots in our study
 area. The dataset is stored as a comma separated value (CSV) file.
 Each row holds information for a single animal, and the columns represent:
 
@@ -44,7 +44,7 @@ Each row holds information for a single animal, and the columns represent:
 | weight           | weight of the animal in grams      |
 | genus            | genus of animal                    |
 | species          | species of animal                  |
-| taxa             | e.g. Rodent, Reptile, Bird, Rabbit |
+| taxon             | e.g. Rodent, Reptile, Bird, Rabbit |
 | plot\_type       | type of plot                       |
 
 We are going to use the R function `download.file()` to download the CSV file
@@ -84,7 +84,7 @@ head(surveys)
 > you can use the `read.csv2` function. It behaves exactly like `read.csv` but
 > uses different parameters for the decimal and the field separators. If you are
 > working with another format, they can be both specified by the user. Check out
-> the help for `read.csv()` to learn more. There is also the `read.delim()` for 
+> the help for `read.csv()` by typing `?read.csv` to learn more. There is also the `read.delim()` for 
 > in tab separated data files. It is important to note that all of these functions 
 > are actually wrapper functions for the main `read.table()` function with different arguments.
 > As such, the surveys data above could have also been loaded by using `read.table()`
@@ -92,7 +92,6 @@ head(surveys)
 > `surveys <- read.table(file="data/portal_data_joined.csv", sep=",", header=TRUE)`.
 > The header argument has to be set to TRUE to be able to read the headers as
 > by default `read.table()` has the header argument set to FALSE.
-
 
 ## What are data frames?
 
@@ -104,10 +103,10 @@ functions `read.csv()` or `read.table()`; in other words, when importing
 spreadsheets from your hard drive (or the web).
 
 A data frame is the representation of data in the format of a table where the
-columns are vectors that all have the same length. Because the column are
-vectors, they all contain the same type of data (e.g., characters, integers,
+columns are vectors that all have the same length. Because columns are
+vectors, they all contain the same class of data (e.g., characters, integers,
 factors). For example, here is a figure depicting a data frame comprising a
-numeric, a character and a logical vector.
+numeric, a character, and a logical vector.
 
 ![](./img/data-frame.svg)
 
@@ -203,25 +202,24 @@ different classes.
 ```{r, purl=FALSE}
 surveys[1, 1]   # first element in the first column of the data frame (as a vector)
 surveys[1, 6]   # first element in the 6th column (as a vector)
-surveys[, 1]    # first column in the data frame (as a vector)
-surveys[1]      # first column in the data frame (as a data.frame)
+surveys[, 1]    # first column of the data frame (as a vector)
+surveys[1]      # first column of the data frame (as a data.frame)
 surveys[1:3, 7] # first three elements in the 7th column (as a vector)
-surveys[3, ]    # the 3rd element for all columns (as a data.frame)
+surveys[3, ]    # the 3rd row of the data frame (as a data.frame)
 head_surveys <- surveys[1:6, ] # equivalent to head_surveys <- head(surveys)
 ```
 
 `:` is a special function that creates numeric vectors of integers in increasing
 or decreasing order, test `1:10` and `10:1` for instance.
 
-You can also exclude certain parts of a data frame using the "`-`" sign:
+You can also exclude certain indices of a data frame using the "`-`" sign:
 
 ```{r, purl=FALSE}
-surveys[,-1]          # The whole data frame, except the first column
-surveys[-c(7:34786),] # Equivalent to head(surveys)
+surveys[, -1]          # The whole data frame, except the first column
+surveys[-c(7:34786), ] # Equivalent to head(surveys)
 ```
 
-As well as using numeric values to subset a `data.frame` (or `matrix`), columns
-can be called by name, using one of the four following notations:
+Data frames can be subset by calling indices (as shown previously), but also by calling their column names directly:
 
 ```{r, eval = FALSE, purl=FALSE}
 surveys["species_id"]       # Result is a data.frame
@@ -230,9 +228,7 @@ surveys[["species_id"]]     # Result is a vector
 surveys$species_id          # Result is a vector
 ```
 
-For our purposes, the last three notations are equivalent. RStudio knows about
-the columns in your data frame, so you can take advantage of the autocompletion
-feature to get the full and correct column name.
+In RStudio, you can use the autocompletion feature to get the full and correct names of the columns.
 
 > ### Challenge
 >
@@ -245,13 +241,13 @@ feature to get the full and correct column name.
 >      * Compare that with what you see as the last row using `tail()` to make
 >        sure it's meeting expectations.
 >      * Pull out that last row using `nrow()` instead of the row number.
->      * Create a new data frame object (`surveys_last`) from that last row.
+>      * Create a new data frame (`surveys_last`) from that last row.
 >
 > 3. Use `nrow()` to extract the row that is in the middle of the data
 >    frame. Store the content of this row in an object named `surveys_middle`.
 >
 > 4. Combine `nrow()` with the `-` notation above to reproduce the behavior of
->    `head(surveys)` keeping just the first through 6th rows of the surveys
+>    `head(surveys)`, keeping just the first through 6th rows of the surveys
 >    dataset.
 >
 > ```{r, answer=TRUE, purl=FALSE}
@@ -262,7 +258,7 @@ feature to get the full and correct column name.
 > ## 3.
 > surveys_middle <- surveys[nrow(surveys)/2, ]
 > ## 4.
-> surveys_head <- surveys[-c(7:nrow(surveys)),]
+> surveys_head <- surveys[-(7:nrow(surveys)), ]
 > ```
 
 
@@ -285,7 +281,7 @@ feature to get the full and correct column name.
 ###    `surveys_middle`.
 ###
 ### 4. Combine `nrow()` with the `-` notation above to reproduce the behavior of
-###    `head(surveys)` keeping just the first through 6th rows of the surveys
+###    `head(surveys)`, keeping just the first through 6th rows of the surveys
 ###    dataset.
 
 ```
@@ -297,19 +293,12 @@ feature to get the full and correct column name.
 ```
 
 When we did `str(surveys)` we saw that several of the columns consist of
-integers, however, the columns `genus`, `species`, `sex`, `plot_type`, ... are
-of a special class called a `factor`. Factors are very useful and are actually
-something that make R particularly well suited to working with data, so we're
+integers. The columns `genus`, `species`, `sex`, `plot_type`, ... however, are
+of a special class called `factor`. Factors are very useful and actually
+contribute to making R particularly well suited to working with data. So we are
 going to spend a little time introducing them.
 
-Factors are used to represent categorical data. Factors can be ordered or
-unordered, and understanding them is necessary for statistical analysis and for
-plotting.
-
-Factors are stored as integers, and have labels (text) associated with these
-unique integers. While factors look (and often behave) like character vectors,
-they are actually integers under the hood, and you need to be careful when
-treating them like strings.
+Factors represent categorical data. They are stored as integers associated with labels and they can be ordered or unordered. While factors look (and often behave) like character vectors, they are actually integer vectors under the hood. So you need to be very careful when treating them as strings.
 
 Once created, factors can only contain a pre-defined set of values, known as
 *levels*. By default, R always sorts *levels* in alphabetical order. For
@@ -321,7 +310,7 @@ sex <- factor(c("male", "female", "female", "male"))
 
 R will assign `1` to the level `"female"` and `2` to the level `"male"` (because
 `f` comes before `m`, even though the first element in this vector is
-`"male"`). You can check this by using the function `levels()`, and check the
+`"male"`). You can see this by using the function `levels()` and you can find the
 number of levels using `nlevels()`:
 
 ```{r, purl=FALSE}
@@ -360,7 +349,7 @@ Converting factors where the levels appear as numbers (such as concentration
 levels, or years) to a numeric vector is a little trickier. The `as.numeric()` 
 function returns the index values of the factor, not its levels, so it will 
 result in an entirely new (and unwanted in this case) set of numbers. 
-One method to avoid this is to convert factors to characters and then numbers.  
+One method to avoid this is to convert factors to characters, and then to numbers.  
 Another method is to use the `levels()` function. Compare:
 
 ```{r, purl=TRUE}
@@ -428,25 +417,20 @@ head(sex)
 ```
 
 
-### Using `stringsAsFactors=FALSE`
+### Using `stringsAsFactors = FALSE`
 
 By default, when building or importing a data frame, the columns that contain
-characters (i.e., text) are coerced (=converted) into the `factor` data
-type. Depending on what you want to do with the data, you may want to keep these
+characters (i.e. text) are coerced (= converted) into factors. Depending on what you want to do with the data, you may want to keep these
 columns as `character`. To do so, `read.csv()` and `read.table()` have an
 argument called `stringsAsFactors` which can be set to `FALSE`.
 
-In most cases, it's preferable to set `stringsAsFactors = FALSE` when importing
-your data, and converting as a factor only the columns that require this data
+In most cases, it is preferable to set `stringsAsFactors = FALSE` when importing
+data and to convert as a factor only the columns that require this data
 type.
 
-Compare the output of `str(surveys)` when setting `stringsAsFactors = TRUE`
-(default) and `stringsAsFactors = FALSE`:
 
-
-```{r, eval=FALSE, purl=FALSE}
-## Compare the difference between when the data are being read as
-## `factor`, and when they are being read as `character`.
+```{r, eval=FALSE, purl=TRUE}
+## Compare the difference between our data read as `factor` vs `character`.
 surveys <- read.csv("data/portal_data_joined.csv", stringsAsFactors = TRUE)
 str(surveys)
 surveys <- read.csv("data/portal_data_joined.csv", stringsAsFactors = FALSE)
@@ -458,24 +442,28 @@ surveys$plot_type <- factor(surveys$plot_type)
 
 > ### Challenge
 >
-> 1. We have seen how data frames are created when using the `read.csv()`, but
+> 1. We have seen how data frames are created when using `read.csv()`, but
 >   they can also be created by hand with the `data.frame()` function.  There are
->   a few mistakes in this hand-crafted `data.frame`, can you spot and fix them?
+>   a few mistakes in this hand-crafted `data.frame`. Can you spot and fix them?
 >   Don't hesitate to experiment!
 >
 >     ```{r, eval=FALSE, purl=FALSE}
->     animal_data <- data.frame(animal = c("dog", "cat", "sea cucumber", "sea urchin"),
->                               feel = c("furry", "squishy", "spiny"),
->                               weight = c(45, 8 1.1, 0.8))
+>     animal_data <- data.frame(
+>               animal = c("dog", "cat", "sea cucumber", "sea urchin"),
+>               feel = c("furry", "squishy", "spiny"),
+>               weight = c(45, 8 1.1, 0.8)
+>               )
 >     ```
 >
 >     ```{r, eval=FALSE, purl=TRUE, echo=FALSE}
 >     ## Challenge:
 >     ##  There are a few mistakes in this hand-crafted `data.frame`,
 >     ##  can you spot and fix them? Don't hesitate to experiment!
->     animal_data <- data.frame(animal = c(dog, cat, sea cucumber, sea urchin),
->                               feel = c("furry", "squishy", "spiny"),
->                               weight = c(45, 8 1.1, 0.8))
+>     animal_data <- data.frame(
+>           animal = c(dog, cat, sea cucumber, sea urchin),
+>           feel = c("furry", "squishy", "spiny"),
+>           weight = c(45, 8 1.1, 0.8)
+>           )
 >     ```
 >
 > 2. Can you predict the class for each of the columns in the following example?
@@ -512,17 +500,17 @@ surveys$plot_type <- factor(surveys$plot_type)
 >    ```
 >
 >    ```{text_answer, echo=FALSE, purl=FALSE}
+>    * missing quotations around the animal names
 >    * missing quotations around the names of the animals
 >    * missing one entry in the "feel" column (probably for one of the furry animals)
 >    * missing one comma in the weight column
->
 >    * `country`, `climate`, `temperature`, and `northern_hemisphere` are
->       factors; `has_kangaroo` is numeric.
->    * using `stringsAsFactors=FALSE` would have made them character instead of
+>       factors; `has_kangaroo` is numeric
+>    * using `stringsAsFactors = FALSE` would have made them character instead of
 >      factors
->    * removing the quotes in temperature, northern_hemisphere, and replacing 1
->      by TRUE in the `has_kangaroo` column would probably what was originally
->      intended.
+>    * removing the quotes in temperature and northern_hemisphere and replacing 1
+>      by TRUE in the `has_kangaroo` column would give what was probably 
+>      intended
 >    ```
 >
 
@@ -539,19 +527,19 @@ converting date and time information into a variable that is appropriate and
 usable during analyses. As a reminder from earlier in this lesson, the best
 practice for dealing with date data is to ensure that each component of your
 date is stored as a separate variable. Using `str()`, We can confirm that our
-data frame has a separate column for day, month, and year, and each contains
+data frame has a separate column for day, month, and year, and that each contains
 integer values.
 
 ```{r, eval=FALSE, purl=FALSE}
 str(surveys)
 ```
 
-We're going to be using the `ymd()` function from the package **`lubridate`** (this package gets installed during the installation of the **`tidyverse`** package). **`tidyverse`** is a package of packages. So when you `install.packages("tidyverse")` you are installing all the packages within this one overarching package. All the **`tidyverse`** packages are designed to work together and often we want to use functions from several different packages, so we can install and load **`tidyverse`**, which then loads all the packages, and use what we need. Or we can install **`tidyverse`**, and then load one of the packages within that umbrella, to use on its own. Which is what we are doing here, with **`lubridate`**.
+We are going to use the `ymd()` function from the package **`lubridate`**. **`lubridate`** belongs to the **`tidyverse`**-a package containing a group of packages that work well together. You can install **`lubridate`** directly (`install.packages("lubridate")`)) or by installing the **`tidyverse`** (`install.packages("tidyverse")`)). When you load  the **`tidyverse`** (`library(tidyverse)`), the core packages (the packages used in most data analyses) get loaded. **`lubridate`** however does not belong to the core tidyverse, so you have to load it explicitly with `library(lubridate)`.
 
-This function is designed to take a vector representing year, month,
-and day and convert that information to a POSIXct vector. POSIXct is a class of
-data recognized by R as being a date or date and time. The argument that the
-function requires is relatively flexible, but, as a best practice, is a
+`ymd()` takes a vector representing year, month,
+and day and converts it to a POSIXct vector. POSIXct is a class of
+data recognized by R as being a date or a date and time. The argument that the
+function requires is flexible, but, as a best practice, is a
 character vector formatted as "YYYY-MM-DD".
 
 Start by loading the required package:
@@ -570,16 +558,15 @@ str(my_date)
 Now let's paste the year, month, and day separately - we get the same result:
 
 ```{r, purl=FALSE}
-my_date <- ymd(paste("2015", "1", "1", sep = "-"))
+my_date <- ymd(paste("2015", "1", "1", sep = "-")) # sep indicates the character to use to separate each component
 str(my_date)
 ```
 
-Now we will apply this function to the surveys dataset. Create a character vector from the `year`, `month`, and `day` columns of
+Now we apply this function to the surveys dataset. Create a character vector from the `year`, `month`, and `day` columns of
 `surveys` using `paste()`:
 
 ```{r, purl=FALSE}
 paste(surveys$year, surveys$month, surveys$day, sep = "-")
-# sep indicates the character to use to separate each component
 ```
 
 This character vector can be used as the argument for `ymd()`:
@@ -595,13 +582,13 @@ surveys$date <- ymd(paste(surveys$year, surveys$month, surveys$day, sep = "-"))
 str(surveys) # notice the new column, with 'date' as the class
 ```
 
-Let's make sure everything worked correctly. One way to check the values that got created is to use `summary()` on the new column:
+Let's make sure everything worked correctly. One way to inspect the new column is to use `summary()`:
 
 ```{r, results=TRUE, purl=FALSE}
 summary(surveys$date)
 ```
 
-Something went wrong as we have some dates that have missing values. Let's try to investigate where they are coming from.
+Something went wrong: some dates have missing values. Let's investigate where they are coming from.
 
 We can use the functions we saw previously to deal with missing data to identify
 the rows in our data frame that are failing. If we combine them with what we learned about subsetting data frames earlier, we can extract the columns "year, "month", "day" from the records that have `NA` in our new column `date`. We will also use `head()` so we don't clutter the output:
@@ -610,7 +597,7 @@ the rows in our data frame that are failing. If we combine them with what we lea
 head(surveys[is.na(surveys$date),  c("year", "month", "day")])
 ```
 
-Here, in the square brackets, before the comma, we select only the rows on the data frame that will return `TRUE` when the values in the `date` column will be missing, and we will only select the columns `year`, `month`, `day`.
+In the square brackets, before the comma, we selected the rows that return `TRUE` when the values in the `date` column are missing. And after the comma, we selected the columns `year`, `month`, and `day`.
 
 Why did these dates fail to parse? If you had to use these data for your
 analyses, how would you deal with this situation?
