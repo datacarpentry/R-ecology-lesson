@@ -44,20 +44,22 @@ surveys_complete <- read_csv("data_output/surveys_complete.csv")
 **`ggplot2`** is a plotting package that makes it simple to create complex plots
 from data in a data frame. It provides a more programmatic interface for
 specifying what variables to plot, how they are displayed, and general visual
-properties. Therefore, we only need minimal changes if the underlying data change  
+properties. Therefore, we only need minimal changes if the underlying data change
 or if we decide to change from a bar plot to a scatterplot. This helps in creating
 publication quality plots with minimal amounts of adjustments and tweaking.
 
-ggplot likes data in the 'long' format: i.e., a column for every dimension,
+**`ggplot2`** functions like data in the 'long' format, i.e., a column for every dimension,
 and a row for every observation. Well-structured data will save you lots of time
-when making figures with ggplot.
+when making figures with **`ggplot2`**
 
 ggplot graphics are built step by step by adding new elements. Adding layers in
 this fashion allows for extensive flexibility and customization of plots.
 
-To build a ggplot, we need to:
+To build a ggplot, we will use the following basic template that can be used for different types of plots:
 
-- use the `ggplot()` function and bind the plot to a specific data frame using the  
+ggplot(data = <DATA>, mapping = aes(<MAPPINGS>)) +  <GEOM_FUNCTION>()
+
+- use the `ggplot()` function and bind the plot to a specific data frame using the
       `data` argument
 
 ```{r, eval=FALSE, purl=FALSE}
@@ -70,14 +72,15 @@ ggplot(data = surveys_complete)
 ggplot(data = surveys_complete, aes(x = weight, y = hindfoot_length))
 ```
 
-- add `geoms` -- graphical representation of the data in the plot (points,
-      lines, bars). **`ggplot2`** offers many different geoms; we will use some 
-      common ones today, including:
+- add 'geoms' – graphical representations of the data in the plot (points,
+  lines, bars). **`ggplot2`** offers many different geoms; we will use some 
+  common ones today, including:
+  
       * `geom_point()` for scatter plots, dot plots, etc.
       * `geom_boxplot()` for, well, boxplots!
       * `geom_line()` for trend lines, time series, etc.  
 
-To add a geom to the plot use the `+` operator. Because we have two continuous variables,  
+To add a geom to the plot use the `+` operator. Because we have two continuous variables,
 let's use `geom_point()` first:
 
 ```{r first-ggplot, purl=FALSE}
@@ -100,29 +103,30 @@ surveys_plot +
 ```
 
 ```{r, eval=FALSE, purl=TRUE, echo=FALSE, purl=FALSE}
-## Create a ggplot and draw it.
+# Create a ggplot and draw it
 surveys_plot <- ggplot(data = surveys_complete, aes(x = weight, y = hindfoot_length))
 surveys_plot + 
     geom_point()
 ```
 
-** Notes: **
+**Notes**
 
 - Anything you put in the `ggplot()` function can be seen by any geom layers
   that you add (i.e., these are universal plot settings). This includes the x- and
   y-axis mapping you set up in `aes()`.
 - You can also specify mappings for a given geom independently of the
   mappings defined globally in the `ggplot()` function.
-- The `+` sign used to add layers must be placed at the end of each line containing
-a layer. If, instead, the `+` sign is added in the line before the other layer,
-**`ggplot2`** will not add the new layer and will return an error message.
+- The `+` sign used to add new layers must be placed at the end of the line containing
+the *previous* layer. If, instead, the `+` sign is added at the beginning of the line
+containing the new layer, **`ggplot2`** will not add the new layer and will return an 
+error message.
 
 ```{r, ggplot-with-plus-position, eval=FALSE, purl=FALSE}
-# this is the correct syntax for adding layers
+# This is the correct syntax for adding layers
 surveys_plot +
   geom_point()
 
-# this will not add the new layer and will return an error message
+# This will not add the new layer and will return an error message
 surveys_plot
   + geom_point()
 ```
@@ -175,7 +179,7 @@ surveys_plot +
 
 ## Building your plots iteratively
 
-Building plots with ggplot is typically an iterative process. We start by
+Building plots with **`ggplot2`** is typically an iterative process. We start by
 defining the dataset we'll use, lay out the axes, and choose a geom:
 
 ```{r create-ggplot-object, purl=FALSE}
@@ -211,14 +215,10 @@ ggplot(data = surveys_complete, aes(x = weight, y = hindfoot_length)) +
 > Use what you just learned to create a scatter plot of `weight` over
 > `species_id` with the plot types showing in different colors. Is this a good
 > way to show this type of data?
-
-```{r scatter-challenge, echo=FALSE, eval=FALSE, purl=TRUE}
-### Challenge with scatter plot:
-##
-##  Use what you just learned to create a scatter plot of `weight`
-## over `species_id` with the plot types showing in different colors.
-## Is this a good way to show this type of data?
-```
+> ```{r scatter-challenge, answer=TRUE, purl=FALSE}
+> ggplot(data = surveys_complete, aes(x = species_id, y = weight)) +
+>    geom_point(aes(color = species_id))
+> ```
 
 
 ## Boxplot
@@ -247,7 +247,8 @@ hidden?
 >
 > Boxplots are useful summaries, but hide the *shape* of the distribution. For
 > example, if the distribution is bimodal, we would not see it in a
-> boxplot. An alternative to the boxplot is the violin plot where the shape (of the density of points) is drawn.
+> boxplot. An alternative to the boxplot is the violin plot, where the shape 
+(of the density of points) is drawn.
 >
 > - Replace the box plot with a violin plot; see `geom_violin()`.
 >
@@ -257,12 +258,13 @@ hidden?
 > of the axes is done similarly to adding/modifying other components (i.e., by
 > incrementally adding commands). Try making these modifications:
 >
-> - Represent weight on the log10 scale; see `scale_y_log10()`.
+> - Represent weight on the log~10~ scale; see `scale_y_log10()`.
 >
-> So far, we've looked at the distribution of weight within species.  Try making a
+> So far, we've looked at the distribution of weight within species. Try making a
 > new plot to explore the distribution of another variable within each species.
 >
-> - Create a boxplot for `hindfoot_length`.  Overlay the boxplot layer on a jitter layer to show actual measurements.
+> - Create a boxplot for `hindfoot_length`. Overlay the boxplot layer on a jitter
+>   layer to show actual measurements.
 >
 > - Add color to the data points on your boxplot according to the plot from which
 >   the sample was taken (`plot_id`).
@@ -328,8 +330,8 @@ ggplot(data = yearly_counts, aes(x = year, y = n, color = species_id)) +
 
 ## Faceting
 
-ggplot has a special technique called *faceting* that allows the user to split one plot
-into multiple plots based on a factor included in the dataset. We will use it to
+**`ggplot2`** has a special technique called *faceting* that allows the user to split one
+plot into multiple plots based on a factor included in the dataset. We will use it to
 make a time series plot for each species:
 
 ```{r first-facet, purl=FALSE}
@@ -469,12 +471,12 @@ ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex)) +
 
 Note that it is also possible to change the fonts of your plots. If you are on
 Windows, you may have to install
-the [**extrafont** package](https://github.com/wch/extrafont), and follow the
+the [**`extrafont`** package](https://github.com/wch/extrafont), and follow the
 instructions included in the README for this package.
 
 After our manipulations, you may notice that the values on the x-axis are still not
 properly readable. Let's change the orientation of the labels and adjust them
-vertically and horizontally so they don't overlap. You can use a 90 degree
+vertically and horizontally so they don't overlap. You can use a 90-degree
 angle, or experiment to find the appropriate angle for diagonally oriented
 labels:
 
@@ -555,7 +557,7 @@ my_plot <- ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex)) +
           text=element_text(size = 16))
 ggsave("name_of_file.png", my_plot, width = 15, height = 10)
 
-## This also works for grid.arrange() plots
+# This also works for grid.arrange() plots
 combo_plot <- grid.arrange(spp_weight_boxplot, spp_count_plot, ncol = 2, widths = c(4, 6))
 ggsave("combo_plot_abun_weight.png", combo_plot, width = 10, dpi = 300)
 ```
