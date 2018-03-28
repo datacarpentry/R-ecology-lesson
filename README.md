@@ -1,4 +1,7 @@
 [![Build Status](https://travis-ci.org/datacarpentry/R-ecology-lesson.svg?branch=master)](https://travis-ci.org/datacarpentry/R-ecology-lesson)
+[![Create a Slack Account with us](https://img.shields.io/badge/Create_Slack_Account-The_Carpentries-071159.svg)](https://swc-slack-invite.herokuapp.com/)
+[![Slack Status](https://img.shields.io/badge/Slack_Channel-DC_Ecology_R-E01563.svg)](https://swcarpentry.slack.com/messages/C9X9EC405)
+
 
 # Data carpentry: R for data analysis and visualization of Ecological Data
 
@@ -41,8 +44,8 @@ we encourage you to review our [contributing guide](CONTRIBUTING.Rmd).
 
 ## Questions
 
-If you have any questions or feedback, please open an issue or contact the
-maintainers:
+If you have any questions or feedback, please open an issue, contact the
+maintainers, or come chat with us on the [Slack Channel for this lesson](https://swcarpentry.slack.com/messages/C9X9EC405). If you don't already have a Slack account with the Carpentries, you can [create one](https://swc-slack-invite.herokuapp.com/).
 
 * Ana Costa Conrado
 * Auriel Fournier
