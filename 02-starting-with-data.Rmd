@@ -207,7 +207,7 @@ different classes.
 subset with a single vector, they behave like lists; if you subset with two
 vectors, they behave like matrices.
 
---See Dataframes at http://adv-r.had.co.nz/Subsetting.html#data-types.
+--See _Data frames_ at http://adv-r.had.co.nz/Subsetting.html#data-types.
 
 
 ```{r, purl=FALSE}
