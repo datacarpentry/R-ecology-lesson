@@ -640,6 +640,7 @@ the rows in our data frame that are failing. If we combine them with what we lea
 is_missing_date <- is.na(surveys$date)
 date_columns <- c("year", "month", "day")
 missing_dates <- surveys[is_missing_date,  date_columns]
+
 head(missing_dates)
 ```
 
