@@ -285,11 +285,13 @@ In RStudio, you can use the autocompletion feature to get the full and correct n
 > ## 1.
 > surveys_200 <- surveys[200, ]
 > ## 2.
-> surveys_last <- surveys[nrow(surveys), ]
+> # Saving `n_rows` to improve readability and reduce duplication
+> n_rows <- nrow(surveys)
+> surveys_last <- surveys[n_rows, ]
 > ## 3.
-> surveys_middle <- surveys[nrow(surveys)/2, ]
+> surveys_middle <- surveys[n_rows / 2, ]
 > ## 4.
-> surveys_head <- surveys[-(7:nrow(surveys)), ]
+> surveys_head <- surveys[-(7:n_rows), ]
 > ```
 
 
