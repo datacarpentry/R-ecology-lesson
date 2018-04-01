@@ -638,11 +638,10 @@ the rows in our data frame that are failing. If we combine them with what we lea
 
 ```{r, results=TRUE, purl=FALSE}
 is_missing_date <- is.na(surveys$date)
-missing_dates <- surveys[is_missing_date,  c("year", "month", "day")]
+date_columns <- c("year", "month", "day")
+missing_dates <- surveys[is_missing_date,  date_columns]
 head(missing_dates)
 ```
-
-In the square brackets, before the comma, we selected the rows that return `TRUE` when the values in the `date` column are missing. And after the comma, we selected the columns `year`, `month`, and `day`.
 
 Why did these dates fail to parse? If you had to use these data for your
 analyses, how would you deal with this situation?
