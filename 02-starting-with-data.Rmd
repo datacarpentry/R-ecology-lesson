@@ -553,6 +553,11 @@ you import in R are of the correct type within your data frame. If not, use it
 to your advantage to detect mistakes that might have been introduced during data
 entry (a letter in a column that should only contain numbers for instance).
 
+Learn more:
+
+* [How to read data safely with only base R](https://goo.gl/eYJieZ).
+* [How to read data safely with __readr__](https://goo.gl/Xyy3hz).
+
 ## Formatting Dates
 
 One of the most common issues that new (and experienced!) R users have is
