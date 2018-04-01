@@ -600,7 +600,8 @@ str(my_date)
 Now let's paste the year, month, and day separately - we get the same result:
 
 ```{r, purl=FALSE}
-my_date <- ymd(paste("2015", "1", "1", sep = "-")) # sep indicates the character to use to separate each component
+# sep indicates the character to use to separate each component
+my_date <- ymd(paste("2015", "1", "1", sep = "-")) 
 str(my_date)
 ```
 
