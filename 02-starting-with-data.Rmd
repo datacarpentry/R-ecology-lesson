@@ -51,9 +51,10 @@ We are going to use the R function `download.file()` to download the CSV file
 that contains the survey data from figshare, and we will use `read.csv()` to
 load into memory the content of the CSV file as an object of class `data.frame`.
 
-To download the data into the `data/` subdirectory, run the following:
+To create the `data/` subdirectory and download the data into it, run the following:
 
 ```{r, eval=FALSE, purl=TRUE}
+dir.create("data")
 download.file("https://ndownloader.figshare.com/files/2292169",
               "data/portal_data_joined.csv")
 ```
