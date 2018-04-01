@@ -211,7 +211,9 @@ vectors, they behave like matrices.
 
 
 ```{r, purl=FALSE}
-# WARNING: This chunk prints extreemely long objects
+# WARNING: This chunk prints extreemely long objects. Avoiding this by
+# temprarily changing global options
+old_ops <- options(max.print = 20)
 
 # first element in the first column of the data frame (as a vector)
 surveys[1, 1]   
@@ -225,6 +227,9 @@ surveys[1]
 surveys[1:3, 7] 
 # the 3rd row of the data frame (as a data.frame)
 surveys[3, ]    
+
+# Restoring previous global options
+options(old_ops)
 ```
 
 ```{r, purl=FALSE}
@@ -238,10 +243,15 @@ or decreasing order, test `1:10` and `10:1` for instance.
 You can also exclude certain indices of a data frame using the "`-`" sign:
 
 ```{r, purl=FALSE}
-# WARNING: This chunk prints extreemely long objects
+# WARNING: This chunk prints extreemely long objects. Avoiding this by
+# temprarily changing global options
+old_ops <- options(max.print = 20)
 
 surveys[, -1]          # The whole data frame, except the first column
 surveys[-c(7:34786), ] # Equivalent to head(surveys)
+
+# Restoring previous global options
+options(old_ops)
 ```
 
 Data frames can be subset by calling indices (as shown previously), but also by calling their column names directly:
