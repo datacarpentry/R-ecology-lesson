@@ -211,13 +211,20 @@ vectors, they behave like matrices.
 
 
 ```{r, purl=FALSE}
-surveys[1, 1]   # first element in the first column of the data frame (as a vector)
-surveys[1, 6]   # first element in the 6th column (as a vector)
-surveys[, 1]    # first column of the data frame (as a vector)
-surveys[1]      # first column of the data frame (as a data.frame)
-surveys[1:3, 7] # first three elements in the 7th column (as a vector)
-surveys[3, ]    # the 3rd row of the data frame (as a data.frame)
-head_surveys <- surveys[1:6, ] # equivalent to head_surveys <- head(surveys)
+# first element in the first column of the data frame (as a vector)
+surveys[1, 1]   
+# first element in the 6th column (as a vector)
+surveys[1, 6]   
+# first column of the data frame (as a vector)
+surveys[, 1]    
+# first column of the data frame (as a data.frame)
+surveys[1]      
+# first three elements in the 7th column (as a vector)
+surveys[1:3, 7] 
+# the 3rd row of the data frame (as a data.frame)
+surveys[3, ]    
+# equivalent to head_surveys <- head(surveys)
+head_surveys <- surveys[1:6, ] 
 ```
 
 `:` is a special function that creates numeric vectors of integers in increasing
