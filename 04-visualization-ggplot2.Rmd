@@ -194,6 +194,7 @@ instance, we can add transparency (`alpha`) to avoid overplotting:
 ggplot(data = surveys_complete, aes(x = weight, y = hindfoot_length)) +
     geom_point(alpha = 0.1)
 ```
+In order to change the alpha value or colours to identify patterns of over-plotting when displaying lots of data points with R,  we can use a tiny function that allows us to add an alpha value to a given vector of colours in R. That is Modify colour transparency and Vectorised in both colour and alph using the function alpha(colour, alpha = NA) where Arguments colour = (colour) and alpha (new alpha level in [0,1] If alpha is NA, existing alpha values are preserved).
 
 We can also add colors for all the points:
 
