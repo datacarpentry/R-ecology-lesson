@@ -15,7 +15,9 @@ source("setup.R")
 > * Describe what a data frame is.
 > * Load external data from a .csv file into a data frame.
 > * Summarize the contents of a data frame.
-> * Manipulate categorical data.
+> * Describe what a factor is.
+> * Convert between strings and factors.
+> * Reorder and rename factors.
 > * Change how character strings are handled in a data frame.
 > * Format dates.
 
