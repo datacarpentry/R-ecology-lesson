@@ -4,14 +4,14 @@ navbar:
       href: index.html
     - text: "Before we start"
       href: 00-before-we-start.html
-    - text: "Intro to R"
-      href: 01-intro-to-r.html
-    - text: "Starting with data"
-      href: 02-starting-with-data.html
-    - text: "Manipulating data frames"
-      href: 03-dplyr.html
     - text: "Visualizing data"
-      href: 04-visualization-ggplot2.html
+      href: 01-visualizing-ggplot.html
+    - text: "Intro to R"
+      href: 02-intro-to-R.html
+    - text: "Starting with data"
+      href: 03-starting-with-data.html
+    - text: "Manipulating data frames"
+      href: 04-dplyr.html
     - text: "R and SQL"
       href: 05-r-and-databases.html
     - text: "Code Handout"

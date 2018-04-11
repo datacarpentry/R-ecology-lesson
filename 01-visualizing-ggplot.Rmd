@@ -305,6 +305,7 @@ portal <- dplyr::left_join(surveys, species) %>%
                   !is.na(weight)) %>% 
     dplyr::filter(taxa == "Rodent")
 
+
 portal_dipo <- portal %>%
     dplyr::filter(species_id %in% c("DO", "DM", "DS"),
                   year >= 1977 & year <= 1982)

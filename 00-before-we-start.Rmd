@@ -202,6 +202,14 @@ files.
 
 ![Example of a working directory structure](img/working-directory-structure.png)
 
+### Install the tidyverse
+
+### Install ratdat
+
+### Download the data
+
+### Presentation of the dataset
+
 
 ## Interacting with R
 

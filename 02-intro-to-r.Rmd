@@ -161,6 +161,9 @@ to select the whole line), then press <kbd>Ctrl</kbd> + <kbd>Shift</kbd> +
 
 ### Functions and their arguments
 
+<!--- this should be rewritten to use ggplot() examples when possible or at
+least recall examples already seen (use scaffolding) -->
+
 Functions are "canned scripts" that automate more complicated sets of commands
 including operations assignments, etc. Many functions are predefined, or can be
 made available by importing R *packages* (more on that later). A function
@@ -468,7 +471,7 @@ animals %in% c("rat", "cat", "dog", "duck", "goat")
 animals[animals %in% c("rat", "cat", "dog", "duck", "goat")]
 ```
 
-> ### Challenge (optional){.challenge}
+> ### Challenge (optional)
 >
 > * Can you figure out why `"four" > "five"` returns `TRUE`?
 > 
