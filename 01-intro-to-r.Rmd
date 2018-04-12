@@ -358,7 +358,24 @@ factors (`factor`) and arrays (`array`).
 >
 > ```{text_answer, echo=FALSE, purl=FALSE}
 > Vectors can be of only one data type. R tries to
-> convert (coerce) the content of this vector to find a "common denominator".
+> convert (coerce) the content of this vector to find a "common
+> denominator" that doesn't lose any information.
+> ```
+>
+> * How many values in `combined_logical` are `"TRUE"` (as a character) in the
+>   following example:
+>
+>  ```r
+>  num_logical <- c(1, 2, 3, TRUE)
+>  char_logical <- c("a", "b", "c", TRUE)
+>  combined_logical <- c(num_logical, char_logical)
+> ```
+>
+> ```{text-answer, echo=FALSE, purl=FALSE} 
+> Only one. There is no memory of past data types, and the coercion happens the
+> first time the vector is evaluated. Therefore, the `TRUE` in `num_logical`
+> gets converted into a `1` before this it gets converted into `"1"` in
+> `combined_logical`.
 > ```
 >
 > * You've probably noticed that objects of different types get
