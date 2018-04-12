@@ -163,16 +163,6 @@ tutorial.
 * Click on `Create project`
 * Download the [code handout](./code-handout.R), place it in your working
   directory and rename it (e.g., `data-carpentry-script.R`).
-* Under the `Files` tab on the right of the screen, click on `New Folder` and
-  create a folder named `data` within your newly created working directory
-  (e.g., `~/data-carpentry/data`) (alternatively, type `dir.create("data")` at
-  the terminal).
-
-Your working directory should now look like this:
-
-```{r, results='markup',fig.cap="How it should look like at the beginning of this lesson", echo=FALSE, purl=FALSE, out.width='400px', fig.align='center'}
-knitr::include_graphics("img/r-starting-how-it-should-look-like.png")
-```
 
 ### Organizing your working directory
 
@@ -198,12 +188,30 @@ create directories (folders) for **scripts**, **data**, and **documents**.
    functions (more on that later).
 
 You may want additional directories or subdirectories depending on your project
-needs, but these should form the backbone of your working directory. For this
-workshop, we will need a `data/` folder to store our raw data, and we will
-create later a `data_output/` folder when we learn how to export data as CSV
-files.
+needs, but these should form the backbone of your working directory.
 
 ![Example of a working directory structure](img/working-directory-structure.png)
+
+
+For this workshop, we will need a `data/` folder to store our raw data, and we
+will use `data_output/` for when we learn how to export data as CSV files, and
+`fig_output/` folder for the figures that we will save.
+
+* Under the `Files` tab on the right of the screen, click on `New Folder` and
+  create a folder named `data` within your newly created working directory
+  (e.g., `~/data-carpentry/data`). (Alternatively, type `dir.create("data")` at
+  your R console.) Repeat these operations to create a `data_output/` and a
+  `fig_output` folders.
+
+We are going to keep the script in the root of our working directory because we
+are only going to use one file and it will make things easier.
+
+Your working directory should now look like this:
+
+```{r, results='markup',fig.cap="How it should look like at the beginning of this lesson", echo=FALSE, purl=FALSE, out.width='100%', fig.align='center'}
+knitr::include_graphics("img/r-starting-how-it-should-look-like.png")
+```
+
 
 
 ## Interacting with R

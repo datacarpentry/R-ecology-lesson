@@ -543,7 +543,9 @@ In addition to the `ncol` and `nrow` arguments, used to make simple arrangements
 
 After creating your plot, you can save it to a file in your favorite format. The Export tab in the **Plot** pane in RStudio will save your plots at low resolution, which will not be accepted by many journals and will not scale well for posters. 
 
-Instead, use the `ggsave()` function, which allows you easily change the dimension and resolution of your plot by adjusting the appropriate arguments (`width`, `height` and `dpi`):
+Instead, use the `ggsave()` function, which allows you easily change the dimension and resolution of your plot by adjusting the appropriate arguments (`width`, `height` and `dpi`). 
+
+Make sure you have the `fig_output/` folder in your working directory.
 
 ```{r ggsave-example, eval=FALSE, purl=FALSE}
 my_plot <- ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex)) +
@@ -556,11 +558,11 @@ my_plot <- ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex)) +
     theme(axis.text.x = element_text(colour = "grey20", size = 12, angle = 90, hjust = 0.5, vjust = 0.5),
                         axis.text.y = element_text(colour = "grey20", size = 12),
           text=element_text(size = 16))
-ggsave("name_of_file.png", my_plot, width = 15, height = 10)
+ggsave("fig_output/name_of_file.png", my_plot, width = 15, height = 10)
 
 # This also works for grid.arrange() plots
 combo_plot <- grid.arrange(spp_weight_boxplot, spp_count_plot, ncol = 2, widths = c(4, 6))
-ggsave("combo_plot_abun_weight.png", combo_plot, width = 10, dpi = 300)
+ggsave("fig_output/combo_plot_abun_weight.png", combo_plot, width = 10, dpi = 300)
 ```
 
 Note: The parameters `width` and `height` also determine the font size in the saved plot.
