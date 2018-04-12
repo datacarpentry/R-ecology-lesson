@@ -461,7 +461,7 @@ surveys$plot_type <- factor(surveys$plot_type)
 >
 >     ```{r, eval=FALSE, purl=FALSE}
 >     animal_data <- data.frame(
->               animal = c("dog", "cat", "sea cucumber", "sea urchin"),
+>               animal = c(dog, cat, sea cucumber, sea urchin),
 >               feel = c("furry", "squishy", "spiny"),
 >               weight = c(45, 8 1.1, 0.8)
 >               )
