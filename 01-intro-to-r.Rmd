@@ -374,7 +374,7 @@ factors (`factor`) and arrays (`array`).
 > ```{text-answer, echo=FALSE, purl=FALSE} 
 > Only one. There is no memory of past data types, and the coercion happens the
 > first time the vector is evaluated. Therefore, the `TRUE` in `num_logical`
-> gets converted into a `1` before this it gets converted into `"1"` in
+> gets converted into a `1` before it gets converted into `"1"` in
 > `combined_logical`.
 > ```
 >
