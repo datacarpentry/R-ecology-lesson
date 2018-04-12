@@ -1,5 +1,6 @@
 ---
 title: Data visualization with ggplot2
+author: Data Carpentry contributors
 minutes: 60
 ---
 
@@ -9,9 +10,8 @@ minutes: 60
 source("setup.R")
 ```
 
-```{r, echo=FALSE, purl=TRUE}
+
 ### Data Visualization with ggplot2
-```
 
 ------------
 
