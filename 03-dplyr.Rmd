@@ -113,10 +113,17 @@ This is referred to as a "tibble". Tibbles are data frames, but they tweak some 
 2. Columns of class `character` are never converted into factors.
 
 
+We're going to learn some of the most common **`dplyr`** functions:
+- `select()`: subset columns
+- `filter()`: subset rows on conditions
+- `mutate()`: create new columns by using information from other columns
+- `group_by()` and `summarize()`: create summary statisitcs on grouped data
+- `arrange()`: sort results
+- `count()`: count discrete values
+
 ## Selecting columns and filtering rows
 
-We're going to learn some of the most common **`dplyr`** functions: `select()`,
-`filter()`, `mutate()`, `group_by()`, and `summarize()`. To select columns of a
+To select columns of a
 data frame, use `select()`. The first argument to this function is the data
 frame (`surveys`), and the subsequent arguments are the columns to keep.
 
