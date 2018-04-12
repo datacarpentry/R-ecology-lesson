@@ -48,12 +48,17 @@ already have installed the **`tidyverse`** package. This is an
 "umbrella-package" that installs several packages useful for data analysis which
 work together well such as **`tidyr`**, **`dplyr`**, **`ggplot2`**, **`tibble`**, etc.
 
-The **`tidyverse`** package tries to address 3 major problems with some of base R functions:
-1. The results from a base R function sometimes depend on the type of data.
-2. Using R expressions in a non standard way, which can be confusing for new learners.
-3. Hidden arguments, having default operations that new learners are not aware of.
 
-We have seen in our previous lesson that when building or importing a data frame, the columns that contain characters (i.e., text) are coerced (=converted) into the factor data type. We had to set **`stringsAsFactors`** to **`FALSE`** to avoid this hidden argument to convert our data type. 
+The **`tidyverse`** package tries to address 3 common issues that arise when
+doing data analysis with some of functions that come with R:
+
+1. The results from a base R function sometimes depend on the type of data.
+2. Using R expressions in a non standard way, which can be confusing for new
+   learners.
+3. Hidden arguments, having default operations that new learners are not aware
+   of.
+
+We have seen in our previous lesson that when building or importing a data frame, the columns that contain characters (i.e., text) are coerced (=converted) into the `factor` data type. We had to set **`stringsAsFactors`** to **`FALSE`** to avoid this hidden argument to convert our data type. 
 
 This time will use the **`tidyverse`** package to read the data and avoid having to set **`stringsAsFactors`** to **`FALSE`**
 
@@ -61,7 +66,8 @@ To load the package type:
 
 
 ```{r, message = FALSE, purl = FALSE}
-library("tidyverse")    ## load the tidyverse packages, incl. dplyr
+## load the tidyverse packages, incl. dplyr
+library("tidyverse")
 ```
 
 ## What are **`dplyr`** and **`tidyr`**?
@@ -87,21 +93,26 @@ To learn more about **`dplyr`** and **`tidyr`** after the workshop, you may want
 
 We'll read in our data using the `read_csv()` function, from the tidyverse package **`readr`**, instead of `read.csv()`.
 
+
 ```{r,results = 'hide', purl = FALSE}
 surveys <- read_csv("data/portal_data_joined.csv")
 
 ## inspect the data
 str(surveys)
+
+## preview the data
+View(surveys)
 ```
 
 Notice that the class of the data is now `tbl_df`
-This is referred to as a "tibble".
-Tibbles are almost identical to R's standard data frames, but they tweak some of the old behaviors of data frames. For our purposes the only differences between data frames
-and tibbles are that:
 
-1. When you print a tibble, R displays the data type of each column under its name; it prints only the first few rows of data and only as many columns as fit
-on one screen.
-2. Columns of class `character` are never automatically converted into factors.
+This is referred to as a "tibble". Tibbles are data frames, but they tweak some of the old behaviors of data frames. The data structure is very similar to a data frame. For our purposes the only differences are that:
+
+1. In addition to displaying the data type of each column under its name, it
+   only prints the first few rows of data and only as many columns as fit on one
+   screen.
+2. Columns of class `character` are never converted into factors.
+
 
 ## Selecting columns and filtering rows
 
@@ -628,11 +639,12 @@ Now that you have learned how to use **`dplyr`** to extract information from
 or summarize your raw data, you may want to export these new data sets to share
 them with your collaborators or for archival.
 
-Similar to the `read_csv()` function used for reading CSV files into R, the tidyverse includes a `write_csv()` function that generates CSV files from data frames.
+Similar to the `read_csv()` function used for reading CSV files into R, there is
+a `write_csv()` function that generates CSV files from data frames.
 
 Before using `write_csv()`, we are going to create a new folder, `data_output`,
-in our working directory that will store this generated data set. We don't want
-to write generated data sets in the same directory as our raw data. It's good
+in our working directory that will store this generated dataset. We don't want
+to write generated datasets in the same directory as our raw data. It's good
 practice to keep them separate. The `data` folder should only contain the raw,
 unaltered data, and should be left alone to make sure we don't delete or modify
 it. In contrast, our script will generate the contents of the `data_output`
@@ -713,6 +725,7 @@ write_csv(surveys_complete, path = "data_output/surveys_complete.csv")
 if (!dir.exists("data_output")) dir.create("data_output")
 write_csv(surveys_complete, path = "data_output/surveys_complete.csv")
 ```
+
 
 ```{r, child="_page_built_on.Rmd"}
 ```
