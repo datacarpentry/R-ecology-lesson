@@ -24,12 +24,11 @@ suppressWarnings(surveys$date <- lubridate::ymd(paste(surveys$year,
 > * Link the output of one **`dplyr`** function to the input of another function with the 'pipe' operator `%>%`.
 > * Add new columns to a data frame that are functions of existing columns with `mutate`.
 > * Use the split-apply-combine concept for data analysis.
-> * Use `summarize`, `group_by`, and `tally` to split a data frame into groups of observations, apply a summary statistics for each group, and then combine the results.
+> * Use `summarize`, `group_by`, and `count` to split a data frame into groups of observations, apply a summary statistics for each group, and then combine the results.
 > * Describe the concept of a wide and a long table format and for which purpose those formats are useful.
 > * Describe what key-value pairs are.
 > * Reshape a data frame from long to wide format and back with the `spread` and `gather` commands from the **`tidyr`** package.
 > * Export a data frame to a .csv file.
-
 
 ------------
 
@@ -383,21 +382,25 @@ surveys %>%
 ```
 
 
-#### Tallying
+#### Counting
 
-When working with data, we often want to know the number of
-observations found for each factor or combination of factors. For this task, **`dplyr`**
-provides `tally()`. For example, if we wanted to group by sex and find the
-number of rows of data for each sex, we would do:
+When working with data, we often want to know the number of observations found
+for each factor or combination of factors. For this task, **`dplyr`** provides
+`count()`. For example, if we wanted to count the number of rows of data for
+each sex, we would do:
 
 ```{r, purl = FALSE}
 surveys %>%
-  group_by(sex) %>%
-  tally()
+    count(sex) 
 ```
 
-Here, `tally()` is the action applied to the groups created by `group_by()` and
-counts the total number of records for each category.
+For convenience, `count()` provides the `sort` argument:
+
+
+```{r, purl = FALSE}
+surveys %>%
+    count(sex, sort = TRUE) 
+```
 
 > ### Challenge {.challenge}
 >
@@ -405,12 +408,12 @@ counts the total number of records for each category.
 >
 > ```{r, answer=TRUE, purl=FALSE}
 > surveys %>%
->     group_by(plot_type) %>%
->     tally()
+>     count(plot_type) 
 > ```
 >
 > 2. Use `group_by()` and `summarize()` to find the mean, min, and max hindfoot
-> length for each species (using `species_id`).
+> length for each species (using `species_id`). Also add the number of
+> observations (hint: see `?n`).
 >
 > ```{r, answer=TRUE, purl=FALSE}
 > surveys %>%
@@ -434,39 +437,26 @@ counts the total number of records for each category.
 >     select(year, genus, species, weight) %>%
 >     arrange(year)
 > ```
->
-> 4. You saw above how to count the number of individuals of each `sex` using 
-> a combination of `group_by()` and `tally()`. How could you get the same 
-> result using `group_by()` and `summarize()`? Hint: see `?n`.
->
-> ```{r, answer=TRUE, purl=FALSE}
-> surveys %>%
->   group_by(sex) %>%
->   summarize(n = n())
-> ```
 
 
 ```{r, eval=FALSE, purl=TRUE, echo=FALSE}
-## Tally Challenges:
+## Count Challenges:
 ##  1. How many individuals were caught in each `plot_type` surveyed?
 
-##  2. Use `group_by()` and `summarize()` to find the mean, min, and
-##  max hindfoot length for each species (using `species_id`).
+##  2. Use `group_by()` and `summarize()` to find the mean, min, and max
+## hindfoot length for each species (using `species_id`). Also add the number of
+## observations (hint: see `?n`).
 
 ##  3. What was the heaviest animal measured in each year? Return the
 ##  columns `year`, `genus`, `species_id`, and `weight`.
-
-## 4. You saw above how to count the number of individuals of each `sex` using a
-## combination of `group_by()` and `tally()`. How could you get the same result
-## using `group_by()` and `summarize()`? Hint: see `?n`.
-
 ```
 
 ### Reshaping with gather and spread
 
-In the 
-<span style="background:yellow">[spreadsheet lesson](http://www.datacarpentry.org/spreadsheet-ecology-lesson/01-format-data/)</span> we discussed how to 
-structure our data leading to the four rules defining a tidy dataset:
+In the [spreadsheet
+lesson](http://www.datacarpentry.org/spreadsheet-ecology-lesson/01-format-data/
+we discussed how to structure our data leading to the four rules defining a tidy
+dataset:
 
 1. Each variable has its own column
 2. Each observation has its own row
@@ -701,9 +691,8 @@ observations for these more common species:
 ```{r, purl=FALSE}
 ## Extract the most common species_id
 species_counts <- surveys_complete %>%
-  group_by(species_id) %>%
-  tally() %>%
-  filter(n >= 50)
+    count(species_id) %>% 
+    filter(n >= 50)
 
 ## Only keep the most common species
 surveys_complete <- surveys_complete %>%
@@ -723,8 +712,7 @@ surveys_complete <- surveys %>%
 ##  Now remove rare species in two steps. First, make a list of species which
 ##  appear at least 50 times in our dataset:
 species_counts <- surveys_complete %>%
-    group_by(species_id) %>%
-    tally() %>%
+    count(species_id) %>% 
     filter(n >= 50) %>%
     select(species_id)
 
