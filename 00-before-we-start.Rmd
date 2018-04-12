@@ -161,9 +161,12 @@ tutorial.
   location for it. This will be your **working directory** for the rest of the
   day (e.g., `~/data-carpentry`)
 * Click on `Create project`
-* Download the [code handout](./code-handout.R), place it in your working directory and rename it (e.g., `data-carpentry-script.R`).
+* Download the [code handout](./code-handout.R), place it in your working
+  directory and rename it (e.g., `data-carpentry-script.R`).
 * Under the `Files` tab on the right of the screen, click on `New Folder` and
-  create a folder named `data` within your newly created working directory (e.g., `~/data-carpentry/data`)
+  create a folder named `data` within your newly created working directory
+  (e.g., `~/data-carpentry/data`) (alternatively, type `dir.create("data")` at
+  the terminal).
 
 Your working directory should now look like this:
 
