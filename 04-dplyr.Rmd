@@ -94,14 +94,14 @@ To learn more about **`dplyr`** and **`tidyr`** after the workshop, you may want
 We'll read in our data using the `read_csv()` function, from the tidyverse package **`readr`**, instead of `read.csv()`.
 
 
-```{r,results = 'hide', purl = FALSE}
+```{r, results = 'hide', purl = FALSE}
 surveys <- read_csv("data/portal_data_joined.csv")
 
 ## inspect the data
 str(surveys)
 
 ## preview the data
-View(surveys)
+# View(surveys)
 ```
 
 Notice that the class of the data is now `tbl_df`
