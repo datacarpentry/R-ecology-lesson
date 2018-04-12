@@ -8,6 +8,8 @@ minutes: 20
 source("setup.R")
 ```
 
+### Starting with data
+
 ------------
 
 > ### Learning Objectives
