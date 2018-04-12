@@ -9,6 +9,8 @@ minutes: 45
 source("setup.R")
 ```
 
+### Intro to R
+
 ------------
 
 > ### Learning Objectives
