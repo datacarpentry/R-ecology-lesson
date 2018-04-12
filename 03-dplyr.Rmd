@@ -1,5 +1,5 @@
 ---
-title: Manipulating and analyzing data with dplyr; Exporting data
+title: Manipulating, analyzing and exporting data with tidyverse
 author: Data Carpentry contributors
 ---
 
