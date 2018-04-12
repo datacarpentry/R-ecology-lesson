@@ -359,6 +359,29 @@ surveys %>%
             min_weight = min(weight))
 ```
 
+It is sometimes useful to rearrange the result of a query to inspect the values. For instance, we can sort on `min_weight` to put the species with the small hindfoot length first:
+
+
+```{r, purl = FALSE}
+surveys %>%
+  filter(!is.na(weight)) %>%
+  group_by(sex, species_id) %>%
+  summarize(mean_weight = mean(weight),
+            min_weight = min(weight)) %>%
+  arrange(min_weight)
+```
+
+To sort in descending order, we need to add the `desc()` function. If we want to sort the results by decreasing order of mean weight:
+
+```{r, purl = FALSE}
+surveys %>%
+  filter(!is.na(weight)) %>%
+  group_by(sex, species_id) %>%
+  summarize(mean_weight = mean(weight),
+            min_weight = min(weight)) %>%
+  arrange(desc(mean_weight))
+```
+
 
 #### Tallying
 
