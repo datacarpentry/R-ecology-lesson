@@ -53,10 +53,7 @@ We are going to use the R function `download.file()` to download the CSV file
 that contains the survey data from figshare, and we will use `read.csv()` to
 load into memory the content of the CSV file as an object of class `data.frame`.
 
-To create the `data/` subdirectory and download the data into it, run the following:
-
 ```{r, eval=FALSE, purl=TRUE}
-dir.create("data")
 download.file("https://ndownloader.figshare.com/files/2292169",
               "data/portal_data_joined.csv")
 ```
@@ -77,9 +74,8 @@ function `head()`:
 
 ```{r, results='show', purl=FALSE}
 head(surveys)
-
-# Try also
-# View(surveys)
+## Try also
+## View(surveys)
 ```
 
 > ### Note
@@ -205,17 +201,6 @@ want from it. Row numbers come first, followed by column numbers. However, note
 that different ways of specifying these coordinates lead to results with
 different classes.
 
-> Data frames possess the characteristics of both lists and matrices: if you
-subset with a single vector, they behave like lists; if you subset with two
-vectors, they behave like matrices.
-
---See _Data frames_ at http://adv-r.had.co.nz/Subsetting.html#data-types.
-
-```{r options-change, purl=FALSE}
-# WARNING: The next few code chunks print extreemely long objects. Avoiding this
-# by temprarily changing global options.
-old_ops <- options(max.print = 20)
-```
 
 ```{r, purl=FALSE}
 # first element in the first column of the data frame (as a vector)
@@ -230,9 +215,6 @@ surveys[1]
 surveys[1:3, 7] 
 # the 3rd row of the data frame (as a data.frame)
 surveys[3, ]    
-```
-
-```{r, purl=FALSE}
 # equivalent to head_surveys <- head(surveys)
 head_surveys <- surveys[1:6, ] 
 ```
@@ -254,11 +236,6 @@ surveys["species_id"]       # Result is a data.frame
 surveys[, "species_id"]     # Result is a vector
 surveys[["species_id"]]     # Result is a vector
 surveys$species_id          # Result is a vector
-```
-
-```{r options-restore, purl=FALSE}
-# Restoring previous global options
-options(old_ops)
 ```
 
 In RStudio, you can use the autocompletion feature to get the full and correct names of the columns.
@@ -555,10 +532,7 @@ you import in R are of the correct type within your data frame. If not, use it
 to your advantage to detect mistakes that might have been introduced during data
 entry (a letter in a column that should only contain numbers for instance).
 
-Learn more:
-
-* [How to read data safely with only base R](https://goo.gl/eYJieZ).
-* [How to read data safely with __readr__](https://goo.gl/Xyy3hz).
+Learn more in this [RStudio tutorial](https://support.rstudio.com/hc/en-us/articles/218611977-Importing-Data-with-RStudio)
 
 ## Formatting Dates
 
@@ -573,15 +547,14 @@ integer values.
 ```{r, eval=FALSE, purl=FALSE}
 str(surveys)
 ```
-We are going to use the `ymd()` function from the package **`lubridate`** (which belongs to the **`tidyverse`**; learn more [here](https://www.tidyverse.org/)).
+We are going to use the `ymd()` function from the package **`lubridate`** (which belongs to the **`tidyverse`**; learn more [here](https://www.tidyverse.org/)). . **`lubridate`** gets installed as part as the **`tidyverse`** installation. When you load  the **`tidyverse`** (`library(tidyverse)`), the core packages (the packages used in most data analyses) get loaded. **`lubridate`** however does not belong to the core tidyverse, so you have to load it explicitly with `library(lubridate)`
 
-```{r}
-# install.packages("lubridate")
+```{r load-package, message=FALSE, purl=FALSE}
 library(lubridate)
 ```
 
 `ymd()` takes a vector representing year, month,
-and day and converts it to a POSIXct vector. POSIXct is a class of
+and day, and converts it to a POSIXct vector. POSIXct is a class of
 data recognized by R as being a date or a date and time. The argument that the
 function requires is flexible, but, as a best practice, is a
 character vector formatted as "YYYY-MM-DD".
