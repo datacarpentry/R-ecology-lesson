@@ -212,6 +212,21 @@ Your working directory should now look like this:
 knitr::include_graphics("img/r-starting-how-it-should-look-like.png")
 ```
 
+### The working directory
+
+The working directory is an important concept to understand. It is the place
+from where R will be looking for and saving the files. When you write code for
+your project, it should refer to files in relation to the root of your working
+directory and only need files within this structure.
+
+Using RStudio projects makes this easy and ensures that your working directory
+is set properly. If you need to check it, you can use `getwd()`. If for some
+reason your working directory is not what it should be, you can change it in the
+RStudio interface by navigating in the file browser where your working directory
+should be, and clicking on the blue gear icon "More", and select "Set As Working
+Directory". Alternatively you can use `setwd("/path/to/working/directory")` to
+reset your working directory. However, your scripts should not include this line
+because it will fail on someone else's computer.
 
 
 ## Interacting with R
