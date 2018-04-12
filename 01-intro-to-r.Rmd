@@ -15,7 +15,7 @@ source("setup.R")
 >
 > * Define the following terms as they relate to R: object, assign, call,
 >   function, arguments, options.
-> * Assign values to variables in R.
+> * Assign values to objects in R.
 > * Learn how to _name_ objects
 > * Use comments to inform script.
 > * Solve simple arithmetic operations in R.
@@ -69,12 +69,12 @@ cannot be used because they are the names of fundamental functions in R (e.g.,
 for a complete list). In general, even if it's allowed, it's best to not use
 other function names (e.g., `c`, `T`, `mean`, `data`, `df`, `weights`). If in
 doubt, check the help to see if the name is already in use. It's also best to
-avoid dots (`.`) within a variable name as in `my.dataset`. There are many
+avoid dots (`.`) within an object name as in `my.dataset`. There are many
 functions in R with dots in their names for historical reasons, but because dots
 have a special meaning in R (for methods) and other programming languages, it's
-best to avoid them. It is also recommended to use nouns for variable names, and
+best to avoid them. It is also recommended to use nouns for object names, and
 verbs for function names. It's important to be consistent in the styling of your
-code (where you put spaces, how you name variables, etc.). Using a consistent
+code (where you put spaces, how you name objects, etc.). Using a consistent
 coding style makes your code clearer to read for your future self and your
 collaborators. In R, three popular style guides are
 [Google's](https://google.github.io/styleguide/Rguide.xml), [Jean
@@ -83,6 +83,14 @@ Fan's](http://jef.works/R-style-guide/) and the
 comprehensive and may seem overwhelming at first. You can install the
 [**`lintr`**](https://github.com/jimhester/lintr) package to automatically check
 for issues in the styling of your code.
+
+> ### Objects vs. variables
+>
+> What are known as `objects` in `R` are known as `variables` in many other
+> programming languages. Depending on the context, `object` and `variable` can
+> have drastically different meanings. However, in this lesson, the two words
+> are used synonymously. For more information see:
+> https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Objects
 
 
 When assigning a value to an object, R does not print anything. You can force R to print the value by using parentheses or by typing the object name:
@@ -100,16 +108,16 @@ instance, we may want to convert this weight into pounds (weight in pounds is 2.
 2.2 * weight_kg
 ```
 
-We can also change a variable's value by assigning it a new one:
+We can also change an object's value by assigning it a new one:
 
 ```{r, purl=FALSE}
 weight_kg <- 57.5
 2.2 * weight_kg
 ```
 
-This means that assigning a value to one variable does not change the values of
-other variables.  For example, let's store the animal's weight in pounds in a new
-variable, `weight_lb`:
+This means that assigning a value to one object does not change the values of
+other objects  For example, let's store the animal's weight in pounds in a new
+object, `weight_lb`:
 
 ```{r, purl=FALSE}
 weight_lb <- 2.2 * weight_kg
@@ -176,7 +184,7 @@ b <- sqrt(a)
 
 Here, the value of `a` is given to the `sqrt()` function, the `sqrt()` function
 calculates the square root, and returns the value which is then assigned to
-variable `b`. This function is very simple, because it takes just one argument.
+the object `b`. This function is very simple, because it takes just one argument.
 
 The return 'value' of a function need not be numerical (like that of `sqrt()`),
 and it also does not need to be a single item: it can be a set of things, or
@@ -237,13 +245,6 @@ arguments.  If you don't, someone reading your code might have to look up the
 definition of a function with unfamiliar arguments to understand what you're
 doing.
 
-### Objects vs. variables
-
-What are known as `objects` in `R` are known as `variables` in many other
-programming languages.  Depending on the context, `object` and `variable` can
-have drastically different meanings.  However, in this lesson, the two words are
-used synonymously.  For more information see:
-https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Objects
 
 ## Vectors and data types
 
