@@ -553,11 +553,10 @@ We are going to use the `ymd()` function from the package **`lubridate`** (which
 library(lubridate)
 ```
 
-`ymd()` takes a vector representing year, month,
-and day, and converts it to a POSIXct vector. POSIXct is a class of
-data recognized by R as being a date or a date and time. The argument that the
-function requires is flexible, but, as a best practice, is a
-character vector formatted as "YYYY-MM-DD".
+`ymd()` takes a vector representing year, month, and day, and converts it to a
+`Date` vector. `Date` is a class of data recognized by R as being a date and can
+be manipulated as such. The argument that the function requires is flexible,
+but, as a best practice, is a character vector formatted as "YYYY-MM-DD".
 
 Start by loading the required package:
 
@@ -593,7 +592,7 @@ This character vector can be used as the argument for `ymd()`:
 ymd(paste(surveys$year, surveys$month, surveys$day, sep = "-"))
 ```
 
-The resulting POSIXct vector can be added to `surveys` as a new column called `date`:
+The resulting `Date` vector can be added to `surveys` as a new column called `date`:
 
 ```{r, purl=FALSE}
 surveys$date <- ymd(paste(surveys$year, surveys$month, surveys$day, sep = "-"))
