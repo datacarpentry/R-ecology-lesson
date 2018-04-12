@@ -392,7 +392,7 @@ plot(surveys$sex)
 
 In addition to males and females, there are about 1700 individuals for which the
 sex information hasn't been recorded. Additionally, for these individuals,
-there is no label to indicate that the information is missing. Let's rename this
+there is no label to indicate that the information is missing or undetermined. Let's rename this
 label to something more meaningful. Before doing that, we're going to pull out
 the data on sex and work with that data, so we're not modifying the working copy
 of the data frame:
@@ -401,7 +401,7 @@ of the data frame:
 sex <- surveys$sex
 head(sex)
 levels(sex)
-levels(sex)[1] <- "missing"
+levels(sex)[1] <- "undetermined"
 levels(sex)
 head(sex)
 ```
@@ -410,12 +410,12 @@ head(sex)
 > ### Challenge
 >
 > * Rename "F" and "M" to "female" and "male" respectively.
-> * Now that we have renamed the factor level to "missing", can you recreate the
->  barplot such that "missing" is last (after "male")?
+> * Now that we have renamed the factor level to "undetermined", can you recreate the
+>  barplot such that "undetermined" is last (after "male")?
 >
 > ```{r, answer=TRUE, purl=FALSE}
 > levels(sex)[2:3] <- c("female", "male")
-> sex <- factor(sex, levels = c("female", "male", "missing"))
+> sex <- factor(sex, levels = c("female", "male", "undetermined"))
 > plot(sex)
 > ``` 
 
@@ -424,12 +424,12 @@ head(sex)
 ## Challenges
 ##
 ## * Rename "F" and "M" to "female" and "male" respectively.
-## * Now that we have renamed the factor level to "missing", can you recreate the
-##   barplot such that "missing" is last (after "male")
+## * Now that we have renamed the factor level to "undetermined", can you recreate the
+##   barplot such that "undetermined" is last (after "male")
 ```
 
 
-### Using `stringsAsFactors = FALSE`
+### Using `stringsAsFactors=FALSE`
 
 By default, when building or importing a data frame, the columns that contain
 characters (i.e. text) are coerced (= converted) into factors. Depending on what you want to do with the data, you may want to keep these
@@ -549,6 +549,8 @@ str(surveys)
 ```
 We are going to use the `ymd()` function from the package **`lubridate`** (which belongs to the **`tidyverse`**; learn more [here](https://www.tidyverse.org/)). . **`lubridate`** gets installed as part as the **`tidyverse`** installation. When you load  the **`tidyverse`** (`library(tidyverse)`), the core packages (the packages used in most data analyses) get loaded. **`lubridate`** however does not belong to the core tidyverse, so you have to load it explicitly with `library(lubridate)`
 
+Start by loading the required package:
+
 ```{r load-package, message=FALSE, purl=FALSE}
 library(lubridate)
 ```
@@ -558,11 +560,6 @@ library(lubridate)
 be manipulated as such. The argument that the function requires is flexible,
 but, as a best practice, is a character vector formatted as "YYYY-MM-DD".
 
-Start by loading the required package:
-
-```{r load-package, message=FALSE, purl=FALSE}
-library(lubridate)
-```
 
 Let's create a date object and inspect the structure:
 
