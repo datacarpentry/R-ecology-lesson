@@ -481,7 +481,7 @@ surveys$plot_type <- factor(surveys$plot_type)
 > 2. Can you predict the class for each of the columns in the following example?
 >    Check your guesses using `str(country_climate)`:
 >      * Are they what you expected?  Why? Why not?
->      * What would have been different if we had added `stringsAsFactors = FALSE` to the str() function?
+>      * What would have been different if we had added `stringsAsFactors = FALSE` when creating the data frame?
 >      * What would you need to change to ensure that each column had the accurate data type?
 >
 >     ```{r, eval=FALSE, purl=FALSE}
@@ -501,7 +501,7 @@ surveys$plot_type <- factor(surveys$plot_type)
 >    ##   Check your guesses using `str(country_climate)`:
 >    ##   * Are they what you expected? Why? why not?
 >    ##   * What would have been different if we had added `stringsAsFactors = FALSE`
->    ##     to this call?
+>    ##     when we created this data frame?
 >    ##   * What would you need to change to ensure that each column had the
 >    ##     accurate data type?
 >    country_climate <- data.frame(country = c("Canada", "Panama", "South Africa", "Australia"),
