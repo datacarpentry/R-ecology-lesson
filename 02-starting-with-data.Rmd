@@ -66,7 +66,7 @@ surveys <- read.csv("data/portal_data_joined.csv")
 
 This statement doesn't produce any output because, as you might recall,
 assignments don't display anything. If we want to check that our data has been
-loaded, we can print the variable's value: `surveys`.
+loaded, we can see the contents of the data frame by typing its name: `surveys`.
 
 Wow... that was a lot of output. At least it means the data loaded
 properly. Let's check the top (the first 6 lines) of this data frame using the
@@ -106,7 +106,7 @@ spreadsheets from your hard drive (or the web).
 
 A data frame is the representation of data in the format of a table where the
 columns are vectors that all have the same length. Because columns are
-vectors, they all contain the same class of data (e.g., characters, integers,
+vectors, each column must contain a single type of data (e.g., characters, integers,
 factors). For example, here is a figure depicting a data frame comprising a
 numeric, a character, and a logical vector.
 
@@ -310,10 +310,10 @@ of a special class called `factor`. Factors are very useful and actually
 contribute to making R particularly well suited to working with data. So we are
 going to spend a little time introducing them.
 
-Factors represent categorical data. They are stored as integers associated with labels and they can be ordered or unordered. While factors look (and often behave) like character vectors, they are actually integer vectors under the hood. So you need to be very careful when treating them as strings.
+Factors represent categorical data. They are stored as integers associated with labels and they can be ordered or unordered. While factors look (and often behave) like character vectors, they are actually treated as integer vectors by R. So you need to be very careful when treating them as strings.
 
 Once created, factors can only contain a pre-defined set of values, known as
-*levels*. By default, R always sorts *levels* in alphabetical order. For
+*levels*. By default, R always sorts levels in alphabetical order. For
 instance, if you have a factor with 2 levels:
 
 ```{r, purl=TRUE}
@@ -481,7 +481,7 @@ surveys$plot_type <- factor(surveys$plot_type)
 > 2. Can you predict the class for each of the columns in the following example?
 >    Check your guesses using `str(country_climate)`:
 >      * Are they what you expected?  Why? Why not?
->      * What would have been different if we had added `stringsAsFactors = FALSE` to this call?
+>      * What would have been different if we had added `stringsAsFactors = FALSE` to the str() function?
 >      * What would you need to change to ensure that each column had the accurate data type?
 >
 >     ```{r, eval=FALSE, purl=FALSE}
