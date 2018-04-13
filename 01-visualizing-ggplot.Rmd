@@ -310,6 +310,10 @@ portal_dipo <- portal %>%
                   year >= 1977 & year <= 1982)
 ```
 
+### More resources
+
+* [ggthemeassist](https://github.com/calligross/ggthemeassist) is a RStudio-Addin that uses the [`rstudioapi`](https://github.com/rstudio/rstudioapi) package and provides a GUI for editing **`ggplot2`** themes.
+* [ggedit](https://github.com/metrumresearchgroup/ggedit) is an R package that is used to facilitate **`ggplot2`** formatting. Aesthetic details can be refined easily.
 
 ```{r, child="_page_built_on.Rmd"}
 ```
