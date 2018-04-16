@@ -278,7 +278,7 @@ themes.
 ## Arranging and Exporting 
 
 * Talk about patchwork? not on CRAN yet though
-* Show how to use ggsave
+* Show how to use ggsave, save files to `fig_output/` folder
 
 
 <!--- things that could be added:
