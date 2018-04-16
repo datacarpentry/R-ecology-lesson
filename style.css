@@ -1,5 +1,10 @@
 body {
     font-size: 15px;
+    font-family: 'Roboto', sans-serif;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    font-family: 'Lato', sans-serif;
 }
 
 p {
@@ -28,6 +33,3 @@ blockquote  {
     background: #eee;
 }
 
-blockquote p,ul,ol {
-    font-size: .9em;
-}
