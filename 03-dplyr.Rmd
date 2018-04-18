@@ -326,7 +326,7 @@ surveys %>%
   summarize(mean_weight = mean(weight, na.rm = TRUE))
 ```
 
-When grouping both by `sex` and `species_id`, the first rows are for individuals
+When grouping both by `sex` and `species_id`, the last few rows are for individuals
 that escaped before their sex could be determined and weighted. You may notice
 that the last column does not contain `NA` but `NaN` (which refers to "Not a
 Number"). To avoid this, we can remove the missing values for weight before we
