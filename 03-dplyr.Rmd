@@ -429,7 +429,8 @@ surveys %>%
 >     summarize(
 >         mean_hindfoot_length = mean(hindfoot_length),
 >         min_hindfoot_length = min(hindfoot_length),
->         max_hindfoot_length = max(hindfoot_length)
+>         max_hindfoot_length = max(hindfoot_length),
+>         n = n()
 >     )
 > ```
 >
