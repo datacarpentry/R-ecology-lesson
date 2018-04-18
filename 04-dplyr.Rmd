@@ -1,5 +1,5 @@
 ---
-title:  Manipulating, analyzing and exporting data with tidyverse
+title: Manipulating, analyzing and exporting data with tidyverse
 author: Data Carpentry contributors
 minutes: 60 minutes
 ---
@@ -430,7 +430,8 @@ surveys %>%
 >     summarize(
 >         mean_hindfoot_length = mean(hindfoot_length),
 >         min_hindfoot_length = min(hindfoot_length),
->         max_hindfoot_length = max(hindfoot_length)
+>         max_hindfoot_length = max(hindfoot_length),
+>         n = n()
 >     )
 > ```
 >
@@ -462,7 +463,7 @@ surveys %>%
 ### Reshaping with gather and spread
 
 In the [spreadsheet
-lesson](http://www.datacarpentry.org/spreadsheet-ecology-lesson/01-format-data/)
+lesson](http://www.datacarpentry.org/spreadsheet-ecology-lesson/01-format-data/),
 we discussed how to structure our data leading to the four rules defining a tidy
 dataset:
 
