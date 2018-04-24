@@ -326,7 +326,7 @@ surveys %>%
   summarize(mean_weight = mean(weight, na.rm = TRUE))
 ```
 
-When grouping both by `sex` and `species_id`, the first rows are for individuals
+When grouping both by `sex` and `species_id`, the last few rows are for individuals
 that escaped before their sex could be determined and weighted. You may notice
 that the last column does not contain `NA` but `NaN` (which refers to "Not a
 Number"). To avoid this, we can remove the missing values for weight before we
@@ -429,7 +429,8 @@ surveys %>%
 >     summarize(
 >         mean_hindfoot_length = mean(hindfoot_length),
 >         min_hindfoot_length = min(hindfoot_length),
->         max_hindfoot_length = max(hindfoot_length)
+>         max_hindfoot_length = max(hindfoot_length),
+>         n = n()
 >     )
 > ```
 >
@@ -461,7 +462,7 @@ surveys %>%
 ### Reshaping with gather and spread
 
 In the [spreadsheet
-lesson](http://www.datacarpentry.org/spreadsheet-ecology-lesson/01-format-data/
+lesson](http://www.datacarpentry.org/spreadsheet-ecology-lesson/01-format-data/),
 we discussed how to structure our data leading to the four rules defining a tidy
 dataset:
 
