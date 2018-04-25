@@ -535,35 +535,40 @@ Recall that you can use the `typeof()` function to find the type of your atomic 
 
 > ### Challenge
 >
-> 1. Using this vector of length measurements, create a new vector with the NAs
-> removed.
+> 1. Using this vector of heights in inches, create a new vector with the NAs removed.
 >
 >     ```r
->     lengths <- c(10, 24, NA, 18, NA, 20)
+>     heights <- c(63, 69, 60, 65, NA, 68, 61, 70, 61, 59, 64, 69, 63, 63, NA, 72, 65, 64, 70, 63, 65)
 >     ```
+> 2. Use the function `median()` to calculate the median of the `heights` vector.
 >
-> 2. Use the function `median()` to calculate the median of the `lengths` vector.
+> 3. Use R to figure out how many people in the set are taller than 67 inches.
 >
 > ```{r, answer=TRUE}
-> lengths <- c(10, 24, NA, 18, NA, 20)
->
+> heights <- c(63, 69, 60, 65, NA, 68, 61, 70, 61, 59, 64, 69, 63, 63, NA, 72, 65, 64, 70, 63, 65)
+> 
 > # 1.
-> lengths_no_na <- lengths[!is.na(lengths)] 
+> heights_no_na <- heights[!is.na(heights)] 
 > # or
-> lengths_no_na <- na.omit(lengths)
+> heights_no_na <- na.omit(heights)
 >
 > # 2.
-> median(lengths, na.rm = TRUE)
+> median(heights, na.rm = TRUE)
+>
+> # 3.
+> heights_above_67 <- heights_no_na[heights_no_na > 67]
+> length(heights_above_67)
 > ```
 
 ```{r,echo=FALSE, purl=TRUE}
-## ### Challenge
-## 1. Using this vector of length measurements, create a new vector with the NAs
-## removed.
+## ###Challenge
+## 1. Using this vector of heights in inches, create a new vector with the NAs removed.
 ##
-##    lengths <- c(10, 24, NA, 18, NA, 20)
+##    heights <- c(63, 69, 60, 65, NA, 68, 61, 70, 61, 59, 64, 69, 63, 63, NA, 72, 65, 64, 70, 63, 65)
 ##
-## 2. Use the function `median()` to calculate the median of the `lengths` vector.
+## 2. Use the function `median()` to calculate the median of the `heights` vector.
+##
+## 3. Use R to figure out how many people in the set are taller than 67 inches.
 ```
 
 Now that we have learned how to write scripts, and the basics of R's data
