@@ -218,7 +218,7 @@ ggplot(data = surveys_complete, aes(x = weight, y = hindfoot_length)) +
 > way to show this type of data?
 > ```{r scatter-challenge, answer=TRUE, purl=FALSE}
 > ggplot(data = surveys_complete, aes(x = species_id, y = weight)) +
->    geom_point(aes(color = species_id))
+>    geom_point(aes(color = plot_type))
 > ```
 
 
