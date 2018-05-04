@@ -242,7 +242,7 @@ In RStudio, you can use the autocompletion feature to get the full and correct n
 
 > ### Challenge
 >
-> 1. Create a `data.frame` (`surveys_200`) containing only the observations from
+> 1. Create a `data.frame` (`surveys_200`) containing only the data in
 >    row 200 of the `surveys` dataset.
 >
 > 2. Notice how `nrow()` gave you the number of rows in a `data.frame`?
@@ -278,7 +278,7 @@ In RStudio, you can use the autocompletion feature to get the full and correct n
 ### Challenges:
 ###
 ### 1. Create a `data.frame` (`surveys_200`) containing only the
-###    observations from row 200 of the `surveys` dataset.
+###    data in row 200 of the `surveys` dataset.
 ###
 ### 2. Notice how `nrow()` gave you the number of rows in a `data.frame`?
 ###
