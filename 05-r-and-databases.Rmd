@@ -154,11 +154,11 @@ However, some functions don't work quite as expected. For instance, let's check
 how many rows there are in total using `nrow()`:
 
 ```{r nrows, results='show', purl=FALSE}
-nrow(tbl)
+nrow(surveys)
 ```
 
-That's strange - R doesn't know how many rows the `survey` table contains - it
-returns `NULL` instead. You might have already noticed that the first line of
+That's strange - R doesn't know how many rows the `surveys` table contains - it
+returns `NA` instead. You might have already noticed that the first line of
 the `head()` output included `??` indicating that the number of rows wasn't
 known.
 
