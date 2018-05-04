@@ -373,10 +373,10 @@ as.numeric(levels(year_fct))[year_fct]    # The recommended way.
 
 Notice that in the `levels()` approach, three important steps occur:
 
-* We obtain all the factor levels using `levels(f)`
-* We convert these levels to numeric values using `as.numeric(levels(f))`
+* We obtain all the factor levels using `levels(year_fct)`
+* We convert these levels to numeric values using `as.numeric(levels(year_fct))`
 * We then access these numeric values using the underlying integers of the
-  vector `f` inside the square brackets
+  vector `year_fct` inside the square brackets
 
 ### Renaming factors
 
