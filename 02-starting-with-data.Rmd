@@ -365,18 +365,18 @@ One method to avoid this is to convert factors to characters, and then to number
 Another method is to use the `levels()` function. Compare:
 
 ```{r, purl=TRUE}
-f <- factor(c(1990, 1983, 1977, 1998, 1990))
-as.numeric(f)               # Wrong! And there is no warning...
-as.numeric(as.character(f)) # Works...
-as.numeric(levels(f))[f]    # The recommended way.
+year_fct <- factor(c(1990, 1983, 1977, 1998, 1990))
+as.numeric(year_fct)               # Wrong! And there is no warning...
+as.numeric(as.character(year_fct)) # Works...
+as.numeric(levels(year_fct))[year_fct]    # The recommended way.
 ```
 
 Notice that in the `levels()` approach, three important steps occur:
 
-* We obtain all the factor levels using `levels(f)`
-* We convert these levels to numeric values using `as.numeric(levels(f))`
+* We obtain all the factor levels using `levels(year_fct)`
+* We convert these levels to numeric values using `as.numeric(levels(year_fct))`
 * We then access these numeric values using the underlying integers of the
-  vector `f` inside the square brackets
+  vector `year_fct` inside the square brackets
 
 ### Renaming factors
 
