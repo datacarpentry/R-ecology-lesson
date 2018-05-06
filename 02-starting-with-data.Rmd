@@ -146,9 +146,6 @@ functions to get a sense of the content/structure of the data. Let's try them ou
     * `str(surveys)` - structure of the object and information about the class, length and
 	   content of  each column
     * `summary(surveys)` - summary statistics for each column
-    
-* Object class:
-    * `class(surveys)` -  information about the class of the object
 
 Note: most of these functions are "generic", they can be used on other types of
 objects besides `data.frame`.
@@ -169,8 +166,6 @@ objects besides `data.frame`.
 > ## * class: data frame
 > ## * how many rows: 34786,  how many columns: 13
 > ## * how many species: 48
->
-> ## Another way of answering the first question is to use class(surveys).
 >
 > ```
 
