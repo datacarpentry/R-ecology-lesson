@@ -58,7 +58,9 @@ this fashion allows for extensive flexibility and customization of plots.
 
 To build a ggplot, we will use the following basic template that can be used for different types of plots:
 
+```
 ggplot(data = <DATA>, mapping = aes(<MAPPINGS>)) +  <GEOM_FUNCTION>()
+```
 
 - use the `ggplot()` function and bind the plot to a specific data frame using the
       `data` argument
@@ -70,7 +72,7 @@ ggplot(data = surveys_complete)
 - define a mapping (using the aesthetic (`aes`) function), by selecting the variables to be plotted and specifying how to present them in the graph, e.g. as x/y positions or characteristics such as size, shape, color, etc.
 
 ```{r, eval=FALSE, purl=FALSE}
-ggplot(data = surveys_complete, aes(x = weight, y = hindfoot_length))
+ggplot(data = surveys_complete, mapping = aes(x = weight, y = hindfoot_length))
 ```
 
 - add 'geoms' – graphical representations of the data in the plot (points,
@@ -85,7 +87,7 @@ To add a geom to the plot use the `+` operator. Because we have two continuous v
 let's use `geom_point()` first:
 
 ```{r first-ggplot, purl=FALSE}
-ggplot(data = surveys_complete, aes(x = weight, y = hindfoot_length)) +
+ggplot(data = surveys_complete, mapping = aes(x = weight, y = hindfoot_length)) +
   geom_point()
 ```
 
@@ -96,7 +98,8 @@ plot can also be generated with code like this:
 
 ```{r, first-ggplot-with-plus, eval=FALSE, purl=FALSE}
 # Assign plot to a variable
-surveys_plot <- ggplot(data = surveys_complete, aes(x = weight, y = hindfoot_length))
+surveys_plot <- ggplot(data = surveys_complete, 
+                       mapping = aes(x = weight, y = hindfoot_length))
 
 # Draw the plot
 surveys_plot + 
@@ -105,7 +108,7 @@ surveys_plot +
 
 ```{r, eval=FALSE, purl=TRUE, echo=FALSE, purl=FALSE}
 # Create a ggplot and draw it
-surveys_plot <- ggplot(data = surveys_complete, aes(x = weight, y = hindfoot_length))
+surveys_plot <- ggplot(data = surveys_complete, mapping = aes(x = weight, y = hindfoot_length))
 surveys_plot + 
     geom_point()
 ```
@@ -184,7 +187,7 @@ Building plots with **`ggplot2`** is typically an iterative process. We start by
 defining the dataset we'll use, lay out the axes, and choose a geom:
 
 ```{r create-ggplot-object, purl=FALSE}
-ggplot(data = surveys_complete, aes(x = weight, y = hindfoot_length)) +
+ggplot(data = surveys_complete, mapping = aes(x = weight, y = hindfoot_length)) +
     geom_point()
 ```
 
@@ -192,14 +195,14 @@ Then, we start modifying this plot to extract more information from it. For
 instance, we can add transparency (`alpha`) to avoid overplotting:
 
 ```{r adding-transparency, purl=FALSE}
-ggplot(data = surveys_complete, aes(x = weight, y = hindfoot_length)) +
+ggplot(data = surveys_complete, mapping = aes(x = weight, y = hindfoot_length)) +
     geom_point(alpha = 0.1)
 ```
 
 We can also add colors for all the points:
 
 ```{r adding-colors, purl=FALSE}
-ggplot(data = surveys_complete, aes(x = weight, y = hindfoot_length)) +
+ggplot(data = surveys_complete, mapping = aes(x = weight, y = hindfoot_length)) +
     geom_point(alpha = 0.1, color = "blue")
 ```
 
@@ -207,7 +210,7 @@ Or to color each species in the plot differently, you could use a vector as an i
 
 
 ```{r color-by-species, purl=FALSE}
-ggplot(data = surveys_complete, aes(x = weight, y = hindfoot_length)) +
+ggplot(data = surveys_complete, mapping = aes(x = weight, y = hindfoot_length)) +
     geom_point(alpha = 0.1, aes(color = species_id))
 ```
 
@@ -217,7 +220,7 @@ ggplot(data = surveys_complete, aes(x = weight, y = hindfoot_length)) +
 > `species_id` with the plot types showing in different colors. Is this a good
 > way to show this type of data?
 > ```{r scatter-challenge, answer=TRUE, purl=FALSE}
-> ggplot(data = surveys_complete, aes(x = species_id, y = weight)) +
+> ggplot(data = surveys_complete, mapping = aes(x = species_id, y = weight)) +
 >    geom_point(aes(color = plot_type))
 > ```
 
@@ -227,7 +230,7 @@ ggplot(data = surveys_complete, aes(x = weight, y = hindfoot_length)) +
 We can use boxplots to visualize the distribution of weight within each species:
 
 ```{r boxplot, purl=FALSE}
-ggplot(data = surveys_complete, aes(x = species_id, y = weight)) +
+ggplot(data = surveys_complete, mapping = aes(x = species_id, y = weight)) +
     geom_boxplot()
 ```
 
@@ -235,7 +238,7 @@ By adding points to boxplot, we can have a better idea of the number of
 measurements and of their distribution:
 
 ```{r boxplot-with-points, purl=FALSE}
-ggplot(data = surveys_complete, aes(x = species_id, y = weight)) +
+ggplot(data = surveys_complete, mapping = aes(x = species_id, y = weight)) +
     geom_boxplot(alpha = 0) +
     geom_jitter(alpha = 0.3, color = "tomato")
 ```
@@ -275,7 +278,7 @@ hidden?
 ```{r boxplot-challenge, eval=FALSE, purl=TRUE, echo=FALSE}
 ## Challenge with boxplots:
 ##  Start with the boxplot we created:
-ggplot(data = surveys_complete, aes(x = species_id, y = weight)) +
+ggplot(data = surveys_complete, mapping = aes(x = species_id, y = weight)) +
   geom_boxplot(alpha = 0) +
   geom_jitter(alpha = 0.3, color = "tomato")
 
@@ -309,7 +312,7 @@ Time series data can be visualized as a line plot with years on the x axis and c
 on the y axis:
 
 ```{r first-time-series, purl=FALSE}
-ggplot(data = yearly_counts, aes(x = year, y = n)) +
+ggplot(data = yearly_counts, mapping = aes(x = year, y = n)) +
      geom_line()
 ```
 
@@ -318,14 +321,14 @@ together. We need to tell ggplot to draw a line for each species by modifying
 the aesthetic function to include `group = species_id`:
 
 ```{r time-series-by-species, purl=FALSE}
-ggplot(data = yearly_counts, aes(x = year, y = n, group = species_id)) +
+ggplot(data = yearly_counts, mapping = aes(x = year, y = n, group = species_id)) +
     geom_line()
 ```
 
 We will be able to distinguish species in the plot if we add colors (using `color` also automatically groups the data):
 
 ```{r time-series-with-colors, purl=FALSE}
-ggplot(data = yearly_counts, aes(x = year, y = n, color = species_id)) +
+ggplot(data = yearly_counts, mapping = aes(x = year, y = n, color = species_id)) +
     geom_line()
 ```
 
@@ -336,7 +339,7 @@ plot into multiple plots based on a factor included in the dataset. We will use 
 make a time series plot for each species:
 
 ```{r first-facet, purl=FALSE}
-ggplot(data = yearly_counts, aes(x = year, y = n)) +
+ggplot(data = yearly_counts, mapping = aes(x = year, y = n)) +
     geom_line() +
     facet_wrap(~ species_id)
 ```
@@ -354,7 +357,7 @@ measured. To do that we need to make counts in the data frame grouped by `year`,
 We can now make the faceted plot by splitting further by sex using `color` (within a single plot):
 
 ```{r facet-by-species-and-sex, purl=FALSE}
- ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex)) +
+ ggplot(data = yearly_sex_counts, mapping = aes(x = year, y = n, color = sex)) +
      geom_line() +
      facet_wrap(~ species_id)
 ```
@@ -364,7 +367,7 @@ the background to white using the function `theme_bw()`. Additionally, you can r
 the grid:
 
 ```{r facet-by-species-and-sex-white-bg, purl=FALSE}
- ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex)) +
+ ggplot(data = yearly_sex_counts, mapping = aes(x = year, y = n, color = sex)) +
      geom_line() +
      facet_wrap(~ species_id) +
      theme_bw() +
@@ -397,7 +400,7 @@ themes.
 > yearly_weight <- surveys_complete %>%
 >                 group_by(year, species_id) %>%
 >                  summarize(avg_weight = mean(weight))
-> ggplot(data = yearly_weight, aes(x=year, y=avg_weight)) +
+> ggplot(data = yearly_weight, mapping = aes(x=year, y=avg_weight)) +
 >    geom_line() +
 >    facet_wrap(~ species_id) +
 >    theme_bw()
@@ -426,14 +429,16 @@ has changed through time:
 yearly_sex_weight <- surveys_complete %>%
     group_by(year, sex, species_id) %>%
     summarize(avg_weight = mean(weight))
-ggplot(data = yearly_sex_weight, aes(x = year, y = avg_weight, color = species_id)) +
+ggplot(data = yearly_sex_weight, 
+       mapping = aes(x = year, y = avg_weight, color = species_id)) +
     geom_line() +
     facet_grid(sex ~ .)
 ```
 
 ```{r average-weight-time-facet-sex-columns, purl=FALSE}
 # One row, facet by column
-ggplot(data = yearly_sex_weight, aes(x = year, y = avg_weight, color = species_id)) +
+ggplot(data = yearly_sex_weight, 
+       mapping = aes(x = year, y = avg_weight, color = species_id)) +
     geom_line() +
     facet_grid(. ~ sex)
 ```
@@ -447,7 +452,7 @@ Now, let's change names of axes to something more informative than 'year'
 and 'n' and add a title to the figure:
 
 ```{r number-species-year-with-right-labels, purl=FALSE}
-ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex)) +
+ggplot(data = yearly_sex_counts, mapping = aes(x = year, y = n, color = sex)) +
     geom_line() +
     facet_wrap(~ species_id) +
     labs(title = "Observed species in time",
@@ -460,7 +465,7 @@ The axes have more informative names, but their readability can be improved by
 increasing the font size:
 
 ```{r number-species-year-with-right-labels-xfont-size, purl=FALSE}
-ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex)) +
+ggplot(data = yearly_sex_counts, mapping = aes(x = year, y = n, color = sex)) +
     geom_line() +
     facet_wrap(~ species_id) +
     labs(title = "Observed species in time",
@@ -482,7 +487,7 @@ angle, or experiment to find the appropriate angle for diagonally oriented
 labels:
 
 ```{r number-species-year-with-theme, purl=FALSE}
-ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex)) +
+ggplot(data = yearly_sex_counts, mapping = aes(x = year, y = n, color = sex)) +
     geom_line() +
     facet_wrap(~ species_id) +
     labs(title = "Observed species in time",
@@ -526,12 +531,14 @@ Faceting is a great tool for splitting one plot into multiple plots, but sometim
 ```{r gridarrange-example, message=FALSE, purl=FALSE, fig.width=10}
 library(gridExtra)
 
-spp_weight_boxplot <- ggplot(data = surveys_complete, aes(x = species_id, y = weight)) +
+spp_weight_boxplot <- ggplot(data = surveys_complete, 
+                             mapping = aes(x = species_id, y = weight)) +
   geom_boxplot() +
   xlab("Species") + ylab("Weight (g)") +
   scale_y_log10()
 
-spp_count_plot <- ggplot(data = yearly_counts, aes(x = year, y = n, color = species_id)) +
+spp_count_plot <- ggplot(data = yearly_counts, 
+                         mapping = aes(x = year, y = n, color = species_id)) +
   geom_line() + 
   xlab("Year") + ylab("Abundance")
 
@@ -548,7 +555,8 @@ Instead, use the `ggsave()` function, which allows you easily change the dimensi
 Make sure you have the `fig_output/` folder in your working directory.
 
 ```{r ggsave-example, eval=FALSE, purl=FALSE}
-my_plot <- ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex)) +
+my_plot <- ggplot(data = yearly_sex_counts, 
+                  mapping = aes(x = year, y = n, color = sex)) +
     geom_line() +
     facet_wrap(~ species_id) +
     labs(title = "Observed species in time",
