@@ -139,17 +139,9 @@ surveys_plot
 > set, overplotting of points can be a limitation of scatter plots. One strategy
 > for handling such settings is to use hexagonal binning of observations. The
 > plot space is tessellated into hexagons. Each hexagon is assigned a color
-> based on the number of observations that fall within its boundaries.  To use
-> hexagonal binning with **`ggplot2`**, first install the R package `hexbin`
-> from CRAN:
+> based on the number of observations that fall within its boundaries. 
 >
->
-> ```{r, eval = FALSE}
-> install.packages("hexbin")
-> library(hexbin)
-> ```
->
-> Then use the `geom_hex()` function:
+> To create a scatterplot using hexagonal binning you use the `geom_hex()` function:
 >
 > ```{r, eval = FALSE}
 > surveys_plot +
@@ -163,13 +155,7 @@ surveys_plot
 ```{r hexbin-challenge, echo=FALSE, eval=FALSE, purl=TRUE}
 ### Challenge with hexbin
 ##
-## To use the hexagonal binning with **`ggplot2`**, first install the `hexbin`
-## package from CRAN:
-
-install.packages("hexbin")
-library(hexbin)
-
-## Then use the `geom_hex()` function:
+## Use the `geom_hex()` function:
 
 surveys_plot +
     geom_hex()
