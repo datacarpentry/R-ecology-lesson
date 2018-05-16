@@ -105,7 +105,7 @@ str(surveys)
 
 Notice that the class of the data is now `tbl_df`
 
-This is referred to as a "tibble". Tibbles are data frames, but they tweak some of the old behaviors of data frames. The data structure is very similar to a data frame. For our purposes the only differences are that:
+This is referred to as a "tibble". Tibbles tweak some of the behaviors of the data frame objects we introduced in the previous episode. The data structure is very similar to a data frame. For our purposes the only differences are that:
 
 1. In addition to displaying the data type of each column under its name, it
    only prints the first few rows of data and only as many columns as fit on one
