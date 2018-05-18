@@ -40,11 +40,11 @@ RStudio needs R and therefore both need to be installed on your computer.
 ### R does not involve lots of pointing and clicking, and that's a good thing
 
 The learning curve might be steeper than with other software, but with R, the
-results of your analysis does not rely on remembering a succession of pointing
+results of your analysis do not rely on remembering a succession of pointing
 and clicking, but instead on a series of written commands, and that's a good
 thing! So, if you want to redo your analysis because you collected more data,
 you don't have to remember which button you clicked in which order to obtain
-your results, you just have to run your script again.
+your results; you just have to run your script again.
 
 Working with scripts makes the steps you used in your analysis clear, and the
 code you write can be inspected by someone else who can give you feedback and
@@ -124,14 +124,16 @@ generate. RStudio can also be used for other things (e.g., version control,
 developing packages, writing Shiny apps) that we will not cover during the
 workshop.
 
-![RStudio interface screenshot](img/rstudio-screenshot.png)
+![RStudio interface screenshot. Clockwise from top left: Source, Environment/History, Console, Files/Plots/Packages/Help/Viewer.](img/rstudio-screenshot.png)
 
 RStudio is divided into 4 "Panes": the **Source** for your scripts and documents
-(top-left, in the default layout), the R **Console** (bottom-left), your
-**Environment/History** (top-right), and your
-**Files/Plots/Packages/Help/Viewer** (bottom-right). The placement of these
+(top-left, in the default layout), your **Environment/History** (top-right),
+your **Files/Plots/Packages/Help/Viewer** (bottom-right), and 
+the R **Console** (bottom-left). The placement of these
 panes and their content can be customized (see menu, Tools -> Global Options ->
-Pane Layout). One of the advantages of using RStudio is that all the information
+Pane Layout). 
+
+One of the advantages of using RStudio is that all the information
 you need to write code is available in a single window. Additionally, with many
 shortcuts, autocompletion, and highlighting for the major file types you use
 while developing in R, RStudio will make typing easier and less error-prone.
@@ -148,20 +150,20 @@ others without worrying about whether or not the underlying scripts will still
 work.
 
 RStudio provides a helpful set of tools to do this through its "Projects"
-interface, which not only creates a working directory for you but also remembers
+interface, which not only creates a working directory for you, but also remembers
 its location (allowing you to quickly navigate to it) and optionally preserves
 custom settings and open files to make it easier to resume work after a
-break. Below, we will go through the steps for creating an "R Project" for this
-tutorial.
+break. Go through the steps for creating an "R Project" for this
+tutorial below.
 
-* Start RStudio (presentation of RStudio -below- should happen here)
-* Under the `File` menu, click on `New project`, choose `New directory`, then
-  `New project`
-* Enter a name for this new folder (or "directory"), and choose a convenient
+1. Start RStudio.
+2. Under the `File` menu, click on `New project`. Choose `New directory`, then
+  `New project`.
+3. Enter a name for this new folder (or "directory"), and choose a convenient
   location for it. This will be your **working directory** for the rest of the
-  day (e.g., `~/data-carpentry`)
-* Click on `Create project`
-* Download the [code handout](./code-handout.R), place it in your working
+  day (e.g., `~/data-carpentry`).
+4. Click on `Create project`.
+5. Download the [code handout](./code-handout.R), place it in your working
   directory and rename it (e.g., `data-carpentry-script.R`).
 
 ### Organizing your working directory
@@ -190,7 +192,7 @@ create directories (folders) for **scripts**, **data**, and **documents**.
 You may want additional directories or subdirectories depending on your project
 needs, but these should form the backbone of your working directory.
 
-![Example of a working directory structure](img/working-directory-structure.png)
+![Example of a working directory structure.](img/working-directory-structure.png)
 
 
 For this workshop, we will need a `data/` folder to store our raw data, and we
@@ -256,7 +258,7 @@ the <kbd>`Ctrl`</kbd> + <kbd>`Enter`</kbd> shortcut (on Macs, <kbd>`Cmd`</kbd> +
 <kbd>`Return`</kbd> will work, too). The command on the current line in the
 script (indicated by the cursor) or all of the commands in the currently
 selected text will be sent to the console and executed when you press
-<kbd>`Ctrl`</kbd> + <kbd>`Enter`</kbd>. You can find other keyboard shortcuts in this [RStudio cheatsheet about the RStudio IDE](https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf.
+<kbd>`Ctrl`</kbd> + <kbd>`Enter`</kbd>. You can find other keyboard shortcuts in this [RStudio cheatsheet about the RStudio IDE.](https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf.
 
 At some point in your analysis you may want to check the content of a variable
 or the structure of an object, without necessarily keeping a record of it in
@@ -295,7 +297,7 @@ knitr::include_graphics("img/kitten-try-things.jpg")
 
 ### Use the built-in RStudio help interface to search for more information on R functions
 
-![RStudio help interface](img/rstudiohelp.png)
+![RStudio help interface.](img/rstudiohelp.png)
 
 One of the most fastest ways to get help, is to use the RStudio help interface. This panel by default can be found at the lower right hand panel of RStudio. As seen in the screenshot, by typing the word "Mean", RStudio tries to also give a number of suggestions that you might be interested in. The description is then shown in the display window.
 
