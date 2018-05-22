@@ -409,6 +409,23 @@ surveys %>%
     count(sex, sort = TRUE) 
 ```
 
+Previous example shows the use of `count()` to count the number of rows/observations for *one* factor (i.e., `sex`). If we wanted to count *combination of factors*, such as `sex` and `species`, we would specify the first and the second factor as the arguments of `count()`:
+
+```{r purl = FALSE}
+surveys %>%
+  count(sex, species) 
+```
+
+With the above code, we can proceed with `arrange()` to sort the table according to a number of criteria so that we have a better comparison. For instance, we might want to arrange the table above in (i) an alphabetical order of the levels of the species and (ii) in descending order of the count:
+
+```{r purl = FALSE}
+surveys %>%
+  count(sex, species) %>%
+  arrange(species, desc(n))
+```
+
+From the table above, we may learn that, for instance, there are 75 observations of the *albigula* species that are not specified for its sex (i.e. `NA`).
+
 > ### Challenge {.challenge}
 >
 > 1. How many individuals were caught in each `plot_type` surveyed?
