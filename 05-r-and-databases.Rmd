@@ -450,7 +450,7 @@ number of individuals, instead we need to use `n_distinct()` to count the
 number of unique values found in a column.
 
 ```{r count_unique_genera, purl=FALSE}
-xspecies <- tbl(mammals, "species")
+species <- tbl(mammals, "species")
 unique_genera <- left_join(surveys, plots) %>%
     left_join(species) %>%
     group_by(plot_type) %>%
