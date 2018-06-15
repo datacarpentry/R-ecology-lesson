@@ -114,6 +114,7 @@ This is referred to as a "tibble". Tibbles tweak some of the behaviors of the da
 
 
 We're going to learn some of the most common **`dplyr`** functions:
+
 - `select()`: subset columns
 - `filter()`: subset rows on conditions
 - `mutate()`: create new columns by using information from other columns
