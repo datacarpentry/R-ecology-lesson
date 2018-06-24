@@ -303,6 +303,36 @@ then combine the results. **`dplyr`** makes this very easy through the use of th
 `group_by()` function.
 
 
+#### The `group_by()` object
+
+The `group_by()` function preforms the action you would expect from the name. It groups. More specifically, the `group_by()` function groups column variables by the row values into categories. Doing this creates a group object which can be used in further analysis.
+
+```{r The group objet}
+
+grp_obj <- surveys %>% 
+  group_by(sex)
+
+```
+
+A grouped object does not change how the data looks like:
+```{r Show grouped object}
+grp_obj
+```
+
+However, it changes how operations are carried out using the other functions in the `dplyr` package (more on the `summarize()` function in a moment).
+
+
+```{r Display difference}
+grp_obj %>% summarize(disp = mean(weight, na.rm = TRUE))
+surveys %>% summarize(disp = mean(weight, na.rm = TRUE))
+```
+
+To change the object back to the ordinary data frame object we can use the `ungroup()` function. 
+
+```{r ungroup}
+grp_obj %>% ungroup %>% summarize(dist = mean(weight, na.rm = TRUE))
+
+```
 #### The `summarize()` function
 
 `group_by()` is often used together with `summarize()`, which collapses each
@@ -388,6 +418,8 @@ surveys %>%
             min_weight = min(weight)) %>%
   arrange(desc(mean_weight))
 ```
+
+Note that using `group_by()` on a grouped object overwrites the exisiting grouping. 
 
 
 #### Counting
