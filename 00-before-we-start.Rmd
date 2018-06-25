@@ -279,7 +279,7 @@ a complete command. This is because you have not 'closed' a parenthesis or
 quotation, i.e. you don't have the same number of left-parentheses as
 right-parentheses, or the same number of opening and closing quotation marks.
 When this happens, and you thought you finished typing your command, click
-inside the console window and press `Esc`; this will cancel the incomplete
+inside the console window and press <kbd>`Esc`</kbd>; this will cancel the incomplete
 command and return you to the `>` prompt.
 
 
@@ -299,7 +299,7 @@ knitr::include_graphics("img/kitten-try-things.jpg")
 
 ![RStudio help interface.](img/rstudiohelp.png)
 
-One of the most fastest ways to get help, is to use the RStudio help interface. This panel by default can be found at the lower right hand panel of RStudio. As seen in the screenshot, by typing the word "Mean", RStudio tries to also give a number of suggestions that you might be interested in. The description is then shown in the display window.
+One of the fastest ways to get help, is to use the RStudio help interface. This panel by default can be found at the lower right hand panel of RStudio. As seen in the screenshot, by typing the word "Mean", RStudio tries to also give a number of suggestions that you might be interested in. The description is then shown in the display window.
 
 ### I know the name of the function I want to use, but I'm not sure how to use it
 
