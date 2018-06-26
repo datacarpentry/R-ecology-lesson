@@ -1,24 +1,3 @@
-navbar:
-  left:
-    - text: "Home"
-      href: index.html
-    - text: "Before we start"
-      href: 00-before-we-start.html
-    - text: "Intro to R"
-      href: 01-intro-to-r.html
-    - text: "Starting with data"
-      href: 02-starting-with-data.html
-    - text: "Manipulating data frames"
-      href: 03-dplyr.html
-    - text: "Visualizing data"
-      href: 04-visualization-ggplot2.html
-    - text: "R and SQL"
-      href: 05-r-and-databases.html
-    - text: "Code Handout"
-      href: code-handout.R
-  right:
-    - icon: fa-github fa-lg
-      href: https://github.com/datacarpentry/R-ecology-lesson
 output_dir: "_site"
 exclude: ["portal-database.sqlite", "DESCRIPTION", "Makefile"]
 include: ["code-handout.R"]
