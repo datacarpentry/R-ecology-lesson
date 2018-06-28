@@ -205,7 +205,7 @@ Note that the final data frame is the leftmost part of this expression.
 
 > ### Challenge {.challenge}
 >
->  Using pipes, subset the `surveys` data to include individuals collected before
+>  Using pipes, subset the `surveys` data to include animals collected before
 >  1995 and retain only the columns `year`, `sex`, and `weight`.
 > 
 > 
