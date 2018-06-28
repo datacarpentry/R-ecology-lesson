@@ -366,7 +366,7 @@ surveys %>%
             min_weight = min(weight))
 ```
 
-It is sometimes useful to rearrange the result of a query to inspect the values. For instance, we can sort on `min_weight` to put the species with the small hindfoot length first:
+It is sometimes useful to rearrange the result of a query to inspect the values. For instance, we can sort on `min_weight` to put the lighter species first:
 
 
 ```{r, purl = FALSE}
