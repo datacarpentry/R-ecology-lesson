@@ -402,8 +402,15 @@ surveys %>%
     count(sex) 
 ```
 
-For convenience, `count()` provides the `sort` argument:
+The `count()` function is shorthand for something we've already seen: grouping by a variable, and summarizing it by counting the number of observations in that group. In other words, `surveys %>% count()` is equivalent to:  
 
+```{r, purl = FALSE}
+surveys %>%
+    group_by(sex) %>%
+    summarise(count = n())
+```
+
+For convenience, `count()` provides the `sort` argument:  
 
 ```{r, purl = FALSE}
 surveys %>%
