@@ -707,11 +707,7 @@ re-generate them.
 In preparation for our next lesson on plotting, we are going to prepare a
 cleaned up version of the data set that doesn't include any missing data.
 
-Let's start by removing observations for which the `species_id` is missing. In
-this data set, the missing species are represented by an empty string and not an
-`NA`. Let's also remove observations for which `weight` and the
-`hindfoot_length` are missing. This data set should also only contain
-observations of animals for which the sex has been determined:
+Let's start by removing observations of animals for which `weight` and `hindfoot_length` are missing, or the `sex` has not been determined:
 
 
 ```{r, purl=FALSE}
