@@ -526,9 +526,11 @@ ggplot(surveys_complete, aes(x = species_id, y = hindfoot_length)) +
 
 Faceting is a great tool for splitting one plot into multiple plots, but sometimes you may want to produce a single figure that contains multiple plots using different variables or even different data frames. The **`gridExtra`** package allows us to combine separate ggplots into a single figure using `grid.arrange()`:
 
-```{r gridarrange-example, message=FALSE, purl=FALSE, fig.width=10}
+```{r install-gridextra, message=FALSE, purl=TRUE, eval=FALSE}
 install.packages("gridExtra")
+```
 
+```{r gridarrange-example, message=FALSE, purl=FALSE, fig.width=10}
 library(gridExtra)
 
 spp_weight_boxplot <- ggplot(data = surveys_complete, 
