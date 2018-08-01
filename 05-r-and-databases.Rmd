@@ -507,7 +507,6 @@ To add tables, we copy the existing data.frames into the database one by one:
 ```{r copy, purl=FALSE}
 copy_to(my_db, surveys)
 copy_to(my_db, plots)
-copy_to(my_db, species)
 my_db
 ```
 
