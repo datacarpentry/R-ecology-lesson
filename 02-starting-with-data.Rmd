@@ -15,6 +15,7 @@ source("setup.R")
 > * Describe what a data frame is.
 > * Load external data from a .csv file into a data frame.
 > * Summarize the contents of a data frame.
+> * Distinguish between a data frame and a tibble.
 > * Describe what a factor is.
 > * Convert between strings and factors.
 > * Reorder and rename factors.
@@ -292,6 +293,24 @@ In RStudio, you can use the autocompletion feature to get the full and correct n
 ###    dataset.
 
 ```
+
+### Data frames versus tibbles
+
+Tibbles are data frames that have been tweaked to better coexist with packages from the `tidyverse`, such as `dplyr` and `ggplot2` (which we will learn more about later in this lesson). Data frames can be created directly, or converted to tibbles using `as_tibble()`:
+
+```{r, purl = FALSE}
+as_tibble(surveys)
+str(surveys)
+```
+
+Notice that the class of the data is now `tbl_df`
+
+This is referred to as a "tibble". Tibbles tweak some of the behaviors of the data frame objects we introduced in the previous episode. The data structure is very similar to a data frame. For our purposes the only differences are that:
+
+1. In addition to displaying the data type of each column under its name, it
+   only prints the first few rows of data and only as many columns as fit on one
+   screen.
+2. Columns of class `character` are never converted into factors.
 
 ## Factors
 
