@@ -118,6 +118,10 @@ surveys_plot +
 - Anything you put in the `ggplot()` function can be seen by any geom layers
   that you add (i.e., these are universal plot settings). This includes the x- and
   y-axis mapping you set up in `aes()`.
+- The first and second arguments in a ggplot function are data and mapping (x-axis and y-axis). As long as you 
+  specify the arguments in correct order, you don't need to specify them as data= or mapping=.
+  ggplot(surveys_complete, aes(x = weight, y = hindfoot_length)) gives the same result as
+  ggplot(data = surveys_complete, mapping = aes(x = weight, y = hindfoot_length))
 - You can also specify mappings for a given geom independently of the
   mappings defined globally in the `ggplot()` function.
 - The `+` sign used to add new layers must be placed at the end of the line containing
@@ -208,6 +212,8 @@ ggplot(data = surveys_complete, mapping = aes(x = weight, y = hindfoot_length)) 
 
 Or to color each species in the plot differently, you could use a vector as an input to the argument **color**. **`ggplot2`** will provide a different color corresponding to different values in the vector. Here is an example where we color with **`species_id`**:
 
+Note: You can use the up key in your keyboard to display the previous command you typed on your console. This 
+      helps save a lot of typing, especially when you are playing around with your plot displays.
 
 ```{r color-by-species, purl=FALSE}
 ggplot(data = surveys_complete, mapping = aes(x = weight, y = hindfoot_length)) +
