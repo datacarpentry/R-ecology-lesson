@@ -106,6 +106,15 @@ surveys_plot +
     geom_point()
 ```
 
+You have just built up a plot in **`ggplot2`**, through the addition
+of new layers! As a graphical demonstration of how layers are added in
+**`ggplot`**, please see this figure:
+
+![](img/R-ecology-ggplot-layer-diagram.svg)
+
+You will see later that further layers can be added, helping you
+create the graph you want.
+
 ```{r, eval=FALSE, purl=TRUE, echo=FALSE, purl=FALSE}
 # Create a ggplot and draw it
 surveys_plot <- ggplot(data = surveys_complete, mapping = aes(x = weight, y = hindfoot_length))

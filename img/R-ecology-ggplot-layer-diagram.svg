@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.3 (unknown)"
+   sodipodi:docname="R-ecology-ggplot-layer-diagram.svg">
+  <defs
+     id="defs2">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="209.02083 : 127 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="211.98385 : 127.00207 : 1"
+       inkscape:persp3d-origin="106.98385 : 77.502074 : 1"
+       id="perspective817" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.6284792"
+     inkscape:cx="381.86953"
+     inkscape:cy="698.33655"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     inkscape:window-width="1920"
+     inkscape:window-height="1056"
+     inkscape:window-x="0"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1"
+     inkscape:measure-start="230,680"
+     inkscape:measure-end="0,0">
+    <inkscape:grid
+       type="xygrid"
+       id="grid815" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="opacity:0.72000002;fill:#ff6400;fill-opacity:1;stroke-width:0.51754898;stroke-miterlimit:4;stroke-dasharray:none"
+       d="M 75.973214,121.05209 H 112.259 l 11.33929,13.22916 H 87.3125 Z"
+       id="rect871"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc" />
+    <path
+       style="opacity:0.75;fill:#009600;fill-opacity:1;stroke-width:0.51754898;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 75.973214,111.79167 h 36.285776 l 11.33929,13.22916 H 87.3125 Z"
+       id="rect871-1"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc" />
+    <path
+       style="opacity:0.75;fill:#0064ff;fill-opacity:1;stroke-width:0.51754898;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 75.973214,102.53126 h 36.285726 l 11.33929,13.22916 H 87.3125 Z"
+       id="rect871-1-4"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:4.63176394px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.1157941"
+       x="51.21487"
+       y="56.406898"
+       id="text906"
+       transform="scale(0.65195317,1.5338525)"><tspan
+         sodipodi:role="line"
+         id="tspan904"
+         x="51.21487"
+         y="56.406898"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.1157941">ggplot(<tspan
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;opacity:0.75;fill:#ff6400;fill-opacity:1"
+   id="tspan912">data = surveys_complete,</tspan> <tspan
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;opacity:0.75;fill:#009600;fill-opacity:1"
+   id="tspan1022">mapping = aes(x = weight, y = hindfoot_length)</tspan>) +</tspan><tspan
+         sodipodi:role="line"
+         x="51.21487"
+         y="62.196602"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;opacity:0.75;fill:#0064ff;fill-opacity:1;stroke-width:0.1157941"
+         id="tspan908">  geom_point()</tspan><tspan
+         sodipodi:role="line"
+         x="51.21487"
+         y="67.986305"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.1157941"
+         id="tspan910" /></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#0064ff;fill-opacity:1;stroke:none;stroke-width:0.26458332;opacity:0.75;"
+       x="52.627602"
+       y="110.13802"
+       id="text1446"><tspan
+         sodipodi:role="line"
+         x="52.627602"
+         y="110.13802"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.26458332;fill:#0064ff;fill-opacity:1;"
+         id="tspan1450">geometry</tspan></text>
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot1452"
+       style="fill:black;fill-opacity:1;stroke:none;font-family:sans-serif;font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;letter-spacing:0px;word-spacing:0px"><flowRegion
+         id="flowRegion1454"><rect
+           id="rect1456"
+           width="95"
+           height="115"
+           x="80"
+           y="392.51968" /></flowRegion><flowPara
+         id="flowPara1458"></flowPara></flowRoot>    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#009600;fill-opacity:1;stroke:none;stroke-width:0.26458332;opacity:0.75;"
+       x="54.479668"
+       y="119.39845"
+       id="text1446-1"><tspan
+         sodipodi:role="line"
+         x="54.479668"
+         y="119.39845"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.26458332;fill:#009600;fill-opacity:1;"
+         id="tspan1450-3">mapping</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ff6400;fill-opacity:1;stroke:none;stroke-width:0.26458332;opacity:0.75;"
+       x="63.210907"
+       y="128.92342"
+       id="text1446-1-4"><tspan
+         sodipodi:role="line"
+         x="63.210907"
+         y="128.92342"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;stroke-width:0.26458332;fill:#ff6400;fill-opacity:1;"
+         id="tspan1450-3-2">data</tspan></text>
+  </g>
+</svg>
