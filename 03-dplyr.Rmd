@@ -499,7 +499,7 @@ surveys_spread <- surveys_gw %>%
 str(surveys_spread)
 ```
 
-![](img/spread_data_R.png)
+![](img/spread-data-R-2.png)
 
 We could now plot comparisons between the weight of species in different plots, 
 although we may wish to fill in the missing values first.
@@ -539,7 +539,7 @@ surveys_gather <- surveys_spread %>%
 str(surveys_gather)
 ```
 
-![](img/gather_data_R.png)
+![](img/gather-data-R-2.png)
 
 Note that now the `NA` genera are included in the re-gathered format. Spreading
 and then gathering can be a useful way to balance out a dataset so every
