@@ -233,6 +233,9 @@ To create a new column of weight in kg:
 surveys %>%
   mutate(weight_kg = weight / 1000)
 ```
+#In order to see the mutated results, it may be useful to create an intermediate object since it is not displayed otherwise.
+
+weight_mod <- surveys %>% mutate(weight_kg = weight/1000)
 
 You can also create a second new column based on the first new column within the same call of `mutate()`:
 
@@ -328,7 +331,7 @@ surveys %>%
 ```
 
 When grouping both by `sex` and `species_id`, the last few rows are for animals
-that escaped before their sex could be determined and weighted. You may notice
+that escaped before their sex could be determined and weighed. You may notice
 that the last column does not contain `NA` but `NaN` (which refers to "Not a
 Number"). To avoid this, we can remove the missing values for weight before we
 attempt to calculate the summary statistics on weight. Because the missing
@@ -552,7 +555,7 @@ str(surveys_gw)
 ```
 
 This yields `surveys_gw` where the observations for each plot are spread across
-multiple rows, 196 observations of 13 variables. 
+multiple rows, 196 observations of 3 variables in 13 columns. 
 Using `spread()` to key on `genus` with values from `mean_weight` this becomes
 24 observations of 11 variables, one row for each plot. We again use pipes:
 
@@ -732,7 +735,7 @@ species_counts <- surveys_complete %>%
 
 ## Only keep the most common species
 surveys_complete <- surveys_complete %>%
-  filter(species_id %in% species_counts$species_id)
+  filter(species_id %in% species_counts$species_id) #There should be an explanation of what this modified pipe is.  %in% is not introduced anywhere else in the lesson.
 ```
 
 ```{r, eval=FALSE, purl=TRUE, echo=FALSE}
