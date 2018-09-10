@@ -1,6 +1,6 @@
 ---
-title: Before we start
-author: Data Carpentry contributors
+title: "Before we start"
+author: "Data Carpentry contributors"
 minutes: 15
 ---
 
