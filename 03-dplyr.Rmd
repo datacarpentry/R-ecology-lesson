@@ -103,7 +103,7 @@ str(surveys)
 # View(surveys)
 ```
 
-Notice that the class of the data is now `tbl_df`
+Notice that the class of the data is now `tbl_df` and `tbl` in addition to `data.frame`.
 
 This is referred to as a "tibble". Tibbles tweak some of the behaviors of the data frame objects we introduced in the previous episode. The data structure is very similar to a data frame. For our purposes the only differences are that:
 
