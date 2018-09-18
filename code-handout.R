@@ -232,7 +232,7 @@ plot(surveys$sex)
 
 ## SQL databases and R
 ## install.packages(c("dbplyr", "RSQLite"))
-library(dplyr)
+library(tidyverse)
 library(dbplyr)
 mammals <- DBI::dbConnect(RSQLite::SQLite(), "data/portal_mammals.sqlite")
 src_dbi(mammals)
@@ -293,9 +293,9 @@ genus_counts <- left_join(surveys, plots) %>%
   group_by(plot_type, genus) %>%
   tally %>%
   collect()
-species <- read.csv("data/species.csv")
-surveys <- read.csv("data/surveys.csv")
-plots <- read.csv("data/plots.csv")
+species <- read_csv("data/species.csv")
+surveys <- read_csv("data/surveys.csv")
+plots <- read_csv("data/plots.csv")
 my_db_file <- "portal-database.sqlite"
 my_db <- src_sqlite(my_db_file, create = TRUE)
 my_db
