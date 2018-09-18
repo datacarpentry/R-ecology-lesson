@@ -189,12 +189,17 @@ objects besides `data.frame`.
 ## Indexing and subsetting data frames
 ```
 
+Let's consider a toy data frame with 3 row and 3 columns that we store as the object `toy`. We can imagine this data frame `toy` represented by cubby bins, where the cubby rows represent each observation and the cubby columns are the variables. Each cubby bin holds a value. If, for example, we would like to extract out the value **1500** from cubby bins, we would go to the first row and the second column. In the `toy` data frame, this would translate to `toy[1,3]`.
+
+![](./img/indexing.svg)
+
 
 Our survey data frame has rows and columns (it has 2 dimensions), if we want to
 extract some specific data from it, we need to specify the "coordinates" we
-want from it. Row numbers come first, followed by column numbers. However, note
-that different ways of specifying these coordinates lead to results with
-different classes.
+want from it. Row numbers come first, followed by column numbers. 
+
+Note that there are different ways of specifying these coordinates lead to results with different classes.
+
 
 
 ```{r, purl=FALSE}
