@@ -124,13 +124,23 @@ We're going to learn some of the most common **`dplyr`** functions:
 
 ## Selecting columns and filtering rows
 
-To select columns of a
-data frame, use `select()`. The first argument to this function is the data
-frame (`surveys`), and the subsequent arguments are the columns to keep.
+To select columns of a data frame, use `select()`. The first argument
+to this function is the data frame (`surveys`), and the subsequent
+arguments are the columns to keep.
 
 ```{r, results = 'hide', purl = FALSE}
 select(surveys, plot_id, species_id, weight)
 ```
+
+To select all columns *except* certain ones, put a "-" in front of
+the variable to exclude it.
+
+```{r, results = 'hide', purl = FALSE}
+select(surveys, -record_id, -species_id)
+```
+
+This will select all the variables in `surveys` except `record_id`
+and `species_id`.
 
 To choose rows based on a specific criteria, use `filter()`:
 
