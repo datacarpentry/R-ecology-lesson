@@ -1,6 +1,7 @@
 
 # Contributing
-
+I would like to propose the inclusion of new info on Lesson 3 of Data Analysis and Visualization in R for Ecologists. More specifically, on the section 'What are data frames?', I propose to include a contrasting graphic that represents common mistakes for representing what is "not" a dataframe. For instance, data structures with double data types in the same vector (i.e. an integer with a character '1S') or including an example taken from the 'surveys.cvs' table that the user will examine later on the lesson, which has issues, such as: missing values. This could potentially elucidate more easily to the novice user what a dataframe is.
+Moreover, it could allow the user to start spotting common mistakes to avoid when working with their own data frame.
 
 [Data Carpentry](http://datacarpentry.org) in an open source project, and we
 welcome contributions of all kinds: new lessons, fixes to existing material, bug
