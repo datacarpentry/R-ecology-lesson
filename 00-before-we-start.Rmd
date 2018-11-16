@@ -165,6 +165,14 @@ tutorial below.
 4. Click on `Create project`.
 5. Download the [code handout](./code-handout.R), place it in your working
   directory and rename it (e.g., `data-carpentry-script.R`).
+6. (Optional) Set Preferences to 'Never' save workspace in RStudio.
+
+RStudio's default preferences generally work well, but saving a workspace to
+.RData can be cumbersome, especially if you are working with larger datasets.
+To turn that off, go to Tools --> 'Global Options' and select the 'Never' option
+for 'Save workspace to .RData' on exit.'
+
+![Set 'Save workspace to .RData on exit' to 'Never'](img/rstudio-preferences.png)
 
 ### Organizing your working directory
 
