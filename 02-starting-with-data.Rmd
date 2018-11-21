@@ -60,8 +60,8 @@ you'll download the file. So this command downloads a file from figshare, names 
 "portal_data_joined.csv," and adds it to a preexisting folder named "data."
 
 ```{r, eval=FALSE, purl=TRUE}
-download.file("https://ndownloader.figshare.com/files/2292169",
-              "data/portal_data_joined.csv")
+download.file(url="https://ndownloader.figshare.com/files/2292169",
+              destfile = "data/portal_data_joined.csv")
 ```
 
 You are now ready to load the data:
