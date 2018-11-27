@@ -338,7 +338,7 @@ surveys %>%
 ```
 
 When grouping both by `sex` and `species_id`, the last few rows are for animals
-that escaped before their sex could be determined and weighted. You may notice
+that escaped before their sex and body weights could be determined. You may notice
 that the last column does not contain `NA` but `NaN` (which refers to "Not a
 Number"). To avoid this, we can remove the missing values for weight before we
 attempt to calculate the summary statistics on weight. Because the missing
