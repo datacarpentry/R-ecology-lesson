@@ -124,7 +124,7 @@ generate. RStudio can also be used for other things (e.g., version control,
 developing packages, writing Shiny apps) that we will not cover during the
 workshop.
 
-![RStudio interface screenshot. Clockwise from top left: Source, Environment/History, Console, Files/Plots/Packages/Help/Viewer.](img/rstudio-screenshot.png)
+![RStudio interface screenshot. Clockwise from top left: Source, Environment/History, Files/Plots/Packages/Help/Viewer, Console.](img/rstudio-screenshot.png)
 
 RStudio is divided into 4 "Panes": the **Source** for your scripts and documents
 (top-left, in the default layout), your **Environment/History** (top-right),
