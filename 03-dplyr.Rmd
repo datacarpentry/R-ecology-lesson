@@ -562,7 +562,7 @@ str(surveys_gw)
 ```
 
 This yields `surveys_gw` where the observations for each plot are spread across
-multiple rows, 196 observations of 13 variables. 
+multiple rows, 196 observations of 3 variables. 
 Using `spread()` to key on `genus` with values from `mean_weight` this becomes
 24 observations of 11 variables, one row for each plot. We again use pipes:
 
