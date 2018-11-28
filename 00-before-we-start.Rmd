@@ -124,7 +124,7 @@ generate. RStudio can also be used for other things (e.g., version control,
 developing packages, writing Shiny apps) that we will not cover during the
 workshop.
 
-![RStudio interface screenshot. Clockwise from top left: Source, Environment/History, Console, Files/Plots/Packages/Help/Viewer.](img/rstudio-screenshot.png)
+![RStudio interface screenshot. Clockwise from top left: Source, Environment/History, Files/Plots/Packages/Help/Viewer, Console.](img/rstudio-screenshot.png)
 
 RStudio is divided into 4 "Panes": the **Source** for your scripts and documents
 (top-left, in the default layout), your **Environment/History** (top-right),
@@ -165,6 +165,14 @@ tutorial below.
 4. Click on `Create project`.
 5. Download the [code handout](./code-handout.R), place it in your working
   directory and rename it (e.g., `data-carpentry-script.R`).
+6. (Optional) Set Preferences to 'Never' save workspace in RStudio.
+
+RStudio's default preferences generally work well, but saving a workspace to
+.RData can be cumbersome, especially if you are working with larger datasets.
+To turn that off, go to Tools --> 'Global Options' and select the 'Never' option
+for 'Save workspace to .RData' on exit.'
+
+![Set 'Save workspace to .RData on exit' to 'Never'](img/rstudio-preferences.png)
 
 ### Organizing your working directory
 
