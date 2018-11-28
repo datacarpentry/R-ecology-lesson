@@ -90,7 +90,7 @@ the handout **must** be enclosed in an `R` code chunk with
 `purl=TRUE` in the chunk options. Further, to aid students' use of
 the handout code, consider including explanatory comments. When
 writing Challenges in particular, you may need to include redundant
-comments and used the chunk option `echo=FALSE`. In doubt
+comments and used the chunk option `echo=FALSE`. When in doubt,
 consult the `Rmd` files for examples.
 
 Images (e.g., screenshots) go into the `img/` folder. Graphics
@@ -133,7 +133,7 @@ following guidelines:
 * Wrap lines at 80 characters (unless it breaks URLs)
 * Use consistent capitalization (e.g., R not r, RStudio not rstudio
 or Rstudio)
-* Function names are written as `function()` while variables packages are
+* Function names are written as `function()` while variables are
 written as `variable`, and package names as **`package`**.
 * Use unclosed atx style headers (see below):
 
