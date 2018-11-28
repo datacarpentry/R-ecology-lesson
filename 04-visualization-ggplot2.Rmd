@@ -214,6 +214,23 @@ ggplot(data = surveys_complete, mapping = aes(x = weight, y = hindfoot_length)) 
     geom_point(alpha = 0.1, aes(color = species_id))
 ```
 
+We can also specify the colors directly inside the mapping provided in the `ggplot()` function. This will be seen by any geom layers and the mapping will be determined by the x- and y-axis set up in `aes()`.
+
+```{r color-by-species, purl=FALSE}
+ggplot(data = surveys_complete, mapping = aes(x = weight, y = hindfoot_length, color = species_id)) +
+    geom_point(alpha = 0.1)
+```
+
+Notice that we can change the geom layer and colors will be still determined by **`species_id`**
+
+```{r color-by-species, purl=FALSE}
+ggplot(data = surveys_complete, mapping = aes(x = weight, y = hindfoot_length, color = species_id)) +
+    geom_jitter(alpha = 0.1)
+```
+
+
+
+
 > ### Challenge
 >
 > Use what you just learned to create a scatter plot of `weight` over
