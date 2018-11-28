@@ -210,6 +210,17 @@ because it will fail on someone else's computer.
 
 ### Install the tidyverse
 
+The `tidyverse` package is "[an opinionated collection of R packages designed for
+data science.](https://www.tidyverse.org/)" We will be using the pacakges within `tidyverse` to go through
+key concepts of good data science practices.
+
+To install the `tidyverse` package (and it dependencies), run the following code
+in your R **Console** panel.
+
+```{r, eval=FALSE, purl=FALSE}
+install.packages("tidyverse", dependencies = TRUE)
+```
+
 ### Install ratdat
 
 ### Download the data
