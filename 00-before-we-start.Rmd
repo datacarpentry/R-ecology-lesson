@@ -241,7 +241,7 @@ because it will fail on someone else's computer.
 ### Install the tidyverse
 
 The `tidyverse` package is "[an opinionated collection of R packages designed for
-data science.](https://www.tidyverse.org/)" We will be using the pacakges within `tidyverse` to go through
+data science.](https://www.tidyverse.org/)" We will be using the packages within `tidyverse` to go through
 key concepts of good data science practices.
 
 To install the `tidyverse` package (and it dependencies), run the following code
@@ -251,11 +251,26 @@ in your R **Console** panel.
 install.packages("tidyverse", dependencies = TRUE)
 ```
 
-### Install ratdat
-(FILL IN)
+### Prepare to download the data
+
+Packages can also be used to contain datasets. For this lesson we will use the `ratdat` data package as a "[real world example of life-history, population, and ecological data ... with many complexities removed to allow students to focus on the core ideas and skills being taught.](https://github.com/weecology/ratdat)" 
+
+Since `ratdat` is hosted on github, we will need the `devtools` package, which contains an interface between `R` and `github`, along with other useful tools. To install `devtools`, run the following code in your R **Console** panel.
+
+```{r, eval=FALSE, purl=FALSE}
+install.packages("devtools", dependencies = TRUE) # if not already installed
+```
+
+
 
 ### Download the data
-(FILL IN)
+
+Then to download the data, we load the `devtools` package and use it to install the `ratdat` package, run the following code, once again in your R Console panel:
+
+```{r, eval=FALSE, purl=FALSE}
+library(devtools)
+install_github("weecology/ratdat")
+```
 
 ### Presentation of the dataset
 (FILL IN)
