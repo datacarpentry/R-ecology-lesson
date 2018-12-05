@@ -92,7 +92,10 @@ The package **`tidyr`** addresses the common problem of wanting to reshape your 
 To learn more about **`dplyr`** and **`tidyr`** after the workshop, you may want to check out this
 [handy data transformation with **`dplyr`** cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf) and this [one about **`tidyr`**](https://github.com/rstudio/cheatsheets/raw/master/data-import.pdf).
 
-As in the last lesson, we'll read in our data using the `read_csv()` function (from the tidyverse package **`readr`**).
+We'll read in our data using the `read_csv()` function, from the tidyverse package **`readr`**, instead of `read.csv()`. The package `read_csv()` has some fundamental differences compared to the built-in `read.csv()` function. One of the authors of the `tidyverse()` and `readr` packages, Hadley Wickham, outlines the advantages over the base equivalents being:
+> * the `readr()` packages tend to run more quickly.
+> * the `reard()` packages produce tibbles, a special type of data frame that we will cover shortly.
+> * the `reard()` packages do not inherit behaviors from the operating system and environment variables like the base R functions, which allows for better reproducibility across different computer systems.
 
 ```{r, results = 'hide', purl = FALSE}
 surveys <- read_csv("data/portal_data_joined.csv")
@@ -109,11 +112,11 @@ str(surveys)
 
 Notice that the class of the data `tbl_df` and `tbl` in addition to `data.frame`. This is referred to as a "tibble". For those of you who may have seen generic data frames before this course, tibbles tweak some of the behaviors of the basic `data.frame`. For our purposes, the only differences are that:
 
-1. In addition to displaying the data type of each column under its name, it
+1. **Printing:** In addition to displaying the data type of each column under its name, it
    only prints the first few rows of data and only as many columns as fit on one
    screen.
-2. Columns of class `character` are never converted into factors.
-
+2. **Subsetting:** Compared to traditional data frames, tibbles simplify the way in which you can subset data by name or position. Tibbles can also utilize pipes, a useful coding tool, which we will cover a little later.
+3. **Changes to Data:** Tibbles never convert `character` columns into factors, never change names of variables, and never create row names.
 
 We're going to learn some of the most common **`dplyr`** functions:
 
