@@ -478,8 +478,6 @@ In RStudio, you can use the autocompletion feature to get the full and correct n
 <!-- surveys$plot_type <- factor(surveys$plot_type) -->
 <!-- ``` -->
 
-
-
 > ### Challenge
 >
 > 1. We have seen how data frames are created when using `read_csv()`, but

@@ -114,7 +114,6 @@ Notice that the class of the data `tbl_df` and `tbl` in addition to `data.frame`
    screen.
 2. Columns of class `character` are never converted into factors.
 
-
 We're going to learn some of the most common **`dplyr`** functions:
 
 - `select()`: subset columns
