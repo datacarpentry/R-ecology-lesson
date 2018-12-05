@@ -23,13 +23,13 @@ if (Sys.getenv("id_rsa") != "") {
     ## lesson gets deployed on gh-pages, and rendered by GitHub
     if (ci()$get_branch() == "master" || ci()$is_tag()) {
         get_stage("deploy") %>%
-            add_step(step_push_deploy(path = "_site", branch = "gh-pages", orphan = TRUE))
+            add_step(step_push_deploy(path = "_site", branch = "gh-pages"))
     }
 
     ## if the branch is `tidyverse-first` the lesson gets deployed to the
     ## development branch, and will be rendered by netlify
     if (ci()$get_branch() == "tidyverse-first") {
         get_stage("deploy") %>%
-            add_step(step_push_deploy(path = "_site", branch = "development", orphan = TRUE))
+            add_step(step_push_deploy(path = "_site", branch = "development"))
     }
 }
