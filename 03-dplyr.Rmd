@@ -24,7 +24,7 @@ suppressWarnings(surveys$date <- lubridate::ymd(paste(surveys$year,
 > * Link the output of one **`dplyr`** function to the input of another function with the 'pipe' operator `%>%`.
 > * Add new columns to a data frame that are functions of existing columns with `mutate`.
 > * Use the split-apply-combine concept for data analysis.
-> * Use `summarize`, `group_by`, and `count` to split a data frame into groups of observations, apply a summary statistics for each group, and then combine the results.
+> * Use `summarize`, `group_by`, and `count` to split a data frame into groups of observations, apply summary statistics for each group, and then combine the results.
 > * Describe the concept of a wide and a long table format and for which purpose those formats are useful.
 > * Describe what key-value pairs are.
 > * Reshape a data frame from long to wide format and back with the `spread` and `gather` commands from the **`tidyr`** package.
