@@ -514,13 +514,13 @@ surveys$plot_type <- factor(surveys$plot_type)
 >
 >    ```{text_answer, echo=FALSE, purl=FALSE}
 >    * missing quotations around the names of the animals
->    * missing one entry in the "feel" column (probably for one of the furry animals)
->    * missing one comma in the weight column
+>    * missing one entry in the `feel` column (probably for one of the furry animals)
+>    * missing one comma in the `weight` column
 >    * `country`, `climate`, `temperature`, and `northern_hemisphere` are
 >       factors; `has_kangaroo` is numeric
->    * using `stringsAsFactors = FALSE` would have made them character instead of
+>    * using `stringsAsFactors = FALSE` would have made character vectors instead of
 >      factors
->    * removing the quotes in temperature and northern_hemisphere and replacing 1
+>    * removing the quotes in `temperature` and `northern_hemisphere` and replacing 1
 >      by TRUE in the `has_kangaroo` column would give what was probably 
 >      intended
 >    ```
@@ -530,7 +530,7 @@ The automatic conversion of data type is sometimes a blessing, sometimes an
 annoyance. Be aware that it exists, learn the rules, and double check that data
 you import in R are of the correct type within your data frame. If not, use it
 to your advantage to detect mistakes that might have been introduced during data
-entry (a letter in a column that should only contain numbers for instance).
+entry (for instance, a letter in a column that should only contain numbers).
 
 Learn more in this [RStudio tutorial](https://support.rstudio.com/hc/en-us/articles/218611977-Importing-Data-with-RStudio)
 
