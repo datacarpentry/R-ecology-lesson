@@ -49,7 +49,7 @@ work together well such as **`tidyr`**, **`dplyr`**, **`ggplot2`**, **`tibble`**
 
 
 The **`tidyverse`** package tries to address 3 common issues that arise when
-doing data analysis with some of functions that come with R:
+doing data analysis with some of the functions that come with R:
 
 1. The results from a base R function sometimes depend on the type of data.
 2. Using R expressions in a non standard way, which can be confusing for new
@@ -59,7 +59,7 @@ doing data analysis with some of functions that come with R:
 
 We have seen in our previous lesson that when building or importing a data frame, the columns that contain characters (i.e., text) are coerced (=converted) into the `factor` data type. We had to set **`stringsAsFactors`** to **`FALSE`** to avoid this hidden argument to convert our data type. 
 
-This time will use the **`tidyverse`** package to read the data and avoid having to set **`stringsAsFactors`** to **`FALSE`**
+This time we will use the **`tidyverse`** package to read the data and avoid having to set **`stringsAsFactors`** to **`FALSE`**
 
 To load the package type:
 
