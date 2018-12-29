@@ -386,8 +386,8 @@ small (3 columns, 5 rows) generic one. For more information on how to write a
 reproducible example see [this article by Hadley Wickham](http://adv-r.had.co.nz/Reproducibility.html).
 
 To share an object with someone else, if it's relatively small, you can use the
-function `dput()`. It will output R code that can be used to recreate the exact
-same object as the one in memory:
+function `dput()`. It will output an ASCII text representation that can be used 
+to recreate the exact same object as the one in memory:
 
 ```{r, results='show', purl=FALSE}
 dput(head(iris)) # iris is an example data frame that comes with R and head() is a function that returns the first part of the data frame
