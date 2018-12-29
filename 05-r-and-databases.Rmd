@@ -530,6 +530,10 @@ from flat files!
 reading the three `csv` files. Because all the data has to flow through R,
 this is not suitable for very large datasets.
 
+**Note:** Finally, to close the connection to the mammals database you may use 
+`DBI::dbDisconnect(mammals)`; this discards all pending work and frees resources, 
+e.g. memory.
+
 
 ```{r, child="_page_built_on.Rmd"}
 ```
