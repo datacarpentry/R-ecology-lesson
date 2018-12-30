@@ -127,7 +127,8 @@ workshop.
 ![RStudio interface screenshot. Clockwise from top left: Source, Environment/History, Files/Plots/Packages/Help/Viewer, Console.](img/rstudio-screenshot.png)
 
 RStudio is divided into 4 "Panes": the **Source** for your scripts and documents
-(top-left, in the default layout), your **Environment/History** (top-right),
+(top-left, in the default layout), your **Environment/History** (top-right) which shows 
+all the objects in your working space (Environment) and your command history (History),
 your **Files/Plots/Packages/Help/Viewer** (bottom-right), and 
 the R **Console** (bottom-left). The placement of these
 panes and their content can be customized (see menu, Tools -> Global Options ->
@@ -390,7 +391,8 @@ function `dput()`. It will output an ASCII text representation that can be used
 to recreate the exact same object as the one in memory:
 
 ```{r, results='show', purl=FALSE}
-dput(head(iris)) # iris is an example data frame that comes with R and head() is a function that returns the first part of the data frame
+dput(head(iris)) # iris is an example data frame that comes with R and head() is a 
+function that returns the first part of the data frame
 ```
 
 If the object is larger, provide either the raw file (i.e., your CSV file) with
@@ -457,7 +459,9 @@ sessionInfo()
   useful guidelines
 * [This blog post by Jon Skeet](http://codeblog.jonskeet.uk/2010/08/29/writing-the-perfect-question/)
   has quite comprehensive advice on how to ask programming questions.
-* The [reprex](https://cran.rstudio.com/web/packages/reprex/) package is very helpful to create reproducible examples when asking for help. The [rOpenSci community call "How to ask questions so they get answered"], [Github link](https://github.com/ropensci/commcalls/issues/14) and [video recording](https://vimeo.com/208749032) includes a presentation of the reprex package and of its philosophy.
+* The [reprex](https://cran.rstudio.com/web/packages/reprex/) package is very helpful to create 
+reproducible examples when asking for help. The [rOpenSci community call "How to ask questions so they get answered"], [Github link](https://github.com/ropensci/commcalls/issues/14) and [video recording](https://vimeo.com/208749032) 
+includes a presentation of the reprex package and of its philosophy.
 
 ```{r, child="_page_built_on.Rmd"}
 ```
