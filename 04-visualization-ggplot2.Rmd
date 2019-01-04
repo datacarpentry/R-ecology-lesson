@@ -231,7 +231,7 @@ ggplot(data = surveys_complete, mapping = aes(x = weight, y = hindfoot_length, c
 
 
 
-> ### Challenge
+> ### Challenge {.challenge}
 >
 > Use what you just learned to create a scatter plot of `weight` over
 > `species_id` with the plot types showing in different colors. Is this a good
@@ -388,6 +388,29 @@ the grid:
      theme_bw() +
      theme(panel.grid = element_blank())
 ```
+
+
+
+> ### Challenge {.challenge}
+>
+> 1. Faceting is a powerful tool to visualize busy datasets. While faceting by a factor is more straightforward, we can also split a continuous variable into facets with only one additional step.  
+>
+> 2. The `cut()` function from ggplot2 has three handy special cases: `cut_width()`, `cut_inverval()`, and `cut_number()`.  
+>
+>      - `cut_width()` lets us split a continuous variable into groups of a specified width.
+>
+>      - `cut_interval()` makes n groups of equal range.  
+>
+>      - `cut_number()` makes n groups that contain rougly equal numbers of observations. 
+>
+> 3. Starting with the `surveys_plot` object that we created previously, facet the plot such that weight is split into three facets to represent "small", "medium", and "large" respectively.  You'll have to consider each of the options for `cut()` and choose the most appropriate version.
+>
+> ```{r faceting-challenge, answer=TRUE, purl=FALSE}
+> surveys_plot +
+>   #note that you can change aesthetics for individual geoms in a ggplot
+>   geom_point(mapping = aes(color = species_id)) +
+>   facet_wrap(~cut_interval(weight, 3)) #use cut_interval here to make 3 equal groups.
+> ```
 
 ## **`ggplot2`** themes
 
