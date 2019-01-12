@@ -157,12 +157,12 @@ break. Go through the steps for creating an "R Project" for this
 tutorial below.
 
 1. Start RStudio.
-2. Under the `File` menu, click on `New project`. Choose `New directory`, then
-  `New project`.
+2. Under the `File` menu, click on `New Project`. Choose `New Directory`, then
+  `New Project`.
 3. Enter a name for this new folder (or "directory"), and choose a convenient
   location for it. This will be your **working directory** for the rest of the
   day (e.g., `~/data-carpentry`).
-4. Click on `Create project`.
+4. Click on `Create Project`.
 5. Download the [code handout](./code-handout.R), place it in your working
   directory and rename it (e.g., `data-carpentry-script.R`).
 6. (Optional) Set Preferences to 'Never' save workspace in RStudio.
