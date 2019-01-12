@@ -100,7 +100,7 @@ surveys <- read_csv("data/portal_data_joined.csv")
 str(surveys)
 
 ## preview the data
-# View(surveys)
+View(surveys)
 ```
 
 Notice that the class of the data is now `tbl_df`
