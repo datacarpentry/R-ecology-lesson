@@ -472,7 +472,7 @@ ggplot(data = yearly_sex_counts, mapping = aes(x = year, y = n, color = sex)) +
     facet_wrap(~ species_id) +
     labs(title = "Observed species in time",
          x = "Year of observation",
-         y = "Number of species") +
+         y = "Number of individuals") +
     theme_bw()
 ```
 
@@ -485,7 +485,7 @@ ggplot(data = yearly_sex_counts, mapping = aes(x = year, y = n, color = sex)) +
     facet_wrap(~ species_id) +
     labs(title = "Observed species in time",
         x = "Year of observation",
-        y = "Number of species") +
+        y = "Number of individuals") +
     theme_bw() +
     theme(text=element_text(size = 16))
 ```
@@ -507,7 +507,7 @@ ggplot(data = yearly_sex_counts, mapping = aes(x = year, y = n, color = sex)) +
     facet_wrap(~ species_id) +
     labs(title = "Observed species in time",
         x = "Year of observation",
-        y = "Number of species") +
+        y = "Number of individuals") +
     theme_bw() +
     theme(axis.text.x = element_text(colour = "grey20", size = 12, angle = 90, hjust = 0.5, vjust = 0.5),
                         axis.text.y = element_text(colour = "grey20", size = 12),
@@ -580,7 +580,7 @@ my_plot <- ggplot(data = yearly_sex_counts,
     facet_wrap(~ species_id) +
     labs(title = "Observed species in time",
         x = "Year of observation",
-        y = "Number of species") +
+        y = "Number of individuals") +
     theme_bw() +
     theme(axis.text.x = element_text(colour = "grey20", size = 12, angle = 90, hjust = 0.5, vjust = 0.5),
                         axis.text.y = element_text(colour = "grey20", size = 12),
