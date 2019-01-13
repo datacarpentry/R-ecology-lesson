@@ -422,7 +422,7 @@ retrieved.
 >  The query should return counts of genus by plot type.
 > 
 > ```{r genus_by_type_answer, answer=TRUE, results='markup', eval=FALSE}
-> species <- tbl("mammals", species)
+> species <- tbl(mammals, "species")
 > genus_counts <- left_join(surveys, plots) %>%
 >   left_join(species) %>%
 >   group_by(plot_type, genus) %>%
