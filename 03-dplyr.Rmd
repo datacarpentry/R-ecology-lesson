@@ -98,7 +98,9 @@ surveys <- read_csv("data/portal_data_joined.csv")
 
 ## inspect the data
 str(surveys)
+```
 
+```{r, eval=FALSE, purl=FALSE}
 ## preview the data
 View(surveys)
 ```
