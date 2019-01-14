@@ -535,7 +535,7 @@ Recall that you can use the `typeof()` function to find the type of your atomic 
 
 > ### Challenge
 >
-> 1. Using this vector of heights in inches, create a new vector with the NAs removed.
+> 1. Using this vector of heights in inches, create a new vector, `heights_no_na`, with the NAs removed.
 >
 >     ```r
 >     heights <- c(63, 69, 60, 65, NA, 68, 61, 70, 61, 59, 64, 69, 63, 63, NA, 72, 65, 64, 70, 63, 65)
@@ -551,6 +551,8 @@ Recall that you can use the `typeof()` function to find the type of your atomic 
 > heights_no_na <- heights[!is.na(heights)] 
 > # or
 > heights_no_na <- na.omit(heights)
+> # or
+> heights_no_na <- heights[complete.cases(heights)]
 >
 > # 2.
 > median(heights, na.rm = TRUE)
