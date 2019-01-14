@@ -12,8 +12,8 @@ source("setup.R")
 
 > ### Learning Objectives
 >
-> * Describe what a data frame is.
 > * Load external data from a .csv file into a data frame.
+> * Describe what a data frame is.
 > * Summarize the contents of a data frame.
 > * Describe what a factor is.
 > * Convert between strings and factors.
