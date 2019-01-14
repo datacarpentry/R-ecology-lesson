@@ -209,21 +209,21 @@ ggplot(data = surveys_complete, mapping = aes(x = weight, y = hindfoot_length)) 
 Or to color each species in the plot differently, you could use a vector as an input to the argument **color**. **`ggplot2`** will provide a different color corresponding to different values in the vector. Here is an example where we color with **`species_id`**:
 
 
-```{r color-by-species, purl=FALSE}
+```{r color-by-species-1, purl=FALSE}
 ggplot(data = surveys_complete, mapping = aes(x = weight, y = hindfoot_length)) +
     geom_point(alpha = 0.1, aes(color = species_id))
 ```
 
 We can also specify the colors directly inside the mapping provided in the `ggplot()` function. This will be seen by any geom layers and the mapping will be determined by the x- and y-axis set up in `aes()`.
 
-```{r color-by-species, purl=FALSE}
+```{r color-by-species-2, purl=FALSE}
 ggplot(data = surveys_complete, mapping = aes(x = weight, y = hindfoot_length, color = species_id)) +
     geom_point(alpha = 0.1)
 ```
 
 Notice that we can change the geom layer and colors will be still determined by **`species_id`**
 
-```{r color-by-species, purl=FALSE}
+```{r color-by-species-3, purl=FALSE}
 ggplot(data = surveys_complete, mapping = aes(x = weight, y = hindfoot_length, color = species_id)) +
     geom_jitter(alpha = 0.1)
 ```
