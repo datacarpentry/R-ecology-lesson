@@ -608,9 +608,7 @@ We can use the functions we saw previously to deal with missing data to identify
 the rows in our data frame that are failing. If we combine them with what we learned about subsetting data frames earlier, we can extract the columns "year, "month", "day" from the records that have `NA` in our new column `date`. We will also use `head()` so we don't clutter the output:
 
 ```{r, results=TRUE, purl=FALSE}
-is_missing_date <- is.na(surveys$date)
-date_columns <- c("year", "month", "day")
-missing_dates <- surveys[is_missing_date,  date_columns]
+missing_dates <- surveys[is.na(surveys$date, c("year", "month", "day")]
 
 head(missing_dates)
 ```
