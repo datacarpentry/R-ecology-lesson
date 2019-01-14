@@ -358,11 +358,17 @@ If you need to convert a factor to a character vector, you use
 as.character(sex)
 ```
 
-Converting factors where the levels appear as numbers (such as concentration
-levels, or years) to a numeric vector is a little trickier. The `as.numeric()` 
-function returns the index values of the factor, not its levels, so it will 
-result in an entirely new (and unwanted in this case) set of numbers. 
-One method to avoid this is to convert factors to characters, and then to numbers.  
+In some cases, you may have to convert factors where the levels appear as
+numbers (such as concentration levels or years) to a numeric vector. For
+instance, in one part of your analysis the years might need to be encoded as
+factors (e.g., comparing average weights across years) but in another part of
+your analysis they may need to be stored as numeric values (e.g., doing math
+operations on the years). This conversion from factor to numeric is a little
+trickier. The `as.numeric()` function returns the index values of the factor,
+not its levels, so it will result in an entirely new (and unwanted in this case)
+set of numbers. One method to avoid this is to convert factors to characters,
+and then to numbers.
+
 Another method is to use the `levels()` function. Compare:
 
 ```{r, purl=TRUE}
