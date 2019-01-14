@@ -371,7 +371,7 @@ factors (`factor`) and arrays (`array`).
 >     combined_logical <- c(num_logical, char_logical)
 >     ```
 >
-> ```{text-answer, echo=FALSE, purl=FALSE} 
+> ```{text_answer, echo=FALSE, purl=FALSE}
 > Only one. There is no memory of past data types, and the coercion happens the
 > first time the vector is evaluated. Therefore, the `TRUE` in `num_logical`
 > gets converted into a `1` before it gets converted into `"1"` in
