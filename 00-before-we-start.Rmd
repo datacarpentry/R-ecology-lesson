@@ -5,8 +5,9 @@ minutes: 15
 ---
 
 
-```{r, echo=FALSE, purl=FALSE}
-knitr::opts_chunk$set(results='hide', fig.path='img/r-lesson-')
+
+```{r, echo=FALSE, purl=FALSE, message = FALSE}
+source("setup.R")
 ```
 
 ------------
