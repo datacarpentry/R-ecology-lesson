@@ -599,7 +599,7 @@ ymd(paste(surveys$year, surveys$month, surveys$day, sep = "-"))
 The resulting `Date` vector can be added to `surveys` as a new column called `date`:
 
 ```{r, purl=FALSE}
-surveys$date <- ymd(paste(surveys$year, surveys$month, surveys$day, sep = "-"))
+surveys["date"] <- ymd(paste(surveys$year, surveys$month, surveys$day, sep = "-"))
 str(surveys) # notice the new column, with 'date' as the class
 ```
 
