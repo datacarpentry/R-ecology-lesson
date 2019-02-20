@@ -241,6 +241,47 @@ ggplot(data = surveys_complete, mapping = aes(x = weight, y = hindfoot_length, c
 >    geom_point(aes(color = plot_type))
 > ```
 
+## Histogram and density plots
+
+One of the first steps towards analyzing data is exploring its distribution. The histograms and density plots facilitate this common first step during data exploration. Let's explore the distribution of the variable `weight` with a histogram:
+
+```{r histogram, purl=FALSE, message=F}
+ggplot(data = surveys_complete, mapping = aes(x = weight)) +
+    geom_histogram()
+```
+
+As just mentioned, another way to explore data distribution is by doing a density plot. In a density plot, the area under the line sums 1. Viewing both the histogram and the density plot can help to understand better the distribution of the variable. Let's take a look to the density plot of `weight`:
+
+```{r density, purl=FALSE}
+ggplot(data = surveys_complete, mapping = aes(x = weight)) +
+    geom_density()
+```
+
+> ### Challenges
+>
+> This distribution seems to be bimodal. That means that there might be a 
+reason why it has two main central tendencies. Figuring out its reason
+can be really useful to understand the nature of this survey data.
+For example, is this was data from human height, we could hypothesize that
+after separating based on sex, we would end up with two separate normal
+distributions; resolving the mistery of why it was originally a bimodal
+distribution. In a density plot or a histogram, we can set the aesthetic 
+`color` or `fill` to describe a factor of the dataframe. In that way we
+can observe with more detail each distribution of each level of the factor.
+>
+> - Repeat the same density plot using the mapping the aesthetic fill to 
+`plot_id` and then to `species`. Discuss with the person next to you how
+would you interpret this three figures together (the original without color,
+the one colored by `plot_id` and the one colored by `species`).
+>
+> ```{r density-challenge-plot_id, answer=TRUE, purl=FALSE}
+>ggplot(data = surveys_complete, mapping = aes(x = weight, fill = plot_type)) +
+>    geom_density()
+>```
+> ```{r density-challenge-species, answer=TRUE, purl=FALSE}
+>ggplot(data = surveys_complete, mapping = aes(x = weight, fill = species)) +
+>    geom_density()
+>```
 
 ## Boxplot
 
