@@ -81,6 +81,9 @@ function `head()`:
 
 ```{r, results='show', purl=FALSE}
 head(surveys)
+```
+
+```{r, purl=FALSE}
 ## Try also
 View(surveys)
 ```
