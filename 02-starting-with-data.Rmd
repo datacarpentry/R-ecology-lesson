@@ -82,7 +82,7 @@ function `head()`:
 ```{r, results='show', purl=FALSE}
 head(surveys)
 ## Try also
-## View(surveys)
+View(surveys)
 ```
 
 > ### Note
