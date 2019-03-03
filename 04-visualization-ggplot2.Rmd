@@ -437,7 +437,7 @@ arranged via formula notation (`rows ~ columns`; a `.` can be used as
 a placeholder that indicates only one row or column).
 
 Let's modify the previous plot to compare how the weights of males and females
-has changed through time:
+have changed through time:
 
 ```{r average-weight-time-facet-sex-rows, purl=FALSE}
 # One column, facet by rows
