@@ -83,7 +83,7 @@ function `head()`:
 head(surveys)
 ```
 
-```{r, purl=FALSE}
+```{r, eval = FALSE, purl = FALSE}
 ## Try also
 View(surveys)
 ```
