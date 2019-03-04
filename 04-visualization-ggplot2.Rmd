@@ -394,7 +394,7 @@ the grid:
 In addition to `theme_bw()`, which changes the plot background to white, **`ggplot2`**
 comes with several other themes which can be useful to quickly change the look
 of your visualization. The complete list of themes is available
-at <http://docs.ggplot2.org/current/ggtheme.html>. `theme_minimal()` and
+at <https://ggplot2.tidyverse.org/reference/ggtheme.html>. `theme_minimal()` and
 `theme_light()` are popular, and `theme_void()` can be useful as a starting
 point to create a new hand-crafted theme.
 
