@@ -46,7 +46,7 @@ surveys_complete <- read_csv("data_output/surveys_complete.csv")
 from data in a data frame. It provides a more programmatic interface for
 specifying what variables to plot, how they are displayed, and general visual
 properties. Therefore, we only need minimal changes if the underlying data change
-or if we decide to change from a bar plot to a scatterplot. This helps in creating
+or if we decide to change from a bar plot to a scatter plot. This helps in creating
 publication quality plots with minimal amounts of adjustments and tweaking.
 
 **`ggplot2`** functions like data in the 'long' format, i.e., a column for every dimension,
