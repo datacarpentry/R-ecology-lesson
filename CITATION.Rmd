@@ -21,7 +21,7 @@ generate_citation <- function(authors = "AUTHORS",
         editor = editors,
         month = format(Sys.Date(), "%B"),
         year = format(Sys.Date(), "%Y"),
-        url = "http://datacarpentry.org/R-ecology-lesson",
+        url = "http://datacarpentry.org/R-ecology-lesson/",
         doi = doi
     )
 
@@ -62,7 +62,7 @@ Chihuahuan Desert ecosystem near Portal, Arizona, USA. Ecology 90:1708.
 http://esapubs.org/archive/ecol/E090/118/
 
 A simplified version of this data, suitable for teaching is available on
-[figshare](https://dx.doi.org/10.6084/m9.figshare.1314459.v5).
+[figshare](https://doi.org/10.6084/m9.figshare.1314459.v5).
 
 
 ## Lessons
@@ -99,4 +99,6 @@ or as a BibTeX entry:
 print(generate_citation(), style = "bibtex")
 ```
 
-<p style="text-align: right; font-size: small;">Page build on: `r format(Sys.time())`</p>
+
+```{r, child="_page_built_on.Rmd"}
+```

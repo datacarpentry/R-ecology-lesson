@@ -43,8 +43,8 @@ you used in the previous chapter, in conjunction with [**`dbplyr`**](https://cra
 source databases [sqlite](https://sqlite.org/), [mysql](https://www.mysql.com/)
 and [postgresql](https://www.postgresql.org/), as well as
 Google’s [bigquery](https://cloud.google.com/bigquery/), and it can also be
-extended to other database types (a [vignette](https://cran.r-project.org/web/packages/dplyr/vignettes/databases.html) in the **`dplyr`** package explains how
-to do it).
+extended to other database types (a [vignette](https://cran.r-project.org/web/packages/dbplyr/vignettes/new-backend.html) in the **`dplyr`** package explains how
+to do it). RStudio has created [a website](http://db.rstudio.com/) that provides documentation and best practices to work on database interfaces.
 
 Interfacing with databases using **`dplyr`** focuses on retrieving and analyzing
 datasets by generating `SELECT` SQL statements, but it doesn't modify the
@@ -59,8 +59,7 @@ We will continue to explore the `surveys` data you are already familiar with
 from previous lessons. First, we are going to install the **`dbplyr`** package:
 
 ```{r dbplyr-install, eval=FALSE, purl=TRUE}
-install.packages("dbplyr")
-library(dbplyr)
+install.packages(c("dbplyr", "RSQLite"))
 ```
 
 The SQLite database is contained in a single file `portal_mammals.sqlite`
@@ -73,26 +72,28 @@ download.file(url = "https://ndownloader.figshare.com/files/2292171",
               destfile = "data/portal_mammals.sqlite", mode = "wb")
 ```
 
-## Connecting to databases with **`dplyr`**
+## Connecting to databases
 
-We can point R to this database with **`dplyr`**'s `src_sqlite()` command.
+We can point R to this database using:
 
 ```{r connect, purl=TRUE}
 library(dplyr)
-mammals <- src_sqlite("data/portal_mammals.sqlite")
+library(dbplyr)
+mammals <- DBI::dbConnect(RSQLite::SQLite(), "data/portal_mammals.sqlite")
 ```
 
-The `src_sqlite()` command does not load the data into the R session (as the
-`read.csv()` function did). Instead, it merely instructs R to connect to
+This command uses 2 packages that helps **`dbplyr`** and **`dplyr`** talk to the SQLite database. **`DBI`** is not something that you'll use directly as a user. It allows R to send commands to databases irrespective of the database management system used. The **`RSQLite`** package allows R to interface with SQLite databases.
+
+This command does not load the data into the R session (as the
+`read_csv()` function did). Instead, it merely instructs R to connect to
 the `SQLite` database contained in the `portal_mammals.sqlite` file.
 
-(You can use the `src_mysql()`, `src_postgres()` and `src_bigquery()` to connect
-to the other database types supported by **`dplyr`**.)
+Using a similar approach, you could connect to many other database management systems that are supported by R including MySQL, PostgreSQL, BigQuery, etc.
 
 Let's take a closer look at the `mammals` database we just connected to:
 
 ```{r tables, results="markup"}
-mammals
+src_dbi(mammals)
 ```
 
 Just like a spreadsheet with multiple worksheets, a SQLite database can contain
@@ -153,17 +154,17 @@ However, some functions don't work quite as expected. For instance, let's check
 how many rows there are in total using `nrow()`:
 
 ```{r nrows, results='show', purl=FALSE}
-nrow(tbl)
+nrow(surveys)
 ```
 
-That's strange - R doesn't know how many rows the `survey` table contains - it
-returns `NULL` instead. You might have already noticed that the first line of
+That's strange - R doesn't know how many rows the `surveys` table contains - it
+returns `NA` instead. You might have already noticed that the first line of
 the `head()` output included `??` indicating that the number of rows wasn't
 known.
 
 The reason for this behavior highlights a key difference between using
 **`dplyr`** on datasets in memory (e.g. loaded into your R session via
-`read.csv()`) and those provided by a database. To understand it, we take a
+`read_csv()`) and those provided by a database. To understand it, we take a
 closer look at how **`dplyr`** communicates with our SQLite database.
 
 ### SQL translation
@@ -243,7 +244,7 @@ R lazy and only retrieved 10 of them?
 ## Laziness
 
 Hadley Wickham, the author of **`dplyr`**
-[explains](https://cran.r-project.org/web/packages/dplyr/vignettes/databases.html):
+[explains](https://cran.r-project.org/web/packages/dbplyr/vignettes/dbplyr.html):
 
 > When working with databases, **`dplyr`** tries to be as lazy as possible:
 >
@@ -302,7 +303,7 @@ large datasets: you can first prototype your code on a small subset that fits
 into memory, and when your code is ready, you can change the input dataset to
 your full database without having to change the syntax.
 
-On the other hand, being able use SQL queries directly can be useful if your
+On the other hand, being able to use SQL queries directly can be useful if your
 collaborators have already put together complex queries to prepare the dataset
 that you need for your analysis.
 
@@ -364,6 +365,31 @@ retrieved.
 > ON table1.key = table2.key
 > JOIN table3 ON table2.key = table3.key
 > ```
+>
+> ```{r left_join_answer, answer=TRUE, eval=TRUE}
+> ## with dplyr syntax
+> species <- tbl(mammals, "species")
+> 
+> left_join(surveys, species) %>%
+>   filter(taxa == "Rodent") %>%
+>   group_by(taxa, year) %>%
+>   tally %>%
+>   collect()
+> 
+> ## with SQL syntax
+> query <- paste("
+> SELECT a.year, b.taxa,count(*) as count
+> FROM surveys a
+> JOIN species b
+> ON a.species_id = b.species_id
+> AND b.taxa = 'Rodent'
+> GROUP BY a.year, b.taxa",
+> sep = "" )
+> 
+> tbl(mammals, sql(query))
+> >
+> ``` 
+
 
 ```{r challenge-sql-1, purl=TRUE, echo=FALSE}
 
@@ -387,34 +413,6 @@ retrieved.
 
 ```
 
-
-
-<!-- answer
-```{r left_join}
-## with dplyr syntax
-species <- tbl(mammals, "species")
-
-left_join(surveys, species) %>%
-  filter(taxa == "Rodent") %>%
-  group_by(taxa, year) %>%
-  tally %>%
-  collect()
-
-## with SQL syntax
-query <- paste("
-SELECT a.year, b.taxa,count(*) as count
-FROM surveys a
-JOIN species b
-ON a.species_id = b.species_id
-AND b.taxa = 'Rodent'
-GROUP BY a.year, b.taxa",
-sep = "" )
-
-tbl(mammals, sql(query))
-
-```
---->
-
 > ### Challenge
 >
 >  Write a query that returns the total number of rodents in each genus caught
@@ -422,6 +420,16 @@ tbl(mammals, sql(query))
 >
 >  Hint: Write a query that joins the species, plot, and survey tables together.
 >  The query should return counts of genus by plot type.
+> 
+> ```{r genus_by_type_answer, answer=TRUE, results='markup', eval=FALSE}
+> species <- tbl(mammals, "species")
+> genus_counts <- left_join(surveys, plots) %>%
+>   left_join(species) %>%
+>   group_by(plot_type, genus) %>%
+>   tally %>%
+>   collect()
+> ```
+
 
 
 ```{r challenge-sql-2, purl=TRUE, echo=FALSE}
@@ -435,16 +443,6 @@ tbl(mammals, sql(query))
 ##  type.
 ```
 
-<!-- answer
-```{r genus_by_type, results='markup'}
-genus_counts <- left_join(surveys, plots) %>%
-  left_join(species) %>%
-  group_by(plot_type, genus) %>%
-  tally %>%
-  collect()
-```
---->
-
 This is useful if we are interested in estimating the number of individuals
 belonging to each genus found in each plot type. But what if we were interested
 in the number of genera found in each plot type? Using `tally()` gives the
@@ -452,6 +450,7 @@ number of individuals, instead we need to use `n_distinct()` to count the
 number of unique values found in a column.
 
 ```{r count_unique_genera, purl=FALSE}
+species <- tbl(mammals, "species")
 unique_genera <- left_join(surveys, plots) %>%
     left_join(species) %>%
     group_by(plot_type) %>%
@@ -459,7 +458,6 @@ unique_genera <- left_join(surveys, plots) %>%
         n_genera = n_distinct(genus)
     ) %>%
     collect()
-
 ```
 
 `n_distinct`, like the other **`dplyr`** functions we have used in this lesson, works
@@ -470,13 +468,20 @@ not only on database connections but also on regular data frames.
 
 So far, we have used a previously prepared SQLite database. But we can also
 use R to create a new database, e.g. from existing `csv` files.  Let's recreate
-the mammals database that we've been working with, in R. First let's read in the
-`csv` files.
+the mammals database that we've been working with, in R. First let's download and read in the
+`csv` files.  We'll import **`tidyverse`** to gain access to the `read_csv()` function.
 
 ```{r data_frames, purl=TRUE}
-species <- read.csv("data/species.csv")
-surveys <- read.csv("data/surveys.csv")
-plots <- read.csv("data/plots.csv")
+download.file("https://ndownloader.figshare.com/files/3299483",
+              "data/species.csv")
+download.file("https://ndownloader.figshare.com/files/10717177",
+              "data/surveys.csv")
+download.file("https://ndownloader.figshare.com/files/3299474",
+              "data/plots.csv")
+library(tidyverse)
+species <- read_csv("data/species.csv")
+surveys <- read_csv("data/surveys.csv")
+plots <- read_csv("data/plots.csv")
 ```
 
 Creating a new SQLite database with **`dplyr`** is easy. You can re-use the same
@@ -487,7 +492,7 @@ argument instructs R to create a new, empty database instead.
 location is overwritten _without warning_.
 
 ```{r create_database, purl=TRUE}
-my_db_file <- "portal-database.sqlite"
+my_db_file <- "data_output/portal-database-output.sqlite"
 my_db <- src_sqlite(my_db_file, create = TRUE)
 ```
 
@@ -529,4 +534,6 @@ from flat files!
 reading the three `csv` files. Because all the data has to flow through R,
 this is not suitable for very large datasets.
 
-<p style="text-align: right; font-size: small;">Page build on: `r format(Sys.time())`</p>
+
+```{r, child="_page_built_on.Rmd"}
+```

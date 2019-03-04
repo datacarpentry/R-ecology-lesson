@@ -1,5 +1,5 @@
 ---
-title: "Data Carpentry: R for data analysis and visualization of Ecological Data"
+title: "Data Analysis and Visualization in R for Ecologists"
 author: François Michonneau & Auriel Fournier (Lesson Maintainers)
 ---
 
@@ -48,7 +48,7 @@ the data and install everything *before* working through this lesson.
 
 ### Data
 
-Data files for the lesson are available and can be downloaded manually here: <http://dx.doi.org/10.6084/m9.figshare.1314459>
+Data files for the lesson are available and can be downloaded manually here: <https://doi.org/10.6084/m9.figshare.1314459>
 
 However, we will download them directly from R during the lessons when we need
 them.
@@ -107,7 +107,7 @@ your operating system, and then follow the instructions to install
 ##### If you don't have R and RStudio installed
 
 * Download R from
-  the [CRAN website](http://cran.r-project.org/bin/macosx).
+  the [CRAN website](http://cran.r-project.org/bin/macosx/).
 * Select the `.pkg` file for the latest R version
 * Double click on the downloaded file to install R
 * It is also a good idea to install [XQuartz](https://www.xquartz.org/) (needed
@@ -150,4 +150,6 @@ your operating system, and then follow the instructions to install
 
 The list of contributors to this lesson is available [here](http://datacarpentry.org/R-ecology-lesson/CITATION),
 
-<p style="text-align: right; font-size: small;">Page build on: `r format(Sys.time())`</p>
+
+```{r, child="_page_built_on.Rmd"}
+```

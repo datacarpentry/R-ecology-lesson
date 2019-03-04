@@ -5,8 +5,9 @@ minutes: 15
 ---
 
 
-```{r, echo=FALSE, purl=FALSE}
-knitr::opts_chunk$set(results='hide', fig.path='img/r-lesson-')
+
+```{r, echo=FALSE, purl=FALSE, message = FALSE}
+source("setup.R")
 ```
 
 ------------
@@ -27,12 +28,12 @@ knitr::opts_chunk$set(results='hide', fig.path='img/r-lesson-')
 
 ## What is R? What is RStudio?
 
-The term "R" is used to refer to both the programming language and the software
-that interprets the scripts written using it.
+The term "`R`" is used to refer to both the programming language and the
+software that interprets the scripts written using it.
 
-RStudio is currently a very popular way to not only write your R scripts but
-also to interact with the R software. To function correctly, RStudio needs R and
-therefore both need to be installed on your computer.
+[RStudio](https://rstudio.com) is currently a very popular way to not only write
+your R scripts but also to interact with the R software. To function correctly,
+RStudio needs R and therefore both need to be installed on your computer.
 
 
 ## Why learn R?
@@ -40,11 +41,11 @@ therefore both need to be installed on your computer.
 ### R does not involve lots of pointing and clicking, and that's a good thing
 
 The learning curve might be steeper than with other software, but with R, the
-results of your analysis does not rely on remembering a succession of pointing
+results of your analysis do not rely on remembering a succession of pointing
 and clicking, but instead on a series of written commands, and that's a good
 thing! So, if you want to redo your analysis because you collected more data,
 you don't have to remember which button you clicked in which order to obtain
-your results, you just have to run your script again.
+your results; you just have to run your script again.
 
 Working with scripts makes the steps you used in your analysis clear, and the
 code you write can be inspected by someone else who can give you feedback and
@@ -94,10 +95,10 @@ The plotting functionalities in R are endless, and allow you to adjust any
 aspect of your graph to convey most effectively the message from your data.
 
 
-### R has a large community
+### R has a large and welcoming community
 
 Thousands of people use R daily. Many of them are willing to help you through
-mailing lists and websites such as [Stack Overflow](https://stackoverflow.com/).
+mailing lists and websites such as [Stack Overflow](https://stackoverflow.com/), or on the [RStudio community](https://community.rstudio.com/).
 
 
 ### Not only is R free, but it is also open-source and cross-platform
@@ -124,14 +125,16 @@ generate. RStudio can also be used for other things (e.g., version control,
 developing packages, writing Shiny apps) that we will not cover during the
 workshop.
 
-![RStudio interface screenshot](img/rstudio-screenshot.png)
+![RStudio interface screenshot. Clockwise from top left: Source, Environment/History, Files/Plots/Packages/Help/Viewer, Console.](img/rstudio-screenshot.png)
 
 RStudio is divided into 4 "Panes": the **Source** for your scripts and documents
-(top-left, in the default layout), the R **Console** (bottom-left), your
-**Environment/History** (top-right), and your
-**Files/Plots/Packages/Help/Viewer** (bottom-right). The placement of these
+(top-left, in the default layout), your **Environment/History** (top-right),
+your **Files/Plots/Packages/Help/Viewer** (bottom-right), and 
+the R **Console** (bottom-left). The placement of these
 panes and their content can be customized (see menu, Tools -> Global Options ->
-Pane Layout). One of the advantages of using RStudio is that all the information
+Pane Layout). 
+
+One of the advantages of using RStudio is that all the information
 you need to write code is available in a single window. Additionally, with many
 shortcuts, autocompletion, and highlighting for the major file types you use
 while developing in R, RStudio will make typing easier and less error-prone.
@@ -148,26 +151,29 @@ others without worrying about whether or not the underlying scripts will still
 work.
 
 RStudio provides a helpful set of tools to do this through its "Projects"
-interface, which not only creates a working directory for you but also remembers
+interface, which not only creates a working directory for you, but also remembers
 its location (allowing you to quickly navigate to it) and optionally preserves
 custom settings and open files to make it easier to resume work after a
-break. Below, we will go through the steps for creating an "R Project" for this
-tutorial.
+break. Go through the steps for creating an "R Project" for this
+tutorial below.
 
-* Start RStudio (presentation of RStudio -below- should happen here)
-* Under the `File` menu, click on `New project`, choose `New directory`, then
-  `New project`
-* Enter a name for this new folder (or "directory"), and choose a convenient
+1. Start RStudio.
+2. Under the `File` menu, click on `New Project`. Choose `New Directory`, then
+  `New Project`.
+3. Enter a name for this new folder (or "directory"), and choose a convenient
   location for it. This will be your **working directory** for the rest of the
-  day (e.g., `~/data-carpentry`)
-* Click on `Create project`
-* Under the `Files` tab on the right of the screen, click on `New Folder` and
-  create a folder named `data` within your newly created working directory (e.g., `~/data-carpentry/data`)
-* Download the [code handout](./code-handout.R), place it in your working directory and rename it (e.g., `data-carpentry-script.R`).
+  day (e.g., `~/data-carpentry`).
+4. Click on `Create Project`.
+5. Download the [code handout](./code-handout.R), place it in your working
+  directory and rename it (e.g., `data-carpentry-script.R`).
+6. (Optional) Set Preferences to 'Never' save workspace in RStudio.
 
-Your working directory should now look like this:
+RStudio's default preferences generally work well, but saving a workspace to
+.RData can be cumbersome, especially if you are working with larger datasets.
+To turn that off, go to Tools --> 'Global Options' and select the 'Never' option
+for 'Save workspace to .RData' on exit.'
 
-![How it should look like at the beginning of this lesson](img/r-starting-how-it-should-look-like.png)
+![Set 'Save workspace to .RData on exit' to 'Never'](img/rstudio-preferences.png)
 
 ### Organizing your working directory
 
@@ -193,12 +199,45 @@ create directories (folders) for **scripts**, **data**, and **documents**.
    functions (more on that later).
 
 You may want additional directories or subdirectories depending on your project
-needs, but these should form the backbone of your working directory. For this
-workshop, we will need a `data/` folder to store our raw data, and we will
-create later a `data_output/` folder when we learn how to export data as CSV
-files.
+needs, but these should form the backbone of your working directory.
 
-![Example of a working directory structure](img/working-directory-structure.png)
+![Example of a working directory structure.](img/working-directory-structure.png)
+
+
+For this workshop, we will need a `data/` folder to store our raw data, and we
+will use `data_output/` for when we learn how to export data as CSV files, and
+`fig_output/` folder for the figures that we will save.
+
+* Under the `Files` tab on the right of the screen, click on `New Folder` and
+  create a folder named `data` within your newly created working directory
+  (e.g., `~/data-carpentry/data`). (Alternatively, type `dir.create("data")` at
+  your R console.) Repeat these operations to create a `data_output/` and a
+  `fig_output` folders.
+
+We are going to keep the script in the root of our working directory because we
+are only going to use one file and it will make things easier.
+
+Your working directory should now look like this:
+
+```{r, results='markup',fig.cap="How it should look like at the beginning of this lesson", echo=FALSE, purl=FALSE, out.width='100%', fig.align='center'}
+knitr::include_graphics("img/r-starting-how-it-should-look-like.png")
+```
+
+### The working directory
+
+The working directory is an important concept to understand. It is the place
+from where R will be looking for and saving the files. When you write code for
+your project, it should refer to files in relation to the root of your working
+directory and only need files within this structure.
+
+Using RStudio projects makes this easy and ensures that your working directory
+is set properly. If you need to check it, you can use `getwd()`. If for some
+reason your working directory is not what it should be, you can change it in the
+RStudio interface by navigating in the file browser where your working directory
+should be, and clicking on the blue gear icon "More", and select "Set As Working
+Directory". Alternatively you can use `setwd("/path/to/working/directory")` to
+reset your working directory. However, your scripts should not include this line
+because it will fail on someone else's computer.
 
 
 ## Interacting with R
@@ -228,7 +267,7 @@ the <kbd>`Ctrl`</kbd> + <kbd>`Enter`</kbd> shortcut (on Macs, <kbd>`Cmd`</kbd> +
 <kbd>`Return`</kbd> will work, too). The command on the current line in the
 script (indicated by the cursor) or all of the commands in the currently
 selected text will be sent to the console and executed when you press
-<kbd>`Ctrl`</kbd> + <kbd>`Enter`</kbd>. You can find other keyboard shortcuts in this [RStudio cheatsheet about the RStudio IDE](https://github.com/rstudio/cheatsheets/blob/master/source/pdfs/rstudio-IDE-cheatsheet.pdf).
+<kbd>`Ctrl`</kbd> + <kbd>`Enter`</kbd>. You can find other keyboard shortcuts in this [RStudio cheatsheet about the RStudio IDE](https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf).
 
 At some point in your analysis you may want to check the content of a variable
 or the structure of an object, without necessarily keeping a record of it in
@@ -249,17 +288,27 @@ a complete command. This is because you have not 'closed' a parenthesis or
 quotation, i.e. you don't have the same number of left-parentheses as
 right-parentheses, or the same number of opening and closing quotation marks.
 When this happens, and you thought you finished typing your command, click
-inside the console window and press `Esc`; this will cancel the incomplete
+inside the console window and press <kbd>`Esc`</kbd>; this will cancel the incomplete
 command and return you to the `>` prompt.
+
+
+## How to learn more after the workshop?
+
+The material we cover during this workshop will give you an initial taste of how you can use R to analyze data for your own research. However, you will need to learn more to do advanced operations such as cleaning your dataset, using statistical methods, or creating beautiful graphics. The best way to become proficient and efficient at R, as with any other tool, is to use it to address your actual research questions. As a beginner, it can feel daunting to have to write a script from scratch, and given that many people make their code available online, modifying existing code to suit your purpose might make it easier for you to get started.
+
+
+```{r kitten-img, results='markup', echo=FALSE, purl=FALSE, out.width='400px', fig.align='center'}
+knitr::include_graphics("img/kitten-try-things.jpg")
+```
 
 
 ## Seeking help
 
 ### Use the built-in RStudio help interface to search for more information on R functions
 
-![RStudio help interface](img/rstudiohelp.png)
+![RStudio help interface.](img/rstudiohelp.png)
 
-One of the most fastest ways to get help, is to use the RStudio help interface. This panel by default can be found at the lower right hand panel of RStudio. As seen in the screenshot, by typing the word "Mean", RStudio tries to also give a number of suggestions that you might be interested in. The description is then shown in the display window.
+One of the fastest ways to get help, is to use the RStudio help interface. This panel by default can be found at the lower right hand panel of RStudio. As seen in the screenshot, by typing the word "Mean", RStudio tries to also give a number of suggestions that you might be interested in. The description is then shown in the display window.
 
 ### I know the name of the function I want to use, but I'm not sure how to use it
 
@@ -409,6 +458,7 @@ sessionInfo()
   useful guidelines
 * [This blog post by Jon Skeet](http://codeblog.jonskeet.uk/2010/08/29/writing-the-perfect-question/)
   has quite comprehensive advice on how to ask programming questions.
-* The [reprex](https://cran.rstudio.com/web/packages/reprex/) package is very helpful to create reproducible examples when asking for help. The [rOpenSci community call "How to ask questions so they get answered"], [Github link](https://github.com/ropensci/commcalls/issues/14) and [video recording](https://vimeo.com/208749032) includes a presentation of the reprex package and of its philosophy.
+* The [reprex](https://cran.rstudio.com/web/packages/reprex/) package is very helpful to create reproducible examples when asking for help. The [rOpenSci community call "How to ask questions so they get answered"], [rOpenSci Blog](https://ropensci.org/commcalls/2017-03-07/) and [video recording](https://vimeo.com/208749032) includes a presentation of the reprex package and of its philosophy.
 
-<p style="text-align: right; font-size: small;">Page build on: `r format(Sys.time())`</p>
+```{r, child="_page_built_on.Rmd"}
+```

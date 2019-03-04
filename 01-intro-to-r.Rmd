@@ -15,16 +15,16 @@ source("setup.R")
 >
 > * Define the following terms as they relate to R: object, assign, call,
 >   function, arguments, options.
-> * Create objects and and assign values to them.
+> * Assign values to objects in R.
+> * Learn how to _name_ objects
 > * Use comments to inform script.
-> * Do simple arithmetic operations in R using values and objects.
+> * Solve simple arithmetic operations in R.
 > * Call functions and use arguments to change their default options.
 > * Inspect the content of vectors and manipulate their content.
 > * Subset and extract values from vectors.
-> * Correctly define and handle missing values in vectors.
+> * Analyze vectors with missing data.
 
 ------------
-
 
 ## Creating objects in R
 
@@ -50,41 +50,47 @@ weight_kg <- 55
 `<-` is the assignment operator. It assigns values on the right to objects on
 the left. So, after executing `x <- 3`, the value of `x` is `3`. The arrow can
 be read as 3 **goes into** `x`.  For historical reasons, you can also use `=`
-for assignments, but not in every context. Because of
-the
-[slight](http://blog.revolutionanalytics.com/2008/12/use-equals-or-arrow-for-assignment.html) [differences](https://web.archive.org/web/20130610005305/https://stat.ethz.ch/pipermail/r-help/2009-March/191462.html) in
-syntax, it is good practice to always use `<-` for assignments.
+for assignments, but not in every context. Because of the
+[slight](http://blog.revolutionanalytics.com/2008/12/use-equals-or-arrow-for-assignment.html)
+[differences](http://r.789695.n4.nabble.com/Is-there-any-difference-between-and-tp878594p878598.html)
+in syntax, it is good practice to always use `<-` for assignments.
 
 In RStudio, typing <kbd>Alt</kbd> + <kbd>-</kbd> (push <kbd>Alt</kbd> at the
-same time as the <kbd>-</kbd> key) will write ` <- ` in a single keystroke.
-
+same time as the <kbd>-</kbd> key) will write ` <- ` in a single keystroke in a PC, while typing <kbd>Option</kbd> + <kbd>-</kbd> (push <kbd>Option</kbd> at the
+same time as the <kbd>-</kbd> key) does the same in a Mac.
 
 Objects can be given any name such as `x`, `current_temperature`, or
 `subject_id`. You want your object names to be explicit and not too long. They
 cannot start with a number (`2x` is not valid, but `x2` is). R is case sensitive
 (e.g., `weight_kg` is different from `Weight_kg`). There are some names that
 cannot be used because they are the names of fundamental functions in R (e.g.,
-`if`, `else`, `for`,
-see
+`if`, `else`, `for`, see
 [here](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Reserved.html)
 for a complete list). In general, even if it's allowed, it's best to not use
 other function names (e.g., `c`, `T`, `mean`, `data`, `df`, `weights`). If in
 doubt, check the help to see if the name is already in use. It's also best to
-avoid dots (`.`) within a variable name as in `my.dataset`. There are many
+avoid dots (`.`) within an object name as in `my.dataset`. There are many
 functions in R with dots in their names for historical reasons, but because dots
 have a special meaning in R (for methods) and other programming languages, it's
-best to avoid them. It is also recommended to use nouns for variable names, and
+best to avoid them. It is also recommended to use nouns for object names, and
 verbs for function names. It's important to be consistent in the styling of your
-code (where you put spaces, how you name variables, etc.). Using a consistent
+code (where you put spaces, how you name objects, etc.). Using a consistent
 coding style makes your code clearer to read for your future self and your
-collaborators. In R, three popular style guides
-are
-[Google's](https://google.github.io/styleguide/Rguide.xml),
-[Jean Fan's](http://jef.works/R-style-guide/) and
-the [tidyverse's](http://style.tidyverse.org/). The tidyverse's is very comprehensive
-and may seem overwhelming at first. You can install the 
-[**`lintr`**](https://github.com/jimhester/lintr) to automatically check for issues 
-in the styling of your code.
+collaborators. In R, three popular style guides are
+[Google's](https://google.github.io/styleguide/Rguide.xml), [Jean
+Fan's](http://jef.works/R-style-guide/) and the
+[tidyverse's](http://style.tidyverse.org/). The tidyverse's is very
+comprehensive and may seem overwhelming at first. You can install the
+[**`lintr`**](https://github.com/jimhester/lintr) package to automatically check
+for issues in the styling of your code.
+
+> ### Objects vs. variables
+>
+> What are known as `objects` in `R` are known as `variables` in many other
+> programming languages. Depending on the context, `object` and `variable` can
+> have drastically different meanings. However, in this lesson, the two words
+> are used synonymously. For more information see:
+> https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Objects
 
 
 When assigning a value to an object, R does not print anything. You can force R to print the value by using parentheses or by typing the object name:
@@ -102,16 +108,16 @@ instance, we may want to convert this weight into pounds (weight in pounds is 2.
 2.2 * weight_kg
 ```
 
-We can also change a variable's value by assigning it a new one:
+We can also change an object's value by assigning it a new one:
 
 ```{r, purl = FALSE}
 weight_kg <- 57.5
 2.2 * weight_kg
 ```
 
-This means that assigning a value to one variable does not change the values of
-other variables.  For example, let's store the animal's weight in pounds in a new
-variable, `weight_lb`:
+This means that assigning a value to one object does not change the values of
+other objects  For example, let's store the animal's weight in pounds in a new
+object, `weight_lb`:
 
 ```{r, purl = FALSE}
 weight_lb <- 2.2 * weight_kg
@@ -178,7 +184,7 @@ b <- sqrt(a)
 
 Here, the value of `a` is given to the `sqrt()` function, the `sqrt()` function
 calculates the square root, and returns the value which is then assigned to
-variable `b`. This function is very simple, because it takes just one argument.
+the object `b`. This function is very simple, because it takes just one argument.
 
 The return 'value' of a function need not be numerical (like that of `sqrt()`),
 and it also does not need to be a single item: it can be a set of things, or
@@ -240,13 +246,6 @@ arguments.  If you don't, someone reading your code might have to look up the
 definition of a function with unfamiliar arguments to understand what you're
 doing.
 
-### Objects vs. variables
-
-What are known as `objects` in `R` are known as `variables` in many other
-programming languages.  Depending on the context, `object` and `variable` can
-have drastically different meanings.  However, in this lesson, the two words are
-used synonymously.  For more information see:
-https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Objects
 
 ## Vectors and data types
 
@@ -341,21 +340,44 @@ factors (`factor`) and arrays (`array`).
 > * We’ve seen that atomic vectors can be of type character,
 >   numeric (or double), integer, and logical. But what happens if we try to mix these types in
 >   a single vector?
-> <!-- * _Answer_: R implicitly converts them to all be the same type -->
+> 
+> ```{text_answer, echo=FALSE, purl=FALSE}
+> R implicitly converts them to all be the same type
+> ```
 >
 > * What will happen in each of these examples? (hint: use `class()`
 >   to check the data type of your objects):
 >
 >     ```r
->     num_char <- c(1, 2, 3, 'a')
+>     num_char <- c(1, 2, 3, "a")
 >     num_logical <- c(1, 2, 3, TRUE)
->     char_logical <- c('a', 'b', 'c', TRUE)
->     tricky <- c(1, 2, 3, '4')
+>     char_logical <- c("a", "b", "c", TRUE)
+>     tricky <- c(1, 2, 3, "4")
 >     ```
 >
 > * Why do you think it happens?
-> <!-- * _Answer_: Vectors can be of only one data type. R tries to convert (coerce)
->   the content of this vector to find a "common denominator". -->
+>
+> ```{text_answer, echo=FALSE, purl=FALSE}
+> Vectors can be of only one data type. R tries to
+> convert (coerce) the content of this vector to find a "common
+> denominator" that doesn't lose any information.
+> ```
+>
+> * How many values in `combined_logical` are `"TRUE"` (as a character) in the
+>   following example:
+>
+>     ```r
+>     num_logical <- c(1, 2, 3, TRUE)
+>     char_logical <- c("a", "b", "c", TRUE)
+>     combined_logical <- c(num_logical, char_logical)
+>     ```
+>
+> ```{text_answer, echo=FALSE, purl=FALSE}
+> Only one. There is no memory of past data types, and the coercion happens the
+> first time the vector is evaluated. Therefore, the `TRUE` in `num_logical`
+> gets converted into a `1` before it gets converted into `"1"` in
+> `combined_logical`.
+> ```
 >
 > * You've probably noticed that objects of different types get
 >   converted into a single, shared type within a vector. In R, we
@@ -364,7 +386,10 @@ factors (`factor`) and arrays (`array`).
 >   whereby some types get preferentially coerced into other
 >   types. Can you draw a diagram that represents the hierarchy of how
 >   these data types are coerced?
-> <!-- * _Answer_: `logical -> numeric -> character <-- logical` -->
+>
+> ```{text_answer, echo=FALSE, purl=FALSE}
+> logical &#8594; numeric &#8594; character &#8592; logical
+> ```
 
 ```{r, echo = FALSE, eval = FALSE, purl = TRUE}
 ## We’ve seen that atomic vectors can be of type character, numeric, integer, and
@@ -465,20 +490,17 @@ animals[animals %in% c("rat", "cat", "dog", "duck", "goat")]
 > ### Challenge (optional){.challenge}
 >
 > * Can you figure out why `"four" > "five"` returns `TRUE`?
+> 
+> ```{text_answer, echo=FALSE, purl=FALSE}
+> When using ">" or "<" on strings, R compares their alphabetical order. 
+> Here "four" comes after "five", and therefore is "greater than" it.
+> ```
 
 ```{r, echo = FALSE, purl = TRUE}
 ### Challenge (optional)
 ##
 ## * Can you figure out why `"four" > "five"` returns `TRUE`?
 ```
-
-<!--
-```{r, purl = FALSE}
-## Answers
-## * When using ">" or "<" on strings, R compares their alphabetical order. Here
-##   "four" comes after "five", and therefore is "greater than" it.
-```
--->
 
 
 ## Missing data
@@ -520,23 +542,43 @@ Recall that you can use the `typeof()` function to find the type of your atomic 
 
 > ### Challenge
 >
-> 1. Using this vector of length measurements, create a new vector with the NAs
-> removed.
+> 1. Using this vector of heights in inches, create a new vector, `heights_no_na`, with the NAs removed.
 >
 >     ```r
->     lengths <- c(10,24,NA,18,NA,20)
+>     heights <- c(63, 69, 60, 65, NA, 68, 61, 70, 61, 59, 64, 69, 63, 63, NA, 72, 65, 64, 70, 63, 65)
 >     ```
+> 2. Use the function `median()` to calculate the median of the `heights` vector.
 >
-> 2. Use the function `median()` to calculate the median of the `lengths` vector.
+> 3. Use R to figure out how many people in the set are taller than 67 inches.
+>
+> ```{r, answer=TRUE}
+> heights <- c(63, 69, 60, 65, NA, 68, 61, 70, 61, 59, 64, 69, 63, 63, NA, 72, 65, 64, 70, 63, 65)
+> 
+> # 1.
+> heights_no_na <- heights[!is.na(heights)] 
+> # or
+> heights_no_na <- na.omit(heights)
+> # or
+> heights_no_na <- heights[complete.cases(heights)]
+>
+> # 2.
+> median(heights, na.rm = TRUE)
+>
+> # 3.
+> heights_above_67 <- heights_no_na[heights_no_na > 67]
+> length(heights_above_67)
+> ```
 
-```{r,echo = FALSE, purl = TRUE}
+
+```{r, echo = FALSE, purl = TRUE}
 ## ### Challenge
-## 1. Using this vector of length measurements, create a new vector with the NAs
-## removed.
+## 1. Using this vector of heights in inches, create a new vector with the NAs removed.
 ##
-##    lengths <- c(10,24,NA,18,NA,20)
+##    heights <- c(63, 69, 60, 65, NA, 68, 61, 70, 61, 59, 64, 69, 63, 63, NA, 72, 65, 64, 70, 63, 65)
 ##
-## 2. Use the function `median()` to calculate the median of the `lengths` vector.
+## 2. Use the function `median()` to calculate the median of the `heights` vector.
+##
+## 3. Use R to figure out how many people in the set are taller than 67 inches.
 ```
 
 Now that we have learned how to write scripts, and the basics of R's data
@@ -544,4 +586,5 @@ structures, we are ready to start working with the Portal dataset we have been
 using in the other lessons, and learn about data frames.
 
 
-<p style="text-align: right; font-size: small;">Page build on: `r format(Sys.time())`</p>
+```{r, child="_page_built_on.Rmd"}
+```
