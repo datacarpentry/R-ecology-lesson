@@ -24,4 +24,5 @@ Instances of abusive, harassing, or otherwise unacceptable behavior may be
 reported by following our [reporting guidelines](https://software-carpentry.org/CoC-reporting/).
 
 
-<p style="text-align: right; font-size: small;">Page build on: `r format(Sys.time())`</p>
+```{r, child="_page_built_on.Rmd"}
+```
