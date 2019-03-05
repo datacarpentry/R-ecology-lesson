@@ -46,7 +46,7 @@ surveys_complete <- read_csv("data_output/surveys_complete.csv")
 from data in a data frame. It provides a more programmatic interface for
 specifying what variables to plot, how they are displayed, and general visual
 properties. Therefore, we only need minimal changes if the underlying data change
-or if we decide to change from a bar plot to a scatterplot. This helps in creating
+or if we decide to change from a bar plot to a scatter plot. This helps in creating
 publication quality plots with minimal amounts of adjustments and tweaking.
 
 **`ggplot2`** functions like data in the 'long' format, i.e., a column for every dimension,
@@ -394,7 +394,7 @@ the grid:
 In addition to `theme_bw()`, which changes the plot background to white, **`ggplot2`**
 comes with several other themes which can be useful to quickly change the look
 of your visualization. The complete list of themes is available
-at <http://docs.ggplot2.org/current/ggtheme.html>. `theme_minimal()` and
+at <https://ggplot2.tidyverse.org/reference/ggtheme.html>. `theme_minimal()` and
 `theme_light()` are popular, and `theme_void()` can be useful as a starting
 point to create a new hand-crafted theme.
 
@@ -460,7 +460,7 @@ ggplot(data = yearly_sex_weight,
 
 ## Customization
 
-Take a look at the [**`ggplot2`** cheat sheet](https://www.rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf), and
+Take a look at the [**`ggplot2`** cheat sheet](https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf), and
 think of ways you could improve the plot.
 
 Now, let's change names of axes to something more informative than 'year'
@@ -531,7 +531,7 @@ ggplot(surveys_complete, aes(x = species_id, y = hindfoot_length)) +
 > 
 > With all of this information in hand, please take another five minutes to
 > either improve one of the plots generated in this exercise or create a
-> beautiful graph of your own. Use the RStudio [**`ggplot2`** cheat sheet](https://www.rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf)
+> beautiful graph of your own. Use the RStudio [**`ggplot2`** cheat sheet](ttps://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf)
 > for inspiration. Here are some ideas:
 >
 > * See if you can change the thickness of the lines.
