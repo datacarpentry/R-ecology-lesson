@@ -2,6 +2,7 @@
 [![Create a Slack Account with us](https://img.shields.io/badge/Create_Slack_Account-The_Carpentries-071159.svg)](https://swc-slack-invite.herokuapp.com/)
 [![Slack Status](https://img.shields.io/badge/Slack_Channel-DC_Ecology_R-E01563.svg)](https://swcarpentry.slack.com/messages/C9X9EC405)
 
+This repository generates the corresponding lesson website from [The Carpentries](https://carpentries.org/) repertoire of lessons. 
 
 # Data carpentry: R for data analysis and visualization of Ecological Data
 
@@ -39,16 +40,36 @@ code from this file to avoid typos in more complex examples.
 
 ## Contributing
 
+We welcome all contributions to improve the lesson! Maintainers will do their best to help you if you have any questions, concerns, or experience any difficulties along the way.
+
 If you would like to contribute to the content and development of these lessons,
 we encourage you to review our [contributing guide](CONTRIBUTING.Rmd).
+
+Please see the current list of [issues](https://github.com/datacarpentry/R-ecology-lesson/issues) for ideas for contributing to this
+repository. For making your contribution, we use the GitHub flow, which is
+nicely explained in the chapter [Contributing to a Project](http://git-scm.com/book/en/v2/GitHub-Contributing-to-a-Project) in Pro Git
+by Scott Chacon.
+Look for the tag ![good_first_issue](https://img.shields.io/badge/-good%20first%20issue-gold.svg). This indicates that the mantainers will welcome a pull request fixing this issue. 
 
 ## Questions
 
 If you have any questions or feedback, please open an issue, contact the
 maintainers, or come chat with us on the [Slack Channel for this lesson](https://swcarpentry.slack.com/messages/C9X9EC405). If you don't already have a Slack account with the Carpentries, you can [create one](https://swc-slack-invite.herokuapp.com/).
 
+## Maintainer(s)
+
+Current maintainers of this lesson are 
+
 * Ana Costa Conrado
 * Auriel Fournier
 * François Michonneau
 * Brian Seok
 * Shiva Guru
+
+## Authors
+
+A list of contributors to the lesson can be found in [AUTHORS](AUTHORS)
+
+## Citation
+
+To cite this lesson, please consult with [CITATION](CITATION)
