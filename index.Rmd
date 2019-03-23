@@ -86,7 +86,7 @@ your operating system, and then follow the instructions to install
 * Run the `.exe` file that was just downloaded
 * Go to the [RStudio download page](https://www.rstudio.com/products/rstudio/download/#download)
 * Under *Installers* select **RStudio x.yy.zzz - Windows
-  XP/Vista/7/8** (where x, y, and z represent version numbers)
+  Vista/7/8/10** (where x, y, and z represent version numbers)
 * Double click the file to install it
 * Once it's installed, open RStudio to make sure it works and you don't get any
   error messages.
