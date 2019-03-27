@@ -6,9 +6,6 @@ BuildLesson <- R6::R6Class(
         build_status <- system("make all")
         if (build_status > 0)
             stop("Error during building process")
-        ## we don't need the README file on the website, and the links it
-        ## includes might be broken
-        file.remove("_site/README.html")
     })
 )
 
