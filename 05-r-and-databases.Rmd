@@ -1,6 +1,9 @@
 ---
 title: "SQL databases and R"
-author: Data Carpentry contributors
+author: "Data Carpentry contributors"
+output:
+  html_document:
+    df_print: paged
 ---
 
 ```{r source, include=FALSE, purl=FALSE}
@@ -326,6 +329,15 @@ surveys
 Because `plot_id` is listed in both tables, we can use it to look up matching
 records, and join the two tables.
 
+If we have two tables named x and y with a common column called "ID", we can join them using 'join' functions, two of which are described and illustrated below.
+
+1. inner_join() : This returns all rows from x where there are matching values in y, and all columns from x and y. 
+
+2. left_join() : This return all rows from x, and all columns from x and y. Rows in x with no match in y will have NA values in the new columns.  
+
+In both forms of join, if there are multiple matches between x and y, all combinations of the matches are returned. For the full list of 'join' functions, check out the [tidyverse join page.](https://dplyr.tidyverse.org/reference/join.html) 
+
+In our example, the two tables we want to join are 'plots' and 'surveys'.
 
 ![diagram illustrating inner and left joins](./img/joins.svg)
 
@@ -425,6 +437,7 @@ retrieved.
 > species <- tbl(mammals, "species")
 > genus_counts <- left_join(surveys, plots) %>%
 >   left_join(species) %>%
+>   filter(taxa == "Rodent") %>%
 >   group_by(plot_type, genus) %>%
 >   tally %>%
 >   collect()
