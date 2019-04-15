@@ -105,6 +105,13 @@ View(surveys)
 > The header argument has to be set to TRUE to be able to read the headers as
 > by default `read.table()` has the header argument set to FALSE.
 
+> In addition to the above versions of the csv format, you should develop the habits
+> of looking at and record some parameters of your csv files. As an example, 
+> the character encoding, control characters used for line ending, and date format
+> (if the date is not splitted into three variables), and the presence of unexepected
+> [newlines](https://en.wikipedia.org/wiki/Newline) in your data file.
+> Those parameters will ease up the import step of you data and R.
+
 ## What are data frames?
 
 Data frames are the _de facto_ data structure for most tabular data, and what we
