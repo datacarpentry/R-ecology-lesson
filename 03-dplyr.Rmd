@@ -520,7 +520,7 @@ dataset:
 Here we examine the fourth rule: Each type of observational unit forms a table.
 
 In `surveys` , the rows of `surveys` contain the values of variables associated
-with each record (the unit), values such the weight or sex of each animal 
+with each record (the unit), values such as the weight or sex of each animal 
 associated with each record. What if instead of comparing records, we 
 wanted to compare the different mean weight of each species between plots? (Ignoring `plot_type` for simplicity).
 
