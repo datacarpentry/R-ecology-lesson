@@ -146,6 +146,8 @@ your operating system, and then follow the instructions to install
 * After starting RStudio, at the console type:
   `install.packages(c("tidyverse", "RSQLite"))`
 
+* You can also do this by going to Tools -> Install Packages and typing the names of the packages separated by a comma.
+
 ## Contributors
 
 The list of contributors to this lesson is available [here](http://datacarpentry.org/R-ecology-lesson/CITATION).
