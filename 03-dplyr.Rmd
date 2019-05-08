@@ -61,7 +61,9 @@ We have seen in our previous lesson that when building or importing a data frame
 
 This time we will use the **`tidyverse`** package to read the data and avoid having to set **`stringsAsFactors`** to **`FALSE`**
 
-To load the package type:
+If we haven't already done so, we can type `install.packages("tidyverse")` straight into the console. In fact, it's better to write this in the console than in our script for any package, as there's no need to re-install packages every time we run the script.
+
+Then, to load the package type:
 
 
 ```{r, message = FALSE, purl = FALSE}
