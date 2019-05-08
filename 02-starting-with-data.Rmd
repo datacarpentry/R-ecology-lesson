@@ -104,7 +104,7 @@ View(surveys)
 > `surveys <- read.table(file="data/portal_data_joined.csv", sep=",", header=TRUE)`.
 > The header argument has to be set to TRUE to be able to read the headers as
 > by default `read.table()` has the header argument set to FALSE.
-
+>
 > In addition to the above versions of the csv format, you should develop the habits
 > of looking at and record some parameters of your csv files. As an example, 
 > the character encoding, control characters used for line ending, date format
