@@ -199,7 +199,7 @@ function operates, such as whether it ignores 'bad values', or what symbol to
 use in a plot.  However, if you want something specific, you can specify a value
 of your choice which will be used instead of the default.
 
-Let's try a function that can take multiple arguments: `round()`.
+Let's try the function `round()`, that can take multiple arguments, to round the number pi:
 
 ```{r, results = 'show', purl = FALSE}
 round(3.14159)
@@ -238,6 +238,19 @@ And if you do name the arguments, you can switch their order:
 
 ```{r, results = 'show', purl = FALSE}
 round(digits = 2, x = 3.14159)
+```
+
+When you do switch the order of the arguments without naming them, some functions will not work, others will give you unexpected results, often without warnings. This is the case of the function `round()`:
+
+```{r, results = 'show', purl = FALSE}
+round(2, 3.14159)
+```
+The output is not what you expect when you want to round the number pi...
+By not naming the arguments, R takes "2" as the value passed for the argument "x" and trys to round it to "digits = 3.14159". Ideally R should return an error, or at least a warning saying what assumption(s) it had to make to run the code, instead, it is assuming "digits = 3.14159" to be "digits = 3" without notice.
+Proof:
+
+```{r, results = 'show', purl = FALSE}
+round(2.1234, 3.14159)
 ```
 
 It's good practice to put the non-optional arguments (like the number you're
