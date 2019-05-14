@@ -6,7 +6,7 @@
 # Data carpentry: R for data analysis and visualization of Ecological Data
 
 This is an introduction to R designed for participants with no programming
-experience. These lessons can be taught in 3/4 of a day (6 hours). They start
+experience. These lessons can be taught in 3/4 of a day (approximately 6 hours). They start
 with some basic information about syntax for the R programming language, the
 RStudio interface, and move through to specific programming tasks, such as
 importing CSV files, the structure of data frame objects in R, dealing with
@@ -25,8 +25,8 @@ introduction to plotting. There is also a lesson on how to use databases from R 
 * [Before we start](http://datacarpentry.org/R-ecology-lesson/00-before-we-start.html)
 * [Introduction to R](http://datacarpentry.org/R-ecology-lesson/01-intro-to-r.html)
 * [Starting with data](http://datacarpentry.org/R-ecology-lesson/02-starting-with-data.html)
-* [Aggregating and analyzing data with dplyr](http://datacarpentry.org/R-ecology-lesson/03-dplyr.html)
-* [Data visualization with ggplot2](http://datacarpentry.org/R-ecology-lesson/04-visualization-ggplot2.html)
+* [Aggregating and analyzing data with `dplyr`](http://datacarpentry.org/R-ecology-lesson/03-dplyr.html)
+* [Data visualization with `ggplot2`](http://datacarpentry.org/R-ecology-lesson/04-visualization-ggplot2.html)
 * [R and Databases](http://datacarpentry.org/R-ecology-lesson/05-r-and-databases.html)
 
 ## Code handout
