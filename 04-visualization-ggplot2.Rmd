@@ -1,6 +1,6 @@
 ---
-title: Data visualization with ggplot2
-author: Data Carpentry contributors
+title: "Data visualization with ggplot2"
+author: "Data Carpentry contributors"
 minutes: 60
 ---
 
@@ -456,6 +456,16 @@ ggplot(data = yearly_sex_weight,
        mapping = aes(x = year, y = avg_weight, color = species_id)) +
     geom_line() +
     facet_grid(. ~ sex)
+```
+
+Now, we can explore multiple rows i.e. we want rows to be species, and we want the columns to be the same
+
+```{r average-weight-time-facet-species_id-rows-sex-columns, purl=FALSE}
+# One row, facet by column
+ggplot(data = yearly_sex_weight, 
+       mapping = aes(x = year, y = avg_weight, color = species_id)) +
+    geom_line() +
+    facet_grid(species_id ~ sex)
 ```
 
 ## Customization
