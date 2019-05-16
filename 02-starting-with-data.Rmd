@@ -106,10 +106,10 @@ View(surveys)
 > by default `read.table()` has the header argument set to FALSE.
 >
 > In addition to the above versions of the csv format, you should develop the habits
-> of looking at and record some parameters of your csv files. As an example, 
+> of looking at and record some parameters of your csv files. For instance, 
 > the character encoding, control characters used for line ending, date format
 > (if the date is not splitted into three variables), and the presence of unexepected
-> [newlines](https://en.wikipedia.org/wiki/Newline) in your data file.
+> [newlines](https://en.wikipedia.org/wiki/Newline) are important characteristics of your data files.
 > Those parameters will ease up the import step of your data in R.
 
 ## What are data frames?
