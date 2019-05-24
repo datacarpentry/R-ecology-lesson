@@ -24,9 +24,8 @@ CheckLinks <- R6::R6Class(
            only_with_issues = FALSE,
            ignore_pattern = "site_libs"
          )
-         broken_links <- res[res$tag_type == "a" & (!res$valid & !is.na(res$valid)), ]
-         if (nrow(broken_links) > 0)
-           warning("Some links are broken, see summary above.")
+
+         res
        })
 )
 
