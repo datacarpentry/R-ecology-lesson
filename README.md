@@ -51,4 +51,3 @@ maintainers, or come chat with us on the [Slack Channel for this lesson](https:/
 * Auriel Fournier
 * François Michonneau
 * Brian Seok
-* Shiva Guru
