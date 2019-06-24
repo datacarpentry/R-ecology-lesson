@@ -1,6 +1,6 @@
 ---
-title: Before we start
-author: Data Carpentry contributors
+title: "Before we start"
+author: "Data Carpentry contributors"
 minutes: 15
 ---
 
@@ -168,7 +168,7 @@ tutorial below.
   directory and rename it (e.g., `data-carpentry-script.R`).
 6. (Optional) Set Preferences to 'Never' save workspace in RStudio.
 
-RStudio's default preferences generally work well, but saving a workspace to
+Workspace is your current working environment in R which includes any user-defined object, which will be saved and automatically loaded when you reopen your project.RStudio's default preferences generally work well, but saving a workspace to
 .RData can be cumbersome, especially if you are working with larger datasets.
 To turn that off, go to Tools --> 'Global Options' and select the 'Never' option
 for 'Save workspace to .RData' on exit.'
