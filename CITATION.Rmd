@@ -1,30 +1,33 @@
 # CITATION
 
 ```{r, echo=FALSE, results='hide'}
-eds <- personList(person(given = "Francois", family = "Michonneau"),
-                      person(given = "Auriel", family = "Fournier"))
+eds <- personList(
+    person(given = "Ana Costa", family = "Conrado"),
+    person(given = "Auriel M.V.", family = "Fournier"),
+    person(given = "Brian", family = "Seok"),
+    person(given = "Francois", family = "Michonneau")
+)
 
 generate_citation <- function(authors = "AUTHORS",
                               editors = eds,
-                              doi = "10.5281/zenodo.569338") {
+                              doi = "10.5281/zenodo.3264888") {
     aut <- readLines(authors)
-
+    
     # remove first line
     aut <- aut[-1]
-
+    
     aut <- as.person(aut)
-
+    
     bibentry(
         bibtype = "Misc",
         author = personList(aut),
-        title = "Data Carpentry: R for data analysis and visualization of Ecological Data",
+        title = "datacarpentry/R-ecology-lesson: Data Carpentry: Data Analysis and Visualization in R for Ecologists, June 2019",
         editor = editors,
         month = format(Sys.Date(), "%B"),
         year = format(Sys.Date(), "%Y"),
         url = "http://datacarpentry.org/R-ecology-lesson/",
         doi = doi
     )
-
 }
 
 generate_zenodo_json <- function(editors) {
@@ -39,10 +42,11 @@ generate_zenodo_json <- function(editors) {
     })
     eds <- paste(editors$given, editors$family)
     res <- list(creators = pp)
-
+    
     if (!is.null(editors)) {
         ctb <- lapply(paste(editors$given, editors$family),
-                      function(x) list(type = "Editor", name = x))
+                      function(x)
+                          list(type = "Editor", name = x))
         res <- c(list(contributors = ctb), res)
     }
     cat(jsonlite::toJSON(res, auto_unbox = TRUE), file = ".zenodo.json")

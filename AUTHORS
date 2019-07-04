@@ -1,100 +1,106 @@
 R-ecology-lesson was written by:
-Achaz von Hardenberg <avonhardenber@Administrators-MacBook-Air-2.local>
-Adam Obeng <github@binaryeagle.com>
-Aleksandra Pawlik <aleksandra.n.pawlik@gmail.com>
-Alex Pletzer <alexander@gokliya.net>
-Alexey Shiklomanov <ashiklom@bu.edu>
-Anne Fouilloux <annefou@geo.uio.no>
-April Wright <wright.aprilm@gmail.com>
-Auriel Fournier <aurielfournier@gmail.com>
-Ben Marwick <benmarwick@hotmail.com>
-C. Titus Brown <titus@idyll.org>
-Carolina Johnson <csjohns@users.noreply.github.com>
-Carolyn Voter <cvoter@wisc.edu>
-Catherine Hulshof <catherine.hulshof@gmail.com>
-Christie Bahlai <cbahlai@msu.edu>
-Clara Shaw <claralouise.shaw@gmail.com>
-Daijiang Li <dli1@ufl.edu>
-Daina Bouquin <dbouquin@gmail.com>
-Daniel Stubbs <daniel.stubbs@calculquebec.ca>
-Danielle Quinn <danielle.quinn@acadiau.ca>
-Darya Vanichkina <d.vanichkina@gmail.com>
-Dmytro Fishman <dmytrofishman@gmail.com>
-Earle Wilson <ewilson2011@gmail.com>
-Edmund Hart <edmund.m.hart@gmail.com>
-Eilis Hannon <e.j.hannon@ex.ac.uk>
-Elena Sügis <elena.sugis@gmail.com>
-Eli Strauss <straussed@gmail.com>
-Emilia Gan <efgan@uw.edu>
-Erin Becker <erinstellabecker@gmail.com>
-Ethan White <ethan@weecology.org>
-Francisco Rodriguez-Sanchez <f.rodriguez.sanc@gmail.com>
-Francois Michonneau <francois.michonneau@gmail.com>
-Fred Boehm <fboehm@users.noreply.github.com>
-Glenn Moncrieff <glennwithtwons@gmail.com>
-Hao Ye <hye@ucsd.edu>
-Harriet Dashnow <h.dashnow@gmail.com>
-Hilmar Lapp <hlapp@drycafe.net>
-JSurman <JSurman@users.noreply.github.com>
-Jaime Ashander <jashander@ucdavis.edu>
-Jarrett Byrnes <jarrett.byrnes@umb.edu>
-Jeffrey W Hollister <jeff.w.hollister@gmail.com>
-Jieming Chen <cjieming@gmail.com>
-Jillian Dunic <jdunic@gmail.com>
-Jon Petters <jpetter1@jhu.edu>
-Jonathan Keane <jkeane@gmail.com>
-Joseph Stachelek <jstachelek@utexas.edu>
-Josh Herr <joshua.r.herr@gmail.com>
-K. A. S. Mislan <kallisons@users.noreply.github.com>
-Kara Woo <woo.kara@gmail.com>
-Karen Cranston <karen.cranston@gmail.com>
-Kari L. Jordan <kariljordan@me.com>
-Karthik Ram <karthik.ram@gmail.com>
-Kate Hertweck <k8hertweck@gmail.com>
-Kathe Todd-Brown <ktoddbrown@gmail.com>
-Katie Lotterhos <lotterke@wfu.edu>
-Kayla Peck <kmpeck@users.noreply.github.com>
-Kenan Direk <kdirek@users.noreply.github.com>
-Kevin Hall <KWHall@MSU.edu>
-Kristian Tylén <kristian@cc.au.dk>
-Kyriakos Chatzidimitriou <kyrcha@gmail.com>
-Lachlan Deer <lachlan.deer@gmail.com>
-Laurent Gatto <lg390@cam.ac.uk>
-Leah Wasser <lwasser@neoninc.org>
-Leszek Tarkowski <leszek@czterybity.pl>
-Lisa Breckels <lms79@cam.ac.uk>
-M. Foos <mfoos@users.noreply.github.com>
-Marco Chiapello <mc983.cam@gmail.com>
-Mark Robinson <mark.robinson@imls.uzh.ch>
-Markus J. Akenbrand <iimog@iimog.org>
-Mateusz Kuzak <mateusz.kuzak@gmail.com>
-Matthias Grenié <matthias.grenie@ens-lyon.fr>
-Matthias Grenié <matthias.grenie@hotmail.com>
-Maëlle Salmon <maelle.salmon@yahoo.se>
-Meghan Duffy <duffy.ma@gmail.com>
-Michael Koontz <mikoontz@gmail.com>
-Myfanwy Johnston <mrowlan1@gmail.com>
-Nicholas Marino <nac.marino@gmail.com>
-Nick Carchedi <ncarchedi@users.noreply.github.com>
-Olivia Burge <olivia.burge@gmail.com>
-Philip Lijnzaad <philip.lijnzaad@gmail.com>
-Philip Lijnzaad <plijnzaad@users.noreply.github.com>
-Ryan Peek <rapeek@ucdavis.edu>
-Sarah Supp <sarah@weecology.org>
-Shawn Taylor <sdtaylor@users.noreply.github.com>
-Stephanie Labou <stephlabou@gmail.com>
-Steve Pederson <stephen.pederson.au@gmail.com>
-Tara Webster <taramclancy@users.noreply.github.com>
-Taylor Reiter <taylorreiter@gmail.com>
-Thomas Sandmann <tomsing1@users.noreply.github.com>
-Tracy Teal <tkteal@gmail.com>
-Will Furnass <will@thearete.co.uk>
-Will Pearse <will.pearse@mcgill.ca>
-Ye Li <liye@umich.edu>
-Zena Lapp <zenalapp@umich.edu>
-Alistair Bailey <ab604@soton.ac.uk>
-Jaime Ashander <ashander@users.noreply.github.com>
-Claudia Engel <cengel248@yahoo.com>
-Brian Seok <seok@colorado.edu>
-sfn_brt <kemya@users.noreply.github.com>
-suparee <suparee@uw.edu>
+François Michonneau
+Tracy Teal
+Auriel Fournier
+Brian Seok
+Adam Obeng
+Aleksandra Natalia Pawlik
+Ana Costa Conrado
+Kara Woo
+Philip Lijnzaad
+Ted Hart
+Ethan P White
+Ben Marwick
+Ben Bolker
+Kari L Jordan
+Jaime Ashander
+Harriet Dashnow
+Kate Hertweck
+Sergio Martínez Cuesta
+Erin Alison Becker
+Stéphane Guillou
+Alexey Shiklomanov
+David Klinges
+Gabriel J. Odom
+Martin Jean
+K. A. S. Mislan
+Kayla Johnson
+Najko Jahn
+Sara Mannheimer
+Steve Pederson
+Alex Pletzer
+Anne Fouilloux
+Callin Switzer
+Christie Bahlai
+Daijiang Li
+Dan Kerchner
+Francisco Rodriguez-Sanchez
+Gede Primahadi Wijaya Rajeg
+Hao Ye
+Hugo Tavares
+Katrin Leinweber
+Kayla Peck
+Mauro Luciano Lepore
+Stacey Hancock
+Thomas Sandmann
+Toby Hodges
+Katrin Tirok
+Martin Jean
+Alistair Bailey
+Achaz von Hardenberg
+Allison Theobold
+April Wright
+Arindam Basu
+Carolina Johnson
+Carolyn Voter
+Catherine Hulshof
+Daina Bouquin
+Danielle Quinn
+Darya Vanichkina
+Earle Wilson
+Eli Strauss
+Ellen Bledsoe
+Emilia Gan
+Dmytro Fishman
+Fred Boehm
+Gergana Daskalova
+Hugo Tavares
+Jake Kaupp
+Jillian Dunic
+Jonathan Keane
+Joseph Stachelek
+Joshua R. Herr
+Justin Millar
+Katie Lotterhos
+Karen Cranston
+Kenan Direk
+Kristian Tylén
+Kyriakos Chatzidimitriou
+Lachlan Deer
+Leszek Tarkowski
+Marco Chiapello
+Marie-Helene Burle
+Markus Ankenbrand
+Max Czapanskiy
+Melissa Moreno
+Michael Culshaw-Maurer
+Michael Koontz
+Michael Weisner
+Myfanwy Johnston
+Nick Carchedi
+Olivia Rata Burge
+Paul Harrison
+Peter Humburg
+Richard Pauloo
+Ryan Peek
+Robin Elahi
+Sandra Cortijo
+sfn_brt
+Shivshankar Umashankar
+Shubhang Goswami
+Sumedh
+Scott Yanco
+Tara Webster
+Taylor Reiter
+Will Pearse
+Ye Li
