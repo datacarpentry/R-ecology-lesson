@@ -7,7 +7,11 @@ minutes: 60
 
 ```{r setup, echo=FALSE, purl=FALSE}
 source("setup.R")
-surveys_complete <- read_csv(file = "data_output/surveys_complete.csv", col_types = cols())
+surveys_complete <- read_csv(file = "data/portal_data_joined.csv", col_types = cols()) %>% 
+  drop_na(weight, hindfoot_length, sex) %>% 
+  group_by(species_id) %>% 
+  filter(n() >= 50) %>% 
+  ungroup()
 ```
 
 ```{r, echo=FALSE, purl=TRUE}
@@ -316,12 +320,12 @@ ggplot(data = surveys_complete, mapping = aes(x = species_id, y = weight)) +
 
 ## Plotting time series data
 
-Let's calculate number of counts per year for each species. First we need
+Let's calculate number of counts per year for each genus and sex. First we need
 to group the data and count records within each group:
 
 ```{r, purl=FALSE}
 yearly_counts <- surveys_complete %>%
-                 count(year, species_id)
+  count(year, genus)
 ```
 
 Time series data can be visualized as a line plot with years on the x axis and counts
@@ -332,32 +336,44 @@ ggplot(data = yearly_counts, mapping = aes(x = year, y = n)) +
      geom_line()
 ```
 
-Unfortunately, this does not work because we plotted data for all the species
-together. We need to tell ggplot to draw a line for each species by modifying
-the aesthetic function to include `group = species_id`:
+Unfortunately, this does not work because we plotted data for all the genera
+together. We need to tell ggplot to draw a line for each genus by modifying
+the aesthetic function to include `group = genus`:
 
 ```{r time-series-by-species, purl=FALSE}
-ggplot(data = yearly_counts, mapping = aes(x = year, y = n, group = species_id)) +
+ggplot(data = yearly_counts, mapping = aes(x = year, y = n, group = genus)) +
     geom_line()
 ```
 
-We will be able to distinguish species in the plot if we add colors (using `color` also automatically groups the data):
+We will be able to distinguish genera in the plot if we add colors (using `color` 
+also automatically groups the data):
 
 ```{r time-series-with-colors, purl=FALSE}
-ggplot(data = yearly_counts, mapping = aes(x = year, y = n, color = species_id)) +
+ggplot(data = yearly_counts, mapping = aes(x = year, y = n, color = genus)) +
     geom_line()
 ```
 
 ## Faceting
 
 **`ggplot2`** has a special technique called *faceting* that allows the user to split one
-plot into multiple plots based on a factor included in the dataset. We will use it to
-make a time series plot for each species:
+plot into multiple plots based on a factor included in the dataset. 
+
+There are two types of `facet` functions:
+
+* `facet_wrap()` arranges a one-dimensional sequence of panels to allow them to cleanly 
+fit on one page. 
+* `facet_grid()` allows you to form a matrix of rows and columns of panels. 
+
+Both geometries allow to to specify faceting variables quoted with `vars()`. 
+For example, `facet_wrap(facets = vars(facet_variable))` or 
+`facet_grid(rows = vars(row_variable), cols = vars(col_variable))`. 
+
+Let's start by using `facet_wrap()` to make a time series plot for each species:
 
 ```{r first-facet, purl=FALSE}
 ggplot(data = yearly_counts, mapping = aes(x = year, y = n)) +
     geom_line() +
-    facet_wrap(~ species_id)
+    facet_wrap(facets = vars(genus))
 ```
 
 Now we would like to split the line in each plot by the sex of each individual
@@ -365,31 +381,87 @@ measured. To do that we need to make counts in the data frame grouped by `year`,
 `species_id`, and `sex`:
 
 ```{r, purl=FALSE}
- yearly_sex_counts <- surveys_complete %>%
-                      count(year, species_id, sex)
+yearly_sex_counts <- surveys_complete %>%
+  count(year, genus, sex)
 ```
 
-We can now make the faceted plot by splitting further by sex using `color` (within a single plot):
+We can now make the faceted plot by splitting further by sex using `color` (within each panel):
 
 ```{r facet-by-species-and-sex, purl=FALSE}
- ggplot(data = yearly_sex_counts, mapping = aes(x = year, y = n, color = sex)) +
-     geom_line() +
-     facet_wrap(~ species_id)
+ggplot(data = yearly_sex_counts, mapping = aes(x = year, y = n, color = sex)) +
+  geom_line() +
+  facet_wrap(facets =  vars(genus))
 ```
 
-Usually plots with white background look more readable when printed.  We can set
-the background to white using the function `theme_bw()`. Additionally, you can remove
-the grid:
+Now let's use `facet_grid()` to control how panels are organised by both rows and columns:
 
-```{r facet-by-species-and-sex-white-bg, purl=FALSE}
- ggplot(data = yearly_sex_counts, mapping = aes(x = year, y = n, color = sex)) +
-     geom_line() +
-     facet_wrap(~ species_id) +
-     theme_bw() +
-     theme(panel.grid = element_blank())
+```{r average-weight-time-facet-both, purl=FALSE, fig.width=9.5}
+ggplot(data = yearly_sex_counts, 
+       mapping = aes(x = year, y = n, color = sex)) +
+  geom_line() +
+  facet_grid(rows = vars(sex), cols =  vars(genus))
 ```
+
+You can also organise the panels only by rows (or only by columns):
+
+```{r average-weight-time-facet-sex-rows, purl=FALSE, fig.height=8.5, fig.width=8}
+# One column, facet by rows
+ggplot(data = yearly_sex_counts, 
+       mapping = aes(x = year, y = n, color = sex)) +
+  geom_line() +
+  facet_grid(rows = vars(genus))
+```
+
+```{r average-weight-time-facet-sex-columns, purl=FALSE, fig.width=9.5, fig.height=5}
+# One row, facet by column
+ggplot(data = yearly_sex_counts, 
+       mapping = aes(x = year, y = n, color = sex)) +
+  geom_line() +
+  facet_grid(cols = vars(genus))
+```
+
+
+**Note:** 
+In earlier versions of `ggplot2` you need to use an interface using formulas 
+to specify how plots are faceted (and this is still supported in new versions). 
+The equivalent syntax is:
+
+```r
+# facet wrap
+facet_wrap(vars(genus))    # new
+facet_wrap(~ genus)        # old
+
+# grid on both rows and columns
+facet_grid(rows = vars(genus), cols = vars(sex))   # new
+facet_grid(genus ~ sex)                            # old
+
+# grid on rows only
+facet_grid(rows = vars(genus))   # new
+facet_grid(genus ~ .)            # old
+
+# grid on columns only
+facet_grid(cols = vars(genus))   # new
+facet_grid(. ~ genus)            # old
+```
+
 
 ## **`ggplot2`** themes
+
+Usually plots with white background look more readable when printed. 
+Every single component of a `ggplot` graph can be customized using the generic 
+`theme()` function, as we will see below. However, there are pre-loaded themes 
+available that change the overall appearance of the graph without much effort. 
+
+For example, we can change our previous graph to have a simpler white background 
+using the `theme_bw()` function:
+
+```{r facet-by-species-and-sex-white-bg, purl=FALSE}
+ ggplot(data = yearly_sex_counts, 
+        mapping = aes(x = year, y = n, color = sex)) +
+     geom_line() +
+     facet_wrap(vars(genus)) +
+     theme_bw()
+```
 
 In addition to `theme_bw()`, which changes the plot background to white, **`ggplot2`**
 comes with several other themes which can be useful to quickly change the look
@@ -400,7 +472,7 @@ point to create a new hand-crafted theme.
 
 The
 [ggthemes](https://jrnold.github.io/ggthemes/reference/index.html) package
-provides a wide variety of options (including an Excel 2003 theme).
+provides a wide variety of options.
 The [**`ggplot2`** extensions website](https://www.ggplot2-exts.org) provides a list
 of packages that extend the capabilities of **`ggplot2`**, including additional
 themes.
@@ -417,7 +489,7 @@ themes.
 >                  summarize(avg_weight = mean(weight))
 > ggplot(data = yearly_weight, mapping = aes(x=year, y=avg_weight)) +
 >    geom_line() +
->    facet_wrap(~ species_id) +
+>    facet_wrap(vars(species_id)) +
 >    theme_bw()
 >```
 
@@ -430,33 +502,6 @@ themes.
 
 ```
 
-The `facet_wrap` geometry extracts plots into an arbitrary number of dimensions
-to allow them to cleanly fit on one page. On the other hand, the `facet_grid`
-geometry allows you to explicitly specify how you want your plots to be
-arranged via formula notation (`rows ~ columns`; a `.` can be used as
-a placeholder that indicates only one row or column).
-
-Let's modify the previous plot to compare how the weights of males and females
-have changed through time:
-
-```{r average-weight-time-facet-sex-rows, purl=FALSE}
-# One column, facet by rows
-yearly_sex_weight <- surveys_complete %>%
-    group_by(year, sex, species_id) %>%
-    summarize(avg_weight = mean(weight))
-ggplot(data = yearly_sex_weight, 
-       mapping = aes(x = year, y = avg_weight, color = species_id)) +
-    geom_line() +
-    facet_grid(sex ~ .)
-```
-
-```{r average-weight-time-facet-sex-columns, purl=FALSE}
-# One row, facet by column
-ggplot(data = yearly_sex_weight, 
-       mapping = aes(x = year, y = avg_weight, color = species_id)) +
-    geom_line() +
-    facet_grid(. ~ sex)
-```
 
 ## Customization
 
@@ -469,21 +514,21 @@ and 'n' and add a title to the figure:
 ```{r number-species-year-with-right-labels, purl=FALSE}
 ggplot(data = yearly_sex_counts, mapping = aes(x = year, y = n, color = sex)) +
     geom_line() +
-    facet_wrap(~ species_id) +
-    labs(title = "Observed species in time",
+    facet_wrap(vars(genus)) +
+    labs(title = "Observed genera through time",
          x = "Year of observation",
          y = "Number of individuals") +
     theme_bw()
 ```
 
 The axes have more informative names, but their readability can be improved by
-increasing the font size:
+increasing the font size. This can be done with the generic `theme()` function:
 
 ```{r number-species-year-with-right-labels-xfont-size, purl=FALSE}
 ggplot(data = yearly_sex_counts, mapping = aes(x = year, y = n, color = sex)) +
     geom_line() +
-    facet_wrap(~ species_id) +
-    labs(title = "Observed species in time",
+    facet_wrap(vars(genus)) +
+    labs(title = "Observed genera through time",
         x = "Year of observation",
         y = "Number of individuals") +
     theme_bw() +
@@ -504,8 +549,8 @@ labels:
 ```{r number-species-year-with-theme, purl=FALSE}
 ggplot(data = yearly_sex_counts, mapping = aes(x = year, y = n, color = sex)) +
     geom_line() +
-    facet_wrap(~ species_id) +
-    labs(title = "Observed species in time",
+    facet_wrap(vars(genus)) +
+    labs(title = "Observed genera through time",
         x = "Year of observation",
         y = "Number of individuals") +
     theme_bw() +
@@ -517,11 +562,12 @@ ggplot(data = yearly_sex_counts, mapping = aes(x = year, y = n, color = sex)) +
 If you like the changes you created better than the default theme, you can save them as
 an object to be able to easily apply them to other plots you may create:
 
-
-```{r number-species-year-with-right-labels-xfont-orientation, purl=FALSE}
+```{r boxplot-grey-custom-theme, purl=FALSE}
 grey_theme <- theme(axis.text.x = element_text(colour = "grey20", size = 12, angle = 90, hjust = 0.5, vjust = 0.5),
                           axis.text.y = element_text(colour = "grey20", size = 12),
                           text = element_text(size = 16))
+
+# boxplot 
 ggplot(surveys_complete, aes(x = species_id, y = hindfoot_length)) +
     geom_boxplot() +
     grey_theme
@@ -551,13 +597,14 @@ install.packages("gridExtra")
 library(gridExtra)
 
 spp_weight_boxplot <- ggplot(data = surveys_complete, 
-                             mapping = aes(x = species_id, y = weight)) +
+                             mapping = aes(x = genus, y = weight)) +
   geom_boxplot() +
-  xlab("Species") + ylab("Weight (g)") +
-  scale_y_log10()
+  xlab("Genus") + ylab("Weight (g)") +
+  scale_y_log10() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
 spp_count_plot <- ggplot(data = yearly_counts, 
-                         mapping = aes(x = year, y = n, color = species_id)) +
+                         mapping = aes(x = year, y = n, color = genus)) +
   geom_line() + 
   xlab("Year") + ylab("Abundance")
 
@@ -577,8 +624,8 @@ Make sure you have the `fig_output/` folder in your working directory.
 my_plot <- ggplot(data = yearly_sex_counts, 
                   mapping = aes(x = year, y = n, color = sex)) +
     geom_line() +
-    facet_wrap(~ species_id) +
-    labs(title = "Observed species in time",
+    facet_wrap(vars(species_id)) +
+    labs(title = "Observed genera through time",
         x = "Year of observation",
         y = "Number of individuals") +
     theme_bw() +
