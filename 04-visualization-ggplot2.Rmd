@@ -320,7 +320,7 @@ ggplot(data = surveys_complete, mapping = aes(x = species_id, y = weight)) +
 
 ## Plotting time series data
 
-Let's calculate number of counts per year for each genus and sex. First we need
+Let's calculate number of counts per year for each genus. First we need
 to group the data and count records within each group:
 
 ```{r, purl=FALSE}
@@ -345,8 +345,7 @@ ggplot(data = yearly_counts, mapping = aes(x = year, y = n, group = genus)) +
     geom_line()
 ```
 
-We will be able to distinguish genera in the plot if we add colors (using `color` 
-also automatically groups the data):
+We will be able to distinguish genera in the plot if we add colors (using `color` also automatically groups the data):
 
 ```{r time-series-with-colors, purl=FALSE}
 ggplot(data = yearly_counts, mapping = aes(x = year, y = n, color = genus)) +
@@ -364,7 +363,7 @@ There are two types of `facet` functions:
 fit on one page. 
 * `facet_grid()` allows you to form a matrix of rows and columns of panels. 
 
-Both geometries allow to to specify faceting variables quoted with `vars()`. 
+Both geometries allow to to specify faceting variables specified within `vars()`. 
 For example, `facet_wrap(facets = vars(facet_variable))` or 
 `facet_grid(rows = vars(row_variable), cols = vars(col_variable))`. 
 
@@ -443,7 +442,6 @@ facet_grid(genus ~ .)            # old
 facet_grid(cols = vars(genus))   # new
 facet_grid(. ~ genus)            # old
 ```
-
 
 ## **`ggplot2`** themes
 
@@ -563,11 +561,12 @@ If you like the changes you created better than the default theme, you can save 
 an object to be able to easily apply them to other plots you may create:
 
 ```{r boxplot-grey-custom-theme, purl=FALSE}
+# define custom theme
 grey_theme <- theme(axis.text.x = element_text(colour = "grey20", size = 12, angle = 90, hjust = 0.5, vjust = 0.5),
                           axis.text.y = element_text(colour = "grey20", size = 12),
                           text = element_text(size = 16))
 
-# boxplot 
+# create a boxplot with the new theme
 ggplot(surveys_complete, aes(x = species_id, y = hindfoot_length)) +
     geom_boxplot() +
     grey_theme
