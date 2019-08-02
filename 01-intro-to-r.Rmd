@@ -134,7 +134,7 @@ What do you think is the current content of the object `weight_lb`? 126.5 or 220
 ### Comments
 
 The comment character in R is `#`, anything to the right of a `#` in a script
-will be ignored by R. It is useful to leave notes, and explanations in your
+will be ignored by R. It is useful to leave notes and explanations in your
 scripts.
 RStudio makes it easy to comment or uncomment a paragraph: after selecting the
 lines you  want to comment, press at the same time on your keyboard
