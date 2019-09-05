@@ -2,20 +2,20 @@
 # Contributing
 
 
-[Data Carpentry](http://datacarpentry.org) in an open source project, and we
+[Data Carpentry](https://datacarpentry.org) in an open source project, and we
 welcome contributions of all kinds: new lessons, fixes to existing material, bug
 reports, and reviews of proposed changes are all welcome.
 
 ## Contributor Agreement
 
 By contributing, you agree that we may redistribute your work
-under [our license](http://www.datacarpentry.org/R-ecology-lesson/LICENSE.html).
+under [our license](https://datacarpentry.org/R-ecology-lesson/LICENSE.html).
 In exchange, we will address your issues and/or assess your change proposal as
 promptly as we can, and help you become a member of our community.  Everyone
 involved in [Software Carpentry](https://software-carpentry.org)
-and [Data Carpentry](http://datacarpentry.org) agrees to abide by
+and [Data Carpentry](https://datacarpentry.org) agrees to abide by
 our
-[code of conduct](http://www.datacarpentry.org/R-ecology-lesson/CONDUCT.html).
+[code of conduct](https://datacarpentry.org/R-ecology-lesson/CONDUCT.html).
 
 
 ## Working With GitHub
@@ -62,7 +62,7 @@ our
 
 5.  Send a pull request (PR) to the `master` branch of the
     `datacarpentry/R-ecology-lesson` repository for this lesson at
-    http://github.com/datacarpentry/R-ecology-lesson
+    https://github.com/datacarpentry/R-ecology-lesson
 
 If it is easier for you to send edits to us some other way, please
 mail us at [board@datacarpentry.org](mailto:board@datacarpentry.org).
@@ -118,7 +118,7 @@ We don't store data for lessons inside the lesson repositories. For
 completed lessons the data should be publicly available in a data
 repository appropriate to the data type. For lesson development the
 data may be provided in any way that is convenient including
-posting to a website, on [figshare](http://figshare.com/), a public
+posting to a website, on [figshare](https://figshare.com/), a public
 Dropbox link, a [GitHub gist](https://gist.github.com), or even
 included in the pull request (PR). Once the PR is ready to merge the data should
 be placed in the [official data repository](https://doi.org/10.6084/m9.figshare.1314459.v5)

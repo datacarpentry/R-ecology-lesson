@@ -336,7 +336,7 @@ match to your search request
 ```
 
 If you can't find what you are looking for, you can use
-the [rdocumentation.org](http://www.rdocumentation.org) website that searches
+the [rdocumentation.org](https://www.rdocumentation.org) website that searches
 through the help files across all packages available.
 
 Finally, a generic Google or internet search "R \<task\>" will often either send
@@ -356,13 +356,13 @@ However, you should check Stack Overflow. Search using the `[r]` tag. Most
 questions have already been answered, but the challenge is to use the right
 words in the search to find the
 answers:
-[http://stackoverflow.com/questions/tagged/r](http://stackoverflow.com/questions/tagged/r)
+[https://stackoverflow.com/questions/tagged/r](https://stackoverflow.com/questions/tagged/r)
 
-The [Introduction to R](http://cran.r-project.org/doc/manuals/R-intro.pdf) can
+The [Introduction to R](https://cran.r-project.org/doc/manuals/R-intro.pdf) can
 also be dense for people with little programming experience but it is a good
 place to understand the underpinnings of the R language.
 
-The [R FAQ](http://cran.r-project.org/doc/FAQ/R-FAQ.html) is dense and technical
+The [R FAQ](https://cran.r-project.org/doc/FAQ/R-FAQ.html) is dense and technical
 but it is full of useful information.
 
 ### Asking for help
@@ -429,10 +429,10 @@ sessionInfo()
   the workshop to keep learning from each other.
 * Your friendly colleagues: if you know someone with more experience than you,
   they might be able and willing to help you.
-* [Stack Overflow](http://stackoverflow.com/questions/tagged/r): if your question
+* [Stack Overflow](https://stackoverflow.com/questions/tagged/r): if your question
   hasn't been answered before and is well crafted, chances are you will get an
   answer in less than 5 min. Remember to follow their guidelines on [how to ask
-  a good question](http://stackoverflow.com/help/how-to-ask).
+  a good question](https://stackoverflow.com/help/how-to-ask).
 * The [R-help mailing list](https://stat.ethz.ch/mailman/listinfo/r-help): it is
   read by a lot of people (including most of the R core team), a lot of people
   post to it, but the tone can be pretty dry, and it is not always very
@@ -448,15 +448,15 @@ sessionInfo()
   to try to email the author of the package directly, or open an issue on the
   code repository (e.g., GitHub).
 * There are also some topic-specific mailing lists (GIS, phylogenetics, etc...),
-  the complete list is [here](http://www.r-project.org/mail.html).
+  the complete list is [here](https://www.r-project.org/mail.html).
 
 ### More resources
 
-* The [Posting Guide](http://www.r-project.org/posting-guide.html) for the R
+* The [Posting Guide](https://www.r-project.org/posting-guide.html) for the R
   mailing lists.
-* [How to ask for R help](http://blog.revolutionanalytics.com/2014/01/how-to-ask-for-r-help.html)
+* [How to ask for R help](https://blog.revolutionanalytics.com/2014/01/how-to-ask-for-r-help.html)
   useful guidelines
-* [This blog post by Jon Skeet](http://codeblog.jonskeet.uk/2010/08/29/writing-the-perfect-question/)
+* [This blog post by Jon Skeet](https://codeblog.jonskeet.uk/2010/08/29/writing-the-perfect-question/)
   has quite comprehensive advice on how to ask programming questions.
 * The [reprex](https://cran.rstudio.com/web/packages/reprex/) package is very helpful to create reproducible examples when asking for help. The [rOpenSci community call "How to ask questions so they get answered"], [rOpenSci Blog](https://ropensci.org/commcalls/2017-03-07/) and [video recording](https://vimeo.com/208749032) includes a presentation of the reprex package and of its philosophy.
 

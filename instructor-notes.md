@@ -26,7 +26,7 @@ this point.
 
 ## The handout
 
-The [code handout](http://www.datacarpentry.org/R-ecology-lesson/code-handout.R)
+The [code handout](https://datacarpentry.org/R-ecology-lesson/code-handout.R)
 (a link to download it is also available on the top bar of the lesson website)
 is useful for Data Carpentry workshops. It includes an outline of the lesson
 content, the text for the challenges, the links for the files that need to be
@@ -170,5 +170,5 @@ maintainers by email or
 [open an issue](https://github.com/datacarpentry/R-ecology-lesson/issues/new).
 
 For a more in-depth coverage of topics of the workshops, you may want to read
-"[R for Data Science](http://r4ds.had.co.nz/)" by Hadley Wickham and Garrett 
+"[R for Data Science](https://r4ds.had.co.nz/)" by Hadley Wickham and Garrett 
 Grolemund.
