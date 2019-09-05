@@ -18,7 +18,7 @@ introduction to plotting. There is also a lesson on how to use databases from R 
 ## Prerequisites
 
 > * Having R and RStudio installed (though see the first
-> lesson, [Before we start](http://datacarpentry.org/R-ecology-lesson/00-before-we-start.html) for installation
+> lesson, [Before we start](https://datacarpentry.org/R-ecology-lesson/00-before-we-start.html) for installation
 > instructions)
 
 ## Topics
@@ -29,6 +29,7 @@ introduction to plotting. There is also a lesson on how to use databases from R 
 * [Manipulating, analyzing and exporting data with `tidyverse`](https://datacarpentry.org/R-ecology-lesson/03-dplyr.html)
 * [Data visualization with `ggplot2`](https://datacarpentry.org/R-ecology-lesson/04-visualization-ggplot2.html)
 * [SQL databases and R](https://datacarpentry.org/R-ecology-lesson/05-r-and-databases.html)
+
 
 ## Code handout
 

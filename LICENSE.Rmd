@@ -13,7 +13,7 @@ Under the following conditions:
 * **Attribution**---You must attribute the work using "Copyright (c)
   Data Carpentry" (but not in any way that suggests that we
   endorse you or your use of the work).  Where practical, you must
-  also include a hyperlink to http://datacarpentry.org.
+  also include a hyperlink to https://datacarpentry.org.
 
 With the understanding that:
 
@@ -28,17 +28,17 @@ With the understanding that:
 * **Notice**---For any reuse or distribution, you must make clear to
   others the license terms of this work. The best way to do this is
   with a link to
-  [http://creativecommons.org/licenses/by/4.0/](http://creativecommons.org/licenses/by/4.0/).
+  [https://creativecommons.org/licenses/by/4.0/](https://creativecommons.org/licenses/by/4.0/).
 
 For the full legal text of this license, please see
-[http://creativecommons.org/licenses/by/4.0/legalcode](http://creativecommons.org/licenses/by/4.0/legalcode).
+[https://creativecommons.org/licenses/by/4.0/legalcode](https://creativecommons.org/licenses/by/4.0/legalcode).
 
 ### Software
 
 Except where otherwise noted, the example programs and other software
 provided by Data Carpentry are made available under the
-[OSI](http://opensource.org)-approved
-[MIT license](http://opensource.org/licenses/mit-license.html).
+[OSI](https://opensource.org)-approved
+[MIT license](https://opensource.org/licenses/mit-license.html).
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the

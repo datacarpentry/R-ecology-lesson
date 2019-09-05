@@ -47,7 +47,7 @@ source databases [sqlite](https://sqlite.org/), [mysql](https://www.mysql.com/)
 and [postgresql](https://www.postgresql.org/), as well as
 Google’s [bigquery](https://cloud.google.com/bigquery/), and it can also be
 extended to other database types (a [vignette](https://cran.r-project.org/web/packages/dbplyr/vignettes/new-backend.html) in the **`dplyr`** package explains how
-to do it). RStudio has created [a website](http://db.rstudio.com/) that provides documentation and best practices to work on database interfaces.
+to do it). RStudio has created [a website](https://db.rstudio.com/) that provides documentation and best practices to work on database interfaces.
 
 Interfacing with databases using **`dplyr`** focuses on retrieving and analyzing
 datasets by generating `SELECT` SQL statements, but it doesn't modify the
