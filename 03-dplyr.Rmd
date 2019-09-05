@@ -553,8 +553,7 @@ the value provided.
 Let's use `spread()` to transform surveys to find the mean weight of each 
 species in each plot over the entire survey period. We use `filter()`,
 `group_by()` and `summarise()` to filter our observations and variables of 
-interest, and create a new variable for the `mean_weight`. We use the pipe as 
-before too.
+interest, and create a new variable for the `mean_weight`.
 
 ```{r, purl=FALSE}
 surveys_gw <- surveys %>%
@@ -568,7 +567,7 @@ str(surveys_gw)
 This yields `surveys_gw` where the observations for each plot are spread across
 multiple rows, 196 observations of 3 variables. 
 Using `spread()` to key on `genus` with values from `mean_weight` this becomes
-24 observations of 11 variables, one row for each plot. We again use pipes:
+24 observations of 11 variables, one row for each plot.
 
 ```{r, purl=FALSE}
 surveys_spread <- surveys_gw %>%
