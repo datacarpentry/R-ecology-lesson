@@ -253,7 +253,7 @@ You can also create a second new column based on the first new column within the
 ```{r, purl = FALSE}
 surveys %>%
   mutate(weight_kg = weight / 1000,
-         weight_kg2 = weight_kg * 2)
+         weight_lb = weight_kg * 2.2)
 ```
 
 If this runs off your screen and you just want to see the first few rows, you
