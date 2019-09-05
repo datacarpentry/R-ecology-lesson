@@ -508,7 +508,7 @@ the *albigula* species that are not specified for its sex (i.e. `NA`).
 ### Reshaping with gather and spread
 
 In the [spreadsheet
-lesson](http://www.datacarpentry.org/spreadsheet-ecology-lesson/01-format-data/),
+lesson](https://datacarpentry.org/spreadsheet-ecology-lesson/01-format-data/),
 we discussed how to structure our data leading to the four rules defining a tidy
 dataset:
 
