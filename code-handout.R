@@ -49,7 +49,7 @@
 
 ### Presentation of the survey data
 ## download.file("https://ndownloader.figshare.com/files/2292169",
-##               "data/portal_data_joined.csv")
+##               "data_raw/portal_data_joined.csv")
 
 ## Challenge
 ## Based on the output of `str(surveys)`, can you answer the following questions?
@@ -234,7 +234,7 @@ plot(surveys$sex)
 ## install.packages(c("dbplyr", "RSQLite"))
 library(dplyr)
 library(dbplyr)
-mammals <- DBI::dbConnect(RSQLite::SQLite(), "data/portal_mammals.sqlite")
+mammals <- DBI::dbConnect(RSQLite::SQLite(), "data_raw/portal_mammals.sqlite")
 src_dbi(mammals)
 tbl(mammals, sql("SELECT year, species_id, plot_id FROM surveys"))
 surveys <- tbl(mammals, "surveys")
@@ -293,10 +293,10 @@ genus_counts <- left_join(surveys, plots) %>%
   group_by(plot_type, genus) %>%
   tally %>%
   collect()
-species <- read.csv("data/species.csv")
-surveys <- read.csv("data/surveys.csv")
-plots <- read.csv("data/plots.csv")
-my_db_file <- "portal-database.sqlite"
+species <- read.csv("data_raw/species.csv")
+surveys <- read.csv("data_raw/surveys.csv")
+plots <- read.csv("data_raw/plots.csv")
+my_db_file <- "data/portal-database-output.sqlite"
 my_db <- src_sqlite(my_db_file, create = TRUE)
 my_db
 ### Challenge

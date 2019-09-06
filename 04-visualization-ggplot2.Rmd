@@ -7,7 +7,7 @@ minutes: 60
 
 ```{r setup, echo=FALSE, purl=FALSE}
 source("setup.R")
-surveys_complete <- read_csv(file = "data/portal_data_joined.csv", col_types = cols()) %>% 
+surveys_complete <- read_csv(file = "data_raw/portal_data_joined.csv", col_types = cols()) %>% 
   drop_na(weight, hindfoot_length, sex) %>% 
   group_by(species_id) %>% 
   filter(n() >= 50) %>% 
@@ -41,7 +41,7 @@ If not still in the workspace, load the data we saved in the previous lesson.
 
 
 ```{r load-data, eval=FALSE, purl=FALSE}
-surveys_complete <- read_csv("data_output/surveys_complete.csv")
+surveys_complete <- read_csv("data/surveys_complete.csv")
 ```
 
 ## Plotting with **`ggplot2`**
