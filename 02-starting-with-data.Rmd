@@ -569,7 +569,7 @@ We are going to use the `ymd()` function from the package **`lubridate`** (which
 Start by installing and loading the required package:
 
 ```{r load-package, message=FALSE, purl=FALSE}
-install.packages("lubridate")
+install.packages("tidyverse")
 library(lubridate)
 ```
 
