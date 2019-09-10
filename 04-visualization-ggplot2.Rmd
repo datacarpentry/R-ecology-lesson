@@ -598,14 +598,14 @@ library(gridExtra)
 spp_weight_boxplot <- ggplot(data = surveys_complete, 
                              mapping = aes(x = genus, y = weight)) +
   geom_boxplot() +
-  xlab("Genus") + ylab("Weight (g)") +
   scale_y_log10() +
+  labs(x = "Genus", y = "Weight (g)") +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
 spp_count_plot <- ggplot(data = yearly_counts, 
                          mapping = aes(x = year, y = n, color = genus)) +
   geom_line() + 
-  xlab("Year") + ylab("Abundance")
+  labs(x = "Year", y = "Abundance")
 
 grid.arrange(spp_weight_boxplot, spp_count_plot, ncol = 2, widths = c(4, 6))
 
