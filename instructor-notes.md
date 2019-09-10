@@ -75,7 +75,7 @@ Then restart RStudio.
   along (remind learners to use the stickies). Plan with the helpers at this
   point to go around the room, and be available to help. It's important to make
   sure that learners are in the correct working directory, and that they create
-  a `data`  (all lowercase) subfolder.
+  a `data_raw`  (all lowercase) subfolder.
 * The seeking help section is relatively long, and while it's useful to
   demonstrate a couple of ways to get help from within R, you may want to mostly
   point the workshop participants to this useful reference so that they can

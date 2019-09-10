@@ -7,7 +7,7 @@ minutes: 60
 
 ```{r setup, echo=FALSE, purl=FALSE}
 source("setup.R")
-surveys_complete <- read_csv(file = "data/portal_data_joined.csv", col_types = cols()) %>% 
+surveys_complete <- read_csv(file = "data_raw/portal_data_joined.csv", col_types = cols()) %>% 
   drop_na(weight, hindfoot_length, sex) %>% 
   group_by(species_id) %>% 
   filter(n() >= 50) %>% 
@@ -41,7 +41,7 @@ If not still in the workspace, load the data we saved in the previous lesson.
 
 
 ```{r load-data, eval=FALSE, purl=FALSE}
-surveys_complete <- read_csv("data_output/surveys_complete.csv")
+surveys_complete <- read_csv("data/surveys_complete.csv")
 ```
 
 ## Plotting with **`ggplot2`**
@@ -617,7 +617,7 @@ After creating your plot, you can save it to a file in your favorite format. The
 
 Instead, use the `ggsave()` function, which allows you easily change the dimension and resolution of your plot by adjusting the appropriate arguments (`width`, `height` and `dpi`). 
 
-Make sure you have the `fig_output/` folder in your working directory.
+Make sure you have the `fig/` folder in your working directory.
 
 ```{r ggsave-example, eval=FALSE, purl=FALSE}
 my_plot <- ggplot(data = yearly_sex_counts, 
@@ -631,11 +631,11 @@ my_plot <- ggplot(data = yearly_sex_counts,
     theme(axis.text.x = element_text(colour = "grey20", size = 12, angle = 90, hjust = 0.5, vjust = 0.5),
                         axis.text.y = element_text(colour = "grey20", size = 12),
           text=element_text(size = 16))
-ggsave("fig_output/yearly_sex_counts.png", my_plot, width = 15, height = 10)
+ggsave("fig/yearly_sex_counts.png", my_plot, width = 15, height = 10)
 
 # This also works for grid.arrange() plots
 combo_plot <- grid.arrange(spp_weight_boxplot, spp_count_plot, ncol = 2, widths = c(4, 6))
-ggsave("fig_output/combo_plot_abun_weight.png", combo_plot, width = 10, dpi = 300)
+ggsave("fig/combo_plot_abun_weight.png", combo_plot, width = 10, dpi = 300)
 ```
 
 Note: The parameters `width` and `height` also determine the font size in the saved plot.

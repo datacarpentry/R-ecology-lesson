@@ -51,24 +51,24 @@ Each row holds information for a single animal, and the columns represent:
 | plot\_type       | type of plot                       |
 
 We are going to use the R function `download.file()` to download the CSV file
-that contains the survey data from figshare, and we will use `read.csv()` to
+that contains the survey data from Figshare, and we will use `read.csv()` to
 load into memory the content of the CSV file as an object of class `data.frame`. 
 Inside the download.file command, the first entry is a character string with the source URL 
 ("https://ndownloader.figshare.com/files/2292169"). This source URL downloads a CSV file from 
-figshare. The text after the comma ("data/portal_data_joined.csv") is the destination of the 
+figshare. The text after the comma ("data_raw/portal_data_joined.csv") is the destination of the 
 file on your local machine. You'll need to have a folder on your machine called "data" where 
-you'll download the file. So this command downloads a file from figshare, names it 
+you'll download the file. So this command downloads a file from Figshare, names it 
 "portal_data_joined.csv," and adds it to a preexisting folder named "data."
 
 ```{r, eval=FALSE, purl=TRUE}
 download.file(url="https://ndownloader.figshare.com/files/2292169",
-              destfile = "data/portal_data_joined.csv")
+              destfile = "data_raw/portal_data_joined.csv")
 ```
 
 You are now ready to load the data:
 
 ```{r, eval=TRUE,  purl=FALSE}
-surveys <- read.csv("data/portal_data_joined.csv")
+surveys <- read.csv("data_raw/portal_data_joined.csv")
 ```
 
 This statement doesn't produce any output because, as you might recall,
@@ -101,7 +101,7 @@ View(surveys)
 > are actually wrapper functions for the main `read.table()` function with different arguments.
 > As such, the surveys data above could have also been loaded by using `read.table()`
 > with the separation argument as `,`. The code is as follows:
-> `surveys <- read.table(file="data/portal_data_joined.csv", sep=",", header=TRUE)`.
+> `surveys <- read.table(file="data_raw/portal_data_joined.csv", sep=",", header=TRUE)`.
 > The header argument has to be set to TRUE to be able to read the headers as
 > by default `read.table()` has the header argument set to FALSE.
 >
@@ -461,9 +461,9 @@ type.
 
 ```{r, eval=FALSE, purl=TRUE}
 ## Compare the difference between our data read as `factor` vs `character`.
-surveys <- read.csv("data/portal_data_joined.csv", stringsAsFactors = TRUE)
+surveys <- read.csv("data_raw/portal_data_joined.csv", stringsAsFactors = TRUE)
 str(surveys)
-surveys <- read.csv("data/portal_data_joined.csv", stringsAsFactors = FALSE)
+surveys <- read.csv("data_raw/portal_data_joined.csv", stringsAsFactors = FALSE)
 str(surveys)
 ## Convert the column "plot_type" into a factor
 surveys$plot_type <- factor(surveys$plot_type)

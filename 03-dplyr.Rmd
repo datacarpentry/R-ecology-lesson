@@ -5,7 +5,7 @@ author: Data Carpentry contributors
 
 ```{r, echo=FALSE, purl=FALSE, message = FALSE}
 source("setup.R")
-surveys <- read.csv("data/portal_data_joined.csv")
+surveys <- read.csv("data_raw/portal_data_joined.csv")
 suppressWarnings(surveys$date <- lubridate::ymd(paste(surveys$year,
                                                       surveys$month,
                                                       surveys$day,
@@ -96,7 +96,7 @@ We'll read in our data using the `read_csv()` function, from the tidyverse packa
 
 
 ```{r, results = 'hide', purl = FALSE}
-surveys <- read_csv("data/portal_data_joined.csv")
+surveys <- read_csv("data_raw/portal_data_joined.csv")
 
 ## inspect the data
 str(surveys)
@@ -709,12 +709,12 @@ them with your collaborators or for archival.
 Similar to the `read_csv()` function used for reading CSV files into R, there is
 a `write_csv()` function that generates CSV files from data frames.
 
-Before using `write_csv()`, we are going to create a new folder, `data_output`,
+Before using `write_csv()`, we are going to create a new folder, `data`,
 in our working directory that will store this generated dataset. We don't want
 to write generated datasets in the same directory as our raw data. It's good
-practice to keep them separate. The `data` folder should only contain the raw,
+practice to keep them separate. The `data_raw` folder should only contain the raw,
 unaltered data, and should be left alone to make sure we don't delete or modify
-it. In contrast, our script will generate the contents of the `data_output`
+it. In contrast, our script will generate the contents of the `data`
 directory, so even if the files it contains are deleted, we can always
 re-generate them.
 
@@ -775,16 +775,16 @@ To make sure that everyone has the same data set, check that `surveys_complete`
 has `r nrow(surveys_complete)` rows and `r ncol(surveys_complete)` columns by
 typing `dim(surveys_complete)`.
 
-Now that our data set is ready, we can save it as a CSV file in our `data_output`
+Now that our data set is ready, we can save it as a CSV file in our `data`
 folder.
 
 ```{r, purl=FALSE, eval=FALSE}
-write_csv(surveys_complete, path = "data_output/surveys_complete.csv")
+write_csv(surveys_complete, path = "data/surveys_complete.csv")
 ```
 
 ```{r, purl=FALSE, eval=TRUE, echo=FALSE}
-if (!dir.exists("data_output")) dir.create("data_output")
-write_csv(surveys_complete, path = "data_output/surveys_complete.csv")
+if (!dir.exists("data")) dir.create("data")
+write_csv(surveys_complete, path = "data/surveys_complete.csv")
 ```
 
 

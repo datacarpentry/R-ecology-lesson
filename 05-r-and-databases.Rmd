@@ -67,12 +67,12 @@ install.packages(c("dbplyr", "RSQLite"))
 
 The SQLite database is contained in a single file `portal_mammals.sqlite`
 that you generated during the SQL lesson. If you don't have it, you can download
-it from Figshare into the `data` subdirectory using:
+it from Figshare into the `data_raw` subdirectory using:
 
 ```{r download, eval = FALSE, purl=FALSE}
-dir.create("data", showWarnings = FALSE)
+dir.create("data_raw", showWarnings = FALSE)
 download.file(url = "https://ndownloader.figshare.com/files/2292171",
-              destfile = "data/portal_mammals.sqlite", mode = "wb")
+              destfile = "data_raw/portal_mammals.sqlite", mode = "wb")
 ```
 
 ## Connecting to databases
@@ -82,7 +82,7 @@ We can point R to this database using:
 ```{r connect, purl=TRUE}
 library(dplyr)
 library(dbplyr)
-mammals <- DBI::dbConnect(RSQLite::SQLite(), "data/portal_mammals.sqlite")
+mammals <- DBI::dbConnect(RSQLite::SQLite(), "data_raw/portal_mammals.sqlite")
 ```
 
 This command uses 2 packages that helps **`dbplyr`** and **`dplyr`** talk to the SQLite database. **`DBI`** is not something that you'll use directly as a user. It allows R to send commands to databases irrespective of the database management system used. The **`RSQLite`** package allows R to interface with SQLite databases.
@@ -486,15 +486,15 @@ the mammals database that we've been working with, in R. First let's download an
 
 ```{r data_frames, purl=TRUE}
 download.file("https://ndownloader.figshare.com/files/3299483",
-              "data/species.csv")
+              "data_raw/species.csv")
 download.file("https://ndownloader.figshare.com/files/10717177",
-              "data/surveys.csv")
+              "data_raw/surveys.csv")
 download.file("https://ndownloader.figshare.com/files/3299474",
-              "data/plots.csv")
+              "data_raw/plots.csv")
 library(tidyverse)
-species <- read_csv("data/species.csv")
-surveys <- read_csv("data/surveys.csv")
-plots <- read_csv("data/plots.csv")
+species <- read_csv("data_raw/species.csv")
+surveys <- read_csv("data_raw/surveys.csv")
+plots <- read_csv("data_raw/plots.csv")
 ```
 
 Creating a new SQLite database with **`dplyr`** is easy. You can re-use the same
@@ -505,7 +505,7 @@ argument instructs R to create a new, empty database instead.
 location is overwritten _without warning_.
 
 ```{r create_database, purl=TRUE}
-my_db_file <- "data_output/portal-database-output.sqlite"
+my_db_file <- "data/portal-database-output.sqlite"
 my_db <- src_sqlite(my_db_file, create = TRUE)
 ```
 
