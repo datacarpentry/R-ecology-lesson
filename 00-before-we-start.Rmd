@@ -197,11 +197,7 @@ create directories (folders) for **scripts**, **data**, and **documents**.
  - **`scripts/`** This would be the location to keep your R scripts for
    different analyses or plotting, and potentially a separate folder for your
    functions (more on that later).
-
-You may want additional directories or subdirectories depending on your project
-needs, but these should form the backbone of your working directory.
-
-![Example of a working directory structure.](img/working-directory-structure.png)
+ - **Additional (sub)directories** depending on your project needs.
 
 
 For this workshop, we will need a `data_raw/` folder to store our raw data, and we
