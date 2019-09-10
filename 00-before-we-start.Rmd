@@ -205,14 +205,14 @@ needs, but these should form the backbone of your working directory.
 
 
 For this workshop, we will need a `data_raw/` folder to store our raw data, and we
-will use `data/` for when we learn how to export data as CSV files, and
+will use `data/` for when we learn how to export data as CSV files, and a
 `fig/` folder for the figures that we will save.
 
 * Under the `Files` tab on the right of the screen, click on `New Folder` and
   create a folder named `data_raw` within your newly created working directory
   (e.g., `~/data-carpentry/`). (Alternatively, type `dir.create("data_raw")` at
   your R console.) Repeat these operations to create a `data` and a
-  `fig` folders.
+  `fig` folder.
 
 We are going to keep the script in the root of our working directory because we
 are only going to use one file and it will make things easier.

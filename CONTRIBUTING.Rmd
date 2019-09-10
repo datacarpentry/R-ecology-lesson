@@ -100,7 +100,7 @@ knitr options in the `setup.R` file.
 
 Raw data go into `data_raw/`. However, at this stage, this folder is
 created programmatically and only contain dataset downloaded directly
-from the figshare repository. In other words, it can be safely be
+from the Figshare repository. In other words, it can be safely be
 deleted (e.g. using `make clean-data` or `make clean`.)
 
 The `data/` folder only contains data generated/exported by R
