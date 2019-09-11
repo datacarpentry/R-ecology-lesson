@@ -21,6 +21,7 @@ data*/
 portal-database.sqlite
 .secret/
 _site/
+img/R-ecology-*.png
 
 # output from linkchecker
 link_res.csv
