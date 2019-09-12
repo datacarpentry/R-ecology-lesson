@@ -644,12 +644,12 @@ surveys_spread %>%
 >   `?n_distinct` for more.
 > 
 > ```{r, answer=TRUE, purl=FALSE}
-> rich_time <- surveys %>%
+> surveys_spread_genera <- surveys %>%
 >   group_by(plot_id, year) %>%
 >   summarize(n_genera = n_distinct(genus)) %>%
 >   spread(year, n_genera)
 > 
-> head(rich_time)
+> head(surveys_spread_genera)
 > ```
 >
 > 2. Now take that data frame and `gather()` it again, so each row is a unique
