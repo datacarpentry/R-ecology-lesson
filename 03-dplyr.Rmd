@@ -558,7 +558,7 @@ interest, and create a new variable for the `mean_weight`.
 ```{r, purl=FALSE}
 surveys_gw <- surveys %>%
   filter(!is.na(weight)) %>%
-  group_by(genus, plot_id) %>%
+  group_by(plot_id, genus) %>%
   summarize(mean_weight = mean(weight))
 
 str(surveys_gw)
