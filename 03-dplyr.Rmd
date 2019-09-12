@@ -612,7 +612,7 @@ the key variable. Here we drop `plot_id` column with a minus sign.
 
 ```{r, purl=FALSE}
 surveys_gather <- surveys_spread %>%
-  gather(key = genus, value = mean_weight, -plot_id)
+  gather(key = "genus", value = "mean_weight", -plot_id)
 
 str(surveys_gather)
 ```
@@ -630,7 +630,7 @@ row, we don't even need to list them all out - just use the `:` operator!
 
 ```{r, purl=FALSE}
 surveys_spread %>%
-  gather(key = genus, value = mean_weight, Baiomys:Spermophilus) %>%
+  gather(key = "genus", value = "mean_weight", Baiomys:Spermophilus) %>%
   head()
 ```
 
@@ -644,12 +644,12 @@ surveys_spread %>%
 >   `?n_distinct` for more.
 > 
 > ```{r, answer=TRUE, purl=FALSE}
-> rich_time <- surveys %>%
+> surveys_spread_genera <- surveys %>%
 >   group_by(plot_id, year) %>%
 >   summarize(n_genera = n_distinct(genus)) %>%
 >   spread(year, n_genera)
 > 
-> head(rich_time)
+> head(surveys_spread_genera)
 > ```
 >
 > 2. Now take that data frame and `gather()` it again, so each row is a unique
@@ -657,7 +657,7 @@ surveys_spread %>%
 >
 > ```{r, answer=TRUE, purl=FALSE}
 > rich_time %>%
->   gather(year, n_genera, -plot_id)
+>   gather("year", "n_genera", -plot_id)
 > ```
 >
 > 3. The `surveys` data set has
@@ -671,7 +671,7 @@ surveys_spread %>%
 >
 > ```{r, answer=TRUE, purl=FALSE}
 > surveys_long <- surveys %>%
->   gather(measurement, value, hindfoot_length, weight)
+>   gather("measurement", "value", hindfoot_length, weight)
 > ```
 >
 > 4. With this new data set, calculate the average of each
