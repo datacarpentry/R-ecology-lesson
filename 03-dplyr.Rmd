@@ -283,28 +283,28 @@ symbol negates the result, so we're asking for every row where weight *is not* a
 >
 >  Create a new data frame from the `surveys` data that meets the following
 >  criteria: contains only the `species_id` column and a new column called
->  `hindfoot_half` containing values that are half the `hindfoot_length` values.
->  In this `hindfoot_half` column, there are no `NA`s and all values are less
->  than 30.
+>  `hindfoot_cm` containing the `hindfoot_length` values converted to centimeters.
+>  In this `hindfoot_cm` column, there are no `NA`s and all values are less
+>  than 3.
 >
 >  **Hint**: think about how the commands should be ordered to produce this data frame!
 > 
 > ```{r, answer=TRUE, eval=FALSE, purl=FALSE}
-> surveys_hindfoot_half <- surveys %>%
+> surveys_hindfoot_cm <- surveys %>%
 >     filter(!is.na(hindfoot_length)) %>%
->     mutate(hindfoot_half = hindfoot_length / 2) %>%
->     filter(hindfoot_half < 30) %>%
->     select(species_id, hindfoot_half)
+>     mutate(hindfoot_cm = hindfoot_length / 10) %>%
+>     filter(hindfoot_cm < 3) %>%
+>     select(species_id, hindfoot_cm)
 > ```
  
 
 ```{r, eval=FALSE, purl=TRUE, echo=FALSE}
 ## Mutate Challenge:
 ##  Create a new data frame from the `surveys` data that meets the following
-##  criteria: contains only the `species_id` column and a column that
-##  contains values that are half the `hindfoot_length` values (e.g. a
-##  new column `hindfoot_half`). In this `hindfoot_half` column, there are
-##  no NA values and all values are < 30.
+##  criteria: contains only the `species_id` column and a new column called
+##  `hindfoot_cm` containing the `hindfoot_length` values converted to centimeters.
+##  In this `hindfoot_cm` column, there are no `NA`s and all values are less
+##  than 3.
 
 ##  Hint: think about how the commands should be ordered to produce this data frame!
 ```
