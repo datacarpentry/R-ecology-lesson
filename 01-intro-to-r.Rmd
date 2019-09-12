@@ -51,8 +51,8 @@ weight_kg <- 55
 the left. So, after executing `x <- 3`, the value of `x` is `3`. The arrow can
 be read as 3 **goes into** `x`.  For historical reasons, you can also use `=`
 for assignments, but not in every context. Because of the
-[slight](http://blog.revolutionanalytics.com/2008/12/use-equals-or-arrow-for-assignment.html)
-[differences](http://r.789695.n4.nabble.com/Is-there-any-difference-between-and-tp878594p878598.html)
+[slight](https://blog.revolutionanalytics.com/2008/12/use-equals-or-arrow-for-assignment.html)
+[differences](https://r.789695.n4.nabble.com/Is-there-any-difference-between-and-tp878594p878598.html)
 in syntax, it is good practice to always use `<-` for assignments.
 
 In RStudio, typing <kbd>Alt</kbd> + <kbd>-</kbd> (push <kbd>Alt</kbd> at the
@@ -78,8 +78,8 @@ code (where you put spaces, how you name objects, etc.). Using a consistent
 coding style makes your code clearer to read for your future self and your
 collaborators. In R, three popular style guides are
 [Google's](https://google.github.io/styleguide/Rguide.xml), [Jean
-Fan's](http://jef.works/R-style-guide/) and the
-[tidyverse's](http://style.tidyverse.org/). The tidyverse's is very
+Fan's](https://jef.works/R-style-guide/) and the
+[tidyverse's](https://style.tidyverse.org/). The tidyverse's is very
 comprehensive and may seem overwhelming at first. You can install the
 [**`lintr`**](https://github.com/jimhester/lintr) package to automatically check
 for issues in the styling of your code.

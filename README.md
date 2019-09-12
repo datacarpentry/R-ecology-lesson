@@ -18,7 +18,7 @@ introduction to plotting. There is also a lesson on how to use databases from R 
 ## Prerequisites
 
 > * Having R and RStudio installed (though see the first
-> lesson, [Before we start](http://datacarpentry.org/R-ecology-lesson/00-before-we-start.html) for installation
+> lesson, [Before we start](https://datacarpentry.org/R-ecology-lesson/00-before-we-start.html) for installation
 > instructions)
 
 ## Topics
