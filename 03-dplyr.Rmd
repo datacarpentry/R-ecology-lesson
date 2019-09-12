@@ -522,16 +522,16 @@ Here we examine the fourth rule: Each type of observational unit forms a table.
 In `surveys` , the rows of `surveys` contain the values of variables associated
 with each record (the unit), values such as the weight or sex of each animal 
 associated with each record. What if instead of comparing records, we 
-wanted to compare the different mean weight of each species between plots? (Ignoring `plot_type` for simplicity).
+wanted to compare the different mean weight of each genus between plots? (Ignoring `plot_type` for simplicity).
 
 We'd need to create a new table where each row (the unit) is comprised of values of variables associated with each plot. In practical terms this means the values
-of the species in `genus` would become the names of column variables and the cells would contain the values of the mean weight observed on each plot.
+in `genus` would become the names of column variables and the cells would contain the values of the mean weight observed on each plot.
 
 Having created a new table, it is therefore straightforward to explore the 
-relationship between the weight of different species within, and between, the
+relationship between the weight of different genera within, and between, the
 plots. The key point here is that we are still following a tidy data structure,
 but we have **reshaped** the data according to the observations of interest:
-average species weight per plot instead of recordings per date.
+average genus weight per plot instead of recordings per date.
 
 The opposite transformation would be to transform column names into values of
 a variable.
@@ -551,7 +551,7 @@ Further arguments include `fill` which, if set, fills in missing values with
 the value provided.
 
 Let's use `spread()` to transform surveys to find the mean weight of each 
-species in each plot over the entire survey period. We use `filter()`,
+genus in each plot over the entire survey period. We use `filter()`,
 `group_by()` and `summarise()` to filter our observations and variables of 
 interest, and create a new variable for the `mean_weight`. We use the pipe as 
 before too.
@@ -559,7 +559,7 @@ before too.
 ```{r, purl=FALSE}
 surveys_gw <- surveys %>%
   filter(!is.na(weight)) %>%
-  group_by(genus, plot_id) %>%
+  group_by(plot_id, genus) %>%
   summarize(mean_weight = mean(weight))
 
 str(surveys_gw)
@@ -579,7 +579,7 @@ str(surveys_spread)
 
 ![](img/spread_data_R.png)
 
-We could now plot comparisons between the weight of species in different plots, 
+We could now plot comparisons between the weight of genera in different plots, 
 although we may wish to fill in the missing values first.
 
 ```{r, purl=FALSE}
