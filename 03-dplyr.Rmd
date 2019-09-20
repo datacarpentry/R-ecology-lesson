@@ -97,7 +97,15 @@ We'll read in our data using the `read_csv()` function, from the tidyverse packa
 
 ```{r, results = 'hide', purl = FALSE}
 surveys <- read_csv("data_raw/portal_data_joined.csv")
+```
 
+You will see the message `Parsed with column specification`, followed by each column name and its data type.
+When you execute `read_csv` on a data file, it looks through the first 1000 rows of each column and
+guesses the data type for each column as it reads it into R. For example, in this dataset, `read_csv`
+reads `weight` as `col_double` (a numeric data type), and `species` as `col_character`. You have the
+option to specify the data type for a column manually by using the `col_types` argument in `read_csv`.
+
+```{r, results = 'hide', purl = FALSE}
 ## inspect the data
 str(surveys)
 ```
