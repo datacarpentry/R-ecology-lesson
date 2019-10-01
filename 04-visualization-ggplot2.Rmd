@@ -83,9 +83,9 @@ ggplot(data = surveys_complete, mapping = aes(x = weight, y = hindfoot_length))
   lines, bars). **`ggplot2`** offers many different geoms; we will use some 
   common ones today, including:
   
-      * `geom_point()` for scatter plots, dot plots, etc.
-      * `geom_boxplot()` for, well, boxplots!
-      * `geom_line()` for trend lines, time series, etc.  
+  * `geom_point()` for scatter plots, dot plots, etc.
+  * `geom_boxplot()` for, well, boxplots!
+  * `geom_line()` for trend lines, time series, etc.  
 
 To add a geom to the plot use the `+` operator. Because we have two continuous variables,
 let's use `geom_point()` first:
