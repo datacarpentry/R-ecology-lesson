@@ -664,7 +664,7 @@ surveys_spread %>%
 >    `plot_id` by `year` combination.
 >
 > ```{r, answer=TRUE, purl=FALSE}
-> rich_time %>%
+> surveys_spread_genera %>%
 >   gather("year", "n_genera", -plot_id)
 > ```
 >
