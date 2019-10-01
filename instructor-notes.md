@@ -12,7 +12,7 @@ https://doi.org/10.6084/m9.figshare.1314459
 This lesson uses mostly `combined.csv`. The 3 other csv files: `plots.csv`,
 `species.csv` and `surveys.csv` are only needed for the lesson on databases.
 
-`combined.csv` is downloaded directly in the chapter "Starting with Data" and
+`combined.csv` is downloaded directly in the episode "Starting with Data" and
 does not need to be downloaded before hand. It however requires that there is a
 decent internet connection in the room where the workshop is being taught. To
 facilitate the download process, the chunk of code that includes the URL where
