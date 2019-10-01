@@ -179,12 +179,12 @@ output) is the square root of that number. Executing a function ('running it')
 is called *calling* the function. An example of a function call is:
 
 ```{r, eval = FALSE, purl = FALSE}
-b <- sqrt(a)
+ten <- sqrt(weight_kg)
 ```
 
-Here, the value of `a` is given to the `sqrt()` function, the `sqrt()` function
+Here, the value of `ten` is given to the `sqrt()` function, the `sqrt()` function
 calculates the square root, and returns the value which is then assigned to
-the object `b`. This function is very simple, because it takes just one argument.
+the object `weight_kg`. This function is very simple, because it takes just one argument.
 
 The return 'value' of a function need not be numerical (like that of `sqrt()`),
 and it also does not need to be a single item: it can be a set of things, or
