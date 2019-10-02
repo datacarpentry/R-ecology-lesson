@@ -400,7 +400,11 @@ sessionInfo()
   here more than anywhere else, be sure to use correct vocabulary (otherwise
   you might get an answer pointing to the misuse of your words rather than
   answering your question). You will also have more success if your question is
-  about a base function rather than a specific package.
+  about a base function rather than a specific package. It has a
+  [Posting Guide](https://www.r-project.org/posting-guide.html)
+  and [blog.Revolutionanalytics.com](https://blog.revolutionanalytics.com/2014/01/how-to-ask-for-r-help.html)
+  [codeblog.jonskeet.uk](https://codeblog.jonskeet.uk/2010/08/29/writing-the-perfect-question/)
+  also provide comprehensive advice on how to ask programming questions.
 * If your question is about a specific package, see if there is a mailing list
   for it. Usually it's included in the DESCRIPTION file of the package that can
   be accessed using `packageDescription("name-of-package")`. You may also want
@@ -416,12 +420,6 @@ sessionInfo()
   place to understand the underpinnings of the R language.
 * The [R FAQ](https://cran.r-project.org/doc/FAQ/R-FAQ.html) is dense and technical
   but it is full of useful information.
-* The [Posting Guide](https://www.r-project.org/posting-guide.html) for the R
-  mailing lists.
-* [How to ask for R help](https://blog.revolutionanalytics.com/2014/01/how-to-ask-for-r-help.html)
-  useful guidelines
-* [This blog post by Jon Skeet](https://codeblog.jonskeet.uk/2010/08/29/writing-the-perfect-question/)
-  has quite comprehensive advice on how to ask programming questions.
 * The [reprex](https://cran.rstudio.com/web/packages/reprex/) package is very helpful to create reproducible examples when asking for help. The [rOpenSci community call "How to ask questions so they get answered"](https://ropensci.org/commcalls/2017-03-07/) and [video recording](https://vimeo.com/208749032) includes a presentation of the reprex package and of its philosophy.
 
 ```{r, child="_page_built_on.Rmd"}
