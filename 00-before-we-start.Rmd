@@ -376,32 +376,6 @@ question. For instance instead of using a subset of your real dataset, create a
 small (3 columns, 5 rows) generic one. For more information on how to write a
 reproducible example see [this article by Hadley Wickham](http://adv-r.had.co.nz/Reproducibility.html).
 
-To share an object with someone else, if it's relatively small, you can use the
-function `dput()`. It will output R code that can be used to recreate the exact
-same object as the one in memory:
-
-```{r, results='show', purl=FALSE}
-dput(head(iris)) # iris is an example data frame that comes with R and head() is a function that returns the first part of the data frame
-```
-
-If the object is larger, provide either the raw file (i.e., your CSV file) with
-your script up to the point of the error (and after removing everything that is
-not relevant to your issue). Alternatively, in particular if your question is
-not related to a data frame, you can save any R object to a file:
-
-```{r, eval=FALSE, purl=FALSE}
-saveRDS(iris, file="/tmp/iris.rds")
-```
-
-The content of this file is however not human readable and cannot be posted
-directly on Stack Overflow. Instead, it can be sent to someone by email who can
-read it with the `readRDS()` command (here it is assumed that the downloaded
-file is in a `Downloads` folder in the user's home directory):
-
-```{r, eval=FALSE, purl=FALSE}
-some_data <- readRDS(file="~/Downloads/iris.rds")
-```
-
 Last, but certainly not least, **always include the output of `sessionInfo()`**
 as it provides critical information about your platform, the versions of R and
 the packages that you are using, and other information that can be very helpful
