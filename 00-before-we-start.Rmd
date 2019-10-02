@@ -348,13 +348,6 @@ problem (e.g. "subscript out of bounds"). If the message is very generic, you
 might also include the name of the function or package you're using in your
 query.
 
-The [Introduction to R](https://cran.r-project.org/doc/manuals/R-intro.pdf) can
-also be dense for people with little programming experience but it is a good
-place to understand the underpinnings of the R language.
-
-The [R FAQ](https://cran.r-project.org/doc/FAQ/R-FAQ.html) is dense and technical
-but it is full of useful information.
-
 ### Asking for help
 
 The key to receiving help from someone is for them to rapidly grasp your
@@ -418,6 +411,11 @@ sessionInfo()
 
 ### More resources
 
+* The [Introduction to R](https://cran.r-project.org/doc/manuals/R-intro.pdf) can
+  also be dense for people with little programming experience but it is a good
+  place to understand the underpinnings of the R language.
+* The [R FAQ](https://cran.r-project.org/doc/FAQ/R-FAQ.html) is dense and technical
+  but it is full of useful information.
 * The [Posting Guide](https://www.r-project.org/posting-guide.html) for the R
   mailing lists.
 * [How to ask for R help](https://blog.revolutionanalytics.com/2014/01/how-to-ask-for-r-help.html)
