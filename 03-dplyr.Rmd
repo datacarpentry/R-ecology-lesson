@@ -607,7 +607,7 @@ associated with the key.
 
 To recreate `surveys_gw` from `surveys_spread` we would create a key called
 `genus` and value called `mean_weight` and use all columns except `plot_id` for
-the key variable. Here we drop `plot_id` column with a minus sign.
+the key variable. Here we exclude `plot_id` from being `gather()`ed.
 
 ```{r, purl=FALSE}
 surveys_gather <- surveys_spread %>%
