@@ -420,7 +420,7 @@ sessionInfo()
   place to understand the underpinnings of the R language.
 * The [R FAQ](https://cran.r-project.org/doc/FAQ/R-FAQ.html) is dense and technical
   but it is full of useful information.
-* The [reprex](https://cran.rstudio.com/web/packages/reprex/) package is very helpful to create reproducible examples when asking for help. The [rOpenSci community call "How to ask questions so they get answered"](https://ropensci.org/commcalls/2017-03-07/) and [video recording](https://vimeo.com/208749032) includes a presentation of the reprex package and of its philosophy.
+* The [reprex](https://cran.rstudio.com/web/packages/reprex/) package is very helpful to create reproducible examples when asking for help. Its usage and philosophy are explained in [rOpenSci's community call "How to ask questions so they get answered"](https://ropensci.org/commcalls/2017-03-07/).
 
 ```{r, child="_page_built_on.Rmd"}
 ```
