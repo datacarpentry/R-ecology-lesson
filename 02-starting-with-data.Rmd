@@ -58,10 +58,10 @@ Inside the download.file command, the first entry is a character string with the
 figshare. The text after the comma ("data_raw/portal_data_joined.csv") is the destination of the 
 file on your local machine. You'll need to have a folder on your machine called "data_raw" where 
 you'll download the file. So this command downloads a file from Figshare, names it 
-"portal_data_joined.csv," and adds it to a preexisting folder named "data_raw".
+"portal_data_joined.csv" and adds it to a preexisting folder named "data_raw".
 
 ```{r, eval=FALSE, purl=TRUE}
-download.file(url="https://ndownloader.figshare.com/files/2292169",
+download.file(url = "https://ndownloader.figshare.com/files/2292169",
               destfile = "data_raw/portal_data_joined.csv")
 ```
 
