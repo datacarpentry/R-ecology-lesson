@@ -255,7 +255,7 @@ ggplot(data = surveys_complete, mapping = aes(x = species_id, y = weight)) +
     geom_boxplot()
 ```
 
-By adding points to boxplot, we can have a better idea of the number of
+By adding points to the boxplot, we can have a better idea of the number of
 measurements and of their distribution:
 
 ```{r boxplot-with-points, purl=FALSE}
