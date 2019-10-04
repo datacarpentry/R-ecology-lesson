@@ -477,7 +477,7 @@ themes.
 
 
 > ### Challenge
-
+>
 > Use what you just learned to create a plot that depicts how the average weight
 > of each species changes through the years.
 > 
