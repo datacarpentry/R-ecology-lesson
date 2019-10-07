@@ -447,7 +447,7 @@ select the element with the same index, while `FALSE` will not:
 
 ```{r, results = 'show', purl = FALSE}
 weight_g <- c(21, 34, 39, 54, 55)
-weight_g[c(TRUE, FALSE, TRUE, TRUE, FALSE)]
+weight_g[c(TRUE, FALSE, FALSE, TRUE, TRUE)]
 ```
 
 Typically, these logical vectors are not typed by hand, but are the output of
