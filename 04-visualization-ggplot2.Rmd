@@ -352,6 +352,35 @@ ggplot(data = yearly_counts, mapping = aes(x = year, y = n, color = genus)) +
     geom_line()
 ```
 
+
+## Integrating the pipe operator with ggplot2
+
+In the previous lesson we saw how to use the pipe operator `%>%` to implement
+different functions in a sequence and create a coherent workflow.
+Much like in consecutive data manipulations, the pipe operator can be integrated in the `ggplot()` function.
+
+```{r integrating-the-pipe, purl=FALSE}
+yearly_counts %>% 
+    ggplot(mapping = aes(x = year, y = n, color = genus)) +
+    geom_line()
+```
+
+
+The pipe operator can also be used to link data manipulation with consequent data visualization.
+
+```{r pipes-and-manipulation, purl=FALSE}
+yearly_counts_graph <- surveys_complete %>%
+    count(year, genus) %>% 
+    ggplot(mapping = aes(x = year, y = n, color = genus)) +
+    geom_line()
+
+yearly_counts_graph
+```
+
+
+
+
+
 ## Faceting
 
 **`ggplot2`** has a special technique called *faceting* that allows the user to split one
