@@ -30,6 +30,7 @@ introduction to plotting. There is also a lesson on how to use databases from R 
 * [Data visualization with `ggplot2`](https://datacarpentry.org/R-ecology-lesson/04-visualization-ggplot2.html)
 * [SQL databases and R](https://datacarpentry.org/R-ecology-lesson/05-r-and-databases.html)
 
+
 ## Code handout
 
 There is "[code handout](code-handout.R)" (`code-handout.R`) that is intended to

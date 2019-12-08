@@ -87,7 +87,7 @@ memory. The database connections essentially remove that limitation in that you
 can connect to a database of many hundreds of GB, conduct queries on it directly, and pull
 back into R only what you need for analysis.
 
-The package **`tidyr`** addresses the common problem of wanting to reshape your data for plotting and use by different R functions. Sometimes we want data sets where we have one row per measurement. Sometimes we want a data frame where each measurement type has its own column, and rows are instead more aggregated groups - like plots or aquaria. Moving back and forth between these formats is nontrivial, and **`tidyr`** gives you tools for this and more sophisticated  data manipulation.
+The package **`tidyr`** addresses the common problem of wanting to reshape your data for plotting and use by different R functions. Sometimes we want data sets where we have one row per measurement. Sometimes we want a data frame where each measurement type has its own column, and rows are instead more aggregated groups - like plots or aquaria. Moving back and forth between these formats is non-trivial, and **`tidyr`** gives you tools for this and more sophisticated  data manipulation.
 
 To learn more about **`dplyr`** and **`tidyr`** after the workshop, you may want to check out this
 [handy data transformation with **`dplyr`** cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf) and this [one about **`tidyr`**](https://github.com/rstudio/cheatsheets/raw/master/data-import.pdf).
@@ -130,7 +130,7 @@ We're going to learn some of the most common **`dplyr`** functions:
 - `select()`: subset columns
 - `filter()`: subset rows on conditions
 - `mutate()`: create new columns by using information from other columns
-- `group_by()` and `summarize()`: create summary statisitcs on grouped data
+- `group_by()` and `summarize()`: create summary statistics on grouped data
 - `arrange()`: sort results
 - `count()`: count discrete values
 
@@ -154,7 +154,7 @@ select(surveys, -record_id, -species_id)
 This will select all the variables in `surveys` except `record_id`
 and `species_id`.
 
-To choose rows based on a specific criteria, use `filter()`:
+To choose rows based on a specific criterion, use `filter()`:
 
 ```{r, purl = FALSE}
 filter(surveys, year == 1995)
@@ -317,7 +317,7 @@ symbol negates the result, so we're asking for every row where weight *is not* a
 ##  Hint: think about how the commands should be ordered to produce this data frame!
 ```
 
-### Split-apply-combine data analysis and the summarize() function
+### Split-apply-combine data analysis and the `summarize()` function
 
 Many data analysis tasks can be approached using the *split-apply-combine*
 paradigm: split the data into groups, apply some analysis to each group, and
@@ -527,7 +527,7 @@ dataset:
 
 Here we examine the fourth rule: Each type of observational unit forms a table.
 
-In `surveys` , the rows of `surveys` contain the values of variables associated
+In `surveys`, the rows of `surveys` contain the values of variables associated
 with each record (the unit), values such as the weight or sex of each animal 
 associated with each record. What if instead of comparing records, we 
 wanted to compare the different mean weight of each genus between plots? (Ignoring `plot_type` for simplicity).
@@ -561,8 +561,7 @@ the value provided.
 Let's use `spread()` to transform surveys to find the mean weight of each 
 genus in each plot over the entire survey period. We use `filter()`,
 `group_by()` and `summarise()` to filter our observations and variables of 
-interest, and create a new variable for the `mean_weight`. We use the pipe as 
-before too.
+interest, and create a new variable for the `mean_weight`.
 
 ```{r, purl=FALSE}
 surveys_gw <- surveys %>%
@@ -576,7 +575,7 @@ str(surveys_gw)
 This yields `surveys_gw` where the observations for each plot are spread across
 multiple rows, 196 observations of 3 variables. 
 Using `spread()` to key on `genus` with values from `mean_weight` this becomes
-24 observations of 11 variables, one row for each plot. We again use pipes:
+24 observations of 11 variables, one row for each plot.
 
 ```{r, purl=FALSE}
 surveys_spread <- surveys_gw %>%
@@ -616,7 +615,7 @@ associated with the key.
 
 To recreate `surveys_gw` from `surveys_spread` we would create a key called
 `genus` and value called `mean_weight` and use all columns except `plot_id` for
-the key variable. Here we drop `plot_id` column with a minus sign.
+the key variable. Here we exclude `plot_id` from being `gather()`ed.
 
 ```{r, purl=FALSE}
 surveys_gather <- surveys_spread %>%
@@ -633,8 +632,8 @@ replicate has the same composition.
 
 We could also have used a specification for what columns to include. This can be
 useful if you have a large number of identifying columns, and it's easier to
-specify what to gather than what to leave alone. And if the columns are in a
-row, we don't even need to list them all out - just use the `:` operator!
+specify what to gather than what to leave alone. And if the columns are directly
+adjacent, we don't even need to list them all out - just use the `:` operator!
 
 ```{r, purl=FALSE}
 surveys_spread %>%

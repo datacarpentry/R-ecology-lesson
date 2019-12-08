@@ -85,9 +85,9 @@ ggplot(data = surveys_complete, mapping = aes(x = weight, y = hindfoot_length))
   lines, bars). **`ggplot2`** offers many different geoms; we will use some 
   common ones today, including:
   
-      * `geom_point()` for scatter plots, dot plots, etc.
-      * `geom_boxplot()` for, well, boxplots!
-      * `geom_line()` for trend lines, time series, etc.  
+  * `geom_point()` for scatter plots, dot plots, etc.
+  * `geom_boxplot()` for, well, boxplots!
+  * `geom_line()` for trend lines, time series, etc.  
 
 To add a geom to the plot use the `+` operator. Because we have two continuous variables,
 let's use `geom_point()` first:
@@ -257,7 +257,7 @@ ggplot(data = surveys_complete, mapping = aes(x = species_id, y = weight)) +
     geom_boxplot()
 ```
 
-By adding points to boxplot, we can have a better idea of the number of
+By adding points to the boxplot, we can have a better idea of the number of
 measurements and of their distribution:
 
 ```{r boxplot-with-points, purl=FALSE}
@@ -479,7 +479,7 @@ themes.
 
 
 > ### Challenge
-
+>
 > Use what you just learned to create a plot that depicts how the average weight
 > of each species changes through the years.
 > 

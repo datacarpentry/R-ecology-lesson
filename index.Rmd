@@ -26,7 +26,7 @@ data frame, and a brief introduction to plotting. The last lesson demonstrates
 how to work with databases directly from R.
 
 
-## Chapters
+## Episodes
 
 1. [Before we start](00-before-we-start.html)
 2. [Introduction to R](01-intro-to-r.html)
