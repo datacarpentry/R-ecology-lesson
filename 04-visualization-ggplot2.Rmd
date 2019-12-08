@@ -2,6 +2,8 @@
 title: Data visualization with ggplot2
 author: Data Carpentry contributors
 minutes: 60
+editor_options: 
+  chunk_output_type: console
 ---
 
 
@@ -377,7 +379,7 @@ ggplot(data = yearly_counts, mapping = aes(x = year, y = n)) +
 
 Now we would like to split the line in each plot by the sex of each individual
 measured. To do that we need to make counts in the data frame grouped by `year`,
-`species_id`, and `sex`:
+`genus`, and `sex`:
 
 ```{r, purl=FALSE}
 yearly_sex_counts <- surveys_complete %>%
