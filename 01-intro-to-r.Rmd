@@ -69,10 +69,9 @@ cannot be used because they are the names of fundamental functions in R (e.g.,
 for a complete list). In general, even if it's allowed, it's best to not use
 other function names (e.g., `c`, `T`, `mean`, `data`, `df`, `weights`). If in
 doubt, check the help to see if the name is already in use. It's also best to
-avoid dots (`.`) within an object name as in `my.dataset`. There are many
-functions in R with dots in their names for historical reasons, but because dots
-have a special meaning in R (for methods) and other programming languages, it's
-best to avoid them. It is also recommended to use nouns for object names, and
+avoid dots (`.`) within names. Many function names in R itself have them and
+dots also have a special meaning (methods) in R and other programming languages.
+To avoid confusion, don't include dots in names. It is also recommended to use nouns for object names, and
 verbs for function names. It's important to be consistent in the styling of your
 code (where you put spaces, how you name objects, etc.). Using a consistent
 coding style makes your code clearer to read for your future self and your
@@ -179,12 +178,12 @@ output) is the square root of that number. Executing a function ('running it')
 is called *calling* the function. An example of a function call is:
 
 ```{r, eval = FALSE, purl = FALSE}
-b <- sqrt(a)
+ten <- sqrt(weight_kg)
 ```
 
-Here, the value of `a` is given to the `sqrt()` function, the `sqrt()` function
+Here, the value of `ten` is given to the `sqrt()` function, the `sqrt()` function
 calculates the square root, and returns the value which is then assigned to
-the object `b`. This function is very simple, because it takes just one argument.
+the object `weight_kg`. This function is very simple, because it takes just one argument.
 
 The return 'value' of a function need not be numerical (like that of `sqrt()`),
 and it also does not need to be a single item: it can be a set of things, or
@@ -448,7 +447,7 @@ select the element with the same index, while `FALSE` will not:
 
 ```{r, results = 'show', purl = FALSE}
 weight_g <- c(21, 34, 39, 54, 55)
-weight_g[c(TRUE, FALSE, TRUE, TRUE, FALSE)]
+weight_g[c(TRUE, FALSE, FALSE, TRUE, TRUE)]
 ```
 
 Typically, these logical vectors are not typed by hand, but are the output of
