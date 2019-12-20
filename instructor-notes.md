@@ -112,6 +112,10 @@ The two main goals for this lessons are:
 * This lesson uses the tidyr package to reshape data for plotting
 * After this lesson students should be familiar with the spread() and gather() 
   functions available in tidyr
+* While working with the example for mutate(), it is difficult to see the
+  "weight" columns on a zoomed in RStudio screen. Including a select()
+  command to select the columns "weight_kg" and "weight_lb" makes it easier
+  to view how the "weight" columns are changed.
 
 ### Visualizing data
 
