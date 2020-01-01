@@ -240,7 +240,7 @@ ggplot(data = surveys_complete, mapping = aes(x = weight, y = hindfoot_length, c
 > ### Challenge
 >
 > Use what you just learned to create a scatter plot of `weight` over
-> `species_id` with the plot types showing in different colors. Is this a good
+> `species_id` with the plot types shown in different colors. Is this a good
 > way to show this type of data?
 > ```{r scatter-challenge, answer=TRUE, purl=FALSE}
 > ggplot(data = surveys_complete, mapping = aes(x = species_id, y = weight)) +
