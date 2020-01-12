@@ -395,15 +395,15 @@ sessionInfo()
 * The [R-help mailing list](https://stat.ethz.ch/mailman/listinfo/r-help): it is
   read by a lot of people (including most of the R core team), a lot of people
   post to it, but the tone can be pretty dry, and it is not always very
-  welcoming to new users. If your question is valid, you are likely to get an
+  welcoming to new users. If your question is valid (Read its
+  [Posting Guide](https://www.r-project.org/posting-guide.html)), you are likely to get an
   answer very fast but don't expect that it will come with smiley faces. Also,
   here more than anywhere else, be sure to use correct vocabulary (otherwise
   you might get an answer pointing to the misuse of your words rather than
   answering your question). You will also have more success if your question is
-  about a base function rather than a specific package. It has a
-  [Posting Guide](https://www.r-project.org/posting-guide.html)
-  and [blog.Revolutionanalytics.com](https://blog.revolutionanalytics.com/2014/01/how-to-ask-for-r-help.html)
-  [codeblog.jonskeet.uk](https://codeblog.jonskeet.uk/2010/08/29/writing-the-perfect-question/)
+  about a base function rather than a specific package.
+  [blog.Revolutionanalytics.com](https://blog.revolutionanalytics.com/2014/01/how-to-ask-for-r-help.html)
+  and [codeblog.jonskeet.uk](https://codeblog.jonskeet.uk/2010/08/29/writing-the-perfect-question/)
   also provide comprehensive advice on how to ask programming questions.
 * If your question is about a specific package, see if there is a mailing list
   for it. Usually it's included in the DESCRIPTION file of the package that can
