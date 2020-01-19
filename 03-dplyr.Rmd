@@ -346,15 +346,19 @@ You can also group by multiple columns:
 ```{r, purl = FALSE}
 surveys %>%
   group_by(sex, species_id) %>%
-  summarize(mean_weight = mean(weight, na.rm = TRUE))
+  summarize(mean_weight = mean(weight, na.rm = TRUE)) %>% 
+  tail()
 ```
 
-When grouping both by `sex` and `species_id`, the last few rows are for animals
-that escaped before their sex and body weights could be determined. You may notice
-that the last column does not contain `NA` but `NaN` (which refers to "Not a
-Number"). To avoid this, we can remove the missing values for weight before we
-attempt to calculate the summary statistics on weight. Because the missing
-values are removed first, we can omit `na.rm = TRUE` when computing the mean:
+Here, we used `tail()` to look at the last six rows of our summary. Before, we had 
+used `head()` to look at the first six rows. We can see that the `sex` column contains 
+`NA` values because some animals had escaped before their sex and body weights 
+could be determined. The resulting `mean_weight` column does not contain `NA` but 
+`NaN` (which refers to "Not a Number") because `mean()` was called on a vector of 
+`NA` values while at the same time setting `na.rm = TRUE`. To avoid this, we can 
+remove the missing values for weight before we attempt to calculate the summary 
+statistics on weight. Because the missing values are removed first, we can omit 
+`na.rm = TRUE` when computing the mean:
 
 ```{r, purl = FALSE}
 surveys %>%
