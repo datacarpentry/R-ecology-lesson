@@ -547,8 +547,10 @@ library(gridExtra)
 spp_weight_boxplot <- ggplot(data = surveys_complete, 
                              aes(x = species_id, y = weight)) +
   geom_boxplot() +
-  xlab("Species") + ylab("Weight (g)") +
-  scale_y_log10()
+  labs(x = "Species", 
+       y = expression(log[10](Weight))) +
+  scale_y_log10() + 
+  labs()
 
 spp_count_plot <- ggplot(data = yearly_counts, 
                          aes(x = year, y = n, color = species_id)) +
