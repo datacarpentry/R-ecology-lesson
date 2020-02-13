@@ -66,9 +66,9 @@ the `data` argument
 ggplot(data = surveys_complete)
 ```
 
-- define aesthetics (`aes`), by selecting the variables to be plotted and the  
-      variables to define the presentation such as plotting size, shape color, 
-      etc.
+- define an aesthetic mapping (using the aesthetic (`aes`) function), by 
+selecting the variables to be plotted and specifying how to present them in the 
+graph, e.g. as x/y positions or characteristics such as size, shape, color, etc.      
 
 ```{r, eval = FALSE, purl = FALSE}
 ggplot(data = surveys_complete, aes(x = weight, y = hindfoot_length))
@@ -336,7 +336,7 @@ ggplot(data = yearly_counts, aes(x = year, y = n, color = species_id)) +
 
 ## Faceting
 
-ggplot has a special technique called *faceting* that allows the user to split 
+`ggplot` has a special technique called *faceting* that allows the user to split 
 one plot into multiple plots based on a factor included in the dataset. We will 
 use it to make a time series plot for each species:
 
