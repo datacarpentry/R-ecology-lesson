@@ -348,19 +348,6 @@ problem (e.g. "subscript out of bounds"). If the message is very generic, you
 might also include the name of the function or package you're using in your
 query.
 
-However, you should check Stack Overflow. Search using the `[r]` tag. Most
-questions have already been answered, but the challenge is to use the right
-words in the search to find the
-answers:
-[https://stackoverflow.com/questions/tagged/r](https://stackoverflow.com/questions/tagged/r)
-
-The [Introduction to R](https://cran.r-project.org/doc/manuals/R-intro.pdf) can
-also be dense for people with little programming experience but it is a good
-place to understand the underpinnings of the R language.
-
-The [R FAQ](https://cran.r-project.org/doc/FAQ/R-FAQ.html) is dense and technical
-but it is full of useful information.
-
 ### Asking for help
 
 The key to receiving help from someone is for them to rapidly grasp your
@@ -382,32 +369,6 @@ question. For instance instead of using a subset of your real dataset, create a
 small (3 columns, 5 rows) generic one. For more information on how to write a
 reproducible example see [this article by Hadley Wickham](http://adv-r.had.co.nz/Reproducibility.html).
 
-To share an object with someone else, if it's relatively small, you can use the
-function `dput()`. It will output R code that can be used to recreate the exact
-same object as the one in memory:
-
-```{r, results='show', purl=FALSE}
-dput(head(iris)) # iris is an example data frame that comes with R and head() is a function that returns the first part of the data frame
-```
-
-If the object is larger, provide either the raw file (i.e., your CSV file) with
-your script up to the point of the error (and after removing everything that is
-not relevant to your issue). Alternatively, in particular if your question is
-not related to a data frame, you can save any R object to a file:
-
-```{r, eval=FALSE, purl=FALSE}
-saveRDS(iris, file="/tmp/iris.rds")
-```
-
-The content of this file is however not human readable and cannot be posted
-directly on Stack Overflow. Instead, it can be sent to someone by email who can
-read it with the `readRDS()` command (here it is assumed that the downloaded
-file is in a `Downloads` folder in the user's home directory):
-
-```{r, eval=FALSE, purl=FALSE}
-some_data <- readRDS(file="~/Downloads/iris.rds")
-```
-
 Last, but certainly not least, **always include the output of `sessionInfo()`**
 as it provides critical information about your platform, the versions of R and
 the packages that you are using, and other information that can be very helpful
@@ -425,19 +386,25 @@ sessionInfo()
   the workshop to keep learning from each other.
 * Your friendly colleagues: if you know someone with more experience than you,
   they might be able and willing to help you.
-* [Stack Overflow](https://stackoverflow.com/questions/tagged/r): if your question
+* [Stack Overflow's `[r]`-tag](https://stackoverflow.com/questions/tagged/r?tab=Votes): 
+  Most questions have already been answered, but the challenge is to use the right
+  words in the search to find the answers. If your question
   hasn't been answered before and is well crafted, chances are you will get an
   answer in less than 5 min. Remember to follow their guidelines on [how to ask
   a good question](https://stackoverflow.com/help/how-to-ask).
 * The [R-help mailing list](https://stat.ethz.ch/mailman/listinfo/r-help): it is
   read by a lot of people (including most of the R core team), a lot of people
   post to it, but the tone can be pretty dry, and it is not always very
-  welcoming to new users. If your question is valid, you are likely to get an
+  welcoming to new users. If your question is valid (Read its
+  [Posting Guide](https://www.r-project.org/posting-guide.html)), you are likely to get an
   answer very fast but don't expect that it will come with smiley faces. Also,
   here more than anywhere else, be sure to use correct vocabulary (otherwise
   you might get an answer pointing to the misuse of your words rather than
   answering your question). You will also have more success if your question is
   about a base function rather than a specific package.
+  [blog.Revolutionanalytics.com](https://blog.revolutionanalytics.com/2014/01/how-to-ask-for-r-help.html)
+  and [codeblog.jonskeet.uk](https://codeblog.jonskeet.uk/2010/08/29/writing-the-perfect-question/)
+  also provide comprehensive advice on how to ask programming questions.
 * If your question is about a specific package, see if there is a mailing list
   for it. Usually it's included in the DESCRIPTION file of the package that can
   be accessed using `packageDescription("name-of-package")`. You may also want
@@ -448,13 +415,12 @@ sessionInfo()
 
 ### More resources
 
-* The [Posting Guide](https://www.r-project.org/posting-guide.html) for the R
-  mailing lists.
-* [How to ask for R help](https://blog.revolutionanalytics.com/2014/01/how-to-ask-for-r-help.html)
-  useful guidelines
-* [This blog post by Jon Skeet](https://codeblog.jonskeet.uk/2010/08/29/writing-the-perfect-question/)
-  has quite comprehensive advice on how to ask programming questions.
-* The [reprex](https://cran.rstudio.com/web/packages/reprex/) package is very helpful to create reproducible examples when asking for help. The [rOpenSci community call "How to ask questions so they get answered"], [rOpenSci Blog](https://ropensci.org/commcalls/2017-03-07/) and [video recording](https://vimeo.com/208749032) includes a presentation of the reprex package and of its philosophy.
+* The [Introduction to R](https://cran.r-project.org/doc/manuals/R-intro.pdf) can
+  also be dense for people with little programming experience but it is a good
+  place to understand the underpinnings of the R language.
+* The [R FAQ](https://cran.r-project.org/doc/FAQ/R-FAQ.html) is dense and technical
+  but it is full of useful information.
+* The [reprex](https://cran.rstudio.com/web/packages/reprex/) package is very helpful to create reproducible examples when asking for help. Its usage and philosophy are explained in [rOpenSci's community call "How to ask questions so they get answered"](https://ropensci.org/commcalls/2017-03-07/).
 
 ```{r, child="_page_built_on.Rmd"}
 ```
