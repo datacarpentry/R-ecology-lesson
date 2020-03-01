@@ -122,7 +122,12 @@ The two main goals for this lessons are:
 * This lesson is a broad overview of ggplot2 and focuses on (1) getting familiar
   with the layering system of ggplot2, (2) using the argument `group` in the
   `aes()` function, (3) basic customization of the plots.
-
+* It maybe worthwhile to mention that we can also specify colors by color HEX code (http://colorbrewer2.org) 
+    ```
+    ggplot(data = surveys_complete, mapping = aes(x = weight, y = hindfoot_length)) +
+        geom_point(alpha = 0.1, color = "#FF0000")
+    ```
+    
 ### R and SQL
 
 * Ideally this lesson is best taught at the end of the workshop (as a capstone
