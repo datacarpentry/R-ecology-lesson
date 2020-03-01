@@ -630,7 +630,7 @@ Make sure you have the `fig/` folder in your working directory.
 my_plot <- ggplot(data = yearly_sex_counts, 
                   mapping = aes(x = year, y = n, color = sex)) +
     geom_line() +
-    facet_wrap(vars(species_id)) +
+    facet_wrap(vars(genus)) +
     labs(title = "Observed genera through time",
         x = "Year of observation",
         y = "Number of individuals") +
