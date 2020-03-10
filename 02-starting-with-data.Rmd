@@ -62,13 +62,13 @@ you'll download the file. So this command downloads a file from Figshare, names 
 
 ```{r, eval=FALSE, purl=TRUE}
 download.file(url = "https://ndownloader.figshare.com/files/2292169",
-              destfile = "data_raw/portal_data_joined.csv")
+              destfile = "portal_data_joined.csv")
 ```
 
 You are now ready to load the data:
 
 ```{r, eval=TRUE,  purl=FALSE}
-surveys <- read.csv("data_raw/portal_data_joined.csv")
+surveys <- read.csv("portal_data_joined.csv")
 ```
 
 This statement doesn't produce any output because, as you might recall,
