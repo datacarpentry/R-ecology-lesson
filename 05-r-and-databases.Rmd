@@ -80,8 +80,8 @@ download.file(url = "https://ndownloader.figshare.com/files/2292171",
 We can point R to this database using:
 
 ```{r connect, purl=TRUE}
-library(dplyr)
-library(dbplyr)
+library("dplyr")
+library("dbplyr")
 mammals <- DBI::dbConnect(RSQLite::SQLite(), "data_raw/portal_mammals.sqlite")
 ```
 
@@ -491,7 +491,7 @@ download.file("https://ndownloader.figshare.com/files/10717177",
               "data_raw/surveys.csv")
 download.file("https://ndownloader.figshare.com/files/3299474",
               "data_raw/plots.csv")
-library(tidyverse)
+library("tidyverse"
 species <- read_csv("data_raw/species.csv")
 surveys <- read_csv("data_raw/surveys.csv")
 plots <- read_csv("data_raw/plots.csv")
