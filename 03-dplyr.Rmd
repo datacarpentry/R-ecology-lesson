@@ -68,7 +68,7 @@ Then, to load the package type:
 
 ```{r, message = FALSE, purl = FALSE}
 ## load the tidyverse packages, incl. dplyr
-library(tidyverse)
+library("tidyverse")
 ```
 
 ## What are **`dplyr`** and **`tidyr`**?

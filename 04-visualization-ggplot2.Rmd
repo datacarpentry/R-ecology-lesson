@@ -36,7 +36,7 @@ surveys_complete <- read_csv(file = "data_raw/portal_data_joined.csv", col_types
 We start by loading the required packages. **`ggplot2`** is included in the **`tidyverse`** package.
 
 ```{r load-package, message=FALSE, purl=FALSE}
-library(tidyverse)
+library("tidyverse")
 ```
 
 If not still in the workspace, load the data we saved in the previous lesson.
@@ -155,7 +155,7 @@ surveys_plot
 >
 > ```{r, eval = FALSE}
 > install.packages("hexbin")
-> library(hexbin)
+> library("hexbin")
 > ```
 >
 > Then use the `geom_hex()` function:
@@ -176,7 +176,7 @@ surveys_plot
 ## package from CRAN:
 
 install.packages("hexbin")
-library(hexbin)
+library("hexbin")
 
 ## Then use the `geom_hex()` function:
 
@@ -595,7 +595,7 @@ install.packages("patchwork")
 ```
 
 ```{r add-two-plots-example, message=FALSE, purl=FALSE, fig.width=10}
-library(patchwork)
+library("patchwork")
 
 spp_weight_boxplot <- ggplot(data = surveys_complete, 
                              mapping = aes(x = genus, y = weight)) +
