@@ -148,8 +148,8 @@ And not this format
 
 *   *Where can I get help?*
     <br/>
-    Mail us at [board@datacarpentry.org](mailto:board@datacarpentry.org)
-    or come chat with us on [our Gitter chat](https://gitter.im/data-carpentry/Lobby).
+    Mail us at [team@carpentries.org](mailto:team@carpentriesorg)
+    or come chat with us on [Slack](https://swc-slack-invite.herokuapp.com/).
 
 
 ```{r, child="_page_built_on.Rmd"}
