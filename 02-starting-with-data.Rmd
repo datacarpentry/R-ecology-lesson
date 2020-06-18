@@ -405,7 +405,7 @@ the experiment:
 
 ```{r, purl=TRUE}
 ## bar plot of the number of females and males captured during the experiment:
-plot(surveys$sex)
+plot(as.factor(surveys$sex))
 ```
 
 In addition to males and females, there are about 1700 individuals for which the
@@ -416,7 +416,7 @@ the data on sex and work with that data, so we're not modifying the working copy
 of the data frame:
 
 ```{r, results=TRUE, purl=FALSE}
-sex <- surveys$sex
+sex <- factor(surveys$sex)
 head(sex)
 levels(sex)
 levels(sex)[1] <- "undetermined"
