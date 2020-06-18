@@ -33,7 +33,7 @@ introduction to plotting. There is also a lesson on how to use databases from R 
 
 ## Code handout
 
-There is "[code handout](code-handout.R)" (`code-handout.R`) that is intended to
+There is a [code handout](https://datacarpentry.org/R-ecology-lesson/code-handout.R) that is intended to
 be distributed to the participants. This file includes some of the examples used
 during teaching and the titles of the section. It provides a guide that the
 participants can fill in as the lesson progresses. Participants can also source
