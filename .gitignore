@@ -20,7 +20,14 @@
 data*/
 portal-database.sqlite
 .secret/
+
+# output from rmarkdown::render_site(), see #566
 _site/
+site_libs/
+img/R-ecology-*.png
+0*.html
+0*.md
+code-handout.R
 
 # output from linkchecker
 link_res.csv

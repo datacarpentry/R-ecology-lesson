@@ -164,7 +164,7 @@ tutorial below.
   location for it. This will be your **working directory** for the rest of the
   day (e.g., `~/data-carpentry`).
 4. Click on `Create Project`.
-5. Download the [code handout](./code-handout.R), place it in your working
+5. Download the [code handout](https://datacarpentry.org/R-ecology-lesson/code-handout.R), place it in your working
   directory and rename it (e.g., `data-carpentry-script.R`).
 6. (Optional) Set Preferences to 'Never' save workspace in RStudio.
 
