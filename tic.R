@@ -1,6 +1,7 @@
 source("build_lesson.R")
 
 get_stage("before_install") %>%
+  add_code_step(install.packages("git2r")) %>%
   add_code_step(update.packages(ask = FALSE))
 
 get_stage("install") %>%
