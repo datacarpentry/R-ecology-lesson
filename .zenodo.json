@@ -1,1 +1,404 @@
-{"contributors":[{"type":"Editor","name":"Francois Michonneau"},{"type":"Editor","name":"Auriel Fournier"}],"creators":[{"name":"Francois Michonneau"},{"name":"Tracy Teal"},{"name":"Adam Obeng"},{"name":"Aleksandra Pawlik"},{"name":"Mateusz Kuzak"},{"name":"Edmund Hart"},{"name":"Kara Woo"},{"name":"Auriel Fournier"},{"name":"Ethan White"},{"name":"Philip Lijnzaad"},{"name":"Hilmar Lapp"},{"name":"Ben Marwick"},{"name":"Karthik Ram"},{"name":"Kari L. Jordan"},{"name":"Matthias Grenié"},{"name":"Harriet Dashnow"},{"name":"Kate Hertweck"},{"name":"Mark Robinson"},{"name":"ashander"},{"name":"Alexey Shiklomanov"},{"name":"K. A. S. Mislan"},{"name":"Steve Pederson"},{"name":"Alex Pletzer"},{"name":"Anne Fouilloux"},{"name":"C. Titus Brown"},{"name":"Christie Bahlai"},{"name":"Francisco Rodriguez-Sanchez"},{"name":"Jaime Ashander"},{"name":"Jarrett Byrnes"},{"name":"Jon"},{"name":"Lisa Breckels"},{"name":"Markus J. Akenbrand"},{"name":"Maëlle Salmon"},{"name":"Meghan Duffy"},{"name":"Shawn Taylor"},{"name":"Stephanie Labou"},{"name":"Thomas Sandmann"},{"name":"Zena Lapp"},{"name":"mondorescue"},{"name":"Achaz von Hardenberg"},{"name":"April Wright"},{"name":"Carolina Johnson"},{"name":"Carolyn Voter"},{"name":"Catherine Hulshof"},{"name":"Clara Shaw"},{"name":"Daijiang Li"},{"name":"Daina Bouquin"},{"name":"Daniel Stubbs"},{"name":"Danielle Quinn"},{"name":"Darya Vanichkina"},{"name":"Dmytro Fishman"},{"name":"Earle Wilson"},{"name":"Eilis Hannon"},{"name":"Elena Sügis"},{"name":"Eli Strauss"},{"name":"Emilia Gan"},{"name":"Erin Becker"},{"name":"Fred Boehm"},{"name":"GMoncrieff"},{"name":"Hao Ye"},{"name":"JSurman"},{"name":"Jeffrey W Hollister"},{"name":"Jieming Chen"},{"name":"Jillian Dunic"},{"name":"Jonathan Keane"},{"name":"Joseph Stachelek"},{"name":"Josh Herr"},{"name":"Karen Cranston"},{"name":"Kathe Todd-Brown"},{"name":"Katie Lotterhos"},{"name":"Kayla Peck"},{"name":"Kenan Direk"},{"name":"Kevin Hall"},{"name":"Kristian Tylén"},{"name":"Kyriakos Chatzidimitriou"},{"name":"Lachlan Deer"},{"name":"Laurent Gatto"},{"name":"Leah Wasser"},{"name":"Leszek Tarkowski"},{"name":"M. Foos"},{"name":"Marco Chiapello"},{"name":"Matthias Grenié"},{"name":"Michael Koontz"},{"name":"Myfanwy Johnston"},{"name":"Nicholas Marino"},{"name":"Nick Carchedi"},{"name":"Olivia Burge"},{"name":"Philip Lijnzaad"},{"name":"Ryan Peek"},{"name":"Sarah Supp"},{"name":"Tara Webster"},{"name":"Taylor Reiter"},{"name":"Will Furnass"},{"name":"Will Pearse"},{"name":"Ye Li"},{"name":"ab604"},{"name":"cengel"},{"name":"sfn_brt"},{"name":"suparee"}]}
+{
+  "contributors": [
+    {
+      "type": "Editor",
+      "name": "Ana Costa Conrado",
+      "orcid": "0000-0001-6345-987X"
+    },
+    {
+      "type": "Editor",
+      "name": "Auriel M.V. Fournier",
+      "orcid": "0000-0002-8530-9968"
+    },
+    {
+      "type": "Editor",
+      "name": "Brian Seok",
+      "orcid": "0000-0002-4513-3224"
+    },
+    {
+      "type": "Editor",
+      "name": "Francois Michonneau",
+      "orcid": "0000-0002-9092-966X"
+    }
+  ],
+  "creators": [
+    {
+      "name": "François Michonneau",
+      "orcid": "0000-0002-9092-966X"
+    },
+    {
+      "name": "Tracy Teal",
+      "orcid": "0000-0002-9180-9598"
+    },
+    {
+      "name": "Auriel Fournier",
+      "orcid": "0000-0002-8530-9968"
+    },
+    {
+      "name": "Brian Seok",
+      "orcid": "0000-0002-4513-3224"
+    },
+    {
+      "name": "Adam Obeng"
+    },
+    {
+      "name": "Aleksandra Natalia Pawlik",
+      "orcid": "0000-0001-8418-6735"
+    },
+    {
+      "name": "Ana Costa Conrado",
+      "orcid": "0000-0001-6345-987X"
+    },
+    {
+      "name": "Kara Woo",
+      "orcid": "0000-0002-5125-4188"
+    },
+    {
+      "name": "Philip Lijnzaad"
+    },
+    {
+      "name": "Ted Hart",
+      "orcid": "0000-0001-7367-7969"
+    },
+    {
+      "name": "Ethan P White",
+      "orcid": "0000-0001-6728-7745"
+    },
+    {
+      "name": "Ben Marwick",
+      "orcid": "0000-0001-7879-4531"
+    },
+    {
+      "name": "Ben Bolker",
+      "orcid": "0000-0002-2127-0443"
+    },
+    {
+      "name": "Kari L Jordan",
+      "orcid": "0000-0003-4121-2432"
+    },
+    {
+      "name": "Jaime Ashander",
+      "orcid": "0000-0002-1841-4768"
+    },
+    {
+      "name": "Harriet Dashnow",
+      "orcid": "0000-0001-8433-6270"
+    },
+    {
+      "name": "Kate Hertweck",
+      "orcid": "0000-0002-4026-4612"
+    },
+    {
+      "name": "Sergio Martínez Cuesta",
+      "orcid": "0000-0001-9806-2805"
+    },
+    {
+      "name": "Erin Alison Becker",
+      "orcid": "0000-0002-6832-0233"
+    },
+    {
+      "name": "Stéphane Guillou",
+      "orcid": "0000-0001-8992-0951"
+    },
+    {
+      "name": "Alexey Shiklomanov"
+    },
+    {
+      "name": "David Klinges",
+      "orcid": "0000-0002-7900-9379"
+    },
+    {
+      "name": "Gabriel J. Odom"
+    },
+    {
+      "name": "Jean, Martin"
+    },
+    {
+      "name": "K. A. S. Mislan"
+    },
+    {
+      "name": "Kayla Johnson"
+    },
+    {
+      "name": "Najko Jahn"
+    },
+    {
+      "name": "Sara Mannheimer"
+    },
+    {
+      "name": "Steve Pederson"
+    },
+    {
+      "name": "Alex Pletzer"
+    },
+    {
+      "name": "Anne Fouilloux",
+      "orcid": "0000-0002-1784-2920"
+    },
+    {
+      "name": "Callin Switzer",
+      "orcid": "0000-0003-0901-169X"
+    },
+    {
+      "name": "Christie Bahlai",
+      "orcid": "0000-0002-8937-8709"
+    },
+    {
+      "name": "Daijiang Li"
+    },
+    {
+      "name": "Dan Kerchner"
+    },
+    {
+      "name": "Francisco Rodriguez-Sanchez"
+    },
+    {
+      "name": "Gede Primahadi Wijaya Rajeg",
+      "orcid": "0000-0002-2047-8621"
+    },
+    {
+      "name": "Hao Ye",
+      "orcid": "0000-0002-8630-1458"
+    },
+    {
+      "name": "Hugo Tavares"
+    },
+    {
+      "name": "Katrin Leinweber",
+      "orcid": "0000-0001-5135-5758"
+    },
+    {
+      "name": "Kayla Peck"
+    },
+    {
+      "name": "Mauro Luciano Lepore",
+      "orcid": "0000-0002-1986-7988"
+    },
+    {
+      "name": "Stacey Hancock"
+    },
+    {
+      "name": "Thomas Sandmann"
+    },
+    {
+      "name": "Toby Hodges",
+      "orcid": "0000-0003-1766-456X"
+    },
+    {
+      "name": "Katrin Tirok",
+      "orcid": "0000-0002-5040-9838"
+    },
+    {
+      "name": "Martin Jean",
+      "orcid": "0000-0002-7439-1767"
+    },
+    {
+      "name": "Alistair Bailey",
+      "orcid": "0000-0003-0023-8679"
+    },
+    {
+      "name": "Achaz von Hardenberg"
+    },
+    {
+      "name": "Allison Theobold"
+    },
+    {
+      "name": "April Wright",
+      "orcid": "0000-0003-4692-3225"
+    },
+    {
+      "name": "Arindam Basu"
+    },
+    {
+      "name": "Carolina Johnson"
+    },
+    {
+      "name": "Carolyn Voter",
+      "orcid": "0000-0002-4023-7390"
+    },
+    {
+      "name": "Catherine Hulshof",
+      "orcid": "0000-0002-2200-8076"
+    },
+    {
+      "name": "Daina Bouquin"
+    },
+    {
+      "name": "Danielle Quinn"
+    },
+    {
+      "name": "Darya Vanichkina",
+      "orcid": "0000-0002-0406-164X"
+    },
+    {
+      "name": "Earle Wilson"
+    },
+    {
+      "name": "Eli Strauss"
+    },
+    {
+      "name": "Ellen Bledsoe",
+      "orcid": "0000-0002-3629-7235"
+    },
+    {
+      "name": "Emilia Gan"
+    },
+    {
+      "name": "Dmytro Fishman",
+      "orcid": "0000-0002-4644-8893"
+    },
+    {
+      "name": "Fred Boehm"
+    },
+    {
+      "name": "Gergana Daskalova",
+      "orcid": "0000-0002-5674-5322"
+    },
+    {
+      "name": "Hugo Tavares",
+      "orcid": "0000-0001-9373-2726"
+    },
+    {
+      "name": "Jake Kaupp",
+      "orcid": "0000-0002-3217-3294"
+    },
+    {
+      "name": "Jillian Dunic",
+      "orcid": "0000-0002-0729-3083"
+    },
+    {
+      "name": "Jonathan Keane"
+    },
+    {
+      "name": "Joseph Stachelek",
+      "orcid": "0000-0002-5924-2464"
+    },
+    {
+      "name": "Joshua R. Herr",
+      "orcid": "0000-0003-3425-292X"
+    },
+    {
+      "name": "Justin Millar",
+      "orcid": "0000-0002-6866-7544"
+    },
+    {
+      "name": "Katie Lotterhos"
+    },
+    {
+      "name": "Karen Cranston",
+      "orcid": "0000-0002-4798-9499"
+    },
+    {
+      "name": "Kenan Direk"
+    },
+    {
+      "name": "Kristian Tylén",
+      "orcid": "0000-0001-7492-0078"
+    },
+    {
+      "name": "Kyriakos Chatzidimitriou",
+      "orcid": "0000-0003-0715-1197"
+    },
+    {
+      "name": "Lachlan Deer",
+      "orcid": "0000-0001-8646-6095"
+    },
+    {
+      "name": "Leszek Tarkowski"
+    },
+    {
+      "name": "Marco Chiapello",
+      "orcid": "0000-0001-7768-3047"
+    },
+    {
+      "name": "Marie-Helene Burle",
+      "orcid": "0000-0003-4853-4901"
+    },
+    {
+      "name": "Markus Ankenbrand"
+    },
+    {
+      "name": "Max Czapanskiy",
+      "orcid": "0000-0002-6302-905X"
+    },
+    {
+      "name": "Melissa Moreno"
+    },
+    {
+      "name": "Michael Culshaw-Maurer",
+      "orcid": "0000-0003-2205-8679"
+    },
+    {
+      "name": "Michael Koontz",
+      "orcid": "0000-0002-8276-210X"
+    },
+    {
+      "name": "Michael Weisner"
+    },
+    {
+      "name": "Myfanwy Johnston",
+      "orcid": "0000-0003-1212-1590"
+    },
+    {
+      "name": "Nick Carchedi"
+    },
+    {
+      "name": "Olivia Rata Burge",
+      "orcid": "0000-0001-7719-6695"
+    },
+    {
+      "name": "Paul Harrison"
+    },
+    {
+      "name": "Peter Humburg"
+    },
+    {
+      "name": "Richard Pauloo",
+      "orcid": "0000-0002-6231-9530"
+    },
+    {
+      "name": "Ryan Peek",
+      "orcid": "0000-0002-9577-6885"
+    },
+    {
+      "name": "Robin Elahi"
+    },
+    {
+      "name": "Sandra Cortijo",
+      "orcid": "0000-0003-3291-6729"
+    },
+    {
+      "name": "sfn_brt"
+    },
+    {
+      "name": "Shivshankar Umashankar"
+    },
+    {
+      "name": "Shubhang Goswami",
+      "orcid": "0000-0003-0963-8003"
+    },
+    {
+      "name": "Sumedh"
+    },
+    {
+      "name": "Scott Yanco",
+      "orcid": "0000-0003-4717-9370"
+    },
+    {
+      "name": "Tara Webster"
+    },
+    {
+      "name": "Taylor Reiter",
+      "orcid": "0000-0002-7388-421X"
+    },
+    {
+      "name": "Will Pearse"
+    },
+    {
+      "name": "Ye Li"
+    }
+  ],
+  "license": {
+    "id": "CC-BY-4.0"
+  }
+}

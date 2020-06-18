@@ -12,9 +12,10 @@ source("setup.R")
 
 > ### Learning Objectives
 >
-> * Describe what a data frame is.
 > * Load external data from a .csv file into a data frame.
+> * Describe what a data frame is.
 > * Summarize the contents of a data frame.
+> * Use indexing to subset specific portions of data frames. 
 > * Describe what a factor is.
 > * Convert between strings and factors.
 > * Reorder and rename factors.
@@ -29,8 +30,8 @@ source("setup.R")
 ### Presentation of the survey data
 ```
 
-We are studying the species repartition and weight of animals caught in plots in our study
-area. The dataset is stored as a comma separated value (CSV) file.
+We are investigating the animal species diversity and weights found within plots at our study
+site. The dataset is stored as a comma separated value (CSV) file.
 Each row holds information for a single animal, and the columns represent:
 
 | Column           | Description                        |
@@ -46,28 +47,28 @@ Each row holds information for a single animal, and the columns represent:
 | weight           | weight of the animal in grams      |
 | genus            | genus of animal                    |
 | species          | species of animal                  |
-| taxon             | e.g. Rodent, Reptile, Bird, Rabbit |
+| taxon            | e.g. Rodent, Reptile, Bird, Rabbit |
 | plot\_type       | type of plot                       |
 
 We are going to use the R function `download.file()` to download the CSV file
-that contains the survey data from figshare, and we will use `read.csv()` to
+that contains the survey data from Figshare, and we will use `read.csv()` to
 load into memory the content of the CSV file as an object of class `data.frame`. 
 Inside the download.file command, the first entry is a character string with the source URL 
 ("https://ndownloader.figshare.com/files/2292169"). This source URL downloads a CSV file from 
-figshare. The text after the comma ("data/portal_data_joined.csv") is the destination of the 
-file on your local machine. You'll need to have a folder on your machine called "data" where 
-you'll download the file. So this command downloads a file from figshare, names it 
-"portal_data_joined.csv," and adds it to a preexisting folder named "data."
+figshare. The text after the comma ("data_raw/portal_data_joined.csv") is the destination of the 
+file on your local machine. You'll need to have a folder on your machine called "data_raw" where 
+you'll download the file. So this command downloads a file from Figshare, names it 
+"portal_data_joined.csv" and adds it to a preexisting folder named "data_raw".
 
 ```{r, eval=FALSE, purl=TRUE}
-download.file(url="https://ndownloader.figshare.com/files/2292169",
-              destfile = "data/portal_data_joined.csv")
+download.file(url = "https://ndownloader.figshare.com/files/2292169",
+              destfile = "data_raw/portal_data_joined.csv")
 ```
 
 You are now ready to load the data:
 
 ```{r, eval=TRUE,  purl=FALSE}
-surveys <- read.csv("data/portal_data_joined.csv")
+surveys <- read.csv("data_raw/portal_data_joined.csv")
 ```
 
 This statement doesn't produce any output because, as you might recall,
@@ -80,8 +81,11 @@ function `head()`:
 
 ```{r, results='show', purl=FALSE}
 head(surveys)
+```
+
+```{r, eval = FALSE, purl = FALSE}
 ## Try also
-## View(surveys)
+View(surveys)
 ```
 
 > ### Note
@@ -97,9 +101,16 @@ head(surveys)
 > are actually wrapper functions for the main `read.table()` function with different arguments.
 > As such, the surveys data above could have also been loaded by using `read.table()`
 > with the separation argument as `,`. The code is as follows:
-> `surveys <- read.table(file="data/portal_data_joined.csv", sep=",", header=TRUE)`.
+> `surveys <- read.table(file="data_raw/portal_data_joined.csv", sep=",", header=TRUE)`.
 > The header argument has to be set to TRUE to be able to read the headers as
 > by default `read.table()` has the header argument set to FALSE.
+>
+> In addition to the above versions of the csv format, you should develop the habits
+> of looking at and record some parameters of your csv files. For instance, 
+> the character encoding, control characters used for line ending, date format
+> (if the date is not splitted into three variables), and the presence of unexpected
+> [newlines](https://en.wikipedia.org/wiki/Newline) are important characteristics of your data files.
+> Those parameters will ease up the import step of your data in R.
 
 ## What are data frames?
 
@@ -227,7 +238,7 @@ You can also exclude certain indices of a data frame using the "`-`" sign:
 
 ```{r, purl=FALSE}
 surveys[, -1]          # The whole data frame, except the first column
-surveys[-c(7:34786), ] # Equivalent to head(surveys)
+surveys[-(7:34786), ] # Equivalent to head(surveys)
 ```
 
 Data frames can be subset by calling indices (as shown previously), but also by calling their column names directly:
@@ -358,11 +369,17 @@ If you need to convert a factor to a character vector, you use
 as.character(sex)
 ```
 
-Converting factors where the levels appear as numbers (such as concentration
-levels, or years) to a numeric vector is a little trickier. The `as.numeric()` 
-function returns the index values of the factor, not its levels, so it will 
-result in an entirely new (and unwanted in this case) set of numbers. 
-One method to avoid this is to convert factors to characters, and then to numbers.  
+In some cases, you may have to convert factors where the levels appear as
+numbers (such as concentration levels or years) to a numeric vector. For
+instance, in one part of your analysis the years might need to be encoded as
+factors (e.g., comparing average weights across years) but in another part of
+your analysis they may need to be stored as numeric values (e.g., doing math
+operations on the years). This conversion from factor to numeric is a little
+trickier. The `as.numeric()` function returns the index values of the factor,
+not its levels, so it will result in an entirely new (and unwanted in this case)
+set of numbers. One method to avoid this is to convert factors to characters,
+and then to numbers.
+
 Another method is to use the `levels()` function. Compare:
 
 ```{r, purl=TRUE}
@@ -444,9 +461,9 @@ type.
 
 ```{r, eval=FALSE, purl=TRUE}
 ## Compare the difference between our data read as `factor` vs `character`.
-surveys <- read.csv("data/portal_data_joined.csv", stringsAsFactors = TRUE)
+surveys <- read.csv("data_raw/portal_data_joined.csv", stringsAsFactors = TRUE)
 str(surveys)
-surveys <- read.csv("data/portal_data_joined.csv", stringsAsFactors = FALSE)
+surveys <- read.csv("data_raw/portal_data_joined.csv", stringsAsFactors = FALSE)
 str(surveys)
 ## Convert the column "plot_type" into a factor
 surveys$plot_type <- factor(surveys$plot_type)
@@ -514,13 +531,13 @@ surveys$plot_type <- factor(surveys$plot_type)
 >
 >    ```{text_answer, echo=FALSE, purl=FALSE}
 >    * missing quotations around the names of the animals
->    * missing one entry in the "feel" column (probably for one of the furry animals)
->    * missing one comma in the weight column
+>    * missing one entry in the `feel` column (probably for one of the furry animals)
+>    * missing one comma in the `weight` column
 >    * `country`, `climate`, `temperature`, and `northern_hemisphere` are
 >       factors; `has_kangaroo` is numeric
->    * using `stringsAsFactors = FALSE` would have made them character instead of
+>    * using `stringsAsFactors = FALSE` would have made character vectors instead of
 >      factors
->    * removing the quotes in temperature and northern_hemisphere and replacing 1
+>    * removing the quotes in `temperature` and `northern_hemisphere` and replacing 1
 >      by TRUE in the `has_kangaroo` column would give what was probably 
 >      intended
 >    ```
@@ -530,7 +547,7 @@ The automatic conversion of data type is sometimes a blessing, sometimes an
 annoyance. Be aware that it exists, learn the rules, and double check that data
 you import in R are of the correct type within your data frame. If not, use it
 to your advantage to detect mistakes that might have been introduced during data
-entry (a letter in a column that should only contain numbers for instance).
+entry (for instance, a letter in a column that should only contain numbers).
 
 Learn more in this [RStudio tutorial](https://support.rstudio.com/hc/en-us/articles/218611977-Importing-Data-with-RStudio)
 
@@ -547,12 +564,12 @@ integer values.
 ```{r, eval=FALSE, purl=FALSE}
 str(surveys)
 ```
-We are going to use the `ymd()` function from the package **`lubridate`** (which belongs to the **`tidyverse`**; learn more [here](https://www.tidyverse.org/)). . **`lubridate`** gets installed as part as the **`tidyverse`** installation. When you load  the **`tidyverse`** (`library(tidyverse)`), the core packages (the packages used in most data analyses) get loaded. **`lubridate`** however does not belong to the core tidyverse, so you have to load it explicitly with `library(lubridate)`
+We are going to use the `ymd()` function from the package **`lubridate`** (which belongs to the **`tidyverse`**; learn more [here](https://www.tidyverse.org/)). **`lubridate`** gets installed as part as the **`tidyverse`** installation. When you load  the **`tidyverse`** (`library("tidyverse")`), the core packages (the packages used in most data analyses) get loaded. **`lubridate`** however does not belong to the core tidyverse, so you have to load it explicitly with `library(lubridate)`
 
 Start by loading the required package:
 
 ```{r load-package, message=FALSE, purl=FALSE}
-library(lubridate)
+library("lubridate")
 ```
 
 `ymd()` takes a vector representing year, month, and day, and converts it to a
@@ -608,9 +625,7 @@ We can use the functions we saw previously to deal with missing data to identify
 the rows in our data frame that are failing. If we combine them with what we learned about subsetting data frames earlier, we can extract the columns "year, "month", "day" from the records that have `NA` in our new column `date`. We will also use `head()` so we don't clutter the output:
 
 ```{r, results=TRUE, purl=FALSE}
-is_missing_date <- is.na(surveys$date)
-date_columns <- c("year", "month", "day")
-missing_dates <- surveys[is_missing_date,  date_columns]
+missing_dates <- surveys[is.na(surveys$date), c("year", "month", "day")]
 
 head(missing_dates)
 ```

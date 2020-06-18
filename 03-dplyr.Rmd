@@ -5,7 +5,7 @@ author: Data Carpentry contributors
 
 ```{r, echo=FALSE, purl=FALSE, message = FALSE}
 source("setup.R")
-surveys <- read.csv("data/portal_data_joined.csv")
+surveys <- read.csv("data_raw/portal_data_joined.csv")
 suppressWarnings(surveys$date <- lubridate::ymd(paste(surveys$year,
                                                       surveys$month,
                                                       surveys$day,
@@ -61,7 +61,9 @@ We have seen in our previous lesson that when building or importing a data frame
 
 This time we will use the **`tidyverse`** package to read the data and avoid having to set **`stringsAsFactors`** to **`FALSE`**
 
-To load the package type:
+If we haven't already done so, we can type `install.packages("tidyverse")` straight into the console. In fact, it's better to write this in the console than in our script for any package, as there's no need to re-install packages every time we run the script.
+
+Then, to load the package type:
 
 
 ```{r, message = FALSE, purl = FALSE}
@@ -85,7 +87,7 @@ memory. The database connections essentially remove that limitation in that you
 can connect to a database of many hundreds of GB, conduct queries on it directly, and pull
 back into R only what you need for analysis.
 
-The package **`tidyr`** addresses the common problem of wanting to reshape your data for plotting and use by different R functions. Sometimes we want data sets where we have one row per measurement. Sometimes we want a data frame where each measurement type has its own column, and rows are instead more aggregated groups - like plots or aquaria. Moving back and forth between these formats is nontrivial, and **`tidyr`** gives you tools for this and more sophisticated  data manipulation.
+The package **`tidyr`** addresses the common problem of wanting to reshape your data for plotting and use by different R functions. Sometimes we want data sets where we have one row per measurement. Sometimes we want a data frame where each measurement type has its own column, and rows are instead more aggregated groups - like plots or aquaria. Moving back and forth between these formats is non-trivial, and **`tidyr`** gives you tools for this and more sophisticated  data manipulation.
 
 To learn more about **`dplyr`** and **`tidyr`** after the workshop, you may want to check out this
 [handy data transformation with **`dplyr`** cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf) and this [one about **`tidyr`**](https://github.com/rstudio/cheatsheets/raw/master/data-import.pdf).
@@ -94,13 +96,23 @@ We'll read in our data using the `read_csv()` function, from the tidyverse packa
 
 
 ```{r, results = 'hide', purl = FALSE}
-surveys <- read_csv("data/portal_data_joined.csv")
+surveys <- read_csv("data_raw/portal_data_joined.csv")
+```
 
+You will see the message `Parsed with column specification`, followed by each column name and its data type.
+When you execute `read_csv` on a data file, it looks through the first 1000 rows of each column and
+guesses the data type for each column as it reads it into R. For example, in this dataset, `read_csv`
+reads `weight` as `col_double` (a numeric data type), and `species` as `col_character`. You have the
+option to specify the data type for a column manually by using the `col_types` argument in `read_csv`.
+
+```{r, results = 'hide', purl = FALSE}
 ## inspect the data
 str(surveys)
+```
 
+```{r, eval=FALSE, purl=FALSE}
 ## preview the data
-# View(surveys)
+View(surveys)
 ```
 
 Notice that the class of the data is now `tbl_df`
@@ -118,7 +130,7 @@ We're going to learn some of the most common **`dplyr`** functions:
 - `select()`: subset columns
 - `filter()`: subset rows on conditions
 - `mutate()`: create new columns by using information from other columns
-- `group_by()` and `summarize()`: create summary statisitcs on grouped data
+- `group_by()` and `summarize()`: create summary statistics on grouped data
 - `arrange()`: sort results
 - `count()`: count discrete values
 
@@ -142,7 +154,7 @@ select(surveys, -record_id, -species_id)
 This will select all the variables in `surveys` except `record_id`
 and `species_id`.
 
-To choose rows based on a specific criteria, use `filter()`:
+To choose rows based on a specific criterion, use `filter()`:
 
 ```{r, purl = FALSE}
 filter(surveys, year == 1995)
@@ -249,7 +261,7 @@ You can also create a second new column based on the first new column within the
 ```{r, purl = FALSE}
 surveys %>%
   mutate(weight_kg = weight / 1000,
-         weight_kg2 = weight_kg * 2)
+         weight_lb = weight_kg * 2.2)
 ```
 
 If this runs off your screen and you just want to see the first few rows, you
@@ -279,33 +291,33 @@ symbol negates the result, so we're asking for every row where weight *is not* a
 >
 >  Create a new data frame from the `surveys` data that meets the following
 >  criteria: contains only the `species_id` column and a new column called
->  `hindfoot_half` containing values that are half the `hindfoot_length` values.
->  In this `hindfoot_half` column, there are no `NA`s and all values are less
->  than 30.
+>  `hindfoot_cm` containing the `hindfoot_length` values converted to centimeters.
+>  In this `hindfoot_cm` column, there are no `NA`s and all values are less
+>  than 3.
 >
 >  **Hint**: think about how the commands should be ordered to produce this data frame!
 > 
 > ```{r, answer=TRUE, eval=FALSE, purl=FALSE}
-> surveys_hindfoot_half <- surveys %>%
+> surveys_hindfoot_cm <- surveys %>%
 >     filter(!is.na(hindfoot_length)) %>%
->     mutate(hindfoot_half = hindfoot_length / 2) %>%
->     filter(hindfoot_half < 30) %>%
->     select(species_id, hindfoot_half)
+>     mutate(hindfoot_cm = hindfoot_length / 10) %>%
+>     filter(hindfoot_cm < 3) %>%
+>     select(species_id, hindfoot_cm)
 > ```
  
 
 ```{r, eval=FALSE, purl=TRUE, echo=FALSE}
 ## Mutate Challenge:
 ##  Create a new data frame from the `surveys` data that meets the following
-##  criteria: contains only the `species_id` column and a column that
-##  contains values that are half the `hindfoot_length` values (e.g. a
-##  new column `hindfoot_half`). In this `hindfoot_half` column, there are
-##  no NA values and all values are < 30.
+##  criteria: contains only the `species_id` column and a new column called
+##  `hindfoot_cm` containing the `hindfoot_length` values converted to centimeters.
+##  In this `hindfoot_cm` column, there are no `NA`s and all values are less
+##  than 3.
 
 ##  Hint: think about how the commands should be ordered to produce this data frame!
 ```
 
-### Split-apply-combine data analysis and the summarize() function
+### Split-apply-combine data analysis and the `summarize()` function
 
 Many data analysis tasks can be approached using the *split-apply-combine*
 paradigm: split the data into groups, apply some analysis to each group, and
@@ -334,15 +346,19 @@ You can also group by multiple columns:
 ```{r, purl = FALSE}
 surveys %>%
   group_by(sex, species_id) %>%
-  summarize(mean_weight = mean(weight, na.rm = TRUE))
+  summarize(mean_weight = mean(weight, na.rm = TRUE)) %>% 
+  tail()
 ```
 
-When grouping both by `sex` and `species_id`, the last few rows are for animals
-that escaped before their sex and body weights could be determined. You may notice
-that the last column does not contain `NA` but `NaN` (which refers to "Not a
-Number"). To avoid this, we can remove the missing values for weight before we
-attempt to calculate the summary statistics on weight. Because the missing
-values are removed first, we can omit `na.rm = TRUE` when computing the mean:
+Here, we used `tail()` to look at the last six rows of our summary. Before, we had 
+used `head()` to look at the first six rows. We can see that the `sex` column contains 
+`NA` values because some animals had escaped before their sex and body weights 
+could be determined. The resulting `mean_weight` column does not contain `NA` but 
+`NaN` (which refers to "Not a Number") because `mean()` was called on a vector of 
+`NA` values while at the same time setting `na.rm = TRUE`. To avoid this, we can 
+remove the missing values for weight before we attempt to calculate the summary 
+statistics on weight. Because the missing values are removed first, we can omit 
+`na.rm = TRUE` when computing the mean:
 
 ```{r, purl = FALSE}
 surveys %>%
@@ -504,7 +520,7 @@ the *albigula* species that are not specified for its sex (i.e. `NA`).
 ### Reshaping with gather and spread
 
 In the [spreadsheet
-lesson](http://www.datacarpentry.org/spreadsheet-ecology-lesson/01-format-data/),
+lesson](https://datacarpentry.org/spreadsheet-ecology-lesson/01-format-data/),
 we discussed how to structure our data leading to the four rules defining a tidy
 dataset:
 
@@ -515,19 +531,19 @@ dataset:
 
 Here we examine the fourth rule: Each type of observational unit forms a table.
 
-In `surveys` , the rows of `surveys` contain the values of variables associated
-with each record (the unit), values such the weight or sex of each animal 
+In `surveys`, the rows of `surveys` contain the values of variables associated
+with each record (the unit), values such as the weight or sex of each animal 
 associated with each record. What if instead of comparing records, we 
-wanted to compare the different mean weight of each species between plots? (Ignoring `plot_type` for simplicity).
+wanted to compare the different mean weight of each genus between plots? (Ignoring `plot_type` for simplicity).
 
 We'd need to create a new table where each row (the unit) is comprised of values of variables associated with each plot. In practical terms this means the values
-of the species in `genus` would become the names of column variables and the cells would contain the values of the mean weight observed on each plot.
+in `genus` would become the names of column variables and the cells would contain the values of the mean weight observed on each plot.
 
 Having created a new table, it is therefore straightforward to explore the 
-relationship between the weight of different species within, and between, the
+relationship between the weight of different genera within, and between, the
 plots. The key point here is that we are still following a tidy data structure,
 but we have **reshaped** the data according to the observations of interest:
-average species weight per plot instead of recordings per date.
+average genus weight per plot instead of recordings per date.
 
 The opposite transformation would be to transform column names into values of
 a variable.
@@ -547,15 +563,14 @@ Further arguments include `fill` which, if set, fills in missing values with
 the value provided.
 
 Let's use `spread()` to transform surveys to find the mean weight of each 
-species in each plot over the entire survey period. We use `filter()`,
+genus in each plot over the entire survey period. We use `filter()`,
 `group_by()` and `summarise()` to filter our observations and variables of 
-interest, and create a new variable for the `mean_weight`. We use the pipe as 
-before too.
+interest, and create a new variable for the `mean_weight`.
 
 ```{r, purl=FALSE}
 surveys_gw <- surveys %>%
   filter(!is.na(weight)) %>%
-  group_by(genus, plot_id) %>%
+  group_by(plot_id, genus) %>%
   summarize(mean_weight = mean(weight))
 
 str(surveys_gw)
@@ -564,7 +579,7 @@ str(surveys_gw)
 This yields `surveys_gw` where the observations for each plot are spread across
 multiple rows, 196 observations of 3 variables. 
 Using `spread()` to key on `genus` with values from `mean_weight` this becomes
-24 observations of 11 variables, one row for each plot. We again use pipes:
+24 observations of 11 variables, one row for each plot.
 
 ```{r, purl=FALSE}
 surveys_spread <- surveys_gw %>%
@@ -575,7 +590,7 @@ str(surveys_spread)
 
 ![](img/spread_data_R.png)
 
-We could now plot comparisons between the weight of species in different plots, 
+We could now plot comparisons between the weight of genera in different plots, 
 although we may wish to fill in the missing values first.
 
 ```{r, purl=FALSE}
@@ -604,11 +619,11 @@ associated with the key.
 
 To recreate `surveys_gw` from `surveys_spread` we would create a key called
 `genus` and value called `mean_weight` and use all columns except `plot_id` for
-the key variable. Here we drop `plot_id` column with a minus sign.
+the key variable. Here we exclude `plot_id` from being `gather()`ed.
 
 ```{r, purl=FALSE}
 surveys_gather <- surveys_spread %>%
-  gather(key = genus, value = mean_weight, -plot_id)
+  gather(key = "genus", value = "mean_weight", -plot_id)
 
 str(surveys_gather)
 ```
@@ -621,12 +636,12 @@ replicate has the same composition.
 
 We could also have used a specification for what columns to include. This can be
 useful if you have a large number of identifying columns, and it's easier to
-specify what to gather than what to leave alone. And if the columns are in a
-row, we don't even need to list them all out - just use the `:` operator!
+specify what to gather than what to leave alone. And if the columns are directly
+adjacent, we don't even need to list them all out - just use the `:` operator!
 
 ```{r, purl=FALSE}
 surveys_spread %>%
-  gather(key = genus, value = mean_weight, Baiomys:Spermophilus) %>%
+  gather(key = "genus", value = "mean_weight", Baiomys:Spermophilus) %>%
   head()
 ```
 
@@ -640,20 +655,20 @@ surveys_spread %>%
 >   `?n_distinct` for more.
 > 
 > ```{r, answer=TRUE, purl=FALSE}
-> rich_time <- surveys %>%
+> surveys_spread_genera <- surveys %>%
 >   group_by(plot_id, year) %>%
 >   summarize(n_genera = n_distinct(genus)) %>%
 >   spread(year, n_genera)
 > 
-> head(rich_time)
+> head(surveys_spread_genera)
 > ```
 >
 > 2. Now take that data frame and `gather()` it again, so each row is a unique
 >    `plot_id` by `year` combination.
 >
 > ```{r, answer=TRUE, purl=FALSE}
-> rich_time %>%
->   gather(year, n_genera, -plot_id)
+> surveys_spread_genera %>%
+>   gather("year", "n_genera", -plot_id)
 > ```
 >
 > 3. The `surveys` data set has
@@ -667,7 +682,7 @@ surveys_spread %>%
 >
 > ```{r, answer=TRUE, purl=FALSE}
 > surveys_long <- surveys %>%
->   gather(measurement, value, hindfoot_length, weight)
+>   gather("measurement", "value", hindfoot_length, weight)
 > ```
 >
 > 4. With this new data set, calculate the average of each
@@ -686,14 +701,13 @@ surveys_spread %>%
 ```{r, eval=FALSE, purl=TRUE, echo=FALSE}
 ## Reshaping challenges
 
-## 1. Make a wide data frame with `year` as columns, `plot_id`` as rows, and where the values are the number of genera per plot. You will need to summarize before reshaping, and use the function `n_distinct` to get the number of unique genera within a chunk of data. It's a powerful function! See `?n_distinct` for more.
+## 1. Spread the `surveys` data frame with `year` as columns, `plot_id` as rows, and the number of genera per plot as the values. You will need to summarize before reshaping, and use the function `n_distinct()` to get the number of unique genera within a particular chunk of data. It's a powerful function! See `?n_distinct` for more.
 
-## 2. Now take that data frame, and make it long again, so each row is a unique `plot_id` `year` combination
+## 2. Now take that data frame and `gather()` it again, so each row is a unique `plot_id` by `year` combination.
 
-## 3. The `surveys` data set is not truly wide or long because there are two columns of measurement - `hindfoot_length` and `weight`.  This makes it difficult to do things like look at the relationship between mean values of each measurement per year in different plot types. Let's walk through a common solution for this type of problem. First, use `gather` to create a truly long dataset where we have a key column called `measurement` and a `value` column that takes on the value of either `hindfoot_length` or `weight`. Hint: You'll need to specify which columns are being gathered.
+## 3. The `surveys` data set has two measurement columns: `hindfoot_length` and `weight`. This makes it difficult to do things like look at the relationship between mean values of each measurement per year in different plot types. Let's walk through a common solution for this type of problem. First, use `gather()` to create a dataset where we have a key column called `measurement` and a `value` column that takes on the value of either `hindfoot_length` or `weight`. *Hint*: You'll need to specify which columns are being gathered.
 
-## 4. With this new truly long data set, calculate the average of each `measurement` in each `year` for each different `plot_type`. Then `spread` them into a wide data set with a column for `hindfoot_length` and `weight`. Hint: Remember, you only need to specify the key and value columns for `spread`.
-
+## 4. With this new data set, calculate the average of each `measurement` in each `year` for each different `plot_type`. Then `spread()` them into a data set with a column for `hindfoot_length` and `weight`. *Hint*: You only need to specify the key and value columns for `spread()`.
 ```
 
 # Exporting data
@@ -705,12 +719,12 @@ them with your collaborators or for archival.
 Similar to the `read_csv()` function used for reading CSV files into R, there is
 a `write_csv()` function that generates CSV files from data frames.
 
-Before using `write_csv()`, we are going to create a new folder, `data_output`,
+Before using `write_csv()`, we are going to create a new folder, `data`,
 in our working directory that will store this generated dataset. We don't want
 to write generated datasets in the same directory as our raw data. It's good
-practice to keep them separate. The `data` folder should only contain the raw,
+practice to keep them separate. The `data_raw` folder should only contain the raw,
 unaltered data, and should be left alone to make sure we don't delete or modify
-it. In contrast, our script will generate the contents of the `data_output`
+it. In contrast, our script will generate the contents of the `data`
 directory, so even if the files it contains are deleted, we can always
 re-generate them.
 
@@ -771,16 +785,16 @@ To make sure that everyone has the same data set, check that `surveys_complete`
 has `r nrow(surveys_complete)` rows and `r ncol(surveys_complete)` columns by
 typing `dim(surveys_complete)`.
 
-Now that our data set is ready, we can save it as a CSV file in our `data_output`
+Now that our data set is ready, we can save it as a CSV file in our `data`
 folder.
 
 ```{r, purl=FALSE, eval=FALSE}
-write_csv(surveys_complete, path = "data_output/surveys_complete.csv")
+write_csv(surveys_complete, path = "data/surveys_complete.csv")
 ```
 
 ```{r, purl=FALSE, eval=TRUE, echo=FALSE}
-if (!dir.exists("data_output")) dir.create("data_output")
-write_csv(surveys_complete, path = "data_output/surveys_complete.csv")
+if (!dir.exists("data")) dir.create("data")
+write_csv(surveys_complete, path = "data/surveys_complete.csv")
 ```
 
 

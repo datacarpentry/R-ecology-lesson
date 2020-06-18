@@ -4,11 +4,12 @@ get_stage("before_install") %>%
   add_code_step(update.packages(ask = FALSE))
 
 get_stage("install") %>%
-  add_code_step(remotes::install_deps(dependencies = TRUE))
+  add_code_step(remotes::install_deps(dependencies = TRUE)) %>%
+  add_step(step_install_github("fmichonneau/checker"))
 
 get_stage("deploy") %>%
-    add_step(build_lesson()) %>%
-    add_step(check_links())
+  add_step(build_lesson()) %>%
+  add_step(check_links())
 
 if (Sys.getenv("id_rsa") != "") {
   # pkgdown documentation can be built optionally. Other example criteria:
