@@ -467,11 +467,12 @@ You can combine multiple tests using `&` (both conditions are true, AND) or `|`
 (at least one of the conditions is true, OR):
 
 ```{r, results = 'show', purl = FALSE}
-weight_g[weight_g < 30 | weight_g > 50]
+weight_g[weight_g > 30 & weight_g < 50]
+weight_g[weight_g <= 30 | weight_g == 55]
 weight_g[weight_g >= 30 & weight_g == 21]
 ```
 
-Here, `<` stands for "less than", `>` for "greater than", `>=` for "greater than
+Here, `>` for "greater than", `<` stands for "less than", `<=` for "less than
 or equal to", and `==` for "equal to". The double equal sign `==` is a test for
 numerical equality between the left and right hand sides, and should not be
 confused with the single `=` sign, which performs variable assignment (similar
