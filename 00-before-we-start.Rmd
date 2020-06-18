@@ -267,7 +267,9 @@ the <kbd>`Ctrl`</kbd> + <kbd>`Enter`</kbd> shortcut (on Macs, <kbd>`Cmd`</kbd> +
 <kbd>`Return`</kbd> will work, too). The command on the current line in the
 script (indicated by the cursor) or all of the commands in the currently
 selected text will be sent to the console and executed when you press
-<kbd>`Ctrl`</kbd> + <kbd>`Enter`</kbd>. You can find other keyboard shortcuts in this [RStudio cheatsheet about the RStudio IDE](https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf).
+<kbd>`Ctrl`</kbd> + <kbd>`Enter`</kbd>. You can find other keyboard shortcuts in
+this
+[RStudio cheatsheet about the RStudio IDE](https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf).
 
 At some point in your analysis you may want to check the content of a variable
 or the structure of an object, without necessarily keeping a record of it in
@@ -387,12 +389,11 @@ small (3 columns, 5 rows) generic one. For more information on how to write a
 reproducible example see [this article by Hadley Wickham](http://adv-r.had.co.nz/Reproducibility.html).
 
 To share an object with someone else, if it's relatively small, you can use the
-function `dput()`. It will output an ASCII text representation that can be used 
+function `dput()`. It will output R code that can be used 
 to recreate the exact same object as the one in memory:
 
 ```{r, results='show', purl=FALSE}
-dput(head(iris)) # iris is an example data frame that comes with R and head() is a 
-function that returns the first part of the data frame
+dput(head(iris)) # iris is an example data frame that comes with R and head() is a function that returns the first part of the data frame
 ```
 
 If the object is larger, provide either the raw file (i.e., your CSV file) with
@@ -459,9 +460,12 @@ sessionInfo()
   useful guidelines
 * [This blog post by Jon Skeet](http://codeblog.jonskeet.uk/2010/08/29/writing-the-perfect-question/)
   has quite comprehensive advice on how to ask programming questions.
-* The [reprex](https://cran.rstudio.com/web/packages/reprex/) package is very helpful to create 
-reproducible examples when asking for help. The [rOpenSci community call "How to ask questions so they get answered"], [Github link](https://github.com/ropensci/commcalls/issues/14) and [video recording](https://vimeo.com/208749032) 
-includes a presentation of the reprex package and of its philosophy.
+* The [reprex](https://cran.r-project.org/package=reprex) package is very helpful to create
+  reproducible examples when asking for help. The
+  rOpenSci community call "How to ask questions so they get answered",
+  ([Github link](https://github.com/ropensci/commcalls/issues/14) and
+  [video recording](https://vimeo.com/208749032))
+  includes a presentation of the reprex package and of its philosophy.
 
 ```{r, child="_page_built_on.Rmd"}
 ```
