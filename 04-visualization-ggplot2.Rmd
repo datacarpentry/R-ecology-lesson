@@ -450,27 +450,10 @@ ggplot(data = yearly_sex_counts,
 
 
 **Note:** 
-In earlier versions of `ggplot2` you need to use an interface using formulas 
-to specify how plots are faceted (and this is still supported in new versions). 
-The equivalent syntax is:
+`ggplot2` before version 3.0.0 used formulas to specify how plots are faceted.
+If you encounter `facet_grid`/`wrap(...)` code containing `~`, please read
+<https://ggplot2.tidyverse.org/news/#tidy-evaluation>.
 
-```r
-# facet wrap
-facet_wrap(vars(genus))    # new
-facet_wrap(~ genus)        # old
-
-# grid on both rows and columns
-facet_grid(rows = vars(genus), cols = vars(sex))   # new
-facet_grid(genus ~ sex)                            # old
-
-# grid on rows only
-facet_grid(rows = vars(genus))   # new
-facet_grid(genus ~ .)            # old
-
-# grid on columns only
-facet_grid(cols = vars(genus))   # new
-facet_grid(. ~ genus)            # old
-```
 
 ## **`ggplot2`** themes
 
