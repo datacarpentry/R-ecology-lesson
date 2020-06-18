@@ -227,9 +227,16 @@ ggplot(data = surveys_complete, mapping = aes(x = weight, y = hindfoot_length)) 
 
 > ### Challenge
 >
-> Use what you just learned to create a scatter plot of `weight` over 
-`species_id` with the plot types showing in different colors.
+> Use what you just learned to create a scatter plot of `weight` over
+> `species_id` with the plot types showing in different colors.
 > Is this a good way to show this type of data?
+>
+> ```{r scatter-challenge-answer, answer=TRUE, purl=FALSE}
+> ggplot(data = surveys_complete, 
+>        mapping = aes(x = species_id, y = weight)) +
+>    geom_point(aes(color = plot_type))
+> ```
+
 
 ```{r scatter-challenge, echo = FALSE, eval = FALSE, purl = TRUE}
 ### Challenge with scatter plot:
@@ -238,20 +245,6 @@ ggplot(data = surveys_complete, mapping = aes(x = weight, y = hindfoot_length)) 
 ## over `species_id` with the plot types showing in different colors.
 ## Is this a good way to show this type of data?
 ```
-
-
-
-
-> ### Challenge
->
-> Use what you just learned to create a scatter plot of `weight` over
-> `species_id` with the plot types shown in different colors. Is this a good
-> way to show this type of data?
-> ```{r scatter-challenge, answer=TRUE, purl=FALSE}
-> ggplot(data = surveys_complete, mapping = aes(x = species_id, y = weight)) +
->    geom_point(aes(color = plot_type))
-> ```
-
 
 ## Boxplot
 
@@ -349,7 +342,7 @@ together. We need to tell ggplot to draw a line for each genus by modifying
 the aesthetic function to include `group = genus`:
 
 ```{r time-series-by-species, purl = FALSE}
-ggplot(data = yearly_counts, aes(x = year, y = n, group = species_id)) +
+ggplot(data = yearly_counts, aes(x = year, y = n, group = genus)) +
     geom_line()
 ```
 
@@ -357,7 +350,7 @@ We will be able to distinguish species in the plot if we add colors (using
 `color` also automatically groups the data):
 
 ```{r time-series-with-colors, purl = FALSE}
-ggplot(data = yearly_counts, aes(x = year, y = n, color = species_id)) +
+ggplot(data = yearly_counts, aes(x = year, y = n, color = genus)) +
     geom_line()
 ```
 
@@ -406,14 +399,14 @@ measured. To do that we need to make counts in the data frame grouped by `year`,
 
 ```{r, purl = FALSE}
  yearly_sex_counts <- surveys_complete %>%
-                      group_by(year, species_id, sex) %>%
+                      group_by(year, genus, sex) %>%
                       tally()
 ```
 
 We can now make the faceted plot by splitting further by sex using `color` 
 (within a single plot):
 
-```{r facet-by-species-and-sex, purl=FALSE}
+```{r facet-by-genus-and-sex, purl=FALSE}
 ggplot(data = yearly_sex_counts, mapping = aes(x = year, y = n, color = sex)) +
   geom_line() +
   facet_wrap(facets =  vars(genus))
@@ -620,7 +613,7 @@ spp_weight_boxplot <- ggplot(data = surveys_complete,
   labs()
 
 spp_count_plot <- ggplot(data = yearly_counts, 
-                         aes(x = year, y = n, color = species_id)) +
+                         aes(x = year, y = n, color = genus)) +
   geom_line() + 
   labs(x = "Year", y = "Abundance")
 
