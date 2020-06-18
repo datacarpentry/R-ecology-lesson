@@ -4,6 +4,7 @@ get_stage("before_install") %>%
   add_code_step(update.packages(ask = FALSE))
 
 get_stage("install") %>%
+  add_code_step(system("python -m pip install update-copyright")) %>%
   add_code_step(remotes::install_deps(dependencies = TRUE)) %>%
   add_step(step_install_github("fmichonneau/checker"))
 
@@ -22,8 +23,8 @@ if (Sys.getenv("id_rsa") != "") {
 
     ## if there is a tag associated with the push or we are in master, the
     ## lesson gets deployed on gh-pages, and rendered by GitHub
-    if (ci()$get_branch() == "master" || ci()$is_tag()) {
-        get_stage("deploy") %>%
+  if (ci()$get_branch() == "main" || ci()$is_tag()) {
+    get_stage("deploy") %>%
             add_step(step_push_deploy(path = "_site", branch = "gh-pages"))
     }
 
