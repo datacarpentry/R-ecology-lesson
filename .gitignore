@@ -16,6 +16,11 @@
 
 # vim backup files
 *.swp
-/data/
-/portalR.db
-data_output/
+
+data*/
+portal-database.sqlite
+.secret/
+_site/
+
+# output from linkchecker
+link_res.csv

@@ -49,7 +49,7 @@
 
 ### Presentation of the survey data
 ## download.file("https://ndownloader.figshare.com/files/2292169",
-##               "data/portal_data_joined.csv")
+##               "data_raw/portal_data_joined.csv")
 
 ## Challenge
 ## Based on the output of `str(surveys)`, can you answer the following questions?
@@ -83,8 +83,8 @@
 ### Factors
 sex <- factor(c("male", "female", "female", "male"))
 f <- factor(c(1990, 1983, 1977, 1998, 1990))
-as.numeric(f)               # wrong! and there is no warning...
-as.numeric(as.character(f)) # works...
+as.numeric(f)               # Wrong! And there is no warning...
+as.numeric(as.character(f)) # Works...
 as.numeric(levels(f))[f]    # The recommended way.
 ## bar plot of the number of females and males captured during the experiment:
 plot(surveys$sex)
@@ -156,27 +156,28 @@ plot(surveys$sex)
 ## ##  Start by removing observations for which the `species_id`, `weight`,
 ## ##  `hindfoot_length`, or `sex` data are missing:
 ## surveys_complete <- surveys %>%
-##   filter(species_id != "",        # remove missing species_id
-##   !is.na(weight),                 # remove missing weight
-## 		  !is.na(hindfoot_length),        # remove missing hindfoot_length
-## 		  sex != "")                      # remove missing sex
+##     filter(species_id != "",        # remove missing species_id
+##            !is.na(weight),                 # remove missing weight
+##            !is.na(hindfoot_length),        # remove missing hindfoot_length
+##            sex != "")                      # remove missing sex
 ## 
 ## ##  Now remove rare species in two steps. First, make a list of species which
 ## ##  appear at least 50 times in our dataset:
 ## species_counts <- surveys_complete %>%
-##               group_by(species_id) %>%
-##               tally %>%
-## 				          filter(n >= 50) %>%
-## 				          select(species_id)
+##     group_by(species_id) %>%
+##     tally %>%
+##     filter(n >= 50) %>%
+##     select(species_id)
 ## 
 ## ##  Second, keep only those species:
 ## surveys_complete <- surveys_complete %>%
-##              filter(species_id %in% species_counts$species_id)
-## 
+##     filter(species_id %in% species_counts$species_id)
 
 
 ### Data Visualization with ggplot2
 ## install.packages("hexbin")
+## library(hexbin)
+## 
 ## surveys_plot +
 ##  geom_hex()
 ## ### Challenge with hexbin
@@ -230,11 +231,11 @@ plot(surveys$sex)
 
 
 ## SQL databases and R
-## install.packages("dbplyr")
-## library(dbplyr)
+## install.packages(c("dbplyr", "RSQLite"))
 library(dplyr)
-mammals <- src_sqlite("data/portal_mammals.sqlite")
-mammals
+library(dbplyr)
+mammals <- DBI::dbConnect(RSQLite::SQLite(), "data_raw/portal_mammals.sqlite")
+src_dbi(mammals)
 tbl(mammals, sql("SELECT year, species_id, plot_id FROM surveys"))
 surveys <- tbl(mammals, "surveys")
 surveys %>%
@@ -292,10 +293,10 @@ genus_counts <- left_join(surveys, plots) %>%
   group_by(plot_type, genus) %>%
   tally %>%
   collect()
-species <- read.csv("data/species.csv")
-surveys <- read.csv("data/surveys.csv")
-plots <- read.csv("data/plots.csv")
-my_db_file <- "portal-database.sqlite"
+species <- read.csv("data_raw/species.csv")
+surveys <- read.csv("data_raw/surveys.csv")
+plots <- read.csv("data_raw/plots.csv")
+my_db_file <- "data/portal-database-output.sqlite"
 my_db <- src_sqlite(my_db_file, create = TRUE)
 my_db
 ### Challenge
