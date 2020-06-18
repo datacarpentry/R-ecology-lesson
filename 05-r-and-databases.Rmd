@@ -22,6 +22,9 @@ if (file.exists("portal-database.sqlite")) file.remove("portal-database.sqlite")
 >
 > * Access a database from R.
 > * Run SQL queries in R using **`RSQLite`** and **`dplyr`**.
+> * Describe the lazy behavior of dplyr on data stored in a database outside of R. 
+> * Prototype queries and retrieve all final results. 
+> * Create complex queries across one or multiple database tables.
 > * Create an SQLite database from existing .csv files.
 
 ------------
@@ -41,13 +44,16 @@ databases. You can query them without having to download the data first.
 R can connect to almost any existing database type. Most common database types
 have R packages that allow you to connect to them (e.g., **`RSQLite`**, RMySQL,
 etc). Furthermore,
-the [**`dplyr`**](https://cran.r-project.org/package=dplyr) package
-you used in the previous episode, in conjunction with [**`dbplyr`**](https://cran.r-project.org/package=dbplyr) supports connecting to the widely-used open
+the [**`dplyr`**](https://cran.r-project.org/web/packages/dplyr/index.html) package
+you used in the previous chapter, in conjunction with [**`dbplyr`**](https://cran.r-project.org/package=dbplyr) 
+supports connecting to the widely-used open
 source databases [sqlite](https://sqlite.org/), [mysql](https://www.mysql.com/)
 and [postgresql](https://www.postgresql.org/), as well as
 Google’s [bigquery](https://cloud.google.com/bigquery/), and it can also be
-extended to other database types (a [vignette](https://cran.r-project.org/web/packages/dbplyr/vignettes/new-backend.html) in the **`dplyr`** package explains how
-to do it). RStudio has created [a website](https://db.rstudio.com/) that provides documentation and best practices to work on database interfaces.
+extended to other database types (a [vignette](https://cran.r-project.org/web/packages/dbplyr/vignettes/new-backend.html) 
+in the **`dplyr`** package explains how to do it). RStudio has created 
+[a website](http://db.rstudio.com/) that provides documentation and best practices 
+to work on database interfaces.
 
 Interfacing with databases using **`dplyr`** focuses on retrieving and analyzing
 datasets by generating `SELECT` SQL statements, but it doesn't modify the
@@ -85,13 +91,17 @@ library("dbplyr")
 mammals <- DBI::dbConnect(RSQLite::SQLite(), "data_raw/portal_mammals.sqlite")
 ```
 
-This command uses 2 packages that helps **`dbplyr`** and **`dplyr`** talk to the SQLite database. **`DBI`** is not something that you'll use directly as a user. It allows R to send commands to databases irrespective of the database management system used. The **`RSQLite`** package allows R to interface with SQLite databases.
+This command uses 2 packages that helps **`dbplyr`** and **`dplyr`** talk to the 
+SQLite database. **`DBI`** is not something that you'll use directly as a user. 
+It allows R to send commands to databases irrespective of the database management 
+system used. The **`RSQLite`** package allows R to interface with SQLite databases.
 
 This command does not load the data into the R session (as the
 `read_csv()` function did). Instead, it merely instructs R to connect to
 the `SQLite` database contained in the `portal_mammals.sqlite` file.
 
-Using a similar approach, you could connect to many other database management systems that are supported by R including MySQL, PostgreSQL, BigQuery, etc.
+Using a similar approach, you could connect to many other database management 
+systems that are supported by R including MySQL, PostgreSQL, BigQuery, etc.
 
 Let's take a closer look at the `mammals` database we just connected to:
 
@@ -546,6 +556,10 @@ from flat files!
 **Note:** In this example, we first loaded all of the data into the R session by
 reading the three `csv` files. Because all the data has to flow through R,
 this is not suitable for very large datasets.
+
+**Note:** Finally, to close the connection to the mammals database you may use 
+`DBI::dbDisconnect(mammals)`; this discards all pending work and frees resources, 
+e.g. memory.
 
 
 ```{r, child="_page_built_on.Rmd"}

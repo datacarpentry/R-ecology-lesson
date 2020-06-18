@@ -15,7 +15,7 @@ source("setup.R")
 >
 > * Define the following terms as they relate to R: object, assign, call,
 >   function, arguments, options.
-> * Assign values to objects in R.
+> * Create objects and assign values to them  in R.
 > * Learn how to _name_ objects
 > * Use comments to inform script.
 > * Solve simple arithmetic operations in R.
@@ -283,7 +283,7 @@ length(animals)
 ```
 
 An important feature of a vector, is that all of the elements are the same type of data.
-The function `class()` indicates the class (the type of element) of an object:
+The function `class()` indicates what kind of object you are working with:
 
 ```{r, purl = FALSE}
 class(weight_g)
