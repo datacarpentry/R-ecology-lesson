@@ -128,7 +128,8 @@ workshop.
 ![RStudio interface screenshot. Clockwise from top left: Source, Environment/History, Files/Plots/Packages/Help/Viewer, Console.](img/rstudio-screenshot.png)
 
 RStudio is divided into 4 "Panes": the **Source** for your scripts and documents
-(top-left, in the default layout), your **Environment/History** (top-right),
+(top-left, in the default layout), your **Environment/History** (top-right) which shows 
+all the objects in your working space (Environment) and your command history (History),
 your **Files/Plots/Packages/Help/Viewer** (bottom-right), and 
 the R **Console** (bottom-left). The placement of these
 panes and their content can be customized (see menu, Tools -> Global Options ->
@@ -432,12 +433,23 @@ sessionInfo()
 
 ### More resources
 
+* The [reprex](https://cran.r-project.org/package=reprex) package is very helpful to create
+  reproducible examples when asking for help. The
+  rOpenSci community call "How to ask questions so they get answered",
+  ([Github link](https://github.com/ropensci/commcalls/issues/14) and
+  [video recording](https://vimeo.com/208749032))
+  includes a presentation of the reprex package and of its philosophy.
+* The [Posting Guide](http://www.r-project.org/posting-guide.html) for the R
+  mailing lists.
+* [How to ask for R help](http://blog.revolutionanalytics.com/2014/01/how-to-ask-for-r-help.html)
+  useful guidelines
+* [This blog post by Jon Skeet](http://codeblog.jonskeet.uk/2010/08/29/writing-the-perfect-question/)
+  has quite comprehensive advice on how to ask programming questions.
 * The [Introduction to R](https://cran.r-project.org/doc/manuals/R-intro.pdf) can
   also be dense for people with little programming experience but it is a good
   place to understand the underpinnings of the R language.
 * The [R FAQ](https://cran.r-project.org/doc/FAQ/R-FAQ.html) is dense and technical
   but it is full of useful information.
-* The [reprex](https://cran.rstudio.com/web/packages/reprex/) package is very helpful to create reproducible examples when asking for help. Its usage and philosophy are explained in [rOpenSci's community call "How to ask questions so they get answered"](https://ropensci.org/commcalls/2017-03-07/).
 
 ```{r, child="_page_built_on.Rmd"}
 ```
