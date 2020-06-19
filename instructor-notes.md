@@ -171,7 +171,7 @@ to make R work without their help.
 If learners are having issues with one package, they may have issues with 
 another. Its often easier to make sure they have all the needed packages 
 installed at one time, rather then deal with these issues over and over.
-[Here is a list of all necessary packages for these lessons.](https://github.com/datacarpentry/R-ecology-lesson/blob/master/needed_packages.R)
+[Here is a list of all necessary packages for these lessons.](https://github.com/datacarpentry/R-ecology-lesson/blob/main/needed_packages.R)
 
 ## Other Resources
 
