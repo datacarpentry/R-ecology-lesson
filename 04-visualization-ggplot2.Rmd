@@ -399,8 +399,7 @@ measured. To do that we need to make counts in the data frame grouped by `year`,
 
 ```{r, purl = FALSE}
  yearly_sex_counts <- surveys_complete %>%
-                      group_by(year, genus, sex) %>%
-                      tally()
+                      count(year, genus, sex)
 ```
 
 We can now make the faceted plot by splitting further by sex using `color` 
