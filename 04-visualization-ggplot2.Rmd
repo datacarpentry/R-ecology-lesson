@@ -399,8 +399,7 @@ measured. To do that we need to make counts in the data frame grouped by `year`,
 
 ```{r, purl = FALSE}
  yearly_sex_counts <- surveys_complete %>%
-                      group_by(year, genus, sex) %>%
-                      tally()
+                      count(year, genus, sex)
 ```
 
 We can now make the faceted plot by splitting further by sex using `color` 
@@ -412,9 +411,7 @@ ggplot(data = yearly_sex_counts, mapping = aes(x = year, y = n, color = sex)) +
   facet_wrap(facets =  vars(genus))
 ```
 
-Usually plots with white background look more readable when printed.  We can set
-the background to white using the function `theme_bw()`. Additionally, you can
-remove the grid:
+We can also facet both by sex and genus: 
 
 ```{r average-weight-time-facet-both, purl=FALSE, fig.width=9.5}
 ggplot(data = yearly_sex_counts, 
