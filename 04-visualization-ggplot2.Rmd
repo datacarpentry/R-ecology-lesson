@@ -620,7 +620,9 @@ arrangements, there are tools for [constucting more complex layouts](https://cra
 After creating your plot, you can save it to a file in your favorite format. The
 Export tab in the **Plot** pane in RStudio will save your plots at low 
 resolution, which will not be accepted by many journals and will not scale well 
-for posters. 
+for posters. The [**`ggplot2`** extensions website](https://exts.ggplot2.tidyverse.org/) provides a list
+of packages that extend the capabilities of **`ggplot2`**, including additional
+themes.
 
 Instead, use the `ggsave()` function, which allows you easily change the 
 dimension and resolution of your plot by adjusting the appropriate arguments 
