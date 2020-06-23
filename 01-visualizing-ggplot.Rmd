@@ -258,7 +258,7 @@ point to create a new hand-crafted theme.
 The
 [ggthemes](https://cran.r-project.org/web/packages/ggthemes/vignettes/ggthemes.html)
 package provides a wide variety of options (including an Excel 2003 theme). The
-[**`ggplot2`** extensions website](https://www.ggplot2-exts.org) provides a list
+[**`ggplot2`** extensions website](https://exts.ggplot2.tidyverse.org/) provides a list
 of packages that extend the capabilities of **`ggplot2`**, including additional
 themes.
 
