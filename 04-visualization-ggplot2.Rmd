@@ -473,7 +473,7 @@ point to create a new hand-crafted theme.
 The
 [ggthemes](https://jrnold.github.io/ggthemes/reference/index.html) package
 provides a wide variety of options.
-The [**`ggplot2`** extensions website](https://www.ggplot2-exts.org) provides a list
+The [**`ggplot2`** extensions website](https://exts.ggplot2.tidyverse.org) provides a list
 of packages that extend the capabilities of **`ggplot2`**, including additional
 themes.
 
