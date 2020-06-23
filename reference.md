@@ -16,7 +16,7 @@ Cheat sheet of functions used in the lessons
 ## Lesson 2 -- Starting with data
 
   * `download.file() `          # download files from the internet to your computer
-  * `read.csv() `               # load CSV file into R memory
+  * `read_csv() `               # load CSV file into R memory
   * `head() `                   # check the top (the first 6 lines) of an object including data frames
   * `factor() `                 # create factors
   * `levels() `                 # check levels of a factor
@@ -48,7 +48,7 @@ Cheat sheet of functions used in the lessons
   * `group_by() `        # split the data into groups, apply some analysis to each group, and then combine the results.
   * `summarize() `       # collapses each group into a single-row summary of that group
   * `tally()`            # counts the total number of records for each category.
-  * `write.csv() `       # save CSV file
+  * `write_csv() `       # save CSV file
 
 ## Lesson 5 -- Data visualization with ggplot2
 
