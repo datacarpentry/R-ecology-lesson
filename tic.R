@@ -7,7 +7,8 @@ get_stage("before_install") %>%
 get_stage("install") %>%
   add_code_step(system("python -m pip install update-copyright")) %>%
   add_code_step(remotes::install_deps(dependencies = TRUE)) %>%
-  add_step(step_install_github("fmichonneau/checker"))
+  add_step(step_install_github("fmichonneau/checker")) %>%
+  add_step(step_install_github("fmichonneau/ratdat"))
 
 get_stage("deploy") %>%
   add_step(build_lesson()) %>%
