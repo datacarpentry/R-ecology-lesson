@@ -134,13 +134,14 @@ What do you think is the current content of the object `weight_lb`? 126.5 or 220
 ### Saving your code
 
 Up to now, your code has been in the console. This is useful for quick queries
-but not so helpful if you want to revist your work for any reason.
+but not so helpful if you want to revisit your work for any reason.
 A script can be opened by pressing the <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + 
 <kbd>N</kbd>. 
-It it wise to save your script file immediately. To do this press <kbd>Shift</kbd> + 
-<kbd>S</kbd>. This will open a dialogue box where you can decide where to save 
-your script file, and what to name it. The .R file extension is added automatically
-and ensures your file will open with R Studio.
+It it wise to save your script file immediately. To do this press 
+<kbd>Shift</kbd> + <kbd>S</kbd>. This will open a dialogue box where you 
+can decide where to save your script file, and what to name it.
+The `.R` file extension is added automatically and ensures your file
+will open with RStudio.
 
 Don't forget to save your work periodically by pressing <kbd>Shift</kbd> + 
 <kbd>S</kbd>.
