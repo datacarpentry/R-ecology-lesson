@@ -116,6 +116,7 @@ The two main goals for this lessons are:
   "weight" columns on a zoomed in RStudio screen. Including a select()
   command to select the columns "weight_kg" and "weight_lb" makes it easier
   to view how the "weight" columns are changed.
+* Clarify the differences between the functions read_csv() (used in this lesson) and read.csv() (used in the previou lesson).
 
 ### Visualizing data
 
@@ -170,7 +171,7 @@ to make R work without their help.
 If learners are having issues with one package, they may have issues with 
 another. Its often easier to make sure they have all the needed packages 
 installed at one time, rather then deal with these issues over and over.
-[Here is a list of all necessary packages for these lessons.](https://github.com/datacarpentry/R-ecology-lesson/blob/master/needed_packages.R)
+[Here is a list of all necessary packages for these lessons.](https://github.com/datacarpentry/R-ecology-lesson/blob/main/needed_packages.R)
 
 ## Other Resources
 

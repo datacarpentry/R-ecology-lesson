@@ -30,8 +30,8 @@ source("setup.R")
 ### Presentation of the survey data
 ```
 
-We are studying the species repartition and weight of animals caught in plots in our study
-area. The dataset is stored as a comma separated value (CSV) file.
+We are investigating the animal species diversity and weights found within plots at our study
+site. The dataset is stored as a comma separated value (CSV) file.
 Each row holds information for a single animal, and the columns represent:
 
 | Column           | Description                        |
@@ -238,7 +238,7 @@ You can also exclude certain indices of a data frame using the "`-`" sign:
 
 ```{r, purl=FALSE}
 surveys[, -1]          # The whole data frame, except the first column
-surveys[-c(7:34786), ] # Equivalent to head(surveys)
+surveys[-(7:34786), ] # Equivalent to head(surveys)
 ```
 
 Data frames can be subset by calling indices (as shown previously), but also by calling their column names directly:
@@ -405,7 +405,7 @@ the experiment:
 
 ```{r, purl=TRUE}
 ## bar plot of the number of females and males captured during the experiment:
-plot(surveys$sex)
+plot(as.factor(surveys$sex))
 ```
 
 In addition to males and females, there are about 1700 individuals for which the
@@ -416,7 +416,7 @@ the data on sex and work with that data, so we're not modifying the working copy
 of the data frame:
 
 ```{r, results=TRUE, purl=FALSE}
-sex <- surveys$sex
+sex <- factor(surveys$sex)
 head(sex)
 levels(sex)
 levels(sex)[1] <- "undetermined"

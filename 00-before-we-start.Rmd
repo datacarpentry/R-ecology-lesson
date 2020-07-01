@@ -1,6 +1,6 @@
 ---
-title: Before we start
-author: Data Carpentry contributors
+title: "Before we start"
+author: "Data Carpentry contributors"
 minutes: 15
 ---
 
@@ -128,7 +128,8 @@ workshop.
 ![RStudio interface screenshot. Clockwise from top left: Source, Environment/History, Files/Plots/Packages/Help/Viewer, Console.](img/rstudio-screenshot.png)
 
 RStudio is divided into 4 "Panes": the **Source** for your scripts and documents
-(top-left, in the default layout), your **Environment/History** (top-right),
+(top-left, in the default layout), your **Environment/History** (top-right) which shows 
+all the objects in your working space (Environment) and your command history (History),
 your **Files/Plots/Packages/Help/Viewer** (bottom-right), and 
 the R **Console** (bottom-left). The placement of these
 panes and their content can be customized (see menu, Tools -> Global Options ->
@@ -164,12 +165,15 @@ tutorial below.
   location for it. This will be your **working directory** for the rest of the
   day (e.g., `~/data-carpentry`).
 4. Click on `Create Project`.
-5. Download the [code handout](./code-handout.R), place it in your working
+5. Download the [code handout](https://datacarpentry.org/R-ecology-lesson/code-handout.R), place it in your working
   directory and rename it (e.g., `data-carpentry-script.R`).
 6. (Optional) Set Preferences to 'Never' save workspace in RStudio.
 
-RStudio's default preferences generally work well, but saving a workspace to
-.RData can be cumbersome, especially if you are working with larger datasets.
+A workspace is your current working environment in R which includes any user-defined
+object. By default, all of these objects will be saved, and automatically loaded, 
+when you reopen your project. Saving a workspace to `.RData` can be cumbersome,
+especially if you are working with larger datasets, and it can lead to hard to
+debug errors by having objects in memory you forgot you had.
 To turn that off, go to Tools --> 'Global Options' and select the 'Never' option
 for 'Save workspace to .RData' on exit.'
 
@@ -263,7 +267,9 @@ the <kbd>`Ctrl`</kbd> + <kbd>`Enter`</kbd> shortcut (on Macs, <kbd>`Cmd`</kbd> +
 <kbd>`Return`</kbd> will work, too). The command on the current line in the
 script (indicated by the cursor) or all of the commands in the currently
 selected text will be sent to the console and executed when you press
-<kbd>`Ctrl`</kbd> + <kbd>`Enter`</kbd>. You can find other keyboard shortcuts in this [RStudio cheatsheet about the RStudio IDE](https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf).
+<kbd>`Ctrl`</kbd> + <kbd>`Enter`</kbd>. You can find other keyboard shortcuts in
+this
+[RStudio cheatsheet about the RStudio IDE](https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf).
 
 At some point in your analysis you may want to check the content of a variable
 or the structure of an object, without necessarily keeping a record of it in
@@ -290,7 +296,15 @@ command and return you to the `>` prompt.
 
 ## How to learn more after the workshop?
 
-The material we cover during this workshop will give you an initial taste of how you can use R to analyze data for your own research. However, you will need to learn more to do advanced operations such as cleaning your dataset, using statistical methods, or creating beautiful graphics. The best way to become proficient and efficient at R, as with any other tool, is to use it to address your actual research questions. As a beginner, it can feel daunting to have to write a script from scratch, and given that many people make their code available online, modifying existing code to suit your purpose might make it easier for you to get started.
+The material we cover during this workshop will give you an initial taste of how
+you can use R to analyze data for your own research. However, you will need to
+learn more to do advanced operations such as cleaning your dataset, using
+statistical methods, or creating beautiful graphics. The best way to become
+proficient and efficient at R, as with any other tool, is to use it to address
+your actual research questions. As a beginner, it can feel daunting to have to
+write a script from scratch, and given that many people make their code available
+online, modifying existing code to suit your purpose might make it easier for you
+to get started.
 
 
 ```{r kitten-img, results='markup', echo=FALSE, purl=FALSE, out.width='400px', fig.align='center'}
@@ -304,7 +318,11 @@ knitr::include_graphics("img/kitten-try-things.jpg")
 
 ![RStudio help interface.](img/rstudiohelp.png)
 
-One of the fastest ways to get help, is to use the RStudio help interface. This panel by default can be found at the lower right hand panel of RStudio. As seen in the screenshot, by typing the word "Mean", RStudio tries to also give a number of suggestions that you might be interested in. The description is then shown in the display window.
+One of the fastest ways to get help, is to use the RStudio help interface.
+This panel by default can be found at the lower right hand panel of RStudio.
+As seen in the screenshot, by typing the word "Mean", RStudio tries to also
+give a number of suggestions that you might be interested in. The description
+is then shown in the display window.
 
 ### I know the name of the function I want to use, but I'm not sure how to use it
 
@@ -415,12 +433,23 @@ sessionInfo()
 
 ### More resources
 
+* The [reprex](https://cran.r-project.org/package=reprex) package is very helpful to create
+  reproducible examples when asking for help. The
+  rOpenSci community call "How to ask questions so they get answered",
+  ([rOpenSci site](https://ropensci.org/commcalls/2017-03-07/) and
+  [video recording](https://vimeo.com/208749032))
+  includes a presentation of the reprex package and of its philosophy.
+* The [Posting Guide](http://www.r-project.org/posting-guide.html) for the R
+  mailing lists.
+* [How to ask for R help](http://blog.revolutionanalytics.com/2014/01/how-to-ask-for-r-help.html)
+  useful guidelines
+* [This blog post by Jon Skeet](http://codeblog.jonskeet.uk/2010/08/29/writing-the-perfect-question/)
+  has quite comprehensive advice on how to ask programming questions.
 * The [Introduction to R](https://cran.r-project.org/doc/manuals/R-intro.pdf) can
   also be dense for people with little programming experience but it is a good
   place to understand the underpinnings of the R language.
 * The [R FAQ](https://cran.r-project.org/doc/FAQ/R-FAQ.html) is dense and technical
   but it is full of useful information.
-* The [reprex](https://cran.rstudio.com/web/packages/reprex/) package is very helpful to create reproducible examples when asking for help. Its usage and philosophy are explained in [rOpenSci's community call "How to ask questions so they get answered"](https://ropensci.org/commcalls/2017-03-07/).
 
 ```{r, child="_page_built_on.Rmd"}
 ```
