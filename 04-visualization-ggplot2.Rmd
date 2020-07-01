@@ -540,7 +540,8 @@ After our manipulations, you may notice that the values on the x-axis are still
 not properly readable. Let's change the orientation of the labels and adjust 
 them vertically and horizontally so they don't overlap. You can use a 90 degree
 angle, or experiment to find the appropriate angle for diagonally oriented
-labels:
+labels. We can also modify the facet label text (`strip.text`) to italicize the genus
+names:
 
 ```{r number-species-year-with-theme, purl=FALSE}
 ggplot(data = yearly_sex_counts, mapping = aes(x = year, y = n, color = sex)) +
@@ -550,10 +551,10 @@ ggplot(data = yearly_sex_counts, mapping = aes(x = year, y = n, color = sex)) +
         x = "Year of observation",
         y = "Number of individuals") +
     theme_bw() +
-    theme(axis.text.x = element_text(colour = "grey20", size = 12, angle = 90,
-                                     hjust = 0.5, vjust = 0.5),
-          axis.text.y = element_text(colour = "grey20", size = 12),
-          text = element_text(size = 16))
+    theme(axis.text.x = element_text(colour = "grey20", size = 12, angle = 90, hjust = 0.5, vjust = 0.5),
+                        axis.text.y = element_text(colour = "grey20", size = 12),
+                        strip.text = element_text(face = "italic"),
+                        text = element_text(size = 16))
 ```
 
 If you like the changes you created better than the default theme, you can save
