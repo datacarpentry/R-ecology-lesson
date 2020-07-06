@@ -447,7 +447,7 @@ head(sex)
 ```
 
 
-### Using `stringsAsFactors=FALSE`
+### Using `stringsAsFactors = FALSE`
 
 By default, when building or importing a data frame, the columns that contain
 characters (i.e. text) are coerced (= converted) into factors. Depending on what you want to do with the data, you may want to keep these
