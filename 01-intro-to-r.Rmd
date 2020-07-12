@@ -138,12 +138,12 @@ but not so helpful if you want to revisit your work for any reason.
 A script can be opened by pressing <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + 
 <kbd>N</kbd>. 
 It it wise to save your script file immediately. To do this press 
-<kbd>Shift</kbd> + <kbd>S</kbd>. This will open a dialogue box where you 
+<kbd>Ctrl</kbd> + <kbd>S</kbd>. This will open a dialogue box where you 
 can decide where to save your script file, and what to name it.
 The `.R` file extension is added automatically and ensures your file
 will open with RStudio.
 
-Don't forget to save your work periodically by pressing <kbd>Shift</kbd> + 
+Don't forget to save your work periodically by pressing <kbd>Ctrl</kbd> + 
 <kbd>S</kbd>.
 
 
