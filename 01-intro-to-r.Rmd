@@ -49,8 +49,7 @@ weight_kg <- 55
 ```
 
 `<-` is the assignment operator. It assigns values on the right to objects on
-the left. So, after executing `x <- 3`, the value of `x` is `3`. The arrow can
-be read as 3 **goes into** `x`.  For historical reasons, you can also use `=`
+the left. So, after executing `x <- 3`, the value of `x` is `3`. The arrow also looks like a mouth (with tongue), which makes it easy to pronounce as `x` **eats** 3.  For historical reasons, you can also use `=`
 for assignments, but not in every context. Because of the
 [slight](https://blog.revolutionanalytics.com/2008/12/use-equals-or-arrow-for-assignment.html)
 [differences](https://r.789695.n4.nabble.com/Is-there-any-difference-between-and-tp878594p878598.html)
