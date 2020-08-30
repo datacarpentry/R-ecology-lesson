@@ -272,7 +272,7 @@ doing.
 A vector is the most common and basic data type in R, and is pretty much
 the workhorse of R. A vector is composed by a series of values, which can be
 either numbers or characters. We can assign a series of values to a vector using
-the `c()` function. For example we can create a vector of animal weights and assign
+the `c()` function (which some remember or pronounce as "Chain"). For example we can create a vector of animal weights and assign
 it to a new object `weight_g`:
 
 ```{r, purl = FALSE}
