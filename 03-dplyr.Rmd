@@ -599,7 +599,7 @@ str(surveys_spread)
 
 ![](img/spread_data_R.png)
 
-We could now plot comparisons between the weight of genera in different plots, 
+We could now plot comparisons between the weight of genera (one is called a genus, multiple are called genera) in different plots, 
 although we may wish to fill in the missing values first.
 
 ```{r, purl=FALSE}
