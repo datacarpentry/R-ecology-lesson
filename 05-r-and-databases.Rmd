@@ -72,8 +72,9 @@ install.packages(c("dbplyr", "RSQLite"))
 ```
 
 The SQLite database is contained in a single file `portal_mammals.sqlite`
-that you generated during the SQL lesson. If you don't have it, you can download
-it from Figshare into the `data_raw` subdirectory using:
+that you generated during
+[the SQL lesson](https://datacarpentry.org/sql-ecology-lesson/00-sql-introduction/index.html).
+If you don't have it, you can download it from Figshare into the `data_raw` subdirectory using:
 
 ```{r download, eval = FALSE, purl=FALSE}
 dir.create("data_raw", showWarnings = FALSE)
