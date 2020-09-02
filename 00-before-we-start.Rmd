@@ -14,6 +14,8 @@ source("setup.R")
 
 > ### Learning Objectives
 >
+> * Be able to explain what R and RStudio are, what they are used for, and how
+>   they relate to each other.
 > * Describe the purpose of the RStudio Script, Console, Environment, and Plots
 >   panes.
 > * Organize files and directories for a set of analyses as an R
