@@ -94,7 +94,7 @@ for issues in the styling of your code.
 
 
 When assigning a value to an object, R does not print anything. You can force R to print the value by using parentheses or by typing the object name:
-
+github topics
 ```{r, purl = FALSE}
 weight_kg <- 55    # doesn't print anything
 (weight_kg <- 55)  # but putting parenthesis around the call prints the value of `weight_kg`
@@ -532,8 +532,8 @@ in vectors as `NA`.
 When doing operations on numbers, most functions will return `NA` if the data
 you are working with include missing values. This feature
 makes it harder to overlook the cases where you are dealing with missing data.
-You can add the argument `na.rm = TRUE` to calculate the result while ignoring
-the missing values.
+You can add the argument `na.rm = TRUE` to calculate the result as if the missing
+values were removed (`rm` stands for ReMoved) first.
 
 ```{r, purl = FALSE}
 heights <- c(2, 4, 4, NA, 6)
