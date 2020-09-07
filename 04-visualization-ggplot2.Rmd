@@ -616,7 +616,7 @@ grid.arrange(spp_weight_boxplot, spp_count_plot, ncol = 2, widths = c(4, 6))
 ```
 
 In addition to the `ncol` and `nrow` arguments, used to make simple 
-arrangements, there are tools for [constucting more complex layouts](https://cran.r-project.org/web/packages/gridExtra/vignettes/arrangeGrob.html). 
+arrangements, there are tools for [constructing more complex layouts](https://cran.r-project.org/web/packages/gridExtra/vignettes/arrangeGrob.html). 
 
 After creating your plot, you can save it to a file in your favorite format. The
 Export tab in the **Plot** pane in RStudio will save your plots at low 
