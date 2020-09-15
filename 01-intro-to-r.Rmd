@@ -59,29 +59,21 @@ In RStudio, typing <kbd>Alt</kbd> + <kbd>-</kbd> (push <kbd>Alt</kbd> at the
 same time as the <kbd>-</kbd> key) will write ` <- ` in a single keystroke in a PC, while typing <kbd>Option</kbd> + <kbd>-</kbd> (push <kbd>Option</kbd> at the
 same time as the <kbd>-</kbd> key) does the same in a Mac.
 
-Objects can be given any name such as `x`, `current_temperature`, or
-`subject_id`. You want your object names to be explicit and not too long. They
-cannot start with a number (`2x` is not valid, but `x2` is). R is case sensitive
-(e.g., `weight_kg` is different from `Weight_kg`). There are some names that
-cannot be used because they are the names of fundamental functions in R (e.g.,
-`if`, `else`, `for`, see
+Objects can be given almost any name such as `x`, `current_temperature`, or `subject_id`. Here are some further guidelines on naming objects:
+
+* You want your object names to be explicit and not too long.
+* They cannot start with a number (`2x` is not valid, but `x2` is).
+* R is case sensitive, so for example, `weight_kg` is different from `Weight_kg`.
+* There are some names that cannot be used because they are the names of fundamental functions in R (e.g., `if`, `else`, `for`, see
 [here](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Reserved.html)
 for a complete list). In general, even if it's allowed, it's best to not use
 other function names (e.g., `c`, `T`, `mean`, `data`, `df`, `weights`). If in
-doubt, check the help to see if the name is already in use. It's also best to
-avoid dots (`.`) within names. Many function names in R itself have them and
-dots also have a special meaning (methods) in R and other programming languages.
-To avoid confusion, don't include dots in names. It is also recommended to use nouns for object names, and
-verbs for function names. It's important to be consistent in the styling of your
-code (where you put spaces, how you name objects, etc.). Using a consistent
-coding style makes your code clearer to read for your future self and your
-collaborators. In R, three popular style guides are
-[Google's](https://google.github.io/styleguide/Rguide.xml), [Jean
-Fan's](https://jef.works/R-style-guide/) and the
-[tidyverse's](https://style.tidyverse.org/). The tidyverse's is very
-comprehensive and may seem overwhelming at first. You can install the
-[**`lintr`**](https://github.com/jimhester/lintr) package to automatically check
-for issues in the styling of your code.
+doubt, check the help to see if the name is already in use. 
+* It's best to avoid dots (`.`) within names. Many function names in R itself have them and dots also have a special meaning (methods) in R and other programming languages. To avoid confusion, don't include dots in names.
+* It is recommended to use nouns for object names and verbs for function names.
+* Be consistent in the styling of your code, such as where you put spaces, how you name objects, etc. Using a consistent coding style makes your code clearer to read for your future self and your collaborators. In R, three popular style guides come from [Google](https://google.github.io/styleguide/Rguide.xml), [Jean
+Fan](https://jef.works/R-style-guide/) and the
+[tidyverse](https://style.tidyverse.org/). The tidyverse style is very comprehensive and may seem overwhelming at first. You can install the [**`lintr`**](https://github.com/jimhester/lintr) package to automatically check for issues in the styling of your code.
 
 > ### Objects vs. variables
 >
