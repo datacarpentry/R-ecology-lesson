@@ -182,7 +182,7 @@ objects besides `data.frame`.
 >
 > ## * class: data frame
 > ## * how many rows: 34786,  how many columns: 13
-> ## * how many genera: There are 26 unique genera in the `genus` column."
+> ## * how many genera: There are 26 unique genera in the `genus` column.
 >
 > ```
 
