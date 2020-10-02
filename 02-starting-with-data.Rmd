@@ -174,7 +174,7 @@ objects besides `data.frame`.
 >
 > * What is the class of the object `surveys`?
 > * How many rows and how many columns are in this object?
-> * How many species have been recorded during these surveys?
+> * How many genera have been recorded during these surveys? (Hint: genera is the plural of genus).
 >
 > ```{r, answer=TRUE, results="markup", purl=FALSE}
 >
@@ -182,7 +182,7 @@ objects besides `data.frame`.
 >
 > ## * class: data frame
 > ## * how many rows: 34786,  how many columns: 13
-> ## * how many species: 48
+> ## * how many genera: There are 26 unique genera in the `genus` column."
 >
 > ```
 
