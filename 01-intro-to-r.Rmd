@@ -492,9 +492,17 @@ become tedious. The function `%in%` allows you to test if any of the elements of
 a search vector are found:
 
 ```{r, results = 'show', purl = FALSE}
-animals <- c("mouse", "rat", "dog", "cat")
-animals[animals == "cat" | animals == "rat"] # returns both rat and cat
-animals %in% c("rat", "cat", "dog", "duck", "goat")
+animals <- c("mouse", "rat", "dog", "cat", "cat")
+
+# return both rat and cat
+animals[animals == "cat" | animals == "rat"] 
+
+# return a logical vector that is TRUE for the elements within animals
+# that are found in the character vector and FALSE for those that are not
+animals %in% c("rat", "cat", "dog", "duck", "goat") 
+
+# use the logical vector created by %in% to return elements from animals 
+# that are found in the character vector
 animals[animals %in% c("rat", "cat", "dog", "duck", "goat")]
 ```
 
