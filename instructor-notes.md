@@ -61,6 +61,13 @@ ln -s /Library/Frameworks/R.framework/Versions/3.6.x /Library/Frameworks/R.frame
 
 Then restart RStudio.
 
+## Issues with Fonts on MacOS
+
+On older versions of MacOS, it may happen that axis labels do not show up when calling `plot()` 
+(section "renaming factors" in "Starting with Data"). This issue might be due to the default font 
+Arial being deactivated, so that R cannot find it. To resolve this issue, go to Finder, 
+Search for Font Book and open it. Look for the Arial font and, if it is greyed out, turn it on. 
+
 ## Narrative
 
 ### Before we start
