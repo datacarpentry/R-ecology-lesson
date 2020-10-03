@@ -18,7 +18,22 @@ our
 [code of conduct](https://datacarpentry.org/R-ecology-lesson/CONDUCT.html).
 
 
-## Working With GitHub
+## Working with GitHub
+
+### Submitting Issues on GitHub
+
+If you have an idea about how to improve the lesson, you can submit it as an 
+issue on GitHub. Submitting an issue can count as a contribution
+for your instructor training checkout. If your contribution is for instructor 
+training, send an email with a link to the issue to 
+[checkout@carpentries.org](mailto:checkout@carpentries.org). 
+Please note that it is _not_ necessary to point out in the issue's title or text 
+that it is a contribution for the instructor training checkout.
+
+### Submitting Pull Requests
+
+You can also suggest changes by modifying the lesson code directly and submitting
+your changes as a pull request.
 
 1.  Fork the `datacarpentry/R-ecology-lesson` repository on GitHub.  *See the
     "Fork" button in the top-right corner of the screen on the GitHub website.*
@@ -63,6 +78,10 @@ our
 5.  Send a pull request (PR) to the `main` branch of the
     `datacarpentry/R-ecology-lesson` repository for this lesson at
     https://github.com/datacarpentry/R-ecology-lesson
+
+If you are new to Git or GitHub, software like 
+[GitHub Desktop](https://desktop.github.com/) can make this process easier for
+you.
 
 If it is easier for you to send edits to us some other way, please
 mail us at [checkout@carpentries.org](mailto:checkout@carpentries.org).
