@@ -23,7 +23,11 @@ our
 ### Submitting Issues on GitHub
 
 If you have an idea about how to improve the lesson, you can submit it as an 
-issue on GitHub. Submitting an issue can count as a contribution
+issue on GitHub. If you have multiple unrelated suggestions, it is best to 
+open a separate issue for each of them. This makes it easier for the project 
+maintainers to discuss and resolve them.
+
+Submitting an issue can count as a contribution
 for your instructor training checkout. If your contribution is for instructor 
 training, send an email with a link to the issue to 
 [checkout@carpentries.org](mailto:checkout@carpentries.org). 
