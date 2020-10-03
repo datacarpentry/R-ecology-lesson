@@ -68,6 +68,11 @@ On older versions of MacOS, it may happen that axis labels do not show up when c
 Arial being deactivated, so that R cannot find it. To resolve this issue, go to Finder, 
 Search for Font Book and open it. Look for the Arial font and, if it is greyed out, turn it on. 
 
+If the problem occurs with `ggplot2` plots, an alternative workaround is to change the default 
+theme for the R session, so that ggplot uses a _serif_ font. Since Arial is a _sans-serif_ 
+font, R will try to load a different font. This can be done with 
+`theme_update(text = element_text(family = "serif"))`. 
+
 ## Narrative
 
 ### Before we start
