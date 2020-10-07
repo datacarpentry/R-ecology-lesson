@@ -587,36 +587,42 @@ ggplot(surveys_complete, aes(x = species_id, y = hindfoot_length)) +
 > * Try using a different color palette (see
 >   http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/).
 
-## Arranging and exporting plots
+## Arranging plots
 
 Faceting is a great tool for splitting one plot into multiple plots, but 
 sometimes you may want to produce a single figure that contains multiple plots
-using different variables or even different data frames. The **`gridExtra`** 
-package allows us to combine separate ggplots into a single figure using 
-`grid.arrange()`:
+using different variables or even different data frames. The **`patchwork`** 
+package allows us to combine separate ggplots into a single figure while keeping
+everything aligned properly. Like most R packages, we can install `patchwork` 
+from CRAN, the R package repository:
 
-```{r gridarrange-example, message = FALSE, purl = FALSE, fig.width = 10}
-library(gridExtra)
+```{r patchwork-install, eval = FALSE}
+install.packages("patchwork")
+```
 
-spp_weight_boxplot <- ggplot(data = surveys_complete, 
-                             aes(x = species_id, y = weight)) +
+After you have loaded the `patchwork` package you can use `+` to place plots 
+next to each other, `/` to arrange them vertically, and `plot_layout()` to 
+determine how much space each plot uses:
+
+```{r patchwork-example, message = FALSE, purl = FALSE, fig.width = 10}
+library(patchwork)
+
+plot1 <- ggplot(data = surveys_complete, aes(x = species_id, y = weight)) +
   geom_boxplot() +
-  labs(x = "Species", 
-       y = expression(log[10](Weight))) +
-  scale_y_log10() + 
-  labs()
+  labs(x = "Species", y = expression(log[10](Weight))) +
+  scale_y_log10()
 
-spp_count_plot <- ggplot(data = yearly_counts, 
-                         aes(x = year, y = n, color = genus)) +
+plot2 <- ggplot(data = yearly_counts, aes(x = year, y = n, color = genus)) +
   geom_line() + 
   labs(x = "Year", y = "Abundance")
 
-grid.arrange(spp_weight_boxplot, spp_count_plot, ncol = 2, widths = c(4, 6))
- 
+plot1 / plot2 + plot_layout(heights = c(3, 2))
 ```
 
-In addition to the `ncol` and `nrow` arguments, used to make simple 
-arrangements, there are tools for [constructing more complex layouts](https://cran.r-project.org/web/packages/gridExtra/vignettes/arrangeGrob.html). 
+You can also use parentheses `()` to create more complex layouts. There are
+many useful examples on the [patchwork website](https://patchwork.data-imaginist.com/) 
+
+## Exporting plots
 
 After creating your plot, you can save it to a file in your favorite format. The
 Export tab in the **Plot** pane in RStudio will save your plots at low 
