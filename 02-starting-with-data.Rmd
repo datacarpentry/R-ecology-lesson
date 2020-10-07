@@ -65,7 +65,9 @@ download.file(url = "https://ndownloader.figshare.com/files/2292169",
               destfile = "data_raw/portal_data_joined.csv")
 ```
 
-You are now ready to load the data:
+The file has now been downloaded to the destination you specified, but R has not 
+yet loaded the data from the file into memory. To do this, we can use the 
+`read.csv()` function:
 
 ```{r, eval=TRUE,  purl=FALSE}
 surveys <- read.csv("data_raw/portal_data_joined.csv")
@@ -83,9 +85,13 @@ function `head()`:
 head(surveys)
 ```
 
+There is a similar function which lets you view the last few lines of the data 
+set. It is called (you might have guessed it) `tail()`. 
+
+To open the data frame in RStudio's Data Viewer, use the `View()` function:
+
 ```{r, eval = FALSE, purl = FALSE}
-## Try also
-View(surveys)
+View(surveys)  # note the capital V!
 ```
 
 > ### Note
