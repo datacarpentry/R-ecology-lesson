@@ -77,7 +77,9 @@ Cheat sheet of functions used in the lessons
   * `labs()` # set labels to plot
   * `theme_bw()`   # set the background to white
   * `theme()`      # used to locally modify one or more theme elements in a specific ggplot object
-  * `grid.arrange()` # combine and arrange multiple ggplots into a single figure
+  * `+`  # arrange ggplots horizontally
+  * `/`   # arrange ggplots vertically
+  * `plot_layout()`  # set width and height of individual plots in a patchwork of plots
   * `ggsave()` # save a ggplot
   
 ## Lesson 5 -- SQL databases and R
