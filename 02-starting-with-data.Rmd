@@ -612,7 +612,11 @@ This character vector can be used as the argument for `ymd()`:
 ymd(paste(surveys$year, surveys$month, surveys$day, sep = "-"))
 ```
 
-The resulting `Date` vector can be added to `surveys` as a new column called `date`:
+There is a warning telling us that some dates could not be parsed (understood)
+by the `ymd()` function. For these dates, the function has returned `NA`, which
+means they are treated as missing values.
+We will deal with this problem later, but first we add the resulting `Date`
+vector to the `surveys` data frame as a new column called `date`:
 
 ```{r, purl=FALSE}
 surveys$date <- ymd(paste(surveys$year, surveys$month, surveys$day, sep = "-"))
@@ -625,7 +629,7 @@ Let's make sure everything worked correctly. One way to inspect the new column i
 summary(surveys$date)
 ```
 
-Something went wrong: some dates have missing values. Let's investigate where they are coming from.
+Let's investigate why some dates could not be parsed.
 
 We can use the functions we saw previously to deal with missing data to identify
 the rows in our data frame that are failing. If we combine them with what we learned about subsetting data frames earlier, we can extract the columns "year, "month", "day" from the records that have `NA` in our new column `date`. We will also use `head()` so we don't clutter the output:
