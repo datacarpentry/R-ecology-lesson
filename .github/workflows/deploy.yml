@@ -17,6 +17,14 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v2
 
+      - name: Set up Python
+        uses: actions/setup-python@v2
+
+      - name: Install update-copyright
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install update-copyright
+
       - name: Setup R
         uses: r-lib/actions/setup-r@master
         with:
