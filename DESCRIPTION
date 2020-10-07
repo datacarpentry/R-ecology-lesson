@@ -1,2 +1,12 @@
 Package: recologylesson
-Imports: remotes, tidyverse, hunspell, hexbin, dbplyr, patchwork, rmarkdown, knitr, RSQLite
+Imports:
+  remotes,
+  tidyverse,
+  gridExtra,
+  hunspell,
+  hexbin,
+  dbplyr,
+  patchwork,
+  rmarkdown,
+  knitr,
+  RSQLite
