@@ -229,8 +229,8 @@ surveys[1, 6]
 surveys[, 1]    
 # first column of the data frame (as a data.frame)
 surveys[1]      
-# first three elements in the 7th column (as a vector)
-surveys[1:3, 7] 
+# first three rows of the 6th column (as a vector)
+surveys[1:3, 6] 
 # the 3rd row of the data frame (as a data.frame)
 surveys[3, ]    
 # equivalent to head_surveys <- head(surveys)
