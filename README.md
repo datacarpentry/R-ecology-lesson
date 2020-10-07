@@ -50,9 +50,10 @@ If you have any questions or feedback, please open an issue, contact the
 maintainers, or come chat with us on the [Slack Channel for this lesson](https://swcarpentry.slack.com/messages/C9X9EC405). If you don't already have a Slack account with the Carpentries, you can [create one](https://swc-slack-invite.herokuapp.com/).
 
 * Ana Costa Conrado
-* Auriel Fournier
 * François Michonneau
+* Maneesha Sane
 * Brian Seok
+* Ashwin Srinath
 
 ## Citation
 
