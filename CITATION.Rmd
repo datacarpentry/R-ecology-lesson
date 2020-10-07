@@ -53,7 +53,7 @@ generate_zenodo_json <- function(editors) {
 }
 
 system("update-copyright.py")
-generate_zenodo_json(editors = eds)
+## generate_zenodo_json(editors = eds)
 ```
 
 
