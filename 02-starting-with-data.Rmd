@@ -65,7 +65,9 @@ download.file(url = "https://ndownloader.figshare.com/files/2292169",
               destfile = "data_raw/portal_data_joined.csv")
 ```
 
-You are now ready to load the data:
+The file has now been downloaded to the destination you specified, but R has not 
+yet loaded the data from the file into memory. To do this, we can use the 
+`read.csv()` function:
 
 ```{r, eval=TRUE,  purl=FALSE}
 surveys <- read.csv("data_raw/portal_data_joined.csv")
@@ -83,9 +85,13 @@ function `head()`:
 head(surveys)
 ```
 
+There is a similar function which lets you view the last few lines of the data 
+set. It is called (you might have guessed it) `tail()`. 
+
+To open the data frame in RStudio's Data Viewer, use the `View()` function:
+
 ```{r, eval = FALSE, purl = FALSE}
-## Try also
-View(surveys)
+View(surveys)  # note the capital V!
 ```
 
 > ### Note
@@ -223,8 +229,8 @@ surveys[1, 6]
 surveys[, 1]    
 # first column of the data frame (as a data.frame)
 surveys[1]      
-# first three elements in the 7th column (as a vector)
-surveys[1:3, 7] 
+# first three rows of the 6th column (as a vector)
+surveys[1:3, 6] 
 # the 3rd row of the data frame (as a data.frame)
 surveys[3, ]    
 # equivalent to head_surveys <- head(surveys)
@@ -606,7 +612,11 @@ This character vector can be used as the argument for `ymd()`:
 ymd(paste(surveys$year, surveys$month, surveys$day, sep = "-"))
 ```
 
-The resulting `Date` vector can be added to `surveys` as a new column called `date`:
+There is a warning telling us that some dates could not be parsed (understood)
+by the `ymd()` function. For these dates, the function has returned `NA`, which
+means they are treated as missing values.
+We will deal with this problem later, but first we add the resulting `Date`
+vector to the `surveys` data frame as a new column called `date`:
 
 ```{r, purl=FALSE}
 surveys$date <- ymd(paste(surveys$year, surveys$month, surveys$day, sep = "-"))
@@ -619,7 +629,7 @@ Let's make sure everything worked correctly. One way to inspect the new column i
 summary(surveys$date)
 ```
 
-Something went wrong: some dates have missing values. Let's investigate where they are coming from.
+Let's investigate why some dates could not be parsed.
 
 We can use the functions we saw previously to deal with missing data to identify
 the rows in our data frame that are failing. If we combine them with what we learned about subsetting data frames earlier, we can extract the columns "year, "month", "day" from the records that have `NA` in our new column `date`. We will also use `head()` so we don't clutter the output:
