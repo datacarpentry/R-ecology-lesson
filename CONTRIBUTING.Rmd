@@ -128,13 +128,9 @@ And not this format
 
 Most R code within .Rmd files is written inside of code chunks. 
 Code chunks can have a name and a number of options, but neither is
-required. They are formatted like this:
+required. Options are added to a code chunk like this:
 
-````r
-```{r, <chunk name>, <option1> = [value], <option2> = [value], ...}
-... # some R code
-```
-````
+` ```{r, chunk_name, option1 = value, option2 = value, ...}`
 
 Throughout the lesson, we use different code chunk options, mostly 
 to change when and how the code in the chunks is being executed. 
