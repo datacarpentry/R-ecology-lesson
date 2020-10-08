@@ -1,7 +1,7 @@
 # RMarkdown files
 RMD_SRC = $(filter-out README.Rmd, $(wildcard *.Rmd))
 
-all: pages code-handout.R
+all: code-handout.R pages
 
 pages: ${RMD_SRC} _site.yml
 	R -q -e 'if (!requireNamespace("remotes", quietly=FALSE)) install.packages("remotes", repos="https://cran.rstudio.com/"); remotes::install_deps()'

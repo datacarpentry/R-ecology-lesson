@@ -55,9 +55,8 @@ jobs:
             eval sudo $cmd
           done < <(Rscript -e 'cat(remotes::system_requirements("ubuntu", "18.04"), sep = "\n")')
 
-
       - name: Build site
-        run: make all
+        run: make -B all
 
       - name: Deploy site
         uses: maxheld83/ghpages@v0.3.0
