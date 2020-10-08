@@ -1,0 +1,67 @@
+name: Build and Deploy Website
+
+on:
+  push:
+    branches: main
+  pull_request: []
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GH_PAT }}
+      RSPM: 'https://packagemanager.rstudio.com/cran/__linux__/bionic/latest'
+
+    steps:
+
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+
+      - name: Install update-copyright
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install update-copyright
+
+      - name: Setup R
+        uses: r-lib/actions/setup-r@master
+        with:
+          crayon.enabled: 'FALSE'
+
+      - name: Install needed packages
+        run: |
+          install.packages(c('remotes', 'rprojroot', 'renv', 'desc', 'rmarkdown', 'knitr'))
+        shell: Rscript {0}
+
+      - name: Query dependencies
+        run: |
+          saveRDS(remotes::dev_package_deps(dependencies = TRUE), ".github/depends.Rds", version = 2)
+          writeLines(sprintf("R-%i.%i", getRversion()$major, getRversion()$minor), ".github/R-version")
+        shell: Rscript {0}
+
+      - name: Cache R packages
+        uses: actions/cache@v1
+        with:
+          path: ${{ env.R_LIBS_USER }}
+          key: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-${{ hashFiles('.github/depends.Rds') }}
+          restore-keys: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-
+
+      - name: Install system dependencies for R packages
+        run: |
+          while read -r cmd
+          do
+            eval sudo $cmd
+          done < <(Rscript -e 'cat(remotes::system_requirements("ubuntu", "18.04"), sep = "\n")')
+
+
+      - name: Build site
+        run: make all
+
+      - name: Deploy site
+        uses: maxheld83/ghpages@v0.3.0
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && github.repository == 'datacarpentry/R-ecology-lesson' }}
+        env:
+          BUILD_DIR: _site/
+          GH_PAT: ${{ secrets.GH_PAT }}

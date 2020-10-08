@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/datacarpentry/R-ecology-lesson.svg?branch=main)](https://travis-ci.org/datacarpentry/R-ecology-lesson)
+![Build and Deploy Website](https://github.com/datacarpentry/R-ecology-lesson/workflows/Build%20and%20Deploy%20Website/badge.svg)
 [![Create a Slack Account with us](https://img.shields.io/badge/Create_Slack_Account-The_Carpentries-071159.svg)](https://swc-slack-invite.herokuapp.com/)
 [![Slack Status](https://img.shields.io/badge/Slack_Channel-DC_Ecology_R-E01563.svg)](https://swcarpentry.slack.com/messages/C9X9EC405)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3264888.svg)](https://doi.org/10.5281/zenodo.3264888)
@@ -50,9 +50,10 @@ If you have any questions or feedback, please open an issue, contact the
 maintainers, or come chat with us on the [Slack Channel for this lesson](https://swcarpentry.slack.com/messages/C9X9EC405). If you don't already have a Slack account with the Carpentries, you can [create one](https://swc-slack-invite.herokuapp.com/).
 
 * Ana Costa Conrado
-* Auriel Fournier
 * François Michonneau
+* Maneesha Sane
 * Brian Seok
+* Ashwin Srinath
 
 ## Citation
 
