@@ -65,7 +65,7 @@ our
     https://github.com/datacarpentry/R-ecology-lesson
 
 If it is easier for you to send edits to us some other way, please
-mail us at [board@datacarpentry.org](mailto:board@datacarpentry.org).
+mail us at [checkout@carpentries.org](mailto:checkout@carpentries.org).
 Given a choice between you creating content or wrestling with Git,
 we'd rather have you doing the former.
 
