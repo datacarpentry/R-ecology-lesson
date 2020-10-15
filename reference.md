@@ -18,10 +18,10 @@ Cheat sheet of functions used in the lessons
 ## Lesson 2 -- Starting with data
 
   * `download.file() ` # download files from the internet to your computer
-  * `read.csv() `   # load CSV file into R memory
+  * `read_csv() `   # load CSV file into R memory
   * `head() `       # shows the first 6 rows
-  * `View()`        # invoke a spreadsheet-style data viewer
-  * `read.table()`  # load a file in table format into R memory
+  * `view()`        # invoke a spreadsheet-style data viewer
+  * `read_delim()`  # load a file in table format into R memory
   * `str() `        # check structure of the object and information about the class, length and content of each column
   * `dim() `        # check dimension of data frame
   * `nrow() `       # returns the number of rows
@@ -38,15 +38,15 @@ Cheat sheet of functions used in the lessons
   * `as.numeric(as.character(x))` # convert factors where the levels appear as characters to a numeric vector
   * `as.numeric(levels(x))[x]` # convert factors where the levels appear as numbers  to a numeric vector
   * `plot()`  # plot an object
+  * `addNA()` # convert NA into a factor level
   * `data.frame()`  # create a data.frame object
   * `ymd()` # convert a vector representing year, month, and day to a Date vector
   * `paste()` # concatenate vectors after converting to character
 
 ## Lesson 3 -- Manipulating, analyzing and exporting data with tidyverse
 
-  * `read_csv()` # load a csv formatted file into R memory
   * `str()` # check structure of the object and information about the class, length and content of each column
-  * `View()` # invoke a spreadsheet-style data viewer
+  * `view()` # invoke a spreadsheet-style data viewer
   * `select() `          # select columns of a data frame
   * `filter() `          # allows you to select a subset of rows in a data frame
   * `%>% `               # pipes to select and filter at the same time
