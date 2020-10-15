@@ -38,15 +38,8 @@ Bracket subsetting is handy, but it can be cumbersome and difficult to read,
 especially for complicated operations. Enter **`dplyr`**. **`dplyr`** is a package for
 making tabular data manipulation easier. It pairs nicely with **`tidyr`** which enables you to swiftly convert between different data formats for plotting and analysis.
 
-Packages in R are basically sets of additional functions that let you do more
-stuff. The functions we've been using so far, like `str()` or `data.frame()`,
-come built into R; packages give you access to more of them. Before you use a
-package for the first time you need to install it on your machine, and then you
-should import it in every subsequent R session when you need it. You should
-already have installed the **`tidyverse`** package. This is an
-"umbrella-package" that installs several packages useful for data analysis which
-work together well such as **`tidyr`**, **`dplyr`**, **`ggplot2`**, **`tibble`**, etc.
-
+The **`tidyverse`** package is an
+"umbrella-package" that installs **`tidyr`**, **`dplyr`**, and several other packages useful for data analysis, such as  **`ggplot2`**, **`tibble`**, etc.
 
 The **`tidyverse`** package tries to address 3 common issues that arise when
 doing data analysis with some of the functions that come with R:
@@ -57,19 +50,8 @@ doing data analysis with some of the functions that come with R:
 3. Hidden arguments, having default operations that new learners are not aware
    of.
 
-We have seen in our previous lesson that when building or importing a data frame, the columns that contain characters (i.e., text) are coerced (=converted) into the `factor` data type. We had to set **`stringsAsFactors`** to **`FALSE`** to avoid this hidden argument to convert our data type. 
-
-This time we will use the **`tidyverse`** package to read the data and avoid having to set **`stringsAsFactors`** to **`FALSE`**
-
-If we haven't already done so, we can type `install.packages("tidyverse")` straight into the console. In fact, it's better to write this in the console than in our script for any package, as there's no need to re-install packages every time we run the script.
-
-Then, to load the package type:
-
-
-```{r, message = FALSE, purl = FALSE}
-## load the tidyverse packages, incl. dplyr
-library(tidyverse)
-```
+You should already have installed and loaded the **`tidyverse`** package. 
+If we haven't already done so, we can type `install.packages("tidyverse")` straight into the console. Then, to load the package type `library(tidyverse)`
 
 ## What are **`dplyr`** and **`tidyr`**?
 
@@ -99,18 +81,13 @@ To learn more about **`dplyr`** and **`tidyr`** after the workshop, you may want
 [handy data transformation with **`dplyr`** cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf)
 and this [one about **`tidyr`**](https://github.com/rstudio/cheatsheets/raw/master/data-import.pdf).
 
-We'll read in our data using the `read_csv()` function, from the tidyverse package **`readr`**, instead of `read.csv()`.
+As before, we'll read in our data using the `read_csv()` function from the 
+tidyverse package **`readr`**.
 
 
 ```{r, results = 'hide', purl = FALSE}
 surveys <- read_csv("data_raw/portal_data_joined.csv")
 ```
-
-You will see the message `Parsed with column specification`, followed by each column name and its data type.
-When you execute `read_csv` on a data file, it looks through the first 1000 rows of each column and
-guesses the data type for each column as it reads it into R. For example, in this dataset, `read_csv`
-reads `weight` as `col_double` (a numeric data type), and `species` as `col_character`. You have the
-option to specify the data type for a column manually by using the `col_types` argument in `read_csv`.
 
 ```{r, results = 'hide', purl = FALSE}
 ## inspect the data
@@ -119,22 +96,10 @@ str(surveys)
 
 ```{r, eval=FALSE, purl=FALSE}
 ## preview the data
-View(surveys)
+view(surveys)
 ```
 
-Notice that the class of the data is now `tbl_df`
-
-This is referred to as a "tibble". Tibbles tweak some of the behaviors of the data frame objects we
-introduced in the previous episode. The data structure is very similar to a data frame. For our
-purposes the only differences are that:
-
-1. In addition to displaying the data type of each column under its name, it
-   only prints the first few rows of data and only as many columns as fit on one
-   screen.
-2. Columns of class `character` are never converted into factors.
-
-
-We're going to learn some of the most common **`dplyr`** functions:
+Next, we're going to learn some of the most common **`dplyr`** functions:
 
 - `select()`: subset columns
 - `filter()`: subset rows on conditions
