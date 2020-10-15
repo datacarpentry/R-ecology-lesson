@@ -24,10 +24,10 @@ source("setup.R")
 
 ------------
 
-## Presentation of the Survey Data
+## Loading the Survey Data
 
 ```{r, echo=FALSE, purl=TRUE}
-### Presentation of the survey data
+### Loading the survey data
 ```
 
 We are investigating the animal species diversity and weights found within plots at our study
@@ -50,9 +50,12 @@ Each row holds information for a single animal, and the columns represent:
 | taxon            | e.g. Rodent, Reptile, Bird, Rabbit |
 | plot\_type       | type of plot                       |
 
+### Downloading the Data
+
 We are going to use the R function `download.file()` to download the CSV file
-that contains the survey data from Figshare, and we will use `read.csv()` to
-load into memory the content of the CSV file as an object of class `data.frame`. 
+that contains the survey data from Figshare, and we will use `read_csv()` to
+load the content of the CSV file into R.
+
 Inside the download.file command, the first entry is a character string with the source URL 
 ("https://ndownloader.figshare.com/files/2292169"). This source URL downloads a CSV file from 
 figshare. The text after the comma ("data_raw/portal_data_joined.csv") is the destination of the 
@@ -65,51 +68,80 @@ download.file(url = "https://ndownloader.figshare.com/files/2292169",
               destfile = "data_raw/portal_data_joined.csv")
 ```
 
+
+### Reading the Data into R
+
 The file has now been downloaded to the destination you specified, but R has not 
 yet loaded the data from the file into memory. To do this, we can use the 
-`read.csv()` function:
+`read_csv()` function from the **`tidyverse`** package. 
 
-```{r, eval=TRUE,  purl=FALSE}
-surveys <- read.csv("data_raw/portal_data_joined.csv")
+Packages in R are basically sets of additional functions that let you do more
+stuff. The functions we've been using so far, like `round()`, `sqrt()`, or `c()`,
+come built into R; packages give you access to additional functions. 
+
+Before you use a package for the first time you need to install it on your machine, and then you
+should import it in every subsequent R session when you need it. 
+
+To install the package, we can type `install.packages("tidyverse")` straight into the console. In fact, it's better to write this in the console than in our script for any package, as there's no need to re-install packages every time we run the script.
+
+Then, to load the package type:
+
+```{r, message = FALSE, purl = FALSE}
+## load the tidyverse packages, incl. dplyr
+library(tidyverse)
 ```
 
-This statement doesn't produce any output because, as you might recall,
-assignments don't display anything. If we want to check that our data has been
-loaded, we can see the contents of the data frame by typing its name: `surveys`.
+Now we can use the functions from the **`tidyverse`** package. 
+Let's use `read_csv()` to read the data into a data frame 
+(more about that later):
 
-Wow... that was a lot of output. At least it means the data loaded
-properly. Let's check the top (the first 6 lines) of this data frame using the
+```{r, eval=TRUE,  purl=FALSE}
+surveys <- read_csv("data_raw/portal_data_joined.csv")
+```
+
+You will see the message `Parsed with column specification`, followed by each column name and its data type.
+When you execute `read_csv` on a data file, it looks through the first 1000 rows of each column and
+guesses the data type for each column as it reads it into R. For example, in this dataset, `read_csv`
+reads `weight` as `col_double` (a numeric data type), and `species` as `col_character`. You have the
+option to specify the data type for a column manually by using the `col_types` argument in `read_csv`.
+
+We can see the contents of the first few lines of the data by typing its 
+name: `surveys`. 
+By default, this will show show you as many rows and columns of the data as fit
+on your screen. If you wanted to the first 50 rows, you could type 
+`print(surveys, n = 50)`
+
+We can extract the first few lines of this data using the
 function `head()`:
 
 ```{r, results='show', purl=FALSE}
 head(surveys)
 ```
 
-There is a similar function which lets you view the last few lines of the data 
-set. It is called (you might have guessed it) `tail()`. 
+Unlike the `print()` function, `head()` returns the extracted data. You could 
+use this assign the first 100 rows of `surveys` to an object using 
+`surveys_sample <- head(surveys, 100)`. This can be useful if you
+want to try out complex computations on a subset of your data before you apply
+them to the whole data set.
+There is a similar function that lets you extract the last few lines of the data 
+set. It is called (you might have guessed it) `tail()`.
 
-To open the data frame in RStudio's Data Viewer, use the `View()` function:
+To open the data set in RStudio's Data Viewer, use the `view()` function:
 
 ```{r, eval = FALSE, purl = FALSE}
-View(surveys)  # note the capital V!
+view(surveys)
 ```
 
 > ### Note
 >
-> `read.csv` assumes that fields are delineated by commas, however, in several
+> `read_csv` assumes that fields are delineated by commas, however, in several
 > countries, the comma is used as a decimal separator and the semicolon (;) is
 > used as a field delineator. If you want to read in this type of files in R,
-> you can use the `read.csv2` function. It behaves exactly like `read.csv` but
-> uses different parameters for the decimal and the field separators. If you are
-> working with another format, they can be both specified by the user. Check out
-> the help for `read.csv()` by typing `?read.csv` to learn more. There is also the `read.delim()` for 
-> in tab separated data files. It is important to note that all of these functions 
-> are actually wrapper functions for the main `read.table()` function with different arguments.
-> As such, the surveys data above could have also been loaded by using `read.table()`
-> with the separation argument as `,`. The code is as follows:
-> `surveys <- read.table(file="data_raw/portal_data_joined.csv", sep=",", header=TRUE)`.
-> The header argument has to be set to TRUE to be able to read the headers as
-> by default `read.table()` has the header argument set to FALSE.
+> you can use the `read_csv2` function. It behaves like `read_csv` but
+> uses different parameters for the decimal and the field separators. 
+There is also the `read_tsv()` for tab separated data files and `read_delim()` 
+> for less common formats.
+> Check out the help for `read_csv()` by typing `?read_csv` to learn more. 
 >
 > In addition to the above versions of the csv format, you should develop the habits
 > of looking at and record some parameters of your csv files. For instance, 
@@ -120,12 +152,13 @@ View(surveys)  # note the capital V!
 
 ## What are data frames?
 
+When we loaded the data into R, it got stored as an object of class `tibble`, 
+which is a special kind of `data.frame`. 
 Data frames are the _de facto_ data structure for most tabular data, and what we
 use for statistics and plotting.
-
-A data frame can be created by hand, but most commonly they are generated by the
-functions `read.csv()` or `read.table()`; in other words, when importing
-spreadsheets from your hard drive (or the web).
+Data frames can be created by hand, but most commonly they are generated by
+functions like `read_csv()`; in other words, when importing
+spreadsheets from your hard drive or the web.
 
 A data frame is the representation of data in the format of a table where the
 columns are vectors that all have the same length. Because columns are
@@ -134,14 +167,23 @@ factors). For example, here is a figure depicting a data frame comprising a
 numeric, a character, and a logical vector.
 
 ![](./img/data-frame.svg)
-
-
-We can see this when inspecting the <b>str</b>ucture of a data frame
+We can see this also when inspecting the <b>str</b>ucture of a data frame
 with the function `str()`:
 
 ```{r, purl=FALSE}
 str(surveys)
 ```
+
+You might have noticed that our data frame is actually a "tibble". A tibble is a
+data frame with some tweaked behavior. For our purposes the important 
+differences are that:
+
+1. In addition to displaying the data type of each column under its name, it
+   only prints the first few rows of data and only as many columns as fit on one
+   screen. If you want to see more rows, you can use the `print()` function 
+2. Columns of class `character` are never converted into factors. This is 
+   different from the default behavior of R in versions prior to 4.0.
+   
 
 ## Inspecting `data.frame` Objects
 
@@ -180,7 +222,6 @@ objects besides `data.frame`.
 >
 > * What is the class of the object `surveys`?
 > * How many rows and how many columns are in this object?
-> * How many species have been recorded during these surveys?
 >
 > ```{r, answer=TRUE, results="markup", purl=FALSE}
 >
@@ -188,7 +229,6 @@ objects besides `data.frame`.
 >
 > ## * class: data frame
 > ## * how many rows: 34786,  how many columns: 13
-> ## * how many species: 48
 >
 > ```
 
@@ -199,7 +239,6 @@ objects besides `data.frame`.
 ## Based on the output of `str(surveys)`, can you answer the following questions?
 ## * What is the class of the object `surveys`?
 ## * How many rows and how many columns are in this object?
-## * How many species have been recorded during these surveys?
 
 ```
 
@@ -324,14 +363,34 @@ In RStudio, you can use the autocompletion feature to get the full and correct n
 
 When we did `str(surveys)` we saw that several of the columns consist of
 integers. The columns `genus`, `species`, `sex`, `plot_type`, ... however, are
-of a special class called `factor`. Factors are very useful and actually
-contribute to making R particularly well suited to working with data. So we are
-going to spend a little time introducing them.
+of the class `character`.
+Arguably, these columns contain categorical data, that is, they can only take on
+a limited number of values. 
 
-Factors represent categorical data. They are stored as integers associated with labels and they can be ordered or unordered. While factors look (and often behave) like character vectors, they are actually treated as integer vectors by R. So you need to be very careful when treating them as strings.
+R has a special class for working with categorical data, called `factor`. 
+Factors are very useful and actually contribute to making R particularly well 
+suited to working with data. So we are going to spend a little time introducing 
+them.
 
 Once created, factors can only contain a pre-defined set of values, known as
-*levels*. By default, R always sorts levels in alphabetical order. For
+*levels*. 
+Factors are stored as integers associated with labels and they can be ordered or unordered. While factors look (and often behave) like character vectors, they are actually treated as integer vectors by R. So you need to be very careful when treating them as strings.
+
+When importing a data frame with `read_csv()`, the columns that contain text are not automatically coerced (=converted) into the `factor` data type, but once we have
+loaded the data we can do the conversion using the `factor()` function: 
+
+```{r, purl=FALSE}
+surveys$sex <- factor(surveys$sex)
+```
+
+We can see that the conversion has worked by using the `summary()` 
+function again. This produces a table with the counts for each factor level:
+
+```{r, purl=FALSE}
+summary(surveys$sex)
+```
+
+By default, R always sorts levels in alphabetical order. For
 instance, if you have a factor with 2 levels:
 
 ```{r, purl=TRUE}
@@ -365,6 +424,40 @@ informative than integers because factors are self describing: `"female"`,
 be able to tell just from the integer data. Factors, on the other hand, have
 this information built in. It is particularly helpful when there are many levels
 (like the species names in our example dataset).
+
+
+> ### Challenge
+>
+> 1 Change the columns `taxa` and `genus` in the `surveys` data frame into a 
+>   factor.
+>
+> 2 Using the functions you learned before, can you find out...
+>
+>      * How many rabbits were observed?
+>      * How many different genera are in the `genus` column?
+>
+> ```{r, answer=TRUE, purl=FALSE}
+> surveys$genus <- factor(surveys$genus)
+> summary(surveys)
+> nlevels(surveys$genus)
+>
+> ## * how many genera: There are 26 unique genera in the `genus` column.
+> ## * how many rabbts: There are 75 rabbits in the `taxa` column.
+> ``` 
+
+```{r, echo=FALSE, purl=TRUE}
+### Challenges:
+###
+### 1 Change the columns `taxa` and `genus` in the `surveys` data frame into a 
+###   factor.
+###
+### 2 Using the functions you learned before, can you find out...
+###
+###      * How many rabbits were observed?
+###      * How many different genera are in the `genus` column?
+
+```
+
 
 ### Converting factors
 
@@ -411,25 +504,29 @@ the experiment:
 
 ```{r, purl=TRUE}
 ## bar plot of the number of females and males captured during the experiment:
-plot(as.factor(surveys$sex))
+plot(surveys$sex)
 ```
 
-In addition to males and females, there are about 1700 individuals for which the
-sex information hasn't been recorded. Additionally, for these individuals,
-there is no label to indicate that the information is missing or undetermined. Let's rename this
-label to something more meaningful. Before doing that, we're going to pull out
-the data on sex and work with that data, so we're not modifying the working copy
-of the data frame:
+Howver, as we saw when we used `summary(surveys$sex)`, there are about 1700 
+individuals for which the sex information hasn't been recorded. To show them in
+the figure, we can turn the missing values into a factor level with the 
+`addNA()` function. We will also have to give the new factor level a label.
+We are going to work with a copy of the `sex` column, so we're not modifying the 
+working copy of the data frame:
 
 ```{r, results=TRUE, purl=FALSE}
-sex <- factor(surveys$sex)
-head(sex)
+sex <- surveys$sex
 levels(sex)
-levels(sex)[1] <- "undetermined"
+sex <- addNA(sex)
 levels(sex)
 head(sex)
+levels(sex)[3] <- "undetermined"
+levels(sex)
+head(sex)
+plot(sex)
 ```
 
+Now we can plot 
 
 > ### Challenge
 >
@@ -438,7 +535,7 @@ head(sex)
 >  barplot such that "undetermined" is last (after "male")?
 >
 > ```{r, answer=TRUE, purl=FALSE}
-> levels(sex)[2:3] <- c("female", "male")
+> levels(sex)[1:2] <- c("female", "male")
 > sex <- factor(sex, levels = c("female", "male", "undetermined"))
 > plot(sex)
 > ``` 
@@ -453,32 +550,9 @@ head(sex)
 ```
 
 
-### Using `stringsAsFactors = FALSE`
-
-By default, when building or importing a data frame, the columns that contain
-characters (i.e. text) are coerced (= converted) into factors. Depending on what you want to do with the data, you may want to keep these
-columns as `character`. To do so, `read.csv()` and `read.table()` have an
-argument called `stringsAsFactors` which can be set to `FALSE`.
-
-In most cases, it is preferable to set `stringsAsFactors = FALSE` when importing
-data and to convert as a factor only the columns that require this data
-type.
-
-
-```{r, eval=FALSE, purl=TRUE}
-## Compare the difference between our data read as `factor` vs `character`.
-surveys <- read.csv("data_raw/portal_data_joined.csv", stringsAsFactors = TRUE)
-str(surveys)
-surveys <- read.csv("data_raw/portal_data_joined.csv", stringsAsFactors = FALSE)
-str(surveys)
-## Convert the column "plot_type" into a factor
-surveys$plot_type <- factor(surveys$plot_type)
-```
-
-
 > ### Challenge
 >
-> 1. We have seen how data frames are created when using `read.csv()`, but
+> 1. We have seen how data frames are created when using `read_csv()`, but
 >   they can also be created by hand with the `data.frame()` function.  There are
 >   a few mistakes in this hand-crafted `data.frame`. Can you spot and fix them?
 >   Don't hesitate to experiment!
@@ -505,7 +579,6 @@ surveys$plot_type <- factor(surveys$plot_type)
 > 2. Can you predict the class for each of the columns in the following example?
 >    Check your guesses using `str(country_climate)`:
 >      * Are they what you expected?  Why? Why not?
->      * What would have been different if we had added `stringsAsFactors = FALSE` when creating the data frame?
 >      * What would you need to change to ensure that each column had the accurate data type?
 >
 >     ```{r, eval=FALSE, purl=FALSE}
@@ -524,8 +597,6 @@ surveys$plot_type <- factor(surveys$plot_type)
 >    ##   example?
 >    ##   Check your guesses using `str(country_climate)`:
 >    ##   * Are they what you expected? Why? why not?
->    ##   * What would have been different if we had added `stringsAsFactors = FALSE`
->    ##     when we created this data frame?
 >    ##   * What would you need to change to ensure that each column had the
 >    ##     accurate data type?
 >    country_climate <- data.frame(country = c("Canada", "Panama", "South Africa", "Australia"),
@@ -540,9 +611,8 @@ surveys$plot_type <- factor(surveys$plot_type)
 >    * missing one entry in the `feel` column (probably for one of the furry animals)
 >    * missing one comma in the `weight` column
 >    * `country`, `climate`, `temperature`, and `northern_hemisphere` are
->       factors; `has_kangaroo` is numeric
->    * using `stringsAsFactors = FALSE` would have made character vectors instead of
->      factors
+>       characters; `has_kangaroo` is numeric
+>    * using `factor()` one could replace character columns with factors columns
 >    * removing the quotes in `temperature` and `northern_hemisphere` and replacing 1
 >      by TRUE in the `has_kangaroo` column would give what was probably 
 >      intended
