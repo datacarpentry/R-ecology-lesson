@@ -24,7 +24,7 @@ source("setup.R")
 
 ------------
 
-## Loading the Survey Data
+## Loading the survey data
 
 ```{r, echo=FALSE, purl=TRUE}
 ### Loading the survey data
@@ -50,7 +50,7 @@ Each row holds information for a single animal, and the columns represent:
 | taxon            | e.g. Rodent, Reptile, Bird, Rabbit |
 | plot\_type       | type of plot                       |
 
-### Downloading the Data
+### Downloading the data
 
 We are going to use the R function `download.file()` to download the CSV file
 that contains the survey data from Figshare, and we will use `read_csv()` to
@@ -70,7 +70,7 @@ download.file(url = "https://ndownloader.figshare.com/files/2292169",
 ```
 
 
-### Reading the Data into R
+### Reading the data into R
 
 The file has now been downloaded to the destination you specified, but R has not 
 yet loaded the data from the file into memory. To do this, we can use the 
@@ -189,7 +189,7 @@ differences are that:
    different from the default behavior of R in versions prior to 4.0.
    
 
-## Inspecting `data.frame` Objects
+## Inspecting data frames
 
 We already saw how the functions `head()` and `str()` can be useful to check the
 content and the structure of a data frame. Here is a non-exhaustive list of
@@ -634,7 +634,7 @@ entry (for instance, a letter in a column that should only contain numbers).
 
 Learn more in this [RStudio tutorial](https://support.rstudio.com/hc/en-us/articles/218611977-Importing-Data-with-RStudio)
 
-## Formatting Dates
+## Formatting dates
 
 One of the most common issues that new (and experienced!) R users have is
 converting date and time information into a variable that is appropriate and
