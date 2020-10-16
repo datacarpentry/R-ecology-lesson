@@ -130,7 +130,7 @@ whole data set.
 There is a similar function that lets you extract the last few lines of the data 
 set. It is called (you might have guessed it) `tail()`.
 
-To open the data set in RStudio's Data Viewer, use the `view()` function:
+To open the dataset in RStudio's Data Viewer, use the `view()` function:
 
 ```{r, eval = FALSE, purl = FALSE}
 view(surveys)
