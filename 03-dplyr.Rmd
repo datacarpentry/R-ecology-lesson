@@ -32,7 +32,7 @@ suppressWarnings(surveys$date <- lubridate::ymd(paste(surveys$year,
 
 ------------
 
-# Data Manipulation using **`dplyr`** and **`tidyr`**
+# Data manipulation using **`dplyr`** and **`tidyr`**
 
 Bracket subsetting is handy, but it can be cumbersome and difficult to read,
 especially for complicated operations. Enter **`dplyr`**. **`dplyr`** is a package for
