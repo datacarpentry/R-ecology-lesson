@@ -36,6 +36,23 @@ encourage you to distribute it to the learners at the beginning of the
 lesson. As an instructor, we encourage you to do the live coding directly in
 this file, so the participants can follow along.
 
+## R Version
+
+With the release of R 4.0.0 in early 2020, an important change has been made 
+to R: The default for `stringsAsFactors` is now `FALSE` instead of `TRUE`. 
+As a result, the `read.csv()` and `data.frame()` functions do not automatically 
+convert character columns to factors anymore (you can read more about this 
+[here](https://developer.r-project.org/Blog/public/2020/02/16/stringsasfactors/index.html)).
+
+This change should not cause any problems with this lesson, independent of 
+whether R >4.0 is used or not, because we it uses
+`read_csv()` from the **`tidyverse`** package throughout. Other than
+`read.csv()` from base R, `read_csv()` never converts character columns to 
+factors, regardless of the R version.
+
+Nevertheless, it is recommended that learners install a version of R ≥4.0.0, 
+and instructors and helpers should be aware of this potential source of error.
+
 ## RStudio and Multiple R Installs
 
 Some learners may have previous R installations. On Mac, if a new install
@@ -51,9 +68,9 @@ the library;
 ls -l /Library/Frameworks/R.framework/Versions/
 ```
 
-We are currently using R 3.6.x. If it isn't there, they will need to install it. 
+We are currently using R 4.0.x. If it isn't there, they will need to install it. 
 If it is present, you will need to set the symbolic link to Current to point to 
-the 3.6.x directory:
+the 4.0.x directory:
 
 ```
 ln -s /Library/Frameworks/R.framework/Versions/3.6.x /Library/Frameworks/R.framework/Version/Current
