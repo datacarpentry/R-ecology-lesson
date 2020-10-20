@@ -393,9 +393,20 @@ Last, but certainly not least, **always include the output of `sessionInfo()`**
 as it provides critical information about your platform, the versions of R and
 the packages that you are using, and other information that can be very helpful
 to understand your problem.
+Here you can see the versions of R and all the packages that we are using to run
+the code in this lesson:
+
+```{r echo=FALSE, message = FALSE}
+# temporarily load RSQLite so that the version shows in sessionInfo()
+library(RSQLite)
+```
 
 ```{r, results='show', purl=FALSE}
 sessionInfo()
+```
+
+```{r echo=FALSE, message = FALSE}
+detach(package:RSQLite, unload=TRUE)
 ```
 
 ### Where to ask for help?
