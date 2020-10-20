@@ -73,6 +73,32 @@ theme for the R session, so that ggplot uses a _serif_ font. Since Arial is a _s
 font, R will try to load a different font. This can be done with 
 `theme_update(text = element_text(family = "serif"))`. 
 
+## Required packages
+
+Save yourself some aggrevation, and have everyone check and see if they can
+install all these packages before you start the first day
+
+```
+library(tidyverse) # required from 'starting with data' onwards
+library(patchwork) # required for `data visualization` lesson
+library(hexbin)    # required for `data visualization` lesson
+library(dbplyr)    # required for `R and databases` lesson
+library(RSQLite)   # required for `R and databases` lesson
+```
+
+Sometimes learners are unable to install the **`tidyverse`** package.
+In that case, they can try to install the individual packages that are actually 
+needed:
+
+```
+library(readr)
+library(lubridate)
+library(dplyr)
+library(tidyr)
+library(magrittr)
+library(ggplot2)
+```
+
 ## Narrative
 
 ### Before we start
