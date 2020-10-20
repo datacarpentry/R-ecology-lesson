@@ -763,12 +763,12 @@ Now that our data set is ready, we can save it as a CSV file in our `data`
 folder.
 
 ```{r, purl=FALSE, eval=FALSE}
-write_csv(surveys_complete, path = "data/surveys_complete.csv")
+write_csv(surveys_complete, file = "data/surveys_complete.csv")
 ```
 
 ```{r, purl=FALSE, eval=TRUE, echo=FALSE}
 if (!dir.exists("data")) dir.create("data")
-write_csv(surveys_complete, path = "data/surveys_complete.csv")
+write_csv(surveys_complete, file = "data/surveys_complete.csv")
 ```
 
 
