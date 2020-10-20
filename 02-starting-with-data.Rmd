@@ -232,6 +232,7 @@ objects besides `data.frame`.
 
 ## Challenge
 ## Based on the output of `str(surveys)`, can you answer the following questions?
+##
 ## * What is the class of the object `surveys`?
 ## * How many rows and how many columns are in this object?
 
@@ -423,10 +424,10 @@ this information built in. It is particularly helpful when there are many levels
 
 > ### Challenge
 >
-> 1 Change the columns `taxa` and `genus` in the `surveys` data frame into a 
->   factor.
+> 1. Change the columns `taxa` and `genus` in the `surveys` data frame into a 
+>    factor.
 >
-> 2 Using the functions you learned before, can you find out...
+> 2. Using the functions you learned before, can you find out...
 >
 >      * How many rabbits were observed?
 >      * How many different genera are in the `genus` column?
@@ -443,10 +444,10 @@ this information built in. It is particularly helpful when there are many levels
 ```{r, echo=FALSE, purl=TRUE}
 ### Challenges:
 ###
-### 1 Change the columns `taxa` and `genus` in the `surveys` data frame into a 
-###   factor.
+### 1. Change the columns `taxa` and `genus` in the `surveys` data frame into a 
+###    factor.
 ###
-### 2 Using the functions you learned before, can you find out...
+### 2. Using the functions you learned before, can you find out...
 ###
 ###      * How many rabbits were observed?
 ###      * How many different genera are in the `genus` column?
