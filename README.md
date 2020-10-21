@@ -7,19 +7,29 @@
 # Data carpentry: R for data analysis and visualization of Ecological Data
 
 This is an introduction to R designed for participants with no programming
-experience. These lessons can be taught in 3/4 of a day (approximately 6 hours). They start
-with some basic information about syntax for the R programming language, the
-RStudio interface, and move through to specific programming tasks, such as
-importing CSV files, the structure of data frame objects in R, dealing with
-categorical variables (i.e. factors), basic data manipulation (adding/removing
-rows and columns), and finishing with calculating summary statistics and a brief
-introduction to plotting. There is also a lesson on how to use databases from R that is intended to be taught after the SQL lesson, and ideally at the end of a Data Carpentry workshop.
+experience. It can be taught in 3/4 of a day (approximately 6 hours). 
+The lesson starts with some basic information about syntax for the R programming 
+language, the RStudio interface, and moves through to specific programming tasks, 
+such as importing CSV files, the structure of data frame objects in R, dealing 
+with categorical variables (i.e. factors), basic data manipulation 
+(adding/removing rows and columns), and finishing with calculating summary 
+statistics and a brief introduction to plotting. 
+There is also a lesson on how to use databases from R that is intended to be 
+taught after the SQL lesson, and ideally at the end of a Data Carpentry workshop.
 
 ## Prerequisites
 
-> * Having R and RStudio installed (though see the first
-> lesson, [Before we start](https://datacarpentry.org/R-ecology-lesson/00-before-we-start.html) for installation
-> instructions)
+Learners should have R and RStudio installed on their computers. 
+
+During the course, they also need to install R packages from CRAN, create 
+directories, and download files. 
+If the learners are using their own computers this should be no problem, 
+but if the computer is managed by their organization's IT department 
+they might need help from an administrator. In that case it is best to set 
+everything up before the course.
+
+See [Before we start](https://datacarpentry.org/R-ecology-lesson/00-before-we-start.html) 
+for instructions on installing R, RStudio, and the required R packages.
 
 ## Topics
 
@@ -33,21 +43,25 @@ introduction to plotting. There is also a lesson on how to use databases from R 
 
 ## Code handout
 
-There is a [code handout](https://datacarpentry.org/R-ecology-lesson/code-handout.R) that is intended to
-be distributed to the participants. This file includes some of the examples used
-during teaching and the titles of the section. It provides a guide that the
-participants can fill in as the lesson progresses. Participants can also source
-code from this file to avoid typos in more complex examples.
+There is a [code handout](https://datacarpentry.org/R-ecology-lesson/code-handout.R) 
+that is intended to be distributed to the participants. 
+This file includes some of the examples used during teaching and the titles of 
+the section. It provides a guide that the participants can fill in as the lesson 
+progresses. Participants can also source code from this file to avoid typos in 
+more complex examples.
 
 ## Contributing
 
-If you would like to contribute to the content and development of these lessons,
-we encourage you to review our [contributing guide](CONTRIBUTING.Rmd).
+Contributions to the content and development of these lesson are very welcome!
+If you would like to contribute, we encourage you to review our [contributing guide](CONTRIBUTING.Rmd).
 
 ## Questions
 
 If you have any questions or feedback, please open an issue, contact the
-maintainers, or come chat with us on the [Slack Channel for this lesson](https://swcarpentry.slack.com/messages/C9X9EC405). If you don't already have a Slack account with the Carpentries, you can [create one](https://swc-slack-invite.herokuapp.com/).
+maintainers, or come chat with us on the 
+[Slack Channel for this lesson](https://swcarpentry.slack.com/messages/C9X9EC405). 
+If you don't already have a Slack account with the Carpentries, you can 
+[create one](https://swc-slack-invite.herokuapp.com/).
 
 * Ana Costa Conrado
 * François Michonneau
@@ -58,4 +72,9 @@ maintainers, or come chat with us on the [Slack Channel for this lesson](https:/
 ## Citation
 
 Please cite as
-> François Michonneau, Tracy Teal, Auriel Fournier, Brian Seok, Adam Obeng, Aleksandra Natalia Pawlik, … Ye Li. (2019, July 1). datacarpentry/R-ecology-lesson: Data Carpentry: Data Analysis and Visualization in R for Ecologists, June 2019 (Version v2019.06.1). Zenodo. http://doi.org/10.5281/zenodo.3264888
+
+> François Michonneau, Tracy Teal, Auriel Fournier, Brian Seok, Adam Obeng, 
+> Aleksandra Natalia Pawlik, … Ye Li. (2019, July 1). 
+> datacarpentry/R-ecology-lesson: Data Carpentry: Data Analysis and 
+> Visualization in R for Ecologists, June 2019 (Version v2019.06.1). Zenodo. 
+> http://doi.org/10.5281/zenodo.3264888
