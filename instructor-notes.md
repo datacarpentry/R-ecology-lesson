@@ -99,7 +99,6 @@ install all these packages before you start the first day
 library(tidyverse) # required from 'starting with data' onwards
 library(patchwork) # required for `data visualization` lesson
 library(hexbin)    # required for `data visualization` lesson
-library(dbplyr)    # required for `R and databases` lesson
 library(RSQLite)   # required for `R and databases` lesson
 ```
 
@@ -113,6 +112,7 @@ library(lubridate)
 library(dplyr)
 library(tidyr)
 library(ggplot2)
+library(dbplyr)
 ```
 
 ## Narrative
