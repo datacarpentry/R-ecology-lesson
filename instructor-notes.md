@@ -93,26 +93,16 @@ font, R will try to load a different font. This can be done with
 ## Required packages
 
 Save yourself some aggrevation, and have everyone check and see if they can
-install all these packages before you start the first day
-
-```
-library(tidyverse) # required from 'starting with data' onwards
-library(patchwork) # required for `data visualization` lesson
-library(hexbin)    # required for `data visualization` lesson
-library(RSQLite)   # required for `R and databases` lesson
-```
+install all these packages before you start the first day. 
+See the "Preparations" section on the homepage of the course website for
+package installation instructions.
 
 Sometimes learners are unable to install the **`tidyverse`** package.
 In that case, they can try to install the individual packages that are actually 
 needed:
 
 ```
-library(readr)
-library(lubridate)
-library(dplyr)
-library(tidyr)
-library(ggplot2)
-library(dbplyr)
+install.packages("readr", "lubridate", "dplyr", "tidyr", "ggplot2", "dbplyr")
 ```
 
 ## Narrative
