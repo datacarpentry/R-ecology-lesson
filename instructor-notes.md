@@ -112,7 +112,6 @@ library(readr)
 library(lubridate)
 library(dplyr)
 library(tidyr)
-library(magrittr)
 library(ggplot2)
 ```
 
