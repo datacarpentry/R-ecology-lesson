@@ -19,15 +19,10 @@ taught after the SQL lesson, and ideally at the end of a Data Carpentry workshop
 
 ## Prerequisites
 
-Learners should have R and RStudio installed on their computers. 
-
-During the course, they also need to install R packages from CRAN, create 
-directories, and download files. 
-If the learners are using their own computers this should be no problem, 
-but if the computer is managed by their organization's IT department 
-they might need help from an administrator. In that case it is best to set 
-everything up before the course.
-
+The lesson assumes no prior knowledge of R or RStudio.
+Learners should have R and RStudio installed on their computers. They will also 
+need to be able to install R packages from CRAN, create directories, and 
+download files. 
 See [the lesson website](https://datacarpentry.org/R-ecology-lesson/index.html) 
 for instructions on installing R, RStudio, and the required R packages.
 
