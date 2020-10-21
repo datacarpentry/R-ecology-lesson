@@ -28,7 +28,7 @@ but if the computer is managed by their organization's IT department
 they might need help from an administrator. In that case it is best to set 
 everything up before the course.
 
-See [Before we start](https://datacarpentry.org/R-ecology-lesson/00-before-we-start.html) 
+See [the lesson website](https://datacarpentry.org/R-ecology-lesson/index.html) 
 for instructions on installing R, RStudio, and the required R packages.
 
 ## Topics
