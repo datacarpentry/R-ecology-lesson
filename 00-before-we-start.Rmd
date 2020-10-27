@@ -112,7 +112,7 @@ Integrated Development Environment (IDE) for working with R.
 The RStudio IDE open-source product is free under the [Affero General Public
 License (AGPL) v3](https://www.gnu.org/licenses/agpl-3.0.en.html). The RStudio
 IDE is also available with a commercial license and priority email support from
-RStudio, Inc.
+RStudio, PBC.
 
 We will use RStudio IDE to write code, navigate the files on our computer,
 inspect the variables we are going to create, and visualize the plots we will
