@@ -530,14 +530,13 @@ plot(sex)
 > ### Challenge
 >
 > * Rename "F" and "M" to "female" and "male" respectively.
-> * Now that we have renamed the factor level to "undetermined", can you recreate the
->  barplot such that "undetermined" is last (after "male")?
+> * Now that we have renamed the factor level to "undetermined", can you recreate the barplot such that "undetermined" is first (before "female")?
 >
 > ```{r, answer=TRUE, purl=FALSE}
 > levels(sex)[1:2] <- c("female", "male")
-> sex <- factor(sex, levels = c("female", "male", "undetermined"))
+> sex <- factor(sex, levels = c("undetermined", "female", "male"))
 > plot(sex)
-> ``` 
+> ```
 
 
 ```{r wrong-order, results='show', echo=FALSE, purl=TRUE}
@@ -545,7 +544,7 @@ plot(sex)
 ##
 ## * Rename "F" and "M" to "female" and "male" respectively.
 ## * Now that we have renamed the factor level to "undetermined", can you recreate the
-##   barplot such that "undetermined" is last (after "male")
+##   barplot such that "undetermined" is first (before "female")
 ```
 
 
