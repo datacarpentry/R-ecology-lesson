@@ -16,18 +16,19 @@ if (file.exists("portal-database.sqlite")) file.remove("portal-database.sqlite")
 ```
 
 
-------------
+:::objectives
 
-> ### Learning Objectives
->
-> * Access a database from R.
-> * Run SQL queries in R using **`RSQLite`** and **`dplyr`**.
-> * Describe the lazy behavior of dplyr on data stored in a database outside of R. 
-> * Prototype queries and retrieve all final results. 
-> * Create complex queries across one or multiple database tables.
-> * Create an SQLite database from existing .csv files.
+### Learning Objectives
 
-------------
+- Access a database from R.
+- Run SQL queries in R using **`RSQLite`** and **`dplyr`**.
+- Describe the lazy behavior of dplyr on data stored in a database outside of 
+  R. 
+- Prototype queries and retrieve all final results. 
+- Create complex queries across one or multiple database tables.
+- Create an SQLite database from existing .csv files.
+
+:::
 
 ## Introduction
 

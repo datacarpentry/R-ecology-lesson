@@ -11,22 +11,23 @@ editor_options:
 source("setup.R")
 ```
 
---------------------------------------------------------------------------------
 
-> ### Learning Objectives
->
-> -   Be able to explain what R and RStudio are, what they are used for, and how
->     they relate to each other.
-> -   Describe the purpose of the RStudio Script, Console, Environment, and
->     Plots panes.
-> -   Organize files and directories for a set of analyses as an R Project, and
->     understand the purpose of the working directory.
-> -   Use the built-in RStudio help interface to search for more information on
->     R functions.
-> -   Demonstrate how to provide sufficient information for troubleshooting with
->     the R user community.
+:::objectives
 
---------------------------------------------------------------------------------
+### Learning Objectives
+
+- Be able to explain what R and RStudio are, what they are used for, and how
+  they relate to each other.
+- Describe the purpose of the RStudio Script, Console, Environment, and
+  Plots panes.
+- Organize files and directories for a set of analyses as an R Project, and
+  understand the purpose of the working directory.
+- Use the built-in RStudio help interface to search for more information on
+  R functions.
+- Demonstrate how to provide sufficient information for troubleshooting with
+  the R user community.
+
+:::
 
 ## What is R? What is RStudio?
 

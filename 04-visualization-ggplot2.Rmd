@@ -21,17 +21,18 @@ surveys_complete <- read_csv(file = "data_raw/portal_data_joined.csv", col_types
 ```
 
 
-------------
+:::objectives
 
-> ### Learning Objectives
->
-> * Produce scatter plots, boxplots, and time series plots using ggplot.
-> * Set universal plot settings.
-> * Describe what faceting is and apply faceting in ggplot.
-> * Modify the aesthetics of an existing ggplot plot (including axis labels and color).
-> * Build complex and customized plots from data in a data frame.
+### Learning Objectives
 
---------------
+- Produce scatter plots, boxplots, and time series plots using ggplot.
+- Set universal plot settings.
+- Describe what faceting is and apply faceting in ggplot.
+- Modify the aesthetics of an existing ggplot plot (including axis labels and 
+  color).
+- Build complex and customized plots from data in a data frame.
+
+:::
 
 We start by loading the required packages. **`ggplot2`** is included in the **`tidyverse`** package.
 
