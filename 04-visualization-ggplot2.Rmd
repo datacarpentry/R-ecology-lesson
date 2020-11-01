@@ -125,7 +125,10 @@ surveys_plot +
   geom_point()
 ```
 
-**Notes**
+
+:::note
+
+### Notes
 
 - Anything you put in the `ggplot()` function can be seen by any geom layers
   that you add (i.e., these are universal plot settings). This includes the x- 
@@ -136,6 +139,9 @@ surveys_plot +
 containing a layer. If, instead, the `+` sign is added in the line before the 
 other layer, **`ggplot2`** will not add the new layer and will return an error 
 message.
+
+:::
+
 
 ```{r, ggplot-with-plus-position, eval=FALSE, purl=FALSE}
 # This is the correct syntax for adding layers
@@ -451,10 +457,15 @@ ggplot(data = yearly_sex_counts,
 ```
 
 
-**Note:** 
+:::note
+
+###Note
+
 `ggplot2` before version 3.0.0 used formulas to specify how plots are faceted.
 If you encounter `facet_grid`/`wrap(...)` code containing `~`, please read
 <https://ggplot2.tidyverse.org/news/#tidy-evaluation>.
+
+:::
 
 
 ## **`ggplot2`** themes

@@ -562,13 +562,26 @@ faithfully recreated the mammals database.
 :::::::::::::::::::::::::::::::::::::
 
 
-**Note:** In this example, we first loaded all of the data into the R session by
+:::note 
+
+### Note
+
+In this example, we first loaded all of the data into the R session by
 reading the three `csv` files. Because all the data has to flow through R,
 this is not suitable for very large datasets.
 
-**Note:** Finally, to close the connection to the mammals database you may use 
-`DBI::dbDisconnect(mammals)`; this discards all pending work and frees resources, 
-e.g. memory.
+:::
+
+
+:::note
+
+### Note
+
+Finally, to close the connection to the mammals database you may use 
+`DBI::dbDisconnect(mammals)`; this discards all pending work and frees 
+resources, e.g. memory.
+
+:::
 
 
 ```{r, child="_page_built_on.Rmd"}
