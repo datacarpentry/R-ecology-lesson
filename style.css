@@ -62,7 +62,7 @@ blockquote p,ul,ol {
     display: none;
 }
 
-div.objectives, div.challenge {
+div.objectives, div.challenge, div.note {
     background: #efefef;
     border-left: 5px solid #ddd;
     padding: 20px 20px;
