@@ -62,10 +62,14 @@ blockquote p,ul,ol {
     display: none;
 }
 
-div.objectives {
+div.objectives, div.challenge {
     background: #efefef;
     border-left: 5px solid #ddd;
     padding: 20px 20px;
     margin: 30px 0 30px 0;
     font-size: 17.5px;
+}
+
+div.answer {
+    background: #fff;
 }

@@ -150,17 +150,20 @@ out one line, you can put the cursor at any location of that line (i.e. no need
 to select the whole line), then press <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + 
 <kbd>C</kbd>.
 
-> ### Challenge
->
-> What are the values after each statement in the following?
->
-> ```{r, purl = FALSE}
-> mass <- 47.5            # mass?
-> age  <- 122             # age?
-> mass <- mass * 2.0      # mass?
-> age  <- age - 20        # age?
-> mass_index <- mass/age  # mass_index?
-> ```
+
+:::::::::::::::::::::::::::::::::::::challenge
+
+### Challenge
+
+What are the values after each statement in the following?
+
+```{r, purl = FALSE}
+mass <- 47.5            # mass?
+age  <- 122             # age?
+mass <- mass * 2.0      # mass?
+age  <- age - 20        # age?
+mass_index <- mass/age  # mass_index?
+```
 
 ```{r, echo = FALSE, purl = TRUE}
 ### Challenge
@@ -173,6 +176,9 @@ to select the whole line), then press <kbd>Ctrl</kbd> + <kbd>Shift</kbd> +
 ## age  <- age - 20        # age?
 ## mass_index <- mass/age  # mass_index?
 ```
+
+:::::::::::::::::::::::::::::::::::::
+
 
 ### Functions and their arguments
 
@@ -340,61 +346,61 @@ Vectors are one of the many **data structures** that R uses. Other important
 ones are lists (`list`), matrices (`matrix`), data frames (`data.frame`),
 factors (`factor`) and arrays (`array`).
 
+:::::::::::::::::::::::::::::::::::::challenge
 
-> ### Challenge
->
->
-> * We’ve seen that atomic vectors can be of type character,
->   numeric (or double), integer, and logical. But what happens if we try to mix these types in
->   a single vector?
-> 
-> ```{text_answer, echo=FALSE, purl=FALSE}
-> R implicitly converts them to all be the same type
-> ```
->
-> * What will happen in each of these examples? (hint: use `class()`
->   to check the data type of your objects):
->
->     ```r
->     num_char <- c(1, 2, 3, "a")
->     num_logical <- c(1, 2, 3, TRUE)
->     char_logical <- c("a", "b", "c", TRUE)
->     tricky <- c(1, 2, 3, "4")
->     ```
->
-> * Why do you think it happens?
->
-> ```{text_answer, echo=FALSE, purl=FALSE}
-> Vectors can be of only one data type. R tries to
-> convert (coerce) the content of this vector to find a "common
-> denominator" that doesn't lose any information.
-> ```
->
-> * How many values in `combined_logical` are `"TRUE"` (as a character) in the
->   following example (reusing the 2 `..._logical`s from above):
->
->     ```r
->     combined_logical <- c(num_logical, char_logical)
->     ```
->
-> ```{text_answer, echo=FALSE, purl=FALSE}
-> Only one. There is no memory of past data types, and the coercion happens the
-> first time the vector is evaluated. Therefore, the `TRUE` in `num_logical`
-> gets converted into a `1` before it gets converted into `"1"` in
-> `combined_logical`.
-> ```
->
-> * You've probably noticed that objects of different types get
->   converted into a single, shared type within a vector. In R, we
->   call converting objects from one class into another class
->   _coercion_. These conversions happen according to a hierarchy,
->   whereby some types get preferentially coerced into other
->   types. Can you draw a diagram that represents the hierarchy of how
->   these data types are coerced?
->
-> ```{text_answer, echo=FALSE, purl=FALSE}
-> logical &#8594; numeric &#8594; character &#8592; logical
-> ```
+### Challenge
+
+1. We’ve seen that atomic vectors can be of type character,
+   numeric (or double), integer, and logical. But what happens if we try to mix 
+   these types in a single vector?
+
+```{text_answer, echo=FALSE, purl=FALSE}
+R implicitly converts them to all be the same type
+```
+
+2. What will happen in each of these examples? (hint: use `class()`
+   to check the data type of your objects):
+ 
+```{r eval=FALSE}
+num_char <- c(1, 2, 3, "a")
+num_logical <- c(1, 2, 3, TRUE)
+char_logical <- c("a", "b", "c", TRUE)
+tricky <- c(1, 2, 3, "4")
+```
+   
+3. Why do you think it happens?
+
+```{text_answer, echo=FALSE, purl=FALSE}
+Vectors can be of only one data type. R tries to
+convert (coerce) the content of this vector to find a "common
+denominator" that doesn't lose any information.
+```
+
+4. How many values in `combined_logical` are `"TRUE"` (as a character) in the
+   following example (reusing the 2 `..._logical`s from above):
+ 
+```{r eval = FALSE}
+combined_logical <- c(num_logical, char_logical)
+```
+   
+```{text_answer, echo=FALSE, purl=FALSE}
+Only one. There is no memory of past data types, and the coercion happens the
+first time the vector is evaluated. Therefore, the `TRUE` in `num_logical`
+gets converted into a `1` before it gets converted into `"1"` in
+`combined_logical`.
+```
+
+5. You've probably noticed that objects of different types get
+   converted into a single, shared type within a vector. In R, we
+   call converting objects from one class into another class
+   _coercion_. These conversions happen according to a hierarchy,
+   whereby some types get preferentially coerced into other
+   types. Can you draw a diagram that represents the hierarchy of how
+   these data types are coerced?
+ 
+```{text_answer, echo=FALSE, purl=FALSE}
+logical &#8594; numeric &#8594; character &#8592; logical
+```
 
 ```{r, echo = FALSE, eval = FALSE, purl = TRUE}
 ## We’ve seen that atomic vectors can be of type character, numeric, integer, and
@@ -426,6 +432,9 @@ combined_logical <- c(num_logical, char_logical)
 ## you draw a diagram that represents the hierarchy of how these data
 ## types are coerced?
 ```
+
+:::::::::::::::::::::::::::::::::::::
+
 
 ## Subsetting vectors
 
@@ -506,20 +515,25 @@ animals %in% c("rat", "cat", "dog", "duck", "goat")
 animals[animals %in% c("rat", "cat", "dog", "duck", "goat")]
 ```
 
-> ### Challenge (optional){.challenge}
->
-> * Can you figure out why `"four" > "five"` returns `TRUE`?
-> 
-> ```{text_answer, echo=FALSE, purl=FALSE}
-> When using ">" or "<" on strings, R compares their alphabetical order. 
-> Here "four" comes after "five", and therefore is "greater than" it.
-> ```
+
+:::::::::::::::::::::::::::::::::::::challenge
+
+### Challenge (optional)
+
+Can you figure out why `"four" > "five"` returns `TRUE`?
+ 
+```{text_answer, echo=FALSE, purl=FALSE}
+When using ">" or "<" on strings, R compares their alphabetical order. 
+Here "four" comes after "five", and therefore is "greater than" it.
+```
 
 ```{r, echo = FALSE, purl = TRUE}
 ### Challenge (optional)
 ##
 ## * Can you figure out why `"four" > "five"` returns `TRUE`?
 ```
+
+:::::::::::::::::::::::::::::::::::::
 
 
 ## Missing data
@@ -561,46 +575,58 @@ heights[complete.cases(heights)]
 ```
 Recall that you can use the `typeof()` function to find the type of your atomic vector.
 
-> ### Challenge
->
-> 1. Using this vector of heights in inches, create a new vector, `heights_no_na`, with the NAs removed.
->
->     ```r
->     heights <- c(63, 69, 60, 65, NA, 68, 61, 70, 61, 59, 64, 69, 63, 63, NA, 72, 65, 64, 70, 63, 65)
->     ```
-> 2. Use the function `median()` to calculate the median of the `heights` vector.
->
-> 3. Use R to figure out how many people in the set are taller than 67 inches.
->
-> ```{r, answer=TRUE}
-> heights <- c(63, 69, 60, 65, NA, 68, 61, 70, 61, 59, 64, 69, 63, 63, NA, 72, 65, 64, 70, 63, 65)
-> 
-> # 1.
-> heights_no_na <- heights[!is.na(heights)] 
-> # or
-> heights_no_na <- na.omit(heights)
-> # or
-> heights_no_na <- heights[complete.cases(heights)]
->
-> # 2.
-> median(heights, na.rm = TRUE)
->
-> # 3.
-> heights_above_67 <- heights_no_na[heights_no_na > 67]
-> length(heights_above_67)
-> ```
 
+:::::::::::::::::::::::::::::::::::::challenge
+
+### Challenge
+
+1. Using this vector of heights in inches, create a new vector, `heights_no_na`, 
+   with the NAs removed.
+
+```{r eval=FALSE}
+heights <- c(63, 69, 60, 65, NA, 68, 61, 70, 61, 59, 64, 69, 
+             63, 63, NA, 72, 65, 64, 70, 63, 65)
+```
+
+2.  Use the function `median()` to calculate the median of the `heights` vector.
+
+3.  Use R to figure out how many people in the set are taller than 67 inches.
+
+```{r, answer=TRUE}
+heights <- c(63, 69, 60, 65, NA, 68, 61, 70, 61, 59, 64, 69, 
+             63, 63, NA, 72, 65, 64, 70, 63, 65)
+ 
+# 1.
+heights_no_na <- heights[!is.na(heights)] 
+# or
+heights_no_na <- na.omit(heights)
+# or
+heights_no_na <- heights[complete.cases(heights)]
+
+# 2.
+median(heights, na.rm = TRUE)
+
+# 3.
+heights_above_67 <- heights_no_na[heights_no_na > 67]
+length(heights_above_67)
+```
 
 ```{r, echo = FALSE, purl = TRUE}
 ## ### Challenge
-## 1. Using this vector of heights in inches, create a new vector with the NAs removed.
+## 1. Using this vector of heights in inches, create a new vector with the NAs 
+## removed.
 ##
-##    heights <- c(63, 69, 60, 65, NA, 68, 61, 70, 61, 59, 64, 69, 63, 63, NA, 72, 65, 64, 70, 63, 65)
+##    heights <- c(63, 69, 60, 65, NA, 68, 61, 70, 61, 59, 64, 69, 
+##                 63, 63, NA, 72, 65, 64, 70, 63, 65)
 ##
-## 2. Use the function `median()` to calculate the median of the `heights` vector.
+## 2. Use the function `median()` to calculate the median of the `heights` 
+##    vector.
 ##
 ## 3. Use R to figure out how many people in the set are taller than 67 inches.
 ```
+
+:::::::::::::::::::::::::::::::::::::
+
 
 Now that we have learned how to write scripts, and the basics of R's data
 structures, we are ready to start working with the Portal dataset we have been

@@ -147,33 +147,35 @@ surveys_plot
   + geom_point()
 ```
 
-> ### Challenge (optional)
->
-> Scatter plots can be useful exploratory tools for small datasets. For data
-> sets with large numbers of observations, such as the `surveys_complete` data
-> set, overplotting of points can be a limitation of scatter plots. One strategy
-> for handling such settings is to use hexagonal binning of observations. The
-> plot space is tessellated into hexagons. Each hexagon is assigned a color
-> based on the number of observations that fall within its boundaries.  To use
-> hexagonal binning with **`ggplot2`**, first install the R package `hexbin`
-> from CRAN:
->
->
-> ```{r, eval = FALSE}
-> install.packages("hexbin")
-> library(hexbin)
-> ```
->
-> Then use the `geom_hex()` function:
->
-> ```{r, eval = FALSE}
-> surveys_plot +
->  geom_hex()
-> ```
->
-> - What are the relative strengths and weaknesses of a hexagonal bin plot
->   compared to a scatter plot? Examine the above scatter plot and compare it
->   with the hexagonal bin plot that you created.
+
+:::::::::::::::::::::::::::::::::::::challenge
+
+### Challenge (optional)
+
+Scatter plots can be useful exploratory tools for small datasets. For data
+sets with large numbers of observations, such as the `surveys_complete` data
+set, overplotting of points can be a limitation of scatter plots. One strategy
+for handling such settings is to use hexagonal binning of observations. The
+plot space is tessellated into hexagons. Each hexagon is assigned a color
+based on the number of observations that fall within its boundaries.  To use
+hexagonal binning with **`ggplot2`**, first install the R package `hexbin`
+from CRAN:
+
+```{r, eval = FALSE}
+install.packages("hexbin")
+library(hexbin)
+```
+
+Then use the `geom_hex()` function:
+
+```{r, eval = FALSE}
+surveys_plot +
+geom_hex()
+```
+
+- What are the relative strengths and weaknesses of a hexagonal bin plot
+  compared to a scatter plot? Examine the above scatter plot and compare it
+  with the hexagonal bin plot that you created.
 
 ```{r hexbin-challenge, echo = FALSE, eval = FALSE, purl = TRUE}
 ### Challenge with hexbin
@@ -192,6 +194,9 @@ surveys_plot +
 ## What are the relative strengths and weaknesses of a hexagonal bin
 ## plot compared to a scatter plot?
 ```
+
+:::::::::::::::::::::::::::::::::::::
+
 
 ## Building your plots iteratively
 
@@ -226,18 +231,20 @@ ggplot(data = surveys_complete, mapping = aes(x = weight, y = hindfoot_length)) 
     geom_point(alpha = 0.1, aes(color = species_id))
 ```
 
-> ### Challenge
->
-> Use what you just learned to create a scatter plot of `weight` over
-> `species_id` with the plot types showing in different colors.
-> Is this a good way to show this type of data?
->
-> ```{r scatter-challenge-answer, answer=TRUE, purl=FALSE}
-> ggplot(data = surveys_complete, 
->        mapping = aes(x = species_id, y = weight)) +
->    geom_point(aes(color = plot_type))
-> ```
 
+:::::::::::::::::::::::::::::::::::::challenge
+
+### Challenge
+
+Use what you just learned to create a scatter plot of `weight` over
+`species_id` with the plot types showing in different colors.
+Is this a good way to show this type of data?
+
+```{r scatter-challenge-answer, answer=TRUE, purl=FALSE}
+ggplot(data = surveys_complete, 
+      mapping = aes(x = species_id, y = weight)) +
+  geom_point(aes(color = plot_type))
+```
 
 ```{r scatter-challenge, echo = FALSE, eval = FALSE, purl = TRUE}
 ### Challenge with scatter plot:
@@ -246,6 +253,9 @@ ggplot(data = surveys_complete, mapping = aes(x = weight, y = hindfoot_length)) 
 ## over `species_id` with the plot types showing in different colors.
 ## Is this a good way to show this type of data?
 ```
+
+:::::::::::::::::::::::::::::::::::::
+
 
 ## Boxplot
 
@@ -269,34 +279,34 @@ Notice how the boxplot layer is behind the jitter layer? What do you need to
 change in the code to put the boxplot in front of the points such that it's not
 hidden?
 
-> ### Challenges
->
-> Boxplots are useful summaries, but hide the *shape* of the distribution. For
-> example, if there is a bimodal distribution, it would not be observed with a
-> boxplot. An alternative to the boxplot is the violin plot (sometimes known as 
-> a beanplot), where the shape (of the density of points) is drawn.
->
-> - Replace the box plot with a violin plot; see `geom_violin()`.
->
-> In many types of data, it is important to consider the *scale* of the
-> observations.  For example, it may be worth changing the scale of the axis to
-> better distribute the observations in the space of the plot.  Changing the scale
-> of the axes is done similarly to adding/modifying other components (i.e., by
-> incrementally adding commands). Try making these modifications:
->
-> - Represent weight on the log~10~ scale; see `scale_y_log10()`.
->
-> So far, we've looked at the distribution of weight within species. Try making
-> a new plot to explore the distribution of another variable within each species.
->
-> - Create boxplot for `hindfoot_length`.  Overlay the boxplot layer on a jitter
->   layer to show actual measurements.
->
-> - Add color to the data points on your boxplot according to the plot from which
->   the sample was taken (`plot_id`).
+:::::::::::::::::::::::::::::::::::::challenge
 
-> Hint: Check the class for `plot_id`. Consider changing the class of `plot_id` 
-> from integer to factor. Why does this change how R makes the graph?
+### Challenge
+
+Boxplots are useful summaries, but hide the *shape* of the distribution. For
+example, if there is a bimodal distribution, it would not be observed with a
+boxplot. An alternative to the boxplot is the violin plot (sometimes known as 
+a beanplot), where the shape (of the density of points) is drawn.
+
+- Replace the box plot with a violin plot; see `geom_violin()`.
+
+In many types of data, it is important to consider the *scale* of the
+observations.  For example, it may be worth changing the scale of the axis to
+better distribute the observations in the space of the plot.  Changing the scale
+of the axes is done similarly to adding/modifying other components (i.e., by
+incrementally adding commands). Try making these modifications:
+
+- Represent weight on the log~10~ scale; see `scale_y_log10()`.
+  So far, we've looked at the distribution of weight within species. Try making
+  a new plot to explore the distribution of another variable within each 
+  species.
+- Create boxplot for `hindfoot_length`.  Overlay the boxplot layer on a jitter
+  layer to show actual measurements.
+- Add color to the data points on your boxplot according to the plot from which
+  the sample was taken (`plot_id`).
+
+Hint: Check the class for `plot_id`. Consider changing the class of `plot_id` 
+from integer to factor. Why does this change how R makes the graph?
 
 ```{r boxplot-challenge, eval = FALSE, purl = TRUE, echo = FALSE}
 ## Challenge with boxplots:
@@ -319,6 +329,7 @@ ggplot(data = surveys_complete, mapping = aes(x = species_id, y = weight)) +
 
 ```
 
+:::::::::::::::::::::::::::::::::::::
 
 ## Plotting time series data
 
@@ -475,29 +486,33 @@ The
 [ggthemes](https://jrnold.github.io/ggthemes/reference/index.html) package
 provides a wide variety of options.
 
-> ### Challenge
->
-> Use what you just learned to create a plot that depicts how the average weight
-> of each species changes through the years.
-> 
-> ```{r average-weight-time-series, answer=TRUE, purl=FALSE}
-> yearly_weight <- surveys_complete %>%
->                 group_by(year, species_id) %>%
->                  summarize(avg_weight = mean(weight))
-> ggplot(data = yearly_weight, mapping = aes(x=year, y=avg_weight)) +
->    geom_line() +
->    facet_wrap(vars(species_id)) +
->    theme_bw()
->```
 
+:::::::::::::::::::::::::::::::::::::challenge
+
+### Challenge
+
+Use what you just learned to create a plot that depicts how the average weight
+of each species changes through the years.
+ 
+```{r average-weight-time-series, answer=TRUE, purl=FALSE}
+ yearly_weight <- surveys_complete %>%
+                 group_by(year, species_id) %>%
+                  summarize(avg_weight = mean(weight))
+
+ggplot(data = yearly_weight, mapping = aes(x=year, y=avg_weight)) +
+  geom_line() +
+  facet_wrap(vars(species_id)) +
+  theme_bw()
+```
 
 ```{r, eval = FALSE, purl = TRUE, echo = FALSE}
 ### Plotting time series challenge:
 ##
 ##  Use what you just learned to create a plot that depicts how the
 ##  average weight of each species changes through the years.
-
 ```
+
+:::::::::::::::::::::::::::::::::::::
 
 
 ## Customization
@@ -574,19 +589,36 @@ ggplot(surveys_complete, aes(x = species_id, y = hindfoot_length)) +
     grey_theme
 ```
 
-> ### Challenge
->
-> With all of this information in hand, please take another five minutes to either
-> improve one of the plots generated in this exercise or create a beautiful graph
-> of your own. Use the RStudio [**`ggplot2`** cheat sheet](https://www.rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf) 
-> for inspiration.
->
-> Here are some ideas:
->
-> * See if you can change the thickness of the lines.
-> * Can you find a way to change the name of the legend? What about its labels?
-> * Try using a different color palette (see
->   http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/).
+
+:::::::::::::::::::::::::::::::::::::challenge
+
+### Challenge
+
+With all of this information in hand, please take another five minutes to either
+improve one of the plots generated in this exercise or create a beautiful graph
+of your own. Use the RStudio 
+[**`ggplot2`** cheat sheet](https://www.rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf) 
+for inspiration.
+
+Here are some ideas:
+
+* See if you can change the thickness of the lines.
+* Can you find a way to change the name of the legend? What about its labels?
+* Try using a different color palette 
+  (see http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/).
+  
+
+```{r final-challenge, eval = FALSE, purl = TRUE, echo = FALSE}
+### Final plotting challenge:
+##  With all of this information in hand, please take another five
+##  minutes to either improve one of the plots generated in this
+##  exercise or create a beautiful graph of your own. Use the RStudio
+##  ggplot2 cheat sheet for inspiration:
+##  https://www.rstudio.com/wp-content/uploads/2015/08/ggplot2-cheatsheet.pdf
+```
+
+:::::::::::::::::::::::::::::::::::::
+
 
 ## Arranging plots
 
@@ -660,16 +692,6 @@ ggsave("combo_plot_abun_weight.png", combo_plot, width = 10, dpi = 300)
 
 Note: The parameters `width` and `height` also determine the font size in the 
 saved plot.
-
-
-```{r final-challenge, eval = FALSE, purl = TRUE, echo = FALSE}
-### Final plotting challenge:
-##  With all of this information in hand, please take another five
-##  minutes to either improve one of the plots generated in this
-##  exercise or create a beautiful graph of your own. Use the RStudio
-##  ggplot2 cheat sheet for inspiration:
-##  https://www.rstudio.com/wp-content/uploads/2015/08/ggplot2-cheatsheet.pdf
-```
 
 ```{r, child="_page_built_on.Rmd"}
 ```
