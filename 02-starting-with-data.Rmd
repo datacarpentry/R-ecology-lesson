@@ -70,7 +70,7 @@ download.file(url = "https://ndownloader.figshare.com/files/2292169",
 ```
 
 
-### Reading the data into R
+### Loading the `tidyverse` package
 
 The file has now been downloaded to the destination you specified, but R has not 
 yet loaded the data from the file into memory. To do this, we can use the 
@@ -94,6 +94,8 @@ Then, to load the package type:
 library(tidyverse)
 ```
 
+### Reading the data into R
+
 Now we can use the functions from the **`tidyverse`** package. 
 Let's use `read_csv()` to read the data into a data frame 
 (we will learn more about data frames later):
@@ -109,6 +111,30 @@ of each column and guesses its data type. For example, in this dataset,
 `read_csv()` reads `weight` as `col_double` (a numeric data type), and `species` 
 as `col_character`. You have the option to specify the data type for a column
 manually by using the `col_types` argument in `read_csv`.
+
+:::note
+
+### Note
+`read_csv()` assumes that fields are delineated by commas, however, in several
+countries, the comma is used as a decimal separator and the semicolon (;) is
+used as a field delineator. If you want to read in this type of files in R,
+you can use the `read_csv2()` function. It behaves like `read_csv()` but
+uses different parameters for the decimal and the field separators. 
+There is also the `read_tsv()` for tab separated data files and `read_delim()` 
+for less common formats.
+Check out the help for `read_csv()` by typing `?read_csv` to learn more. 
+
+In addition to the above versions of the csv format, you should develop the 
+habits of looking at and record some parameters of your csv files. For instance, 
+the character encoding, control characters used for line ending, date format
+(if the date is not splitted into three variables), and the presence of 
+unexpected [newlines](https://en.wikipedia.org/wiki/Newline) are important
+characteristics of your data files.
+Those parameters will ease up the import step of your data in R.
+
+:::
+
+### Inspecting the data
 
 We can see the contents of the first few lines of the data by typing its 
 name: `surveys`. By default, this will show show you as many rows and columns of
@@ -137,30 +163,9 @@ view(surveys)
 ```
 
 
-:::note
+## Data frames
 
-### Note
-`read_csv()` assumes that fields are delineated by commas, however, in several
-countries, the comma is used as a decimal separator and the semicolon (;) is
-used as a field delineator. If you want to read in this type of files in R,
-you can use the `read_csv2()` function. It behaves like `read_csv()` but
-uses different parameters for the decimal and the field separators. 
-There is also the `read_tsv()` for tab separated data files and `read_delim()` 
-for less common formats.
-Check out the help for `read_csv()` by typing `?read_csv` to learn more. 
-
-In addition to the above versions of the csv format, you should develop the 
-habits of looking at and record some parameters of your csv files. For instance, 
-the character encoding, control characters used for line ending, date format
-(if the date is not splitted into three variables), and the presence of 
-unexpected [newlines](https://en.wikipedia.org/wiki/Newline) are important
-characteristics of your data files.
-Those parameters will ease up the import step of your data in R.
-
-:::
-
-
-## What are data frames?
+### What are data frames?
 
 When we loaded the data into R, it got stored as an object of class `tibble`, 
 which is a special kind of data frame (the difference is not important for our 
@@ -186,7 +191,7 @@ with the function `str()`:
 str(surveys)
 ```
  
-## Inspecting data frames
+### Inspecting data frames
 
 We already saw how the functions `head()` and `str()` can be useful to check the
 content and the structure of a data frame. Here is a non-exhaustive list of
@@ -244,7 +249,7 @@ str(surveys)
 :::::::::::::::::::::::::::::::::::::
 
 
-## Indexing and subsetting data frames
+### Indexing and subsetting data frames
 
 ```{r, echo=FALSE, purl=TRUE}
 

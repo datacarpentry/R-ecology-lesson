@@ -31,7 +31,6 @@ if (file.exists("portal-database.sqlite")) file.remove("portal-database.sqlite")
 
 ## Introduction
 
-
 So far, we have dealt with small datasets that easily fit into your computer's
 memory. But what about datasets that are too large for your computer to
 handle as a whole? In this case, storing the data outside of R and organizing it
@@ -121,7 +120,9 @@ output above:
 Now that we know we can connect to the database, let's explore how to get
 the data from its tables into R.
 
-### Querying the database with the SQL syntax
+## Querying databases
+
+### Querying a database with the SQL syntax
 
 To connect to tables within a database, you can use the `tbl()` function from
 **`dplyr`**. This function can be used to send SQL queries to the database. To
@@ -135,7 +136,7 @@ tbl(mammals, sql("SELECT year, species_id, plot_id FROM surveys"))
 With this approach you can use any of the SQL queries we have seen in the
 database lesson.
 
-### Querying the database with the dplyr syntax
+### Querying a database with the dplyr syntax
 
 One of the strengths of **`dplyr`** is that the same operation can be done using
 **`dplyr`**'s verbs instead of writing SQL. First, we select the table on which to do
@@ -255,7 +256,7 @@ The last line:
 indicates that there are more results that fit our filtering criterion. Why was
 R lazy and only retrieved 10 of them?
 
-## Laziness
+### Laziness
 
 Hadley Wickham, the author of **`dplyr`**
 [explains](https://cran.r-project.org/web/packages/dbplyr/vignettes/dbplyr.html):
@@ -307,7 +308,7 @@ data_subset <- surveys %>%
 Now we have all 17 rows that match our query in a `data.frame` and can continue
 to work with them exclusively in R, without communicating with the database.
 
-## Complex database queries
+### Complex database queries
 
 **`dplyr`** enables database queries across one or multiple database tables, using
 the same single- and multiple-table verbs you encountered previously. This means
