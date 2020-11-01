@@ -7,7 +7,7 @@ editor_options:
     wrap: 80
 ---
 
-```{r, echo=FALSE, purl=FALSE, message = FALSE}
+```{r setup, echo=FALSE, message=FALSE}
 source("setup.R")
 ```
 
@@ -122,9 +122,9 @@ generate. RStudio can also be used for other things (e.g., version control,
 developing packages, writing Shiny apps) that we will not cover during the
 workshop.
 
-![RStudio interface screenshot. Clockwise from top left: Source,
-Environment/History, Files/Plots/Packages/Help/Viewer,
-Console.](img/rstudio-screenshot.png)
+```{r, echo=FALSE, out.width="100%", fig.align="center", fig.cap="RStudio interface screenshot. Clockwise from top left: Source, Environment/History, Files/Plots/Packages/Help/Viewer, Console."}
+knitr::include_graphics("img/rstudio-screenshot.png")
+```
 
 RStudio is divided into 4 "Panes": the **Source** for your scripts and documents
 (top-left, in the default layout), your **Environment/History** (top-right)
@@ -176,8 +176,9 @@ and it can lead to hard to debug errors by having objects in memory you forgot
 you had. To turn that off, go to Tools --\> 'Global Options' and select the
 'Never' option for 'Save workspace to .RData' on exit.'
 
-![Set 'Save workspace to .RData on exit' to
-'Never'](img/rstudio-preferences.png)
+```{r, echo=FALSE, out.width="100%", fig.align="center", fig.cap="Set 'Save workspace to .RData on exit' to 'Never'"}
+knitr::include_graphics("img/rstudio-preferences.png")
+```
 
 ### Organizing your working directory
 
@@ -219,7 +220,7 @@ are only going to use one file and it will make things easier.
 
 Your working directory should now look like this:
 
-```{r, results='markup',fig.cap="How it should look like at the beginning of this lesson", echo=FALSE, purl=FALSE, out.width='100%', fig.align='center'}
+```{r, echo=FALSE, out.width="100%", fig.align="center", fig.cap="How it should look like at the beginning of this lesson"}
 knitr::include_graphics("img/r-starting-how-it-should-look-like.png")
 ```
 
@@ -304,8 +305,9 @@ commands will open matching help files in RStudio's help panel in the lower
 right corner. You can also use the help panel to search help directly, as seen
 in the screenshot.
 
-![RStudio help panel. When typing a word in the search field, it will show
-related suggestions.](img/rstudiohelp.png)
+```{r, echo=FALSE, out.width="100%", fig.align="center", fig.cap="RStudio help panel. When typing a word in the search field, it will show related suggestions."}
+knitr::include_graphics("img/rstudiohelp.png")
+```
 
 ### Automatic code completion
 
@@ -346,8 +348,9 @@ work. Often, the problem is a small typo in a variable name or a missing
 parenthesis. Watch for the red x's next to your code in Rstudio. These may
 provide helpful hints about the source of the problem.
 
-![RStudio shows a red x next to a line of code that R doesn't understand.
-](img/rstudioredx.png)
+```{r, echo=FALSE, out.width="400px", fig.align="center", fig.cap="RStudio shows a red x next to a line of code that R doesn't understand."}
+knitr::include_graphics("img/rstudioredx.png")
+```
 
 If you can't fix an error yourself, start by googling it. Some error messages
 are too generic to diagnose a problem (e.g. "subscript out of bounds"). In that
@@ -409,16 +412,16 @@ and make it easy to pinpoint where the issue might be. Try to...
     are using. As an example, here you can see the versions of R and all the
     packages that we are using to run the code in this lesson:
 
-```{r echo=FALSE, message = FALSE}
+```{r echo=FALSE, message=FALSE}
 # temporarily load RSQLite so that the version shows in sessionInfo()
 library(RSQLite)
 ```
 
-```{r, results='show', purl=FALSE}
+```{r}
 sessionInfo()
 ```
 
-```{r echo=FALSE, message = FALSE}
+```{r echo=FALSE, message=FALSE}
 detach(package:RSQLite, unload=TRUE)
 ```
 
@@ -435,7 +438,7 @@ daunting to have to write a script from scratch, and given that many people make
 their code available online, modifying existing code to suit your purpose might
 make it easier for you to get started.
 
-```{r kitten-img, results='markup', echo=FALSE, purl=FALSE, out.width='400px', fig.align='center'}
+```{r kitten-img, echo=FALSE, out.width="400px", fig.align="center"}
 knitr::include_graphics("img/kitten-try-things.jpg")
 ```
 

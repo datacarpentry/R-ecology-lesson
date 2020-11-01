@@ -4,9 +4,14 @@ author: "Data Carpentry contributors"
 minutes: 20
 ---
 
-```{r, echo=FALSE, purl=FALSE, message = FALSE}
+```{r setup, echo=FALSE, message=FALSE}
 source("setup.R")
 ```
+
+```{r, echo=FALSE, purl=TRUE}
+## Starting with data
+```
+
 
 :::objectives
 
@@ -23,6 +28,7 @@ source("setup.R")
 - Format dates.
 
 :::
+
 
 ## Loading the survey data
 
@@ -89,7 +95,7 @@ to write this in the console than in our script for any package, as there's no
 need to re-install packages every time we run the script. 
 Then, to load the package type:
 
-```{r, message = FALSE, purl = FALSE}
+```{r, message=FALSE}
 ## load the tidyverse packages, incl. dplyr
 library(tidyverse)
 ```
@@ -100,7 +106,7 @@ Now we can use the functions from the **`tidyverse`** package.
 Let's use `read_csv()` to read the data into a data frame 
 (we will learn more about data frames later):
 
-```{r, eval=TRUE,  purl=FALSE}
+```{r, results="hide"}
 surveys <- read_csv("data_raw/portal_data_joined.csv")
 ```
 
@@ -144,7 +150,7 @@ If you wanted to the first 50 rows, you could type `print(surveys, n = 50)`
 We can also extract the first few lines of this data using the function 
 `head()`:
 
-```{r, results='show', purl=FALSE}
+```{r, eval=FALSE}
 head(surveys)
 ```
 
@@ -158,7 +164,7 @@ set. It is called (you might have guessed it) `tail()`.
 
 To open the dataset in RStudio's Data Viewer, use the `view()` function:
 
-```{r, eval = FALSE, purl = FALSE}
+```{r, eval=FALSE}
 view(surveys)
 ```
 
@@ -187,7 +193,7 @@ numeric, a character, and a logical vector.
 We can see this also when inspecting the <b>str</b>ucture of a data frame
 with the function `str()`:
 
-```{r, purl=FALSE}
+```{r, eval=FALSE}
 str(surveys)
 ```
  
@@ -230,7 +236,7 @@ Based on the output of `str(surveys)`, can you answer the following questions?
 * What is the class of the object `surveys`?
 * How many rows and how many columns are in this object?
 
-```{r, answer=TRUE, results="markup", purl=FALSE}
+```{r, answer=TRUE}
 str(surveys)
 ## * class: data frame
 ## * how many rows: 34786,  how many columns: 13
@@ -264,7 +270,7 @@ that different ways of specifying these coordinates lead to results with
 different classes.
 
 
-```{r, purl=FALSE}
+```{r, eval=FALSE}
 # first element in the first column of the data frame (as a vector)
 surveys[1, 1]   
 # first element in the 6th column (as a vector)
@@ -286,14 +292,14 @@ or decreasing order, test `1:10` and `10:1` for instance.
 
 You can also exclude certain indices of a data frame using the "`-`" sign:
 
-```{r, purl=FALSE}
+```{r, eval=FALSE}
 surveys[, -1]          # The whole data frame, except the first column
 surveys[-(7:34786), ] # Equivalent to head(surveys)
 ```
 
 Data frames can be subset by calling indices (as shown previously), but also by calling their column names directly:
 
-```{r, eval = FALSE, purl=FALSE}
+```{r, eval=FALSE}
 surveys["species_id"]       # Result is a data.frame
 surveys[, "species_id"]     # Result is a vector
 surveys[["species_id"]]     # Result is a vector
@@ -321,7 +327,7 @@ In RStudio, you can use the autocompletion feature to get the full and correct n
   `head(surveys)`, keeping just the first through 6th rows of the surveys
   dataset.
   
-```{r, answer=TRUE, purl=FALSE}
+```{r, answer=TRUE, eval=FALSE}
 ## 1.
 surveys_200 <- surveys[200, ]
 ## 2.
@@ -385,14 +391,14 @@ Factors are stored as integers associated with labels and they can be ordered or
 When importing a data frame with `read_csv()`, the columns that contain text are not automatically coerced (=converted) into the `factor` data type, but once we have
 loaded the data we can do the conversion using the `factor()` function: 
 
-```{r, purl=FALSE}
+```{r}
 surveys$sex <- factor(surveys$sex)
 ```
 
 We can see that the conversion has worked by using the `summary()` 
 function again. This produces a table with the counts for each factor level:
 
-```{r, purl=FALSE}
+```{r}
 summary(surveys$sex)
 ```
 
@@ -408,7 +414,7 @@ R will assign `1` to the level `"female"` and `2` to the level `"male"` (because
 `"male"`). You can see this by using the function `levels()` and you can find the
 number of levels using `nlevels()`:
 
-```{r, purl=FALSE}
+```{r, eval=FALSE}
 levels(sex)
 nlevels(sex)
 ```
@@ -418,7 +424,7 @@ to specify the order because it is meaningful (e.g., "low", "medium", "high"),
 it improves your visualization, or it is required by a particular type of
 analysis. Here, one way to reorder our levels in the `sex` vector would be:
 
-```{r, results=TRUE, purl=FALSE}
+```{r}
 sex # current order
 sex <- factor(sex, levels = c("male", "female"))
 sex # after re-ordering
@@ -442,7 +448,7 @@ this information built in. It is particularly helpful when there are many levels
     * How many rabbits were observed?
     * How many different genera are in the `genus` column?
     
-```{r, answer=TRUE, purl=FALSE}
+```{r, answer=TRUE, eval=FALSE}
 surveys$genus <- factor(surveys$genus)
 summary(surveys)
 nlevels(surveys$genus)
@@ -471,7 +477,7 @@ nlevels(surveys$genus)
 If you need to convert a factor to a character vector, you use
 `as.character(x)`.
 
-```{r, purl=FALSE}
+```{r, eval=FALSE}
 as.character(sex)
 ```
 
@@ -488,7 +494,7 @@ and then to numbers.
 
 Another method is to use the `levels()` function. Compare:
 
-```{r, purl=TRUE}
+```{r, eval=FALSE, purl=TRUE}
 year_fct <- factor(c(1990, 1983, 1977, 1998, 1990))
 as.numeric(year_fct)               # Wrong! And there is no warning...
 as.numeric(as.character(year_fct)) # Works...
@@ -521,7 +527,7 @@ the plot, we can turn the missing values into a factor level with the
 We are going to work with a copy of the `sex` column, so we're not modifying the 
 working copy of the data frame:
 
-```{r, results=TRUE, purl=FALSE}
+```{r}
 sex <- surveys$sex
 levels(sex)
 sex <- addNA(sex)
@@ -534,7 +540,7 @@ head(sex)
 
 Now we can plot the data again, using `plot(sex)`.
 
-```{r echo=FALSE, purl=FALSE, results=TRUE}
+```{r echo=FALSE}
 plot(sex)
 ```
 
@@ -547,7 +553,7 @@ plot(sex)
 * Now that we have renamed the factor level to "undetermined", can you recreate
   the barplot such that "undetermined" is first (before "female")?
 
-```{r, answer=TRUE, purl=FALSE}
+```{r, answer=TRUE}
 levels(sex)[1:2] <- c("female", "male")
 sex <- factor(sex, levels = c("undetermined", "female", "male"))
 plot(sex)
@@ -573,14 +579,15 @@ plot(sex)
  a few mistakes in this hand-crafted `data.frame`. Can you spot and fix them?
  Don't hesitate to experiment!
  
-```{r, eval=FALSE, purl=FALSE}
+```{r, eval=FALSE}
 animal_data <- data.frame(
   animal = c(dog, cat, sea cucumber, sea urchin),
   feel = c("furry", "squishy", "spiny"),
   weight = c(45, 8 1.1, 0.8)
 )
 ```
-```{r, eval=FALSE, purl=TRUE, echo=FALSE}
+
+```{r, eval=FALSE, echo=FALSE, purl=TRUE}
 ## Challenge:
 ##  There are a few mistakes in this hand-crafted `data.frame`,
 ##  can you spot and fix them? Don't hesitate to experiment!
@@ -597,7 +604,7 @@ animal_data <- data.frame(
     * What would you need to change to ensure that each column had the accurate
       data type?
 
-```{r, eval=FALSE, purl=FALSE}
+```{r, eval=FALSE}
 country_climate <- data.frame(
   country = c("Canada", "Panama", "South Africa", "Australia"),
   climate = c("cold", "hot", "temperate", "hot/temperate"),
@@ -607,7 +614,7 @@ country_climate <- data.frame(
 )
 ```
 
-```{r, eval=FALSE, purl=TRUE, echo=FALSE}
+```{r, eval=FALSE, echo=FALSE, purl=TRUE}
 ## Challenge:
 ##   Can you predict the class for each of the columns in the following
 ##   example?
@@ -624,7 +631,7 @@ country_climate <- data.frame(
 )
 ```
 
-```{text_answer, echo=FALSE, purl=FALSE}
+```{text_answer, echo=FALSE}
 * missing quotations around the names of the animals
 * missing one entry in the `feel` column (probably for one of the furry animals)
 * missing one comma in the `weight` column
@@ -657,14 +664,14 @@ date is stored as a separate variable. Using `str()`, We can confirm that our
 data frame has a separate column for day, month, and year, and that each contains
 integer values.
 
-```{r, eval=FALSE, purl=FALSE}
+```{r, eval=FALSE}
 str(surveys)
 ```
 We are going to use the `ymd()` function from the package **`lubridate`** (which belongs to the **`tidyverse`**; learn more [here](https://www.tidyverse.org/)). **`lubridate`** gets installed as part as the **`tidyverse`** installation. When you load  the **`tidyverse`** (`library(tidyverse)`), the core packages (the packages used in most data analyses) get loaded. **`lubridate`** however does not belong to the core tidyverse, so you have to load it explicitly with `library(lubridate)`
 
 Start by loading the required package:
 
-```{r load-package, message=FALSE, purl=FALSE}
+```{r load-package, message=FALSE}
 library(lubridate)
 ```
 
@@ -676,14 +683,14 @@ but, as a best practice, is a character vector formatted as "YYYY-MM-DD".
 
 Let's create a date object and inspect the structure:
 
-```{r, purl=FALSE}
+```{r, eval=FALSE}
 my_date <- ymd("2015-01-01")
 str(my_date)
 ```
 
 Now let's paste the year, month, and day separately - we get the same result:
 
-```{r, purl=FALSE}
+```{r, eval=FALSE}
 # sep indicates the character to use to separate each component
 my_date <- ymd(paste("2015", "1", "1", sep = "-")) 
 str(my_date)
@@ -692,13 +699,13 @@ str(my_date)
 Now we apply this function to the surveys dataset. Create a character vector from the `year`, `month`, and `day` columns of
 `surveys` using `paste()`:
 
-```{r, purl=FALSE}
+```{r, eval=FALSE}
 paste(surveys$year, surveys$month, surveys$day, sep = "-")
 ```
 
 This character vector can be used as the argument for `ymd()`:
 
-```{r, purl=FALSE}
+```{r, results="hide"}
 ymd(paste(surveys$year, surveys$month, surveys$day, sep = "-"))
 ```
 
@@ -708,14 +715,14 @@ means they are treated as missing values.
 We will deal with this problem later, but first we add the resulting `Date`
 vector to the `surveys` data frame as a new column called `date`:
 
-```{r, purl=FALSE}
+```{r, results="hide"}
 surveys$date <- ymd(paste(surveys$year, surveys$month, surveys$day, sep = "-"))
 str(surveys) # notice the new column, with 'date' as the class
 ```
 
 Let's make sure everything worked correctly. One way to inspect the new column is to use `summary()`:
 
-```{r, results=TRUE, purl=FALSE}
+```{r}
 summary(surveys$date)
 ```
 
@@ -724,7 +731,7 @@ Let's investigate why some dates could not be parsed.
 We can use the functions we saw previously to deal with missing data to identify
 the rows in our data frame that are failing. If we combine them with what we learned about subsetting data frames earlier, we can extract the columns "year, "month", "day" from the records that have `NA` in our new column `date`. We will also use `head()` so we don't clutter the output:
 
-```{r, results=TRUE, purl=FALSE}
+```{r}
 missing_dates <- surveys[is.na(surveys$date), c("year", "month", "day")]
 
 head(missing_dates)

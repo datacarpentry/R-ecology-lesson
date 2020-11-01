@@ -6,12 +6,12 @@ output:
     df_print: paged
 ---
 
-```{r source, include=FALSE, purl=FALSE}
+```{r source, echo=FALSE, message=FALSE}
 source("setup.R")
 if (file.exists("portal-database.sqlite")) file.remove("portal-database.sqlite")
 ```
 
-```{r, purl=TRUE, echo=FALSE}
+```{r, echo=FALSE, purl=TRUE}
 ## SQL databases and R
 ```
 
