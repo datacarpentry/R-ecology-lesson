@@ -1,13 +1,14 @@
-body {
-    font-size: 15px;
+html {
+    font-size: 16px;
 }
 
-p {
-    font-size: 1.1em;
+body {
+    font-size: 1em;
+    line-height: 1.42;
 }
 
 pre {
-    font-size: 15px;
+    font-size: 1em;
 }
 
 blockquote  {
@@ -15,21 +16,12 @@ blockquote  {
     border-left: 5px solid #ddd;
 }
 
-.ui-state-default {
-    background: #ced7e0;
-}
-
-.ui-state-active {
-    border: #ccc;
-    background: #4070A0;
-}
-
 .ui-widget-content {
     background: #eee;
 }
 
 blockquote p,ul,ol {
-    font-size: .9em;
+    padding-right: 20px;
 }
 
 .search {
@@ -37,7 +29,6 @@ blockquote p,ul,ol {
     height: 50px;
     line-height: 50px;
 }
-
 
 .search input[type="text"] {
     display: none;
@@ -62,14 +53,102 @@ blockquote p,ul,ol {
     display: none;
 }
 
+.section > h2 {
+    padding-top: 0 !important;
+    margin-top: 1.2em !important;
+    margin-bottom: 0.3em !important;
+}
+
 div.objectives, div.challenge, div.note {
-    background: #efefef;
-    border-left: 5px solid #ddd;
-    padding: 20px 20px;
-    margin: 30px 0 30px 0;
-    font-size: 17.5px;
+    border: 1px solid;
+    border-radius: 4px;
+    margin: 30px 0 15px 0;
+    padding: 0;
+}
+
+div.objectives {
+    background: #daee8420;
+    border-color: #daee84;
+}
+
+div.objectives h3 {
+    margin: 0;
+    padding: 10px;
+    font-size: 1.2em;
+    background: linear-gradient(to bottom, #daee84, #def090);
+    border-color: #daee84;
+}
+
+div.challenge {
+    background: #eec27520;
+    border-color: #eec275;
+}
+
+div.challenge h3 {
+    margin: 0;
+    padding: 10px;
+    font-size: 1.2em;
+    background: linear-gradient(to bottom, #eec275, #f0c883);
+    border-color: #eec275;
+}
+
+div.note {
+    background: #f4fd9c20;
+    border-color: #f4fd9c;
+}
+
+div.note h3 {
+    margin: 0;
+    padding: 10px;
+    font-size: 1.2em;
+    background: linear-gradient(to bottom, #f4fd9c, #f5fda6);
+    border-color: #f4fd9c;
+}
+
+div.challenge p, div.note p, div.objectives p {
+    margin: 10px;
+}
+
+div.challenge pre, div.note pre, div.objectives pre {
+    margin: 0 20px;
+}
+
+div.objectives > ul,ol {
+    padding-top: 10px;
+    font-size: 1em;
 }
 
 div.answer {
-    background: #fff;
+    background-color: #ded4b94d
+}
+
+.accordion {
+    margin: 0 10px 10px 10px;
+}
+
+.ui-accordion-header {
+    background: linear-gradient(to bottom, #ded4b9, #e1d8c0) !important;
+    border-color: #ded4b9 !important;
+}
+
+kbd {
+    display: inline-block;
+    margin: 0 .1em;
+    padding: .1em .6em;
+    font-family: Arial,"Helvetica Neue",Helvetica,sans-serif;
+    font-size: 11px;
+    line-height: 1.4;
+    color: #242729;
+    text-shadow: 0 1px 0 #FFF;
+    background-color: #e1e3e5;
+    border: 1px solid #adb3b9;
+    border-radius: 3px;
+    box-shadow: 0 1px 0 rgba(12,13,14,0.2), 0 0 0 2px #FFF inset;
+    white-space: nowrap;
+    font-style: normal;
+}
+
+
+ul,ol {
+    font-size: 1em;
 }
