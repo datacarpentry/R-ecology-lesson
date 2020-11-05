@@ -1,4 +1,9 @@
-# Code of Conduct
+---
+title: "Code of Conduct"
+output:
+  html_document:
+    toc: false
+---
 
 As contributors and maintainers of this project, we pledge to respect all people
 who contribute through reporting issues, posting feature requests, updating
