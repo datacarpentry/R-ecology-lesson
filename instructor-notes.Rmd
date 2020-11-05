@@ -64,7 +64,7 @@ running an older R install. This will cause package installations to fail. This
 can be fixed at the terminal. First, check for the appropriate R installation in 
 the library;
 
-```
+```{bash, eval=FALSE}
 ls -l /Library/Frameworks/R.framework/Versions/
 ```
 
@@ -72,7 +72,7 @@ We are currently using R 4.0.x. If it isn't there, they will need to install it.
 If it is present, you will need to set the symbolic link to Current to point to 
 the 4.0.x directory:
 
-```
+```{bash, eval=FALSE}
 ln -s /Library/Frameworks/R.framework/Versions/3.6.x /Library/Frameworks/R.framework/Version/Current
 ```
 
@@ -101,7 +101,7 @@ Sometimes learners are unable to install the **`tidyverse`** package.
 In that case, they can try to install the individual packages that are actually 
 needed:
 
-```
+```{r, eval=FALSE}
 install.packages("readr", "lubridate", "dplyr", "tidyr", "ggplot2", "dbplyr")
 ```
 
@@ -168,10 +168,11 @@ The two main goals for this lessons are:
   with the layering system of ggplot2, (2) using the argument `group` in the
   `aes()` function, (3) basic customization of the plots.
 * It maybe worthwhile to mention that we can also specify colors by color HEX code (http://colorbrewer2.org) 
-    ```
-    ggplot(data = surveys_complete, mapping = aes(x = weight, y = hindfoot_length)) +
-        geom_point(alpha = 0.1, color = "#FF0000")
-    ```
+  ```{r, eval=FALSE}
+  ggplot(data = surveys_complete, 
+         mapping = aes(x = weight, y = hindfoot_length)) +
+      geom_point(alpha = 0.1, color = "#FF0000")
+  ```
     
 ### R and SQL
 
