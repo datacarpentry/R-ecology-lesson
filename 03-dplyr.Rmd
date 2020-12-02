@@ -20,7 +20,7 @@ suppressWarnings(surveys$date <- lubridate::ymd(paste(surveys$year,
 >
 > * Describe the purpose of the **`dplyr`** and **`tidyr`** packages.
 > * Select certain columns in a data frame with the **`dplyr`** function `select`.
-> * Select certain rows in a data frame according to filtering conditions with the **`dplyr`** function `filter` .
+> * Extract certain rows in a data frame according to logical (boolean) conditions with the **`dplyr`** function `filter` .
 > * Link the output of one **`dplyr`** function to the input of another function with the 'pipe' operator `%>%`.
 > * Add new columns to a data frame that are functions of existing columns with `mutate`.
 > * Use the split-apply-combine concept for data analysis.
