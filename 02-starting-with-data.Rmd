@@ -503,7 +503,7 @@ the experiment:
 plot(surveys$sex)
 ```
 
-Howver, as we saw when we used `summary(surveys$sex)`, there are about 1700 
+However, as we saw when we used `summary(surveys$sex)`, there are about 1700 
 individuals for which the sex information hasn't been recorded. To show them in
 the plot, we can turn the missing values into a factor level with the 
 `addNA()` function. We will also have to give the new factor level a label.
