@@ -85,7 +85,7 @@ Fan](https://jef.works/R-style-guide/) and the
 
 
 When assigning a value to an object, R does not print anything. You can force R to print the value by using parentheses or by typing the object name:
-github topics
+
 ```{r, purl = FALSE}
 weight_kg <- 55    # doesn't print anything
 (weight_kg <- 55)  # but putting parenthesis around the call prints the value of `weight_kg`
