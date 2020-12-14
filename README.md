@@ -58,6 +58,7 @@ maintainers, or come chat with us on the
 If you don't already have a Slack account with the Carpentries, you can 
 [create one](https://swc-slack-invite.herokuapp.com/).
 
+* Tobias Busch
 * Ana Costa Conrado
 * François Michonneau
 * Maneesha Sane
