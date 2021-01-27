@@ -13,6 +13,7 @@ source("setup.R")
 > ### Learning Objectives
 >
 > * Load external data from a .csv file into a data frame.
+> * Handling missing values
 > * Describe what a data frame is.
 > * Summarize the contents of a data frame.
 > * Use indexing to subset specific portions of data frames. 
@@ -136,8 +137,27 @@ To open the dataset in RStudio's Data Viewer, use the `view()` function:
 view(surveys)
 ```
 
-> ### Note
->
+## Missing values in data
+Missing values are those not stored for a variable in the observation of interest. 
+This is a common problem across all domains of research. The reasons could be many. 
+Missing values may have a significant effect on the conclusions of the research. 
+When viewing above data, we observe a lot of cells showing ‘NA’ values. 
+Those are missing values. While care should be taken to collect data so that there 
+are no missing values, most of the times values go missing. 
+
+One of the ways to handle this is to omit those cases with the missing values. 
+Though, this would lead to a smaller sample size, it is unavoidable. 
+This approach is called complete case analysis or listwise deletion. 
+Let us do that using the following code.
+
+```{r, purl=FALSE}
+surveys <- na.omit(surveys)
+```
+## Checking the dataset and continuing with the analysis
+Now, when we check the dimensions of the dataset, we find 30,738 rows as against 34,786 rows earlier. 
+So, we have lost 4,048 rows. Let us continue with the analysis with this new dataset.
+
+>### Note
 > `read_csv()` assumes that fields are delineated by commas, however, in several
 > countries, the comma is used as a decimal separator and the semicolon (;) is
 > used as a field delineator. If you want to read in this type of files in R,
