@@ -3,22 +3,24 @@ title: Manipulating, analyzing and exporting data with tidyverse
 author: Data Carpentry contributors
 ---
 
-```{r, echo=FALSE, purl=FALSE, message = FALSE}
+```{r setup, echo=FALSE, purl=FALSE, message = FALSE}
 source("setup.R")
 surveys <- read.csv("data_raw/portal_data_joined.csv")
 suppressWarnings(surveys$date <- lubridate::ymd(paste(surveys$year,
                                                       surveys$month,
                                                       surveys$day,
                                                       sep = "-")))
+
+library(tidyverse)
 ```
 
-### Manipulating and analyzing data with dplyr
+### Manipulating and analyzing data with dplyr and tidyr
 
 ------------
 
 > ### Learning Objectives
 >
-> * Describe the purpose of the **`dplyr`** and **`tidyr`** packages.
+> * Describe the purpose of the **`dplyr`** (1.0.0 or later) and **`tidyr`** (1.0.0 or later) packages.
 > * Select certain columns in a data frame with the **`dplyr`** function `select`.
 > * Extract certain rows in a data frame according to logical (boolean) conditions with the **`dplyr`** function `filter` .
 > * Link the output of one **`dplyr`** function to the input of another function with the 'pipe' operator `%>%`.
@@ -27,7 +29,7 @@ suppressWarnings(surveys$date <- lubridate::ymd(paste(surveys$year,
 > * Use `summarize`, `group_by`, and `count` to split a data frame into groups of observations, apply summary statistics for each group, and then combine the results.
 > * Describe the concept of a wide and a long table format and for which purpose those formats are useful.
 > * Describe what key-value pairs are.
-> * Reshape a data frame from long to wide format and back with the `spread` and `gather` commands from the **`tidyr`** package.
+> * Reshape a data frame from long to wide format and back with the `pivot_wider` and `pivot_longer` commands from the **`tidyr`** package.
 > * Export a data frame to a .csv file.
 
 ------------
@@ -38,8 +40,7 @@ Bracket subsetting is handy, but it can be cumbersome and difficult to read,
 especially for complicated operations. Enter **`dplyr`**. **`dplyr`** is a package for
 making tabular data manipulation easier. It pairs nicely with **`tidyr`** which enables you to swiftly convert between different data formats for plotting and analysis.
 
-The **`tidyverse`** package is an
-"umbrella-package" that installs **`tidyr`**, **`dplyr`**, and several other packages useful for data analysis, such as  **`ggplot2`**, **`tibble`**, etc.
+The **`tidyverse`** package is an "umbrella-package" that installs **`tidyr`**, **`dplyr`**, and several other packages useful for data analysis, such as  **`ggplot2`**, **`tibble`**, etc.
 
 The **`tidyverse`** package tries to address 3 common issues that arise when
 doing data analysis with some of the functions that come with R:
@@ -491,7 +492,7 @@ the *albigula* species that are not specified for its sex (i.e. `NA`).
 ##  columns `year`, `genus`, `species_id`, and `weight`.
 ```
 
-### Reshaping with gather and spread
+### Reshaping with pivot_wider and pivot_longer
 
 In the [spreadsheet
 lesson](https://datacarpentry.org/spreadsheet-ecology-lesson/01-format-data/),
@@ -522,21 +523,21 @@ average genus weight per plot instead of recordings per date.
 The opposite transformation would be to transform column names into values of
 a variable.
 
-We can do both these of transformations with two `tidyr` functions, `spread()`
-and `gather()`.
+We can do both these of transformations with two `tidyr` functions, `pivot_wider()`
+and `pivot_longer()`.
 
-#### Spreading
+#### Pivoting wider
 
-`spread()` takes three principal arguments:
+`pivot_wider()` takes three principal arguments:
 
 1. the data 
-2. the *key* column variable whose values will become new column names.  
-3. the *value* column variable whose values will fill the new column variables.
+2. the *names_from* column variable whose values will become new column names.  
+3. the *values_from* column variable whose values will fill the new column variables.
 
-Further arguments include `fill` which, if set, fills in missing values with 
+Further arguments include `values_fill` which, if set, fills in missing values with 
 the value provided.
 
-Let's use `spread()` to transform surveys to find the mean weight of each 
+Let's use `pivot_wider()` to transform surveys to find the mean weight of each 
 genus in each plot over the entire survey period. We use `filter()`,
 `group_by()` and `summarise()` to filter our observations and variables of 
 interest, and create a new variable for the `mean_weight`.
@@ -552,54 +553,52 @@ str(surveys_gw)
 
 This yields `surveys_gw` where the observations for each plot are spread across
 multiple rows, 196 observations of 3 variables. 
-Using `spread()` to key on `genus` with values from `mean_weight` this becomes
+Using `pivot_wider()` using the names from the `genus` variable and with values from `mean_weight` this becomes
 24 observations of 11 variables, one row for each plot.
 
 ```{r, purl=FALSE}
-surveys_spread <- surveys_gw %>%
-  spread(key = genus, value = mean_weight)
+surveys_wide <- surveys_gw %>%
+  pivot_wider(names_from = genus, values_from = mean_weight)
 
-str(surveys_spread)
+str(surveys_wider)
 ```
 
 ![](img/spread_data_R.png)
 
 We could now plot comparisons between the weight of genera (one is called a genus, multiple are called genera) in different plots, 
-although we may wish to fill in the missing values first.
+although we may wish to fill in the missing values first (the "NA" values will be replaced with 0).
 
 ```{r, purl=FALSE}
 surveys_gw %>%
-  spread(genus, mean_weight, fill = 0) %>%
-  head()
+  pivot_wider(names_from = genus, values_from = mean_weight, values_fill = 0)
 ```
 
-#### Gathering
+#### Pivoting longer
 
 The opposing situation could occur if we had been provided with data in the
-form of `surveys_spread`, where the genus names are column names, but we 
+form of `surveys_wide`, where the genus names are column names, but we 
 wish to treat them as values of a genus variable instead.
 
 In this situation we are gathering the column names and turning them into a
 pair of new variables. One variable represents the column names as values, and
 the other variable contains the values previously associated with the column names.
 
-`gather()` takes four principal arguments:
+`pivot_longer()` takes four principal arguments:
 
 1. the data
-2. the *key* column variable we wish to create from column names.
-3. the *values* column variable we wish to create and fill with values 
+2. the *names_to* column variable we wish to create from column names.
+3. the *values_to* column variable we wish to create and fill with values 
 associated with the key.
-4. the names of the columns we use to fill the key variable (or to drop).
+4. *cols* are the names of the columns we use to fill the key variable (or to drop).
 
-To recreate `surveys_gw` from `surveys_spread` we would create a key called
-`genus` and value called `mean_weight` and use all columns except `plot_id` for
-the key variable. Here we exclude `plot_id` from being `gather()`ed.
+To recreate `surveys_gw` from `surveys_wide` we would create a key (names variable) called
+`genus` and a value variable called `mean_weight`. We will use all columns except `plot_id` for the names variable. Here we exclude `plot_id` from being `gather()`ed.
 
 ```{r, purl=FALSE}
-surveys_gather <- surveys_spread %>%
-  gather(key = "genus", value = "mean_weight", -plot_id)
+surveys_long <- surveys_wide %>%
+  pivot_longer(names_to = "genus", values_to = "mean_weight", cols = -plot_id)
 
-str(surveys_gather)
+str(surveys_long)
 ```
 
 ![](img/gather_data_R.png)
@@ -614,74 +613,79 @@ specify what to gather than what to leave alone. And if the columns are directly
 adjacent, we don't even need to list them all out - just use the `:` operator!
 
 ```{r, purl=FALSE}
-surveys_spread %>%
-  gather(key = "genus", value = "mean_weight", Baiomys:Spermophilus) %>%
+surveys_wide %>%
+  pivot_longer(names_to = "genus", values_to = "mean_weight", cols = Baiomys:Spermophilus) %>%
   head()
 ```
 
 > ### Challenge {.challenge}
 >
-> 1. Spread the `surveys` data frame with `year` as columns, `plot_id` 
+> 1. Reshape the `surveys` data frame with `year` as columns, `plot_id` 
 >   as rows, and the
 >   number of genera per plot as the values. You will need to summarize before
 >   reshaping, and use the function `n_distinct()` to get the number of unique
 >   genera within a particular chunk of data. It's a powerful function! See
 >   `?n_distinct` for more.
 > 
-> ```{r, answer=TRUE, purl=FALSE}
-> surveys_spread_genera <- surveys %>%
+>```{r, answer=TRUE, purl=FALSE}
+>surveys_wide_genera <- surveys %>%
 >   group_by(plot_id, year) %>%
 >   summarize(n_genera = n_distinct(genus)) %>%
->   spread(year, n_genera)
+>   pivot_wider(names_from = year, values_from = n_genera)
 > 
-> head(surveys_spread_genera)
-> ```
+>head(surveys_wide_genera)
+>```
 >
-> 2. Now take that data frame and `gather()` it again, so each row is a unique
+> 2. Now take that data frame and `pivot_longer()` it again, so each row is a unique
 >    `plot_id` by `year` combination.
 >
 > ```{r, answer=TRUE, purl=FALSE}
-> surveys_spread_genera %>%
->   gather("year", "n_genera", -plot_id)
+> surveys_wide_genera %>%
+>   pivot_longer(names_to = "year", values_to = "n_genera", cols = -plot_id)
 > ```
 >
 > 3. The `surveys` data set has
 >    two measurement columns: `hindfoot_length` and `weight`.  This makes it
 >    difficult to do things like look at the relationship between mean values of
 >    each measurement per year in different plot types. Let's walk through a
->    common solution for this type of problem. First, use `gather()` to create a
+>    common solution for this type of problem. First, use `pivot_longer()` to create a
 >     dataset where we have a key column called `measurement` and a
 >    `value` column that takes on the value of either `hindfoot_length` or
 >    `weight`. *Hint*: You'll need to specify which columns are being gathered.
 >
 > ```{r, answer=TRUE, purl=FALSE}
-> surveys_long <- surveys %>%
->   gather("measurement", "value", hindfoot_length, weight)
+>surveys_long <- surveys %>%
+> pivot_longer(names_to = "measurement", values_to = "value", cols = c(hindfoot_length, >weight))
+>
 > ```
 >
 > 4. With this new data set, calculate the average of each
 >    `measurement` in each `year` for each different `plot_type`. Then
->    `spread()` them into a data set with a column for `hindfoot_length` and
+>    `pivot_wider()` them into a data set with a column for `hindfoot_length` and
 >    `weight`. *Hint*: You only need to specify the key and value
->    columns for `spread()`.
+>    columns for `pivot_wider()`.
 >
 > ```{r, answer=TRUE, purl=FALSE}
 > surveys_long %>%
 >   group_by(year, measurement, plot_type) %>%
 >   summarize(mean_value = mean(value, na.rm=TRUE)) %>%
->   spread(measurement, mean_value)
+>   pivot_wider(names_from = measurement, values_from = mean_value)
 > ```
+
+
 
 ```{r, eval=FALSE, purl=TRUE, echo=FALSE}
 ## Reshaping challenges
 
-## 1. Spread the `surveys` data frame with `year` as columns, `plot_id` as rows, and the number of genera per plot as the values. You will need to summarize before reshaping, and use the function `n_distinct()` to get the number of unique genera within a particular chunk of data. It's a powerful function! See `?n_distinct` for more.
+## 1. Reshape the `surveys` data frame with `year` as columns, `plot_id` as rows, and the number of genera per plot as the values. You will need to summarize before reshaping, and use the function `n_distinct()` to get the number of unique genera within a particular chunk of data. It's a powerful function! See `?n_distinct` for more.
 
-## 2. Now take that data frame and `gather()` it again, so each row is a unique `plot_id` by `year` combination.
 
-## 3. The `surveys` data set has two measurement columns: `hindfoot_length` and `weight`. This makes it difficult to do things like look at the relationship between mean values of each measurement per year in different plot types. Let's walk through a common solution for this type of problem. First, use `gather()` to create a dataset where we have a key column called `measurement` and a `value` column that takes on the value of either `hindfoot_length` or `weight`. *Hint*: You'll need to specify which columns are being gathered.
+## 2. Now take that data frame and `pivot_longer()` it again, so each row is a unique `plot_id` by `year` combination.
 
-## 4. With this new data set, calculate the average of each `measurement` in each `year` for each different `plot_type`. Then `spread()` them into a data set with a column for `hindfoot_length` and `weight`. *Hint*: You only need to specify the key and value columns for `spread()`.
+## 3. The `surveys` data set has two measurement columns: `hindfoot_length` and `weight`. This makes it difficult to do things like look at the relationship between mean values of each measurement per year in different plot types. Let's walk through a common solution for this type of problem. First, use `pivot_longer()` to create a dataset where we have a key column called `measurement` and a `value` column that takes on the value of either `hindfoot_length` or `weight`. *Hint*: You'll need to specify which columns are being gathered.
+
+
+## 4. With this new data set, calculate the average of each `measurement` in each `year` for each different `plot_type`. Then `pivot_wider()` them into a data set with a column for `hindfoot_length` and `weight`. *Hint*: You only need to specify the key and value columns for `pivot_wider()`.
 ```
 
 # Exporting data
