@@ -506,32 +506,19 @@ dataset:
 
 Here we examine the fourth rule: Each type of observational unit forms a table.
 
-In `surveys`, the rows of `surveys` contain the values of variables associated
-with each record (the unit), values such as the weight or sex of each animal 
-associated with each record. What if instead of comparing records, we 
-wanted to compare the different mean weight of each genus between plots? (Ignoring `plot_type` for simplicity).
+In `surveys`, the rows of `surveys` contain the values of variables associated with each record (the unit), values such as the weight or sex of each animal associated with each record. What if instead of comparing records, we wanted to compare the different mean weight of each genus between plots? (Ignoring `plot_type` for simplicity).
 
-We'd need to create a new table where each row (the unit) is comprised of values of variables associated with each plot. In practical terms this means the values
-in `genus` would become the names of column variables and the cells would contain the values of the mean weight observed on each plot.
+We'd need to create a new table where each row (the unit) is comprised of values of variables associated with each plot. In practical terms this means the values in `genus` would become the names of column variables and the cells would contain the values of the mean weight observed on each plot.
 
-Having created a new table, it is therefore straightforward to explore the 
-relationship between the weight of different genera within, and between, the
-plots. The key point here is that we are still following a tidy data structure,
-but we have **reshaped** the data according to the observations of interest:
-average genus weight per plot instead of recordings per date.
+Having created a new table, it is therefore straightforward to explore the relationship between the weight of different genera within, and between, the plots. The key point here is that we are still following a tidy data structure, but we have **reshaped** the data according to the observations of interest: average genus weight per plot instead of recordings per date.
 
-The opposite transformation would be to transform column names into values of
-a variable.
+The opposite transformation would be to transform column names into values of a variable.
 
-These may sound like dramatically different data layouts, but there are some
-tools that make transitions between these layouts much simpler than you might
-think! The gif below shows how these two formats relate to each other, and
-gives you an idea of how we can use R to shift from one format to the other.
+These may sound like dramatically different data layouts, but there are some tools that make transitions between these layouts much simpler than you might think! The gif below shows how these two formats relate to each other, and gives you an idea of how we can use R to shift from one format to the other.
 
 ![](img/tidyr-pivot_wider_longer.gif)
 
-We can do both these of transformations with two `tidyr` functions, `pivot_wider()`
-and `pivot_longer()`.
+We can do both these of transformations with two `tidyr` functions, `pivot_wider()` and `pivot_longer()`.
 
 
 #### Pivoting wider
@@ -542,13 +529,10 @@ and `pivot_longer()`.
 2. the *names_from* column variable whose values will become new column names.  
 3. the *values_from* column variable whose values will fill the new column variables.
 
-Further arguments include `values_fill` which, if set, fills in missing values with 
-the value provided.
+Further arguments include `values_fill` which, if set, fills in missing values with the value provided.
 
-Let's use `pivot_wider()` to transform surveys to find the mean weight of each 
-genus in each plot over the entire survey period. We use `filter()`,
-`group_by()` and `summarise()` to filter our observations and variables of 
-interest, and create a new variable for the `mean_weight`.
+Let's use `pivot_wider()` to transform `surveys` to find the mean weight of each genus in each plot over the entire survey period. We use `filter()`,
+`group_by()` and `summarise()` to filter our observations and variables of interest, and create a new variable for the `mean_weight`.
 
 ```{r, purl=FALSE}
 surveys_gw <- surveys %>%
@@ -560,10 +544,7 @@ str(surveys_gw)
 
 ```
 
-This yields `surveys_gw` where the observations for each plot are spread across
-multiple rows, 196 observations of 3 variables. 
-Using `pivot_wider()` using the names from the `genus` variable and with values from `mean_weight` this becomes
-24 observations of 11 variables, one row for each plot.
+This yields `surveys_gw` where the observations for each plot are spread across multiple rows, 196 observations of 3 variables. Using `pivot_wider()` using the names from the `genus` variable and with values from `mean_weight` this becomes 24 observations of 11 variables, one row for each plot.
 
 ```{r, purl=FALSE}
 surveys_wide <- surveys_gw %>%
@@ -574,8 +555,7 @@ str(surveys_wide)
 
 ![](img/pivot_long_to_wide.JPG)
 
-We could now plot comparisons between the weight of genera (one is called a genus, multiple are called genera) in different plots, 
-although we may wish to fill in the missing values first (the "NA" values will be replaced with 0).
+We could now plot comparisons between the weight of genera (one is called a genus, multiple are called genera) in different plots, although we may wish to fill in the missing values first (the "NA" values will be replaced with 0).
 
 ```{r, purl=FALSE}
 surveys_gw %>%
@@ -584,23 +564,19 @@ surveys_gw %>%
 
 #### Pivoting longer
 
-The opposing situation could occur if we had been provided with data in the
-form of `surveys_wide`, where the genus names are column names, but we 
-wish to treat them as values of a genus variable instead.
+The opposing situation could occur if we had been provided with data in the form of `surveys_wide`, where the genus names are column names, but we wish to treat them as values of a genus variable instead.
 
-In this situation we are gathering the column names and turning them into a
-pair of new variables. One variable represents the column names as values, and
-the other variable contains the values previously associated with the column names.
+In this situation we are reshaping columns and turning them into a pair of new variables. One variable represents the column names as values, and
+the other variable contains the values previously associated with those columns.
 
 `pivot_longer()` takes four principal arguments:
 
 1. the data
 2. the *names_to* column variable we wish to create from column names.
-3. the *values_to* column variable we wish to create and fill with values 
-associated with the key.
+3. the *values_to* column variable we wish to create and fill with values associated with the key.
 4. *cols* are the names of the columns we use to fill the key variable (or to drop).
 
-To recreate `surveys_gw` from `surveys_wide` we would create a key (names variable) called `genus` and a value variable called `mean_weight`. 
+To recreate `surveys_gw` from `surveys_wide` we would create a names variable called `genus` and a value variable called `mean_weight`. 
 
 In pivoting longer, we also need to specify what columns to reshape. If the columns are directly adjacent as they are here, we don't even need to list them all out—just use the `:` operator!
 
@@ -614,9 +590,7 @@ str(surveys_long)
 
 ![](img/pivot_wide_to_long.JPG)
 
-Note that now the `NA` genera are included in the re-gathered format. Spreading
-and then gathering can be a useful way to balance out a dataset so every
-replicate has the same composition.
+Note that now the `NA` genera are included in the re-gathered format. Pivoting wider and then longer can be a useful way to balance out a dataset so every replicate has the same composition.
 
 We could also have used a specification for what columns to omit from reshaping. In this example, we will use all columns _except_ `plot_id` for the names variable. By using the minus sign in the `cols` argument, we exclude `plot_id` from being reshaped.
 
