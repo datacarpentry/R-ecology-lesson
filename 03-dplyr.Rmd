@@ -557,6 +557,7 @@ surveys_gw <- surveys %>%
   summarize(mean_weight = mean(weight))
 
 str(surveys_gw)
+
 ```
 
 This yields `surveys_gw` where the observations for each plot are spread across
@@ -568,10 +569,10 @@ Using `pivot_wider()` using the names from the `genus` variable and with values 
 surveys_wide <- surveys_gw %>%
   pivot_wider(names_from = genus, values_from = mean_weight)
 
-str(surveys_wider)
+str(surveys_wide)
 ```
 
-![](img/spread_data_R.png)
+![](img/pivot_long_to_wide.JPG)
 
 We could now plot comparisons between the weight of genera (one is called a genus, multiple are called genera) in different plots, 
 although we may wish to fill in the missing values first (the "NA" values will be replaced with 0).
@@ -599,30 +600,29 @@ the other variable contains the values previously associated with the column nam
 associated with the key.
 4. *cols* are the names of the columns we use to fill the key variable (or to drop).
 
-To recreate `surveys_gw` from `surveys_wide` we would create a key (names variable) called
-`genus` and a value variable called `mean_weight`. We will use all columns except `plot_id` for the names variable. Here we exclude `plot_id` from being `gather()`ed.
+To recreate `surveys_gw` from `surveys_wide` we would create a key (names variable) called `genus` and a value variable called `mean_weight`. 
+
+In pivoting longer, we also need to specify what columns to reshape. If the columns are directly adjacent as they are here, we don't even need to list them all out—just use the `:` operator!
+
 
 ```{r, purl=FALSE}
 surveys_long <- surveys_wide %>%
-  pivot_longer(names_to = "genus", values_to = "mean_weight", cols = -plot_id)
+  pivot_longer(names_to = "genus", values_to = "mean_weight", cols = Baiomys:Spermophilus)
 
 str(surveys_long)
 ```
 
-![](img/gather_data_R.png)
+![](img/pivot_wide_to_long.JPG)
 
 Note that now the `NA` genera are included in the re-gathered format. Spreading
 and then gathering can be a useful way to balance out a dataset so every
 replicate has the same composition.
 
-We could also have used a specification for what columns to include. This can be
-useful if you have a large number of identifying columns, and it's easier to
-specify what to gather than what to leave alone. And if the columns are directly
-adjacent, we don't even need to list them all out - just use the `:` operator!
+We could also have used a specification for what columns to omit from reshaping. In this example, we will use all columns _except_ `plot_id` for the names variable. By using the minus sign in the `cols` argument, we exclude `plot_id` from being reshaped.
 
 ```{r, purl=FALSE}
 surveys_wide %>%
-  pivot_longer(names_to = "genus", values_to = "mean_weight", cols = Baiomys:Spermophilus) %>%
+  pivot_longer(names_to = "genus", values_to = "mean_weight", cols = -plot_id) %>%
   head()
 ```
 
@@ -775,12 +775,12 @@ Now that our data set is ready, we can save it as a CSV file in our `data`
 folder.
 
 ```{r, purl=FALSE, eval=FALSE}
-write_csv(surveys_complete, file = "data/surveys_complete.csv")
+write_csv(surveys_complete, path = "data/surveys_complete.csv")
 ```
 
 ```{r, purl=FALSE, eval=TRUE, echo=FALSE}
 if (!dir.exists("data")) dir.create("data")
-write_csv(surveys_complete, file = "data/surveys_complete.csv")
+write_csv(surveys_complete, path = "data/surveys_complete.csv")
 ```
 
 
