@@ -663,7 +663,7 @@ surveys_wide %>%
 >
 > ```{r, answer=TRUE, purl=FALSE}
 >surveys_long <- surveys %>%
-> pivot_longer(names_to = "measurement", values_to = "value", cols = c(hindfoot_length, >weight))
+> pivot_longer(names_to = "measurement", values_to = "value", cols = c(hindfoot_length, weight))
 >
 > ```
 >
