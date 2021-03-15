@@ -160,7 +160,7 @@ The two main goals for this lessons are:
   "weight" columns on a zoomed in RStudio screen. Including a select()
   command to select the columns "weight_kg" and "weight_lb" makes it easier
   to view how the "weight" columns are changed.
-* Clarify the differences between the functions read_csv() (used in this lesson) and read.csv() (used in the previou lesson).
+* Clarify the differences between the functions read_csv() (used in this lesson) and read.csv() (used in the previous lesson).
 
 ### Visualizing data
 
