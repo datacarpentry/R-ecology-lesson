@@ -304,7 +304,7 @@ You can also exclude certain indices of a data frame using the "`-`" sign:
 
 ```{r, purl=FALSE}
 surveys[, -1]         # The whole data frame, except the first column
-surveys[-(7:34786), ] # Equivalent to head(surveys)
+surveys[-(7:nrow(surveys)), ] # Equivalent to head(surveys)
 ```
 
 Data frames can be subset by calling indices (as shown previously), but also by calling their column names directly:
