@@ -161,6 +161,7 @@ The two main goals for this lessons are:
   command to select the columns "weight_kg" and "weight_lb" makes it easier
   to view how the "weight" columns are changed.
 * Clarify the differences between the functions read_csv() (used in this lesson) and read.csv() (used in the previous lesson).
+* Note: If students import the data and get 30521 rows instead of the expected 30463 rows, then they have likely used `read.csv()` and not `read_csv()` to import the data
 
 ### Visualizing data
 
