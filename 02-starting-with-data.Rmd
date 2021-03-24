@@ -153,6 +153,9 @@ There is also the `read_tsv()` for tab separated data files and `read_delim()`
 > (if the date is not splitted into three variables), and the presence of unexpected
 > [newlines](https://en.wikipedia.org/wiki/Newline) are important characteristics of your data files.
 > Those parameters will ease up the import step of your data in R.
+> 
+> The `view()` function used above is from the package __`tibble`__. From base R, 
+> we could also use the general function `View()` to view a dataframe.
 
 ## What are data frames?
 
