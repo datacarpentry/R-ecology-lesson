@@ -56,11 +56,11 @@ change or if we decide to change from a bar plot to a scatterplot. This helps in
 creating publication quality plots with minimal amounts of adjustments and 
 tweaking.
 
-**`ggplot2`** functions like data in the 'long' format, i.e., a column for every dimension,
+**`ggplot2`** plots work best with data in the 'long' format, i.e., a column for every dimension,
 and a row for every observation. Well-structured data will save you lots of time
 when making figures with **`ggplot2`**
 
-ggplot graphics are built step by step by adding new elements. Adding layers in
+ggplot graphics are built layer by layer by adding new elements. Adding layers in
 this fashion allows for extensive flexibility and customization of plots.
 
 To build a ggplot, we will use the following basic template that can be used for different types of plots:
@@ -78,7 +78,7 @@ ggplot(data = surveys_complete)
 
 - define an aesthetic mapping (using the aesthetic (`aes`) function), by 
 selecting the variables to be plotted and specifying how to present them in the 
-graph, e.g. as x/y positions or characteristics such as size, shape, color, etc.      
+graph, e.g., as x/y positions or characteristics such as size, shape, color, etc.      
 
 ```{r, eval = FALSE, purl = FALSE}
 ggplot(data = surveys_complete, mapping = aes(x = weight, y = hindfoot_length))
