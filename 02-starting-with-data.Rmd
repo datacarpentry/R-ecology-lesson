@@ -286,7 +286,7 @@ Data frames can be subset by calling indices (as shown previously), but also by 
 
 ```{r, eval = FALSE, purl=FALSE}
 surveys["species_id"]       # Result is a data.frame
-surveys[, "species_id"]     # Result is a vector
+surveys[, "species_id"]     # Result is a data.frame
 surveys[["species_id"]]     # Result is a vector
 surveys$species_id          # Result is a vector
 ```
