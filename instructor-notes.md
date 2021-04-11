@@ -102,7 +102,7 @@ In that case, they can try to install the individual packages that are actually
 needed:
 
 ```
-install.packages("readr", "lubridate", "dplyr", "tidyr", "ggplot2", "dbplyr")
+install.packages(c("readr", "lubridate", "dplyr", "tidyr", "ggplot2", "dbplyr"))
 ```
 
 ## Narrative
