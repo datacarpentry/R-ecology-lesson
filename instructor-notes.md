@@ -162,6 +162,7 @@ The two main goals for this lessons are:
   to view how the "weight" columns are changed.
 * Clarify the differences between the functions read_csv() (used in this lesson) and read.csv() (used in the previous lesson).
 * Note: If students end up with 30521 rows for `surveys_complete` instead of the expected 30463 rows at the end of the chapter, then they have likely used `read.csv()` and not `read_csv()` to import the data
+* When explaining view(), consider mentioning that is a function of the __tibble__ package, and that the base function View() can also be used to view a data frame.
 
 ### Visualizing data
 
