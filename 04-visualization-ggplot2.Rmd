@@ -135,6 +135,9 @@ surveys_plot +
 containing a layer. If, instead, the `+` sign is added in the line before the 
 other layer, **`ggplot2`** will not add the new layer and will return an error 
 message.
+- You may notice that we sometimes reference 'ggplot2' and sometimes 'ggplot'.
+  To clarify, 'ggplot2' is the name of the most recent library version.
+  However, any time we call the function itself, it's just called 'ggplot'.
 
 ```{r, ggplot-with-plus-position, eval=FALSE, purl=FALSE}
 # This is the correct syntax for adding layers
