@@ -41,8 +41,8 @@ this file, so the participants can follow along.
 With the release of R 4.0.0 in early 2020, an important change has been made 
 to R: The default for `stringsAsFactors` is now `FALSE` instead of `TRUE`. 
 As a result, the `read.csv()` and `data.frame()` functions do not automatically 
-convert character columns to factors anymore (you can read more about this 
-[here](https://developer.r-project.org/Blog/public/2020/02/16/stringsasfactors/index.html)).
+convert character columns to factors anymore (you can read more about it 
+[in this post on the R developer blog](https://developer.r-project.org/Blog/public/2020/02/16/stringsasfactors/index.html)).
 
 This change should not cause any problems with this lesson, independent of 
 whether R >4.0 is used or not, because we it uses
