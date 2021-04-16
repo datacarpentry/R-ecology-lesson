@@ -382,7 +382,7 @@ Besides that, there are a few places on the internet that provide help:
 -   You can also try to contact the package author directly, by emailing them or
     opening an issue on the code repository (e.g., on GitHub).
 -   There are also some topic-specific mailing lists (GIS, phylogenetics,
-    etc...), the complete list is [here](https://www.r-project.org/mail.html).
+    etc...), the complete list is [on the R mailing lists website](https://www.r-project.org/mail.html).
 
 The key to receiving help from someone is for them to rapidly grasp your
 problem. Thus, you should be as precise as possible when describing your problem
