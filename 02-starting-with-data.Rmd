@@ -266,7 +266,7 @@ surveys[1, 6]
 
 # We can also use shortcuts to select a number of rows or columns at once
 # To select all columns, leave the column index blank
-# For instance, to select the all columns for the first row:
+# For instance, to select all columns for the first row:
 surveys[1, ]
 
 # The same shortcut works for rows --
@@ -303,7 +303,7 @@ or decreasing order, test `1:10` and `10:1` for instance.
 You can also exclude certain indices of a data frame using the "`-`" sign:
 
 ```{r, purl=FALSE}
-surveys[, -1]         # The whole data frame, except the first column
+surveys[, -1]                 # The whole data frame, except the first column
 surveys[-(7:nrow(surveys)), ] # Equivalent to head(surveys)
 ```
 
@@ -317,7 +317,7 @@ surveys[, "species_id"]
 # Double brackets returns a vector:
 surveys[["species_id"]]
 
-# We can also use the $ operator with names in the place of double brackets
+# We can also use the $ operator with column names instead of double brackets
 # This returns a vector:
 surveys$species_id
 ```
