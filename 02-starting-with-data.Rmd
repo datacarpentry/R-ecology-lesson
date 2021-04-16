@@ -464,6 +464,7 @@ this information built in. It is particularly helpful when there are many levels
 >      * How many different genera are in the `genus` column?
 >
 > ```{r, answer=TRUE, purl=FALSE}
+> surveys$taxa <- factor(surveys$taxa)
 > surveys$genus <- factor(surveys$genus)
 > summary(surveys)
 > nlevels(surveys$genus)
