@@ -349,7 +349,7 @@ ggplot(data = yearly_counts, aes(x = year, y = n, group = genus)) +
     geom_line()
 ```
 
-We will be able to distinguish species in the plot if we add colors (using 
+We will be able to distinguish genera in the plot if we add colors (using 
 `color` also automatically groups the data):
 
 ```{r time-series-with-colors, purl = FALSE}
@@ -388,7 +388,7 @@ yearly_counts_graph
 
 `ggplot` has a special technique called *faceting* that allows the user to split 
 one plot into multiple plots based on a factor included in the dataset. We will 
-use it to make a time series plot for each species:
+use it to make a time series plot for each genus:
 
 ```{r first-facet, purl = FALSE}
 ggplot(data = yearly_counts, aes(x = year, y = n)) +
