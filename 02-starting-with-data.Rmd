@@ -461,7 +461,7 @@ this information built in. It is particularly helpful when there are many levels
 > 2. Using the functions you learned before, can you find out...
 >
 >      * How many rabbits were observed?
->      * How many different genera are in the `genus` column?
+>      * How many different genera are in the `genus` column ("genera" is the plural form of "genus")?
 >
 > ```{r, answer=TRUE, purl=FALSE}
 > surveys$taxa <- factor(surveys$taxa)
@@ -482,7 +482,7 @@ this information built in. It is particularly helpful when there are many levels
 ### 2. Using the functions you learned before, can you find out...
 ###
 ###      * How many rabbits were observed?
-###      * How many different genera are in the `genus` column?
+###      * How many different genera are in the `genus` column ("genera" is the plural form of "genus")?
 
 ```
 
