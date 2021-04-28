@@ -213,9 +213,9 @@ service the computer have things set up, it may be very difficult to impossible
 to make R work without their help. 
 
 If learners are having issues with one package, they may have issues with 
-another. Its often easier to make sure they have all the needed packages 
-installed at one time, rather then deal with these issues over and over.
-[Here is a list of all necessary packages for these lessons.](https://github.com/datacarpentry/R-ecology-lesson/blob/main/needed_packages.R)
+another. Its often easier to [make sure they have all the necessary packages installed](#required-packages) 
+at one time, rather then deal with these issues over and over.
+
 
 ## Other Resources
 
