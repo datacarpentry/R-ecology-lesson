@@ -213,7 +213,7 @@ service the computer have things set up, it may be very difficult to impossible
 to make R work without their help. 
 
 If learners are having issues with one package, they may have issues with 
-another. Its often easier to [make sure they have all the necessary packages installed](#required-packages) 
+another. It iss often easier to [make sure they have all the necessary packages installed](#required-packages) 
 at one time, rather then deal with these issues over and over.
 
 
