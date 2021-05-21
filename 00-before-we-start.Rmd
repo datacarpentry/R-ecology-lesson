@@ -171,7 +171,7 @@ user-defined object. By default, all of these objects will be saved, and
 automatically loaded, when you reopen your project. Saving a workspace to
 `.RData` can be cumbersome, especially if you are working with larger datasets,
 and it can lead to hard to debug errors by having objects in memory you forgot
-you had. Therefore, it's often a good idea to turn this off. To do so, go to 
+you had. Therefore, it is often a good idea to turn this off. To do so, go to 
 Tools --\> 'Global Options' and select the 'Never' option for
 'Save workspace to .RData' on exit.'
 
