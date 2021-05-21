@@ -13,6 +13,7 @@ source("setup.R")
 > ### Learning Objectives
 >
 > * Load external data from a .csv file into a data frame.
+> * Install and load packages.
 > * Describe what a data frame is.
 > * Summarize the contents of a data frame.
 > * Use indexing to subset specific portions of data frames. 
