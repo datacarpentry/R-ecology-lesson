@@ -112,9 +112,9 @@ as `col_character`. You have the option to specify the data type for a column
 manually by using the `col_types` argument in `read_csv`.
 
 We can see the contents of the first few lines of the data by typing its 
-name: `surveys`. By default, this will show show you as many rows and columns of
+name: `surveys`. By default, this will show you as many rows and columns of
 the data as fit on your screen. 
-If you wanted to the first 50 rows, you could type `print(surveys, n = 50)`
+If you wanted the first 50 rows, you could type `print(surveys, n = 50)`
 
 We can also extract the first few lines of this data using the function 
 `head()`:
@@ -663,7 +663,7 @@ Learn more in this [RStudio tutorial](https://support.rstudio.com/hc/en-us/artic
 One of the most common issues that new (and experienced!) R users have is
 converting date and time information into a variable that is appropriate and
 usable during analyses. As a reminder from earlier in this lesson, the best
-practice for dealing with date data is to ensure that each component of your
+practice for dealing with date is to ensure that each component of your
 date is stored as a separate variable. Using `str()`, We can confirm that our
 data frame has a separate column for day, month, and year, and that each contains
 integer values.
