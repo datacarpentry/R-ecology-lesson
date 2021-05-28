@@ -107,7 +107,7 @@ weight_kg <- 57.5
 ```
 
 This means that assigning a value to one object does not change the values of
-other objects  For example, let's store the animal's weight in pounds in a new
+other objects. For example, let's store the animal's weight in pounds in a new
 object, `weight_lb`:
 
 ```{r, purl = FALSE}
