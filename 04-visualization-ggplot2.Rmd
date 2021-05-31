@@ -294,6 +294,10 @@ hidden?
 > - Create boxplot for `hindfoot_length`.  Overlay the boxplot layer on a jitter
 >   layer to show actual measurements.
 >
+> - What effect does the `alpha` parameter in the boxplot layer have on the outlier
+>   points? Can you achieve the same visualisation without changing the transparency?
+>   Hint: Check the `geom_boxplot` parameters starting with `outlier...`.
+>
 > - Add color to the data points on your boxplot according to the plot from which
 >   the sample was taken (`plot_id`).
 
