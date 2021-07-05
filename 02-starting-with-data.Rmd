@@ -40,7 +40,7 @@ Each row holds information for a single animal, and the columns represent:
 | month            | month of observation               |
 | day              | day of observation                 |
 | year             | year of observation                |
-| plot\_id         | ID of a particular plot            |
+| plot\_id         | ID of a particular plot of land    |
 | species\_id      | 2-letter code                      |
 | sex              | sex of animal ("M", "F")           |
 | hindfoot\_length | length of the hindfoot in mm       |
