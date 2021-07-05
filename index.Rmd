@@ -126,8 +126,8 @@ up to date:
   follow the instruction on screen.
   
 Note: It is not necessary to remove old versions of R from your system, 
-but if you wish to do so you can 
-[check here.](https://cran.r-project.org/bin/windows/base/rw-FAQ.html#How-do-I-UNinstall-R_003f) 
+but if you wish to do so you can check
+[How do I uninstall R?](https://cran.r-project.org/bin/windows/base/rw-FAQ.html#How-do-I-UNinstall-R_003f) 
   
 
 ### Install required R packages

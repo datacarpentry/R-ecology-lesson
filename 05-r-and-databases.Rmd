@@ -395,8 +395,8 @@ retrieved.
 > 
 > left_join(surveys, species) %>%
 >   filter(taxa == "Rodent") %>%
->   group_by(taxa, year) %>%
->   tally %>%
+>   group_by(taxa, year, plot_id) %>%
+>   tally() %>%
 >   collect()
 > 
 > ## with SQL syntax
@@ -450,7 +450,7 @@ retrieved.
 >   left_join(species) %>%
 >   filter(taxa == "Rodent") %>%
 >   group_by(plot_type, genus) %>%
->   tally %>%
+>   tally() %>%
 >   collect()
 > ```
 

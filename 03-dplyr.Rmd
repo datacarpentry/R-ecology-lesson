@@ -265,7 +265,8 @@ symbol negates the result, so we're asking for every row where weight *is not* a
 >
 >  Create a new data frame from the `surveys` data that meets the following
 >  criteria: contains only the `species_id` column and a new column called
->  `hindfoot_cm` containing the `hindfoot_length` values converted to centimeters.
+>  `hindfoot_cm` containing the `hindfoot_length` values (currently in mm)
+>  converted to centimeters.
 >  In this `hindfoot_cm` column, there are no `NA`s and all values are less
 >  than 3.
 >
