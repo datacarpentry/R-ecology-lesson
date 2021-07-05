@@ -128,7 +128,6 @@ up to date:
 Note: It is not necessary to remove old versions of R from your system, 
 but if you wish to do so you can check
 [How do I uninstall R?](https://cran.r-project.org/bin/windows/base/rw-FAQ.html#How-do-I-UNinstall-R_003f) 
-  
 
 ### Install required R packages
 
@@ -163,6 +162,33 @@ library(RSQLite)
 If you do not see an error like `there is no package called ‘...’` you are good 
 to go! 
 
+### Keeping your R environment up to date
+
+Generally, it is recommended to keep your R version and all packages
+up to date, because new versions bring improvements and important bugfixes.
+
+To update the packages that you have installed, click `Update` in the
+`Packages` tab in the bottom right panel of RStudio, or go to
+`Tools > Check for Package Updates...`. Sometimes, package updates introduce
+changes that break your old code, which can be very frustrating.
+To avoid this problem, you can use a package called **`renv`**. It locks the
+package versions you have used for a given project and makes it straightforward
+to reinstall those exact package version in a new environment, for example on
+another computer.
+
+R itself also occasionally receives updates. These are much less likely to break
+your code, but it may still happen. However, it is possible to have multiple
+versions of R installed in parallel, and you can switch between them in RStudio
+by going to `Tools > Global Options > General > Basic`.
+
+After installing a new version of R, you will have to reinstall all your packages
+with the new version. Again the **`renv`** package can make this process easier.
+For Windows, there is also the **`installr`** package that can help you with
+upgrading your R version and migrate your package library.
+
+Finally, you can check for updates of RStudio by going to `Help > Check for Updates`
+and following the instructions on screen. By default, RStudio will also 
+automatically check for updates every once in a while.
 
 ### Download the data
 
