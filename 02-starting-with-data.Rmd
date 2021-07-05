@@ -151,7 +151,7 @@ There is also the `read_tsv()` for tab separated data files and `read_delim()`
 > In addition to the above versions of the csv format, you should develop the habits
 > of looking at and record some parameters of your csv files. For instance, 
 > the character encoding, control characters used for line ending, date format
-> (if the date is not splitted into three variables), and the presence of unexpected
+> (if the date is not split into three variables), and the presence of unexpected
 > [newlines](https://en.wikipedia.org/wiki/Newline) are important characteristics of your data files.
 > Those parameters will ease up the import step of your data in R.
 
@@ -663,8 +663,8 @@ Learn more in this [RStudio tutorial](https://support.rstudio.com/hc/en-us/artic
 One of the most common issues that new (and experienced!) R users have is
 converting date and time information into a variable that is appropriate and
 usable during analyses. As a reminder from earlier in this lesson, the best
-practice for dealing with date is to ensure that each component of your
-date is stored as a separate variable. Using `str()`, We can confirm that our
+practice for dealing with date data is to ensure that each component of your
+date is stored as a separate variable. Using `str()`, we can confirm that our
 data frame has a separate column for day, month, and year, and that each contains
 integer values.
 
