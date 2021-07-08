@@ -79,7 +79,10 @@ yet loaded the data from the file into memory. To do this, we can use the
 
 Packages in R are basically sets of additional functions that let you do more
 stuff. The functions we've been using so far, like `round()`, `sqrt()`, or `c()`,
-come built into R; packages give you access to additional functions. 
+come built into R; packages give you access to additional functions beyond base R. 
+A similar function to `read_csv()` from the tidyverse package is `read.csv()` from 
+base R. We don't have time to cover their differences but notice that the exact 
+spelling determines which function is used.
 Before you use a package for the first time you need to install it on your 
 machine, and then you should import it in every subsequent R session when you 
 need it. 
