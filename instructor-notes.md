@@ -152,7 +152,7 @@ The two main goals for this lessons are:
   *genus* and *plot* have caused some confusion to learners in the past. 
   It might help to point out that the plural of genus is *genera*, and that
   `plot_id` and `plot_type` in the data set refer to the ID and type of a plot 
-  of land that was survied by the researchers in the study.
+  of land that was surveyed by the researchers in the study.
 
 ### Manipulating data
 
