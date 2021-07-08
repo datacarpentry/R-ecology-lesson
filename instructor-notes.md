@@ -147,6 +147,12 @@ The two main goals for this lessons are:
   and so it is important that they are guided through it the first time they are
   exposed to it. The content of the lesson should be enough for learners to
   avoid common mistakes with them.
+* If the learners are not familiar with the ecology terminology used in the data
+  set, it might be a good idea to briefly review it here. Especially the terms 
+  *genus* and *plot* have caused some confusion to learners in the past. 
+  It might help to point out that the plural of genus is *genera*, and that
+  `plot_id` and `plot_type` in the data set refer to the ID and type of a plot 
+  of land that was surveyed by the researchers in the study.
 
 ### Manipulating data
 
