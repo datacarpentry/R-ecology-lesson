@@ -406,7 +406,7 @@ retrieved.
 > JOIN species b
 > ON a.species_id = b.species_id
 > AND b.taxa = 'Rodent'
-> GROUP BY a.year, b.taxa",
+> GROUP BY b.taxa, a.year, a.plot_id",
 > sep = "" )
 > 
 > tbl(mammals, sql(query))
