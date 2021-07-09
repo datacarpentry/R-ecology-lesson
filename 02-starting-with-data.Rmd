@@ -663,17 +663,17 @@ Learn more in this [RStudio tutorial](https://support.rstudio.com/hc/en-us/artic
 
 ## Formatting dates
 
-One of the most common issues that new (and experienced!) R users have is
-converting date and time information into a variable that is appropriate and
-usable during analyses. As a reminder from earlier in this lesson, the best
-practice for dealing with date data is to ensure that each component of your
-date is stored as a separate variable. Using `str()`, we can confirm that our
-data frame has a separate column for day, month, and year, and that each contains
-integer values.
+A common issues that new (and experienced!) R users have is
+converting date and time information into a variable that is suitable for 
+analyses. One way to store date information is to store each component of the 
+date in a separate column. Using `str()`, we can confirm that our data frame 
+does indeed have a separate column for day, month, and year, and that each of 
+these columns contains integer values.
 
 ```{r, eval=FALSE, purl=FALSE}
 str(surveys)
 ```
+
 We are going to use the `ymd()` function from the package **`lubridate`** (which belongs to the **`tidyverse`**; learn more [here](https://www.tidyverse.org/)). **`lubridate`** gets installed as part as the **`tidyverse`** installation. When you load  the **`tidyverse`** (`library(tidyverse)`), the core packages (the packages used in most data analyses) get loaded. **`lubridate`** however does not belong to the core tidyverse, so you have to load it explicitly with `library(lubridate)`
 
 Start by loading the required package:
