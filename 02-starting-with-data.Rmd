@@ -682,11 +682,16 @@ Start by loading the required package:
 library(lubridate)
 ```
 
-`ymd()` takes a vector representing year, month, and day, and converts it to a
-`Date` vector. `Date` is a class of data recognized by R as being a date and can
+The **`lubridate`** package has many useful functions for working with dates. 
+These can help you extract dates from different string representations, 
+convert between timezones, calculate time differences and more. You can find 
+an overview of them in the [lubridate cheat sheet](https://github.com/rstudio/cheatsheets/raw/master/lubridate.pdf).
+
+Here we will use the function `ymd()`, which takes a vector representing year, 
+month, and day, and converts it to a `Date` vector. 
+`Date` is a class of data recognized by R as being a date and can
 be manipulated as such. The argument that the function requires is flexible,
 but, as a best practice, is a character vector formatted as "YYYY-MM-DD".
-
 
 Let's create a date object and inspect the structure:
 
@@ -746,6 +751,7 @@ head(missing_dates)
 
 Why did these dates fail to parse? If you had to use these data for your
 analyses, how would you deal with this situation?
+
 
 ```{r, child="_page_built_on.Rmd"}
 ```
