@@ -663,17 +663,17 @@ Learn more in this [RStudio tutorial](https://support.rstudio.com/hc/en-us/artic
 
 ## Formatting dates
 
-One of the most common issues that new (and experienced!) R users have is
-converting date and time information into a variable that is appropriate and
-usable during analyses. As a reminder from earlier in this lesson, the best
-practice for dealing with date data is to ensure that each component of your
-date is stored as a separate variable. Using `str()`, we can confirm that our
-data frame has a separate column for day, month, and year, and that each contains
-integer values.
+A common issues that new (and experienced!) R users have is
+converting date and time information into a variable that is suitable for 
+analyses. One way to store date information is to store each component of the 
+date in a separate column. Using `str()`, we can confirm that our data frame 
+does indeed have a separate column for day, month, and year, and that each of 
+these columns contains integer values.
 
 ```{r, eval=FALSE, purl=FALSE}
 str(surveys)
 ```
+
 We are going to use the `ymd()` function from the package **`lubridate`** (which belongs to the **`tidyverse`**; learn more [here](https://www.tidyverse.org/)). **`lubridate`** gets installed as part as the **`tidyverse`** installation. When you load  the **`tidyverse`** (`library(tidyverse)`), the core packages (the packages used in most data analyses) get loaded. **`lubridate`** however does not belong to the core tidyverse, so you have to load it explicitly with `library(lubridate)`
 
 Start by loading the required package:
@@ -682,11 +682,16 @@ Start by loading the required package:
 library(lubridate)
 ```
 
-`ymd()` takes a vector representing year, month, and day, and converts it to a
-`Date` vector. `Date` is a class of data recognized by R as being a date and can
+The **`lubridate`** package has many useful functions for working with dates. 
+These can help you extract dates from different string representations, 
+convert between timezones, calculate time differences and more. You can find 
+an overview of them in the [lubridate cheat sheet](https://github.com/rstudio/cheatsheets/raw/master/lubridate.pdf).
+
+Here we will use the function `ymd()`, which takes a vector representing year, 
+month, and day, and converts it to a `Date` vector. 
+`Date` is a class of data recognized by R as being a date and can
 be manipulated as such. The argument that the function requires is flexible,
 but, as a best practice, is a character vector formatted as "YYYY-MM-DD".
-
 
 Let's create a date object and inspect the structure:
 
@@ -746,6 +751,7 @@ head(missing_dates)
 
 Why did these dates fail to parse? If you had to use these data for your
 analyses, how would you deal with this situation?
+
 
 ```{r, child="_page_built_on.Rmd"}
 ```
