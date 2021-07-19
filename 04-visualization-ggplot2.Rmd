@@ -610,16 +610,16 @@ determine how much space each plot uses:
 ```{r patchwork-example, message = FALSE, purl = FALSE, fig.width = 10}
 library(patchwork)
 
-plot1 <- ggplot(data = surveys_complete, aes(x = species_id, y = weight)) +
+plot_weight <- ggplot(data = surveys_complete, aes(x = species_id, y = weight)) +
   geom_boxplot() +
   labs(x = "Species", y = expression(log[10](Weight))) +
   scale_y_log10()
 
-plot2 <- ggplot(data = yearly_counts, aes(x = year, y = n, color = genus)) +
+plot_count <- ggplot(data = yearly_counts, aes(x = year, y = n, color = genus)) +
   geom_line() + 
   labs(x = "Year", y = "Abundance")
 
-plot1 / plot2 + plot_layout(heights = c(3, 2))
+plot_weight / plot_count + plot_layout(heights = c(3, 2))
 ```
 
 You can also use parentheses `()` to create more complex layouts. There are
@@ -654,10 +654,9 @@ my_plot <- ggplot(data = yearly_sex_counts,
 
 ggsave("name_of_file.png", my_plot, width = 15, height = 10)
 
-## This also works for grid.arrange() plots
-combo_plot <- grid.arrange(spp_weight_boxplot, spp_count_plot, ncol = 2, 
-                           widths = c(4, 6))
-ggsave("combo_plot_abun_weight.png", combo_plot, width = 10, dpi = 300)
+## This also works for plots combined with patchwork
+plot_combined <- plot_weight / plot_count + plot_layout(heights = c(3, 2))
+ggsave("plot_combined.png", plot_combined, width = 10, dpi = 300)
 ```
 
 Note: The parameters `width` and `height` also determine the font size in the 
