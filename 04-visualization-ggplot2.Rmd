@@ -585,10 +585,10 @@ ggplot(surveys_complete, aes(x = species_id, y = hindfoot_length)) +
 >
 > Here are some ideas:
 >
-> * See if you can change the thickness of the lines.
+> * See if you can change the thickness of the lines. 
 > * Can you find a way to change the name of the legend? What about its labels?
 > * Try using a different color palette (see
->   http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/).
+>   <https://www.cookbook-r.com/Graphs/Colors_(ggplot2)/>).
 
 ## Arranging plots
 

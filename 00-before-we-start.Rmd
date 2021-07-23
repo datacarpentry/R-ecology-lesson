@@ -396,12 +396,13 @@ and make it easy to pinpoint where the issue might be. Try to...
 -   Generalize what you are trying to do, so people outside your field can
     understand the question.
 
--   Reduce what doesn't work to a simple *reproducible example*. For instance,
+-   Reduce what does not work to a simple *reproducible example*. For instance,
     instead of using your real data set, create a small generic one. For more
-    information on how to write a reproducible example see [this article by
-    Hadley Wickham](http://adv-r.had.co.nz/Reproducibility.html). The
-    [reprex](https://cran.r-project.org/package=reprex) package is also very
-    helpful for this.
+    information on how to write a reproducible example see [this article from
+    the reprex
+    package](https://reprex.tidyverse.org/articles/reprex-dos-and-donts.html).
+    Learning how to use the [reprex](https://cran.r-project.org/package=reprex)
+    package is also very helpful for this.
 
 -   Include the output of `sessionInfo()` in your question. It provides
     information about your platform, the versions of R and the packages that you
@@ -462,7 +463,7 @@ knitr::include_graphics("img/kitten-try-things.jpg")
     [codeblog.jonskeet.uk](https://codeblog.jonskeet.uk/2010/08/29/writing-the-perfect-question/)
     provide advice on how to ask programming questions.
 -   [This blog post by Jon
-    Skeet](http://codeblog.jonskeet.uk/2010/08/29/writing-the-perfect-question/)
+    Skeet](https://codeblog.jonskeet.uk/2010/08/29/writing-the-perfect-question/)
     has comprehensive advice on how to ask programming questions.
 
 ```{r, child="_page_built_on.Rmd"}
