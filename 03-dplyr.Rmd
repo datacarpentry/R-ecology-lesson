@@ -39,19 +39,19 @@ especially for complicated operations. Enter **`dplyr`**. **`dplyr`** is a packa
 making tabular data manipulation easier. It pairs nicely with **`tidyr`** which enables you to swiftly convert between different data formats for plotting and analysis.
 
 The **`tidyverse`** package is an
-"umbrella-package" that installs **`tidyr`**, **`dplyr`**, and several other packages useful for data analysis, such as  **`ggplot2`**, **`tibble`**, etc.
+"umbrella-package" that installs **`tidyr`**, **`dplyr`**, and several other useful packages for data analysis, such as  **`ggplot2`**, **`tibble`**, etc.
 
 The **`tidyverse`** package tries to address 3 common issues that arise when
-doing data analysis with some of the functions that come with R:
+doing data analysis in R:
 
 1. The results from a base R function sometimes depend on the type of data.
-2. Using R expressions in a non standard way, which can be confusing for new
+2. R expressions are used in a non standard way, which can be confusing for new
    learners.
-3. Hidden arguments, having default operations that new learners are not aware
+3. The existence of hidden arguments having default operations that new learners are not aware
    of.
 
 You should already have installed and loaded the **`tidyverse`** package. 
-If we haven't already done so, we can type `install.packages("tidyverse")` straight into the console. Then, to load the package type `library(tidyverse)`
+If you haven't already done so, you can type `install.packages("tidyverse")` straight into the console. Then, type `library(tidyverse)` to load the package.
 
 ## What are **`dplyr`** and **`tidyr`**?
 
@@ -70,8 +70,8 @@ can connect to a database of many hundreds of GB, conduct queries on it directly
 back into R only what you need for analysis.
 
 The package **`tidyr`** addresses the common problem of wanting to reshape your data for
-plotting and use by different R functions. Sometimes we want data sets where we have one
-row per measurement. Sometimes we want a data frame where each measurement type has its
+plotting and usage by different R functions. For example, sometimes we want data sets where we have one
+row per measurement. Other times we want a data frame where each measurement type has its
 own column, and rows are instead more aggregated groups
 (e.g., a time period, an experimental unit like a plot or a batch number).
 Moving back and forth between these formats is non-trivial, and **`tidyr`** gives you tools
@@ -179,11 +179,11 @@ the object on its left and passes it as the first argument to the function on
 its right, we don't need to explicitly include the data frame as an argument
 to the `filter()` and `select()` functions any more.
 
-Some may find it helpful to read the pipe like the word "then". For instance,
-in the above example, we took the data frame `surveys`, *then* we `filter`ed
+Some may find it helpful to read the pipe like the word "then." For instance,
+in the example above, we took the data frame `surveys`, *then* we `filter`ed
 for rows with `weight < 5`, *then* we `select`ed columns `species_id`, `sex`,
 and `weight`. The **`dplyr`** functions by themselves are somewhat simple,
-but by combining them into linear workflows with the pipe, we can accomplish
+but by combining them into linear workflows with the pipe we can accomplish
 more complex manipulations of data frames.
 
 If we want to create a new object with this smaller version of the data, we
