@@ -342,7 +342,7 @@ Many packages also have websites with additional help, tutorials, news and more
 Don't get discouraged if your code doesn't run immediately! Error messages are
 common when programming, and fixing errors is part of any programmers daily
 work. Often, the problem is a small typo in a variable name or a missing
-parenthesis. Watch for the red x's next to your code in Rstudio. These may
+parenthesis. Watch for the red x's next to your code in RStudio. These may
 provide helpful hints about the source of the problem.
 
 ![RStudio shows a red x next to a line of code that R doesn't understand.
