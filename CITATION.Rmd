@@ -72,13 +72,13 @@ A simplified version of this data, suitable for teaching is available on
 ## Lessons
 
 The first workshop was run at NESCent on May 8-9, 2014 with the development and
-instruction of lessons by Karen Cranston, Hilmar Lapp, Tracy Teal and Ethan
+instruction of lessons by Karen Cranston, Hilmar Lapp, Tracy Teal, and Ethan
 White and contributions from Deb Paul and Mike Smorul.
 
 Original materials adapted from SWC Python lessons by Sarah Supp. John Blischak
 led the continued development of materials with contributions from Gavin
 Simpson, Tracy Teal, Greg Wilson, Diego Barneche, Stephen Turner, and Karthik
-Ram. This original material has been modified and expanded by Francois
+Ram. This original material has been modified and expanded by François
 Michonneau.
 
 The **`dplyr`** lesson was created by Kara Woo, who copied and modified and
