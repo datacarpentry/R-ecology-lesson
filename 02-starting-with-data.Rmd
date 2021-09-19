@@ -142,7 +142,7 @@ view(surveys)
 
 > ### Note
 >
-> `read_csv()` assumes that fields are delineated by commas, however, in several
+> `read_csv()` assumes that fields are delineated by commas. However, in several
 > countries, the comma is used as a decimal separator and the semicolon (;) is
 > used as a field delineator. If you want to read in this type of files in R,
 > you can use the `read_csv2()` function. It behaves like `read_csv()` but
