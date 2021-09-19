@@ -152,7 +152,7 @@ There is also the `read_tsv()` for tab separated data files and `read_delim()`
 > Check out the help for `read_csv()` by typing `?read_csv` to learn more. 
 >
 > In addition to the above versions of the csv format, you should develop the habits
-> of looking at and record some parameters of your csv files. For instance, 
+> of looking at and recording some parameters of your csv files. For instance, 
 > the character encoding, control characters used for line ending, date format
 > (if the date is not split into three variables), and the presence of unexpected
 > [newlines](https://en.wikipedia.org/wiki/Newline) are important characteristics of your data files.
