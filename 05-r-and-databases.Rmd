@@ -346,7 +346,7 @@ If we have two tables named x and y with a common column called "ID", we can joi
 
 2. left_join() : This return all rows from x, and all columns from x and y. Rows in x with no match in y will have NA values in the new columns.  
 
-In both forms of join, if there are multiple matches between x and y, all combinations of the matches are returned. For the full list of 'join' functions, check out the [tidyverse join page.](https://dplyr.tidyverse.org/reference/join.html) 
+In both forms of join, if there are multiple matches between x and y, all combinations of the matches are returned. For the full list of 'join' functions, check out the [tidyverse join page.](https://dplyr.tidyverse.org/reference/mutate-joins.html)
 
 In our example, the two tables we want to join are 'plots' and 'surveys'.
 
