@@ -499,11 +499,11 @@ animals[animals == "cat" | animals == "rat"]
 
 # return a logical vector that is TRUE for the elements within animals
 # that are found in the character vector and FALSE for those that are not
-animals %in% c("rat", "cat", "dog", "duck", "goat") 
+animals %in% c("rat", "cat", "dog", "duck", "goat", "bird", "fish")
 
 # use the logical vector created by %in% to return elements from animals 
 # that are found in the character vector
-animals[animals %in% c("rat", "cat", "dog", "duck", "goat")]
+animals[animals %in% c("rat", "cat", "dog", "duck", "goat", "bird", "fish")]
 ```
 
 > ### Challenge (optional){.challenge}
