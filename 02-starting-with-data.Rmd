@@ -106,8 +106,6 @@ Let's use `read_csv()` to read the data into a data frame
 surveys <- read_csv("data_raw/portal_data_joined.csv")
 ```
 
-You will see the message `Parsed with column specification`, followed by each
-column name and its data type.
 When you execute `read_csv` on a data file, it looks through the first 1000 rows 
 of each column and guesses its data type. For example, in this dataset,
 `read_csv()` reads `weight` as `col_double` (a numeric data type), and `species` 
