@@ -459,12 +459,8 @@ knitr::include_graphics("img/kitten-try-things.jpg")
     recording](https://vimeo.com/208749032)) includes a presentation of the
     reprex package and of its philosophy.
 -   [blog.Revolutionanalytics.com](https://blog.revolutionanalytics.com/2014/01/how-to-ask-for-r-help.html)
-    and
-    [codeblog.jonskeet.uk](https://codeblog.jonskeet.uk/2010/08/29/writing-the-perfect-question/)
-    provide advice on how to ask programming questions.
--   [This blog post by Jon
-    Skeet](https://codeblog.jonskeet.uk/2010/08/29/writing-the-perfect-question/)
-    has comprehensive advice on how to ask programming questions.
+    and [this blog post by Jon Skeet](https://codeblog.jonskeet.uk/2010/08/29/writing-the-perfect-question/)
+    have comprehensive advice on how to ask programming questions.
 
 ```{r, child="_page_built_on.Rmd"}
 ```
