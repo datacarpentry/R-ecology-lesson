@@ -46,8 +46,8 @@ results of your analysis do not rely on remembering a succession of pointing and
 clicking, but instead on a series of written commands, and that's a good thing!
 So, if you want to redo your analysis because you collected more data, you don't
 have to remember which button you clicked in which order to obtain your results.
-You run repeat running your series of commands (your script) and R will process
-the new dataset exactly the same way. 
+With a stored series of commands (this is your script), you can repeat running them and
+R will process the new dataset exactly the same way as before.
 
 Working with scripts makes the steps you used in your analysis clear, and the
 code you write can be inspected by someone else who can give you feedback and
