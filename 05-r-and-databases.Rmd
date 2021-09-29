@@ -536,7 +536,7 @@ my_db
 
 If you check the location of our database you'll see that data is automatically
 being written to disk. R and **`dplyr`** not only provide ways to query
-existing databases, they also allows provide functionality to create your own databases
+existing databases, they also provide functionality to create your own databases
 from flat files!
 
 > ### Challenge
