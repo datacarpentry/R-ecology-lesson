@@ -36,7 +36,7 @@ suppressWarnings(surveys$date <- lubridate::ymd(paste(surveys$year,
 
 Bracket subsetting is handy, but it can be cumbersome and difficult to read,
 especially for complicated operations. Enter **`dplyr`**. **`dplyr`** is a package for
-making tabular data manipulation easier. It pairs nicely with **`tidyr`** which enables you to swiftly convert between different data formats for plotting and analysis.
+helping wit tabular data manipulation. It pairs nicely with **`tidyr`** which enables you to swiftly convert between different data formats for plotting and analysis.
 
 The **`tidyverse`** package is an
 "umbrella-package" that installs **`tidyr`**, **`dplyr`**, and several other useful packages for data analysis, such as  **`ggplot2`**, **`tibble`**, etc.
@@ -610,9 +610,9 @@ and then gathering can be a useful way to balance out a dataset so every
 replicate has the same composition.
 
 We could also have used a specification for what columns to include. This can be
-useful if you have a large number of identifying columns, and it's easier to
+useful if you have a large number of identifying columns, and it's allows you to type less in order to
 specify what to gather than what to leave alone. And if the columns are directly
-adjacent, we don't even need to list them all out - just use the `:` operator!
+adjacent, we don't even need to list them all out - instead you can use the `:` operator!
 
 ```{r, purl=FALSE}
 surveys_spread %>%
