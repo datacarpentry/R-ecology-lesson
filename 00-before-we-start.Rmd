@@ -232,7 +232,7 @@ your project, it should refer to files in relation to the root of your working
 directory and only need files within this structure.
 
 RStudio assists you in this regard and sets the working directory automatically
-to the directory placed your project in.
+to the directory where you have placed your project in.
 If you need to check it, you can use `getwd()`. If for some
 reason your working directory is not what it should be, you can change it in the
 RStudio interface by navigating in the file browser where your working directory
