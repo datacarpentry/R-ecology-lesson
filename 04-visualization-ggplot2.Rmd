@@ -2,17 +2,17 @@
 title: Data visualization with ggplot2
 author: Data Carpentry contributors
 minutes: 60
-editor_options: 
+editor_options:
   chunk_output_type: console
 ---
 
 
 ```{r setup, echo=FALSE, message = FALSE, warning = FALSE, purl=FALSE}
 source("setup.R")
-surveys_complete <- read_csv(file = "data_raw/portal_data_joined.csv", col_types = cols()) %>% 
-  drop_na(weight, hindfoot_length, sex) %>% 
-  group_by(species_id) %>% 
-  filter(n() >= 50) %>% 
+surveys_complete <- read_csv(file = "data_raw/portal_data_joined.csv", col_types = cols()) %>%
+  drop_na(weight, hindfoot_length, sex) %>%
+  group_by(species_id) %>%
+  filter(n() >= 50) %>%
   ungroup()
 ```
 
@@ -48,12 +48,12 @@ surveys_complete <- read_csv("data/surveys_complete.csv")
 
 ## Plotting with **`ggplot2`**
 
-**`ggplot2`** is a plotting package that makes it simple to create complex plots
+**`ggplot2`** is a plotting package that provides helpful commands to create complex plots
 from data in a data frame. It provides a more programmatic interface for
 specifying what variables to plot, how they are displayed, and general visual
-properties. Therefore, we only need minimal changes if the underlying data 
-change or if we decide to change from a bar plot to a scatterplot. This helps in 
-creating publication quality plots with minimal amounts of adjustments and 
+properties. Therefore, we only need minimal changes if the underlying data
+change or if we decide to change from a bar plot to a scatterplot. This helps in
+creating publication quality plots with minimal amounts of adjustments and
 tweaking.
 
 **`ggplot2`** plots work best with data in the 'long' format, i.e., a column for every variable,
@@ -69,15 +69,15 @@ To build a ggplot, we will use the following basic template that can be used for
 ggplot(data = <DATA>, mapping = aes(<MAPPINGS>)) +  <GEOM_FUNCTION>()
 ```
 
-- use the `ggplot()` function and bind the plot to a specific data frame using 
+- use the `ggplot()` function and bind the plot to a specific data frame using
   the `data` argument
 
 ```{r, eval = FALSE, purl = FALSE}
 ggplot(data = surveys_complete)
 ```
 
-- define an aesthetic mapping (using the aesthetic (`aes`) function), by 
-selecting the variables to be plotted and specifying how to present them in the 
+- define an aesthetic mapping (using the aesthetic (`aes`) function), by
+selecting the variables to be plotted and specifying how to present them in the
 graph, e.g., as x/y positions or characteristics such as size, shape, color, etc.      
 
 ```{r, eval = FALSE, purl = FALSE}
@@ -85,14 +85,14 @@ ggplot(data = surveys_complete, mapping = aes(x = weight, y = hindfoot_length))
 ```
 
 - add 'geoms' – graphical representations of the data in the plot (points,
-  lines, bars). **`ggplot2`** offers many different geoms; we will use some 
+  lines, bars). **`ggplot2`** offers many different geoms; we will use some
   common ones today, including:
-  
+
   * `geom_point()` for scatter plots, dot plots, etc.
   * `geom_boxplot()` for, well, boxplots!
   * `geom_line()` for trend lines, time series, etc.  
 
-To add a geom to the plot use `+` operator. Because we have two continuous 
+To add a geom to the plot use `+` operator. Because we have two continuous
 variables, let's use `geom_point()` first:
 
 ```{r first-ggplot, purl = FALSE}
@@ -100,40 +100,40 @@ ggplot(data = surveys_complete, aes(x = weight, y = hindfoot_length)) +
   geom_point()
 ```
 
-The `+` in the **`ggplot2`** package is particularly useful because it allows 
+The `+` in the **`ggplot2`** package is particularly useful because it allows
 you to modify existing `ggplot` objects. This means you can easily set up plot
 "templates" and conveniently explore different types of plots, so the above
 plot can also be generated with code like this:
 
 ```{r, first-ggplot-with-plus, eval = FALSE, purl = FALSE}
 # Assign plot to a variable
-surveys_plot <- ggplot(data = surveys_complete, 
+surveys_plot <- ggplot(data = surveys_complete,
                        mapping = aes(x = weight, y = hindfoot_length))
 
 # Draw the plot
-surveys_plot + 
+surveys_plot +
     geom_point()
 ```
 
 ```{r, eval = FALSE, purl = TRUE, echo = FALSE, purl = FALSE}
 ## Create a ggplot and draw it.
-surveys_plot <- ggplot(data = surveys_complete, 
+surveys_plot <- ggplot(data = surveys_complete,
                        aes(x = weight, y = hindfoot_length))
 
-surveys_plot + 
+surveys_plot +
   geom_point()
 ```
 
 **Notes**
 
 - Anything you put in the `ggplot()` function can be seen by any geom layers
-  that you add (i.e., these are universal plot settings). This includes the x- 
+  that you add (i.e., these are universal plot settings). This includes the x-
   and y-axis you set up in `aes()`.
 - You can also specify aesthetics for a given geom independently of the
   aesthetics defined globally in the `ggplot()` function.
-- The `+` sign used to add layers must be placed at the end of each line 
-  containing a layer. If, instead, the `+` sign is added in the line before the 
-  other layer, **`ggplot2`** will not add the new layer and will return an error 
+- The `+` sign used to add layers must be placed at the end of each line
+  containing a layer. If, instead, the `+` sign is added in the line before the
+  other layer, **`ggplot2`** will not add the new layer and will return an error
   message.
 - You may notice that we sometimes reference 'ggplot2' and sometimes 'ggplot'.
   To clarify, 'ggplot2' is the name of the most recent version of the package.
@@ -235,7 +235,7 @@ ggplot(data = surveys_complete, mapping = aes(x = weight, y = hindfoot_length)) 
 > Is this a good way to show this type of data?
 >
 > ```{r scatter-challenge-answer, answer=TRUE, purl=FALSE}
-> ggplot(data = surveys_complete, 
+> ggplot(data = surveys_complete,
 >        mapping = aes(x = species_id, y = weight)) +
 >    geom_point(aes(color = plot_type))
 > ```
@@ -275,7 +275,7 @@ hidden?
 >
 > Boxplots are useful summaries, but hide the *shape* of the distribution. For
 > example, if there is a bimodal distribution, it would not be observed with a
-> boxplot. An alternative to the boxplot is the violin plot (sometimes known as 
+> boxplot. An alternative to the boxplot is the violin plot (sometimes known as
 > a beanplot), where the shape (of the density of points) is drawn.
 >
 > - Replace the box plot with a violin plot; see `geom_violin()`.
@@ -297,7 +297,7 @@ hidden?
 > - Add color to the data points on your boxplot according to the plot from which
 >   the sample was taken (`plot_id`).
 
-> Hint: Check the class for `plot_id`. Consider changing the class of `plot_id` 
+> Hint: Check the class for `plot_id`. Consider changing the class of `plot_id`
 > from integer to factor. Why does this change how R makes the graph?
 
 ```{r boxplot-challenge, eval = FALSE, purl = TRUE, echo = FALSE}
@@ -332,7 +332,7 @@ yearly_counts <- surveys_complete %>%
   count(year, genus)
 ```
 
-Timelapse data can be visualized as a line plot with years on the x-axis and 
+Timelapse data can be visualized as a line plot with years on the x-axis and
 counts on the y-axis:
 
 ```{r first-time-series, purl = FALSE}
@@ -349,7 +349,7 @@ ggplot(data = yearly_counts, aes(x = year, y = n, group = genus)) +
     geom_line()
 ```
 
-We will be able to distinguish genera in the plot if we add colors (using 
+We will be able to distinguish genera in the plot if we add colors (using
 `color` also automatically groups the data):
 
 ```{r time-series-with-colors, purl = FALSE}
@@ -367,7 +367,7 @@ We can also use the pipe operator to pass the `data` argument to the
 you need to use `+` and not `%>%`.
 
 ```{r integrating-the-pipe, purl=FALSE}
-yearly_counts %>% 
+yearly_counts %>%
     ggplot(mapping = aes(x = year, y = n, color = genus)) +
     geom_line()
 ```
@@ -376,7 +376,7 @@ The pipe operator can also be used to link data manipulation with consequent dat
 
 ```{r pipes-and-manipulation, purl=FALSE}
 yearly_counts_graph <- surveys_complete %>%
-    count(year, genus) %>% 
+    count(year, genus) %>%
     ggplot(mapping = aes(x = year, y = n, color = genus)) +
     geom_line()
 
@@ -386,8 +386,8 @@ yearly_counts_graph
 
 ## Faceting
 
-`ggplot` has a special technique called *faceting* that allows the user to split 
-one plot into multiple plots based on a factor included in the dataset. We will 
+`ggplot` has a special technique called *faceting* that allows the user to split
+one plot into multiple plots based on a factor included in the dataset. We will
 use it to make a time series plot for each genus:
 
 ```{r first-facet, purl = FALSE}
@@ -405,7 +405,7 @@ measured. To do that we need to make counts in the data frame grouped by `year`,
                       count(year, genus, sex)
 ```
 
-We can now make the faceted plot by splitting further by sex using `color` 
+We can now make the faceted plot by splitting further by sex using `color`
 (within a single plot):
 
 ```{r facet-by-genus-and-sex, purl=FALSE}
@@ -414,10 +414,10 @@ ggplot(data = yearly_sex_counts, mapping = aes(x = year, y = n, color = sex)) +
   facet_wrap(facets =  vars(genus))
 ```
 
-We can also facet both by sex and genus: 
+We can also facet both by sex and genus:
 
 ```{r average-weight-time-facet-both, purl=FALSE, fig.width=9.5}
-ggplot(data = yearly_sex_counts, 
+ggplot(data = yearly_sex_counts,
        mapping = aes(x = year, y = n, color = sex)) +
   geom_line() +
   facet_grid(rows = vars(sex), cols =  vars(genus))
@@ -427,7 +427,7 @@ You can also organise the panels only by rows (or only by columns):
 
 ```{r average-weight-time-facet-sex-rows, purl=FALSE, fig.height=8.5, fig.width=8}
 # One column, facet by rows
-ggplot(data = yearly_sex_counts, 
+ggplot(data = yearly_sex_counts,
        mapping = aes(x = year, y = n, color = sex)) +
   geom_line() +
   facet_grid(rows = vars(genus))
@@ -435,14 +435,14 @@ ggplot(data = yearly_sex_counts,
 
 ```{r average-weight-time-facet-sex-columns, purl=FALSE, fig.width=9.5, fig.height=5}
 # One row, facet by column
-ggplot(data = yearly_sex_counts, 
+ggplot(data = yearly_sex_counts,
        mapping = aes(x = year, y = n, color = sex)) +
   geom_line() +
   facet_grid(cols = vars(genus))
 ```
 
 
-**Note:** 
+**Note:**
 `ggplot2` before version 3.0.0 used formulas to specify how plots are faceted.
 If you encounter `facet_grid`/`wrap(...)` code containing `~`, please read
 <https://ggplot2.tidyverse.org/news/#tidy-evaluation>.
@@ -450,16 +450,16 @@ If you encounter `facet_grid`/`wrap(...)` code containing `~`, please read
 
 ## **`ggplot2`** themes
 
-Usually plots with white background look more readable when printed. 
-Every single component of a `ggplot` graph can be customized using the generic 
-`theme()` function, as we will see below. However, there are pre-loaded themes 
-available that change the overall appearance of the graph without much effort. 
+Usually plots with white background look more readable when printed.
+Every single component of a `ggplot` graph can be customized using the generic
+`theme()` function, as we will see below. However, there are pre-loaded themes
+available that change the overall appearance of the graph without much effort.
 
-For example, we can change our previous graph to have a simpler white background 
+For example, we can change our previous graph to have a simpler white background
 using the `theme_bw()` function:
 
 ```{r facet-by-species-and-sex-white-bg, purl=FALSE}
- ggplot(data = yearly_sex_counts, 
+ ggplot(data = yearly_sex_counts,
         mapping = aes(x = year, y = n, color = sex)) +
      geom_line() +
      facet_wrap(vars(genus)) +
@@ -481,7 +481,7 @@ provides a wide variety of options.
 >
 > Use what you just learned to create a plot that depicts how the average weight
 > of each species changes through the years.
-> 
+>
 > ```{r average-weight-time-series, answer=TRUE, purl=FALSE}
 > yearly_weight <- surveys_complete %>%
 >                 group_by(year, species_id) %>%
@@ -540,7 +540,7 @@ the [**`extrafont`** package](https://github.com/wch/extrafont), and follow the
 instructions included in the README for this package.
 
 After our manipulations, you may notice that the values on the x-axis are still
-not properly readable. Let's change the orientation of the labels and adjust 
+not properly readable. Let's change the orientation of the labels and adjust
 them vertically and horizontally so they don't overlap. You can use a 90 degree
 angle, or experiment to find the appropriate angle for diagonally oriented
 labels. We can also modify the facet label text (`strip.text`) to italicize the genus
@@ -565,8 +565,8 @@ them as an object to be able to easily apply them to other plots you may create:
 
 
 ```{r number-species-year-with-right-labels-xfont-orientation, purl = FALSE}
-grey_theme <- theme(axis.text.x = element_text(colour="grey20", size = 12, 
-                                               angle = 90, hjust = 0.5, 
+grey_theme <- theme(axis.text.x = element_text(colour="grey20", size = 12,
+                                               angle = 90, hjust = 0.5,
                                                vjust = 0.5),
                     axis.text.y = element_text(colour = "grey20", size = 12),
                     text=element_text(size = 16))
@@ -580,31 +580,31 @@ ggplot(surveys_complete, aes(x = species_id, y = hindfoot_length)) +
 >
 > With all of this information in hand, please take another five minutes to either
 > improve one of the plots generated in this exercise or create a beautiful graph
-> of your own. Use the RStudio [**`ggplot2`** cheat sheet](https://www.rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf) 
+> of your own. Use the RStudio [**`ggplot2`** cheat sheet](https://www.rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf)
 > for inspiration.
 >
 > Here are some ideas:
 >
-> * See if you can change the thickness of the lines. 
+> * See if you can change the thickness of the lines.
 > * Can you find a way to change the name of the legend? What about its labels?
 > * Try using a different color palette (see
 >   <https://www.cookbook-r.com/Graphs/Colors_(ggplot2)/>).
 
 ## Arranging plots
 
-Faceting is a great tool for splitting one plot into multiple plots, but 
+Faceting is a great tool for splitting one plot into multiple plots, but
 sometimes you may want to produce a single figure that contains multiple plots
-using different variables or even different data frames. The **`patchwork`** 
+using different variables or even different data frames. The **`patchwork`**
 package allows us to combine separate ggplots into a single figure while keeping
-everything aligned properly. Like most R packages, we can install `patchwork` 
+everything aligned properly. Like most R packages, we can install `patchwork`
 from CRAN, the R package repository:
 
 ```{r patchwork-install, eval = FALSE}
 install.packages("patchwork")
 ```
 
-After you have loaded the `patchwork` package you can use `+` to place plots 
-next to each other, `/` to arrange them vertically, and `plot_layout()` to 
+After you have loaded the `patchwork` package you can use `+` to place plots
+next to each other, `/` to arrange them vertically, and `plot_layout()` to
 determine how much space each plot uses:
 
 ```{r patchwork-example, message = FALSE, purl = FALSE, fig.width = 10}
@@ -616,30 +616,30 @@ plot_weight <- ggplot(data = surveys_complete, aes(x = species_id, y = weight)) 
   scale_y_log10()
 
 plot_count <- ggplot(data = yearly_counts, aes(x = year, y = n, color = genus)) +
-  geom_line() + 
+  geom_line() +
   labs(x = "Year", y = "Abundance")
 
 plot_weight / plot_count + plot_layout(heights = c(3, 2))
 ```
 
 You can also use parentheses `()` to create more complex layouts. There are
-many useful examples on the [patchwork website](https://patchwork.data-imaginist.com/) 
+many useful examples on the [patchwork website](https://patchwork.data-imaginist.com/)
 
 ## Exporting plots
 
 After creating your plot, you can save it to a file in your favorite format. The
-Export tab in the **Plot** pane in RStudio will save your plots at low 
-resolution, which will not be accepted by many journals and will not scale well 
+Export tab in the **Plot** pane in RStudio will save your plots at low
+resolution, which will not be accepted by many journals and will not scale well
 for posters. The [**`ggplot2`** extensions website](https://exts.ggplot2.tidyverse.org/) provides a list
 of packages that extend the capabilities of **`ggplot2`**, including additional
 themes.
 
-Instead, use the `ggsave()` function, which allows you easily change the 
-dimension and resolution of your plot by adjusting the appropriate arguments 
+Instead, use the `ggsave()` function, which allows you easily change the
+dimension and resolution of your plot by adjusting the appropriate arguments
 (`width`, `height` and `dpi`):
 
 ```{r ggsave-example, eval = FALSE, purl = FALSE}
-my_plot <- ggplot(data = yearly_sex_counts, 
+my_plot <- ggplot(data = yearly_sex_counts,
                   aes(x = year, y = n, color = sex)) +
     geom_line() +
     facet_wrap(vars(genus)) +
@@ -659,7 +659,7 @@ plot_combined <- plot_weight / plot_count + plot_layout(heights = c(3, 2))
 ggsave("plot_combined.png", plot_combined, width = 10, dpi = 300)
 ```
 
-Note: The parameters `width` and `height` also determine the font size in the 
+Note: The parameters `width` and `height` also determine the font size in the
 saved plot.
 
 
