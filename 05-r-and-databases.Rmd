@@ -22,8 +22,8 @@ if (file.exists("portal-database.sqlite")) file.remove("portal-database.sqlite")
 >
 > * Access a database from R.
 > * Run SQL queries in R using **`RSQLite`** and **`dplyr`**.
-> * Describe the lazy behavior of dplyr on data stored in a database outside of R. 
-> * Prototype queries and retrieve all final results. 
+> * Describe the lazy behavior of dplyr on data stored in a database outside of R.
+> * Prototype queries and retrieve all final results.
 > * Create complex queries across one or multiple database tables.
 > * Create an SQLite database from existing .csv files.
 
@@ -45,14 +45,14 @@ R can connect to almost any existing database type. Most common database types
 have R packages that allow you to connect to them (e.g., **`RSQLite`**, RMySQL,
 etc). Furthermore,
 the [**`dplyr`**](https://cran.r-project.org/web/packages/dplyr/index.html) package
-you used in the previous chapter, in conjunction with [**`dbplyr`**](https://cran.r-project.org/package=dbplyr) 
+you used in the previous chapter, in conjunction with [**`dbplyr`**](https://cran.r-project.org/package=dbplyr)
 supports connecting to the widely-used open
 source databases [sqlite](https://sqlite.org/), [mysql](https://www.mysql.com/)
 and [postgresql](https://www.postgresql.org/), as well as
 Google’s [bigquery](https://cloud.google.com/bigquery/), and it can also be
-extended to other database types (a [vignette](https://cran.r-project.org/web/packages/dbplyr/vignettes/new-backend.html) 
-in the **`dplyr`** package explains how to do it). RStudio has created 
-[a website](http://db.rstudio.com/) that provides documentation and best practices 
+extended to other database types (a [vignette](https://cran.r-project.org/web/packages/dbplyr/vignettes/new-backend.html)
+in the **`dplyr`** package explains how to do it). RStudio has created
+[a website](http://db.rstudio.com/) that provides documentation and best practices
 to work on database interfaces.
 
 Interfacing with databases using **`dplyr`** focuses on retrieving and analyzing
@@ -92,16 +92,16 @@ library(dbplyr)
 mammals <- DBI::dbConnect(RSQLite::SQLite(), "data_raw/portal_mammals.sqlite")
 ```
 
-This command uses 2 packages that helps **`dbplyr`** and **`dplyr`** talk to the 
-SQLite database. **`DBI`** is not something that you'll use directly as a user. 
-It allows R to send commands to databases irrespective of the database management 
+This command uses 2 packages that helps **`dbplyr`** and **`dplyr`** talk to the
+SQLite database. **`DBI`** is not something that you'll use directly as a user.
+It allows R to send commands to databases irrespective of the database management
 system used. The **`RSQLite`** package allows R to interface with SQLite databases.
 
 This command does not load the data into the R session (as the
 `read_csv()` function did). Instead, it merely instructs R to connect to
 the `SQLite` database contained in the `portal_mammals.sqlite` file.
 
-Using a similar approach, you could connect to many other database management 
+Using a similar approach, you could connect to many other database management
 systems that are supported by R including MySQL, PostgreSQL, BigQuery, etc.
 
 Let's take a closer look at the `mammals` database we just connected to:
@@ -342,7 +342,7 @@ records, and join the two tables.
 
 If we have two tables named x and y with a common column called "ID", we can join them using 'join' functions, two of which are described and illustrated below.
 
-1. inner_join() : This returns all rows from x where there are matching values in y, and all columns from x and y. 
+1. inner_join() : This returns all rows from x where there are matching values in y, and all columns from x and y.
 
 2. left_join() : This return all rows from x, and all columns from x and y. Rows in x with no match in y will have NA values in the new columns.  
 
@@ -392,13 +392,13 @@ retrieved.
 > ```{r left_join_answer, answer=TRUE, eval=TRUE}
 > ## with dplyr syntax
 > species <- tbl(mammals, "species")
-> 
+>
 > left_join(surveys, species) %>%
 >   filter(taxa == "Rodent") %>%
 >   group_by(taxa, year, plot_id) %>%
 >   tally() %>%
 >   collect()
-> 
+>
 > ## with SQL syntax
 > query <- paste("
 > SELECT a.year, b.taxa,count(*) as count
@@ -408,10 +408,10 @@ retrieved.
 > AND b.taxa = 'Rodent'
 > GROUP BY b.taxa, a.year, a.plot_id",
 > sep = "" )
-> 
+>
 > tbl(mammals, sql(query))
 > >
-> ``` 
+> ```
 
 
 ```{r challenge-sql-1, purl=TRUE, echo=FALSE}
@@ -443,7 +443,7 @@ retrieved.
 >
 >  Hint: Write a query that joins the species, plot, and survey tables together.
 >  The query should return counts of genus by plot type.
-> 
+>
 > ```{r genus_by_type_answer, answer=TRUE, results='markup', eval=FALSE}
 > species <- tbl(mammals, "species")
 > genus_counts <- left_join(surveys, plots) %>%
@@ -508,7 +508,7 @@ surveys <- read_csv("data_raw/surveys.csv")
 plots <- read_csv("data_raw/plots.csv")
 ```
 
-Creating a new SQLite database with **`dplyr`** is easy. You can re-use the same
+Also, you can create new SQLite database with **`dplyr`** by adding an argument to the same
 command we used above to open an existing `.sqlite` file. The `create = TRUE`
 argument instructs R to create a new, empty database instead.
 
@@ -535,8 +535,8 @@ my_db
 ```
 
 If you check the location of our database you'll see that data is automatically
-being written to disk. R and **`dplyr`** not only provide easy ways to query
-existing databases, they also allows you to easily create your own databases
+being written to disk. R and **`dplyr`** not only provide ways to query
+existing databases, they also provide functionality to create your own databases
 from flat files!
 
 > ### Challenge
@@ -558,8 +558,8 @@ from flat files!
 reading the three `csv` files. Because all the data has to flow through R,
 this is not suitable for very large datasets.
 
-**Note:** Finally, to close the connection to the mammals database you may use 
-`DBI::dbDisconnect(mammals)`; this discards all pending work and frees resources, 
+**Note:** Finally, to close the connection to the mammals database you may use
+`DBI::dbDisconnect(mammals)`; this discards all pending work and frees resources,
 e.g. memory.
 
 

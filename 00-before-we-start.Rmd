@@ -2,8 +2,8 @@
 title: "Before we start"
 author: "Data Carpentry contributors"
 minutes: 15
-editor_options: 
-  markdown: 
+editor_options:
+  markdown:
     wrap: 80
 ---
 
@@ -45,8 +45,9 @@ The learning curve might be steeper than with other software, but with R, the
 results of your analysis do not rely on remembering a succession of pointing and
 clicking, but instead on a series of written commands, and that's a good thing!
 So, if you want to redo your analysis because you collected more data, you don't
-have to remember which button you clicked in which order to obtain your results;
-you just have to run your script again.
+have to remember which button you clicked in which order to obtain your results.
+With a stored series of commands (this is your script), you can repeat running them and
+R will process the new dataset exactly the same way as before.
 
 Working with scripts makes the steps you used in your analysis clear, and the
 code you write can be inspected by someone else who can give you feedback and
@@ -142,14 +143,14 @@ It is good practice to keep a set of related data, analyses, and text
 self-contained in a single folder, called the **working directory**. All of the
 scripts within this folder can then use *relative paths* to files that indicate
 where inside the project a file is located (as opposed to absolute paths, which
-point to where a file is on a specific computer). Working this way makes it a
-lot easier to move your project around on your computer and share it with others
+point to where a file is on a specific computer). Working this way allows you to
+move your project around on your computer and share it with others
 without worrying about whether or not the underlying scripts will still work.
 
 RStudio provides a helpful set of tools to do this through its "Projects"
 interface, which not only creates a working directory for you, but also
 remembers its location (allowing you to quickly navigate to it) and optionally
-preserves custom settings and open files to make it easier to resume work after
+preserves custom settings and (re-)open files to assist resume work after
 a break. Go through the steps for creating an "R Project" for this tutorial
 below.
 
@@ -171,7 +172,7 @@ user-defined object. By default, all of these objects will be saved, and
 automatically loaded, when you reopen your project. Saving a workspace to
 `.RData` can be cumbersome, especially if you are working with larger datasets,
 and it can lead to hard to debug errors by having objects in memory you forgot
-you had. Therefore, it is often a good idea to turn this off. To do so, go to 
+you had. Therefore, it is often a good idea to turn this off. To do so, go to
 Tools --\> 'Global Options' and select the 'Never' option for
 'Save workspace to .RData' on exit.'
 
@@ -181,7 +182,7 @@ Tools --\> 'Global Options' and select the 'Never' option for
 ### Organizing your working directory
 
 Using a consistent folder structure across your projects will help keep things
-organized, and will also make it easy to find/file things in the future. This
+organized, and will help you to find/file things in the future. This
 can be especially helpful when you have multiple projects. In general, you may
 create directories (folders) for **scripts**, **data**, and **documents**.
 
@@ -214,7 +215,8 @@ we will use `data/` for when we learn how to export data as CSV files, and a
     folder.
 
 We are going to keep the script in the root of our working directory because we
-are only going to use one file and it will make things easier.
+are only going to use one file. Later, when you start create more
+complex projects, it might make sense to organize scripts in sub-directories.
 
 Your working directory should now look like this:
 
@@ -229,8 +231,9 @@ from where R will be looking for and saving the files. When you write code for
 your project, it should refer to files in relation to the root of your working
 directory and only need files within this structure.
 
-Using RStudio projects makes this easy and ensures that your working directory
-is set properly. If you need to check it, you can use `getwd()`. If for some
+RStudio assists you in this regard and sets the working directory automatically
+to the directory where you have placed your project in.
+If you need to check it, you can use `getwd()`. If for some
 reason your working directory is not what it should be, you can change it in the
 RStudio interface by navigating in the file browser where your working directory
 should be, and clicking on the blue gear icon "More", and select "Set As Working
@@ -387,7 +390,7 @@ Besides that, there are a few places on the internet that provide help:
 
 The key to receiving help from someone is for them to rapidly grasp your
 problem. Thus, you should be as precise as possible when describing your problem
-and make it easy to pinpoint where the issue might be. Try to...
+and help others to pinpoint where the issue might be. Try to...
 
 -   Use the correct words to describe your problem. Otherwise you might get an
     answer pointing to the misuse of your words rather than answering your
@@ -433,7 +436,8 @@ The best way to become proficient and efficient at R, as with any other tool, is
 to use it to address your actual research questions. As a beginner, it can feel
 daunting to have to write a script from scratch, and given that many people make
 their code available online, modifying existing code to suit your purpose might
-make it easier for you to get started.
+get first hands-on experience using R for your own work and help you become
+comfortable eventually creating your own scripts.
 
 ```{r kitten-img, results='markup', echo=FALSE, purl=FALSE, out.width='400px', fig.align='center'}
 knitr::include_graphics("img/kitten-try-things.jpg")

@@ -49,7 +49,7 @@ weight_kg <- 55
 ```
 
 `<-` is the assignment operator. It assigns values on the right to objects on
-the left. So, after executing `x <- 3`, the value of `x` is `3`. The arrow also looks like a mouth (with tongue), which makes it easy to pronounce as `x` **eats** 3.  For historical reasons, you can also use `=`
+the left. So, after executing `x <- 3`, the value of `x` is `3`.   For historical reasons, you can also use `=`
 for assignments, but not in every context. Because of the
 [slight](https://blog.revolutionanalytics.com/2008/12/use-equals-or-arrow-for-assignment.html)
 [differences](https://r.789695.n4.nabble.com/Is-there-any-difference-between-and-tp878594p878598.html)
@@ -68,7 +68,7 @@ Objects can be given almost any name such as `x`, `current_temperature`, or `sub
 [here](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Reserved.html)
 for a complete list). In general, even if it's allowed, it's best to not use
 other function names (e.g., `c`, `T`, `mean`, `data`, `df`, `weights`). If in
-doubt, check the help to see if the name is already in use. 
+doubt, check the help to see if the name is already in use.
 * It's best to avoid dots (`.`) within names. Many function names in R itself have them and dots also have a special meaning (methods) in R and other programming languages. To avoid confusion, don't include dots in names.
 * It is recommended to use nouns for object names and verbs for function names.
 * Be consistent in the styling of your code, such as where you put spaces, how you name objects, etc. Styles can include "lower_snake", "UPPER_SNAKE", "lowerCamelCase", "UpperCamelCase", etc. Using a consistent coding style makes your code clearer to read for your future self and your collaborators. In R, three popular style guides come from [Google](https://google.github.io/styleguide/Rguide.xml), [Jean
@@ -126,15 +126,15 @@ What do you think is the current content of the object `weight_lb`? 126.5 or 220
 
 Up to now, your code has been in the console. This is useful for quick queries
 but not so helpful if you want to revisit your work for any reason.
-A script can be opened by pressing <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + 
-<kbd>N</kbd>. 
-It is wise to save your script file immediately. To do this press 
-<kbd>Ctrl</kbd> + <kbd>S</kbd>. This will open a dialogue box where you 
+A script can be opened by pressing <kbd>Ctrl</kbd> + <kbd>Shift</kbd> +
+<kbd>N</kbd>.
+It is wise to save your script file immediately. To do this press
+<kbd>Ctrl</kbd> + <kbd>S</kbd>. This will open a dialogue box where you
 can decide where to save your script file, and what to name it.
 The `.R` file extension is added automatically and ensures your file
 will open with RStudio.
 
-Don't forget to save your work periodically by pressing <kbd>Ctrl</kbd> + 
+Don't forget to save your work periodically by pressing <kbd>Ctrl</kbd> +
 <kbd>S</kbd>.
 
 
@@ -143,11 +143,11 @@ Don't forget to save your work periodically by pressing <kbd>Ctrl</kbd> +
 The comment character in R is `#`.  Anything to the right of a `#` in a script
 will be ignored by R. It is useful to leave notes and explanations in your
 scripts.
-RStudio makes it easy to comment or uncomment a paragraph: after selecting the
+For convenience, RStudio provides a keyboard shortcut to comment or uncomment a paragraph: after selecting the
 lines you  want to comment, press at the same time on your keyboard
 <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd>. If you only want to comment
-out one line, you can put the cursor at any location of that line (i.e. no need 
-to select the whole line), then press <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + 
+out one line, you can put the cursor at any location of that line (i.e. no need
+to select the whole line), then press <kbd>Ctrl</kbd> + <kbd>Shift</kbd> +
 <kbd>C</kbd>.
 
 > ### Challenge
@@ -191,7 +191,7 @@ weight_kg <- sqrt(10)
 
 Here, the value of 10 is given to the `sqrt()` function, the `sqrt()` function
 calculates the square root, and returns the value which is then assigned to
-the object `weight_kg`. This function is very simple, because it takes just one argument.
+the object `weight_kg`. This function takes one argument, other functions might take several. 
 
 The return 'value' of a function need not be numerical (like that of `sqrt()`),
 and it also does not need to be a single item: it can be a set of things, or
@@ -215,7 +215,7 @@ round(3.14159)
 Here, we've called `round()` with just one argument, `3.14159`, and it has
 returned the value `3`.  That's because the default is to round to the nearest
 whole number. If we want more digits we can see how to do that by getting
-information about the `round` function.  We can use `args(round)` to find what 
+information about the `round` function.  We can use `args(round)` to find what
 arguments it takes, or look at the
 help for this function using `?round`.
 
@@ -323,7 +323,7 @@ We can do this over and over again to grow a vector, or assemble a dataset.
 As we program, this may be useful to add results that we are collecting or
 calculating.
 
-An **atomic vector** is the simplest R **data type** and is a linear vector of a single type. Above, we saw 
+An **atomic vector** is the simplest R **data type** and is a linear vector of a single type. Above, we saw
 2 of the 6 main **atomic vector** types  that R
 uses: `"character"` and `"numeric"` (or `"double"`). These are the basic building blocks that
 all R objects are built from. The other 4 **atomic vector** types are:
@@ -347,7 +347,7 @@ factors (`factor`) and arrays (`array`).
 > * We’ve seen that atomic vectors can be of type character,
 >   numeric (or double), integer, and logical. But what happens if we try to mix these types in
 >   a single vector?
-> 
+>
 > ```{text_answer, echo=FALSE, purl=FALSE}
 > R implicitly converts them to all be the same type
 > ```
@@ -495,13 +495,13 @@ a search vector are found:
 animals <- c("mouse", "rat", "dog", "cat", "cat")
 
 # return both rat and cat
-animals[animals == "cat" | animals == "rat"] 
+animals[animals == "cat" | animals == "rat"]
 
 # return a logical vector that is TRUE for the elements within animals
 # that are found in the character vector and FALSE for those that are not
 animals %in% c("rat", "cat", "dog", "duck", "goat", "bird", "fish")
 
-# use the logical vector created by %in% to return elements from animals 
+# use the logical vector created by %in% to return elements from animals
 # that are found in the character vector
 animals[animals %in% c("rat", "cat", "dog", "duck", "goat", "bird", "fish")]
 ```
@@ -509,9 +509,9 @@ animals[animals %in% c("rat", "cat", "dog", "duck", "goat", "bird", "fish")]
 > ### Challenge (optional){.challenge}
 >
 > * Can you figure out why `"four" > "five"` returns `TRUE`?
-> 
+>
 > ```{text_answer, echo=FALSE, purl=FALSE}
-> When using ">" or "<" on strings, R compares their alphabetical order. 
+> When using ">" or "<" on strings, R compares their alphabetical order.
 > Here "four" comes after "five", and therefore is "greater than" it.
 > ```
 
@@ -551,11 +551,11 @@ examples.
 ## Extract those elements which are not missing values.
 heights[!is.na(heights)]
 
-## Returns the object with incomplete cases removed. 
+## Returns the object with incomplete cases removed.
 #The returned object is an atomic vector of type `"numeric"` (or #`"double"`).
 na.omit(heights)
 
-## Extract those elements which are complete cases. 
+## Extract those elements which are complete cases.
 #The returned object is an atomic vector of type `"numeric"` (or #`"double"`).
 heights[complete.cases(heights)]
 ```
@@ -574,9 +574,9 @@ Recall that you can use the `typeof()` function to find the type of your atomic 
 >
 > ```{r, answer=TRUE}
 > heights <- c(63, 69, 60, 65, NA, 68, 61, 70, 61, 59, 64, 69, 63, 63, NA, 72, 65, 64, 70, 63, 65)
-> 
+>
 > # 1.
-> heights_no_na <- heights[!is.na(heights)] 
+> heights_no_na <- heights[!is.na(heights)]
 > # or
 > heights_no_na <- na.omit(heights)
 > # or
