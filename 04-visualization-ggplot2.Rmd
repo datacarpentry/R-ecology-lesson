@@ -490,7 +490,7 @@ provides a wide variety of options.
 >    geom_line() +
 >    facet_wrap(vars(species_id)) +
 >    theme_bw()
->```
+> ```
 
 
 ```{r, eval = FALSE, purl = TRUE, echo = FALSE}
