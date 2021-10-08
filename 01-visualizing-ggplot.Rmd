@@ -4,26 +4,50 @@ author: Data Carpentry contributors
 minutes: 60
 ---
 
+# Overview
+
+## main ggplot components
+
+- `ggplot()`
+- `aes()` and args
+- `geom_`
+- `theme_`
+- `scale_`
+- `position_`
+- `element_`
+- `facet_`
+- `theme()`
+- `coord_`
+- `labs()`
+- layers
+- global vs. geom `aes()`
+
+## notes
+
+- I think bar charts and line charts should still be shown at some point, but both will require some type of summary statistics, so they'll have to come later
+    - I think this is ultimately good though, it will show that plotting should be a big part of any data cleaning and exploration
+    - should cover `geom_bar()` vs `geom_col()`, should show `position_stack()` and `position_dodge()`
+    - should show points and lines together on time series plot, as well as `group` as an aesthetic 
 
 
-```{r setup, echo=FALSE, purl=FALSE}
-source("setup.R")
-```
-
-
-### Data Visualization with ggplot2
+# Lesson
 
 ------------
 
 > ### Learning Objectives
 >
-> * Produce scatter plots, boxplots, and time series plots using ggplot.
-> * Set universal plot settings.
+> * Produce scatter plots and boxplots using ggplot.
+> * Map data variables to plot components.
+> * Modify the scales of plot components.
+> * Iteratively build and modify ggplot plots by adding layers.
+> * Change the appearance of existing ggplot plots using premade and customized themes.
 > * Describe what faceting is and apply faceting in ggplot.
-> * Modify the aesthetics of an existing ggplot plot (including axis labels and color).
-> * Build complex and customized plots from data in a data frame.
+> * Combine and export plots.
 
 --------------
+
+
+## Setup
 
 We start by loading the required packages. **`ggplot2`** is included in the **`tidyverse`** package.
 
@@ -31,289 +55,475 @@ We start by loading the required packages. **`ggplot2`** is included in the **`t
 library(tidyverse)
 ```
 
-Later we will learn how to read in data in R, but for now we are going to use a clean and ready to use dataset that is provided by the **`ratdat`** data package. To make this dataset available in memory, we need to load this package. We will use the `portal_dipo` dataset.
-
+Later we will learn how to read in data in R, but for now we are going to use a clean and ready to use dataset that is provided by the **`ratdat`** data package. To make this dataset available in memory, we need to load this package. We will use the `surveys` dataset.
 
 ```{r load-ratdat-package,message=FALSE, purl=TRUE}
 library(ratdat)
-portal_dipo
+surveys <- left_join(surveys, species) %>% left_join(plots)
 ```                                      
 
+The `surveys` data is stored in R as a "data frame", which we will learn more about 
+later in the lesson.
 
 ## Plotting with **`ggplot2`**
 
-**`ggplot2`** is a powerful plotting package that makes it simple to create
-complex plots from data in a data frame. It provides a programmatic interface
-for specifying what variables to plot, how they are displayed, and general
-visual properties. Therefore, we only need small changes to the code if the
-underlying data change or if we decide to change from a bar plot to a
-scatterplot. This interface helps in creating publication quality plots with
-minimal amounts of adjustments and tweaking.
+**`ggplot2`** is a powerful plotting package that allows you to create complex plots from tabular data. The **`gg`** in **`ggplot2`** stands for "grammar of graphics", and the package uses consistent vocabulary to create plots of widely varying types. Therefore, we only need small changes to our code if the underlying data changes or we decide to change from a bar plot to a scatter plot. This approach helps you create publication-quality plots with minimal adjusting and tweaking.
 
-**`ggplot2`** functions like data in the 'long' tidy format, i.e., a column for
-every dimension, and a row for every observation. Well-structured data will save
-you lots of time when making figures with **`ggplot2`**. We start learning R by using **`ggplot2`** because it relies on concepts that we will need when we talk about data transformation in the next lessons.
+**`ggplot2`** is part of the **`tidyverse`** series of packages, which tend to like data in the "long" or "tidy" format, which means each column represents a single variable, and each row represents a single observation. Well-structured data will save you lots of time making figures with **`ggplot2`**. For now, we will use data that are already in this format. We start learning R by using **`ggplot2`** because it relies on concepts that we will need when we talk about data transformation in the next lessons.
 
-ggplot graphics are built step by step by adding new elements. Adding layers in
-this fashion allows for extensive flexibility and customization of plots.
+**`ggplot`** plots are built step by step by adding new layers, which allows for extensive flexibility and customization of plots.
 
-To build a ggplot, we will use the following basic template that can be used for different types of plots:
+To build a plot, we will use a basic template that can be used for different types of plots:
 
 ```r
 ggplot(data = <DATA>, mapping = aes(<MAPPINGS>)) + <GEOM_FUNCTION>()
 ```
 
-- use the `ggplot()` function and bind the plot to a specific data frame using the `data` argument
+First, we use the `ggplot()` function and tell the plot to use a specific data frame using the `data` argument.
 
-```{r, eval=FALSE, purl=FALSE}
-ggplot(data = portal_dipo)
+```{r bare-plot}
+ggplot(data = surveys)
 ```
 
-- define a mapping (using the aesthetic (`aes`) function), by selecting the variables to be plotted and specifying how to present them in the graph, e.g. as x/y positions or characteristics such as size, shape, color, etc.
+We get a blank plot because we haven't told `ggplot()` which variables we want to correspond to parts of the plot. We can specify the "mapping" of variables to plot elements, such as x/y coordinates, size, or shape, by using the `aes()` function:
 
-```{r, eval=FALSE, purl=FALSE}
-ggplot(data = portal_dipo, aes(x = weight, y = hindfoot_length))
+```{r plot-with-axes}
+ggplot(data = surveys, mapping = aes(x = weight, y = hindfoot_length))
 ```
 
-- add 'geoms' – graphical representations of the data in the plot (points,
-  lines, bars). **`ggplot2`** offers many different geoms; we will use some 
-  common ones today, including:
-  
-      * `geom_point()` for scatter plots, dot plots, etc.
-      * `geom_boxplot()` for, well, boxplots!
-      * `geom_line()` for trend lines, time series, etc.  
+Now we've got a plot with x and y axes corresponding to variables from `surveys`. However, we haven't specified how we want the data to be displayed. We do this using `geom_` functions, which specify the type of `geom`etry we want, such as points, lines, or bars. We can add a `geom_point()` layer to our plot by using the `+` sign:
 
-To add a geom to the plot use the `+` operator. Because we have two continuous variables, let's use `geom_point()` first to create a scatter plot:
-
-```{r first-ggplot, purl=FALSE}
-ggplot(data = portal_dipo, aes(x = weight, y = hindfoot_length)) +
-    geom_point()
+```{r scatter-plot}
+ggplot(data = surveys, mapping = aes(x = weight, y = hindfoot_length)) +
+  geom_point()
 ```
 
-The `+` in the **`ggplot2`** package is particularly useful because it allows
-you to modify existing `ggplot` objects. This means you can easily set up plot
-templates and explore different types of plots, so the above plot can also be
-generated with code like this:
+You may notice a warning that missing values were removed. If a variable necessary to make the plot is missing from a given row of data (in this case, `hindfoot_length` or `weight`), it can't be plotted. `ggplot2` just uses a warning message to let us know that some rows couldn't be plotted.
 
-```{r, first-ggplot-with-plus, eval=FALSE, purl=FALSE}
-## Assign plot to a variable
-surveys_plot <- ggplot(data = portal_dipo, aes(x = weight, y = hindfoot_length))
+One important thing to note is that `R` does not care about whitespace or indentation, so any spacing or indentation you see is simply to improve readability of the code.
 
-## Draw the plot
-surveys_plot + 
-    geom_point()
+## Changing aesthetics
+
+Building **`ggplot`** plots is often an iterative process, so we'll continue developing the scatter plot we just made. You may have noticed that parts of our scatter plot have many overlapping points, making it difficult to see all the data. We can adjust the transparency of the points using the `alpha` argument, which takes a value between 0 and 1:
+
+```{r change-alpha}
+ggplot(data = surveys, mapping = aes(x = weight, y = hindfoot_length)) +
+  geom_point(alpha = 0.2)
 ```
 
-## Building your plots iteratively
+We can also change the color of the points:
 
-<!-- the instructor guide should explain that for this section, the instructor should modify the same line of code instead of retyping each iteration -->
-
-Building plots with **`ggplot2`** is typically an iterative process. We start by
-defining the dataset we'll use, lay out the axes, and choose a geom:
-
-```{r create-ggplot-object, purl=FALSE}
-ggplot(data = portal_dipo, aes(x = weight, y = hindfoot_length)) +
-    geom_point()
+```{r change-color}
+ggplot(data = surveys, mapping = aes(x = weight, y = hindfoot_length)) +
+  geom_point(alpha = 0.2, color = "blue")
 ```
 
-Now, we can start modifying this plot to extract more information from it. For
-instance, we can add transparency (`alpha`) to avoid overplotting:
+### Adding another variable
 
-```{r adding-transparency, purl=FALSE}
-ggplot(data = portal_dipo, aes(x = weight, y = hindfoot_length)) +
-    geom_point(alpha = 0.2)
+Let's try coloring our points according to the plot type. Since we're now mapping a variable (`plot_type`) to a component of the plot (`color`), we need to put the argument inside `aes()`:
+
+```{r color-plot-type}
+ggplot(data = surveys, mapping = aes(x = weight, y = hindfoot_length, color = plot_type)) +
+  geom_point(alpha = 0.2)
 ```
 
-It might also be a good idea to use jittering:
+So far, we've told you what variables to put into your plots, but what if you want to know what else is in the `surveys` data frame? To explore the **str**ucture of a data frame, you can use the `str()` function:
 
-<!-- explain what jittering is -->
-
-
-```{r jittering, purl=FALSE}
-ggplot(data = portal_dipo, aes(x = weight, y = hindfoot_length)) +
-    geom_point(alpha = 0.2,  position = position_jitter())
+```{r str}
+str(surveys)
 ```
 
-We can also add colors for all the points:
+`str()` will tell us how many observations/rows (obs) and variables/columns we have, as well as some information about each of the variables. We see the name of a variable (such as year), followed by the kind of variable (int for integer), and the first 10 entries in that variable.
 
-```{r adding-colors, purl=FALSE}					
-ggplot(data = portal_dipo, aes(x = weight, y = hindfoot_length)) +
-    geom_point(alpha = 0.1, color = "blue")
+### CHALLENGE
+
+- shape by sex (why is this not a good idea)
+- color by year, why is it a different scale
+
+```{r}
+ggplot(data = surveys, mapping = aes(x = weight, y = hindfoot_length, color = plot_type, shape = sex)) +
+  geom_point(alpha = 0.2)
 ```
 
-Or to color each species in the plot differently, you could specify the variable to use to the `color` argument within `aes()`:
-
-
-```{r color-by-species, purl=FALSE}
-ggplot(data = portal_dipo, aes(x = weight, y = hindfoot_length)) +
-    geom_point(alpha = 0.1, aes(color = species_id))
+```{r}
+ggplot(data = surveys, mapping = aes(x = weight, y = hindfoot_length, color = year)) +
+  geom_point(alpha = 0.2)
 ```
-
-In this case **`ggplot2`** will automatically assign one color for each species.
 
 > ### Challenge
 >
-> 1. use of `shape` to differentiate males and females
-> 2. color by year. What happens? Why is the scale different from when coloring by species? 
+> Make a plot similar to the last one, but use a violin plot 
+> instead of a boxplot. Remember that all geom functions start
+> with `geom_`, followed by the type of geom.
+>
+> For this plot, make the color of the points and outlines of
+> the violins vary by `plot_type`, and set the fill of the
+> violins to white.
+>
+> ```{r violin-challenge-answer, answer=TRUE, purl=FALSE}
+> ggplot(data = surveys, 
+>        mapping = aes(x = plot_type, 
+>                      y = hindfoot_length,
+>                      color = plot_type)) +
+>   geom_point(alpha = 0.1, position = position_jitter()) +
+>   geom_violin(fill = "white")
+> ```
 
-<!--- add short section on exploring feature of dataset, if tibble type of columns shown, otherwise need to introduce str() --->
+```{r violin-challenge, echo = FALSE, eval = FALSE, purl = TRUE}
+## Make a plot similar to the last one, but use a violin plot 
+## instead of a boxplot. Remember that all geom functions start
+## with `geom_`, followed by the type of geom.
+##
+## For this plot, make the color of the points and outlines of
+## the violins vary by `plot_type`, and set the fill of the
+## violins to white.
+```
+
+
+## Changing scales
+
+The default color scale isn't always ideal: it isn't friendly to viewers with colorblindness and it doesn't translate well to grayscale. However, **`ggplot2`** comes with quite a few other color scales, including the fantastic `viridis` scales, which are designed to be colorblind and grayscale friendly. We can change scales by adding `scale_` functions to our plots:
+
+```{r scale-viridis}
+ggplot(data = surveys, mapping = aes(x = weight, y = hindfoot_length, color = plot_type)) +
+  geom_point(alpha = 0.2) +
+  scale_color_viridis_d()
+```
+
+Scales don't just apply to colors- any plot component that you put inside `aes()` can be modified with `scale_` functions. Just as we modified the scale used to map `plot_type` to `color`, we can modify the way that `weight` is mapped to the `x` axis by using the `scale_x_log10()` function:
+
+```{r scale-log}
+ggplot(data = surveys, mapping = aes(x = weight, y = hindfoot_length, color = plot_type)) +
+  geom_point(alpha = 0.2) +
+  scale_x_log10()
+```
+
+
+One nice thing about **`ggplot`** and the **`tidyverse`** in general is that groups of functions that do similar things are given similar names. Any function that modifies a `ggplot` scale starts with `scale_`, making it easier to search for the right function.
+
+## Changing position
+
+Since many of our points plot on top of each other, we modified the `alpha` to increase visibility. Another way we can address this issue is by changing the position of the points themselves. We can add a small amount of random noise to the x/y positions of each point, also called "jittering". 
+
+To do this, we can specify the `position` argument inside `geom_point()`. We will use the `position_jitter()` function to specify that we want our points to be jittered.
+
+```{r position-jitter}
+ggplot(data = surveys, mapping = aes(x = weight, y = hindfoot_length, color = plot_type)) +
+  geom_point(alpha = 0.2, position = position_jitter()) +
+  scale_color_viridis_d()
+```
+
+Another common use for `position_` functions is when specifying whether you want a stacked or side-by-side bar chart.
+
+## Boxplot
+
+Let's try making a different type of plot altogether. We'll start off with our same basic building blocks using `ggplot()` and `aes()`.
+
+```{r blank-boxplot}
+ggplot(data = surveys, mapping = aes(x = plot_type, y = hindfoot_length))
+```
+
+This time, let's try making a boxplot, which will have `plot_type` on the x axis and `hindfoot_length` on the y axis. We can do this by adding `geom_boxplot()` to our `ggplot()`:
+
+```{r boxplot}
+ggplot(data = surveys, mapping = aes(x = plot_type, y = hindfoot_length)) +
+  geom_boxplot()
+```
+
+Just as we colored the points before, we can color our boxplot by `plot_type` as well:
+
+```{r boxplot-color}
+ggplot(data = surveys, mapping = aes(x = plot_type, y = hindfoot_length, color = plot_type)) +
+  geom_boxplot()
+```
+
+It looks like `color` has only affected the outlines of the boxplot, not the rectangular portions. This is because the `color` only impacts 1-dimensional parts of a `ggplot`: points and lines. To change the color of 2-dimensional parts of a plot, we use `fill`:
+
+```{r boxplot-fill}
+ggplot(data = surveys, mapping = aes(x = plot_type, y = hindfoot_length, fill = plot_type)) +
+  geom_boxplot()
+```
+
+## Adding geoms
+
+One of the most powerful aspects of **`ggplot`** is the way we can add components to a plot in successive layers. While boxplots can be very useful for summarizing data, it is often helpful to show the raw data as well. With **`ggplot`**, we can easily add another `geom_` to our plot to show the raw data. Let's add `geom_point()` like we did in our scatterplot:
+
+```{r boxplot-points}
+ggplot(data = surveys, mapping = aes(x = plot_type, y = hindfoot_length)) +
+  geom_boxplot() +
+  geom_point(position = position_jitter(), alpha = 0.2)
+```
+
+Just as before, we can map `plot_type` to `color` by putting it inside `aes()`.
+
+```{r global-color}
+ggplot(data = surveys, mapping = aes(x = plot_type, y = hindfoot_length, color = plot_type)) +
+  geom_boxplot() +
+  geom_point(position = position_jitter(), alpha = 0.2)
+```
+
+Notice that both the color of the points and the color of the boxplot lines changed. Any time we specify an `aes()` mapping inside our initial `ggplot()` function, that mapping will apply to all our `geom`s.
+
+If we want to limit the mapping to a single `geom`, we can put the mapping into the specific `geom_` function, like this:
+
+```{r geom-color}
+ggplot(data = surveys, mapping = aes(x = plot_type, y = hindfoot_length)) +
+  geom_boxplot() +
+  geom_point(aes(color = plot_type), position = position_jitter(), alpha = 0.2)
+```
+
+Now our points are colored according to `plot_type`, but the boxplots are all the same color. One thing you might notice is that even with `alpha = 0.2`, the points obscure parts of the boxplot. This is because the `geom_point()` layer comes after the `geom_boxplot()` layer, which means the points are plotted on top of the boxes. To put the boxplots on top, we just switch the order of the layers:
+
+```{r reverse-layers}
+ggplot(data = surveys, mapping = aes(x = plot_type, y = hindfoot_length)) +
+  geom_point(aes(color = plot_type), position = position_jitter(), alpha = 0.2) +
+  geom_boxplot()
+```
+
+Now we have the opposite problem! The white `fill` of the boxplots completely obscures some of the points. To address this problem, we can remove the `fill` from the boxplots altogether, leaving only the black lines. To do this, we set `fill` to `NA`:
+
+```{r fill-na}
+ggplot(data = surveys, mapping = aes(x = plot_type, y = hindfoot_length)) +
+  geom_point(aes(color = plot_type), position = position_jitter(), alpha = 0.2) +
+  geom_boxplot(fill = NA)
+```
+
+Now we can see all the raw data and our boxplots on top.
+
+> ### Challenge
+>
+> Make a plot similar to the last one, but use a violin plot 
+> instead of a boxplot. Remember that all geom functions start
+> with `geom_`, followed by the type of geom.
+>
+> For this plot, make the color of the points and outlines of
+> the violins vary by `plot_type`, and set the fill of the
+> violins to white.
+>
+> ```{r violin-challenge-answer, answer=TRUE, purl=FALSE}
+> ggplot(data = surveys, 
+>        mapping = aes(x = plot_type, 
+>                      y = hindfoot_length,
+>                      color = plot_type)) +
+>   geom_point(alpha = 0.1, position = position_jitter()) +
+>   geom_violin(fill = "white")
+> ```
+
+```{r violin-challenge, echo = FALSE, eval = FALSE, purl = TRUE}
+## Make a plot similar to the last one, but use a violin plot 
+## instead of a boxplot. Remember that all geom functions start
+## with `geom_`, followed by the type of geom.
+##
+## For this plot, make the color of the points and outlines of
+## the violins vary by `plot_type`, and set the fill of the
+## violins to white.
+```
+
+## Changing themes
+
+So far we've been changing the appearance of parts of our plot related to our data and the `geom_` functions, but we can also change many of the non-data components of our plot. We can change the overall appearance using `theme_` functions. Let's try a black-and-white theme by adding `theme_bw()` to our plot:
+
+```{r theme-bw}
+ggplot(data = surveys, mapping = aes(x = plot_type, y = hindfoot_length)) +
+  geom_point(aes(color = plot_type), position = position_jitter(), alpha = 0.2) +
+  geom_boxplot(fill = NA) +
+  theme_bw()
+```
+
+As you can see, a number of parts of the plot have changed. `theme_` functions usually control many aspects of a plot's appearance all at once, for the sake of convenience. To individually change parts of a plot, we can use the `theme()` function, which can take many different arguments to change things about the text, grid lines, background color, and more. Let's try changing the size of the text on our axis titles. We can do this by specifying that the `axis.title` should be an `element_text()` with `size` set to 14.
+
+```{r text-size}
+ggplot(data = surveys, mapping = aes(x = plot_type, y = hindfoot_length)) +
+  geom_boxplot(fill = NA) +
+  geom_point(aes(color = plot_type), position = position_jitter(), alpha = 0.2) +
+  theme_bw() +
+  theme(axis.title = element_text(size = 14))
+```
+
+Another change we might want to make is to remove the vertical grid lines. Since our x axis is categorical, those grid lines aren't useful. To do this, inside `theme()`, we will change the `panel.grid.major.x` to an `element_blank()`.
+
+```{r element-blank}
+ggplot(data = surveys, mapping = aes(x = plot_type, y = hindfoot_length)) +
+  geom_point(aes(color = plot_type), position = position_jitter(), alpha = 0.2) +
+  geom_boxplot(fill = NA) +
+  theme_bw() +
+  theme(axis.title = element_text(size = 14), panel.grid.major.x = element_blank())
+```
+
+Another useful change might be to remove the color legend, since that information is already on our x axis. For this one, we will set `legend.position` to "none". 
+
+```{r legend-remove}
+ggplot(data = surveys, mapping = aes(x = plot_type, y = hindfoot_length)) +
+  geom_point(aes(color = plot_type), position = position_jitter(), alpha = 0.2) +
+  geom_boxplot(fill = NA) +
+  theme_bw() +
+  theme(axis.title = element_text(size = 14), panel.grid.major.x = element_blank(), legend.position = "none")
+```
+
+## Changing labels
+
+Our plot is really shaping up now. However, we probably want to make our axis labels nicer, and perhaps add a title to the plot. We can do this using the `labs()` function:
+
+```{r labels}
+ggplot(data = surveys, mapping = aes(x = plot_type, y = hindfoot_length)) +
+  geom_point(aes(color = plot_type), position = position_jitter(), alpha = 0.2) +
+  geom_boxplot(fill = NA) +
+  theme_bw() +
+  theme(axis.title = element_text(size = 14), legend.position = "top") +
+  labs(title = "Rodent size by plot type",
+       x = "Plot type",
+       y = "Hindfoot length (mm)")
+```
+
+We removed our legend from this plot, but you can also change the titles of various legends using `labs()`. For example, `labs(color = "Plot type")` would change the title of a color scale legend to "Plot type".
+
+### CHALLENGE
+
+- modify the previous plot by adding a descriptive subtitle and removing the legend. Increase the font size of the plot title and make it bold
+
+- hint: "bold" is referred to as a font "face"
+
+```{r}
+ggplot(data = surveys, mapping = aes(x = plot_type, y = hindfoot_length)) +
+  geom_point(aes(color = plot_type), position = position_jitter(), alpha = 0.2) +
+  geom_boxplot(fill = NA) +
+  theme_bw() +
+  theme(axis.title = element_text(size = 14), legend.position = "none",
+        plot.title = element_text(face = "bold", size = 20)) +
+  labs(title = "Rodent size by plot type",
+       subtitle = "Long-term dataset from Portal, AZ",
+       x = "Plot type",
+       y = "Hindfoot length (mm)")
+```
 
 
 ## Faceting
 
-**`ggplot2`** has a special technique called *faceting* that allows the user to
-split one plot into multiple plots based on discrete variables included in the
-dataset. We will use it to make a time series plot for each species:
+One of the most powerful features of **`ggplot`** is the ability to quickly split a plot into multiple smaller plots based on a categorical variable, which is called **faceting**. 
 
-```{r}
-ggplot(data = portal_dipo, aes(x = weight, y = hindfoot_length)) +
-    geom_point(aes(color = species_id, shape = sex),
-               position = position_jitter(), alpha = .3) +
-    facet_wrap(~ species_id)
+So far we've mapped variables to the x axis, the y axis, and color, but trying to add a 4th variable becomes difficult. Changing the shape of a point might work, but only for very few categories, and even then, it can be hard to tell the differences between the shapes of small points.
+
+Instead of cramming one more variable into a single plot, we will use the `facet_wrap()` function to generate a series of smaller plots, split out by `sex`:
+
+```{r facet-wrap}
+ggplot(data = surveys, mapping = aes(x = plot_type, y = hindfoot_length)) +
+  geom_point(aes(color = plot_type), position = position_jitter(), alpha = 0.2) +
+  geom_boxplot(fill = NA) +
+  theme_bw() +
+  theme(axis.title = element_text(size = 14), legend.position = "none", panel.grid.major.x = element_blank()) +
+  labs(title = "Rodent size by plot type",
+       x = "Plot type",
+       y = "Hindfoot length (mm)",
+       color = "Plot type") +
+  facet_wrap(vars(sex))
 ```
 
-```{r}
-ggplot(data = portal_dipo, aes(x = weight, y = hindfoot_length)) +
-    geom_point(aes(color = species_id, shape = sex),
-               position = position_jitter(), alpha = .3) +
-    facet_grid(species_id ~ year)
+Faceting comes in handy in many scenarios. It can be useful when:
+
+- a categorical variable has too many levels to differentiate by color (such as a dataset with 50 countries)
+- your data overlap heavily, obscuring categories
+- you want to show more than 3 variables at once
+- you want to see each category in isolation while allowing for general comparisons between categories
+
+One issue with faceting is that the small plots are all packed together into a small space, which can cause things to get crammed together. You may have noticed that our x axis labels are overlapping, making them impossible to read. There are several ways we could fix this, but one is to turn the whole plot by 90 degrees, which we can do by adding `coord_flip()`:
+
+```{r coord-flip}
+ggplot(data = surveys, mapping = aes(x = plot_type, y = hindfoot_length)) +
+  geom_point(aes(color = plot_type), position = position_jitter(), alpha = 0.2) +
+  geom_boxplot(fill = NA) +
+  theme_bw() +
+  theme(axis.title = element_text(size = 14), legend.position = "none", panel.grid.major.x = element_blank()) +
+  labs(title = "Rodent size by plot type",
+       x = "Plot type",
+       y = "Hindfoot length (mm)",
+       color = "Plot type") +
+  facet_wrap(vars(sex)) +
+  coord_flip()
 ```
 
-> ### Challenge
->
-> Create a visualization that uses facetting with the sex variable
+This flips the coordinates of our plot, which allows the horizontal `plot_type` labels to spread out without overlapping each other.
 
+## Arranging plots
 
-## Boxplots
+While facetting allows us to combine many versions of the same plot, we might also want to combine completely separate plots together. In many publications, it is common to have multi-part plots split into panels A, B, C, etc.
 
+Let's create a series of plots that we can later stitch together.
 
-We can use boxplots to visualize the distribution of weight within each species:
+First, we will make a scatter plot, which we will then assign to the **object** `scatter_plot`, using the **assignment arrow** `<-`. Our plot is now stored as the object `scatter_plot`. This process of assigning something to an **object** is not specific to `ggplot2`, but rather a general feature of `R`. We will be using it a lot later in our lesson.
 
-```{r boxplot, purl=FALSE}
-ggplot(data = portal_dipo, aes(x = species_id, y = weight)) +
-    geom_boxplot()
+```{r save-scatter}
+scatter_plot <- ggplot(data = surveys, mapping = aes(x = weight, y = hindfoot_length)) +
+  geom_point()
 ```
 
-By adding points to boxplot, we can have a better idea of the number of
-measurements and of their distribution:
+Assigning something to an object does not generate any output. To view our plot, we can run the name of the object, `scatter_plot`.
 
-```{r boxplot-with-points, purl=FALSE}
-ggplot(data = portal_dipo, aes(x = species_id, y = weight)) +
-    geom_boxplot(alpha = 0) +
-    geom_jitter(alpha = 0.3, color = "tomato")
+```{r print-scatter}
+scatter_plot
 ```
 
-Notice how the boxplot layer is behind the jitter layer? What do you need to
-change in the code to put the boxplot in front of the points such that it's not
-hidden?
+This object is the same as any other `ggplot`, which means we can continue to add layers to it. For example, we can add a theme:
 
-> ### Challenges
->
-> Boxplots are useful summaries, but hide the *shape* of the distribution. For
-> example, if the distribution is bimodal, we would not see it in a
-> boxplot. An alternative to the boxplot is the violin plot, where the shape 
-(of the density of points) is drawn.
->
-> - Replace the box plot with a violin plot; see `geom_violin()`.
->
-> In many types of data, it is important to consider the *scale* of the
-> observations.  For example, it may be worth changing the scale of the axis to
-> better distribute the observations in the space of the plot.  Changing the scale
-> of the axes is done similarly to adding/modifying other components (i.e., by
-> incrementally adding commands). Try making these modifications:
->
-> - Represent weight on the log~10~ scale; see `scale_y_log10()`.
->
-> So far, we've looked at the distribution of weight within species. Try making a
-> new plot to explore the distribution of another variable within each species.
->
-> - Create a boxplot for `hindfoot_length`. Overlay the boxplot layer on a jitter
->   layer to show actual measurements.
-
-```{r boxplot-challenge, eval=FALSE, purl=TRUE, echo=FALSE}
-## Challenge with boxplots:
-##  Start with the boxplot we created:
-ggplot(data = portal_diplo, aes(x = species_id, y = weight)) +
-    geom_boxplot(alpha = 0) +
-    geom_jitter(alpha = 0.3, color = "tomato")
-
-##  1. Replace the box plot with a violin plot; see `geom_violin()`.
-
-##  2. Represent weight on the log10 scale; see `scale_y_log10()`.
-
-##  3. Create boxplot for `hindfoot_length` overlaid on a jitter layer.
+```{r add-theme}
+scatter_plot + theme_minimal()
 ```
 
-## Customizing your plot
+Let's go ahead and save another plot, this time a boxplot:
 
-### **`ggplot2`** themes
+```{r save-box}
+box_plot <- ggplot(data = surveys, mapping = aes(x = plot_type, y = hindfoot_length)) +
+  geom_boxplot()
 
-In addition to `theme_bw()`, which changes the plot background to white, **`ggplot2`**
-comes with several other themes which can be useful to quickly change the look
-of your visualization. The complete list of themes is available
-at <http://docs.ggplot2.org/current/ggtheme.html>. `theme_minimal()` and
-`theme_light()` are popular, and `theme_void()` can be useful as a starting
-point to create a new hand-crafted theme.
-
-The
-[ggthemes](https://cran.r-project.org/web/packages/ggthemes/vignettes/ggthemes.html)
-package provides a wide variety of options (including an Excel 2003 theme). The
-[**`ggplot2`** extensions website](https://exts.ggplot2.tidyverse.org/) provides a list
-of packages that extend the capabilities of **`ggplot2`**, including additional
-themes.
-
-
-### Changing the axes
-
-* xlab
-* ylab
-* ggtitle
-
-### Changing the legend
-
-* labels
-* legend position
-* no need to go into too much details here, refer to cookbook.
-
-## Arranging and Exporting 
-
-* Talk about patchwork? not on CRAN yet though
-* Show how to use ggsave, save files to `fig_output/` folder
-
-
-<!--- things that could be added:
-
-- geom_smooth() to show how to fit linear smoothing/linear lines
-- geom_bar()/geom_col() and stacking/dodging
-- difference between color and fill
-
---->
-
-
-
-
-
-```{r}
-library(ratdat)
-
-
-portal <- dplyr::left_join(surveys, species) %>%
-    dplyr::left_join(plots) %>%
-    dplyr::filter(sex %in% c("M", "F")) %>%
-    dplyr::filter(!is.na(hindfoot_length),
-                  !is.na(weight)) %>% 
-    dplyr::filter(taxa == "Rodent")
-
-
-portal_dipo <- portal %>%
-    dplyr::filter(species_id %in% c("DO", "DM", "DS"),
-                  year >= 1977 & year <= 1982)
 ```
 
-### More resources
+To combine entire `ggplot` plots together, we will use the package `patchwork`. If you do not have it installed, you can run `install.packages("patchwork")`.
 
-* [ggthemeassist](https://github.com/calligross/ggthemeassist) is a RStudio-Addin that uses the [`rstudioapi`](https://github.com/rstudio/rstudioapi) package and provides a GUI for editing **`ggplot2`** themes.
-* [ggedit](https://github.com/metrumresearchgroup/ggedit) is an R package that is used to facilitate **`ggplot2`** formatting. Aesthetic details can be refined easily.
-
-```{r, child="_page_built_on.Rmd"}
+```{r patchwork}
+library(patchwork)
 ```
+
+With `patchwork` loaded, all we have to do to put our two plots side by side is combine them with a `+`.
+
+```{r add-plots}
+scatter_plot + box_plot
+```
+
+To put the plots one on top of another, we can use the `/` symbol:
+
+```{r divide-plots}
+scatter_plot / box_plot
+```
+
+Finally, using the `&` symbol, we can add a theme to the entire multi-plot:
+
+```{r divide-plots-theme}
+scatter_plot / box_plot & theme_bw()
+```
+
+## Exporting plots
+
+Finally, once we are happy with our plot, we probably want to save it in a format that we can share with others or put into a document. To do this, we will use the `ggsave()` function. First we will combine our plots using `patchwork`, and use the `plot_annotation()` function to add a title to our multi-plot, as well as label the individual plots as **A** and **B**.
+
+After this, we can run `ggsave()` to save the most recently created plot. The first argument we give is the path to the file we want to save, including the correct file extension. This code will make an image called `rodent_size_plots.jpg` on our Desktop. We are making a `.jpg`, but you can save `.pdf`, `.tiff`, and other file formats. We can also specify things like the width and height of the plot in inches.
+
+```{r save-plot}
+scatter_plot / box_plot + plot_annotation(title = "Rodent size plots",
+                                                       tag_levels = "A") & theme_minimal() 
+
+ggsave("~/Desktop/rodent_size_plots.jpg", height = 6, width = 8)
+```
+
+
+### CHALLENGE
+
+- try making your own plot! use `str(surveys)` to explore variables you might be able to use. 
+- suggestions:
+    - try making a histogram of one of the numeric variables
+    - try using a different color `scale_`
+    - try changing the size of points or thickness of lines in a `geom`
+    
+## Conclusion
+
+We have gone through quite a bit of `ggplot2`'s capabilities, but the package can do far, far more than we covered here. It is an extremely flexible and powerful visualization package, and other people have created packages that extend its capabilities even further. By learning the "grammar" of this "grammar of graphics" package, you can learn how to make many more types of visualizations.
+
+For a great, concise overview of more `ggplot2` features, download the [`ggplot2` cheat sheet PDF here](https://github.com/rstudio/cheatsheets/raw/master/data-visualization.pdf).
