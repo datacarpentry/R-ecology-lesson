@@ -54,7 +54,9 @@ specifying what variables to plot, how they are displayed, and general visual
 properties. Therefore, we only need minimal changes if the underlying data
 change or if we decide to change from a bar plot to a scatterplot. This helps in
 creating publication quality plots with minimal amounts of adjustments and
-tweaking.
+tweaking. 
+
+**`ggplot2`** refers to the name of the package itself. When using the package we use the function **`ggplot()`** to generate the plots, and so references to using the function will be referred to as **`ggplot()`** and the package as a whole as **`ggplot2`** 
 
 **`ggplot2`** plots work best with data in the 'long' format, i.e., a column for every variable,
 and a row for every observation. Well-structured data will save you lots of time
@@ -138,6 +140,7 @@ surveys_plot +
 - You may notice that we sometimes reference 'ggplot2' and sometimes 'ggplot'.
   To clarify, 'ggplot2' is the name of the most recent version of the package.
   However, any time we call the function itself, it's just called 'ggplot'.
+- The previous version of the ggplot2 package, called ggplot, which also contained the **`ggplot()`** function is now unsupported and has been removed from CRAN in order to reduce accidental installations/ further confusion
 
 ```{r, ggplot-with-plus-position, eval=FALSE, purl=FALSE}
 # This is the correct syntax for adding layers
