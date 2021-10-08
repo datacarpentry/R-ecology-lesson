@@ -135,23 +135,6 @@ str(surveys)
 
 `str()` will tell us how many observations/rows (obs) and variables/columns we have, as well as some information about each of the variables. We see the name of a variable (such as year), followed by the kind of variable (int for integer), and the first 10 entries in that variable.
 
-### CHALLENGE
-
-- shape by sex (why is this not a good idea)
-- color by year, why is it a different scale
-
-```{r}
-ggplot(data = surveys, 
-       mapping = aes(x = weight, y = hindfoot_length, shape = sex)) +
-  geom_point(alpha = 0.2)
-```
-
-```{r}
-ggplot(data = surveys, 
-       mapping = aes(x = weight, y = hindfoot_length, color = year)) +
-  geom_point(alpha = 0.2)
-```
-
 > ### Challenge
 >
 > 1. Try modifying the plot so that the shape of the point varies
@@ -162,7 +145,7 @@ ggplot(data = surveys,
 > by `year`. Do you notice a difference in the color scale?
 > Why do you think this happened?
 
-> ```{r violin-challenge-answer, answer=TRUE, purl=FALSE}
+> ```{r modify-aes-challenge-answer, answer=TRUE, purl=FALSE}
 > # Answer to part 1.
 > ggplot(data = surveys, 
 >        mapping = aes(x = weight, y = hindfoot_length, shape = sex)) +
@@ -174,7 +157,7 @@ ggplot(data = surveys,
 >   geom_point(alpha = 0.2)
 > ```
 
-```{r violin-challenge, echo = FALSE, eval = FALSE, purl = TRUE}
+```{r modify-aes-challenge, echo = FALSE, eval = FALSE, purl = TRUE}
 ## 1. Try modifying the plot so that the shape of the point varies
 ## by `sex`. Do you think this is a good way to represent `sex` 
 ## with these data?
@@ -399,6 +382,36 @@ ggplot(data = surveys, mapping = aes(x = plot_type, y = hindfoot_length)) +
        subtitle = "Long-term dataset from Portal, AZ",
        x = "Plot type",
        y = "Hindfoot length (mm)")
+```
+
+
+> ### Challenge
+>
+> Make a plot similar to the last one, but use a violin plot 
+> instead of a boxplot. Remember that all geom functions start
+> with `geom_`, followed by the type of geom.
+>
+> For this plot, make the color of the points and outlines of
+> the violins vary by `plot_type`, and set the fill of the
+> violins to white.
+>
+> ```{r violin-challenge-answer, answer=TRUE, purl=FALSE}
+> ggplot(data = surveys, 
+>        mapping = aes(x = plot_type, 
+>                      y = hindfoot_length,
+>                      color = plot_type)) +
+>   geom_point(alpha = 0.1, position = position_jitter()) +
+>   geom_violin(fill = "white")
+> ```
+
+```{r violin-challenge, echo = FALSE, eval = FALSE, purl = TRUE}
+## Make a plot similar to the last one, but use a violin plot 
+## instead of a boxplot. Remember that all geom functions start
+## with `geom_`, followed by the type of geom.
+##
+## For this plot, make the color of the points and outlines of
+## the violins vary by `plot_type`, and set the fill of the
+## violins to white.
 ```
 
 
