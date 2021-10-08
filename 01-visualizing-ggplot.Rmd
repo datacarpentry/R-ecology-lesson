@@ -387,31 +387,29 @@ ggplot(data = surveys, mapping = aes(x = plot_type, y = hindfoot_length)) +
 
 > ### Challenge
 >
-> Make a plot similar to the last one, but use a violin plot 
-> instead of a boxplot. Remember that all geom functions start
-> with `geom_`, followed by the type of geom.
+> Modify the previous plot by adding a descriptive subtitle
+> and removing the legend. You should also increase the font
+> size for the plot title and make it bold. *Hint*: "bold"
+> is considered a "face" of a font.
 >
-> For this plot, make the color of the points and outlines of
-> the violins vary by `plot_type`, and set the fill of the
-> violins to white.
->
-> ```{r violin-challenge-answer, answer=TRUE, purl=FALSE}
-> ggplot(data = surveys, 
->        mapping = aes(x = plot_type, 
->                      y = hindfoot_length,
->                      color = plot_type)) +
->   geom_point(alpha = 0.1, position = position_jitter()) +
->   geom_violin(fill = "white")
+> ```{r theme-challenge-answer, answer=TRUE, purl=FALSE}
+> ggplot(data = surveys, mapping = aes(x = plot_type, y = hindfoot_length)) +
+>   geom_point(aes(color = plot_type), position = position_jitter(), alpha = 0.2) +
+>   geom_boxplot(fill = NA) +
+>   theme_bw() +
+>   theme(axis.title = element_text(size = 14), legend.position = "none",
+>         plot.title = element_text(face = "bold", size = 20)) +
+>   labs(title = "Rodent size by plot type",
+>        subtitle = "Long-term dataset from Portal, AZ",
+>        x = "Plot type",
+>        y = "Hindfoot length (mm)")
 > ```
 
-```{r violin-challenge, echo = FALSE, eval = FALSE, purl = TRUE}
-## Make a plot similar to the last one, but use a violin plot 
-## instead of a boxplot. Remember that all geom functions start
-## with `geom_`, followed by the type of geom.
-##
-## For this plot, make the color of the points and outlines of
-## the violins vary by `plot_type`, and set the fill of the
-## violins to white.
+```{r theme-challenge, echo = FALSE, eval = FALSE, purl = TRUE}
+## Modify the previous plot by adding a descriptive subtitle
+## and removing the legend. You should also increase the font
+## size for the plot title and make it bold. *Hint*: "bold"
+## is considered a "face" of a font.
 ```
 
 
@@ -539,6 +537,34 @@ ggsave("~/Desktop/rodent_size_plots.jpg", height = 6, width = 8)
     - try making a histogram of one of the numeric variables
     - try using a different color `scale_`
     - try changing the size of points or thickness of lines in a `geom`
+    
+> ### Challenge
+>
+> Try making a plot of your own! You can further modify a 
+> previous plot or make a new one altogether. Try using
+> `str(surveys)` to explore variables you might be able to
+> use.
+>
+> Here are some examples:
+>
+> - make a histogram of one of the numeric variables
+> - use a different color `scale_`
+> - change the size of points or thickness of lines in a `geom`
+
+
+```{r violin-challenge, echo = FALSE, eval = FALSE, purl = TRUE}
+## Try making a plot of your own! You can further modify a 
+## previous plot or make a new one altogether. Try using
+## `str(surveys)` to explore variables you might be able to
+## use.
+##
+## Here are some examples:
+##
+## - make a histogram of one of the numeric variables
+## - use a different color `scale_`
+## - change the size of points or thickness of lines in a `geom`
+```
+
     
 ## Conclusion
 
