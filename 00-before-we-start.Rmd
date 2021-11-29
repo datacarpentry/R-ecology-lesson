@@ -412,7 +412,7 @@ and help others to pinpoint where the issue might be. Try to...
     are using. As an example, here you can see the versions of R and all the
     packages that we are using to run the code in this lesson:
 
-```{r echo=FALSE, message = FALSE}
+```{r echo=FALSE, message = FALSE, purl=FALSE}
 # temporarily load RSQLite so that the version shows in sessionInfo()
 library(RSQLite)
 ```
@@ -421,7 +421,7 @@ library(RSQLite)
 sessionInfo()
 ```
 
-```{r echo=FALSE, message = FALSE}
+```{r echo=FALSE, message = FALSE, purl=FALSE}
 detach(package:RSQLite, unload=TRUE)
 ```
 
