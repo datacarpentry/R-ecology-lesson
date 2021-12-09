@@ -683,7 +683,7 @@ library(lubridate)
 The **`lubridate`** package has many useful functions for working with dates. 
 These can help you extract dates from different string representations, 
 convert between timezones, calculate time differences and more. You can find 
-an overview of them in the [lubridate cheat sheet](https://github.com/rstudio/cheatsheets/raw/master/lubridate.pdf).
+an overview of them in the [lubridate cheat sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/lubridate.pdf).
 
 Here we will use the function `ymd()`, which takes a vector representing year, 
 month, and day, and converts it to a `Date` vector. 
