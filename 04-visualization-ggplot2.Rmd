@@ -512,7 +512,7 @@ provides a wide variety of options.
 
 ## Customization
 
-Take a look at the [**`ggplot2`** cheat sheet](https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf), and
+Take a look at the [**`ggplot2`** cheat sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization-2.1.pdf), and
 think of ways you could improve the plot.
 
 Now, let's change names of axes to something more informative than 'year'
