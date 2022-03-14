@@ -175,6 +175,7 @@ factors). For example, here is a figure depicting a data frame comprising a
 numeric, a character, and a logical vector.
 
 ![](./img/data-frame.svg)
+
 We can see this also when inspecting the <b>str</b>ucture of a data frame
 with the function `str()`:
 
