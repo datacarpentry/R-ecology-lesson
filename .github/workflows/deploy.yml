@@ -9,7 +9,7 @@ jobs:
   build:
     runs-on: ubuntu-20.04
     env:
-      GITHUB_PAT: ${{ secrets.GH_PAT }}
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       RSPM: 'https://packagemanager.rstudio.com/cran/__linux__/focal/latest'
 
     steps:
@@ -58,9 +58,19 @@ jobs:
       - name: Build site
         run: make -B all
 
-      - name: Deploy site
-        uses: maxheld83/ghpages@v0.3.0
-        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && github.repository == 'datacarpentry/R-ecology-lesson' }}
-        env:
-          BUILD_DIR: _site/
-          GH_PAT: ${{ secrets.GH_PAT }}
+      - name: Commit to gh-pages
+        if: github.ref == 'refs/heads/main'
+        run: |
+          cd _site
+          git init --initial-branch=gh-pages
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add -A .
+          git commit -m '[ci-skip] Deploy to GitHub Pages'
+      - name: Deploy to gh-pages
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: gh-pages
+          force: true
+          directory: _site
