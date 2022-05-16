@@ -45,7 +45,7 @@ convert character columns to factors anymore (you can read more about it
 [in this post on the R developer blog](https://developer.r-project.org/Blog/public/2020/02/16/stringsasfactors/index.html)).
 
 This change should not cause any problems with this lesson, independent of 
-whether R >4.0 is used or not, because we it uses
+whether R >4.0 is used or not, because it uses
 `read_csv()` from the **`tidyverse`** package throughout. Other than
 `read.csv()` from base R, `read_csv()` never converts character columns to 
 factors, regardless of the R version.
