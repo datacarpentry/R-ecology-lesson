@@ -296,7 +296,7 @@ symbol negates the result, so we're asking for every row where weight *is not* a
 
 Many data analysis tasks can be approached using the *split-apply-combine*
 paradigm: split the data into groups, apply some analysis to each group, and
-then combine the results. Key function of **`dplyr`** for this workflow are
+then combine the results. Key functions of **`dplyr`** for this workflow are
 `group_by()` and `summarize()`.
 
 
