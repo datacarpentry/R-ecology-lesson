@@ -642,7 +642,7 @@ for posters. The [**`ggplot2`** extensions website](https://exts.ggplot2.tidyver
 of packages that extend the capabilities of **`ggplot2`**, including additional
 themes.
 
-Instead, use the `ggsave()` function, which allows you easily change the
+Instead, use the `ggsave()` function, which allows you to easily change the
 dimension and resolution of your plot by adjusting the appropriate arguments
 (`width`, `height` and `dpi`):
 
