@@ -53,7 +53,7 @@ Each row holds information for a single animal, and the columns represent:
 
 ### Downloading the data
 
-We created this folder in the chapter
+We created the folder that will store the downloaded data (`data_raw`) in the chapter
 ["Before we start"](https://datacarpentry.org/R-ecology-lesson/00-before-we-start.html#Organizing_your_working_directory).
 If you skipped that part, it may be a good idea to have a look now, to make
 sure your working directory is set up properly.
