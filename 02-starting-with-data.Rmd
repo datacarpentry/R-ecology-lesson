@@ -117,6 +117,24 @@ of each column and guesses its data type. For example, in this dataset,
 as `col_character`. You have the option to specify the data type for a column
 manually by using the `col_types` argument in `read_csv`.
 
+> ### Note
+>
+> `read_csv()` assumes that fields are delineated by commas. However, in several
+> countries, the comma is used as a decimal separator and the semicolon (;) is
+> used as a field delineator. If you want to read in this type of files in R,
+> you can use the `read_csv2()` function. It behaves like `read_csv()` but
+> uses different parameters for the decimal and the field separators. 
+There is also the `read_tsv()` for tab separated data files and `read_delim()` 
+> for less common formats.
+> Check out the help for `read_csv()` by typing `?read_csv` to learn more. 
+>
+> In addition to the above versions of the csv format, you should develop the habits
+> of looking at and recording some parameters of your csv files. For instance, 
+> the character encoding, control characters used for line ending, date format
+> (if the date is not split into three variables), and the presence of unexpected
+> [newlines](https://en.wikipedia.org/wiki/Newline) are important characteristics of your data files.
+> Those parameters will ease up the import step of your data in R.
+
 We can see the contents of the first few lines of the data by typing its 
 name: `surveys`. By default, this will show you as many rows and columns of
 the data as fit on your screen. 
@@ -144,22 +162,12 @@ view(surveys)
 ```
 
 > ### Note
->
-> `read_csv()` assumes that fields are delineated by commas. However, in several
-> countries, the comma is used as a decimal separator and the semicolon (;) is
-> used as a field delineator. If you want to read in this type of files in R,
-> you can use the `read_csv2()` function. It behaves like `read_csv()` but
-> uses different parameters for the decimal and the field separators. 
-There is also the `read_tsv()` for tab separated data files and `read_delim()` 
-> for less common formats.
-> Check out the help for `read_csv()` by typing `?read_csv` to learn more. 
->
-> In addition to the above versions of the csv format, you should develop the habits
-> of looking at and recording some parameters of your csv files. For instance, 
-> the character encoding, control characters used for line ending, date format
-> (if the date is not split into three variables), and the presence of unexpected
-> [newlines](https://en.wikipedia.org/wiki/Newline) are important characteristics of your data files.
-> Those parameters will ease up the import step of your data in R.
+> 
+>  There are two functions for viewing. Using `view()` with a lowercase 'v' is part
+>  of tidyverse, whereas using `View()` with an uppercase 'V' is loaded through base R
+>  in the `utils` package.
+
+
 
 ## What are data frames?
 
