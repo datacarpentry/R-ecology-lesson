@@ -163,9 +163,9 @@ view(surveys)
 
 > ### Note
 > 
->  There are two functions for viewing. Using `view()` with a lowercase 'v' is part
->  of tidyverse, whereas using `View()` with an uppercase 'V' is loaded through base R
->  in the `utils` package.
+>  There are two functions for viewing which are case-sensitive. Using `view()` with a 
+>  lowercase 'v' is part of tidyverse, whereas using `View()` with an uppercase 'V' is 
+>  loaded through base R in the `utils` package.
 
 
 
