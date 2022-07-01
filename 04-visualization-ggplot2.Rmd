@@ -271,7 +271,7 @@ measurements and of their distribution:
 
 ```{r boxplot-with-points, purl=FALSE}
 ggplot(data = surveys_complete, mapping = aes(x = species_id, y = weight)) +
-    geom_boxplot(alpha = 0) +
+    geom_boxplot(outlier.shape = NA) +
     geom_jitter(alpha = 0.3, color = "tomato")
 ```
 
