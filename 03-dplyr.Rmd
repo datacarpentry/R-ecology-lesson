@@ -590,7 +590,7 @@ the other variable contains the values previously associated with the column nam
 
 `pivot_longer()` takes four principal arguments:
 
-1. the data
+1. the data.
 2. the *names_to* column variable we wish to create from column names.
 3. the *values_to* column variable we wish to create and fill with values.
 4. *cols* are the name of the columns we use to make this pivot (or to drop).
