@@ -278,7 +278,7 @@ ggplot(data = surveys_complete, mapping = aes(x = species_id, y = weight)) +
 Note that combining the geom_boxplot and geom_jitter layers together can cause 
 outlier points to be plotted twice - once as outliers for the boxplot and once 
 again by jitter. To prevent duplication of points in this example, the geom_boxplot 
-layer outlier.shape argument is set to NA.
+layer `outlier.shape` argument is set to NA.
 
 Notice how the boxplot layer is behind the jitter layer? What do you need to
 change in the code to put the boxplot in front of the points such that it's not
