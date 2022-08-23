@@ -158,11 +158,18 @@ surveys_sml <- select(filter(surveys, weight < 5), species_id, sex, weight)
 This is handy, but can be difficult to read if too many functions are nested, as
 R evaluates the expression from the inside out (in this case, filtering, then selecting).
 
-The last option, *pipes*, are a recent addition to R. Pipes let you take
-the output of one function and send it directly to the next, which is useful
-when you need to do many things to the same dataset.  Pipes in R look like
-`%>%` and are made available via the **`magrittr`** package, installed automatically
-with **`dplyr`**. If you use RStudio, you can type the pipe with <kbd>Ctrl</kbd>
+The last option, *pipes* in R have been used for a number of years. 
+Pipes are an extremely useful tool originaly introduced in the R tidyverse from the 
+**`magrittr`** package. Pipes are implemented as %>%, with which you may pipe a value 
+forward into an expression or function calland send it directly to the next, which is useful
+when you need to do many things to the same dataset. It is used extensively with all tidyverse packages 
+(dplyr, tidyr etc.). But since May 2021, under R version 4.1.0, a native R pipe operator has been introduced. 
+It is implemented as |>, with similar behaviour to the original magrittr pipe operator.
+Generally, the idea of the pipe, probably comes from UNIX/LINUX, where it is implemented as | and is used 
+to send the output of one command/program/process to another command/program/process for further processing
+
+The **`magrittr`** package is installed automatically with **`dplyr`**. 
+If you use RStudio, you can type the pipe with <kbd>Ctrl</kbd>
 + <kbd>Shift</kbd> + <kbd>M</kbd> if you have a PC or <kbd>Cmd</kbd> +
 <kbd>Shift</kbd> + <kbd>M</kbd> if you have a Mac.
 
