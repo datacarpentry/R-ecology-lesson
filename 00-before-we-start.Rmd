@@ -33,20 +33,18 @@ source("setup.R")
 The term "`R`" is used to refer to both the programming language and the
 software that interprets the scripts written using it.
 
-[RStudio](https://rstudio.com) is currently a very popular way to not only write
-your R scripts but also to interact with the R software. To function correctly,
-RStudio needs R and therefore both need to be installed on your computer.
+[RStudio](https://rstudio.com) is a popular way to write R scripts and interact with the R software.
+To function correctly, RStudio needs R and therefore both need to be installed on your computer.
 
 ## Why learn R?
 
 ### R does not involve lots of pointing and clicking, and that's a good thing
 
-The learning curve might be steeper than with other software, but with R, the
-results of your analysis do not rely on remembering a succession of pointing and
-clicking, but instead on a series of written commands, and that's a good thing!
+In R, the results of your analysis rely on a series of written commands, and not 
+on remembering a succession of pointing and clicking. That is a good thing!
 So, if you want to redo your analysis because you collected more data, you don't
 have to remember which button you clicked in which order to obtain your results.
-With a stored series of commands (this is your script), you can repeat running them and
+With a stored series of commands in an R script, you can repeat running them and
 R will process the new dataset exactly the same way as before.
 
 Working with scripts makes the steps you used in your analysis clear, and the
@@ -58,15 +56,16 @@ doing, and facilitates your learning and comprehension of the methods you use.
 
 ### R code is great for reproducibility
 
-Reproducibility is when someone else (including your future self) can obtain the
+Reproducibility is when someone else ,including your future self, can obtain the
 same results from the same dataset when using the same analysis.
 
 R integrates with other tools to generate manuscripts from your code. If you
 collect more data, or fix a mistake in your dataset, the figures and the
 statistical tests in your manuscript are updated automatically.
 
-An increasing number of journals and funding agencies expect analyses to be
-reproducible, so knowing R will give you an edge with these requirements.
+R is widely used in academia and in companies in industries such as pharma and biotech.
+These organisations expect analyses to be reproducible, so knowing R will give you an 
+edge with these requirements.
 
 ### R is interdisciplinary and extensible
 
@@ -90,14 +89,18 @@ computer or on the web.
 
 ### R produces high-quality graphics
 
-The plotting functionalities in R are endless, and allow you to adjust any
-aspect of your graph to convey most effectively the message from your data.
+The plotting functionalities in R are endless, and allow you to adjust any 
+aspect of your graph to visualize your data more effectively.
+
 
 ### R has a large and welcoming community
 
 Thousands of people use R daily. Many of them are willing to help you through
 mailing lists and websites such as [Stack Overflow](https://stackoverflow.com/),
-or on the [RStudio community](https://community.rstudio.com/).
+[RStudio community](https://community.rstudio.com/), and Slack channels such as the 
+the R for Data Science online community(https://www.rfordatasci.com/). In addition, 
+there are numerous online and in person meetups organised globally through organisations
+such as the R Ladies Global(https://rladies.org/). 
 
 ### Not only is R free, but it is also open-source and cross-platform
 
