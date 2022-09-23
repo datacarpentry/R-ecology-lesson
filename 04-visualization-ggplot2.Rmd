@@ -267,11 +267,14 @@ ggplot(data = surveys_complete, mapping = aes(x = species_id, y = weight)) +
 ```
 
 By adding points to the boxplot, we can have a better idea of the number of
-measurements and of their distribution:
+measurements and of their distribution. Because the boxplot will show the outliers
+ by default these points will be plotted twice -- by `geom_boxplot` and 
+ `geom_jitter`. To avoid this we must specify that no outliers should be added 
+ to the boxplot by specifying `outlier.shape = NA`.
 
 ```{r boxplot-with-points, purl=FALSE}
 ggplot(data = surveys_complete, mapping = aes(x = species_id, y = weight)) +
-    geom_boxplot(alpha = 0) +
+    geom_boxplot(outlier.shape = NA) +
     geom_jitter(alpha = 0.3, color = "tomato")
 ```
 
