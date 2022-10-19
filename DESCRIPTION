@@ -1,4 +1,4 @@
-Package: recologylesson
+Package: recologylessontest
 Imports:
   remotes,
   tidyverse,
