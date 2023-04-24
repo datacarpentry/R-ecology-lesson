@@ -56,14 +56,14 @@ doing, and facilitates your learning and comprehension of the methods you use.
 
 ### R code is great for reproducibility
 
-Reproducibility is when someone else ,including your future self, can obtain the
+Reproducibility is when someone else, including your future self, can obtain the
 same results from the same dataset when using the same analysis.
 
 R integrates with other tools to generate manuscripts from your code. If you
 collect more data, or fix a mistake in your dataset, the figures and the
 statistical tests in your manuscript are updated automatically.
 
-R is widely used in academia and in companies in industries such as pharma and biotech.
+R is widely used in academia and in industries such as pharma and biotech.
 These organisations expect analyses to be reproducible, so knowing R will give you an 
 edge with these requirements.
 
@@ -97,10 +97,10 @@ aspect of your graph to visualize your data more effectively.
 
 Thousands of people use R daily. Many of them are willing to help you through
 mailing lists and websites such as [Stack Overflow](https://stackoverflow.com/),
-[RStudio community](https://community.rstudio.com/), and Slack channels such as the 
-the R for Data Science online community(https://www.rfordatasci.com/). In addition, 
+[RStudio community](https://community.rstudio.com/), and Slack channels such as  
+the R for Data Science online community (https://www.rfordatasci.com/). In addition, 
 there are numerous online and in person meetups organised globally through organisations
-such as the R Ladies Global(https://rladies.org/). 
+such as R Ladies Global (https://rladies.org/). 
 
 ### Not only is R free, but it is also open-source and cross-platform
 
