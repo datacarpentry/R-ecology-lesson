@@ -291,6 +291,12 @@ hidden?
 >
 > - Replace the box plot with a violin plot; see `geom_violin()`.
 >
+> ```{r, answer=TRUE, purl=FALSE}
+> ggplot(data = surveys_complete, mapping = aes(x = species_id, y = weight)) +
+> geom_jitter(alpha = 0.3, color = "tomato") +
+> geom_violin() 
+> ```
+> 
 > In many types of data, it is important to consider the *scale* of the
 > observations.  For example, it may be worth changing the scale of the axis to
 > better distribute the observations in the space of the plot.  Changing the scale
@@ -299,15 +305,28 @@ hidden?
 >
 > - Represent weight on the log~10~ scale; see `scale_y_log10()`.
 >
+> ```{r, answer=TRUE, purl=FALSE}
+> ggplot(data = surveys_complete, mapping = aes(x = species_id, y = weight)) +
+> scale_y_log10() +
+> geom_jitter(alpha = 0.3, color = "tomato") +
+> geom_boxplot(outlier.shape = NA)
+> ```
+>
 > So far, we've looked at the distribution of weight within species. Try making
 > a new plot to explore the distribution of another variable within each species.
 >
 > - Create boxplot for `hindfoot_length`.  Overlay the boxplot layer on a jitter
 >   layer to show actual measurements.
 >
+> ```{r, answer=TRUE, purl=FALSE}
+> ggplot(data = surveys_complete, mapping = aes(x = species_id, y = hindfoot_length)) +
+> geom_jitter(alpha = 0.3, color = "tomato") +
+> geom_boxplot(outlier.shape = NA)
+> ```
+>
 > - Add color to the data points on your boxplot according to the plot from which
 >   the sample was taken (`plot_id`).
-
+>
 > Hint: Check the class for `plot_id`. Consider changing the class of `plot_id`
 > from integer to factor. Why does this change how R makes the graph?
 
@@ -315,8 +334,10 @@ hidden?
 ## Challenge with boxplots:
 ##  Start with the boxplot we created:
 ggplot(data = surveys_complete, mapping = aes(x = species_id, y = weight)) +
-  geom_boxplot(alpha = 0) +
-  geom_jitter(alpha = 0.3, color = "tomato")
+  geom_jitter(alpha = 0.3, color = "tomato") +
+  geom_boxplot(outlier.shape = NA)
+## By ordering the geom layers like this, we can make sure that the boxplot is
+## layered over the jittered points.
 
 ##  1. Replace the box plot with a violin plot; see `geom_violin()`.
 
