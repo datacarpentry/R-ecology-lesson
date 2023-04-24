@@ -267,11 +267,14 @@ ggplot(data = surveys_complete, mapping = aes(x = species_id, y = weight)) +
 ```
 
 By adding points to the boxplot, we can have a better idea of the number of
-measurements and of their distribution:
+measurements and of their distribution. Because the boxplot will show the outliers
+ by default these points will be plotted twice -- by `geom_boxplot` and 
+ `geom_jitter`. To avoid this we must specify that no outliers should be added 
+ to the boxplot by specifying `outlier.shape = NA`.
 
 ```{r boxplot-with-points, purl=FALSE}
 ggplot(data = surveys_complete, mapping = aes(x = species_id, y = weight)) +
-    geom_boxplot(alpha = 0) +
+    geom_boxplot(outlier.shape = NA) +
     geom_jitter(alpha = 0.3, color = "tomato")
 ```
 
@@ -596,7 +599,7 @@ ggplot(surveys_complete, aes(x = species_id, y = hindfoot_length)) +
 > * See if you can change the thickness of the lines.
 > * Can you find a way to change the name of the legend? What about its labels?
 > * Try using a different color palette (see
->   <https://www.cookbook-r.com/Graphs/Colors_(ggplot2)/>).
+>   <https://r-graphics.org/chapter-colors>).
 
 ## Arranging plots
 
@@ -677,7 +680,7 @@ saved plot.
 ##  minutes to either improve one of the plots generated in this
 ##  exercise or create a beautiful graph of your own. Use the RStudio
 ##  ggplot2 cheat sheet for inspiration:
-##  https://www.rstudio.com/wp-content/uploads/2015/08/ggplot2-cheatsheet.pdf
+##  https://posit.co/wp-content/uploads/2022/10/data-visualization-1.pdf
 ```
 
 ```{r, child="_page_built_on.Rmd"}
