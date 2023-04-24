@@ -767,11 +767,12 @@ analyses, how would you deal with this situation?
 The answer is because the dates provided as input for the `ymd()` function do not actually exist. If we refer to the output we got above, September and April only have 30 days, not 31 days as it is specified in our dataset.
 
 There are several ways you could deal with situation:
-* If you have access to the raw data (e.g., field sheets) or supporting information (e.g., field trip reports/logs), check them and ensure the electronic database matches the information in the original data source. 
-* If you are able to contact the person responsible for collecting the data, you could refer to them and ask for clarification. 
-* You could also check the rest of the dataset for clues about the correct value for the erroneous dates.  
-* If your project has guidelines on how to correct this sort of errors, refer to them and apply any recommendations. 
-* If it is not possible to ascertain the correct value for these observations, you may want to leave them as missing data. 
+
+* If you have access to the raw data (e.g., field sheets) or supporting information (e.g., field trip reports/logs), check them and ensure the electronic database matches the information in the original data source.
+* If you are able to contact the person responsible for collecting the data, you could refer to them and ask for clarification.
+* You could also check the rest of the dataset for clues about the correct value for the erroneous dates. 
+* If your project has guidelines on how to correct this sort of errors, refer to them and apply any recommendations.
+* If it is not possible to ascertain the correct value for these observations, you may want to leave them as missing data.
 
 Regardless of the option you choose, it is important that you document the error and the corrections (if any) that you apply to your data. 
 
