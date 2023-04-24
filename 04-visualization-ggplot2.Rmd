@@ -677,7 +677,7 @@ saved plot.
 ##  minutes to either improve one of the plots generated in this
 ##  exercise or create a beautiful graph of your own. Use the RStudio
 ##  ggplot2 cheat sheet for inspiration:
-##  https://www.rstudio.com/wp-content/uploads/2015/08/ggplot2-cheatsheet.pdf
+##  https://posit.co/wp-content/uploads/2022/10/data-visualization-1.pdf
 ```
 
 ```{r, child="_page_built_on.Rmd"}
