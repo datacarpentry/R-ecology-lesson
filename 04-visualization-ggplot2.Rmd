@@ -332,7 +332,7 @@ hidden?
 ##  Start with the boxplot we created:
 ggplot(data = surveys_complete, mapping = aes(x = species_id, y = weight)) +
   geom_jitter(alpha = 0.3, color = "tomato") +
-  geom_boxplot(alpha = 0)
+  geom_boxplot(outlier.shape = NA)
 ## By ordering the geom layers like this, we can make sure that the boxplot is
 ## layered over the jittered points.
 
