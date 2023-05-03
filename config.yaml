@@ -14,7 +14,7 @@ carpentry: 'dc'
 title: 'Data Analysis and Visualisation in R for Ecologists'
 
 # Date the lesson was created (YYYY-MM-DD, this is empty by default)
-created: 
+created: '2015-04-02'
 
 # Comma-separated list of keywords for the lesson
 keywords: 'software, data, lesson, The Carpentries'
@@ -27,7 +27,7 @@ life_cycle: 'stable'
 license: 'CC-BY 4.0'
 
 # Link to the source repository for this lesson
-source: 'https://github.com/fishtree-attempt/R-ecology-lesson/'
+source: 'https://github.com/datacarpentry/R-ecology-lesson'
 
 # Default branch of your lesson
 branch: 'main'
@@ -83,5 +83,4 @@ profiles:
 # sandpaper and varnish versions) should live
 
 
-url: 'https://preview.carpentries.org/R-ecology-lesson'
-workbench-beta: 'true'
+url: 'https://datacarpentry.github.io/R-ecology-lesson'
