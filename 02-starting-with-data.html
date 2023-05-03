@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Data Carpentry contributors" />
+
+
+<title>Starting with data</title>
+
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/font-awesome-6.4.0/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.0/css/v4-shims.min.css" rel="stylesheet" />
+<link rel="shortcut icon" href="favicon/favicon.ico">
+<link rel="icon" sizes="16x16 32x32 64x64" href="favicon/favicon.ico">
+<link rel="icon" type="image/png" sizes="196x196" href="favicon/favicon-192.png">
+<link rel="icon" type="image/png" sizes="160x160" href="favicon/favicon-160.png">
+<link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96.png">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon/favicon-64.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16.png">
+<link rel="apple-touch-icon" href="favicon/favicon-57.png">
+<link rel="apple-touch-icon" sizes="114x114" href="favicon/favicon-114.png">
+<link rel="apple-touch-icon" sizes="72x72" href="favicon/favicon-72.png">
+<link rel="apple-touch-icon" sizes="144x144" href="favicon/favicon-144.png">
+<link rel="apple-touch-icon" sizes="60x60" href="favicon/favicon-60.png">
+<link rel="apple-touch-icon" sizes="120x120" href="favicon/favicon-120.png">
+<link rel="apple-touch-icon" sizes="76x76" href="favicon/favicon-76.png">
+<link rel="apple-touch-icon" sizes="152x152" href="favicon/favicon-152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="favicon/favicon-180.png">
+<meta name="msapplication-TileColor" content="#FFFFFF">
+<meta name="msapplication-TileImage" content="favicon/favicon-144.png">
+<meta name="msapplication-config" content="favicon/browserconfig.xml">
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<script>
+  $( function() {
+  $( ".accordion" ).accordion({
+      heightStyle: "content",
+      active: false,
+      collapsible: true
+    });
+  } );
+</script>
+
+<script>
+  <!-- search menu pop-up --->
+  $(function() {
+    function slideToggle() {
+      $("#search-box").toggle("slide", 500);
+  };
+  $("#search-icon").on("click", function() {
+  slideToggle();
+  });
+  });
+</script>
+
+
+
+<!-- Motomo analytics -->
+
+
+<script>
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>
+
+
+<!-- add  Algolia DocSearch -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="https://carpentries.matomo.cloud/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src='https://cdn.matomo.cloud/carpentries.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="index.html">Home</a>
+        </li>
+        <li>
+          <a href="00-before-we-start.html">Before we start</a>
+        </li>
+        <li>
+          <a href="01-intro-to-r.html">Intro to R</a>
+        </li>
+        <li>
+          <a href="02-starting-with-data.html">Starting with data</a>
+        </li>
+        <li>
+          <a href="03-dplyr.html">Manipulating data</a>
+        </li>
+        <li>
+          <a href="04-visualization-ggplot2.html">Visualizing data</a>
+        </li>
+        <li>
+          <a href="05-r-and-databases.html">R and SQL</a>
+        </li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            Extras<span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="code-handout.R">Download Code Handout</a></li>
+            <li><a href="instructor-notes.html">Instructor Notes</a></li>
+          </ul>
+        </li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <div class="btn-group" style="margin-right: 10px;">
+            <a type="button" class="btn btn-sm btn-success navbar-btn" href="https://give.communityin.org/TheCarpentries" onclick="_paq.push(['trackEvent', 'donate', 'click', 'top-button']);">Donate</a>
+            <a type="button" class="btn btn-sm btn-success navbar-btn"  data-toggle="tooltip" data-placement="bottom" title="If this lesson is useful to you, consider making a contribution to The Carpentries by clicking on the 'Donate' button. Thank you for your support!">
+              <span class="glyphicon glyphicon-question-sign"></span>
+              <span class="sr-only">Toggle Tooltip</span>
+            </a>
+          </div>
+        </li>
+	<li class="search">
+	  <input id="search-box" type="text"  placeholder="Search...">
+	  <input type="submit">
+	</li>
+	<li class="search">
+	  <span id ="search-icon"><i class="fa fa-search fa-lg"></i></span>
+	</li>
+        <li>
+	  <a href="https://github.com/datacarpentry/R-ecology-lesson">
+	    <span class="fa fa-github fa-lg"></span>
+	  </a>
+	</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+<div class="alert alert-warning life-cycle">
+  A snapshot of this lesson from 2022-10-17 is being tested on
+  <a href='https://carpentries.github.io/workbench'>The Carpentries Workbench</a>:
+  <a href="https://preview.carpentries.org/R-ecology-lesson">https://preview.carpentries.org/R-ecology-lesson</a>.
+  <br>
+  <b>The Workbench version of this lesson will become default on 2023-05-01</b>.
+  <button type="button" style="border: true; position: absolute; top: 0px; right: 50px; color: #383838;" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true" style='font-size:34pt'>&times;</span>
+  </button>
+</div>
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Starting with data</h1>
+<h4 class="author">Data Carpentry contributors</h4>
+
+</div>
+
+
+<hr />
+<blockquote>
+<h3 id="learning-objectives">Learning Objectives</h3>
+<ul>
+<li>Load external data from a .csv file into a data frame.</li>
+<li>Install and load packages.</li>
+<li>Describe what a data frame is.</li>
+<li>Summarize the contents of a data frame.</li>
+<li>Use indexing to subset specific portions of data frames.</li>
+<li>Describe what a factor is.</li>
+<li>Convert between strings and factors.</li>
+<li>Reorder and rename factors.</li>
+<li>Change how character strings are handled in a data frame.</li>
+<li>Format dates.</li>
+</ul>
+</blockquote>
+<hr />
+<div id="loading-the-survey-data" class="section level2">
+<h2>Loading the survey data</h2>
+<p>We are investigating the animal species diversity and weights found within plots at our study site. The dataset is stored as a comma separated value (CSV) file. Each row holds information for a single animal, and the columns represent:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Column</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>record_id</td>
+<td>Unique id for the observation</td>
+</tr>
+<tr class="even">
+<td>month</td>
+<td>month of observation</td>
+</tr>
+<tr class="odd">
+<td>day</td>
+<td>day of observation</td>
+</tr>
+<tr class="even">
+<td>year</td>
+<td>year of observation</td>
+</tr>
+<tr class="odd">
+<td>plot_id</td>
+<td>ID of a particular experimental plot of land</td>
+</tr>
+<tr class="even">
+<td>species_id</td>
+<td>2-letter code</td>
+</tr>
+<tr class="odd">
+<td>sex</td>
+<td>sex of animal (“M”, “F”)</td>
+</tr>
+<tr class="even">
+<td>hindfoot_length</td>
+<td>length of the hindfoot in mm</td>
+</tr>
+<tr class="odd">
+<td>weight</td>
+<td>weight of the animal in grams</td>
+</tr>
+<tr class="even">
+<td>genus</td>
+<td>genus of animal</td>
+</tr>
+<tr class="odd">
+<td>species</td>
+<td>species of animal</td>
+</tr>
+<tr class="even">
+<td>taxon</td>
+<td>e.g. Rodent, Reptile, Bird, Rabbit</td>
+</tr>
+<tr class="odd">
+<td>plot_type</td>
+<td>type of plot</td>
+</tr>
+</tbody>
+</table>
+<div id="downloading-the-data" class="section level3">
+<h3>Downloading the data</h3>
+<p>We created the folder that will store the downloaded data (<code>data_raw</code>) in the chapter <a href="https://datacarpentry.org/R-ecology-lesson/00-before-we-start.html#Organizing_your_working_directory">“Before we start”</a>. If you skipped that part, it may be a good idea to have a look now, to make sure your working directory is set up properly.</p>
+<p>We are going to use the R function <code>download.file()</code> to download the CSV file that contains the survey data from Figshare, and we will use <code>read_csv()</code> to load the content of the CSV file into R.</p>
+<p>Inside the <code>download.file</code> command, the first entry is a character string with the source URL (“<a href="https://ndownloader.figshare.com/files/2292169" class="uri">https://ndownloader.figshare.com/files/2292169</a>”). This source URL downloads a CSV file from figshare. The text after the comma (“data_raw/portal_data_joined.csv”) is the destination of the file on your local machine. You’ll need to have a folder on your machine called “data_raw” where you’ll download the file. So this command downloads a file from Figshare, names it “portal_data_joined.csv” and adds it to a preexisting folder named “data_raw”.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">download.file</span>(<span class="dt">url =</span> <span class="st">&quot;https://ndownloader.figshare.com/files/2292169&quot;</span>,</a>
+<a class="sourceLine" id="cb1-2" title="2">              <span class="dt">destfile =</span> <span class="st">&quot;data_raw/portal_data_joined.csv&quot;</span>)</a></code></pre></div>
+</div>
+<div id="reading-the-data-into-r" class="section level3">
+<h3>Reading the data into R</h3>
+<p>The file has now been downloaded to the destination you specified, but R has not yet loaded the data from the file into memory. To do this, we can use the <code>read_csv()</code> function from the <strong><code>tidyverse</code></strong> package.</p>
+<p>Packages in R are basically sets of additional functions that let you do more stuff. The functions we’ve been using so far, like <code>round()</code>, <code>sqrt()</code>, or <code>c()</code> come built into R. Packages give you access to additional functions beyond base R. A similar function to <code>read_csv()</code> from the tidyverse package is <code>read.csv()</code> from base R. We don’t have time to cover their differences but notice that the exact spelling determines which function is used. Before you use a package for the first time you need to install it on your machine, and then you should import it in every subsequent R session when you need it.</p>
+<p>To install the <strong><code>tidyverse</code></strong> package, we can type <code>install.packages("tidyverse")</code> straight into the console. In fact, it’s better to write this in the console than in our script for any package, as there’s no need to re-install packages every time we run the script. Then, to load the package type:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="co">## load the tidyverse packages, incl. dplyr</span></a>
+<a class="sourceLine" id="cb2-2" title="2"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
+<p>Now we can use the functions from the <strong><code>tidyverse</code></strong> package. Let’s use <code>read_csv()</code> to read the data into a data frame (we will learn more about data frames later):</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">surveys &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data_raw/portal_data_joined.csv&quot;</span>)</a></code></pre></div>
+<pre><code>#&gt; Rows: 34786 Columns: 13
+#&gt; ── Column specification ────────────────────────────────────────────────────────
+#&gt; Delimiter: &quot;,&quot;
+#&gt; chr (6): species_id, sex, genus, species, taxa, plot_type
+#&gt; dbl (7): record_id, month, day, year, plot_id, hindfoot_length, weight
+#&gt; 
+#&gt; ℹ Use `spec()` to retrieve the full column specification for this data.
+#&gt; ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<p>When you execute <code>read_csv</code> on a data file, it looks through the first 1000 rows of each column and guesses its data type. For example, in this dataset, <code>read_csv()</code> reads <code>weight</code> as <code>col_double</code> (a numeric data type), and <code>species</code> as <code>col_character</code>. You have the option to specify the data type for a column manually by using the <code>col_types</code> argument in <code>read_csv</code>.</p>
+<blockquote>
+<h3 id="note">Note</h3>
+<p><code>read_csv()</code> assumes that fields are delineated by commas. However, in several countries, the comma is used as a decimal separator and the semicolon (;) is used as a field delineator. If you want to read in this type of files in R, you can use the <code>read_csv2()</code> function. It behaves like <code>read_csv()</code> but uses different parameters for the decimal and the field separators. There is also the <code>read_tsv()</code> for tab separated data files and <code>read_delim()</code> for less common formats. Check out the help for <code>read_csv()</code> by typing <code>?read_csv</code> to learn more.</p>
+<p>In addition to the above versions of the csv format, you should develop the habits of looking at and recording some parameters of your csv files. For instance, the character encoding, control characters used for line ending, date format (if the date is not split into three variables), and the presence of unexpected <a href="https://en.wikipedia.org/wiki/Newline">newlines</a> are important characteristics of your data files. Those parameters will ease up the import step of your data in R.</p>
+</blockquote>
+<p>We can see the contents of the first few lines of the data by typing its name: <code>surveys</code>. By default, this will show you as many rows and columns of the data as fit on your screen. If you wanted the first 50 rows, you could type <code>print(surveys, n = 50)</code></p>
+<p>We can also extract the first few lines of this data using the function <code>head()</code>:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw">head</span>(surveys)</a></code></pre></div>
+<pre><code>#&gt; # A tibble: 6 × 13
+#&gt;   record_id month   day  year plot_id species_id sex   hindfoot_length weight
+#&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;           &lt;dbl&gt;  &lt;dbl&gt;
+#&gt; 1         1     7    16  1977       2 NL         M                  32     NA
+#&gt; 2        72     8    19  1977       2 NL         M                  31     NA
+#&gt; 3       224     9    13  1977       2 NL         &lt;NA&gt;               NA     NA
+#&gt; 4       266    10    16  1977       2 NL         &lt;NA&gt;               NA     NA
+#&gt; 5       349    11    12  1977       2 NL         &lt;NA&gt;               NA     NA
+#&gt; 6       363    11    12  1977       2 NL         &lt;NA&gt;               NA     NA
+#&gt; # ℹ 4 more variables: genus &lt;chr&gt;, species &lt;chr&gt;, taxa &lt;chr&gt;, plot_type &lt;chr&gt;</code></pre>
+<p>Unlike the <code>print()</code> function, <code>head()</code> returns the extracted data. You could use it to assign the first 100 rows of <code>surveys</code> to an object using <code>surveys_sample &lt;- head(surveys, 100)</code>. This can be useful if you want to try out complex computations on a subset of your data before you apply them to the whole data set. There is a similar function that lets you extract the last few lines of the data set. It is called (you might have guessed it) <code>tail()</code>.</p>
+<p>To open the dataset in RStudio’s Data Viewer, use the <code>view()</code> function:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw">view</span>(surveys)</a></code></pre></div>
+<blockquote>
+<h3 id="note-1">Note</h3>
+<p>There are two functions for viewing which are case-sensitive. Using <code>view()</code> with a lowercase ‘v’ is part of tidyverse, whereas using <code>View()</code> with an uppercase ‘V’ is loaded through base R in the <code>utils</code> package.</p>
+</blockquote>
+</div>
+</div>
+<div id="what-are-data-frames" class="section level2">
+<h2>What are data frames?</h2>
+<p>When we loaded the data into R, it got stored as an object of class <code>tibble</code>, which is a special kind of data frame (the difference is not important for our purposes, but you can learn more about tibbles <a href="https://tibble.tidyverse.org/">here</a>). Data frames are the <em>de facto</em> data structure for most tabular data, and what we use for statistics and plotting. Data frames can be created by hand, but most commonly they are generated by functions like <code>read_csv()</code>; in other words, when importing spreadsheets from your hard drive or the web.</p>
+<p>A data frame is the representation of data in the format of a table where the columns are vectors that all have the same length. Because columns are vectors, each column must contain a single type of data (e.g., characters, integers, factors). For example, here is a figure depicting a data frame comprising a numeric, a character, and a logical vector.</p>
+<p><img src="img/data-frame.svg" /></p>
+<p>We can see this also when inspecting the <b>str</b>ucture of a data frame with the function <code>str()</code>:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw">str</span>(surveys)</a></code></pre></div>
+</div>
+<div id="inspecting-data-frames" class="section level2">
+<h2>Inspecting data frames</h2>
+<p>We already saw how the functions <code>head()</code> and <code>str()</code> can be useful to check the content and the structure of a data frame. Here is a non-exhaustive list of functions to get a sense of the content/structure of the data. Let’s try them out!</p>
+<ul>
+<li>Size:
+<ul>
+<li><code>dim(surveys)</code> - returns a vector with the number of rows in the first element, and the number of columns as the second element (the <strong>dim</strong>ensions of the object)</li>
+<li><code>nrow(surveys)</code> - returns the number of rows</li>
+<li><code>ncol(surveys)</code> - returns the number of columns</li>
+</ul></li>
+<li>Content:
+<ul>
+<li><code>head(surveys)</code> - shows the first 6 rows</li>
+<li><code>tail(surveys)</code> - shows the last 6 rows</li>
+</ul></li>
+<li>Names:
+<ul>
+<li><code>names(surveys)</code> - returns the column names (synonym of <code>colnames()</code> for <code>data.frame</code> objects)</li>
+<li><code>rownames(surveys)</code> - returns the row names</li>
+</ul></li>
+<li>Summary:
+<ul>
+<li><code>str(surveys)</code> - structure of the object and information about the class, length and content of each column</li>
+<li><code>summary(surveys)</code> - summary statistics for each column</li>
+</ul></li>
+</ul>
+<p>Note: most of these functions are “generic”, they can be used on other types of objects besides <code>data.frame</code>.</p>
+<blockquote>
+<h3 id="challenge">Challenge</h3>
+<p>Based on the output of <code>str(surveys)</code>, can you answer the following questions?</p>
+<ul>
+<li>What is the class of the object <code>surveys</code>?</li>
+<li>How many rows and how many columns are in this object?</li>
+</ul>
+<div class="accordion">
+<h3 class="toc-ignore">
+Answer
+</h3>
+<div style="background: #fff;">
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw">str</span>(surveys)</a></code></pre></div>
+<pre><code>#&gt; spc_tbl_ [34,786 × 13] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+#&gt;  $ record_id      : num [1:34786] 1 72 224 266 349 363 435 506 588 661 ...
+#&gt;  $ month          : num [1:34786] 7 8 9 10 11 11 12 1 2 3 ...
+#&gt;  $ day            : num [1:34786] 16 19 13 16 12 12 10 8 18 11 ...
+#&gt;  $ year           : num [1:34786] 1977 1977 1977 1977 1977 ...
+#&gt;  $ plot_id        : num [1:34786] 2 2 2 2 2 2 2 2 2 2 ...
+#&gt;  $ species_id     : chr [1:34786] &quot;NL&quot; &quot;NL&quot; &quot;NL&quot; &quot;NL&quot; ...
+#&gt;  $ sex            : chr [1:34786] &quot;M&quot; &quot;M&quot; NA NA ...
+#&gt;  $ hindfoot_length: num [1:34786] 32 31 NA NA NA NA NA NA NA NA ...
+#&gt;  $ weight         : num [1:34786] NA NA NA NA NA NA NA NA 218 NA ...
+#&gt;  $ genus          : chr [1:34786] &quot;Neotoma&quot; &quot;Neotoma&quot; &quot;Neotoma&quot; &quot;Neotoma&quot; ...
+#&gt;  $ species        : chr [1:34786] &quot;albigula&quot; &quot;albigula&quot; &quot;albigula&quot; &quot;albigula&quot; ...
+#&gt;  $ taxa           : chr [1:34786] &quot;Rodent&quot; &quot;Rodent&quot; &quot;Rodent&quot; &quot;Rodent&quot; ...
+#&gt;  $ plot_type      : chr [1:34786] &quot;Control&quot; &quot;Control&quot; &quot;Control&quot; &quot;Control&quot; ...
+#&gt;  - attr(*, &quot;spec&quot;)=
+#&gt;   .. cols(
+#&gt;   ..   record_id = col_double(),
+#&gt;   ..   month = col_double(),
+#&gt;   ..   day = col_double(),
+#&gt;   ..   year = col_double(),
+#&gt;   ..   plot_id = col_double(),
+#&gt;   ..   species_id = col_character(),
+#&gt;   ..   sex = col_character(),
+#&gt;   ..   hindfoot_length = col_double(),
+#&gt;   ..   weight = col_double(),
+#&gt;   ..   genus = col_character(),
+#&gt;   ..   species = col_character(),
+#&gt;   ..   taxa = col_character(),
+#&gt;   ..   plot_type = col_character()
+#&gt;   .. )
+#&gt;  - attr(*, &quot;problems&quot;)=&lt;externalptr&gt;</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="co">## * class: data frame</span></a>
+<a class="sourceLine" id="cb11-2" title="2"><span class="co">## * how many rows: 34786,  how many columns: 13</span></a></code></pre></div>
+</div>
+</div>
+</blockquote>
+</div>
+<div id="indexing-and-subsetting-data-frames" class="section level2">
+<h2>Indexing and subsetting data frames</h2>
+<p>Our survey data frame has rows and columns (it has 2 dimensions), if we want to extract some specific data from it, we need to specify the “coordinates” we want from it. Row numbers come first, followed by column numbers. However, note that different ways of specifying these coordinates lead to results with different classes.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="co"># We can extract specific values by specifying row and column indices</span></a>
+<a class="sourceLine" id="cb12-2" title="2"><span class="co"># in the format: </span></a>
+<a class="sourceLine" id="cb12-3" title="3"><span class="co"># data_frame[row_index, column_index]</span></a>
+<a class="sourceLine" id="cb12-4" title="4"><span class="co"># For instance, to extract the first row and column from surveys:</span></a>
+<a class="sourceLine" id="cb12-5" title="5">surveys[<span class="dv">1</span>, <span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb12-6" title="6"></a>
+<a class="sourceLine" id="cb12-7" title="7"><span class="co"># First row, sixth column:</span></a>
+<a class="sourceLine" id="cb12-8" title="8">surveys[<span class="dv">1</span>, <span class="dv">6</span>]   </a>
+<a class="sourceLine" id="cb12-9" title="9"></a>
+<a class="sourceLine" id="cb12-10" title="10"><span class="co"># We can also use shortcuts to select a number of rows or columns at once</span></a>
+<a class="sourceLine" id="cb12-11" title="11"><span class="co"># To select all columns, leave the column index blank</span></a>
+<a class="sourceLine" id="cb12-12" title="12"><span class="co"># For instance, to select all columns for the first row:</span></a>
+<a class="sourceLine" id="cb12-13" title="13">surveys[<span class="dv">1</span>, ]</a>
+<a class="sourceLine" id="cb12-14" title="14"></a>
+<a class="sourceLine" id="cb12-15" title="15"><span class="co"># The same shortcut works for rows --</span></a>
+<a class="sourceLine" id="cb12-16" title="16"><span class="co"># To select the first column across all rows:</span></a>
+<a class="sourceLine" id="cb12-17" title="17">surveys[, <span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb12-18" title="18"></a>
+<a class="sourceLine" id="cb12-19" title="19"><span class="co"># An even shorter way to select first column across all rows:</span></a>
+<a class="sourceLine" id="cb12-20" title="20">surveys[<span class="dv">1</span>] <span class="co"># No comma! </span></a>
+<a class="sourceLine" id="cb12-21" title="21"></a>
+<a class="sourceLine" id="cb12-22" title="22"><span class="co"># To select multiple rows or columns, use vectors!</span></a>
+<a class="sourceLine" id="cb12-23" title="23"><span class="co"># To select the first three rows of the 5th and 6th column</span></a>
+<a class="sourceLine" id="cb12-24" title="24">surveys[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>), <span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">6</span>)] </a>
+<a class="sourceLine" id="cb12-25" title="25"></a>
+<a class="sourceLine" id="cb12-26" title="26"><span class="co"># We can use the : operator to create those vectors for us:</span></a>
+<a class="sourceLine" id="cb12-27" title="27">surveys[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dv">5</span><span class="op">:</span><span class="dv">6</span>] </a>
+<a class="sourceLine" id="cb12-28" title="28"></a>
+<a class="sourceLine" id="cb12-29" title="29"><span class="co"># This is equivalent to head_surveys &lt;- head(surveys)</span></a>
+<a class="sourceLine" id="cb12-30" title="30">head_surveys &lt;-<span class="st"> </span>surveys[<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>, ]</a>
+<a class="sourceLine" id="cb12-31" title="31"></a>
+<a class="sourceLine" id="cb12-32" title="32"><span class="co"># As we&#39;ve seen, when working with tibbles </span></a>
+<a class="sourceLine" id="cb12-33" title="33"><span class="co"># subsetting with single square brackets (&quot;[]&quot;) always returns a data frame.</span></a>
+<a class="sourceLine" id="cb12-34" title="34"><span class="co"># If you want a vector, use double square brackets (&quot;[[]]&quot;)</span></a>
+<a class="sourceLine" id="cb12-35" title="35"></a>
+<a class="sourceLine" id="cb12-36" title="36"><span class="co"># For instance, to get the first column as a vector:</span></a>
+<a class="sourceLine" id="cb12-37" title="37">surveys[[<span class="dv">1</span>]]</a>
+<a class="sourceLine" id="cb12-38" title="38"></a>
+<a class="sourceLine" id="cb12-39" title="39"><span class="co"># To get the first value in our data frame:</span></a>
+<a class="sourceLine" id="cb12-40" title="40">surveys[[<span class="dv">1</span>, <span class="dv">1</span>]]</a></code></pre></div>
+<p><code>:</code> is a special function that creates numeric vectors of integers in increasing or decreasing order, test <code>1:10</code> and <code>10:1</code> for instance.</p>
+<p>You can also exclude certain indices of a data frame using the “<code>-</code>” sign:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">surveys[, <span class="dv">-1</span>]                 <span class="co"># The whole data frame, except the first column</span></a>
+<a class="sourceLine" id="cb13-2" title="2">surveys[<span class="op">-</span>(<span class="dv">7</span><span class="op">:</span><span class="kw">nrow</span>(surveys)), ] <span class="co"># Equivalent to head(surveys)</span></a></code></pre></div>
+<p>Data frames can be subset by calling indices (as shown previously), but also by calling their column names directly:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="co"># As before, using single brackets returns a data frame:</span></a>
+<a class="sourceLine" id="cb14-2" title="2">surveys[<span class="st">&quot;species_id&quot;</span>]</a>
+<a class="sourceLine" id="cb14-3" title="3">surveys[, <span class="st">&quot;species_id&quot;</span>]</a>
+<a class="sourceLine" id="cb14-4" title="4"></a>
+<a class="sourceLine" id="cb14-5" title="5"><span class="co"># Double brackets returns a vector:</span></a>
+<a class="sourceLine" id="cb14-6" title="6">surveys[[<span class="st">&quot;species_id&quot;</span>]]</a>
+<a class="sourceLine" id="cb14-7" title="7"></a>
+<a class="sourceLine" id="cb14-8" title="8"><span class="co"># We can also use the $ operator with column names instead of double brackets</span></a>
+<a class="sourceLine" id="cb14-9" title="9"><span class="co"># This returns a vector:</span></a>
+<a class="sourceLine" id="cb14-10" title="10">surveys<span class="op">$</span>species_id</a></code></pre></div>
+<p>In RStudio, you can use the autocompletion feature to get the full and correct names of the columns.</p>
+<blockquote>
+<h3 id="challenge-1">Challenge</h3>
+<ol style="list-style-type: decimal">
+<li><p>Create a <code>data.frame</code> (<code>surveys_200</code>) containing only the data in row 200 of the <code>surveys</code> dataset.</p></li>
+<li><p>Notice how <code>nrow()</code> gave you the number of rows in a <code>data.frame</code>?</p>
+<ul>
+<li>Use that number to pull out just that last row from the <code>surveys</code> dataset.</li>
+<li>Compare that with what you see as the last row using <code>tail()</code> to make sure it’s meeting expectations.</li>
+<li>Pull out that last row using <code>nrow()</code> instead of the row number.</li>
+<li>Create a new data frame (<code>surveys_last</code>) from that last row.</li>
+</ul></li>
+<li><p>Use <code>nrow()</code> to extract the row that is in the middle of the data frame. Store the content of this row in an object named <code>surveys_middle</code>.</p></li>
+<li><p>Combine <code>nrow()</code> with the <code>-</code> notation above to reproduce the behavior of <code>head(surveys)</code>, keeping just the first through 6th rows of the surveys dataset.</p></li>
+</ol>
+<div class="accordion">
+<h3 class="toc-ignore">
+Answer
+</h3>
+<div style="background: #fff;">
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1"><span class="co">## 1.</span></a>
+<a class="sourceLine" id="cb15-2" title="2">surveys_<span class="dv">200</span> &lt;-<span class="st"> </span>surveys[<span class="dv">200</span>, ]</a>
+<a class="sourceLine" id="cb15-3" title="3"><span class="co">## 2.</span></a>
+<a class="sourceLine" id="cb15-4" title="4"><span class="co"># Saving `n_rows` to improve readability and reduce duplication</span></a>
+<a class="sourceLine" id="cb15-5" title="5">n_rows &lt;-<span class="st"> </span><span class="kw">nrow</span>(surveys)</a>
+<a class="sourceLine" id="cb15-6" title="6">surveys_last &lt;-<span class="st"> </span>surveys[n_rows, ]</a>
+<a class="sourceLine" id="cb15-7" title="7"><span class="co">## 3.</span></a>
+<a class="sourceLine" id="cb15-8" title="8">surveys_middle &lt;-<span class="st"> </span>surveys[n_rows <span class="op">/</span><span class="st"> </span><span class="dv">2</span>, ]</a>
+<a class="sourceLine" id="cb15-9" title="9"><span class="co">## 4.</span></a>
+<a class="sourceLine" id="cb15-10" title="10">surveys_head &lt;-<span class="st"> </span>surveys[<span class="op">-</span>(<span class="dv">7</span><span class="op">:</span>n_rows), ]</a></code></pre></div>
+</div>
+</div>
+</blockquote>
+</div>
+<div id="factors" class="section level2">
+<h2>Factors</h2>
+<p>When we did <code>str(surveys)</code> we saw that several of the columns consist of integers. The columns <code>genus</code>, <code>species</code>, <code>sex</code>, <code>plot_type</code>, … however, are of the class <code>character</code>. Arguably, these columns contain categorical data, that is, they can only take on a limited number of values.</p>
+<p>R has a special class for working with categorical data, called <code>factor</code>. Factors are very useful and actually contribute to making R particularly well suited to working with data. So we are going to spend a little time introducing them.</p>
+<p>Once created, factors can only contain a pre-defined set of values, known as <em>levels</em>. Factors are stored as integers associated with labels and they can be ordered or unordered. While factors look (and often behave) like character vectors, they are actually treated as integer vectors by R. So you need to be very careful when treating them as strings.</p>
+<p>When importing a data frame with <code>read_csv()</code>, the columns that contain text are not automatically coerced (=converted) into the <code>factor</code> data type, but once we have loaded the data we can do the conversion using the <code>factor()</code> function:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1">surveys<span class="op">$</span>sex &lt;-<span class="st"> </span><span class="kw">factor</span>(surveys<span class="op">$</span>sex)</a></code></pre></div>
+<p>We can see that the conversion has worked by using the <code>summary()</code> function again. This produces a table with the counts for each factor level:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="kw">summary</span>(surveys<span class="op">$</span>sex)</a></code></pre></div>
+<p>By default, R always sorts levels in alphabetical order. For instance, if you have a factor with 2 levels:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1">sex &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;male&quot;</span>, <span class="st">&quot;female&quot;</span>, <span class="st">&quot;female&quot;</span>, <span class="st">&quot;male&quot;</span>))</a></code></pre></div>
+<p>R will assign <code>1</code> to the level <code>"female"</code> and <code>2</code> to the level <code>"male"</code> (because <code>f</code> comes before <code>m</code>, even though the first element in this vector is <code>"male"</code>). You can see this by using the function <code>levels()</code> and you can find the number of levels using <code>nlevels()</code>:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="kw">levels</span>(sex)</a>
+<a class="sourceLine" id="cb19-2" title="2"><span class="kw">nlevels</span>(sex)</a></code></pre></div>
+<p>Sometimes, the order of the factors does not matter, other times you might want to specify the order because it is meaningful (e.g., “low”, “medium”, “high”), it improves your visualization, or it is required by a particular type of analysis. Here, one way to reorder our levels in the <code>sex</code> vector would be:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1">sex <span class="co"># current order</span></a></code></pre></div>
+<pre><code>#&gt; [1] male   female female male  
+#&gt; Levels: female male</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1">sex &lt;-<span class="st"> </span><span class="kw">factor</span>(sex, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;male&quot;</span>, <span class="st">&quot;female&quot;</span>))</a>
+<a class="sourceLine" id="cb22-2" title="2">sex <span class="co"># after re-ordering</span></a></code></pre></div>
+<pre><code>#&gt; [1] male   female female male  
+#&gt; Levels: male female</code></pre>
+<p>In R’s memory, these factors are represented by integers (1, 2, 3), but are more informative than integers because factors are self describing: <code>"female"</code>, <code>"male"</code> is more descriptive than <code>1</code>, <code>2</code>. Which one is “male”? You wouldn’t be able to tell just from the integer data. Factors, on the other hand, have this information built in. It is particularly helpful when there are many levels (like the species names in our example dataset).</p>
+<blockquote>
+<h3 id="challenge-2">Challenge</h3>
+<ol style="list-style-type: decimal">
+<li><p>Change the columns <code>taxa</code> and <code>genus</code> in the <code>surveys</code> data frame into a factor.</p></li>
+<li><p>Using the functions you learned before, can you find out…</p>
+<ul>
+<li>How many rabbits were observed?</li>
+<li>How many different genera are in the <code>genus</code> column?</li>
+</ul></li>
+</ol>
+<div class="accordion">
+<h3 class="toc-ignore">
+Answer
+</h3>
+<div style="background: #fff;">
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1">surveys<span class="op">$</span>taxa &lt;-<span class="st"> </span><span class="kw">factor</span>(surveys<span class="op">$</span>taxa)</a>
+<a class="sourceLine" id="cb24-2" title="2">surveys<span class="op">$</span>genus &lt;-<span class="st"> </span><span class="kw">factor</span>(surveys<span class="op">$</span>genus)</a>
+<a class="sourceLine" id="cb24-3" title="3"><span class="kw">summary</span>(surveys)</a>
+<a class="sourceLine" id="cb24-4" title="4"><span class="kw">nlevels</span>(surveys<span class="op">$</span>genus)</a>
+<a class="sourceLine" id="cb24-5" title="5"></a>
+<a class="sourceLine" id="cb24-6" title="6"><span class="co">## * how many genera: There are 26 unique genera in the `genus` column.</span></a>
+<a class="sourceLine" id="cb24-7" title="7"><span class="co">## * how many rabbts: There are 75 rabbits in the `taxa` column.</span></a></code></pre></div>
+</div>
+</div>
+</blockquote>
+<div id="converting-factors" class="section level3">
+<h3>Converting factors</h3>
+<p>If you need to convert a factor to a character vector, you use <code>as.character(x)</code>.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1"><span class="kw">as.character</span>(sex)</a></code></pre></div>
+<p>In some cases, you may have to convert factors where the levels appear as numbers (such as concentration levels or years) to a numeric vector. For instance, in one part of your analysis the years might need to be encoded as factors (e.g., comparing average weights across years) but in another part of your analysis they may need to be stored as numeric values (e.g., doing math operations on the years). This conversion from factor to numeric is a little trickier. The <code>as.numeric()</code> function returns the index values of the factor, not its levels, so it will result in an entirely new (and unwanted in this case) set of numbers. One method to avoid this is to convert factors to characters, and then to numbers.</p>
+<p>Another method is to use the <code>levels()</code> function. Compare:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1">year_fct &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="dv">1990</span>, <span class="dv">1983</span>, <span class="dv">1977</span>, <span class="dv">1998</span>, <span class="dv">1990</span>))</a>
+<a class="sourceLine" id="cb26-2" title="2"><span class="kw">as.numeric</span>(year_fct)               <span class="co"># Wrong! And there is no warning...</span></a>
+<a class="sourceLine" id="cb26-3" title="3"><span class="kw">as.numeric</span>(<span class="kw">as.character</span>(year_fct)) <span class="co"># Works...</span></a>
+<a class="sourceLine" id="cb26-4" title="4"><span class="kw">as.numeric</span>(<span class="kw">levels</span>(year_fct))[year_fct]    <span class="co"># The recommended way.</span></a></code></pre></div>
+<p>Notice that in the <code>levels()</code> approach, three important steps occur:</p>
+<ul>
+<li>We obtain all the factor levels using <code>levels(year_fct)</code></li>
+<li>We convert these levels to numeric values using <code>as.numeric(levels(year_fct))</code></li>
+<li>We then access these numeric values using the underlying integers of the vector <code>year_fct</code> inside the square brackets</li>
+</ul>
+</div>
+<div id="renaming-factors" class="section level3">
+<h3>Renaming factors</h3>
+<p>When your data is stored as a factor, you can use the <code>plot()</code> function to get a quick glance at the number of observations represented by each factor level. Let’s look at the number of males and females captured over the course of the experiment:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1"><span class="co">## bar plot of the number of females and males captured during the experiment:</span></a>
+<a class="sourceLine" id="cb27-2" title="2"><span class="kw">plot</span>(surveys<span class="op">$</span>sex)</a></code></pre></div>
+<p><img src="img/R-ecology-unnamed-chunk-27-1.png" width="672" /></p>
+<p>However, as we saw when we used <code>summary(surveys$sex)</code>, there are about 1700 individuals for which the sex information hasn’t been recorded. To show them in the plot, we can turn the missing values into a factor level with the <code>addNA()</code> function. We will also have to give the new factor level a label. We are going to work with a copy of the <code>sex</code> column, so we’re not modifying the working copy of the data frame:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1">sex &lt;-<span class="st"> </span>surveys<span class="op">$</span>sex</a>
+<a class="sourceLine" id="cb28-2" title="2"><span class="kw">levels</span>(sex)</a></code></pre></div>
+<pre><code>#&gt; [1] &quot;F&quot; &quot;M&quot;</code></pre>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1">sex &lt;-<span class="st"> </span><span class="kw">addNA</span>(sex)</a>
+<a class="sourceLine" id="cb30-2" title="2"><span class="kw">levels</span>(sex)</a></code></pre></div>
+<pre><code>#&gt; [1] &quot;F&quot; &quot;M&quot; NA</code></pre>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1"><span class="kw">head</span>(sex)</a></code></pre></div>
+<pre><code>#&gt; [1] M    M    &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+#&gt; Levels: F M &lt;NA&gt;</code></pre>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1"><span class="kw">levels</span>(sex)[<span class="dv">3</span>] &lt;-<span class="st"> &quot;undetermined&quot;</span></a>
+<a class="sourceLine" id="cb34-2" title="2"><span class="kw">levels</span>(sex)</a></code></pre></div>
+<pre><code>#&gt; [1] &quot;F&quot;            &quot;M&quot;            &quot;undetermined&quot;</code></pre>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" title="1"><span class="kw">head</span>(sex)</a></code></pre></div>
+<pre><code>#&gt; [1] M            M            undetermined undetermined undetermined
+#&gt; [6] undetermined
+#&gt; Levels: F M undetermined</code></pre>
+<p>Now we can plot the data again, using <code>plot(sex)</code>.</p>
+<p><img src="img/R-ecology-unnamed-chunk-29-1.png" width="672" /></p>
+<blockquote>
+<h3 id="challenge-3">Challenge</h3>
+<ul>
+<li>Rename “F” and “M” to “female” and “male” respectively.</li>
+<li>Now that we have renamed the factor level to “undetermined”, can you recreate the barplot such that “undetermined” is first (before “female”)?</li>
+</ul>
+<div class="accordion">
+<h3 class="toc-ignore">
+Answer
+</h3>
+<div style="background: #fff;">
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1"><span class="kw">levels</span>(sex)[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>] &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;female&quot;</span>, <span class="st">&quot;male&quot;</span>)</a>
+<a class="sourceLine" id="cb38-2" title="2">sex &lt;-<span class="st"> </span><span class="kw">factor</span>(sex, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;undetermined&quot;</span>, <span class="st">&quot;female&quot;</span>, <span class="st">&quot;male&quot;</span>))</a>
+<a class="sourceLine" id="cb38-3" title="3"><span class="kw">plot</span>(sex)</a></code></pre></div>
+<img src="img/R-ecology-unnamed-chunk-30-1.png" width="672" />
+</div>
+</div>
+</blockquote>
+<blockquote>
+<h3 id="challenge-4">Challenge</h3>
+<ol style="list-style-type: decimal">
+<li><p>We have seen how data frames are created when using <code>read_csv()</code>, but they can also be created by hand with the <code>data.frame()</code> function. There are a few mistakes in this hand-crafted <code>data.frame</code>. Can you spot and fix them? Don’t hesitate to experiment!</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1">animal_data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
+<a class="sourceLine" id="cb39-2" title="2">          <span class="dt">animal =</span> <span class="kw">c</span>(dog, cat, sea cucumber, sea urchin),</a>
+<a class="sourceLine" id="cb39-3" title="3">          <span class="dt">feel =</span> <span class="kw">c</span>(<span class="st">&quot;furry&quot;</span>, <span class="st">&quot;squishy&quot;</span>, <span class="st">&quot;spiny&quot;</span>),</a>
+<a class="sourceLine" id="cb39-4" title="4">          <span class="dt">weight =</span> <span class="kw">c</span>(<span class="dv">45</span>, <span class="dv">8</span> <span class="fl">1.1</span>, <span class="fl">0.8</span>)</a>
+<a class="sourceLine" id="cb39-5" title="5">          )</a></code></pre></div></li>
+<li>Can you predict the class for each of the columns in the following example? Check your guesses using <code>str(country_climate)</code>:
+<ul>
+<li>Are they what you expected? Why? Why not?</li>
+<li>What would you need to change to ensure that each column had the accurate data type?</li>
+</ul>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" title="1">country_climate &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
+<a class="sourceLine" id="cb40-2" title="2">       <span class="dt">country =</span> <span class="kw">c</span>(<span class="st">&quot;Canada&quot;</span>, <span class="st">&quot;Panama&quot;</span>, <span class="st">&quot;South Africa&quot;</span>, <span class="st">&quot;Australia&quot;</span>),</a>
+<a class="sourceLine" id="cb40-3" title="3">       <span class="dt">climate =</span> <span class="kw">c</span>(<span class="st">&quot;cold&quot;</span>, <span class="st">&quot;hot&quot;</span>, <span class="st">&quot;temperate&quot;</span>, <span class="st">&quot;hot/temperate&quot;</span>),</a>
+<a class="sourceLine" id="cb40-4" title="4">       <span class="dt">temperature =</span> <span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">30</span>, <span class="dv">18</span>, <span class="st">&quot;15&quot;</span>),</a>
+<a class="sourceLine" id="cb40-5" title="5">       <span class="dt">northern_hemisphere =</span> <span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="st">&quot;FALSE&quot;</span>),</a>
+<a class="sourceLine" id="cb40-6" title="6">       <span class="dt">has_kangaroo =</span> <span class="kw">c</span>(<span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb40-7" title="7">       )</a></code></pre></div>
+<div class="accordion">
+<h3 class="toc-ignore">
+Answer
+</h3>
+<div style="background: #fff;">
+<p>
+<ul>
+<li>missing quotations around the names of the animals</li>
+<li>missing one entry in the <code>feel</code> column (probably for one of the furry animals)</li>
+<li>missing one comma in the <code>weight</code> column</li>
+<li><code>country</code>, <code>climate</code>, <code>temperature</code>, and <code>northern_hemisphere</code> are characters; <code>has_kangaroo</code> is numeric</li>
+<li>using <code>factor()</code> one could replace character columns with factors columns</li>
+<li>removing the quotes in <code>temperature</code> and <code>northern_hemisphere</code> and replacing 1 by TRUE in the <code>has_kangaroo</code> column would give what was probably intended
+</div>
+</div></li>
+</ul>
+</p></li>
+</ol>
+</blockquote>
+<p>The automatic conversion of data type is sometimes a blessing, sometimes an annoyance. Be aware that it exists, learn the rules, and double check that data you import in R are of the correct type within your data frame. If not, use it to your advantage to detect mistakes that might have been introduced during data entry (for instance, a letter in a column that should only contain numbers).</p>
+<p>Learn more in this <a href="https://support.rstudio.com/hc/en-us/articles/218611977-Importing-Data-with-RStudio">RStudio tutorial</a></p>
+</div>
+</div>
+<div id="formatting-dates" class="section level2">
+<h2>Formatting dates</h2>
+<p>A common issue that new (and experienced!) R users have is converting date and time information into a variable that is suitable for analyses. One way to store date information is to store each component of the date in a separate column. Using <code>str()</code>, we can confirm that our data frame does indeed have a separate column for day, month, and year, and that each of these columns contains integer values.</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" title="1"><span class="kw">str</span>(surveys)</a></code></pre></div>
+<p>We are going to use the <code>ymd()</code> function from the package <strong><code>lubridate</code></strong> (which belongs to the <strong><code>tidyverse</code></strong>; learn more <a href="https://www.tidyverse.org/">here</a>). <strong><code>lubridate</code></strong> gets installed as part as the <strong><code>tidyverse</code></strong> installation. When you load the <strong><code>tidyverse</code></strong> (<code>library(tidyverse)</code>), the core packages (the packages used in most data analyses) get loaded. <strong><code>lubridate</code></strong> however does not belong to the core tidyverse, so you have to load it explicitly with <code>library(lubridate)</code></p>
+<p>Start by loading the required package:</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" title="1"><span class="kw">library</span>(lubridate)</a></code></pre></div>
+<p>The <strong><code>lubridate</code></strong> package has many useful functions for working with dates. These can help you extract dates from different string representations, convert between timezones, calculate time differences and more. You can find an overview of them in the <a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/lubridate.pdf">lubridate cheat sheet</a>.</p>
+<p>Here we will use the function <code>ymd()</code>, which takes a vector representing year, month, and day, and converts it to a <code>Date</code> vector. <code>Date</code> is a class of data recognized by R as being a date and can be manipulated as such. The argument that the function requires is flexible, but, as a best practice, is a character vector formatted as “YYYY-MM-DD”.</p>
+<p>Let’s create a date object and inspect the structure:</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" title="1">my_date &lt;-<span class="st"> </span><span class="kw">ymd</span>(<span class="st">&quot;2015-01-01&quot;</span>)</a>
+<a class="sourceLine" id="cb43-2" title="2"><span class="kw">str</span>(my_date)</a></code></pre></div>
+<p>Now let’s paste the year, month, and day separately - we get the same result:</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" title="1"><span class="co"># sep indicates the character to use to separate each component</span></a>
+<a class="sourceLine" id="cb44-2" title="2">my_date &lt;-<span class="st"> </span><span class="kw">ymd</span>(<span class="kw">paste</span>(<span class="st">&quot;2015&quot;</span>, <span class="st">&quot;1&quot;</span>, <span class="st">&quot;1&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;-&quot;</span>)) </a>
+<a class="sourceLine" id="cb44-3" title="3"><span class="kw">str</span>(my_date)</a></code></pre></div>
+<p>Now we apply this function to the surveys dataset. Create a character vector from the <code>year</code>, <code>month</code>, and <code>day</code> columns of <code>surveys</code> using <code>paste()</code>:</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" title="1"><span class="kw">paste</span>(surveys<span class="op">$</span>year, surveys<span class="op">$</span>month, surveys<span class="op">$</span>day, <span class="dt">sep =</span> <span class="st">&quot;-&quot;</span>)</a></code></pre></div>
+<p>This character vector can be used as the argument for <code>ymd()</code>:</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" title="1"><span class="kw">ymd</span>(<span class="kw">paste</span>(surveys<span class="op">$</span>year, surveys<span class="op">$</span>month, surveys<span class="op">$</span>day, <span class="dt">sep =</span> <span class="st">&quot;-&quot;</span>))</a></code></pre></div>
+<pre><code>#&gt; Warning: 129 failed to parse.</code></pre>
+<p>There is a warning telling us that some dates could not be parsed (understood) by the <code>ymd()</code> function. For these dates, the function has returned <code>NA</code>, which means they are treated as missing values. We will deal with this problem later, but first we add the resulting <code>Date</code> vector to the <code>surveys</code> data frame as a new column called <code>date</code>:</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" title="1">surveys<span class="op">$</span>date &lt;-<span class="st"> </span><span class="kw">ymd</span>(<span class="kw">paste</span>(surveys<span class="op">$</span>year, surveys<span class="op">$</span>month, surveys<span class="op">$</span>day, <span class="dt">sep =</span> <span class="st">&quot;-&quot;</span>))</a></code></pre></div>
+<pre><code>#&gt; Warning: 129 failed to parse.</code></pre>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" title="1"><span class="kw">str</span>(surveys) <span class="co"># notice the new column, with &#39;date&#39; as the class</span></a></code></pre></div>
+<p>Let’s make sure everything worked correctly. One way to inspect the new column is to use <code>summary()</code>:</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" title="1"><span class="kw">summary</span>(surveys<span class="op">$</span>date)</a></code></pre></div>
+<pre><code>#&gt;         Min.      1st Qu.       Median         Mean      3rd Qu.         Max. 
+#&gt; &quot;1977-07-16&quot; &quot;1984-03-12&quot; &quot;1990-07-22&quot; &quot;1990-12-15&quot; &quot;1997-07-29&quot; &quot;2002-12-31&quot; 
+#&gt;         NA&#39;s 
+#&gt;        &quot;129&quot;</code></pre>
+<p>Let’s investigate why some dates could not be parsed.</p>
+<p>We can use the functions we saw previously to deal with missing data to identify the rows in our data frame that are failing. If we combine them with what we learned about subsetting data frames earlier, we can extract the columns “year,”month“,”day" from the records that have <code>NA</code> in our new column <code>date</code>. We will also use <code>head()</code> so we don’t clutter the output:</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" title="1">missing_dates &lt;-<span class="st"> </span>surveys[<span class="kw">is.na</span>(surveys<span class="op">$</span>date), <span class="kw">c</span>(<span class="st">&quot;year&quot;</span>, <span class="st">&quot;month&quot;</span>, <span class="st">&quot;day&quot;</span>)]</a>
+<a class="sourceLine" id="cb53-2" title="2"></a>
+<a class="sourceLine" id="cb53-3" title="3"><span class="kw">head</span>(missing_dates)</a></code></pre></div>
+<pre><code>#&gt; # A tibble: 6 × 3
+#&gt;    year month   day
+#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+#&gt; 1  2000     9    31
+#&gt; 2  2000     4    31
+#&gt; 3  2000     4    31
+#&gt; 4  2000     4    31
+#&gt; 5  2000     4    31
+#&gt; 6  2000     9    31</code></pre>
+<p>Why did these dates fail to parse? If you had to use these data for your analyses, how would you deal with this situation?</p>
+<p>The answer is because the dates provided as input for the <code>ymd()</code> function do not actually exist. If we refer to the output we got above, September and April only have 30 days, not 31 days as it is specified in our dataset.</p>
+<p>There are several ways you could deal with situation:</p>
+<ul>
+<li>If you have access to the raw data (e.g., field sheets) or supporting information (e.g., field trip reports/logs), check them and ensure the electronic database matches the information in the original data source.</li>
+<li>If you are able to contact the person responsible for collecting the data, you could refer to them and ask for clarification.</li>
+<li>You could also check the rest of the dataset for clues about the correct value for the erroneous dates.</li>
+<li>If your project has guidelines on how to correct this sort of errors, refer to them and apply any recommendations.</li>
+<li>If it is not possible to ascertain the correct value for these observations, you may want to leave them as missing data.</li>
+</ul>
+<p>Regardless of the option you choose, it is important that you document the error and the corrections (if any) that you apply to your data.</p>
+<p style="text-align: right; font-size: small;">
+Page built on: 📆 2023-05-03 ‒ 🕢 14:37:47
+</p>
+</div>
+
+<hr/>
+<div class="row">
+  <div class="col-md-7 text-left">
+    <p class="text-muted">
+      <a href="https://datacarpentry.org/">Data Carpentry</a>,  2014-2021.
+    </p>
+    <p class="text-muted">
+      <a href="LICENSE.html">License</a>.
+      <a href="CONTRIBUTING.html">Contributing</a>.
+    </p>
+    <p class="text-muted">
+      Questions?  Feedback?
+      Please <a href="https://github.com/datacarpentry/R-ecology-lesson/issues/new">file
+        an issue on GitHub</a>. <br/>
+      On Twitter: <a href="https://twitter.com/datacarpentry">@datacarpentry</a>
+    </p>
+  </div>
+  <div class="col-md-5 text-right">
+    <p class="text-muted">
+      If this lesson is useful to you, consider <a href="https://carpentries.org/newsletter/"><bold>subscribing to our newsletter</bold></a> or
+      <a href="https://give.communityin.org/TheCarpentries"  onclick="_paq.push(['trackEvent', 'donate', 'click', 'bottom-button']);">making a donation</a> to support the work of
+      <span class="text-nowrap"><a href="https://carpentries.org">The
+      Carpentries</a></span>.
+    </p>
+  </div>
+</div>
+
+
+<!--  Algolia DocSearch -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+<script type="text/javascript"> docsearch({
+ apiKey: '4c64cef535ab2b7c8d1b73ed13f283e1',
+ indexName: 'datacarpentry',
+ inputSelector: '#search-box',
+ debug: false // Set debug to true if you want to inspect the dropdown
+});
+</script>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

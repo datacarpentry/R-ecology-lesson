@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Instructor notes</title>
+
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link rel="shortcut icon" href="favicon/favicon.ico">
+<link rel="icon" sizes="16x16 32x32 64x64" href="favicon/favicon.ico">
+<link rel="icon" type="image/png" sizes="196x196" href="favicon/favicon-192.png">
+<link rel="icon" type="image/png" sizes="160x160" href="favicon/favicon-160.png">
+<link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96.png">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon/favicon-64.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16.png">
+<link rel="apple-touch-icon" href="favicon/favicon-57.png">
+<link rel="apple-touch-icon" sizes="114x114" href="favicon/favicon-114.png">
+<link rel="apple-touch-icon" sizes="72x72" href="favicon/favicon-72.png">
+<link rel="apple-touch-icon" sizes="144x144" href="favicon/favicon-144.png">
+<link rel="apple-touch-icon" sizes="60x60" href="favicon/favicon-60.png">
+<link rel="apple-touch-icon" sizes="120x120" href="favicon/favicon-120.png">
+<link rel="apple-touch-icon" sizes="76x76" href="favicon/favicon-76.png">
+<link rel="apple-touch-icon" sizes="152x152" href="favicon/favicon-152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="favicon/favicon-180.png">
+<meta name="msapplication-TileColor" content="#FFFFFF">
+<meta name="msapplication-TileImage" content="favicon/favicon-144.png">
+<meta name="msapplication-config" content="favicon/browserconfig.xml">
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<script>
+  $( function() {
+  $( ".accordion" ).accordion({
+      heightStyle: "content",
+      active: false,
+      collapsible: true
+    });
+  } );
+</script>
+
+<script>
+  <!-- search menu pop-up --->
+  $(function() {
+    function slideToggle() {
+      $("#search-box").toggle("slide", 500);
+  };
+  $("#search-icon").on("click", function() {
+  slideToggle();
+  });
+  });
+</script>
+
+
+
+<!-- Motomo analytics -->
+
+
+<script>
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>
+
+
+<!-- add  Algolia DocSearch -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="https://carpentries.matomo.cloud/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src='https://cdn.matomo.cloud/carpentries.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="index.html">Home</a>
+        </li>
+        <li>
+          <a href="00-before-we-start.html">Before we start</a>
+        </li>
+        <li>
+          <a href="01-intro-to-r.html">Intro to R</a>
+        </li>
+        <li>
+          <a href="02-starting-with-data.html">Starting with data</a>
+        </li>
+        <li>
+          <a href="03-dplyr.html">Manipulating data</a>
+        </li>
+        <li>
+          <a href="04-visualization-ggplot2.html">Visualizing data</a>
+        </li>
+        <li>
+          <a href="05-r-and-databases.html">R and SQL</a>
+        </li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            Extras<span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="code-handout.R">Download Code Handout</a></li>
+            <li><a href="instructor-notes.html">Instructor Notes</a></li>
+          </ul>
+        </li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <div class="btn-group" style="margin-right: 10px;">
+            <a type="button" class="btn btn-sm btn-success navbar-btn" href="https://give.communityin.org/TheCarpentries" onclick="_paq.push(['trackEvent', 'donate', 'click', 'top-button']);">Donate</a>
+            <a type="button" class="btn btn-sm btn-success navbar-btn"  data-toggle="tooltip" data-placement="bottom" title="If this lesson is useful to you, consider making a contribution to The Carpentries by clicking on the 'Donate' button. Thank you for your support!">
+              <span class="glyphicon glyphicon-question-sign"></span>
+              <span class="sr-only">Toggle Tooltip</span>
+            </a>
+          </div>
+        </li>
+	<li class="search">
+	  <input id="search-box" type="text"  placeholder="Search...">
+	  <input type="submit">
+	</li>
+	<li class="search">
+	  <span id ="search-icon"><i class="fa fa-search fa-lg"></i></span>
+	</li>
+        <li>
+	  <a href="https://github.com/datacarpentry/R-ecology-lesson">
+	    <span class="fa fa-github fa-lg"></span>
+	  </a>
+	</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+<div class="alert alert-warning life-cycle">
+  A snapshot of this lesson from 2022-10-17 is being tested on
+  <a href='https://carpentries.github.io/workbench'>The Carpentries Workbench</a>:
+  <a href="https://preview.carpentries.org/R-ecology-lesson">https://preview.carpentries.org/R-ecology-lesson</a>.
+  <br>
+  <b>The Workbench version of this lesson will become default on 2023-05-01</b>.
+  <button type="button" style="border: true; position: absolute; top: 0px; right: 50px; color: #383838;" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true" style='font-size:34pt'>&times;</span>
+  </button>
+</div>
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Instructor notes</h1>
+
+</div>
+
+
+<div id="dataset" class="section level2">
+<h2>Dataset</h2>
+<p>The data used for this lesson are in the figshare repository at: <a href="https://doi.org/10.6084/m9.figshare.1314459" class="uri">https://doi.org/10.6084/m9.figshare.1314459</a></p>
+<p>This lesson uses mostly <code>combined.csv</code>. The 3 other csv files: <code>plots.csv</code>, <code>species.csv</code> and <code>surveys.csv</code> are only needed for the lesson on databases.</p>
+<p><code>combined.csv</code> is downloaded directly in the episode “Starting with Data” and does not need to be downloaded before hand. It however requires that there is a decent internet connection in the room where the workshop is being taught. To facilitate the download process, the chunk of code that includes the URL where the csv file lives, and where the file should go and be named is included in the code handout (see next paragraph). Using this approach ensures that the file will be where the lesson expects it to be, and teaches good/reproducible practice of automating the download. If the learners haven’t created the <code>data/</code> directory and/or are not in the correct working directory, the <code>download.file</code> command will produce an error. Therefore, it is important to use the stickies at this point.</p>
+</div>
+<div id="the-handout" class="section level2">
+<h2>The handout</h2>
+<p>The <a href="https://datacarpentry.org/R-ecology-lesson/code-handout.R">code handout</a> (a link to download it is also available on the top bar of the lesson website) is useful for Data Carpentry workshops. It includes an outline of the lesson content, the text for the challenges, the links for the files that need to be downloaded for the lesson, and pieces of code that may be difficult to type for learners with no programming experience/who are unfamiliar with R’s syntax. We encourage you to distribute it to the learners at the beginning of the lesson. As an instructor, we encourage you to do the live coding directly in this file, so the participants can follow along.</p>
+</div>
+<div id="r-version" class="section level2">
+<h2>R Version</h2>
+<p>With the release of R 4.0.0 in early 2020, an important change has been made to R: The default for <code>stringsAsFactors</code> is now <code>FALSE</code> instead of <code>TRUE</code>. As a result, the <code>read.csv()</code> and <code>data.frame()</code> functions do not automatically convert character columns to factors anymore (you can read more about it <a href="https://developer.r-project.org/Blog/public/2020/02/16/stringsasfactors/index.html">in this post on the R developer blog</a>).</p>
+<p>This change should not cause any problems with this lesson, independent of whether R &gt;4.0 is used or not, because it uses <code>read_csv()</code> from the <strong><code>tidyverse</code></strong> package throughout. Other than <code>read.csv()</code> from base R, <code>read_csv()</code> never converts character columns to factors, regardless of the R version.</p>
+<p>Nevertheless, it is recommended that learners install a version of R ≥4.0.0, and instructors and helpers should be aware of this potential source of error.</p>
+</div>
+<div id="rstudio-and-multiple-r-installs" class="section level2">
+<h2>RStudio and Multiple R Installs</h2>
+<p>Some learners may have previous R installations. On Mac, if a new install is performed, the learner’s system will create a symbolic link, pointing to the new install as ‘Current.’ Sometimes this process does not occur, and, even though a new R is installed and can be accessed via the R console, RStudio does not find it. The net result of this is that the learner’s RStudio will be running an older R install. This will cause package installations to fail. This can be fixed at the terminal. First, check for the appropriate R installation in the library;</p>
+<pre><code>ls -l /Library/Frameworks/R.framework/Versions/</code></pre>
+<p>We are currently using R 4.0.x. If it isn’t there, they will need to install it. If it is present, you will need to set the symbolic link to Current to point to the 4.0.x directory:</p>
+<pre><code>ln -s /Library/Frameworks/R.framework/Versions/3.6.x /Library/Frameworks/R.framework/Version/Current</code></pre>
+<p>Then restart RStudio.</p>
+</div>
+<div id="issues-with-fonts-on-macos" class="section level2">
+<h2>Issues with Fonts on MacOS</h2>
+<p>On older versions of MacOS, it may happen that axis labels do not show up when calling <code>plot()</code> (section “renaming factors” in “Starting with Data”). This issue might be due to the default font Arial being deactivated, so that R cannot find it. To resolve this issue, go to Finder, Search for Font Book and open it. Look for the Arial font and, if it is greyed out, turn it on.</p>
+<p>If the problem occurs with <code>ggplot2</code> plots, an alternative workaround is to change the default theme for the R session, so that ggplot uses a <em>serif</em> font. Since Arial is a <em>sans-serif</em> font, R will try to load a different font. This can be done with <code>theme_update(text = element_text(family = "serif"))</code>.</p>
+</div>
+<div id="required-packages" class="section level2">
+<h2>Required packages</h2>
+<p>Save yourself some aggrevation, and have everyone check and see if they can install all these packages before you start the first day. See the “Preparations” section on the homepage of the course website for package installation instructions.</p>
+<p>Sometimes learners are unable to install the <strong><code>tidyverse</code></strong> package. In that case, they can try to install the individual packages that are actually needed:</p>
+<pre><code>install.packages(c(&quot;readr&quot;, &quot;lubridate&quot;, &quot;dplyr&quot;, &quot;tidyr&quot;, &quot;ggplot2&quot;, &quot;dbplyr&quot;))</code></pre>
+</div>
+<div id="narrative" class="section level2">
+<h2>Narrative</h2>
+<div id="before-we-start" class="section level3">
+<h3>Before we start</h3>
+<ul>
+<li>The main goal here is to help the learners be comfortable with the RStudio interface. We use RStudio because it helps make using R more organized and user friendly.</li>
+<li>The “Why learning R?” section contains suggestions of what you could tell your learners about the benefits of learning R. However, it’s best if you can talk here about what has worked for you personally.</li>
+<li>Go very slowly in the “Getting setup section”. Make sure everyone is following along (remind learners to use the stickies). Plan with the helpers at this point to go around the room, and be available to help. It’s important to make sure that learners are in the correct working directory, and that they create a <code>data_raw</code> (all lowercase) subfolder.</li>
+<li>The seeking help section is relatively long, and while it’s useful to demonstrate a couple of ways to get help from within R, you may want to mostly point the workshop participants to this useful reference so that they can refer to it after the workshop.</li>
+<li>In the “where to ask for help section?”, you may want to emphasize the first point about how workshops are a great way to create community of learners that can help each others during and after the workshop.</li>
+</ul>
+</div>
+<div id="intro-to-r" class="section level3">
+<h3>Intro to R</h3>
+<ul>
+<li>When going over the section on assignments, make sure to pause for at least 30 seconds when asking “What do you think is the current content of the object weight_lb? 126.5 or 220?”. For learners with no programming experience, this is a new and important concept.</li>
+<li>Given that the concept of missing data is an important feature of the R language, it is worth spending enough time on it.</li>
+</ul>
+</div>
+<div id="starting-with-data" class="section level3">
+<h3>Starting with data</h3>
+<p>The two main goals for this lessons are:</p>
+<ul>
+<li>To make sure that learners are comfortable with working with data frames, and can use the bracket notation to select slices/columns</li>
+<li>To expose learners to factors. Their behavior is not necessarily intuitive, and so it is important that they are guided through it the first time they are exposed to it. The content of the lesson should be enough for learners to avoid common mistakes with them.</li>
+<li>If the learners are not familiar with the ecology terminology used in the data set, it might be a good idea to briefly review it here. Especially the terms <em>genus</em> and <em>plot</em> have caused some confusion to learners in the past. It might help to point out that the plural of genus is <em>genera</em>, and that <code>plot_id</code> and <code>plot_type</code> in the data set refer to the ID and type of a plot of land that was surveyed by the researchers in the study.</li>
+</ul>
+</div>
+<div id="manipulating-data" class="section level3">
+<h3>Manipulating data</h3>
+<ul>
+<li>For this lesson make sure that learners are comfortable using pipes.</li>
+<li>There is also sometimes some confusion on what the arguments of <code>group_by</code> should be.</li>
+<li>This lesson uses the tidyr package to reshape data for plotting</li>
+<li>After this lesson students should be familiar with the spread() and gather() functions available in tidyr</li>
+<li>While working with the example for mutate(), it is difficult to see the “weight” columns on a zoomed in RStudio screen. Including a select() command to select the columns “weight_kg” and “weight_lb” makes it easier to view how the “weight” columns are changed.</li>
+<li>It is crucial that learners use the function <code>read_csv()</code> from tidyverse, not <code>read.csv()</code> from base R. Using the wrong function will cause unexpected results further down the line, especially in the section on working with factors.</li>
+<li>Note: If students end up with 30521 rows for <code>surveys_complete</code> instead of the expected 30463 rows at the end of the chapter, then they have likely used <code>read.csv()</code> and not <code>read_csv()</code> to import the data.</li>
+<li>When explaining <code>view()</code>, consider mentioning that is a function of the <strong><code>tibble</code></strong> package, and that the base function <code>View()</code> can also be used to view a data frame.</li>
+</ul>
+</div>
+<div id="visualizing-data" class="section level3">
+<h3>Visualizing data</h3>
+<ul>
+<li>This lesson is a broad overview of ggplot2 and focuses on (1) getting familiar with the layering system of ggplot2, (2) using the argument <code>group</code> in the <code>aes()</code> function, (3) basic customization of the plots.</li>
+<li>It maybe worthwhile to mention that we can also specify colors by color HEX code (<a href="http://colorbrewer2.org" class="uri">http://colorbrewer2.org</a>) <code>ggplot(data = surveys_complete, mapping = aes(x = weight, y = hindfoot_length)) +       geom_point(alpha = 0.1, color = "#FF0000")</code></li>
+</ul>
+</div>
+<div id="r-and-sql" class="section level3">
+<h3>R and SQL</h3>
+<ul>
+<li>Ideally this lesson is best taught at the end of the workshop (as a capstone example) to illustrate how the tools covered can integrate with each others. Depending on the audience, and the pace of the workshop, it can be shown as a demonstration rather than a typically lesson.</li>
+<li>The explanation of how dplyr’s verb syntax is translated into SQL statements, and the section on laziness are optional and don’t need to be taught in detail during a workshop. They can be useful after a workshop for learners interested in learning more about the topics or for instructors to answer questions from the workshop participants.</li>
+</ul>
+</div>
+</div>
+<div id="potential-issues-solutions" class="section level2">
+<h2>Potential issues &amp; solutions</h2>
+<p>As it stands, the solutions to all the challenges are commented out in the Rmd files. If you want to double check your answer, you can look at the source code of the Rmd files on GitHub.</p>
+</div>
+<div id="technical-tips-and-tricks" class="section level2">
+<h2>Technical Tips and Tricks</h2>
+<p>Show how to use the ‘zoom’ button to blow up graphs without constantly resizing windows</p>
+<p>Sometimes a package will not install, try a different CRAN mirror - Tools &gt; Global Options &gt; Packages &gt; CRAN Mirror</p>
+<p>Alternatively you can go to CRAN and download the package and install from ZIP file - Tools &gt; Install Packages &gt; set to ‘from Zip/TAR’</p>
+<p>It is important that R, and the R packages be installed locally, not on a network drive. If a learner is using a machine with multiple users where their account is not based locally this can create a variety of issues (This often happens on university computers). Hopefully the learner will realize these issues before hand, but depending on the machine and how the IT folks that service the computer have things set up, it may be very difficult to impossible to make R work without their help.</p>
+<p>If learners are having issues with one package, they may have issues with another. It is often easier to <a href="#required-packages">make sure they have all the necessary packages installed</a> at one time, rather then deal with these issues over and over.</p>
+<p>In lesson 2 starting with data, one might not have the appropriate folder “data_raw” in their working directory causing an error. This is a good time to go over reading an error, and a brief introduction of how to identify your working directory <code>getwd()</code> as well as setting your working directory <code>setwd("/somedirectory")</code> and if needed creating a directory within your script <code>dir.create("/some_new_directory")</code>, or simply creating it within a file explorer works if short on time.</p>
+</div>
+<div id="other-resources" class="section level2">
+<h2>Other Resources</h2>
+<p>If you encounter a problem during a workshop, feel free to contact the maintainers by email or <a href="https://github.com/datacarpentry/R-ecology-lesson/issues/new">open an issue</a>.</p>
+<p>For a more in-depth coverage of topics of the workshops, you may want to read “<a href="https://r4ds.had.co.nz/">R for Data Science</a>” by Hadley Wickham and Garrett Grolemund.</p>
+</div>
+
+<hr/>
+<div class="row">
+  <div class="col-md-7 text-left">
+    <p class="text-muted">
+      <a href="https://datacarpentry.org/">Data Carpentry</a>,  2014-2021.
+    </p>
+    <p class="text-muted">
+      <a href="LICENSE.html">License</a>.
+      <a href="CONTRIBUTING.html">Contributing</a>.
+    </p>
+    <p class="text-muted">
+      Questions?  Feedback?
+      Please <a href="https://github.com/datacarpentry/R-ecology-lesson/issues/new">file
+        an issue on GitHub</a>. <br/>
+      On Twitter: <a href="https://twitter.com/datacarpentry">@datacarpentry</a>
+    </p>
+  </div>
+  <div class="col-md-5 text-right">
+    <p class="text-muted">
+      If this lesson is useful to you, consider <a href="https://carpentries.org/newsletter/"><bold>subscribing to our newsletter</bold></a> or
+      <a href="https://give.communityin.org/TheCarpentries"  onclick="_paq.push(['trackEvent', 'donate', 'click', 'bottom-button']);">making a donation</a> to support the work of
+      <span class="text-nowrap"><a href="https://carpentries.org">The
+      Carpentries</a></span>.
+    </p>
+  </div>
+</div>
+
+
+<!--  Algolia DocSearch -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+<script type="text/javascript"> docsearch({
+ apiKey: '4c64cef535ab2b7c8d1b73ed13f283e1',
+ indexName: 'datacarpentry',
+ inputSelector: '#search-box',
+ debug: false // Set debug to true if you want to inspect the dropdown
+});
+</script>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
