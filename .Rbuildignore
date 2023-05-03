@@ -1,2 +1,4 @@
+^renv$
+^renv\.lock$
 ^\.travis\.yml$
 ^tic\.R$
