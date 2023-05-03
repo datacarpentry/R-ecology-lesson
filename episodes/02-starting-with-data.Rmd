@@ -211,6 +211,12 @@ We already saw how the functions `head()` and `str()` can be useful to check the
 content and the structure of a data frame. Here is a non-exhaustive list of
 functions to get a sense of the content/structure of the data. Let's try them out!
 
+::: instructor
+
+As you go through this next section, you may want to point out what is happening in the enviornement pane. Specially with the function 'nrow' and 'ncol' as they correspond with 'observation' and 'variables' in the enviornment. This can help learners make connections between the different sections of the R interface and identify ways to double check their work. 
+
+:::
+
 - Size:
   
   - `dim(surveys)` - returns a vector with the number of rows in the first element,
