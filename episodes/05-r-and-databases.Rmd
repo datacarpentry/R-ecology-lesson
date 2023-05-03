@@ -1,6 +1,6 @@
 ---
-title: "SQL databases and R"
-author: "Data Carpentry contributors"
+title: SQL databases and R
+author: Data Carpentry contributors
 output:
   html_document:
     df_print: paged
@@ -15,22 +15,24 @@ if (file.exists("portal-database.sqlite")) file.remove("portal-database.sqlite")
 ## SQL databases and R
 ```
 
+***
 
-------------
+::::::::::::::::::::::::::::::::::::::  objectives
 
-> ### Learning Objectives
->
-> * Access a database from R.
-> * Run SQL queries in R using **`RSQLite`** and **`dplyr`**.
-> * Describe the lazy behavior of dplyr on data stored in a database outside of R.
-> * Prototype queries and retrieve all final results.
-> * Create complex queries across one or multiple database tables.
-> * Create an SQLite database from existing .csv files.
+### Learning Objectives
 
-------------
+- Access a database from R.
+- Run SQL queries in R using **`RSQLite`** and **`dplyr`**.
+- Describe the lazy behavior of dplyr on data stored in a database outside of R.
+- Prototype queries and retrieve all final results.
+- Create complex queries across one or multiple database tables.
+- Create an SQLite database from existing .csv files.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+***
 
 ## Introduction
-
 
 So far, we have dealt with small datasets that easily fit into your computer's
 memory. But what about datasets that are too large for your computer to
@@ -49,10 +51,10 @@ you used in the previous chapter, in conjunction with [**`dbplyr`**](https://cra
 supports connecting to the widely-used open
 source databases [sqlite](https://sqlite.org/), [mysql](https://www.mysql.com/)
 and [postgresql](https://www.postgresql.org/), as well as
-Google’s [bigquery](https://cloud.google.com/bigquery/), and it can also be
+Google's [bigquery](https://cloud.google.com/bigquery/), and it can also be
 extended to other database types (a [vignette](https://cran.r-project.org/web/packages/dbplyr/vignettes/new-backend.html)
 in the **`dplyr`** package explains how to do it). RStudio has created
-[a website](http://db.rstudio.com/) that provides documentation and best practices
+[a website](https://db.rstudio.com/) that provides documentation and best practices
 to work on database interfaces.
 
 Interfacing with databases using **`dplyr`** focuses on retrieving and analyzing
@@ -62,7 +64,7 @@ entries. If you need these functionalities, you will need to use additional R
 packages (e.g., **`RSQLite`**). Here we will demonstrate how to interact with a
 database using **`dplyr`**, using both the **`dplyr`**'s verb syntax and the SQL syntax.
 
-### The portal_mammals database
+### The portal\_mammals database
 
 We will continue to explore the `surveys` data you are already familiar with
 from previous lessons. First, we are going to install the **`dbplyr`** package:
@@ -76,7 +78,7 @@ that you generated during
 [the SQL lesson](https://datacarpentry.org/sql-ecology-lesson/00-sql-introduction/index.html).
 If you don't have it, you can download it from Figshare into the `data_raw` subdirectory using:
 
-```{r download, eval = FALSE, purl=FALSE}
+```{r download, eval=FALSE, purl=FALSE}
 dir.create("data_raw", showWarnings = FALSE)
 download.file(url = "https://ndownloader.figshare.com/files/2292171",
               destfile = "data_raw/portal_mammals.sqlite", mode = "wb")
@@ -114,9 +116,9 @@ Just like a spreadsheet with multiple worksheets, a SQLite database can contain
 multiple tables. In this case three of them are listed in the `tbls` row in the
 output above:
 
-* plots
-* species
-* surveys
+- plots
+- species
+- surveys
 
 Now that we know we can connect to the database, let's explore how to get
 the data from its tables into R.
@@ -125,8 +127,8 @@ the data from its tables into R.
 
 To connect to tables within a database, you can use the `tbl()` function from
 **`dplyr`**. This function can be used to send SQL queries to the database. To
-demonstrate this functionality, let's select the columns "year", "species_id",
-and "plot_id" from the `surveys` table:
+demonstrate this functionality, let's select the columns "year", "species\_id",
+and "plot\_id" from the `surveys` table:
 
 ```{r use-sql-syntax, purl=TRUE}
 tbl(mammals, sql("SELECT year, species_id, plot_id FROM surveys"))
@@ -153,8 +155,7 @@ functions that can be used with data frames can also be used on tables from a
 database. For instance, the `head()` function can be used to check the first 10
 rows of the table:
 
-
-```{r table_details, results='show', purl=FALSE}
+```{r table_details, results="show", purl=FALSE}
 head(surveys, n = 10)
 ```
 
@@ -167,7 +168,7 @@ together in a moment.
 However, some functions don't work quite as expected. For instance, let's check
 how many rows there are in total using `nrow()`:
 
-```{r nrows, results='show', purl=FALSE}
+```{r nrows, results="show", purl=FALSE}
 nrow(surveys)
 ```
 
@@ -233,9 +234,9 @@ To see this in action, let's compose a few queries with **`dplyr`**.
 ## Simple database queries
 
 First, let's only request rows of the `surveys` table in which `weight` is less
-than 5 and keep only the species_id, sex, and weight columns.
+than 5 and keep only the species\_id, sex, and weight columns.
 
-```{r pipe, results='show', purl=FALSE}
+```{r pipe, results="show", purl=FALSE}
 surveys %>%
   filter(weight < 5) %>%
   select(species_id, sex, weight)
@@ -260,11 +261,15 @@ R lazy and only retrieved 10 of them?
 Hadley Wickham, the author of **`dplyr`**
 [explains](https://cran.r-project.org/web/packages/dbplyr/vignettes/dbplyr.html):
 
-> When working with databases, **`dplyr`** tries to be as lazy as possible:
->
-> * It never pulls data into R unless you explicitly ask for it.
-> * It delays doing any work until the last possible moment - it collects together
-> everything you want to do and then sends it to the database in one step.
+::::::::::::::::::::::::::::::::::::::  blockquote
+
+When working with databases, **`dplyr`** tries to be as lazy as possible:
+
+- It never pulls data into R unless you explicitly ask for it.
+- It delays doing any work until the last possible moment - it collects together
+  everything you want to do and then sends it to the database in one step.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 When you construct a **`dplyr`** query, you can connect multiple verbs into a single
 pipeline. For example, we combined the `filter()` and `select()` verbs using the
@@ -273,7 +278,7 @@ pipeline. For example, we combined the `filter()` and `select()` verbs using the
 If we wanted to, we could add on even more steps, e.g. remove the `sex` column
 in an additional `select` call:
 
-```{r pipe2, results='show', purl=FALSE}
+```{r pipe2, results="show", purl=FALSE}
 data_subset <- surveys %>%
   filter(weight < 5) %>%
   select(species_id, sex, weight)
@@ -284,7 +289,7 @@ data_subset %>%
 
 Just like the first `select(species_id, sex, weight)` call, the `select(-sex)`
 command is not executed by R. It is sent to the database instead. Only the
-_final_ result is retrieved and displayed to you.
+*final* result is retrieved and displayed to you.
 
 Of course, we could always add on more steps, e.g., we could filter by
 `species_id` or  minimum `weight`. That's why R doesn't retrieve the full set
@@ -294,10 +299,10 @@ database to do more work...)
 
 To instruct R to stop being lazy, e.g. to retrieve all of the query results from
 the database, we add the `collect()` command to our pipe. It indicates that our
-database query is finished: time to get the _final_ results and load them into
+database query is finished: time to get the *final* results and load them into
 the R session.
 
-```{r collect, results='markup', purl=FALSE}
+```{r collect, results="markup", purl=FALSE}
 data_subset <- surveys %>%
   filter(weight < 5) %>%
   select(species_id, sex, weight) %>%
@@ -326,14 +331,14 @@ the `plots` and `surveys` tables. The `plots` table in the database contains
 information about the different plots surveyed by the researchers. To access it,
 we point the `tbl()` command to it:
 
-```{r plots, results='markup', purl=FALSE}
+```{r plots, results="markup", purl=FALSE}
 plots <- tbl(mammals, "plots")
 plots
 ```
 
 The `plot_id` column also features in the `surveys` table:
 
-```{r surveys, results='markup', purl=FALSE}
+```{r surveys, results="markup", purl=FALSE}
 surveys
 ```
 
@@ -342,77 +347,80 @@ records, and join the two tables.
 
 If we have two tables named x and y with a common column called "ID", we can join them using 'join' functions, two of which are described and illustrated below.
 
-1. inner_join() : This returns all rows from x where there are matching values in y, and all columns from x and y.
+1. inner\_join() : This returns all rows from x where there are matching values in y, and all columns from x and y.
 
-2. left_join() : This return all rows from x, and all columns from x and y. Rows in x with no match in y will have NA values in the new columns.  
+2. left\_join() : This return all rows from x, and all columns from x and y. Rows in x with no match in y will have NA values in the new columns.
 
 In both forms of join, if there are multiple matches between x and y, all combinations of the matches are returned. For the full list of 'join' functions, check out the [tidyverse join page.](https://dplyr.tidyverse.org/reference/mutate-joins.html)
 
 In our example, the two tables we want to join are 'plots' and 'surveys'.
 
-![diagram illustrating inner and left joins](./img/joins.svg)
-
+![](./fig/joins.svg){alt='diagram illustrating inner and left joins'}
 
 For example, to extract all surveys for the first plot, which has `plot_id` 1,
 we can do:
 
-```{r join, results='markup', purl=FALSE}
+```{r join, results="markup", purl=FALSE}
 plots %>%
   filter(plot_id == 1) %>%
   inner_join(surveys) %>%
   collect()
 ```
 
-
-
 **Important Note:** Without the `collect()` statement, only the first 10
 matching rows are returned. By adding `collect()`, the full set of 1,985 is
 retrieved.
 
-> ### Challenge
->
-> Write a query that returns the number of rodents observed in each plot in
-> each year.
->
-> Hint: Connect to the species table and write a query that joins the species
-> and survey tables together to exclude all non-rodents.
-> The query should return counts of rodents by year.
->
-> Optional: Write a query in SQL that will produce the same result. You can join
-> multiple tables together using the following syntax where foreign key refers
-> to your unique id (e.g., `species_id`):
->
-> ```sql
-> SELECT table.col, table.col
-> FROM table1 JOIN table2
-> ON table1.key = table2.key
-> JOIN table3 ON table2.key = table3.key
-> ```
->
-> ```{r left_join_answer, answer=TRUE, eval=TRUE}
-> ## with dplyr syntax
-> species <- tbl(mammals, "species")
->
-> left_join(surveys, species) %>%
->   filter(taxa == "Rodent") %>%
->   group_by(taxa, year, plot_id) %>%
->   tally() %>%
->   collect()
->
-> ## with SQL syntax
-> query <- paste("
-> SELECT a.year, b.taxa,count(*) as count
-> FROM surveys a
-> JOIN species b
-> ON a.species_id = b.species_id
-> AND b.taxa = 'Rodent'
-> GROUP BY b.taxa, a.year, a.plot_id",
-> sep = "" )
->
-> tbl(mammals, sql(query))
-> >
-> ```
+:::::::::::::::::::::::::::::::::::::::  challenge
 
+### Challenge
+
+Write a query that returns the number of rodents observed in each plot in
+each year.
+
+Hint: Connect to the species table and write a query that joins the species
+and survey tables together to exclude all non-rodents.
+The query should return counts of rodents by year.
+
+Optional: Write a query in SQL that will produce the same result. You can join
+multiple tables together using the following syntax where foreign key refers
+to your unique id (e.g., `species_id`):
+
+```sql
+SELECT table.col, table.col
+FROM table1 JOIN table2
+ON table1.key = table2.key
+JOIN table3 ON table2.key = table3.key
+```
+
+:::::::: solution
+
+```{r left_join_answer, answer=TRUE, eval=TRUE}
+## with dplyr syntax
+species <- tbl(mammals, "species")
+
+left_join(surveys, species) %>%
+  filter(taxa == "Rodent") %>%
+  group_by(taxa, year, plot_id) %>%
+  tally() %>%
+  collect()
+
+## with SQL syntax
+query <- paste("
+SELECT a.year, b.taxa,count(*) as count
+FROM surveys a
+JOIN species b
+ON a.species_id = b.species_id
+AND b.taxa = 'Rodent'
+GROUP BY b.taxa, a.year, a.plot_id",
+sep = "" )
+
+tbl(mammals, sql(query))
+```
+
+:::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ```{r challenge-sql-1, purl=TRUE, echo=FALSE}
 
@@ -436,25 +444,31 @@ retrieved.
 
 ```
 
-> ### Challenge
->
->  Write a query that returns the total number of rodents in each genus caught
->  in the different plot types.
->
->  Hint: Write a query that joins the species, plot, and survey tables together.
->  The query should return counts of genus by plot type.
->
-> ```{r genus_by_type_answer, answer=TRUE, results='markup', eval=FALSE}
-> species <- tbl(mammals, "species")
-> genus_counts <- left_join(surveys, plots) %>%
->   left_join(species) %>%
->   filter(taxa == "Rodent") %>%
->   group_by(plot_type, genus) %>%
->   tally() %>%
->   collect()
-> ```
+:::::::::::::::::::::::::::::::::::::::  challenge
 
+### Challenge
 
+Write a query that returns the total number of rodents in each genus caught
+in the different plot types.
+
+Hint: Write a query that joins the species, plot, and survey tables together.
+The query should return counts of genus by plot type.
+
+:::::::: solution
+
+```{r genus_by_type_answer, answer=TRUE, results="markup", eval=FALSE}
+species <- tbl(mammals, "species")
+genus_counts <- left_join(surveys, plots) %>%
+  left_join(species) %>%
+  filter(taxa == "Rodent") %>%
+  group_by(plot_type, genus) %>%
+  tally() %>%
+  collect()
+```
+
+:::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ```{r challenge-sql-2, purl=TRUE, echo=FALSE}
 ### Challenge
@@ -487,7 +501,6 @@ unique_genera <- left_join(surveys, plots) %>%
 `n_distinct`, like the other **`dplyr`** functions we have used in this lesson, works
 not only on database connections but also on regular data frames.
 
-
 ## Creating a new SQLite database
 
 So far, we have used a previously prepared SQLite database. But we can also
@@ -513,7 +526,7 @@ command we used above to open an existing `.sqlite` file. The `create = TRUE`
 argument instructs R to create a new, empty database instead.
 
 **Caution:** When `create = TRUE` is added, any existing database at the same
-location is overwritten _without warning_.
+location is overwritten *without warning*.
 
 ```{r create_database, purl=TRUE}
 my_db_file <- "data/portal-database-output.sqlite"
@@ -522,7 +535,7 @@ my_db <- src_sqlite(my_db_file, create = TRUE)
 
 Currently, our new database is empty, it doesn't contain any tables:
 
-```{r empty, results='show'}
+```{r empty, results="show"}
 my_db
 ```
 
@@ -539,12 +552,15 @@ being written to disk. R and **`dplyr`** not only provide ways to query
 existing databases, they also provide functionality to create your own databases
 from flat files!
 
-> ### Challenge
->
-> Add the remaining species table to the `my_db` database and run some of your
-> queries from earlier in the lesson to verify that you have
-> faithfully recreated the mammals database.
+:::::::::::::::::::::::::::::::::::::::  challenge
 
+### Challenge
+
+Add the remaining species table to the `my_db` database and run some of your
+queries from earlier in the lesson to verify that you have
+faithfully recreated the mammals database.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ```{r challenge-sql-3, purl=TRUE, echo=FALSE}
 ### Challenge
@@ -563,5 +579,3 @@ this is not suitable for very large datasets.
 e.g. memory.
 
 
-```{r, child="_page_built_on.Rmd"}
-```

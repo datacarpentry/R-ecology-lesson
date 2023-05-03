@@ -24,5 +24,3 @@ Instances of abusive, harassing, or otherwise unacceptable behavior may be
 reported by following our [reporting guidelines](https://software-carpentry.org/CoC-reporting/).
 
 
-```{r, child="_page_built_on.Rmd"}
-```

@@ -1,6 +1,6 @@
 # CITATION
 
-```{r, echo=FALSE, results='hide'}
+```{r, echo=FALSE, results="hide"}
 eds <- personList(
     person(given = "Ana Costa", family = "Conrado"),
     person(given = "Auriel M.V.", family = "Fournier"),
@@ -56,18 +56,16 @@ system("update-copyright.py")
 ## generate_zenodo_json(editors = eds)
 ```
 
-
 ## Data
 
 Data is from the paper S. K. Morgan Ernest, Thomas J. Valone, and James
 H. Brown. 2009. Long-term monitoring and experimental manipulation of a
 Chihuahuan Desert ecosystem near Portal, Arizona, USA. Ecology 90:1708.
 
-http://esapubs.org/archive/ecol/E090/118/
+[http://esapubs.org/archive/ecol/E090/118/](http://esapubs.org/archive/ecol/E090/118/)
 
 A simplified version of this data, suitable for teaching is available on
 [figshare](https://doi.org/10.6084/m9.figshare.1314459.v5).
-
 
 ## Lessons
 
@@ -91,18 +89,14 @@ sponsored by the [ELIXIR project](https://elixir-europe.org/).
 
 You can cite this Data Carpentry lesson as follow:
 
-
-```{r, echo=FALSE, results='asis'}
+```{r, echo=FALSE, results="asis"}
 print(generate_citation(), style = "html")
 ```
 
 or as a BibTeX entry:
 
-
-```{r, echo=FALSE, comment=''}
+```{r, echo=FALSE, comment=""}
 print(generate_citation(), style = "bibtex")
 ```
 
 
-```{r, child="_page_built_on.Rmd"}
-```
