@@ -1,87 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lesson00-before-we-start.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson/00-before-we-start.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lesson01-intro-to-r.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson/01-intro-to-r.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lesson02-starting-with-data.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson/02-starting-with-data.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lesson03-dplyr.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson/03-dplyr.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lesson04-visualization-ggplot2.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson/04-visualization-ggplot2.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lesson05-r-and-databases.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson/05-r-and-databases.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lesson404.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson/404.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lessonCITATION.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson/CITATION.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lessonCONDUCT.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson/CONDUCT.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lessonLICENSE.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson/LICENSE.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lessonNEWS.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson/NEWS.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lessonindex.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson/aio.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lessoninstructor/00-before-we-start.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson/images.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lessoninstructor/01-intro-to-r.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson/index.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lessoninstructor/02-starting-with-data.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson/instructor/00-before-we-start.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lessoninstructor/03-dplyr.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson/instructor/01-intro-to-r.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lessoninstructor/04-visualization-ggplot2.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson/instructor/02-starting-with-data.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lessoninstructor/05-r-and-databases.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson/instructor/03-dplyr.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lessoninstructor/404.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson/instructor/04-visualization-ggplot2.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lessoninstructor/CITATION.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson/instructor/05-r-and-databases.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lessoninstructor/CONDUCT.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson/instructor/404.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lessoninstructor/LICENSE.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson/instructor/CITATION.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lessoninstructor/NEWS.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson/instructor/CONDUCT.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lessoninstructor/index.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson/instructor/LICENSE.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lessoninstructor/profiles.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson/instructor/NEWS.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lessoninstructor/reference.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson/instructor/aio.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lessonprofiles.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson/instructor/images.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lessonreference.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson/instructor/index.html</loc>
+  </url>
+  <url>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson/instructor/instructor-notes.html</loc>
+  </url>
+  <url>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson/instructor/key-points.html</loc>
+  </url>
+  <url>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson/instructor/profiles.html</loc>
+  </url>
+  <url>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson/instructor/reference.html</loc>
+  </url>
+  <url>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson/instructor-notes.html</loc>
+  </url>
+  <url>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson/key-points.html</loc>
+  </url>
+  <url>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson/profiles.html</loc>
+  </url>
+  <url>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson/reference.html</loc>
   </url>
 </urlset>
