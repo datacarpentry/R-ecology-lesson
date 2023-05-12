@@ -62,6 +62,15 @@ We created the folder that will store the downloaded data (`data_raw`) in the ch
 If you skipped that part, it may be a good idea to have a look now, to make
 sure your working directory is set up properly.
 
+::: instructor
+
+In lesson 2 starting with data, one might not have the appropriate folder "data\_raw" in their working directory causing an error. 
+This is a good time to go over reading an error, and a brief introduction of how to identify your working directory `getwd()` as well as setting your working directory `setwd("/somedirectory")`.
+Also, if you need to create a directory within your script `dir.create("/some_new_directory")`,
+you can simply create it within a file explorer works if short on time.
+
+:::
+
 We are going to use the R function `download.file()` to download the CSV file
 that contains the survey data from Figshare, and we will use `read_csv()` to
 load the content of the CSV file into R.
