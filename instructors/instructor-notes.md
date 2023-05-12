@@ -232,8 +232,6 @@ If learners are having issues with one package, they may have issues with
 another. It is often easier to [make sure they have all the necessary packages installed](#required-packages)
 at one time, rather then deal with these issues over and over.
 
-In lesson 2 starting with data, one might not have the appropriate folder "data\_raw" in their working directory causing an error. This is a good time to go over reading an error, and a brief introduction of how to identify your working directory `getwd()` as well as setting your working directory `setwd("/somedirectory")` and if needed creating a directory within your script `dir.create("/some_new_directory")`, or simply creating it within a file explorer works if short on time.
-
 ## Other Resources
 
 If you encounter a problem during a workshop, feel free to contact the
