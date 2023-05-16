@@ -260,18 +260,14 @@ and we can understand. We call the instructions *commands* and we tell the
 computer to follow the instructions by *executing* (also called *running*) those
 commands.
 
-There are two main ways of interacting with R: by using the console or by using
-script files (plain text files that contain your code). The console pane (in
-RStudio, the bottom left panel) is the place where commands written in the R
-language can be typed and executed immediately by the computer. It is also where
-the results will be shown for commands that have been executed. You can type
-commands directly into the console and press `Enter` to execute those commands,
-but they will be forgotten when you close the session.
+There are two main ways of interacting with R:
 
-Because we want our code and workflow to be reproducible, it is better to type
-the commands we want in the script editor, and save the script. This way, there
-is a complete record of what we did, and anyone (including our future selves!)
-can easily replicate the results on their computer.
+1. writing commands directly into the console, or
+2. writing and executing commands in a script file.
+
+Commands written into the console (in RStudio, the bottom left pane) will be executed immediately after pressing <kbd>Enter</kbd>/ <kbd>Return</kbd>. The results will appear in the console; however, they will not be saved once you close the session.
+
+To improve reproducibility, it is preferable to write and execute commands in script files (i.e., plain text files that contain code). In RStudio, script files are written and saved in the upper left pane. Script files provide a record of the commands we have executed and allow anyone (including our future selves) to understand our workflow and replicate the results.
 
 RStudio allows you to execute commands directly from the script editor by using
 the <kbd>`Ctrl`</kbd> + <kbd>`Enter`</kbd> shortcut (on Macs, <kbd>`Cmd`</kbd> +
