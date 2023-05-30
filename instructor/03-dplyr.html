@@ -165,7 +165,7 @@
     <div class="accordion-header" id="flush-headingcurrent">
         <span class="visually-hidden">Current Chapter</span>
         <span class="current-chapter">
-        Manipulating, analyzing and exporting data with tidyverse
+        4. Manipulating, analyzing and exporting data with tidyverse
         </span>
       
     </div><!--/div.accordion-header-->
@@ -486,12 +486,12 @@ data, we can assign it a new name:</p>
 </div>
 <p>Note that the final data frame is the leftmost part of this
 expression.</p>
-<div id="challenge1" class="callout challenge">
+<div id="challenge" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <div id="challenge" class="callout-inner">
-<h3 class="callout-title">Challenge<a class="anchor" aria-label="anchor" href="#challenge1"></a>
+<h3 class="callout-title">Challenge<a class="anchor" aria-label="anchor" href="#challenge"></a>
 </h3>
 <div class="callout-content">
 <p>Using pipes, subset the <code>surveys</code> data to include animals
@@ -574,12 +574,12 @@ chain:</p>
 is an <code>NA</code>. The <code>!</code> symbol negates the result, so
 we’re asking for every row where weight <em>is not</em> an
 <code>NA</code>.</p>
-<div id="challenge2" class="callout challenge">
+<div id="challenge-1" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <div id="challenge-1" class="callout-inner">
-<h3 class="callout-title">Challenge<a class="anchor" aria-label="anchor" href="#challenge2"></a>
+<h3 class="callout-title">Challenge<a class="anchor" aria-label="anchor" href="#challenge-1"></a>
 </h3>
 <div class="callout-content">
 <p>Create a new data frame from the <code>surveys</code> data that meets
@@ -834,12 +834,12 @@ in descending order of the count:</p>
 <p>From the table above, we may learn that, for instance, there are 75
 observations of the <em>albigula</em> species that are not specified for
 its sex (i.e. <code>NA</code>).</p>
-<div id="challenge3" class="callout challenge">
+<div id="challenge-2" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <div id="challenge-2" class="callout-inner">
-<h3 class="callout-title">Challenge<a class="anchor" aria-label="anchor" href="#challenge3"></a>
+<h3 class="callout-title">Challenge<a class="anchor" aria-label="anchor" href="#challenge-2"></a>
 </h3>
 <div class="callout-content">
 <ol style="list-style-type: decimal"><li>How many animals were caught in each <code>plot_type</code>
@@ -867,12 +867,12 @@ surveyed?</li>
 </div>
 </div>
 </div>
-<div id="challenge4" class="callout challenge">
+<div id="challenge-2" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <div id="challenge-2" class="callout-inner">
-<h3 class="callout-title">Challenge<em> (continued)</em><a class="anchor" aria-label="anchor" href="#challenge4"></a>
+<h3 class="callout-title">Challenge<em> (continued)</em><a class="anchor" aria-label="anchor" href="#challenge-2"></a>
 </h3>
 <div class="callout-content">
 <ol start="2" style="list-style-type: decimal"><li>Use <code>group_by()</code> and <code>summarize()</code> to find the
@@ -909,12 +909,12 @@ mean, min, and max hindfoot length for each species (using
 </div>
 </div>
 </div>
-<div id="challenge5" class="callout challenge">
+<div id="challenge-2" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <div id="challenge-2" class="callout-inner">
-<h3 class="callout-title">Challenge<em> (continued)</em><a class="anchor" aria-label="anchor" href="#challenge5"></a>
+<h3 class="callout-title">Challenge<em> (continued)</em><a class="anchor" aria-label="anchor" href="#challenge-2"></a>
 </h3>
 <div class="callout-content">
 <ol start="3" style="list-style-type: decimal"><li>What was the heaviest animal measured in each year? Return the
@@ -1102,12 +1102,12 @@ reshaped</p>
 <span>  <span class="fu">pivot_longer</span><span class="op">(</span>names_to <span class="op">=</span> <span class="st">"genus"</span>, values_to <span class="op">=</span> <span class="st">"mean_weight"</span>, cols <span class="op">=</span> <span class="op">-</span><span class="va">plot_id</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">head</span><span class="op">(</span><span class="op">)</span></span></code></pre>
 </div>
-<div id="challenge6" class="callout challenge">
+<div id="challenge-3" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <div id="challenge-3" class="callout-inner">
-<h3 class="callout-title">Challenge<a class="anchor" aria-label="anchor" href="#challenge6"></a>
+<h3 class="callout-title">Challenge<a class="anchor" aria-label="anchor" href="#challenge-3"></a>
 </h3>
 <div class="callout-content">
 <ol style="list-style-type: decimal"><li>Reshape the <code>surveys</code> data frame with <code>year</code>
@@ -1153,12 +1153,12 @@ genera within a particular chunk of data. It’s a powerful function! See
 </div>
 </div>
 </div>
-<div id="challenge7" class="callout challenge">
+<div id="challenge-3" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <div id="challenge-3" class="callout-inner">
-<h3 class="callout-title">Challenge<em> (continued)</em><a class="anchor" aria-label="anchor" href="#challenge7"></a>
+<h3 class="callout-title">Challenge<em> (continued)</em><a class="anchor" aria-label="anchor" href="#challenge-3"></a>
 </h3>
 <div class="callout-content">
 <ol start="2" style="list-style-type: decimal"><li>Now take that data frame and <code>pivot_longer()</code> it, so each
@@ -1187,12 +1187,12 @@ combination.</li>
 </div>
 </div>
 </div>
-<div id="discussion1" class="callout discussion">
+<div id="challenge-3" class="callout discussion">
 <div class="callout-square">
 <i class="callout-icon" data-feather="message-circle"></i>
 </div>
 <div id="challenge-3" class="callout-inner">
-<h3 class="callout-title">Challenge<em> (continued)</em><a class="anchor" aria-label="anchor" href="#discussion1"></a>
+<h3 class="callout-title">Challenge<em> (continued)</em><a class="anchor" aria-label="anchor" href="#challenge-3"></a>
 </h3>
 <div class="callout-content">
 <ol start="3" style="list-style-type: decimal"><li>The <code>surveys</code> data set has two measurement columns:
@@ -1366,9 +1366,9 @@ common species:</p>
         <p>Materials licensed under <a href="../LICENSE.html">CC-BY 4.0</a> by the authors</p>
         
         <p><a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">Template licensed under CC-BY 4.0</a> by <a href="https://carpentries.org" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.11.16" class="external-link">sandpaper (0.11.16)</a>,
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.12.2" class="external-link">sandpaper (0.12.2)</a>,
         <a href="https://github.com/carpentries/pegboard" class="external-link">pegboard (0.5.3)</a>,
-      and <a href="https://github.com/carpentries/varnish/tree/0.2.16" class="external-link">varnish (0.2.16)</a>.</p>
+      and <a href="https://github.com/carpentries/varnish/tree/0.2.17" class="external-link">varnish (0.2.17)</a>.</p>
 			</div>
 		</footer></div> <!-- / div.container -->
 	<div id="to-top">
@@ -1390,7 +1390,7 @@ common species:</p>
   "identifier": "https://datacarpentry.github.io/R-ecology-lesson/instructor/03-dplyr.html",
   "dateCreated": "2015-04-02",
   "dateModified": "2023-05-03",
-  "datePublished": "2023-05-16"
+  "datePublished": "2023-05-30"
 }
 
   </script><script>
