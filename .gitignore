@@ -56,3 +56,4 @@ img/R-ecology-*.png
 code-handout.R
 # output from linkchecker
 link_res.csv
+!episodes/data
