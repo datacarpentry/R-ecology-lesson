@@ -11,29 +11,29 @@
 carpentry: 'dc'
 
 # Overall title for pages.
-title: 'Data Analysis and Visualisation in R for Ecologists'
+title: 'Data Analysis and Visualization in R for Ecologists'
 
 # Date the lesson was created (YYYY-MM-DD, this is empty by default)
 created: '2015-04-02'
 
 # Comma-separated list of keywords for the lesson
-keywords: 'software, data, lesson, The Carpentries'
+keywords: 'ggplot2, tidyverse, data-visualization, data-visualisation, data-wrangling, data-carpentry, R'
 
 # Life cycle stage of the lesson
 # possible values: pre-alpha, alpha, beta, stable
-life_cycle: 'stable'
+life_cycle: 'beta'
 
-# License of the lesson materials (recommended CC-BY 4.0)
+# License of the lesson
 license: 'CC-BY 4.0'
 
 # Link to the source repository for this lesson
-source: 'https://github.com/datacarpentry/R-ecology-lesson'
+source: 'https://github.com/carpentries-incubator/R-ecology-lesson-alternative'
 
 # Default branch of your lesson
 branch: 'main'
 
 # Who to contact if there are any issues
-contact: 'curriculum@carpentries.org'
+contact: 'team@carpentries.org'
 
 # Navigation ------------------------------------------------
 #
@@ -58,29 +58,24 @@ contact: 'curriculum@carpentries.org'
 # - another-learner.md
 
 # Order of episodes in your lesson
-episodes: 
-- 00-before-we-start.Rmd
-- 01-intro-to-r.Rmd
-- 02-starting-with-data.Rmd
-- 03-dplyr.Rmd
-- 04-visualization-ggplot2.Rmd
-- 05-r-and-databases.Rmd
+episodes:
+- introduction-r-rstudio.Rmd
+- visualizing-ggplot.Rmd
+- how-r-thinks-about-data.Rmd
+- working-with-data.Rmd
 
 # Information for Learners
-learners: 
+learners:
 - reference.md
 
 # Information for Instructors
-instructors: 
+instructors:
 - instructor-notes.md
 
 # Learner Profiles
-profiles: 
+profiles:
 
 # Customisation ---------------------------------------------
 #
 # This space below is where custom yaml items (e.g. pinning
 # sandpaper and varnish versions) should live
-
-
-url: 'https://datacarpentry.github.io/R-ecology-lesson'
