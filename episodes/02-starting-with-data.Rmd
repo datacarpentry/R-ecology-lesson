@@ -566,7 +566,9 @@ Notice that in the `levels()` approach, three important steps occur:
 - We obtain all the factor levels using `levels(year_fct)`
 - We convert these levels to numeric values using `as.numeric(levels(year_fct))`
 - We then access these numeric values using the underlying integers of the
-  vector `year_fct` inside the square brackets
+  vector `year_fct` inside the square brackets. Notice this approach works
+  precisely because `year_fct` is a factor as opposed to a numeric vector,
+  unlike the other examples of subsetting in this lesson.
 
 ### Renaming factors
 
