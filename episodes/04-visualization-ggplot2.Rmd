@@ -315,7 +315,7 @@ better distribute the observations in the space of the plot.  Changing the scale
 of the axes is done similarly to adding/modifying other components (i.e., by
 incrementally adding commands). Try making these modifications:
 
-- Represent weight on the log~~10~~ scale; see `scale_y_log10()`.
+- Represent weight on the log~10~ scale; see `scale_y_log10()`.
 
 :::::::: solution
 
