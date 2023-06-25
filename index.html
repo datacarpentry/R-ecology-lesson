@@ -138,8 +138,12 @@
         
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
-        <ul><li><a href="#data-sets">Data Sets</a></li>
-<li><a href="#software-setup">Software Setup</a></li>
+        <ul><li><a href="#preparations">Preparations</a></li>
+<li><a href="#install-r-and-rstudio">Install R and RStudio</a></li>
+<li><a href="#update-r-and-rstudio">Update R and RStudio</a></li>
+<li><a href="#install-required-r-packages">Install required R packages</a></li>
+<li><a href="#updating-r-packages">Updating R packages</a></li>
+<li><a href="#download-the-data">Download the data</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
         
@@ -259,7 +263,7 @@
 <p>
 </p>
 <div style="text-align: center; margin-top: 30px; margin-bottom: 30px;">
-<figure><img src="./fig/DC-logo-vision.png" class="figure mx-auto d-block"></figure></div>
+<figure><img src="fig/DC-logo-vision.png" alt="" class="figure mx-auto d-block"></figure></div>
 <p>
 </p>
 <p>Data Carpentry’s aim is to teach researchers basic concepts, skills,
@@ -276,17 +280,11 @@ and a brief introduction to plotting. The last lesson demonstrates how
 to work with databases directly from R.</p>
 <p>This lesson assumes no prior knowledge of R or RStudio and no
 programming experience.</p>
-<section id="episodes"><h2 class="section-heading">Episodes<a class="anchor" aria-label="anchor" href="#episodes"></a>
+<section id="contributors"><h2 class="section-heading">Contributors<a class="anchor" aria-label="anchor" href="#contributors"></a>
 </h2>
-<hr class="half-width"><ol style="list-style-type: decimal"><li><a href="00-before-we-start.html">Before we start</a></li>
-<li><a href="01-intro-to-r.html">Introduction to R</a></li>
-<li><a href="02-starting-with-data.html">Starting with data</a></li>
-<li><a href="03-dplyr.html">Manipulating, analyzing and exporting data
-with <strong><code>tidyverse</code></strong></a></li>
-<li><a href="04-visualization-ggplot2.html">Data visualization with
-<strong><code>ggplot2</code></strong></a></li>
-<li><a href="05-r-and-databases.html">SQL databases and R</a></li>
-</ol></section><section id="preparations"><h2 class="section-heading">Preparations<a class="anchor" aria-label="anchor" href="#preparations"></a>
+<hr class="half-width"><p>The list of contributors to this lesson is available <a href="https://datacarpentry.org/R-ecology-lesson/CITATION" class="external-link">in the
+citation page</a>.</p>
+</section><section id="setup"><section id="preparations"><h2 class="section-heading">Preparations<a class="anchor" aria-label="anchor" href="#preparations"></a>
 </h2>
 <hr class="half-width"><p>Data Carpentry’s teaching is hands-on, and to follow this lesson
 learners must have R and RStudio installed on their computers. They also
@@ -297,9 +295,9 @@ the instruction below to download and install everything beforehand. If
 they are using their own computers this should be no problem, but if the
 computer is managed by their organization’s IT department they might
 need help from an IT administrator.</p>
-<div class="section level3">
-<h3 id="install-r-and-rstudio">Install R and RStudio<a class="anchor" aria-label="anchor" href="#install-r-and-rstudio"></a></h3>
-<p>R and RStudio are two separate pieces of software:</p>
+</section><section id="install-r-and-rstudio"><h2 class="section-heading">Install R and RStudio<a class="anchor" aria-label="anchor" href="#install-r-and-rstudio"></a>
+</h2>
+<hr class="half-width"><p>R and RStudio are two separate pieces of software:</p>
 <ul><li>
 <strong>R</strong> is a programming language that is especially
 powerful for data exploration, visualization, and statistical
@@ -308,11 +306,29 @@ analysis</li>
 <strong>RStudio</strong> is an integrated development environment
 (IDE) that makes using R easier. In this course we use RStudio to
 interact with R.</li>
-</ul><p>If you don’t already have R and RStudio installed, follow the
+</ul><div id="installation-instructions" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<div id="installation-instructions" class="callout-inner">
+<h3 class="callout-title">Installation Instructions<a class="anchor" aria-label="anchor" href="#installation-instructions"></a>
+</h3>
+<div class="callout-content">
+<p>If you don’t already have R and RStudio installed, follow the
 instructions for your operating system below. You have to install R
 before you install RStudio.</p>
-<div class="section level4">
-<h4 id="windows">Windows<a class="anchor" aria-label="anchor" href="#windows"></a></h4>
+</div>
+</div>
+</div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1">
+  Windows
+  </h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div class="accordion-body">
 <ul><li>Download R from the <a href="https://cran.r-project.org/bin/windows/base/release.htm" class="external-link">CRAN
 website</a>.</li>
 <li>Run the <code>.exe</code> file that was just downloaded</li>
@@ -324,8 +340,19 @@ Windows.</li>
 <li>Double click the file to install it</li>
 <li>Once it’s installed, open RStudio to make sure it works and you
 don’t get any error messages.</li>
-</ul><div class="section level5">
-<h5 id="macos">MacOS<a class="anchor" aria-label="anchor" href="#macos"></a></h5>
+</ul></div>
+</div>
+</div>
+</div>
+<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
+  <h4 class="accordion-header" id="headingSolution2">
+  MacOS
+  </h4>
+</button>
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div class="accordion-body">
 <ul><li>Download R from the <a href="https://cran.r-project.org/bin/macosx/" class="external-link">CRAN website</a>.</li>
 <li>Select the <code>.pkg</code> file for the latest R version</li>
 <li>Double click on the downloaded file to install R</li>
@@ -340,8 +367,18 @@ MacOS.</li>
 <li>Once it’s installed, open RStudio to make sure it works and you
 don’t get any error messages.</li>
 </ul></div>
-<div class="section level5">
-<h5 id="linux">Linux<a class="anchor" aria-label="anchor" href="#linux"></a></h5>
+</div>
+</div>
+</div>
+<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
+  <h4 class="accordion-header" id="headingSolution3">
+  Linux
+  </h4>
+</button>
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div class="accordion-body">
 <ul><li>Follow the instructions for your distribution from <a href="https://cloud.r-project.org/bin/linux" class="external-link">CRAN</a>, they provide
 information to get the most recent version of R for common
 distributions. For most distributions, you could use your package
@@ -362,9 +399,10 @@ don’t get any error messages.</li>
 </ul></div>
 </div>
 </div>
-<div class="section level3">
-<h3 id="update-r-and-rstudio">Update R and RStudio<a class="anchor" aria-label="anchor" href="#update-r-and-rstudio"></a></h3>
-<p>If you already have R and RStudio installed, first check if your R
+</div>
+</section><section id="update-r-and-rstudio"><h2 class="section-heading">Update R and RStudio<a class="anchor" aria-label="anchor" href="#update-r-and-rstudio"></a>
+</h2>
+<hr class="half-width"><p>If you already have R and RStudio installed, first check if your R
 version is up to date:</p>
 <ul><li>When you open RStudio your R version will be printed in the console
 on the bottom left. Alternatively, you can type
@@ -391,10 +429,9 @@ version and migrate your package library.</li>
 <code>Help &gt; Check for Updates</code>. If a new version is available
 follow the instruction on screen. By default, RStudio will also
 automatically notify you of new versions every once in a while.</p>
-</div>
-<div class="section level3">
-<h3 id="install-required-r-packages">Install required R packages<a class="anchor" aria-label="anchor" href="#install-required-r-packages"></a></h3>
-<p>During the course we will need a number of R packages. Packages
+</section><section id="install-required-r-packages"><h2 class="section-heading">Install required R packages<a class="anchor" aria-label="anchor" href="#install-required-r-packages"></a>
+</h2>
+<hr class="half-width"><p>During the course we will need a number of R packages. Packages
 contain useful R code written by other people. We will use the packages
 <code>tidyverse</code>, <code>hexbin</code>, <code>patchwork</code>, and
 <code>RSQLite</code>.</p>
@@ -425,10 +462,9 @@ pasting the following code into the console:</p>
 </div>
 <p>If you do not see an error like
 <code>there is no package called ‘...'</code> you are good to go!</p>
-</div>
-<div class="section level3">
-<h3 id="updating-r-packages">Updating R packages<a class="anchor" aria-label="anchor" href="#updating-r-packages"></a></h3>
-<p>Generally, it is recommended to keep your R version and all packages
+</section><section id="updating-r-packages"><h2 class="section-heading">Updating R packages<a class="anchor" aria-label="anchor" href="#updating-r-packages"></a>
+</h2>
+<hr class="half-width"><p>Generally, it is recommended to keep your R version and all packages
 up to date, because new versions bring improvements and important
 bugfixes. To update the packages that you have installed, click
 <code>Update</code> in the <code>Packages</code> tab in the bottom right
@@ -441,87 +477,12 @@ have used for a given project and makes it straightforward to reinstall
 those exact package version in a new environment, for example after
 updating your R version or on another computer. However, the details are
 outside of the scope of this lesson.</p>
-</div>
-<div class="section level3">
-<h3 id="download-the-data">Download the data<a class="anchor" aria-label="anchor" href="#download-the-data"></a></h3>
-<p>We will download the data directly from R during the lessons.
+</section><section id="download-the-data"><h2 class="section-heading">Download the data<a class="anchor" aria-label="anchor" href="#download-the-data"></a>
+</h2>
+<hr class="half-width"><p>We will download the data directly from R during the lessons.
 However, if you are expecting problems with the network, it may be
 better to download the data beforehand and store it on your machine.</p>
 <p>The data files for the lesson can be downloaded manually here: <a href="https://doi.org/10.6084/m9.figshare.1314459" class="external-link">https://doi.org/10.6084/m9.figshare.1314459</a></p>
-</div>
-</section><section id="contributors"><h2 class="section-heading">Contributors<a class="anchor" aria-label="anchor" href="#contributors"></a>
-</h2>
-<hr class="half-width"><p>The list of contributors to this lesson is available <a href="https://datacarpentry.org/R-ecology-lesson/CITATION" class="external-link">here</a>.</p>
-</section><section id="setup"><p>FIXME: Setup instructions live in this document. Please specify the
-tools and the data sets the Learner needs to have installed.</p>
-<section id="data-sets"><h2 class="section-heading">Data Sets<a class="anchor" aria-label="anchor" href="#data-sets"></a>
-</h2>
-<hr class="half-width"><!--
-FIXME: place any data you want learners to use in `episodes/data` and then use
-       a relative link ( [data zip file](data/lesson-data.zip) ) to provide a
-       link to it, replacing the example.com link.
---><p>Download the <a href="https://example.com/FIXME" class="external-link">data zip file</a>
-and unzip it to your Desktop</p>
-</section><section id="software-setup"><h2 class="section-heading">Software Setup<a class="anchor" aria-label="anchor" href="#software-setup"></a>
-</h2>
-<hr class="half-width"><div id="details" class="callout discussion">
-<div class="callout-square">
-<i class="callout-icon" data-feather="message-circle"></i>
-</div>
-<div id="details" class="callout-inner">
-<h3 class="callout-title">Details<a class="anchor" aria-label="anchor" href="#details"></a>
-</h3>
-<div class="callout-content">
-<p>Setup for different systems can be presented in dropdown menus via a
-<code>solution</code> tag. They will join to this discussion block, so
-you can give a general overview of the software used in this lesson here
-and fill out the individual operating systems (and potentially add more,
-e.g. online setup) in the solutions blocks.</p>
-</div>
-</div>
-</div>
-<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
-  <h4 class="accordion-header" id="headingSolution1">
-  Windows
-  </h4>
-</button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
-<div class="accordion-body">
-<p>Use PuTTY</p>
-</div>
-</div>
-</div>
-</div>
-<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
-  <h4 class="accordion-header" id="headingSolution2">
-  MacOS
-  </h4>
-</button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
-<div class="accordion-body">
-<p>Use Terminal.app</p>
-</div>
-</div>
-</div>
-</div>
-<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
-  <h4 class="accordion-header" id="headingSolution3">
-  Linux
-  </h4>
-</button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
-<div class="accordion-body">
-<p>Use Terminal</p>
-</div>
-</div>
-</div>
-</div>
 </section></section></main><nav class="bottom-pagination mx-md-4" aria-label="Next Chapter"><!-- content for small screens --><div class="d-block d-sm-block d-md-none">
         <a class="chapter-link float-end" href="00-before-we-start.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
       </div>
@@ -572,8 +533,8 @@ e.g. online setup) in the solutions blocks.</p>
   "url": "https://datacarpentry.github.io/R-ecology-lesson/index.html",
   "identifier": "https://datacarpentry.github.io/R-ecology-lesson/index.html",
   "dateCreated": "2015-04-02",
-  "dateModified": "2023-06-23",
-  "datePublished": "2023-06-23"
+  "dateModified": "2023-06-25",
+  "datePublished": "2023-06-25"
 }
 
   </script><script>
