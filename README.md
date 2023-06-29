@@ -9,7 +9,7 @@ The lesson starts with information about the R programming language and the RStu
 
 ## Providing feedback on this lesson
 
-If you teach this redesigned lesson, please [open an issue](https://github.com/carpentries-incubator/R-ecology-lesson-alternative/issues/new/choose)/multiple issues on this repository to share your experience. The Data Carpentry: Ecology Curriculum Advisory Committee is currently considering whether this version of the lesson should be adopted as part of the official curriculum. Any feedback you can provide about your experience teaching this lesson - especially if you can compare this to any previous experence you have had teaching the original version - will be very helpful in informing the CAC's decision-making.
+If you teach this redesigned lesson, please [open an issue](https://github.com/carpentries-incubator/R-ecology-lesson-alternative/issues/new?assignees=&labels=type%3Adiscussion&projects=&template=pilot_workshop_feedback.yml&title=%5BPilot+workshop+feedback%5D%3A+) on this repository to share your experience. The Data Carpentry: Ecology Curriculum Advisory Committee is currently considering whether this version of the lesson should be adopted as part of the official curriculum. Any feedback you can provide about your experience teaching this lesson - especially if you can compare this to any previous experence you have had teaching the original version - will be very helpful in informing the CAC's decision-making.
 
 ## Prerequisites
 
