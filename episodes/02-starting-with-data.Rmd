@@ -213,7 +213,7 @@ functions to get a sense of the content/structure of the data. Let's try them ou
 
 ::: instructor
 
-As you go through this next section, you may want to point out what is happening in the environment pane. Specially with the function 'nrow' and 'ncol' as they correspond with 'observation' and 'variables' in the enviornment. This can help learners make connections between the different sections of the R interface and identify ways to double check their work. 
+As you go through this next section, you may want to point out what is happening in the environment pane. For example, the functions `nrow()` and `ncol()` correspond with 'observation' and 'variables' in the environment pane. This can help learners make connections between the different sections of the R interface and identify ways to double check their work. 
 
 :::
 
