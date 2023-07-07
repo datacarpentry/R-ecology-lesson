@@ -7,7 +7,8 @@ body:
     attributes:
       value: |
         Thank you for teaching this lesson and sharing feedback! 
-        Please answer the questions below. 
+        Please answer the questions below, 
+        and note that feedback submitted with this form will be publicly visible.
   - type: textarea
     id: workshop
     attributes:
@@ -61,7 +62,7 @@ body:
   - type: dropdown  
     id: relative-evaluation
     attributes:
-      label: 7. If the Instructors have also taught the official version of the _Data Analysis and Visualization with R for Ecologists_ lesson, How do they think this redesigned version compares to it?
+      label: 7. If the Instructors have also taught the official version of the _Data Analysis and Visualization with R for Ecologists_ lesson, how do they think this redesigned version compares to it?
       options:
         - "This version is no better or worse than the current official version."
         - "This version is an improvement on the current version."
@@ -79,9 +80,28 @@ body:
   - type: markdown
     attributes:
       value: |
+        ## SQL databases and R
+        This lesson does not include content teaching interaction with relational databases from R.
+  - type: textarea
+    id: sql-feedback
+    attributes:
+      label: 9. How did the Instructors feel that this absence affected the overall usefulness of the lesson?
+  - type: dropdown  
+    id: sql-likert
+    attributes:
+      label: 10. How important do you think it is that content about R and databases be added back into this redesigned lesson?
+      options:
+        - "Very important"
+        - "Important"
+        - "Neutral"
+        - "Unimportant"
+        - "Very unimportant"
+  - type: markdown
+    attributes:
+      value: |
         ## Conclusion
   - type: textarea
     id: other
     attributes:
-      label: 9. Is there anything else you would like to tell us?
+      label: 11. Is there anything else you would like to tell us?
       
