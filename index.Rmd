@@ -30,6 +30,13 @@ how to work with databases directly from R.
 This lesson assumes no prior knowledge of R or RStudio and no programming
 experience.
 
+**The Ecology [Curriculum Advisory Committee](https://carpentries.org/curriculum-advisors/) 
+is currently calling for Instructors to pilot 
+[an alternative version of this lesson](https://carpentries-incubator.github.io/R-ecology-lesson-alternative/), 
+and provide feedback on their experience. 
+[Read the announcement blog post](https://carpentries.org/blog/2023/07/r-ecology-alt-beta/) 
+to learn more about this redesigned lesson and how you can get involved with testing it.**
+
 ## Contributors
 
 The list of contributors to this lesson is available [in the citation page](https://datacarpentry.org/R-ecology-lesson/CITATION).
