@@ -8,7 +8,7 @@ site: sandpaper::sandpaper_site
 
 [The Data Carpentry Ecology Curriculum Advisory Committee is calling for Instructors to teach this lesson and provide feedback](https://carpentries.org/blog/2023/07/r-ecology-alt-beta/), to help them decide whether to formally adopt it into the official curriculum.
 
-If you teach this lesson, please give your feedback to the Curriculum Advisors [by email](mailto:curriculum-advisors-ecology@lists.carpentries.org) or as [an issue to the lesson source repository]([Title](https://github.com/carpentries-incubator/R-ecology-lesson-alternative/issues/new?assignees=&labels=type:discussion&projects=&template=pilot_workshop_feedback.yml&title=[Pilot+workshop+feedback]:+)).
+If you teach this lesson, please give your feedback to the Curriculum Advisors [by email](mailto:curriculum-advisors-ecology@lists.carpentries.org) or as [an issue to the lesson source repository](https://github.com/carpentries-incubator/R-ecology-lesson-alternative/issues/new?assignees=&labels=type:discussion&projects=&template=pilot_workshop_feedback.yml&title=[Pilot+workshop+feedback]:+).
 
 ::::::::::::::::::::::::::::::::::
 
