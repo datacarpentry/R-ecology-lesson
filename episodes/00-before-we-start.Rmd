@@ -282,6 +282,11 @@ selected text will be sent to the console and executed when you press
 this [RStudio cheatsheet about the RStudio
 IDE](https://raw.githubusercontent.com/rstudio/cheatsheets/main/rstudio-ide.pdf).
 
+To run an entire script you can use the <kbd>`Ctrl`</kbd> +  <kbd>`Shift`</kbd> + 
+<kbd>`Enter`</kbd> shortcut (on Macs, <kbd>`Cmd`</kbd> + <kbd>`Shift`</kbd> + 
+<kbd>`Return`</kbd>) or use the "Source" toolbar button on the 
+right top corner of the source pane.
+
 At some point in your analysis you may want to check the content of a variable
 or the structure of an object, without necessarily keeping a record of it in
 your script. You can type these commands and execute them directly in the
