@@ -41,7 +41,7 @@ your changes as a pull request.
 
 2. Clone that repository to your own machine. (It is also possible
   to make minor edits right on GitHub.) *At your terminal:*
-  
+
   ```bash
   git clone https://github.com/your_username/R-ecology-lesson.git R-ecology-lesson
   cd R-ecology-lesson
@@ -52,14 +52,14 @@ your changes as a pull request.
   Give your branch a meaningful name,
   such as `fix-typos-dplyr-lesson`
   or `add-tutorial-on-visualization`. *At your terminal:*
-  
+
   ```bash
   git checkout -b fix-typos-dplyr-lesson
   ```
 
 4. Make your changes to the Rmd file. If you'd like to check the rendered
   version of your changes, you can do one of three things:
-  
+
   - if you have `GNU Make` installed on your system, type `make` at your shell
     terminal.
   - if you use RStudio, click on the "Knit" button in the top-right corner of
@@ -189,7 +189,7 @@ to learners.
 This is particularly useful for error prone code such as long URLs for
 downloading files.
 The code handout is created automatically from the lesson's `.Rmd` files
-by `make_code_handout.R`, and we use the `purl()` function from `knitr` to  
+by `make_code_handout.R`, and we use the `purl()` function from `knitr` to
 create the handout.
 Code that should be included in the code handout must be enclosed in an
 `R` code chunk with the chunk option `purl = TRUE` (see above).
@@ -235,6 +235,4 @@ other external resources should be included in the repository whenever possible.
 - *Where can I get help?*
   <br/>
   Mail us at [team@carpentries.org](mailto:team@carpentriesorg)
-  or come chat with us on [Slack](https://swc-slack-invite.herokuapp.com/).
-
-
+  or come chat with us on [Slack](https://slack-invite.carpentries.org/).
