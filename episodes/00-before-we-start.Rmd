@@ -13,7 +13,7 @@ source("setup.R")
 
 ***
 
-::::::::::::::::::::::::::::::::::::::  objectives
+::::::  objectives
 
 ### Learning Objectives
 
@@ -28,7 +28,7 @@ source("setup.R")
 - Demonstrate how to provide sufficient information for troubleshooting with
   the R user community.
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+::::::
 
 ***
 
