@@ -9,10 +9,15 @@ source("setup.R")
 ```
 
 ***
+::::::::::::::::::::::::::::::::::::::: questions
 
-::::::::::::::::::::::::::::::::::::::  objectives
+- How do you create objects in R? 
+- How do you save R code for later use? 
+- How do you manipulate data in R?
 
-### Learning Objectives
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::: objectives
 
 - Define the following terms as they relate to R: object, assign, call,
   function, arguments, options.
@@ -51,7 +56,7 @@ assignment operator `<-`, and the value we want to give it:
 weight_kg <- 55
 ```
 
-`<-` is the assignment operator. It assigns values on the right to objects on
+`<-` is the assignment operator we will use in this course. It assigns values on the right to objects on
 the left. So, after executing `x <- 3`, the value of `x` is `3`.   For historical reasons, you can also use `=`
 for assignments, but not in every context. Because of the
 [slight](https://blog.revolutionanalytics.com/2008/12/use-equals-or-arrow-for-assignment.html)
@@ -638,4 +643,15 @@ Now that we have learned how to write scripts, and the basics of R's data
 structures, we are ready to start working with the Portal dataset we have been
 using in the other lessons, and learn about data frames.
 
+::::::::::::::::::::::::::::::::::::: keypoints
 
+- `<-` is used to assign values on the right to objects on the left
+- Code should be saved within the Source pane in RStudio to help you return to your code later.  
+- '#' can be used to add comments to your code. 
+- Functions can automate more complicated sets of commands, and require arguments as inputs.
+- Vectors are composed by a series of values and can take many forms. 
+- Data structures in R include 'vector', 'list', 'matrix', 'data.frame', 'factor', and 'array'.
+- Vectors can be subset by indexing or through logical vectors.
+- Many functions exist to remove missing data from data structures. 
+
+::::::::::::::::::::::::::::::::::::::::::::::::
