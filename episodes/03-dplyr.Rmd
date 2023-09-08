@@ -1,6 +1,7 @@
 ---
 title: Manipulating, analyzing and exporting data with tidyverse
 author: Data Carpentry contributors
+minutes: 
 ---
 
 ```{r, echo=FALSE, purl=FALSE, message=FALSE}
@@ -12,13 +13,7 @@ suppressWarnings(surveys$date <- lubridate::ymd(paste(surveys$year,
                                                       sep = "-")))
 ```
 
-### Manipulating and analyzing data with dplyr and tidyr
-
-***
-
 ::::::::::::::::::::::::::::::::::::::  objectives
-
-### Learning Objectives
 
 - Describe the purpose of the **`dplyr`** and **`tidyr`** packages.
 - Select certain columns in a data frame with the **`dplyr`** function `select`.
@@ -34,7 +29,14 @@ suppressWarnings(surveys$date <- lubridate::ymd(paste(surveys$year,
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-***
+:::::::::::::::::::::::::::::::::::::::: questions
+
+- What are dplyr and tidyr?
+- How can I select specific rows and/or columns from a dataframe?
+- How can I combine multiple commands into a single command?
+- How can I create new columns or remove existing columns from a dataframe?
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 # Data manipulation using **`dplyr`** and **`tidyr`**
 
