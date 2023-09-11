@@ -11,9 +11,7 @@ editor_options:
 source("setup.R")
 ```
 
-
-::::::::::::::::::::::::::::::::::::::: objectives
-
+::: objectives
 -   Load external data from a .csv file into a data frame.
 -   Install and load packages.
 -   Describe what a data frame is.
@@ -24,10 +22,9 @@ source("setup.R")
 -   Reorder and rename factors.
 -   Change how character strings are handled in a data frame.
 -   Format dates.
+:::
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
-
-:::::::::::::::::::::::::::::::::::::::: questions
+::: questions
 -   What is a data.frame?
 -   How can I read a complete csv file into R?
 -   How can I get basic summary information about my dataset?
@@ -35,7 +32,7 @@ source("setup.R")
 -   What are factors, and how are they different from other datatypes?
 -   How can I rename factors?
 -   How are dates represented in R and how can I change the format?
-::::::::::::::::::::::::::::::::::::::::::::::::::
+:::
 
 ## Loading the survey data
 
@@ -845,3 +842,14 @@ There are several ways you could deal with situation:
 
 Regardless of the option you choose, it is important that you document
 the error and the corrections (if any) that you apply to your data.
+
+::: keypoints
+-   Use `read.csv` to read tabular data in R.
+-   A data frame is the representation of data in the format of a table
+    where the columns are vectors that all have the same length.
+-   `dplyr` provides many methods for inspecting and summarizing data in
+    data frames.
+-   Use factors to represent categorical data in R.
+-   The **`lubridate`** package has many useful functions for working
+    with dates.
+:::
