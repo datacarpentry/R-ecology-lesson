@@ -11,7 +11,7 @@ editor_options:
 source("setup.R")
 ```
 
-::: objectives
+::::::::::::::::::::::::::::::::::::::: objectives
 -   Load external data from a .csv file into a data frame.
 -   Install and load packages.
 -   Describe what a data frame is.
@@ -22,9 +22,9 @@ source("setup.R")
 -   Reorder and rename factors.
 -   Change how character strings are handled in a data frame.
 -   Format dates.
-:::
+:::::::::::::::::::::::::::::::::::::::::::::::::::
 
-::: questions
+::::::::::::::::::::::::::::::::::::::: questions
 -   What is a data.frame?
 -   How can I read a complete csv file into R?
 -   How can I get basic summary information about my dataset?
@@ -32,7 +32,7 @@ source("setup.R")
 -   What are factors, and how are they different from other datatypes?
 -   How can I rename factors?
 -   How are dates represented in R and how can I change the format?
-:::
+:::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Loading the survey data
 

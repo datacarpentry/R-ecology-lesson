@@ -13,7 +13,7 @@ suppressWarnings(surveys$date <- lubridate::ymd(paste(surveys$year,
                                                       sep = "-")))
 ```
 
-::::::::::::::::::::::::::::::::::::::  objectives
+:::::::::::::::::::::::::::::::::::::::  objectives
 
 - Describe the purpose of the **`dplyr`** and **`tidyr`** packages.
 - Select certain columns in a data frame with the **`dplyr`** function `select`.
@@ -27,16 +27,16 @@ suppressWarnings(surveys$date <- lubridate::ymd(paste(surveys$year,
 - Reshape a data frame from long to wide format and back with the `pivot_wider` and `pivot_longer` commands from the **`tidyr`** package.
 - Export a data frame to a .csv file.
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::::::::::::::::::::
 
-:::::::::::::::::::::::::::::::::::::::: questions
+::::::::::::::::::::::::::::::::::::::: questions
 
 - What are dplyr and tidyr?
 - How can I select specific rows and/or columns from a dataframe?
 - How can I combine multiple commands into a single command?
 - How can I create new columns or remove existing columns from a dataframe?
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::::::::::::::::::::
 
 # Data manipulation using **`dplyr`** and **`tidyr`**
 
