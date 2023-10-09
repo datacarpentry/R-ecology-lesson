@@ -100,7 +100,7 @@ aspect of your graph to visualize your data more effectively.
 
 Thousands of people use R daily. Many of them are willing to help you through
 mailing lists and websites such as [Stack Overflow](https://stackoverflow.com/),
-[RStudio community](https://community.rstudio.com/), and Slack channels such as  
+[RStudio community](https://community.rstudio.com/), and Slack channels such as
 the R for Data Science online community ([https://www.rfordatasci.com/](https://www.rfordatasci.com/)). In addition,
 there are numerous online and in person meetups organised globally through organisations
 such as R Ladies Global ([https://rladies.org/](https://rladies.org/)).
