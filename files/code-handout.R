@@ -3,7 +3,7 @@
 #' 
 #' ## Introduction to R
 #' 
-## ---- echo=FALSE, purl=TRUE---------------------------------------------------
+## ----echo=FALSE, purl=TRUE----------------------------------------------------
 ### Creating objects in R
 
 #' 
@@ -13,7 +13,7 @@
 #' 
 
 #' 
-## ---- echo=FALSE, purl=TRUE---------------------------------------------------
+## ----echo=FALSE, purl=TRUE----------------------------------------------------
 ### Challenge
 ##
 ## What are the values after each statement in the following?
@@ -25,7 +25,7 @@
 ## mass_index <- mass/age  # mass_index?
 
 #' 
-## ---- echo=FALSE, purl=TRUE---------------------------------------------------
+## ----echo=FALSE, purl=TRUE----------------------------------------------------
 ### Vectors and data types
 
 #' 
@@ -62,7 +62,7 @@
 #'   types. Can you draw a diagram that represents the hierarchy of how
 #'   these data types are coerced?
 #' 
-## ---- echo=FALSE, eval=FALSE, purl=TRUE---------------------------------------
+## ----echo=FALSE, eval=FALSE, purl=TRUE----------------------------------------
 ## ## We've seen that atomic vectors can be of type character, numeric, integer, and
 ## ## logical. But what happens if we try to mix these types in a single
 ## ## vector?
@@ -97,7 +97,7 @@
 #' 
 #' - Can you figure out why `"four" > "five"` returns `TRUE`?
 #' 
-## ---- echo=FALSE, purl=TRUE---------------------------------------------------
+## ----echo=FALSE, purl=TRUE----------------------------------------------------
 ### Challenge (optional)
 ##
 ## * Can you figure out why `"four" > "five"` returns `TRUE`?
@@ -115,7 +115,7 @@
 #' 
 #' 3. Use R to figure out how many people in the set are taller than 67 inches.
 #' 
-## ---- echo=FALSE, purl=TRUE---------------------------------------------------
+## ----echo=FALSE, purl=TRUE----------------------------------------------------
 ## ### Challenge
 ## 1. Using this vector of heights in inches, create a new vector with the NAs removed.
 ##
@@ -128,11 +128,11 @@
 #' 
 #' ## Starting with data
 #' 
-## ---- echo=FALSE, purl=TRUE---------------------------------------------------
+## ----echo=FALSE, purl=TRUE----------------------------------------------------
 ### Loading the survey data
 
 #' 
-## ---- eval=FALSE, purl=TRUE---------------------------------------------------
+## ----eval=FALSE, purl=TRUE----------------------------------------------------
 ## download.file(url = "https://ndownloader.figshare.com/files/2292169",
 ##               destfile = "data_raw/portal_data_joined.csv")
 
@@ -144,7 +144,7 @@
 #' - What is the class of the object `surveys`?
 #' - How many rows and how many columns are in this object?
 #' 
-## ---- echo=FALSE, purl=TRUE---------------------------------------------------
+## ----echo=FALSE, purl=TRUE----------------------------------------------------
 
 ## Challenge
 ## Based on the output of `str(surveys)`, can you answer the following questions?
@@ -154,7 +154,7 @@
 
 
 #' 
-## ---- echo=FALSE, purl=TRUE---------------------------------------------------
+## ----echo=FALSE, purl=TRUE----------------------------------------------------
 
 ## Indexing and subsetting data frames
 
@@ -179,7 +179,7 @@
 #'   `head(surveys)`, keeping just the first through 6th rows of the surveys
 #'   dataset.
 #' 
-## ---- echo=FALSE, purl=TRUE---------------------------------------------------
+## ----echo=FALSE, purl=TRUE----------------------------------------------------
 ### Challenges:
 ###
 ### 1. Create a `data.frame` (`surveys_200`) containing only the
@@ -203,11 +203,11 @@
 
 
 #' 
-## ---- echo=FALSE, purl=TRUE---------------------------------------------------
+## ----echo=FALSE, purl=TRUE----------------------------------------------------
 ### Factors
 
 #' 
-## ---- purl=TRUE---------------------------------------------------------------
+## ----purl=TRUE----------------------------------------------------------------
 sex <- factor(c("male", "female", "female", "male"))
 
 #' 
@@ -221,7 +221,7 @@ sex <- factor(c("male", "female", "female", "male"))
 #' - How many rabbits were observed?
 #' - How many different genera are in the `genus` column?
 #' 
-## ---- echo=FALSE, purl=TRUE---------------------------------------------------
+## ----echo=FALSE, purl=TRUE----------------------------------------------------
 ### Challenges:
 ###
 ### 1. Change the columns `taxa` and `genus` in the `surveys` data frame into a 
@@ -234,14 +234,14 @@ sex <- factor(c("male", "female", "female", "male"))
 
 
 #' 
-## ---- purl=TRUE---------------------------------------------------------------
+## ----purl=TRUE----------------------------------------------------------------
 year_fct <- factor(c(1990, 1983, 1977, 1998, 1990))
 as.numeric(year_fct)               # Wrong! And there is no warning...
 as.numeric(as.character(year_fct)) # Works...
 as.numeric(levels(year_fct))[year_fct]    # The recommended way.
 
 #' 
-## ---- purl=TRUE---------------------------------------------------------------
+## ----purl=TRUE----------------------------------------------------------------
 ## bar plot of the number of females and males captured during the experiment:
 plot(surveys$sex)
 
@@ -268,7 +268,7 @@ plot(surveys$sex)
 #' 
 
 #' 
-## ---- eval=FALSE, purl=TRUE, echo=FALSE---------------------------------------
+## ----eval=FALSE, purl=TRUE, echo=FALSE----------------------------------------
 ## ## Challenge:
 ## ##  There are a few mistakes in this hand-crafted `data.frame`,
 ## ##  can you spot and fix them? Don't hesitate to experiment!
@@ -287,7 +287,7 @@ plot(surveys$sex)
 #' 
 
 #' 
-## ---- eval=FALSE, purl=TRUE, echo=FALSE---------------------------------------
+## ----eval=FALSE, purl=TRUE, echo=FALSE----------------------------------------
 ## ## Challenge:
 ## ##   Can you predict the class for each of the columns in the following
 ## ##   example?
@@ -309,7 +309,7 @@ plot(surveys$sex)
 #' Using pipes, subset the `surveys` data to include animals collected before
 #' 1995 and retain only the columns `year`, `sex`, and `weight`.
 #' 
-## ---- eval=FALSE, purl=TRUE, echo=FALSE---------------------------------------
+## ----eval=FALSE, purl=TRUE, echo=FALSE----------------------------------------
 ## ## Pipes Challenge:
 ## ##  Using pipes, subset the data to include animals collected
 ## ##  before 1995, and retain the columns `year`, `sex`, and `weight.`
@@ -326,7 +326,7 @@ plot(surveys$sex)
 #' 
 #' **Hint**: think about how the commands should be ordered to produce this data frame!
 #' 
-## ---- eval=FALSE, purl=TRUE, echo=FALSE---------------------------------------
+## ----eval=FALSE, purl=TRUE, echo=FALSE----------------------------------------
 ## ## Mutate Challenge:
 ## ##  Create a new data frame from the `surveys` data that meets the following
 ## ##  criteria: contains only the `species_id` column and a new column called
@@ -348,7 +348,7 @@ plot(surveys$sex)
 #' 3. What was the heaviest animal measured in each year? Return the columns `year`,
 #'   `genus`, `species_id`, and `weight`.
 #' 
-## ---- eval=FALSE, purl=TRUE, echo=FALSE---------------------------------------
+## ----eval=FALSE, purl=TRUE, echo=FALSE----------------------------------------
 ## ## Count Challenges:
 ## ##  1. How many animals were caught in each `plot_type` surveyed?
 ## 
@@ -381,7 +381,7 @@ plot(surveys$sex)
 #'   `value` column that takes on the value of either `hindfoot_length` or
 #'   `weight`. *Hint*: You'll need to specify which columns will be part of the reshape.
 #' 
-## ---- eval=FALSE, purl=TRUE, echo=FALSE---------------------------------------
+## ----eval=FALSE, purl=TRUE, echo=FALSE----------------------------------------
 ## ## Reshaping challenges
 ## 
 ## ## 1. Reshape the `surveys` data frame with `year` as columns, `plot_id` as rows, and the number of genera per plot as the values. You will need to summarize before reshaping, and use the function `n_distinct()` to get the number of unique genera within a particular chunk of data. It's a powerful function! See `?n_distinct` for more.
@@ -393,7 +393,7 @@ plot(surveys$sex)
 ## ## 4. With this new data set, calculate the average of each `measurement` in each `year` for each different `plot_type`. Then `pivot_wider()` them into a data set with a column for `hindfoot_length` and `weight`. *Hint*: You only need to specify the names and values columns for `pivot_wider()`.
 
 #' 
-## ---- eval=FALSE, purl=TRUE, echo=FALSE---------------------------------------
+## ----eval=FALSE, purl=TRUE, echo=FALSE----------------------------------------
 ## ### Create the dataset for exporting:
 ## ##  Start by removing observations for which the `species_id`, `weight`,
 ## ##  `hindfoot_length`, or `sex` data are missing:
@@ -417,11 +417,11 @@ plot(surveys$sex)
 #' 
 #' ## Data visualization with ggplot2
 #' 
-## ---- echo=FALSE, purl=TRUE---------------------------------------------------
+## ----echo=FALSE, purl=TRUE----------------------------------------------------
 ### Data Visualization with ggplot2
 
 #' 
-## ---- eval=FALSE, purl=TRUE, echo=FALSE---------------------------------------
+## ----eval=FALSE, purl=TRUE, echo=FALSE----------------------------------------
 ## ## Create a ggplot and draw it.
 ## surveys_plot <- ggplot(data = surveys_complete,
 ##                        aes(x = weight, y = hindfoot_length))
@@ -441,14 +441,14 @@ plot(surveys$sex)
 #' hexagonal binning with **`ggplot2`**, first install the R package `hexbin`
 #' from CRAN:
 #' 
-## ---- eval=FALSE--------------------------------------------------------------
+## ----eval=FALSE---------------------------------------------------------------
 ## install.packages("hexbin")
 ## library(hexbin)
 
 #' 
 #' Then use the `geom_hex()` function:
 #' 
-## ---- eval=FALSE--------------------------------------------------------------
+## ----eval=FALSE---------------------------------------------------------------
 ## surveys_plot +
 ##  geom_hex()
 
@@ -546,7 +546,7 @@ plot(surveys$sex)
 #' Use what you just learned to create a plot that depicts how the average weight
 #' of each species changes through the years.
 #' 
-## ---- eval=FALSE, purl=TRUE, echo=FALSE---------------------------------------
+## ----eval=FALSE, purl=TRUE, echo=FALSE----------------------------------------
 ## ### Plotting time series challenge:
 ## ##
 ## ##  Use what you just learned to create a plot that depicts how the
@@ -579,7 +579,7 @@ plot(surveys$sex)
 #' 
 #' ## SQL databases and R
 #' 
-## ---- purl=TRUE, echo=FALSE---------------------------------------------------
+## ----purl=TRUE, echo=FALSE----------------------------------------------------
 ## SQL databases and R
 
 #' 
