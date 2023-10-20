@@ -303,13 +303,50 @@
         
 <section id="aio-00-before-we-start"><p>Content from <a href="00-before-we-start.html">Before we start</a></p>
 <hr>
-<p> Last updated on 2023-10-09 | 
+<p> Last updated on 2023-10-20 | 
         
         <a href="https://github.com/datacarpentry/R-ecology-lesson/edit/main/episodes/00-before-we-start.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right"> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
 <hr>
+<div class="overview card">
+<h2 class="card-header">Overview</h2>
+<div class="row g-0">
+<div class="col-md-4">
+<div class="card-body">
+<div class="inner">
+<h3 class="card-title">Questions</h3>
+<ul>
+<li>What is R and RStudio?</li>
+<li>What is a working directory?</li>
+<li>How should files be set up to import into R?</li>
+<li>How can I look for help with R functions?</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-md-8">
+<div class="card-body">
+<div class="inner bordered">
+<h3 class="card-title">Objectives</h3>
+<ul>
+<li>Explain what R and RStudio are, what they are used for, and how they
+relate to each other.</li>
+<li>Describe the purpose of the RStudio Script, Console, Environment,
+and Plots panes.</li>
+<li>Organize files and directories for a set of analyses as an R
+Project, and understand the purpose of the working directory.</li>
+<li>Use the built-in RStudio help interface to search for more
+information on R functions.</li>
+<li>Demonstrate how to provide sufficient information for
+troubleshooting with the R user community.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
 <hr>
 <section id="what-is-r-what-is-rstudio"><h2 class="section-heading">What is R? What is RStudio?<a class="anchor" aria-label="anchor" href="#what-is-r-what-is-rstudio"></a>
 </h2>
@@ -825,16 +862,79 @@ and <a href="https://codeblog.jonskeet.uk/2010/08/29/writing-the-perfect-questio
 blog post by Jon Skeet</a> have comprehensive advice on how to ask
 programming questions.</li>
 </ul>
+<div id="keypoints1" class="callout keypoints">
+<div class="callout-square">
+<i class="callout-icon" data-feather="key"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Keypoints<a class="anchor" aria-label="anchor" href="#keypoints1"></a>
+</h3>
+<div class="callout-content">
+<ul>
+<li>R is a programming language and RStudio is the IDE that assists in
+using R.</li>
+<li>There are many benefits to learning R, including writing
+reproducibile code, ability to use a variety of datasets, and a broad,
+open-source community of practioners.</li>
+<li>Files related to analysis should be organized within a single
+working directory.</li>
+<li>R uses commands containing functions to tell the computer what to
+do.</li>
+<li>Documentation for each function is available within RStudio, or
+users can ask for help from one of many online forums, cheatsheets, or
+email lists.</li>
+</ul>
+</div>
+</div>
+</div>
 </div>
 </section></section><section id="aio-01-intro-to-r"><p>Content from <a href="01-intro-to-r.html">Introduction to R</a></p>
 <hr>
-<p> Last updated on 2023-10-09 | 
+<p> Last updated on 2023-10-20 | 
         
         <a href="https://github.com/datacarpentry/R-ecology-lesson/edit/main/episodes/01-intro-to-r.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right"> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
 <hr>
+<div class="overview card">
+<h2 class="card-header">Overview</h2>
+<div class="row g-0">
+<div class="col-md-4">
+<div class="card-body">
+<div class="inner">
+<h3 class="card-title">Questions</h3>
+<ul>
+<li>How do you create objects in R?</li>
+<li>How do you save R code for later use?</li>
+<li>How do you manipulate data in R?</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-md-8">
+<div class="card-body">
+<div class="inner bordered">
+<h3 class="card-title">Objectives</h3>
+<ul>
+<li>Define the following terms as they relate to R: object, assign,
+call, function, arguments, options.</li>
+<li>Create objects and assign values to them in R.</li>
+<li>Learn how to <em>name</em> objects.</li>
+<li>Save a script file for later use.</li>
+<li>Use comments to inform script.</li>
+<li>Solve simple arithmetic operations in R.</li>
+<li>Call functions and use arguments to change their default
+options.</li>
+<li>Inspect the content of vectors and manipulate their content.</li>
+<li>Subset and extract values from vectors.</li>
+<li>Analyze vectors with missing data.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
 <hr>
 <section id="creating-objects-in-r"><h2 class="section-heading">Creating objects in R<a class="anchor" aria-label="anchor" href="#creating-objects-in-r"></a>
 </h2>
@@ -857,11 +957,11 @@ and the value we want to give it:</p>
 <pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">weight_kg</span> <span class="op">&lt;-</span> <span class="fl">55</span></span></code></pre>
 </div>
-<p><code>&lt;-</code> is the assignment operator. It assigns values on
-the right to objects on the left. So, after executing
-<code>x &lt;- 3</code>, the value of <code>x</code> is <code>3</code>.
-For historical reasons, you can also use <code>=</code> for assignments,
-but not in every context. Because of the <a href="https://blog.revolutionanalytics.com/2008/12/use-equals-or-arrow-for-assignment.html" class="external-link">slight</a>
+<p><code>&lt;-</code> is the assignment operator we will use in this
+course. It assigns values on the right to objects on the left. So, after
+executing <code>x &lt;- 3</code>, the value of <code>x</code> is
+<code>3</code>. For historical reasons, you can also use <code>=</code>
+for assignments, but not in every context. Because of the <a href="https://blog.revolutionanalytics.com/2008/12/use-equals-or-arrow-for-assignment.html" class="external-link">slight</a>
 <a href="https://renkun.me/2014/01/28/difference-between-assignment-operators-in-r/" class="external-link">differences</a>
 in syntax, it is good practice to always use <code>&lt;-</code> for
 assignments.</p>
@@ -1700,16 +1800,84 @@ inches.</p></li>
 data structures, we are ready to start working with the Portal dataset
 we have been using in the other lessons, and learn about data
 frames.</p>
+<div id="keypoints1" class="callout keypoints">
+<div class="callout-square">
+<i class="callout-icon" data-feather="key"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Keypoints<a class="anchor" aria-label="anchor" href="#keypoints1"></a>
+</h3>
+<div class="callout-content">
+<ul>
+<li>
+<code>&lt;-</code> is used to assign values on the right to objects
+on the left</li>
+<li>Code should be saved within the Source pane in RStudio to help you
+return to your code later.<br>
+</li>
+<li>‘#’ can be used to add comments to your code.</li>
+<li>Functions can automate more complicated sets of commands, and
+require arguments as inputs.</li>
+<li>Vectors are composed by a series of values and can take many
+forms.</li>
+<li>Data structures in R include ‘vector’, ‘list’, ‘matrix’,
+‘data.frame’, ‘factor’, and ‘array’.</li>
+<li>Vectors can be subset by indexing or through logical vectors.</li>
+<li>Many functions exist to remove missing data from data
+structures.</li>
+</ul>
+</div>
+</div>
+</div>
 </section></section><section id="aio-02-starting-with-data"><p>Content from <a href="02-starting-with-data.html">Starting with data</a></p>
 <hr>
-<p> Last updated on 2023-10-09 | 
+<p> Last updated on 2023-10-20 | 
         
         <a href="https://github.com/datacarpentry/R-ecology-lesson/edit/main/episodes/02-starting-with-data.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right"> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
-<hr>
-<hr>
+<div class="overview card">
+<h2 class="card-header">Overview</h2>
+<div class="row g-0">
+<div class="col-md-4">
+<div class="card-body">
+<div class="inner">
+<h3 class="card-title">Questions</h3>
+<ul>
+<li>What is a data.frame?</li>
+<li>How can I read a complete csv file into R?</li>
+<li>How can I get basic summary information about my dataset?</li>
+<li>How can extract specific information from a dataframe?</li>
+<li>What are factors, and how are they different from other
+datatypes?</li>
+<li>How can I rename factors?</li>
+<li>How are dates represented in R and how can I change the format?</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-md-8">
+<div class="card-body">
+<div class="inner bordered">
+<h3 class="card-title">Objectives</h3>
+<ul>
+<li>Load external data from a .csv file into a data frame.</li>
+<li>Install and load packages.</li>
+<li>Describe what a data frame is.</li>
+<li>Summarize the contents of a data frame.</li>
+<li>Use indexing to subset specific portions of data frames.</li>
+<li>Describe what a factor is.</li>
+<li>Convert between strings and factors.</li>
+<li>Reorder and rename factors.</li>
+<li>Change how character strings are handled in a data frame.</li>
+<li>Format dates.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
 <section id="loading-the-survey-data"><h2 class="section-heading">Loading the survey data<a class="anchor" aria-label="anchor" href="#loading-the-survey-data"></a>
 </h2>
 <hr class="half-width">
@@ -1789,13 +1957,13 @@ download the CSV file that contains the survey data from Figshare, and
 we will use <code>read_csv()</code> to load the content of the CSV file
 into R.</p>
 <p>Inside the <code>download.file</code> command, the first entry is a
-character string with the source URL (“<a href="https://ndownloader.figshare.com/files/2292169" class="external-link">https://ndownloader.figshare.com/files/2292169</a>”).
-This source URL downloads a CSV file from figshare. The text after the
-comma (“data_raw/portal_data_joined.csv”) is the destination of the file
-on your local machine. You’ll need to have a folder on your machine
-called “data_raw” where you’ll download the file. So this command
-downloads a file from Figshare, names it “portal_data_joined.csv” and
-adds it to a preexisting folder named “data_raw”.</p>
+character string with the source URL (“<a href="https://ndownloader.figshare.com/files/2292169" class="external-link uri">https://ndownloader.figshare.com/files/2292169</a>”). This
+source URL downloads a CSV file from figshare. The text after the comma
+(“data_raw/portal_data_joined.csv”) is the destination of the file on
+your local machine. You’ll need to have a folder on your machine called
+“data_raw” where you’ll download the file. So this command downloads a
+file from Figshare, names it “portal_data_joined.csv” and adds it to a
+preexisting folder named “data_raw”.</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -2052,7 +2220,7 @@ following questions?</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2233,7 +2401,7 @@ just the first through 6th rows of the surveys dataset.</p></li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2379,7 +2547,7 @@ out…</p></li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb24">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2550,7 +2718,7 @@ recreate the barplot such that “undetermined” is first (before
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb38">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2799,19 +2967,87 @@ observations, you may want to leave them as missing data.</li>
 <p>Regardless of the option you choose, it is important that you
 document the error and the corrections (if any) that you apply to your
 data.</p>
+<div id="keypoints1" class="callout keypoints">
+<div class="callout-square">
+<i class="callout-icon" data-feather="key"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Keypoints<a class="anchor" aria-label="anchor" href="#keypoints1"></a>
+</h3>
+<div class="callout-content">
+<ul>
+<li>Use <code>read.csv</code> to read tabular data in R.</li>
+<li>A data frame is the representation of data in the format of a table
+where the columns are vectors that all have the same length.</li>
+<li>
+<code>dplyr</code> provides many methods for inspecting and
+summarizing data in data frames.</li>
+<li>Use factors to represent categorical data in R.</li>
+<li>The <strong><code>lubridate</code></strong> package has many useful
+functions for working with dates.</li>
+</ul>
+</div>
+</div>
+</div>
 </section></section><section id="aio-03-dplyr"><p>Content from <a href="03-dplyr.html">Manipulating, analyzing and exporting data with tidyverse</a></p>
 <hr>
-<p> Last updated on 2023-10-09 | 
+<p> Last updated on 2023-10-20 | 
         
         <a href="https://github.com/datacarpentry/R-ecology-lesson/edit/main/episodes/03-dplyr.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right"> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
-<div class="section level3">
-<h3 id="manipulating-and-analyzing-data-with-dplyr-and-tidyr">Manipulating and analyzing data with dplyr and tidyr<a class="anchor" aria-label="anchor" href="#manipulating-and-analyzing-data-with-dplyr-and-tidyr"></a>
-</h3>
-<hr>
-<hr>
+<div class="overview card">
+<h2 class="card-header">Overview</h2>
+<div class="row g-0">
+<div class="col-md-4">
+<div class="card-body">
+<div class="inner">
+<h3 class="card-title">Questions</h3>
+<ul>
+<li>What are dplyr and tidyr?</li>
+<li>How can I select specific rows and/or columns from a dataframe?</li>
+<li>How can I combine multiple commands into a single command?</li>
+<li>How can I create new columns or remove existing columns from a
+dataframe?</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-md-8">
+<div class="card-body">
+<div class="inner bordered">
+<h3 class="card-title">Objectives</h3>
+<ul>
+<li>Describe the purpose of the <strong><code>dplyr</code></strong> and
+<strong><code>tidyr</code></strong> packages.</li>
+<li>Select certain columns in a data frame with the
+<strong><code>dplyr</code></strong> function <code>select</code>.</li>
+<li>Extract certain rows in a data frame according to logical (boolean)
+conditions with the <strong><code>dplyr</code></strong> function
+<code>filter</code> .</li>
+<li>Link the output of one <strong><code>dplyr</code></strong> function
+to the input of another function with the ‘pipe’ operator
+<code>%&gt;%</code>.</li>
+<li>Add new columns to a data frame that are functions of existing
+columns with <code>mutate</code>.</li>
+<li>Use the split-apply-combine concept for data analysis.</li>
+<li>Use <code>summarize</code>, <code>group_by</code>, and
+<code>count</code> to split a data frame into groups of observations,
+apply summary statistics for each group, and then combine the
+results.</li>
+<li>Describe the concept of a wide and a long table format and for which
+purpose those formats are useful.</li>
+<li>Describe what key-value pairs are.</li>
+<li>Reshape a data frame from long to wide format and back with the
+<code>pivot_wider</code> and <code>pivot_longer</code> commands from the
+<strong><code>tidyr</code></strong> package.</li>
+<li>Export a data frame to a .csv file.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div class="section level1">
 <h1 id="data-manipulation-using-dplyr-and-tidyr">Data manipulation using <strong><code>dplyr</code></strong> and
@@ -3065,7 +3301,7 @@ collected before 1995 and retain only the columns <code>year</code>,
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3159,7 +3395,7 @@ to produce this data frame!</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb17">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3418,7 +3654,7 @@ surveyed?</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb36">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3455,7 +3691,7 @@ mean, min, and max hindfoot length for each species (using
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb37">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3498,7 +3734,7 @@ and <code>weight</code>.</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb38">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3705,7 +3941,7 @@ genera within a particular chunk of data. It’s a powerful function! See
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb46">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3755,7 +3991,7 @@ combination.</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution7" class="accordion-collapse collapse" aria-labelledby="headingSolution7" data-bs-parent="#accordionSolution7">
+<div id="collapseSolution7" class="accordion-collapse collapse" data-bs-parent="#accordionSolution7" aria-labelledby="headingSolution7">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb49">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3799,7 +4035,7 @@ will be part of the reshape.</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution8" class="accordion-collapse collapse" aria-labelledby="headingSolution8" data-bs-parent="#accordionSolution8">
+<div id="collapseSolution8" class="accordion-collapse collapse" data-bs-parent="#accordionSolution8" aria-labelledby="headingSolution8">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb50">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3827,7 +4063,7 @@ and values columns for <code>pivot_wider()</code>.</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution9" class="accordion-collapse collapse" aria-labelledby="headingSolution9" data-bs-parent="#accordionSolution9">
+<div id="collapseSolution9" class="accordion-collapse collapse" data-bs-parent="#accordionSolution9" aria-labelledby="headingSolution9">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb51">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3918,15 +4154,67 @@ common species:</p>
 <pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">write_csv</span><span class="op">(</span><span class="va">surveys_complete</span>, file <span class="op">=</span> <span class="st">"data/surveys_complete.csv"</span><span class="op">)</span></span></code></pre>
 </div>
+<div id="keypoints1" class="callout keypoints">
+<div class="callout-square">
+<i class="callout-icon" data-feather="key"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Keypoints<a class="anchor" aria-label="anchor" href="#keypoints1"></a>
+</h3>
+<div class="callout-content">
+<ul>
+<li>Use the <code>dplyr</code> package to manipulate data frames.</li>
+<li>Use <code>select()</code> to choose variables from a data
+frame.</li>
+<li>Use <code>filter()</code> to choose data based on values.</li>
+<li>Use <code>mutate()</code> to create new variables.</li>
+<li>Use <code>group_by()</code> and <code>summarize()</code> to work
+with subsets of data.</li>
+</ul>
+</div>
+</div>
+</div>
 </div></section><section id="aio-04-visualization-ggplot2"><p>Content from <a href="04-visualization-ggplot2.html">Data visualization with ggplot2</a></p>
 <hr>
-<p> Last updated on 2023-10-09 | 
+<p> Last updated on 2023-10-20 | 
         
         <a href="https://github.com/datacarpentry/R-ecology-lesson/edit/main/episodes/04-visualization-ggplot2.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right"> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
 <hr>
+<div class="overview card">
+<h2 class="card-header">Overview</h2>
+<div class="row g-0">
+<div class="col-md-4">
+<div class="card-body">
+<div class="inner">
+<h3 class="card-title">Questions</h3>
+<ul>
+<li>How do you make plots using R?</li>
+<li>How do you customize and modify plots?</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-md-8">
+<div class="card-body">
+<div class="inner bordered">
+<h3 class="card-title">Objectives</h3>
+<ul>
+<li>Produce scatter plots, boxplots, and time series plots using
+ggplot.</li>
+<li>Set universal plot settings.</li>
+<li>Describe what faceting is and apply faceting in ggplot.</li>
+<li>Modify the aesthetics of an existing ggplot plot (including axis
+labels and color).</li>
+<li>Build complex and customized plots from data in a data frame.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
 <hr>
 <p>We start by loading the required packages.
 <strong><code>ggplot2</code></strong> is included in the
@@ -4177,7 +4465,7 @@ data?</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -4248,7 +4536,7 @@ density of points) is drawn.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb18">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -4291,7 +4579,7 @@ these modifications:</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb19">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -4332,7 +4620,7 @@ layer on a jitter layer to show actual measurements.</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb20">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -4558,7 +4846,7 @@ average weight of each species changes through the years.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb34">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -4767,15 +5055,75 @@ appropriate arguments (<code>width</code>, <code>height</code> and
 </div>
 <p>Note: The parameters <code>width</code> and <code>height</code> also
 determine the font size in the saved plot.</p>
+<div id="keypoints1" class="callout keypoints">
+<div class="callout-square">
+<i class="callout-icon" data-feather="key"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Keypoints<a class="anchor" aria-label="anchor" href="#keypoints1"></a>
+</h3>
+<div class="callout-content">
+<ul>
+<li>start simple and build your plots iteratively</li>
+<li>the <code>ggplot()</code> function initiates a plot, and
+<code>geom_</code> functions add representations of your data</li>
+<li>use <code>aes()</code> when mapping a variable from the data to a
+part of the plot</li>
+<li>use <code>facet_</code> to partition a plot into multiple plots
+based on a factor included in the dataset</li>
+<li>use premade <code>theme_</code> functions to broadly change
+appearance, and the <code>theme()</code> function to fine-tune</li>
+<li>the <code>patchwork</code> library can combine separate plots into a
+single figure</li>
+<li>use <code>ggsave()</code> to save plots in your favorite format and
+dimensions</li>
+</ul>
+</div>
+</div>
+</div>
 </section></section><section id="aio-05-r-and-databases"><p>Content from <a href="05-r-and-databases.html">SQL databases and R</a></p>
 <hr>
-<p> Last updated on 2023-10-09 | 
+<p> Last updated on 2023-10-20 | 
         
         <a href="https://github.com/datacarpentry/R-ecology-lesson/edit/main/episodes/05-r-and-databases.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right"> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
 <hr>
+<div class="overview card">
+<h2 class="card-header">Overview</h2>
+<div class="row g-0">
+<div class="col-md-4">
+<div class="card-body">
+<div class="inner">
+<h3 class="card-title">Questions</h3>
+<ul>
+<li>How can I connect and get data from a database in R?</li>
+<li>How can I retrieve data from multiple database tables?</li>
+<li>How can I create an SQLite database?</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-md-8">
+<div class="card-body">
+<div class="inner bordered">
+<h3 class="card-title">Objectives</h3>
+<ul>
+<li>Access a database from R.</li>
+<li>Run SQL queries in R using <strong><code>RSQLite</code></strong> and
+<strong><code>dplyr</code></strong>.</li>
+<li>Describe the lazy behavior of dplyr on data stored in a database
+outside of R.</li>
+<li>Prototype queries and retrieve all final results.</li>
+<li>Create complex queries across one or multiple database tables.</li>
+<li>Create an SQLite database from existing .csv files.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
 <hr>
 <section id="introduction"><h2 class="section-heading">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
@@ -5332,7 +5680,7 @@ foreign key refers to your unique id (e.g.,
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb31">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -5394,7 +5742,7 @@ together. The query should return counts of genus by plot type.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb34">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -5584,6 +5932,29 @@ very large datasets.</p>
 <p><strong>Note:</strong> Finally, to close the connection to the
 mammals database you may use <code>DBI::dbDisconnect(mammals)</code>;
 this discards all pending work and frees resources, e.g. memory.</p>
+<div id="keypoints1" class="callout keypoints">
+<div class="callout-square">
+<i class="callout-icon" data-feather="key"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Keypoints<a class="anchor" aria-label="anchor" href="#keypoints1"></a>
+</h3>
+<div class="callout-content">
+<ul>
+<li>
+<code>tbl</code> connects to a database and can send SQL
+queries.</li>
+<li>use <code>dplyr</code> syntax to extract information from SQL
+tables.</li>
+<li>
+<code>dplyr</code> laziness only pulls the needed information,
+speeding up data retrieval.</li>
+<li>use <code>src_sqlite()</code> to create a new empty SQLite database
+and <code>copy_to()</code> to add data to it.</li>
+</ul>
+</div>
+</div>
+</div>
 </section></section>
 </div>
     </main>
@@ -5633,8 +6004,8 @@ this discards all pending work and frees resources, e.g. memory.</p>
   "url": "https://datacarpentry.github.io/R-ecology-lesson/instructor/aio.html",
   "identifier": "https://datacarpentry.github.io/R-ecology-lesson/instructor/aio.html",
   "dateCreated": "2015-04-02",
-  "dateModified": "2023-10-17",
-  "datePublished": "2023-10-17"
+  "dateModified": "2023-10-20",
+  "datePublished": "2023-10-20"
 }
 
   </script><script>

@@ -269,7 +269,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Starting with data</h1>
-        <p> Last updated on 2023-10-09 | 
+        <p> Last updated on 2023-10-20 | 
         
         <a href="https://github.com/datacarpentry/R-ecology-lesson/edit/main/episodes/02-starting-with-data.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -283,7 +283,44 @@
 
         
 
-<hr><hr><section id="loading-the-survey-data"><h2 class="section-heading">Loading the survey data<a class="anchor" aria-label="anchor" href="#loading-the-survey-data"></a>
+<div class="overview card">
+<h2 class="card-header">Overview</h2>
+<div class="row g-0">
+<div class="col-md-4">
+<div class="card-body">
+<div class="inner">
+<h3 class="card-title">Questions</h3>
+<ul><li>What is a data.frame?</li>
+<li>How can I read a complete csv file into R?</li>
+<li>How can I get basic summary information about my dataset?</li>
+<li>How can extract specific information from a dataframe?</li>
+<li>What are factors, and how are they different from other
+datatypes?</li>
+<li>How can I rename factors?</li>
+<li>How are dates represented in R and how can I change the format?</li>
+</ul></div>
+</div>
+</div>
+<div class="col-md-8">
+<div class="card-body">
+<div class="inner bordered">
+<h3 class="card-title">Objectives</h3>
+<ul><li>Load external data from a .csv file into a data frame.</li>
+<li>Install and load packages.</li>
+<li>Describe what a data frame is.</li>
+<li>Summarize the contents of a data frame.</li>
+<li>Use indexing to subset specific portions of data frames.</li>
+<li>Describe what a factor is.</li>
+<li>Convert between strings and factors.</li>
+<li>Reorder and rename factors.</li>
+<li>Change how character strings are handled in a data frame.</li>
+<li>Format dates.</li>
+</ul></div>
+</div>
+</div>
+</div>
+</div>
+<section id="loading-the-survey-data"><h2 class="section-heading">Loading the survey data<a class="anchor" aria-label="anchor" href="#loading-the-survey-data"></a>
 </h2>
 <hr class="half-width"><p>We are investigating the animal species diversity and weights found
 within plots at our study site. The dataset is stored as a comma
@@ -328,13 +365,13 @@ download the CSV file that contains the survey data from Figshare, and
 we will use <code>read_csv()</code> to load the content of the CSV file
 into R.</p>
 <p>Inside the <code>download.file</code> command, the first entry is a
-character string with the source URL (“<a href="https://ndownloader.figshare.com/files/2292169" class="external-link">https://ndownloader.figshare.com/files/2292169</a>”).
-This source URL downloads a CSV file from figshare. The text after the
-comma (“data_raw/portal_data_joined.csv”) is the destination of the file
-on your local machine. You’ll need to have a folder on your machine
-called “data_raw” where you’ll download the file. So this command
-downloads a file from Figshare, names it “portal_data_joined.csv” and
-adds it to a preexisting folder named “data_raw”.</p>
+character string with the source URL (“<a href="https://ndownloader.figshare.com/files/2292169" class="external-link uri">https://ndownloader.figshare.com/files/2292169</a>”). This
+source URL downloads a CSV file from figshare. The text after the comma
+(“data_raw/portal_data_joined.csv”) is the destination of the file on
+your local machine. You’ll need to have a folder on your machine called
+“data_raw” where you’ll download the file. So this command downloads a
+file from Figshare, names it “portal_data_joined.csv” and adds it to a
+preexisting folder named “data_raw”.</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -576,7 +613,7 @@ following questions?</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -750,7 +787,7 @@ just the first through 6th rows of the surveys dataset.</p></li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -891,7 +928,7 @@ out…</p></li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb24">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1056,7 +1093,7 @@ recreate the barplot such that “undetermined” is first (before
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb38">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1295,6 +1332,26 @@ observations, you may want to leave them as missing data.</li>
 </ul><p>Regardless of the option you choose, it is important that you
 document the error and the corrections (if any) that you apply to your
 data.</p>
+<div id="keypoints1" class="callout keypoints">
+<div class="callout-square">
+<i class="callout-icon" data-feather="key"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Keypoints<a class="anchor" aria-label="anchor" href="#keypoints1"></a>
+</h3>
+<div class="callout-content">
+<ul><li>Use <code>read.csv</code> to read tabular data in R.</li>
+<li>A data frame is the representation of data in the format of a table
+where the columns are vectors that all have the same length.</li>
+<li>
+<code>dplyr</code> provides many methods for inspecting and
+summarizing data in data frames.</li>
+<li>Use factors to represent categorical data in R.</li>
+<li>The <strong><code>lubridate</code></strong> package has many useful
+functions for working with dates.</li>
+</ul></div>
+</div>
+</div>
 </section></div> <!-- / div.lesson-content -->
     </main><!-- / main#main-content.main-content --><nav class="bottom-pagination mx-md-4" aria-label="Previous and Next Chapter"><div class="d-block d-sm-block d-md-none">
         <a class="chapter-link" href="../instructor/01-intro-to-r.html"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>
@@ -1354,8 +1411,8 @@ data.</p>
   "url": "https://datacarpentry.github.io/R-ecology-lesson/instructor/02-starting-with-data.html",
   "identifier": "https://datacarpentry.github.io/R-ecology-lesson/instructor/02-starting-with-data.html",
   "dateCreated": "2015-04-02",
-  "dateModified": "2023-10-09",
-  "datePublished": "2023-10-17"
+  "dateModified": "2023-10-20",
+  "datePublished": "2023-10-20"
 }
 
   </script><script>

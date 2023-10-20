@@ -270,7 +270,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>SQL databases and R</h1>
-        <p> Last updated on 2023-10-09 | 
+        <p> Last updated on 2023-10-20 | 
         
         <a href="https://github.com/datacarpentry/R-ecology-lesson/edit/main/episodes/05-r-and-databases.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -282,7 +282,37 @@
 
         
 
-<hr><hr><section id="introduction"><h2 class="section-heading">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+<hr><div class="overview card">
+<h2 class="card-header">Overview</h2>
+<div class="row g-0">
+<div class="col-md-4">
+<div class="card-body">
+<div class="inner">
+<h3 class="card-title">Questions</h3>
+<ul><li>How can I connect and get data from a database in R?</li>
+<li>How can I retrieve data from multiple database tables?</li>
+<li>How can I create an SQLite database?</li>
+</ul></div>
+</div>
+</div>
+<div class="col-md-8">
+<div class="card-body">
+<div class="inner bordered">
+<h3 class="card-title">Objectives</h3>
+<ul><li>Access a database from R.</li>
+<li>Run SQL queries in R using <strong><code>RSQLite</code></strong> and
+<strong><code>dplyr</code></strong>.</li>
+<li>Describe the lazy behavior of dplyr on data stored in a database
+outside of R.</li>
+<li>Prototype queries and retrieve all final results.</li>
+<li>Create complex queries across one or multiple database tables.</li>
+<li>Create an SQLite database from existing .csv files.</li>
+</ul></div>
+</div>
+</div>
+</div>
+</div>
+<hr><section id="introduction"><h2 class="section-heading">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
 <hr class="half-width"><p>So far, we have dealt with small datasets that easily fit into your
 computer’s memory. But what about datasets that are too large for your
@@ -820,7 +850,7 @@ foreign key refers to your unique id (e.g.,
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb31">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -882,7 +912,7 @@ together. The query should return counts of genus by plot type.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb34">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1071,6 +1101,27 @@ very large datasets.</p>
 <p><strong>Note:</strong> Finally, to close the connection to the
 mammals database you may use <code>DBI::dbDisconnect(mammals)</code>;
 this discards all pending work and frees resources, e.g. memory.</p>
+<div id="keypoints1" class="callout keypoints">
+<div class="callout-square">
+<i class="callout-icon" data-feather="key"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Keypoints<a class="anchor" aria-label="anchor" href="#keypoints1"></a>
+</h3>
+<div class="callout-content">
+<ul><li>
+<code>tbl</code> connects to a database and can send SQL
+queries.</li>
+<li>use <code>dplyr</code> syntax to extract information from SQL
+tables.</li>
+<li>
+<code>dplyr</code> laziness only pulls the needed information,
+speeding up data retrieval.</li>
+<li>use <code>src_sqlite()</code> to create a new empty SQLite database
+and <code>copy_to()</code> to add data to it.</li>
+</ul></div>
+</div>
+</div>
 </section></div> <!-- / div.lesson-content -->
     </main><!-- / main#main-content.main-content --><nav class="bottom-pagination mx-md-4" aria-label="Previous and Next Chapter"><div class="d-block d-sm-block d-md-none">
         <a class="chapter-link" href="04-visualization-ggplot2.html"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>
@@ -1130,8 +1181,8 @@ this discards all pending work and frees resources, e.g. memory.</p>
   "url": "https://datacarpentry.github.io/R-ecology-lesson/05-r-and-databases.html",
   "identifier": "https://datacarpentry.github.io/R-ecology-lesson/05-r-and-databases.html",
   "dateCreated": "2015-04-02",
-  "dateModified": "2023-10-09",
-  "datePublished": "2023-10-17"
+  "dateModified": "2023-10-20",
+  "datePublished": "2023-10-20"
 }
 
   </script><script>

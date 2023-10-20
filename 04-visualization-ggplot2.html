@@ -274,7 +274,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Data visualization with ggplot2</h1>
-        <p> Last updated on 2023-10-09 | 
+        <p> Last updated on 2023-10-20 | 
         
         <a href="https://github.com/datacarpentry/R-ecology-lesson/edit/main/episodes/04-visualization-ggplot2.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -286,7 +286,35 @@
 
         
 
-<hr><hr><p>We start by loading the required packages.
+<hr><div class="overview card">
+<h2 class="card-header">Overview</h2>
+<div class="row g-0">
+<div class="col-md-4">
+<div class="card-body">
+<div class="inner">
+<h3 class="card-title">Questions</h3>
+<ul><li>How do you make plots using R?</li>
+<li>How do you customize and modify plots?</li>
+</ul></div>
+</div>
+</div>
+<div class="col-md-8">
+<div class="card-body">
+<div class="inner bordered">
+<h3 class="card-title">Objectives</h3>
+<ul><li>Produce scatter plots, boxplots, and time series plots using
+ggplot.</li>
+<li>Set universal plot settings.</li>
+<li>Describe what faceting is and apply faceting in ggplot.</li>
+<li>Modify the aesthetics of an existing ggplot plot (including axis
+labels and color).</li>
+<li>Build complex and customized plots from data in a data frame.</li>
+</ul></div>
+</div>
+</div>
+</div>
+</div>
+<hr><p>We start by loading the required packages.
 <strong><code>ggplot2</code></strong> is included in the
 <strong><code>tidyverse</code></strong> package.</p>
 <div class="codewrapper sourceCode" id="cb1">
@@ -521,7 +549,7 @@ data?</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -588,7 +616,7 @@ density of points) is drawn.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb18">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -628,7 +656,7 @@ these modifications:</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb19">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -666,7 +694,7 @@ layer on a jitter layer to show actual measurements.</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb20">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -885,7 +913,7 @@ average weight of each species changes through the years.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb34">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1088,6 +1116,30 @@ appropriate arguments (<code>width</code>, <code>height</code> and
 </div>
 <p>Note: The parameters <code>width</code> and <code>height</code> also
 determine the font size in the saved plot.</p>
+<div id="keypoints1" class="callout keypoints">
+<div class="callout-square">
+<i class="callout-icon" data-feather="key"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Keypoints<a class="anchor" aria-label="anchor" href="#keypoints1"></a>
+</h3>
+<div class="callout-content">
+<ul><li>start simple and build your plots iteratively</li>
+<li>the <code>ggplot()</code> function initiates a plot, and
+<code>geom_</code> functions add representations of your data</li>
+<li>use <code>aes()</code> when mapping a variable from the data to a
+part of the plot</li>
+<li>use <code>facet_</code> to partition a plot into multiple plots
+based on a factor included in the dataset</li>
+<li>use premade <code>theme_</code> functions to broadly change
+appearance, and the <code>theme()</code> function to fine-tune</li>
+<li>the <code>patchwork</code> library can combine separate plots into a
+single figure</li>
+<li>use <code>ggsave()</code> to save plots in your favorite format and
+dimensions</li>
+</ul></div>
+</div>
+</div>
 </section></div> <!-- / div.lesson-content -->
     </main><!-- / main#main-content.main-content --><nav class="bottom-pagination mx-md-4" aria-label="Previous and Next Chapter"><div class="d-block d-sm-block d-md-none">
         <a class="chapter-link" href="03-dplyr.html"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>
@@ -1147,8 +1199,8 @@ determine the font size in the saved plot.</p>
   "url": "https://datacarpentry.github.io/R-ecology-lesson/04-visualization-ggplot2.html",
   "identifier": "https://datacarpentry.github.io/R-ecology-lesson/04-visualization-ggplot2.html",
   "dateCreated": "2015-04-02",
-  "dateModified": "2023-10-09",
-  "datePublished": "2023-10-17"
+  "dateModified": "2023-10-20",
+  "datePublished": "2023-10-20"
 }
 
   </script><script>

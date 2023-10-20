@@ -258,7 +258,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Manipulating, analyzing and exporting data with tidyverse</h1>
-        <p> Last updated on 2023-10-09 | 
+        <p> Last updated on 2023-10-20 | 
         
         <a href="https://github.com/datacarpentry/R-ecology-lesson/edit/main/episodes/03-dplyr.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -270,9 +270,54 @@
 
         
 
-<div class="section level3">
-<h3 id="manipulating-and-analyzing-data-with-dplyr-and-tidyr">Manipulating and analyzing data with dplyr and tidyr<a class="anchor" aria-label="anchor" href="#manipulating-and-analyzing-data-with-dplyr-and-tidyr"></a></h3>
-<hr><hr></div>
+<div class="overview card">
+<h2 class="card-header">Overview</h2>
+<div class="row g-0">
+<div class="col-md-4">
+<div class="card-body">
+<div class="inner">
+<h3 class="card-title">Questions</h3>
+<ul><li>What are dplyr and tidyr?</li>
+<li>How can I select specific rows and/or columns from a dataframe?</li>
+<li>How can I combine multiple commands into a single command?</li>
+<li>How can I create new columns or remove existing columns from a
+dataframe?</li>
+</ul></div>
+</div>
+</div>
+<div class="col-md-8">
+<div class="card-body">
+<div class="inner bordered">
+<h3 class="card-title">Objectives</h3>
+<ul><li>Describe the purpose of the <strong><code>dplyr</code></strong> and
+<strong><code>tidyr</code></strong> packages.</li>
+<li>Select certain columns in a data frame with the
+<strong><code>dplyr</code></strong> function <code>select</code>.</li>
+<li>Extract certain rows in a data frame according to logical (boolean)
+conditions with the <strong><code>dplyr</code></strong> function
+<code>filter</code> .</li>
+<li>Link the output of one <strong><code>dplyr</code></strong> function
+to the input of another function with the ‘pipe’ operator
+<code>%&gt;%</code>.</li>
+<li>Add new columns to a data frame that are functions of existing
+columns with <code>mutate</code>.</li>
+<li>Use the split-apply-combine concept for data analysis.</li>
+<li>Use <code>summarize</code>, <code>group_by</code>, and
+<code>count</code> to split a data frame into groups of observations,
+apply summary statistics for each group, and then combine the
+results.</li>
+<li>Describe the concept of a wide and a long table format and for which
+purpose those formats are useful.</li>
+<li>Describe what key-value pairs are.</li>
+<li>Reshape a data frame from long to wide format and back with the
+<code>pivot_wider</code> and <code>pivot_longer</code> commands from the
+<strong><code>tidyr</code></strong> package.</li>
+<li>Export a data frame to a .csv file.</li>
+</ul></div>
+</div>
+</div>
+</div>
+</div>
 <div class="section level1">
 <h1 id="data-manipulation-using-dplyr-and-tidyr">Data manipulation using <strong><code>dplyr</code></strong> and
 <strong><code>tidyr</code></strong>
@@ -515,7 +560,7 @@ collected before 1995 and retain only the columns <code>year</code>,
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -608,7 +653,7 @@ to produce this data frame!</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb17">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -862,7 +907,7 @@ surveyed?</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb36">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -897,7 +942,7 @@ mean, min, and max hindfoot length for each species (using
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb37">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -938,7 +983,7 @@ and <code>weight</code>.</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb38">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1134,7 +1179,7 @@ genera within a particular chunk of data. It’s a powerful function! See
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb46">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1182,7 +1227,7 @@ combination.</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution7" class="accordion-collapse collapse" aria-labelledby="headingSolution7" data-bs-parent="#accordionSolution7">
+<div id="collapseSolution7" class="accordion-collapse collapse" data-bs-parent="#accordionSolution7" aria-labelledby="headingSolution7">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb49">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1224,7 +1269,7 @@ will be part of the reshape.</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution8" class="accordion-collapse collapse" aria-labelledby="headingSolution8" data-bs-parent="#accordionSolution8">
+<div id="collapseSolution8" class="accordion-collapse collapse" data-bs-parent="#accordionSolution8" aria-labelledby="headingSolution8">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb50">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1250,7 +1295,7 @@ and values columns for <code>pivot_wider()</code>.</li>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution9" class="accordion-collapse collapse" aria-labelledby="headingSolution9" data-bs-parent="#accordionSolution9">
+<div id="collapseSolution9" class="accordion-collapse collapse" data-bs-parent="#accordionSolution9" aria-labelledby="headingSolution9">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb51">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1340,6 +1385,24 @@ common species:</p>
 <pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">write_csv</span><span class="op">(</span><span class="va">surveys_complete</span>, file <span class="op">=</span> <span class="st">"data/surveys_complete.csv"</span><span class="op">)</span></span></code></pre>
 </div>
+<div id="keypoints1" class="callout keypoints">
+<div class="callout-square">
+<i class="callout-icon" data-feather="key"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Keypoints<a class="anchor" aria-label="anchor" href="#keypoints1"></a>
+</h3>
+<div class="callout-content">
+<ul><li>Use the <code>dplyr</code> package to manipulate data frames.</li>
+<li>Use <code>select()</code> to choose variables from a data
+frame.</li>
+<li>Use <code>filter()</code> to choose data based on values.</li>
+<li>Use <code>mutate()</code> to create new variables.</li>
+<li>Use <code>group_by()</code> and <code>summarize()</code> to work
+with subsets of data.</li>
+</ul></div>
+</div>
+</div>
 </div>
 
 
@@ -1403,8 +1466,8 @@ common species:</p>
   "url": "https://datacarpentry.github.io/R-ecology-lesson/03-dplyr.html",
   "identifier": "https://datacarpentry.github.io/R-ecology-lesson/03-dplyr.html",
   "dateCreated": "2015-04-02",
-  "dateModified": "2023-10-09",
-  "datePublished": "2023-10-17"
+  "dateModified": "2023-10-20",
+  "datePublished": "2023-10-20"
 }
 
   </script><script>

@@ -304,14 +304,93 @@
         
         
 <section id="00-before-we-start"><h2 class="section-heading"><a href="00-before-we-start.html">Before we start</a></h2>
-<hr class="half-width"></section><section id="01-intro-to-r"><h2 class="section-heading"><a href="01-intro-to-r.html">Introduction to R</a></h2>
-<hr class="half-width"></section><section id="02-starting-with-data"><h2 class="section-heading"><a href="02-starting-with-data.html">Starting with data</a></h2>
-<hr class="half-width"></section><section id="03-dplyr"><h2 class="section-heading"><a href="03-dplyr.html">Manipulating, analyzing and exporting data with tidyverseData manipulation using <strong><code>dplyr</code></strong> and
+<hr class="half-width">
+<ul>
+<li>R is a programming language and RStudio is the IDE that assists in
+using R.</li>
+<li>There are many benefits to learning R, including writing
+reproducibile code, ability to use a variety of datasets, and a broad,
+open-source community of practioners.</li>
+<li>Files related to analysis should be organized within a single
+working directory.</li>
+<li>R uses commands containing functions to tell the computer what to
+do.</li>
+<li>Documentation for each function is available within RStudio, or
+users can ask for help from one of many online forums, cheatsheets, or
+email lists.</li>
+</ul></section><section id="01-intro-to-r"><h2 class="section-heading"><a href="01-intro-to-r.html">Introduction to R</a></h2>
+<hr class="half-width">
+<ul>
+<li>
+<code>&lt;-</code> is used to assign values on the right to objects
+on the left</li>
+<li>Code should be saved within the Source pane in RStudio to help you
+return to your code later.<br>
+</li>
+<li>‘#’ can be used to add comments to your code.</li>
+<li>Functions can automate more complicated sets of commands, and
+require arguments as inputs.</li>
+<li>Vectors are composed by a series of values and can take many
+forms.</li>
+<li>Data structures in R include ‘vector’, ‘list’, ‘matrix’,
+‘data.frame’, ‘factor’, and ‘array’.</li>
+<li>Vectors can be subset by indexing or through logical vectors.</li>
+<li>Many functions exist to remove missing data from data
+structures.</li>
+</ul></section><section id="02-starting-with-data"><h2 class="section-heading"><a href="02-starting-with-data.html">Starting with data</a></h2>
+<hr class="half-width">
+<ul>
+<li>Use <code>read.csv</code> to read tabular data in R.</li>
+<li>A data frame is the representation of data in the format of a table
+where the columns are vectors that all have the same length.</li>
+<li>
+<code>dplyr</code> provides many methods for inspecting and
+summarizing data in data frames.</li>
+<li>Use factors to represent categorical data in R.</li>
+<li>The <strong><code>lubridate</code></strong> package has many useful
+functions for working with dates.</li>
+</ul></section><section id="03-dplyr"><h2 class="section-heading"><a href="03-dplyr.html">Manipulating, analyzing and exporting data with tidyverseData manipulation using <strong><code>dplyr</code></strong> and
 <strong><code>tidyr</code></strong>
 <a class="anchor" aria-label="anchor" href="#data-manipulation-using-dplyr-and-tidyr"></a>Exporting data<a class="anchor" aria-label="anchor" href="#exporting-data"></a></a></h2>
-<hr class="half-width"></section><section id="04-visualization-ggplot2"><h2 class="section-heading"><a href="04-visualization-ggplot2.html">Data visualization with ggplot2</a></h2>
-<hr class="half-width"></section><section id="05-r-and-databases"><h2 class="section-heading"><a href="05-r-and-databases.html">SQL databases and R</a></h2>
-<hr class="half-width"></section>
+<hr class="half-width">
+<ul>
+<li>Use the <code>dplyr</code> package to manipulate data frames.</li>
+<li>Use <code>select()</code> to choose variables from a data
+frame.</li>
+<li>Use <code>filter()</code> to choose data based on values.</li>
+<li>Use <code>mutate()</code> to create new variables.</li>
+<li>Use <code>group_by()</code> and <code>summarize()</code> to work
+with subsets of data.</li>
+</ul></section><section id="04-visualization-ggplot2"><h2 class="section-heading"><a href="04-visualization-ggplot2.html">Data visualization with ggplot2</a></h2>
+<hr class="half-width">
+<ul>
+<li>start simple and build your plots iteratively</li>
+<li>the <code>ggplot()</code> function initiates a plot, and
+<code>geom_</code> functions add representations of your data</li>
+<li>use <code>aes()</code> when mapping a variable from the data to a
+part of the plot</li>
+<li>use <code>facet_</code> to partition a plot into multiple plots
+based on a factor included in the dataset</li>
+<li>use premade <code>theme_</code> functions to broadly change
+appearance, and the <code>theme()</code> function to fine-tune</li>
+<li>the <code>patchwork</code> library can combine separate plots into a
+single figure</li>
+<li>use <code>ggsave()</code> to save plots in your favorite format and
+dimensions</li>
+</ul></section><section id="05-r-and-databases"><h2 class="section-heading"><a href="05-r-and-databases.html">SQL databases and R</a></h2>
+<hr class="half-width">
+<ul>
+<li>
+<code>tbl</code> connects to a database and can send SQL
+queries.</li>
+<li>use <code>dplyr</code> syntax to extract information from SQL
+tables.</li>
+<li>
+<code>dplyr</code> laziness only pulls the needed information,
+speeding up data retrieval.</li>
+<li>use <code>src_sqlite()</code> to create a new empty SQLite database
+and <code>copy_to()</code> to add data to it.</li>
+</ul></section>
 </div>
     </main>
 </div>
@@ -360,8 +439,8 @@
   "url": "https://datacarpentry.github.io/R-ecology-lesson/key-points.html",
   "identifier": "https://datacarpentry.github.io/R-ecology-lesson/key-points.html",
   "dateCreated": "2015-04-02",
-  "dateModified": "2023-10-17",
-  "datePublished": "2023-10-17"
+  "dateModified": "2023-10-20",
+  "datePublished": "2023-10-20"
 }
 
   </script><script>

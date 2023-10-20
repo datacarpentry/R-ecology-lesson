@@ -268,7 +268,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Introduction to R</h1>
-        <p> Last updated on 2023-10-09 | 
+        <p> Last updated on 2023-10-20 | 
         
         <a href="https://github.com/datacarpentry/R-ecology-lesson/edit/main/episodes/01-intro-to-r.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -280,7 +280,41 @@
 
         
 
-<hr><hr><section id="creating-objects-in-r"><h2 class="section-heading">Creating objects in R<a class="anchor" aria-label="anchor" href="#creating-objects-in-r"></a>
+<hr><div class="overview card">
+<h2 class="card-header">Overview</h2>
+<div class="row g-0">
+<div class="col-md-4">
+<div class="card-body">
+<div class="inner">
+<h3 class="card-title">Questions</h3>
+<ul><li>How do you create objects in R?</li>
+<li>How do you save R code for later use?</li>
+<li>How do you manipulate data in R?</li>
+</ul></div>
+</div>
+</div>
+<div class="col-md-8">
+<div class="card-body">
+<div class="inner bordered">
+<h3 class="card-title">Objectives</h3>
+<ul><li>Define the following terms as they relate to R: object, assign,
+call, function, arguments, options.</li>
+<li>Create objects and assign values to them in R.</li>
+<li>Learn how to <em>name</em> objects.</li>
+<li>Save a script file for later use.</li>
+<li>Use comments to inform script.</li>
+<li>Solve simple arithmetic operations in R.</li>
+<li>Call functions and use arguments to change their default
+options.</li>
+<li>Inspect the content of vectors and manipulate their content.</li>
+<li>Subset and extract values from vectors.</li>
+<li>Analyze vectors with missing data.</li>
+</ul></div>
+</div>
+</div>
+</div>
+</div>
+<hr><section id="creating-objects-in-r"><h2 class="section-heading">Creating objects in R<a class="anchor" aria-label="anchor" href="#creating-objects-in-r"></a>
 </h2>
 <hr class="half-width"><p>You can get output from R simply by typing math in the console:</p>
 <div class="codewrapper sourceCode" id="cb1">
@@ -300,11 +334,11 @@ and the value we want to give it:</p>
 <pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">weight_kg</span> <span class="op">&lt;-</span> <span class="fl">55</span></span></code></pre>
 </div>
-<p><code>&lt;-</code> is the assignment operator. It assigns values on
-the right to objects on the left. So, after executing
-<code>x &lt;- 3</code>, the value of <code>x</code> is <code>3</code>.
-For historical reasons, you can also use <code>=</code> for assignments,
-but not in every context. Because of the <a href="https://blog.revolutionanalytics.com/2008/12/use-equals-or-arrow-for-assignment.html" class="external-link">slight</a>
+<p><code>&lt;-</code> is the assignment operator we will use in this
+course. It assigns values on the right to objects on the left. So, after
+executing <code>x &lt;- 3</code>, the value of <code>x</code> is
+<code>3</code>. For historical reasons, you can also use <code>=</code>
+for assignments, but not in every context. Because of the <a href="https://blog.revolutionanalytics.com/2008/12/use-equals-or-arrow-for-assignment.html" class="external-link">slight</a>
 <a href="https://renkun.me/2014/01/28/difference-between-assignment-operators-in-r/" class="external-link">differences</a>
 in syntax, it is good practice to always use <code>&lt;-</code> for
 assignments.</p>
@@ -1118,6 +1152,32 @@ inches.</p></li>
 data structures, we are ready to start working with the Portal dataset
 we have been using in the other lessons, and learn about data
 frames.</p>
+<div id="keypoints1" class="callout keypoints">
+<div class="callout-square">
+<i class="callout-icon" data-feather="key"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Keypoints<a class="anchor" aria-label="anchor" href="#keypoints1"></a>
+</h3>
+<div class="callout-content">
+<ul><li>
+<code>&lt;-</code> is used to assign values on the right to objects
+on the left</li>
+<li>Code should be saved within the Source pane in RStudio to help you
+return to your code later.<br></li>
+<li>‘#’ can be used to add comments to your code.</li>
+<li>Functions can automate more complicated sets of commands, and
+require arguments as inputs.</li>
+<li>Vectors are composed by a series of values and can take many
+forms.</li>
+<li>Data structures in R include ‘vector’, ‘list’, ‘matrix’,
+‘data.frame’, ‘factor’, and ‘array’.</li>
+<li>Vectors can be subset by indexing or through logical vectors.</li>
+<li>Many functions exist to remove missing data from data
+structures.</li>
+</ul></div>
+</div>
+</div>
 </section></div> <!-- / div.lesson-content -->
     </main><!-- / main#main-content.main-content --><nav class="bottom-pagination mx-md-4" aria-label="Previous and Next Chapter"><div class="d-block d-sm-block d-md-none">
         <a class="chapter-link" href="00-before-we-start.html"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>
@@ -1177,8 +1237,8 @@ frames.</p>
   "url": "https://datacarpentry.github.io/R-ecology-lesson/01-intro-to-r.html",
   "identifier": "https://datacarpentry.github.io/R-ecology-lesson/01-intro-to-r.html",
   "dateCreated": "2015-04-02",
-  "dateModified": "2023-10-09",
-  "datePublished": "2023-10-17"
+  "dateModified": "2023-10-20",
+  "datePublished": "2023-10-20"
 }
 
   </script><script>
