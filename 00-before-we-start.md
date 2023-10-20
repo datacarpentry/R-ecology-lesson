@@ -10,12 +10,18 @@ editor_options:
 
 
 ***
+:::::::::::::::::::::::::::::::::::::: questions 
 
-::::::::::::::::::::::::::::::::::::::  objectives
+- What is R and RStudio? 
+- What is a working directory? 
+- How should files be set up to import into R? 
+- How can I look for help with R functions? 
 
-### Learning Objectives
+::::::::::::::::::::::::::::::::::::::::::::::::
 
-- Be able to explain what R and RStudio are, what they are used for, and how
+::::::::::::::::::::::::::::::::::::: objectives
+
+- Explain what R and RStudio are, what they are used for, and how
   they relate to each other.
 - Describe the purpose of the RStudio Script, Console, Environment, and
   Plots panes.
@@ -26,7 +32,7 @@ editor_options:
 - Demonstrate how to provide sufficient information for troubleshooting with
   the R user community.
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::
 
 ***
 
@@ -506,4 +512,12 @@ comfortable eventually creating your own scripts.
   and [this blog post by Jon Skeet](https://codeblog.jonskeet.uk/2010/08/29/writing-the-perfect-question/)
   have comprehensive advice on how to ask programming questions.
 
+::::::::::::::::::::::::::::::::::::: keypoints
 
+- R is a programming language and RStudio is the IDE that assists in using R. 
+- There are many benefits to learning R, including writing reproducibile code, ability to use a variety of datasets, and a broad, open-source community of practioners. 
+- Files related to analysis should be organized within a single working directory. 
+- R uses commands containing functions to tell the computer what to do. 
+- Documentation for each function is available within RStudio, or users can ask for help from one of many online forums, cheatsheets, or email lists.  
+
+::::::::::::::::::::::::::::::::::::::::::::::::

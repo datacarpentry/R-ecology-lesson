@@ -11,10 +11,14 @@ editor_options:
 
 
 ***
+::::::::::::::::::::::::::::::::::::::: questions
 
-::::::::::::::::::::::::::::::::::::::  objectives
+- How do you make plots using R?
+- How do you customize and modify plots?
 
-### Learning Objectives
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::: objectives
 
 - Produce scatter plots, boxplots, and time series plots using ggplot.
 - Set universal plot settings.
@@ -765,4 +769,14 @@ saved plot.
 
 
 
+::::::::::::::::::::::::::::::::::::: keypoints
 
+- start simple and build your plots iteratively
+- the `ggplot()` function initiates a plot, and `geom_` functions add representations of your data
+- use `aes()` when mapping a variable from the data to a part of the plot
+- use `facet_` to partition a plot into multiple plots based on a factor included in the dataset
+- use premade `theme_` functions to broadly change appearance, and the `theme()` function to fine-tune
+- the `patchwork` library can combine separate plots into a single figure
+- use `ggsave()` to save plots in your favorite format and dimensions
+
+::::::::::::::::::::::::::::::::::::::::::::::::

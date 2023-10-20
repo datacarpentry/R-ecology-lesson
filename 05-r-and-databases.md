@@ -12,9 +12,15 @@ output:
 
 ***
 
-::::::::::::::::::::::::::::::::::::::  objectives
+:::::::::::::::::::::::::::::::::::::::: questions
 
-### Learning Objectives
+- How can I connect and get data from a database in R?
+- How can I retrieve data from multiple database tables?
+- How can I create an SQLite database?
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::: objectives
 
 - Access a database from R.
 - Run SQL queries in R using **`RSQLite`** and **`dplyr`**.
@@ -755,4 +761,11 @@ this is not suitable for very large datasets.
 `DBI::dbDisconnect(mammals)`; this discards all pending work and frees resources,
 e.g. memory.
 
+:::::::::::::::::::::::::::::::::::::::: keypoints
 
+- `tbl` connects to a database and can send SQL queries.
+- use `dplyr` syntax to extract information from SQL tables.
+- `dplyr` laziness only pulls the needed information, speeding up data retrieval.
+- use `src_sqlite()` to create a new empty SQLite database and `copy_to()` to add data to it.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::

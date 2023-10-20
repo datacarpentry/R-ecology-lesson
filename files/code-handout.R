@@ -139,10 +139,8 @@
 #' 
 #' ### Challenge
 #' 
-#' Based on the output of `str(surveys)`, can you answer the following questions?
-#' 
-#' - What is the class of the object `surveys`?
-#' - How many rows and how many columns are in this object?
+#' Based on the output of `str(surveys)`, can you answer the following
+#' questions?
 #' 
 ## ----echo=FALSE, purl=TRUE----------------------------------------------------
 
@@ -166,18 +164,12 @@
 #' 
 #' 2. Notice how `nrow()` gave you the number of rows in a `data.frame`?
 #' 
-#' - Use that number to pull out just that last row from the `surveys` dataset.
-#' - Compare that with what you see as the last row using `tail()` to make
-#'   sure it's meeting expectations.
+#' - Use that number to pull out just that last row from the `surveys`
+#'   dataset.
+#' - Compare that with what you see as the last row using `tail()` to
+#'   make sure it's meeting expectations.
 #' - Pull out that last row using `nrow()` instead of the row number.
 #' - Create a new data frame (`surveys_last`) from that last row.
-#' 
-#' 3. Use `nrow()` to extract the row that is in the middle of the data
-#'   frame. Store the content of this row in an object named `surveys_middle`.
-#' 
-#' 4. Combine `nrow()` with the `-` notation above to reproduce the behavior of
-#'   `head(surveys)`, keeping just the first through 6th rows of the surveys
-#'   dataset.
 #' 
 ## ----echo=FALSE, purl=TRUE----------------------------------------------------
 ### Challenges:
@@ -213,13 +205,10 @@ sex <- factor(c("male", "female", "female", "male"))
 #' 
 #' ### Challenge
 #' 
-#' 1. Change the columns `taxa` and `genus` in the `surveys` data frame into a
-#'   factor.
+#' 1. Change the columns `taxa` and `genus` in the `surveys` data frame
+#'   into a factor.
 #' 
 #' 2. Using the functions you learned before, can you find out...
-#' 
-#' - How many rabbits were observed?
-#' - How many different genera are in the `genus` column?
 #' 
 ## ----echo=FALSE, purl=TRUE----------------------------------------------------
 ### Challenges:
@@ -248,9 +237,6 @@ plot(surveys$sex)
 #' 
 #' ### Challenge
 #' 
-#' - Rename "F" and "M" to "female" and "male" respectively.
-#' - Now that we have renamed the factor level to "undetermined", can you recreate the barplot such that "undetermined" is first (before "female")?
-#' 
 ## ----wrong-order, results="show", echo=FALSE, purl=TRUE-----------------------
 ## Challenges
 ##
@@ -261,10 +247,11 @@ plot(surveys$sex)
 #' 
 #' ### Challenge
 #' 
-#' 1. We have seen how data frames are created when using `read_csv()`, but
-#'   they can also be created by hand with the `data.frame()` function.  There are
-#'   a few mistakes in this hand-crafted `data.frame`. Can you spot and fix them?
-#'   Don't hesitate to experiment!
+#' 1. We have seen how data frames are created when using `read_csv()`,
+#'   but they can also be created by hand with the `data.frame()`
+#'   function. There are a few mistakes in this hand-crafted
+#'   `data.frame`. Can you spot and fix them? Don't hesitate to
+#'   experiment!
 #' 
 
 #' 
@@ -279,11 +266,12 @@ plot(surveys$sex)
 ##       )
 
 #' 
-#' 2. Can you predict the class for each of the columns in the following example?
-#'   Check your guesses using `str(country_climate)`:
+#' 2. Can you predict the class for each of the columns in the following
+#'   example? Check your guesses using `str(country_climate)`:
 #' 
-#' - Are they what you expected?  Why? Why not?
-#' - What would you need to change to ensure that each column had the accurate data type?
+#' - Are they what you expected? Why? Why not?
+#' - What would you need to change to ensure that each column had the
+#'   accurate data type?
 #' 
 
 #' 

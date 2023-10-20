@@ -1,17 +1,12 @@
 ---
 title: Manipulating, analyzing and exporting data with tidyverse
 author: Data Carpentry contributors
+minutes: 
 ---
 
 
 
-### Manipulating and analyzing data with dplyr and tidyr
-
-***
-
-::::::::::::::::::::::::::::::::::::::  objectives
-
-### Learning Objectives
+:::::::::::::::::::::::::::::::::::::::  objectives
 
 - Describe the purpose of the **`dplyr`** and **`tidyr`** packages.
 - Select certain columns in a data frame with the **`dplyr`** function `select`.
@@ -25,9 +20,16 @@ author: Data Carpentry contributors
 - Reshape a data frame from long to wide format and back with the `pivot_wider` and `pivot_longer` commands from the **`tidyr`** package.
 - Export a data frame to a .csv file.
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::::::::::::::::::::
 
-***
+::::::::::::::::::::::::::::::::::::::: questions
+
+- What are dplyr and tidyr?
+- How can I select specific rows and/or columns from a dataframe?
+- How can I combine multiple commands into a single command?
+- How can I create new columns or remove existing columns from a dataframe?
+
+:::::::::::::::::::::::::::::::::::::::::::::::::::
 
 # Data manipulation using **`dplyr`** and **`tidyr`**
 
@@ -868,4 +870,12 @@ write_csv(surveys_complete, file = "data/surveys_complete.csv")
 
 
 
+::::::::::::::::::::::::::::::::::::: keypoints
 
+- Use the `dplyr` package to manipulate data frames.
+- Use `select()` to choose variables from a data frame.
+- Use `filter()` to choose data based on values.
+- Use `mutate()` to create new variables.
+- Use `group_by()` and `summarize()` to work with subsets of data.
+
+::::::::::::::::::::::::::::::::::::::::::::::::
