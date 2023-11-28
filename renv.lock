@@ -1,6 +1,6 @@
 {
   "R": {
-    "Version": "4.3.1",
+    "Version": "4.3.2",
     "Repositories": [
       {
         "Name": "carpentries",
@@ -326,7 +326,7 @@
       "Package": "curl",
       "Version": "5.0.2",
       "Source": "Repository",
-      "Repository": "CRAN",
+      "Repository": "https://carpentries.r-universe.dev",
       "Requirements": [
         "R"
       ],
