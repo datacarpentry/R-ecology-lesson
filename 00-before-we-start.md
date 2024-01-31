@@ -279,24 +279,24 @@ is a complete record of what we did, and anyone (including our future selves!)
 can easily replicate the results on their computer.
 
 RStudio allows you to execute commands directly from the script editor by using
-the <kbd>`Ctrl`</kbd> + <kbd>`Enter`</kbd> shortcut (on Macs, <kbd>`Cmd`</kbd> +
-<kbd>`Return`</kbd> will work, too). The command on the current line in the
+the <kbd>Ctrl</kbd> + <kbd>Enter</kbd> shortcut (on Macs, <kbd>Cmd</kbd> +
+<kbd>Return</kbd> will work, too). The command on the current line in the
 script (indicated by the cursor) or all of the commands in the currently
 selected text will be sent to the console and executed when you press
-<kbd>`Ctrl`</kbd> + <kbd>`Enter`</kbd>. You can find other keyboard shortcuts in
+<kbd>Ctrl</kbd> + <kbd>Enter</kbd>. You can find other keyboard shortcuts in
 this [RStudio cheatsheet about the RStudio
 IDE](https://raw.githubusercontent.com/rstudio/cheatsheets/main/rstudio-ide.pdf).
 
 At some point in your analysis you may want to check the content of a variable
 or the structure of an object, without necessarily keeping a record of it in
 your script. You can type these commands and execute them directly in the
-console. RStudio provides the <kbd>`Ctrl`</kbd> + <kbd>`1`</kbd> and
-<kbd>`Ctrl`</kbd> + <kbd>`2`</kbd> shortcuts allow you to jump between the
+console. RStudio provides the <kbd>Ctrl</kbd> + <kbd>1</kbd> and
+<kbd>Ctrl</kbd> + <kbd>2</kbd> shortcuts allow you to jump between the
 script and the console panes.
 
 If R is ready to accept commands, the R console shows a `>` prompt. If it
 receives a command (by typing, copy-pasting or sent from the script editor using
-<kbd>`Ctrl`</kbd> + <kbd>`Enter`</kbd>), R will try to execute it, and when
+<kbd>Ctrl</kbd> + <kbd>Enter</kbd>), R will try to execute it, and when
 ready, will show the results and come back with a new `>` prompt to wait for new
 commands.
 
@@ -306,7 +306,7 @@ a complete command. This is because you have not 'closed' a parenthesis or
 quotation, i.e. you don't have the same number of left-parentheses as
 right-parentheses, or the same number of opening and closing quotation marks.
 When this happens, and you thought you finished typing your command, click
-inside the console window and press <kbd>`Esc`</kbd>; this will cancel the
+inside the console window and press <kbd>Esc</kbd>; this will cancel the
 incomplete command and return you to the `>` prompt.
 
 ## Seeking help
