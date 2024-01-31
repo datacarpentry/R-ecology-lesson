@@ -264,7 +264,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>SQL databases and R</h1>
-        <p>Last updated on 2023-11-21 |
+        <p>Last updated on 2024-01-31 |
         
         <a href="https://github.com/datacarpentry/R-ecology-lesson/edit/main/episodes/05-r-and-databases.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -417,7 +417,7 @@ connected to:</p>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code><span><span class="co">#&gt; src:  sqlite 3.41.2 [/home/runner/work/R-ecology-lesson/R-ecology-lesson/site/built/data_raw/portal_mammals.sqlite]</span></span>
+<pre class="output" tabindex="0"><code><span><span class="co">#&gt; src:  sqlite 3.44.2 [/home/runner/work/R-ecology-lesson/R-ecology-lesson/site/built/data_raw/portal_mammals.sqlite]</span></span>
 <span><span class="co">#&gt; tbls: plots, species, surveys</span></span></code></pre>
 </div>
 <p>Just like a spreadsheet with multiple worksheets, a SQLite database
@@ -475,7 +475,7 @@ function can be used to check the first 10 rows of the table:</p>
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="output" tabindex="0"><code><span><span class="co">#&gt; # Source:   SQL [10 x 9]</span></span>
-<span><span class="co">#&gt; # Database: sqlite 3.41.2 [/home/runner/work/R-ecology-lesson/R-ecology-lesson/site/built/data_raw/portal_mammals.sqlite]</span></span>
+<span><span class="co">#&gt; # Database: sqlite 3.44.2 [/home/runner/work/R-ecology-lesson/R-ecology-lesson/site/built/data_raw/portal_mammals.sqlite]</span></span>
 <span><span class="co">#&gt;    record_id month   day  year plot_id species_id sex   hindfoot_length weight</span></span>
 <span><span class="co">#&gt;        &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;   &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;           &lt;int&gt;  &lt;int&gt;</span></span>
 <span><span class="co">#&gt;  1         1     7    16  1977       2 NL         M                  32     NA</span></span>
@@ -586,7 +586,7 @@ sex, and weight columns.</p>
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="output" tabindex="0"><code><span><span class="co">#&gt; # Source:   SQL [?? x 3]</span></span>
-<span><span class="co">#&gt; # Database: sqlite 3.41.2 [/home/runner/work/R-ecology-lesson/R-ecology-lesson/site/built/data_raw/portal_mammals.sqlite]</span></span>
+<span><span class="co">#&gt; # Database: sqlite 3.44.2 [/home/runner/work/R-ecology-lesson/R-ecology-lesson/site/built/data_raw/portal_mammals.sqlite]</span></span>
 <span><span class="co">#&gt;    species_id sex   weight</span></span>
 <span><span class="co">#&gt;    &lt;chr&gt;      &lt;chr&gt;  &lt;int&gt;</span></span>
 <span><span class="co">#&gt;  1 PF         M          4</span></span>
@@ -641,7 +641,7 @@ the <code>%&gt;%</code> pipe.</p>
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="output" tabindex="0"><code><span><span class="co">#&gt; # Source:   SQL [?? x 2]</span></span>
-<span><span class="co">#&gt; # Database: sqlite 3.41.2 [/home/runner/work/R-ecology-lesson/R-ecology-lesson/site/built/data_raw/portal_mammals.sqlite]</span></span>
+<span><span class="co">#&gt; # Database: sqlite 3.44.2 [/home/runner/work/R-ecology-lesson/R-ecology-lesson/site/built/data_raw/portal_mammals.sqlite]</span></span>
 <span><span class="co">#&gt;    species_id weight</span></span>
 <span><span class="co">#&gt;    &lt;chr&gt;       &lt;int&gt;</span></span>
 <span><span class="co">#&gt;  1 PF              4</span></span>
@@ -713,7 +713,7 @@ it:</p>
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="output" tabindex="0"><code><span><span class="co">#&gt; # Source:   table&lt;plots&gt; [?? x 2]</span></span>
-<span><span class="co">#&gt; # Database: sqlite 3.41.2 [/home/runner/work/R-ecology-lesson/R-ecology-lesson/site/built/data_raw/portal_mammals.sqlite]</span></span>
+<span><span class="co">#&gt; # Database: sqlite 3.44.2 [/home/runner/work/R-ecology-lesson/R-ecology-lesson/site/built/data_raw/portal_mammals.sqlite]</span></span>
 <span><span class="co">#&gt;    plot_id plot_type                </span></span>
 <span><span class="co">#&gt;      &lt;int&gt; &lt;chr&gt;                    </span></span>
 <span><span class="co">#&gt;  1       1 Spectab exclosure        </span></span>
@@ -740,7 +740,7 @@ it:</p>
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="output" tabindex="0"><code><span><span class="co">#&gt; # Source:   table&lt;surveys&gt; [?? x 9]</span></span>
-<span><span class="co">#&gt; # Database: sqlite 3.41.2 [/home/runner/work/R-ecology-lesson/R-ecology-lesson/site/built/data_raw/portal_mammals.sqlite]</span></span>
+<span><span class="co">#&gt; # Database: sqlite 3.44.2 [/home/runner/work/R-ecology-lesson/R-ecology-lesson/site/built/data_raw/portal_mammals.sqlite]</span></span>
 <span><span class="co">#&gt;    record_id month   day  year plot_id species_id sex   hindfoot_length weight</span></span>
 <span><span class="co">#&gt;        &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;   &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;           &lt;int&gt;  &lt;int&gt;</span></span>
 <span><span class="co">#&gt;  1         1     7    16  1977       2 NL         M                  32     NA</span></span>
@@ -842,7 +842,7 @@ foreign key refers to your unique id (e.g.,
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1">Show me the solution</h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb31">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -902,7 +902,7 @@ together. The query should return counts of genus by plot type.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2">Show me the solution</h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb34">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1052,7 +1052,7 @@ tables:</p>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code><span><span class="co">#&gt; src:  sqlite 3.41.2 [/home/runner/work/R-ecology-lesson/R-ecology-lesson/site/built/data/portal-database-output.sqlite]</span></span>
+<pre class="output" tabindex="0"><code><span><span class="co">#&gt; src:  sqlite 3.44.2 [/home/runner/work/R-ecology-lesson/R-ecology-lesson/site/built/data/portal-database-output.sqlite]</span></span>
 <span><span class="co">#&gt; tbls:</span></span></code></pre>
 </div>
 <p>To add tables, we copy the existing data.frames into the database one
@@ -1170,7 +1170,7 @@ and <code>copy_to()</code> to add data to it.</li>
   "url": "https://datacarpentry.github.io/R-ecology-lesson/05-r-and-databases.html",
   "identifier": "https://datacarpentry.github.io/R-ecology-lesson/05-r-and-databases.html",
   "dateCreated": "2015-04-02",
-  "dateModified": "2023-11-21",
+  "dateModified": "2024-01-31",
   "datePublished": "2024-01-31"
 }
 
