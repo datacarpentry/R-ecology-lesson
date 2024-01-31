@@ -132,7 +132,7 @@ src_dbi(mammals)
 ```
 
 ```{.output}
-#> src:  sqlite 3.41.2 [/home/runner/work/R-ecology-lesson/R-ecology-lesson/site/built/data_raw/portal_mammals.sqlite]
+#> src:  sqlite 3.44.2 [/home/runner/work/R-ecology-lesson/R-ecology-lesson/site/built/data_raw/portal_mammals.sqlite]
 #> tbls: plots, species, surveys
 ```
 
@@ -188,7 +188,7 @@ head(surveys, n = 10)
 
 ```{.output}
 #> # Source:   SQL [10 x 9]
-#> # Database: sqlite 3.41.2 [/home/runner/work/R-ecology-lesson/R-ecology-lesson/site/built/data_raw/portal_mammals.sqlite]
+#> # Database: sqlite 3.44.2 [/home/runner/work/R-ecology-lesson/R-ecology-lesson/site/built/data_raw/portal_mammals.sqlite]
 #>    record_id month   day  year plot_id species_id sex   hindfoot_length weight
 #>        <int> <int> <int> <int>   <int> <chr>      <chr>           <int>  <int>
 #>  1         1     7    16  1977       2 NL         M                  32     NA
@@ -295,7 +295,7 @@ surveys %>%
 
 ```{.output}
 #> # Source:   SQL [?? x 3]
-#> # Database: sqlite 3.41.2 [/home/runner/work/R-ecology-lesson/R-ecology-lesson/site/built/data_raw/portal_mammals.sqlite]
+#> # Database: sqlite 3.44.2 [/home/runner/work/R-ecology-lesson/R-ecology-lesson/site/built/data_raw/portal_mammals.sqlite]
 #>    species_id sex   weight
 #>    <chr>      <chr>  <int>
 #>  1 PF         M          4
@@ -359,7 +359,7 @@ data_subset %>%
 
 ```{.output}
 #> # Source:   SQL [?? x 2]
-#> # Database: sqlite 3.41.2 [/home/runner/work/R-ecology-lesson/R-ecology-lesson/site/built/data_raw/portal_mammals.sqlite]
+#> # Database: sqlite 3.44.2 [/home/runner/work/R-ecology-lesson/R-ecology-lesson/site/built/data_raw/portal_mammals.sqlite]
 #>    species_id weight
 #>    <chr>       <int>
 #>  1 PF              4
@@ -428,7 +428,7 @@ plots
 
 ```{.output}
 #> # Source:   table<plots> [?? x 2]
-#> # Database: sqlite 3.41.2 [/home/runner/work/R-ecology-lesson/R-ecology-lesson/site/built/data_raw/portal_mammals.sqlite]
+#> # Database: sqlite 3.44.2 [/home/runner/work/R-ecology-lesson/R-ecology-lesson/site/built/data_raw/portal_mammals.sqlite]
 #>    plot_id plot_type                
 #>      <int> <chr>                    
 #>  1       1 Spectab exclosure        
@@ -453,7 +453,7 @@ surveys
 
 ```{.output}
 #> # Source:   table<surveys> [?? x 9]
-#> # Database: sqlite 3.41.2 [/home/runner/work/R-ecology-lesson/R-ecology-lesson/site/built/data_raw/portal_mammals.sqlite]
+#> # Database: sqlite 3.44.2 [/home/runner/work/R-ecology-lesson/R-ecology-lesson/site/built/data_raw/portal_mammals.sqlite]
 #>    record_id month   day  year plot_id species_id sex   hindfoot_length weight
 #>        <int> <int> <int> <int>   <int> <chr>      <chr>           <int>  <int>
 #>  1         1     7    16  1977       2 NL         M                  32     NA
@@ -723,7 +723,7 @@ my_db
 ```
 
 ```{.output}
-#> src:  sqlite 3.41.2 [/home/runner/work/R-ecology-lesson/R-ecology-lesson/site/built/data/portal-database-output.sqlite]
+#> src:  sqlite 3.44.2 [/home/runner/work/R-ecology-lesson/R-ecology-lesson/site/built/data/portal-database-output.sqlite]
 #> tbls:
 ```
 
