@@ -435,7 +435,7 @@ sessionInfo()
 ```{.output}
 #> R version 4.3.2 (2023-10-31)
 #> Platform: x86_64-pc-linux-gnu (64-bit)
-#> Running under: Ubuntu 22.04.3 LTS
+#> Running under: Ubuntu 22.04.4 LTS
 #> 
 #> Matrix products: default
 #> BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.10.0 
@@ -459,7 +459,7 @@ sessionInfo()
 #>  [9] tibble_3.2.1    ggplot2_3.4.4   tidyverse_2.0.0 knitr_1.45     
 #> 
 #> loaded via a namespace (and not attached):
-#>  [1] bit_4.0.5        gtable_0.3.4     compiler_4.3.2   renv_1.0.3      
+#>  [1] bit_4.0.5        gtable_0.3.4     compiler_4.3.2   renv_1.0.4      
 #>  [5] highr_0.10       tidyselect_1.2.0 blob_1.2.4       scales_1.3.0    
 #>  [9] fastmap_1.1.1    yaml_2.3.8       R6_2.5.1         generics_0.1.3  
 #> [13] munsell_0.5.0    DBI_1.2.0        pillar_1.9.0     tzdb_0.4.0      
