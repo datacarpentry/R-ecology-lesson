@@ -533,9 +533,9 @@ the <code>surveys</code> table:</p>
 <div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">SQL<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode sql" tabindex="0"><code class="sourceCode sql"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> `surveys`</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="kw">LIMIT</span> <span class="dv">10</span></span></code></pre>
+<pre class="sourceCode sql" tabindex="0"><code class="sourceCode sql"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span></span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="kw">FROM</span> `surveys`</span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a><span class="kw">LIMIT</span> <span class="dv">10</span></span></code></pre>
 </div>
 <p>Behind the scenes, <strong><code>dplyr</code></strong>:</p>
 <ol style="list-style-type: decimal"><li>translates your R code into SQL</li>
@@ -831,10 +831,10 @@ foreign key refers to your unique id (e.g.,
 <div class="codewrapper sourceCode" id="cb30">
 <h3 class="code-label">SQL<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode sql" tabindex="0"><code class="sourceCode sql"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="kw">table</span>.col, <span class="kw">table</span>.col</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> table1 <span class="kw">JOIN</span> table2</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="kw">ON</span> table1.<span class="kw">key</span> <span class="op">=</span> table2.<span class="kw">key</span></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="kw">JOIN</span> table3 <span class="kw">ON</span> table2.<span class="kw">key</span> <span class="op">=</span> table3.<span class="kw">key</span></span></code></pre>
+<pre class="sourceCode sql" tabindex="0"><code class="sourceCode sql"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a><span class="kw">SELECT</span> <span class="kw">table</span>.col, <span class="kw">table</span>.col</span>
+<span id="cb30-2"><a href="#cb30-2" tabindex="-1"></a><span class="kw">FROM</span> table1 <span class="kw">JOIN</span> table2</span>
+<span id="cb30-3"><a href="#cb30-3" tabindex="-1"></a><span class="kw">ON</span> table1.<span class="kw">key</span> <span class="op">=</span> table2.<span class="kw">key</span></span>
+<span id="cb30-4"><a href="#cb30-4" tabindex="-1"></a><span class="kw">JOIN</span> table3 <span class="kw">ON</span> table2.<span class="kw">key</span> <span class="op">=</span> table3.<span class="kw">key</span></span></code></pre>
 </div>
 </div>
 </div>
@@ -1173,7 +1173,7 @@ and <code>copy_to()</code> to add data to it.</li>
   "identifier": "https://datacarpentry.github.io/R-ecology-lesson/instructor/05-r-and-databases.html",
   "dateCreated": "2015-04-02",
   "dateModified": "2024-02-27",
-  "datePublished": "2024-02-27"
+  "datePublished": "2024-03-05"
 }
 
   </script><script>
