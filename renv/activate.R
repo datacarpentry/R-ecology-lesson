@@ -2,7 +2,7 @@
 local({
 
   # the requested version of renv
-  version <- "1.0.3"
+  version <- "1.0.5"
   attr(version, "sha") <- NULL
 
   # the project directory
@@ -31,6 +31,14 @@ local({
     if (!is.null(override))
       return(override)
 
+    # if we're being run in a context where R_LIBS is already set,
+    # don't load -- presumably we're being run as a sub-process and
+    # the parent process has already set up library paths for us
+    rcmd <- Sys.getenv("R_CMD", unset = NA)
+    rlibs <- Sys.getenv("R_LIBS", unset = NA)
+    if (!is.na(rlibs) && !is.na(rcmd))
+      return(FALSE)
+
     # next, check environment variables
     # TODO: prefer using the configuration one in the future
     envvars <- c(
@@ -50,8 +58,21 @@ local({
 
   })
 
-  if (!enabled)
+  # bail if we're not enabled
+  if (!enabled) {
+
+    # if we're not enabled, we might still need to manually load
+    # the user profile here
+    profile <- Sys.getenv("R_PROFILE_USER", unset = "~/.Rprofile")
+    if (file.exists(profile)) {
+      cfg <- Sys.getenv("RENV_CONFIG_USER_PROFILE", unset = "TRUE")
+      if (tolower(cfg) %in% c("true", "t", "1"))
+        sys.source(profile, envir = globalenv())
+    }
+
     return(FALSE)
+
+  }
 
   # avoid recursion
   if (identical(getOption("renv.autoloader.running"), TRUE)) {
@@ -1041,7 +1062,7 @@ local({
     # if jsonlite is loaded, use that instead
     if ("jsonlite" %in% loadedNamespaces()) {
   
-      json <- catch(renv_json_read_jsonlite(file, text))
+      json <- tryCatch(renv_json_read_jsonlite(file, text), error = identity)
       if (!inherits(json, "error"))
         return(json)
   
@@ -1050,7 +1071,7 @@ local({
     }
   
     # otherwise, fall back to the default JSON reader
-    json <- catch(renv_json_read_default(file, text))
+    json <- tryCatch(renv_json_read_default(file, text), error = identity)
     if (!inherits(json, "error"))
       return(json)
   
@@ -1063,14 +1084,14 @@ local({
   }
   
   renv_json_read_jsonlite <- function(file = NULL, text = NULL) {
-    text <- paste(text %||% read(file), collapse = "\n")
+    text <- paste(text %||% readLines(file, warn = FALSE), collapse = "\n")
     jsonlite::fromJSON(txt = text, simplifyVector = FALSE)
   }
   
   renv_json_read_default <- function(file = NULL, text = NULL) {
   
     # find strings in the JSON
-    text <- paste(text %||% read(file), collapse = "\n")
+    text <- paste(text %||% readLines(file, warn = FALSE), collapse = "\n")
     pattern <- '["](?:(?:\\\\.)|(?:[^"\\\\]))*?["]'
     locs <- gregexpr(pattern, text, perl = TRUE)[[1]]
   
@@ -1118,14 +1139,14 @@ local({
     map <- as.list(map)
   
     # remap strings in object
-    remapped <- renv_json_remap(json, map)
+    remapped <- renv_json_read_remap(json, map)
   
     # evaluate
     eval(remapped, envir = baseenv())
   
   }
   
-  renv_json_remap <- function(json, map) {
+  renv_json_read_remap <- function(json, map) {
   
     # fix names
     if (!is.null(names(json))) {
@@ -1152,7 +1173,7 @@ local({
     # recurse
     if (is.recursive(json)) {
       for (i in seq_along(json)) {
-        json[i] <- list(renv_json_remap(json[[i]], map))
+        json[i] <- list(renv_json_read_remap(json[[i]], map))
       }
     }
   
