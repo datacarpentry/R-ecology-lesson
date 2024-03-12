@@ -433,7 +433,7 @@ sessionInfo()
 ```
 
 ```{.output}
-#> R version 4.3.2 (2023-10-31)
+#> R version 4.3.3 (2024-02-29)
 #> Platform: x86_64-pc-linux-gnu (64-bit)
 #> Running under: Ubuntu 22.04.4 LTS
 #> 
@@ -459,15 +459,15 @@ sessionInfo()
 #>  [9] tibble_3.2.1    ggplot2_3.4.4   tidyverse_2.0.0 knitr_1.45     
 #> 
 #> loaded via a namespace (and not attached):
-#>  [1] bit_4.0.5        gtable_0.3.4     compiler_4.3.2   renv_1.0.4      
+#>  [1] bit_4.0.5        gtable_0.3.4     compiler_4.3.3   renv_1.0.5      
 #>  [5] highr_0.10       tidyselect_1.2.0 blob_1.2.4       scales_1.3.0    
 #>  [9] fastmap_1.1.1    yaml_2.3.8       R6_2.5.1         generics_0.1.3  
 #> [13] munsell_0.5.0    DBI_1.2.0        pillar_1.9.0     tzdb_0.4.0      
 #> [17] rlang_1.1.2      utf8_1.2.4       cachem_1.0.8     stringi_1.8.3   
 #> [21] xfun_0.41        bit64_4.0.5      memoise_2.0.1    timechange_0.2.0
-#> [25] cli_3.6.2        withr_2.5.2      magrittr_2.0.3   grid_4.3.2      
+#> [25] cli_3.6.2        withr_2.5.2      magrittr_2.0.3   grid_4.3.3      
 #> [29] hms_1.1.3        lifecycle_1.0.4  vctrs_0.6.5      evaluate_0.23   
-#> [33] glue_1.6.2       fansi_1.0.6      colorspace_2.1-0 tools_4.3.2     
+#> [33] glue_1.6.2       fansi_1.0.6      colorspace_2.1-0 tools_4.3.3     
 #> [37] pkgconfig_2.0.3
 ```
 
