@@ -4,6 +4,16 @@ author: François Michonneau & Auriel Fournier (Lesson Maintainers)
 site: sandpaper::sandpaper_site
 ---
 
+::::::::::::::::::::::::::: callout
+
+### This version of the lesson will soon be replaced
+
+[This lesson will be replaced with a redesigned version on 8th July 2024](https://carpentries.org/blog/2024/03/dc-r-ecology-adoption/). 
+If you plan to teach this lesson before that date, we recommend that you consider using the redesigned version instead. 
+Feedback on the new version of the lesson and your experience teaching it is very welcome as issues on [the source repository](https://github.com/datacarpentry/R-ecology-lesson-alternative/).
+
+::::::::::::::::::::::::::::::::::::::
+
 <p></p>
 
 <div style="text-align: center; margin-top: 30px; margin-bottom: 30px;">
@@ -13,20 +23,6 @@ site: sandpaper::sandpaper_site
 </div>
 
 <p></p>
-
-::::::::::::::::::::::::::: instructor
-
-## Try out the alternative version of this lesson!
-[A redesigned version of this lesson](https://carpentries-incubator.github.io/R-ecology-lesson-alternative/) 
-is currently in beta testing and 
-[the Data Carpentry Ecology Curriculum Advisors are looking for feedback](https://carpentries.org/blog/2023/07/r-ecology-alt-beta/)
-from Instructors who try teaching it,
-with the aim of evaluating whether it should be adopted to replace this lesson in the official Data Carpentry Ecology curriculum.
-
-If you are planning to teach a Data Carpentry Ecology workshop, or this lesson only,
-why not try out the alternative version and let the CAC know what you think?
-
-::::::::::::::::::::::::::::::::::::::
 
 Data Carpentry's aim is to teach researchers basic concepts, skills,
 and tools for working with data so that they can get more done in less
