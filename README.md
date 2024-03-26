@@ -1,5 +1,9 @@
 # An alternative version of the _Data Carpentry: R for data analysis and visualization of Ecological Data_ lesson
 
+**[The Data Carpentry Ecology Curriculum Advisory Committee recently approved this lesson for adoption into the curriculum](https://carpentries.org/blog/2024/03/dc-r-ecology-adoption/)! It will replace [the current version](https://datacarpentry.org/R-ecology-lesson/) in the curriculum on 8th July 2024.**
+
+---
+
 This is an introduction to R designed for participants with no programming
 experience. It can be taught in 3/4 of a day (approximately 6 hours).
 
@@ -9,7 +13,7 @@ The lesson starts with information about the R programming language and the RStu
 
 ## Providing feedback on this lesson
 
-If you teach this redesigned lesson, please [open an issue](https://github.com/carpentries-incubator/R-ecology-lesson-alternative/issues/new?assignees=&labels=type%3Adiscussion&projects=&template=pilot_workshop_feedback.yml&title=%5BPilot+workshop+feedback%5D%3A+) on this repository to share your experience. The Data Carpentry: Ecology Curriculum Advisory Committee is currently considering whether this version of the lesson should be adopted as part of the official curriculum. Any feedback you can provide about your experience teaching this lesson - especially if you can compare this to any previous experence you have had teaching the original version - will be very helpful in informing the CAC's decision-making.
+If you teach this redesigned lesson, please [open an issue](https://github.com/carpentries-incubator/R-ecology-lesson-alternative/issues/new?assignees=&labels=type%3Adiscussion&projects=&template=pilot_workshop_feedback.yml&title=%5BPilot+workshop+feedback%5D%3A+) on this repository to share your experience. 
 
 ## Prerequisites
 
@@ -27,5 +31,5 @@ If you would like to contribute, we encourage you to review our [contributing gu
 
 ## Maintainers
 
-This repository is maintained by [James Azam](https://github.com/jamesmbaazam).
+Interested in becoming a Maintainer for this lesson? Please send us a message at [curriculum@carpentries.org](mailto:curriculum@carpentries.org).
 
