@@ -6,8 +6,9 @@
 
 This is an introduction to R designed for participants with no programming
 experience. It can be taught in 3/4 of a day (approximately 6 hours).
+It is a redesigned version of [the original Data Carpentry lesson](https://datacarpentry.org/R-ecology-lesson). 
 
-It is a redesigned version of [the original Data Carpentry lesson](https://datacarpentry.org/R-ecology-lesson), and is currently undergoing beta testing as part of a process to evaluate its suitability as a replacement in the curriculum. The initial effort towards this redesign was done by [Michael Culshaw-Maurer](https://github.com/MCMaurer) in another repository in The Carpentries Incubator: https://github.com/carpentries-incubator/R-ecology-lesson (now archived). See Michael's notes while preparing the redesign in [the update_plans.md file](https://github.com/carpentries-incubator/R-ecology-lesson/blob/main/update_plan.md) of that repository.
+The initial effort towards this redesign was done by [Michael Culshaw-Maurer](https://github.com/MCMaurer) in another repository in The Carpentries Incubator: https://github.com/carpentries-incubator/R-ecology-lesson (now archived). See Michael's notes while preparing the redesign in [the update_plans.md file](https://github.com/carpentries-incubator/R-ecology-lesson/blob/main/update_plan.md) of that repository.
 
 The lesson starts with information about the R programming language and the RStudio interface. It then moves to loading in data and exploring how to visualise it with ggplot2. The next episode takes learners through an exploration of data frames and some common data cleaning operations, before discussing vectors and factors. The final episode introduces the flow of data in R, and how to combine operations to select, filter, and mutate a data frame.
 
