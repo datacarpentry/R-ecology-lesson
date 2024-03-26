@@ -5,6 +5,10 @@
 
 # Data carpentry: R for data analysis and visualization of Ecological Data
 
+**[This lesson will be replaced with a redesigned version on 8th July 2024](https://carpentries.org/blog/2024/03/dc-r-ecology-adoption/). If you plan to teach this lesson before that date, we recommend that you consider using the redesigned version instead. Feedback on the new version of the lesson and your experience teaching it is very welcome as issues on [the source repository](https://github.com/datacarpentry/R-ecology-lesson-alternative/).**
+
+---
+
 This is an introduction to R designed for participants with no programming
 experience. It can be taught in 3/4 of a day (approximately 6 hours).
 The lesson starts with some basic information about syntax for the R programming
