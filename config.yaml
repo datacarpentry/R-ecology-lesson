@@ -21,13 +21,13 @@ keywords: 'ggplot2, tidyverse, data-visualization, data-visualisation, data-wran
 
 # Life cycle stage of the lesson
 # possible values: pre-alpha, alpha, beta, stable
-life_cycle: 'beta'
+life_cycle: 'stable'
 
 # License of the lesson
 license: 'CC-BY 4.0'
 
 # Link to the source repository for this lesson
-source: 'https://github.com/carpentries-incubator/R-ecology-lesson-alternative'
+source: 'https://github.com/datacarpentry/R-ecology-lesson-alternative'
 
 # Default branch of your lesson
 branch: 'main'
