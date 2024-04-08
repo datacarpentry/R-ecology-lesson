@@ -106,8 +106,8 @@ font, R will try to load a different font. This can be done with
 
 Save yourself some aggrevation, and have everyone check and see if they can
 install all these packages before you start the first day.
-See the "Preparations" section on the homepage of the course website for
-package installation instructions.
+See the "Install required R packages" section on the homepage of the course
+website for package installation instructions.
 
 Sometimes learners are unable to install the **`tidyverse`** package.
 In that case, they can try to install the individual packages that are actually
