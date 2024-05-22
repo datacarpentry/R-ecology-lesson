@@ -381,7 +381,7 @@ fct_relevel(sex, c("male", "female"))
 fct_recode(sex, "M" = "male", "F" = "female")
 
 # turn NAs into an actual factor level (useful for including NAs in plots)
-fct_explicit_na(sex)
+fct_na_value_to_level(sex, "(Missing)")
 
 ```
 
