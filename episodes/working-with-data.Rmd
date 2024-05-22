@@ -73,7 +73,7 @@ library(tidyverse)
 
 Up until this point, we have been working with the `complete_old` dataframe contained in the `ratdat` package. However, you typically won't access data from an R package; it is much more common to access data files stored somewhere on your computer. We are going to download a CSV file containing the surveys data to our computer, which we will then read into R.
 
-Click this link to download the file: <https://www.michaelc-m.com/Rewrite-R-ecology-lesson/data/cleaned/surveys_complete_77_89.csv>.
+Click this link to download the file: <https://datacarpentry.org/R-ecology-lesson-alternative/data/cleaned/surveys_complete_77_89.csv>.
 
 You will be prompted to save the file on your computer somewhere. Save it inside the `cleaned` data folder, which is in the `data` folder in your `R-Ecology-Workshop` folder. Once it's inside our project, we will be able to point R towards it.
 
