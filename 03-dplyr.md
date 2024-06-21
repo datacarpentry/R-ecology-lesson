@@ -84,11 +84,11 @@ As before, we'll read in our data using the `read_csv()` function from the
 tidyverse package **`readr`**.
 
 
-```r
+``` r
 surveys <- read_csv("data_raw/portal_data_joined.csv")
 ```
 
-```{.output}
+``` output
 #> Rows: 34786 Columns: 13
 #> ── Column specification ────────────────────────────────────────────────────────
 #> Delimiter: ","
@@ -100,13 +100,13 @@ surveys <- read_csv("data_raw/portal_data_joined.csv")
 ```
 
 
-```r
+``` r
 ## inspect the data
 str(surveys)
 ```
 
 
-```r
+``` r
 ## preview the data
 view(surveys)
 ```
@@ -127,7 +127,7 @@ to this function is the data frame (`surveys`), and the subsequent
 arguments are the columns to keep.
 
 
-```r
+``` r
 select(surveys, plot_id, species_id, weight)
 ```
 
@@ -135,7 +135,7 @@ To select all columns *except* certain ones, put a "-" in front of
 the variable to exclude it.
 
 
-```r
+``` r
 select(surveys, -record_id, -species_id)
 ```
 
@@ -145,7 +145,7 @@ and `species_id`.
 To choose rows based on a specific criterion, use `filter()`:
 
 
-```r
+``` r
 filter(surveys, year == 1995)
 ```
 
@@ -158,7 +158,7 @@ With intermediate steps, you create a temporary data frame and use
 that as input to the next function, like this:
 
 
-```r
+``` r
 surveys2 <- filter(surveys, weight < 5)
 surveys_sml <- select(surveys2, species_id, sex, weight)
 ```
@@ -168,7 +168,7 @@ This is readable, but can clutter up your workspace with lots of objects that yo
 You can also nest functions (i.e. one function inside of another), like this:
 
 
-```r
+``` r
 surveys_sml <- select(filter(surveys, weight < 5), species_id, sex, weight)
 ```
 
@@ -185,7 +185,7 @@ with **`dplyr`**. If you use RStudio, you can type the pipe with <kbd>Ctrl</kbd>
   <kbd>Shift</kbd> + <kbd>M</kbd> if you have a Mac.
 
 
-```r
+``` r
 surveys %>%
   filter(weight < 5) %>%
   select(species_id, sex, weight)
@@ -209,7 +209,7 @@ If we want to create a new object with this smaller version of the data, we
 can assign it a new name:
 
 
-```r
+``` r
 surveys_sml <- surveys %>%
   filter(weight < 5) %>%
   select(species_id, sex, weight)
@@ -229,7 +229,7 @@ Using pipes, subset the `surveys` data to include animals collected before
 :::::::: solution
 
 
-```r
+``` r
 surveys %>%
     filter(year < 1995) %>%
     select(year, sex, weight)
@@ -250,7 +250,7 @@ columns. For this we'll use `mutate()`.
 To create a new column of weight in kg:
 
 
-```r
+``` r
 surveys %>%
   mutate(weight_kg = weight / 1000)
 ```
@@ -258,7 +258,7 @@ surveys %>%
 You can also create a second new column based on the first new column within the same call of `mutate()`:
 
 
-```r
+``` r
 surveys %>%
   mutate(weight_kg = weight / 1000,
          weight_lb = weight_kg * 2.2)
@@ -269,7 +269,7 @@ can use a pipe to view the `head()` of the data. (Pipes work with non-**`dplyr`*
 functions, too, as long as the **`dplyr`** or `magrittr` package is loaded).
 
 
-```r
+``` r
 surveys %>%
   mutate(weight_kg = weight / 1000) %>%
   head()
@@ -279,7 +279,7 @@ The first few rows of the output are full of `NA`s, so if we wanted to remove
 those we could insert a `filter()` in the chain:
 
 
-```r
+``` r
 surveys %>%
   filter(!is.na(weight)) %>%
   mutate(weight_kg = weight / 1000) %>%
@@ -305,7 +305,7 @@ than 3.
 :::::::: solution
 
 
-```r
+``` r
 surveys_hindfoot_cm <- surveys %>%
     filter(!is.na(hindfoot_length)) %>%
     mutate(hindfoot_cm = hindfoot_length / 10) %>%
@@ -334,7 +334,7 @@ the column names that contain the **categorical** variables for which you want
 to calculate the summary statistics. So to compute the mean `weight` by sex:
 
 
-```r
+``` r
 surveys %>%
   group_by(sex) %>%
   summarize(mean_weight = mean(weight, na.rm = TRUE))
@@ -346,14 +346,14 @@ screen anymore. It's one of the advantages of `tbl_df` over data frame.
 You can also group by multiple columns:
 
 
-```r
+``` r
 surveys %>%
   group_by(sex, species_id) %>%
   summarize(mean_weight = mean(weight, na.rm = TRUE)) %>%
   tail()
 ```
 
-```{.output}
+``` output
 #> `summarise()` has grouped output by 'sex'. You can override using the `.groups`
 #> argument.
 ```
@@ -369,14 +369,14 @@ statistics on weight. Because the missing values are removed first, we can omit
 `na.rm = TRUE` when computing the mean:
 
 
-```r
+``` r
 surveys %>%
   filter(!is.na(weight)) %>%
   group_by(sex, species_id) %>%
   summarize(mean_weight = mean(weight))
 ```
 
-```{.output}
+``` output
 #> `summarise()` has grouped output by 'sex'. You can override using the `.groups`
 #> argument.
 ```
@@ -387,7 +387,7 @@ at the end of your chain with the argument `n` specifying the number of rows to
 display:
 
 
-```r
+``` r
 surveys %>%
   filter(!is.na(weight)) %>%
   group_by(sex, species_id) %>%
@@ -395,7 +395,7 @@ surveys %>%
   print(n = 15)
 ```
 
-```{.output}
+``` output
 #> `summarise()` has grouped output by 'sex'. You can override using the `.groups`
 #> argument.
 ```
@@ -405,7 +405,7 @@ time (and not necessarily on the same variable). For instance, we could add a
 column indicating the minimum weight for each species for each sex:
 
 
-```r
+``` r
 surveys %>%
   filter(!is.na(weight)) %>%
   group_by(sex, species_id) %>%
@@ -413,7 +413,7 @@ surveys %>%
             min_weight = min(weight))
 ```
 
-```{.output}
+``` output
 #> `summarise()` has grouped output by 'sex'. You can override using the `.groups`
 #> argument.
 ```
@@ -421,7 +421,7 @@ surveys %>%
 It is sometimes useful to rearrange the result of a query to inspect the values. For instance, we can sort on `min_weight` to put the lighter species first:
 
 
-```r
+``` r
 surveys %>%
   filter(!is.na(weight)) %>%
   group_by(sex, species_id) %>%
@@ -430,7 +430,7 @@ surveys %>%
   arrange(min_weight)
 ```
 
-```{.output}
+``` output
 #> `summarise()` has grouped output by 'sex'. You can override using the `.groups`
 #> argument.
 ```
@@ -438,7 +438,7 @@ surveys %>%
 To sort in descending order, we need to add the `desc()` function. If we want to sort the results by decreasing order of mean weight:
 
 
-```r
+``` r
 surveys %>%
   filter(!is.na(weight)) %>%
   group_by(sex, species_id) %>%
@@ -447,7 +447,7 @@ surveys %>%
   arrange(desc(mean_weight))
 ```
 
-```{.output}
+``` output
 #> `summarise()` has grouped output by 'sex'. You can override using the `.groups`
 #> argument.
 ```
@@ -460,7 +460,7 @@ for each factor or combination of factors. For this task, **`dplyr`** provides
 each sex, we would do:
 
 
-```r
+``` r
 surveys %>%
     count(sex)
 ```
@@ -468,7 +468,7 @@ surveys %>%
 The `count()` function is shorthand for something we've already seen: grouping by a variable, and summarizing it by counting the number of observations in that group. In other words, `surveys %>% count()` is equivalent to:
 
 
-```r
+``` r
 surveys %>%
     group_by(sex) %>%
     summarize(count = n())
@@ -477,7 +477,7 @@ surveys %>%
 For convenience, `count()` provides the `sort` argument:
 
 
-```r
+``` r
 surveys %>%
     count(sex, sort = TRUE)
 ```
@@ -488,7 +488,7 @@ If we wanted to count *combination of factors*, such as `sex` and `species`,
 we would specify the first and the second factor as the arguments of `count()`:
 
 
-```r
+``` r
 surveys %>%
   count(sex, species)
 ```
@@ -499,7 +499,7 @@ For instance, we might want to arrange the table above in (i) an alphabetical or
 the levels of the species and (ii) in descending order of the count:
 
 
-```r
+``` r
 surveys %>%
   count(sex, species) %>%
   arrange(species, desc(n))
@@ -517,7 +517,7 @@ the *albigula* species that are not specified for its sex (i.e. `NA`).
 :::::::: solution
 
 
-```r
+``` r
 surveys %>%
     count(plot_type)
 ```
@@ -531,7 +531,7 @@ surveys %>%
 :::::::: solution
 
 
-```r
+``` r
 surveys %>%
     filter(!is.na(hindfoot_length)) %>%
     group_by(species_id) %>%
@@ -551,7 +551,7 @@ surveys %>%
 :::::::: solution
 
 
-```r
+``` r
 surveys %>%
     filter(!is.na(weight)) %>%
     group_by(year) %>%
@@ -621,19 +621,19 @@ genus in each plot over the entire survey period. We use `filter()`,
 interest, and create a new variable for the `mean_weight`.
 
 
-```r
+``` r
 surveys_gw <- surveys %>%
   filter(!is.na(weight)) %>%
   group_by(plot_id, genus) %>%
   summarize(mean_weight = mean(weight))
 ```
 
-```{.output}
+``` output
 #> `summarise()` has grouped output by 'plot_id'. You can override using the
 #> `.groups` argument.
 ```
 
-```r
+``` r
 str(surveys_gw)
 ```
 
@@ -643,7 +643,7 @@ Using `pivot_wider()` with the names from `genus` and with values from `mean_wei
 24 observations of 11 variables, one row for each plot.
 
 
-```r
+``` r
 surveys_wide <- surveys_gw %>%
   pivot_wider(names_from = genus, values_from = mean_weight)
 
@@ -656,7 +656,7 @@ We could now plot comparisons between the weight of genera (one is called a genu
 although we may wish to fill in the missing values first.
 
 
-```r
+``` r
 surveys_gw %>%
   pivot_wider(names_from = genus, values_from = mean_weight, values_fill = 0) %>%
   head()
@@ -685,7 +685,7 @@ To recreate `surveys_gw` from `surveys_wide` we would create a names variable ca
 In pivoting longer, we also need to specify what columns to reshape. If the columns are directly adjacent as they are here, we don't even need to list the all out: we can just use the `:` operator!
 
 
-```r
+``` r
 surveys_long <- surveys_wide %>%
   pivot_longer(names_to = "genus", values_to = "mean_weight", cols = -plot_id)
 
@@ -703,7 +703,7 @@ we will use all columns *except* `plot_id` for the names variable. By using the 
 we omit `plot_id` from being reshaped
 
 
-```r
+``` r
 surveys_wide %>%
   pivot_longer(names_to = "genus", values_to = "mean_weight", cols = -plot_id) %>%
   head()
@@ -723,19 +723,19 @@ surveys_wide %>%
 :::::::: solution
 
 
-```r
+``` r
 surveys_wide_genera <- surveys %>%
   group_by(plot_id, year) %>%
   summarize(n_genera = n_distinct(genus)) %>%
   pivot_wider(names_from = year, values_from = n_genera)
 ```
 
-```{.output}
+``` output
 #> `summarise()` has grouped output by 'plot_id'. You can override using the
 #> `.groups` argument.
 ```
 
-```r
+``` r
 head(surveys_wide_genera)
 ```
 
@@ -747,7 +747,7 @@ head(surveys_wide_genera)
 :::::::: solution
 
 
-```r
+``` r
 surveys_wide_genera %>%
   pivot_longer(names_to = "year", values_to = "n_genera", cols = -plot_id)
 ```
@@ -770,7 +770,7 @@ surveys_wide_genera %>%
 :::::::: solution
 
 
-```r
+``` r
 surveys_long <- surveys %>%
   pivot_longer(names_to = "measurement", values_to = "value", cols = c(hindfoot_length, weight))
 ```
@@ -786,14 +786,14 @@ surveys_long <- surveys %>%
 :::::::: solution
 
 
-```r
+``` r
 surveys_long %>%
   group_by(year, measurement, plot_type) %>%
   summarize(mean_value = mean(value, na.rm=TRUE)) %>%
   pivot_wider(names_from = measurement, values_from = mean_value)
 ```
 
-```{.output}
+``` output
 #> `summarise()` has grouped output by 'year', 'measurement'. You can override
 #> using the `.groups` argument.
 ```
@@ -828,7 +828,7 @@ cleaned up version of the data set that doesn't include any missing data.
 Let's start by removing observations of animals for which `weight` and `hindfoot_length` are missing, or the `sex` has not been determined:
 
 
-```r
+``` r
 surveys_complete <- surveys %>%
   filter(!is.na(weight),           # remove missing weight
          !is.na(hindfoot_length),  # remove missing hindfoot_length
@@ -843,7 +843,7 @@ observed, and filter out the rare species; then, we will extract only the
 observations for these more common species:
 
 
-```r
+``` r
 ## Extract the most common species_id
 species_counts <- surveys_complete %>%
     count(species_id) %>%
@@ -864,7 +864,7 @@ Now that our data set is ready, we can save it as a CSV file in our `data`
 folder.
 
 
-```r
+``` r
 write_csv(surveys_complete, file = "data/surveys_complete.csv")
 ```
 

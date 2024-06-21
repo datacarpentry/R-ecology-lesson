@@ -1,7 +1,7 @@
 # CITATION
 
 
-```{.warning}
+``` warning
 Warning in system("update-copyright.py"): error in running command
 ```
 
@@ -39,24 +39,24 @@ sponsored by the [ELIXIR project](https://elixir-europe.org/).
 You can cite this Data Carpentry lesson as follow:
 
 
-```{.warning}
+``` warning
 Warning in file(con, "r"): cannot open file 'AUTHORS': No such file or
 directory
 ```
 
-```{.error}
+``` error
 Error in file(con, "r"): cannot open the connection
 ```
 
 or as a BibTeX entry:
 
 
-```{.warning}
+``` warning
 Warning in file(con, "r"): cannot open file 'AUTHORS': No such file or
 directory
 ```
 
-```{.error}
+``` error
 Error in file(con, "r"): cannot open the connection
 ```
 

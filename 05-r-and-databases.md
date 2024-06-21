@@ -71,7 +71,7 @@ We will continue to explore the `surveys` data you are already familiar with
 from previous lessons. First, we are going to install the **`dbplyr`** package:
 
 
-```r
+``` r
 install.packages(c("dbplyr", "RSQLite"))
 ```
 
@@ -81,7 +81,7 @@ that you generated during
 If you don't have it, you can download it from Figshare into the `data_raw` subdirectory using:
 
 
-```r
+``` r
 dir.create("data_raw", showWarnings = FALSE)
 download.file(url = "https://ndownloader.figshare.com/files/2292171",
               destfile = "data_raw/portal_mammals.sqlite", mode = "wb")
@@ -92,23 +92,23 @@ download.file(url = "https://ndownloader.figshare.com/files/2292171",
 We can point R to this database using:
 
 
-```r
+``` r
 library(dplyr)
 library(dbplyr)
 ```
 
-```{.output}
+``` output
 #> 
 #> Attaching package: 'dbplyr'
 ```
 
-```{.output}
+``` output
 #> The following objects are masked from 'package:dplyr':
 #> 
 #>     ident, sql
 ```
 
-```r
+``` r
 mammals <- DBI::dbConnect(RSQLite::SQLite(), "data_raw/portal_mammals.sqlite")
 ```
 
@@ -127,12 +127,12 @@ systems that are supported by R including MySQL, PostgreSQL, BigQuery, etc.
 Let's take a closer look at the `mammals` database we just connected to:
 
 
-```r
+``` r
 src_dbi(mammals)
 ```
 
-```{.output}
-#> src:  sqlite 3.44.2 [/home/runner/work/R-ecology-lesson/R-ecology-lesson/site/built/data_raw/portal_mammals.sqlite]
+``` output
+#> src:  sqlite 3.46.0 [/home/runner/work/R-ecology-lesson/R-ecology-lesson/site/built/data_raw/portal_mammals.sqlite]
 #> tbls: plots, species, surveys
 ```
 
@@ -155,7 +155,7 @@ demonstrate this functionality, let's select the columns "year", "species\_id",
 and "plot\_id" from the `surveys` table:
 
 
-```r
+``` r
 tbl(mammals, sql("SELECT year, species_id, plot_id FROM surveys"))
 ```
 
@@ -170,7 +170,7 @@ the operations by creating the `surveys` object, and then we use the standard
 **`dplyr`** syntax as if it were a data frame:
 
 
-```r
+``` r
 surveys <- tbl(mammals, "surveys")
 surveys %>%
     select(year, species_id, plot_id)
@@ -182,13 +182,13 @@ database. For instance, the `head()` function can be used to check the first 10
 rows of the table:
 
 
-```r
+``` r
 head(surveys, n = 10)
 ```
 
-```{.output}
+``` output
 #> # Source:   SQL [10 x 9]
-#> # Database: sqlite 3.44.2 [/home/runner/work/R-ecology-lesson/R-ecology-lesson/site/built/data_raw/portal_mammals.sqlite]
+#> # Database: sqlite 3.46.0 [/home/runner/work/R-ecology-lesson/R-ecology-lesson/site/built/data_raw/portal_mammals.sqlite]
 #>    record_id month   day  year plot_id species_id sex   hindfoot_length weight
 #>        <int> <int> <int> <int>   <int> <chr>      <chr>           <int>  <int>
 #>  1         1     7    16  1977       2 NL         M                  32     NA
@@ -213,11 +213,11 @@ However, some functions don't work quite as expected. For instance, let's check
 how many rows there are in total using `nrow()`:
 
 
-```r
+``` r
 nrow(surveys)
 ```
 
-```{.output}
+``` output
 #> [1] NA
 ```
 
@@ -256,7 +256,7 @@ To lift the curtain, we can use **`dplyr`**'s `show_query()` function to show wh
 commands are actually sent to the database:
 
 
-```r
+``` r
 show_query(head(surveys, n = 10))
 ```
 
@@ -287,15 +287,15 @@ First, let's only request rows of the `surveys` table in which `weight` is less
 than 5 and keep only the species\_id, sex, and weight columns.
 
 
-```r
+``` r
 surveys %>%
   filter(weight < 5) %>%
   select(species_id, sex, weight)
 ```
 
-```{.output}
+``` output
 #> # Source:   SQL [?? x 3]
-#> # Database: sqlite 3.44.2 [/home/runner/work/R-ecology-lesson/R-ecology-lesson/site/built/data_raw/portal_mammals.sqlite]
+#> # Database: sqlite 3.46.0 [/home/runner/work/R-ecology-lesson/R-ecology-lesson/site/built/data_raw/portal_mammals.sqlite]
 #>    species_id sex   weight
 #>    <chr>      <chr>  <int>
 #>  1 PF         M          4
@@ -348,7 +348,7 @@ If we wanted to, we could add on even more steps, e.g. remove the `sex` column
 in an additional `select` call:
 
 
-```r
+``` r
 data_subset <- surveys %>%
   filter(weight < 5) %>%
   select(species_id, sex, weight)
@@ -357,9 +357,9 @@ data_subset %>%
   select(-sex)
 ```
 
-```{.output}
+``` output
 #> # Source:   SQL [?? x 2]
-#> # Database: sqlite 3.44.2 [/home/runner/work/R-ecology-lesson/R-ecology-lesson/site/built/data_raw/portal_mammals.sqlite]
+#> # Database: sqlite 3.46.0 [/home/runner/work/R-ecology-lesson/R-ecology-lesson/site/built/data_raw/portal_mammals.sqlite]
 #>    species_id weight
 #>    <chr>       <int>
 #>  1 PF              4
@@ -391,7 +391,7 @@ database query is finished: time to get the *final* results and load them into
 the R session.
 
 
-```r
+``` r
 data_subset <- surveys %>%
   filter(weight < 5) %>%
   select(species_id, sex, weight) %>%
@@ -421,14 +421,14 @@ information about the different plots surveyed by the researchers. To access it,
 we point the `tbl()` command to it:
 
 
-```r
+``` r
 plots <- tbl(mammals, "plots")
 plots
 ```
 
-```{.output}
-#> # Source:   table<plots> [?? x 2]
-#> # Database: sqlite 3.44.2 [/home/runner/work/R-ecology-lesson/R-ecology-lesson/site/built/data_raw/portal_mammals.sqlite]
+``` output
+#> # Source:   table<`plots`> [?? x 2]
+#> # Database: sqlite 3.46.0 [/home/runner/work/R-ecology-lesson/R-ecology-lesson/site/built/data_raw/portal_mammals.sqlite]
 #>    plot_id plot_type                
 #>      <int> <chr>                    
 #>  1       1 Spectab exclosure        
@@ -447,13 +447,13 @@ plots
 The `plot_id` column also features in the `surveys` table:
 
 
-```r
+``` r
 surveys
 ```
 
-```{.output}
-#> # Source:   table<surveys> [?? x 9]
-#> # Database: sqlite 3.44.2 [/home/runner/work/R-ecology-lesson/R-ecology-lesson/site/built/data_raw/portal_mammals.sqlite]
+``` output
+#> # Source:   table<`surveys`> [?? x 9]
+#> # Database: sqlite 3.46.0 [/home/runner/work/R-ecology-lesson/R-ecology-lesson/site/built/data_raw/portal_mammals.sqlite]
 #>    record_id month   day  year plot_id species_id sex   hindfoot_length weight
 #>        <int> <int> <int> <int>   <int> <chr>      <chr>           <int>  <int>
 #>  1         1     7    16  1977       2 NL         M                  32     NA
@@ -488,18 +488,18 @@ For example, to extract all surveys for the first plot, which has `plot_id` 1,
 we can do:
 
 
-```r
+``` r
 plots %>%
   filter(plot_id == 1) %>%
   inner_join(surveys) %>%
   collect()
 ```
 
-```{.output}
+``` output
 #> Joining with `by = join_by(plot_id)`
 ```
 
-```{.output}
+``` output
 #> # A tibble: 1,995 × 10
 #>    plot_id plot_type         record_id month   day  year species_id sex  
 #>      <int> <chr>                 <int> <int> <int> <int> <chr>      <chr>
@@ -546,7 +546,7 @@ JOIN table3 ON table2.key = table3.key
 :::::::: solution
 
 
-```r
+``` r
 ## with dplyr syntax
 species <- tbl(mammals, "species")
 
@@ -557,11 +557,11 @@ left_join(surveys, species) %>%
   collect()
 ```
 
-```{.output}
+``` output
 #> Joining with `by = join_by(species_id)`
 ```
 
-```r
+``` r
 ## with SQL syntax
 query <- paste("
 SELECT a.year, b.taxa,count(*) as count
@@ -594,7 +594,7 @@ The query should return counts of genus by plot type.
 :::::::: solution
 
 
-```r
+``` r
 species <- tbl(mammals, "species")
 genus_counts <- left_join(surveys, plots) %>%
   left_join(species) %>%
@@ -617,7 +617,7 @@ number of individuals, instead we need to use `n_distinct()` to count the
 number of unique values found in a column.
 
 
-```r
+``` r
 species <- tbl(mammals, "species")
 unique_genera <- left_join(surveys, plots) %>%
     left_join(species) %>%
@@ -628,7 +628,7 @@ unique_genera <- left_join(surveys, plots) %>%
     collect()
 ```
 
-```{.output}
+``` output
 #> Joining with `by = join_by(plot_id)`
 #> Joining with `by = join_by(species_id)`
 ```
@@ -644,7 +644,7 @@ the mammals database that we've been working with, in R. First let's download an
 `csv` files.  We'll import **`tidyverse`** to gain access to the `read_csv()` function.
 
 
-```r
+``` r
 download.file("https://ndownloader.figshare.com/files/3299483",
               "data_raw/species.csv")
 download.file("https://ndownloader.figshare.com/files/10717177",
@@ -655,7 +655,7 @@ library(tidyverse)
 species <- read_csv("data_raw/species.csv")
 ```
 
-```{.output}
+``` output
 #> Rows: 54 Columns: 4
 #> ── Column specification ────────────────────────────────────────────────────────
 #> Delimiter: ","
@@ -665,11 +665,11 @@ species <- read_csv("data_raw/species.csv")
 #> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 ```
 
-```r
+``` r
 surveys <- read_csv("data_raw/surveys.csv")
 ```
 
-```{.output}
+``` output
 #> Rows: 35549 Columns: 9
 #> ── Column specification ────────────────────────────────────────────────────────
 #> Delimiter: ","
@@ -680,11 +680,11 @@ surveys <- read_csv("data_raw/surveys.csv")
 #> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 ```
 
-```r
+``` r
 plots <- read_csv("data_raw/plots.csv")
 ```
 
-```{.output}
+``` output
 #> Rows: 24 Columns: 2
 #> ── Column specification ────────────────────────────────────────────────────────
 #> Delimiter: ","
@@ -703,12 +703,12 @@ argument instructs R to create a new, empty database instead.
 location is overwritten *without warning*.
 
 
-```r
+``` r
 my_db_file <- "data/portal-database-output.sqlite"
 my_db <- src_sqlite(my_db_file, create = TRUE)
 ```
 
-```{.warning}
+``` warning
 #> Warning: `src_sqlite()` was deprecated in dplyr 1.0.0.
 #> ℹ Please use `tbl()` directly with a database connection
 #> Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
@@ -718,19 +718,19 @@ my_db <- src_sqlite(my_db_file, create = TRUE)
 Currently, our new database is empty, it doesn't contain any tables:
 
 
-```r
+``` r
 my_db
 ```
 
-```{.output}
-#> src:  sqlite 3.44.2 [/home/runner/work/R-ecology-lesson/R-ecology-lesson/site/built/data/portal-database-output.sqlite]
+``` output
+#> src:  sqlite 3.46.0 [/home/runner/work/R-ecology-lesson/R-ecology-lesson/site/built/data/portal-database-output.sqlite]
 #> tbls:
 ```
 
 To add tables, we copy the existing data.frames into the database one by one:
 
 
-```r
+``` r
 copy_to(my_db, surveys)
 copy_to(my_db, plots)
 my_db
