@@ -156,8 +156,25 @@ developing in R, RStudio will make typing easier and less error-prone.
 
 ## Getting set up
 
-It is good practice to keep a set of related data, analyses, and text
-self-contained in a single folder, called the **working directory**. All of the
+### The working directory
+
+The working directory is an important concept. It is the location
+where R will look for and save files while you are working on a project. 
+
+RStudio assists you in this regard and sets the working directory automatically
+to the directory where you have placed your project. If you need to check your 
+current working directory, you can use `getwd()`. If for some reason your current
+working directory is not what it should be, you can change it in the
+RStudio interface by navigating in the file browser where your working directory
+should be, and clicking on the blue gear icon "More", and select "Set As Working
+Directory". Alternatively you can use `setwd("/path/to/working/directory")` to
+change your working directory. However, your scripts should not include this line
+because it will fail on someone else's computer.
+
+### Setting up
+
+It is good practice when working on a project to keep all related data, analyses, and text
+self-contained in a single folder, referred to as the **working directory**. All of the
 scripts within this folder can then use *relative paths* to files that indicate
 where inside the project a file is located (as opposed to absolute paths, which
 point to where a file is on a specific computer). Working this way allows you to
@@ -239,23 +256,6 @@ Your working directory should now look like this:
 ```{r, results="markup", fig.cap="How it should look like at the beginning of this lesson", echo=FALSE, purl=FALSE, out.width="100%", fig.align="center"}
 knitr::include_graphics("fig/r-starting-how-it-should-look-like.png")
 ```
-
-### The working directory
-
-The working directory is an important concept to understand. It is the place
-from where R will be looking for and saving the files. When you write code for
-your project, it should refer to files in relation to the root of your working
-directory and only need files within this structure.
-
-RStudio assists you in this regard and sets the working directory automatically
-to the directory where you have placed your project in.
-If you need to check it, you can use `getwd()`. If for some
-reason your working directory is not what it should be, you can change it in the
-RStudio interface by navigating in the file browser where your working directory
-should be, and clicking on the blue gear icon "More", and select "Set As Working
-Directory". Alternatively you can use `setwd("/path/to/working/directory")` to
-reset your working directory. However, your scripts should not include this line
-because it will fail on someone else's computer.
 
 ## Interacting with R
 
