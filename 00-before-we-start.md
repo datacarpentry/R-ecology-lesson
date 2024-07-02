@@ -463,10 +463,10 @@ sessionInfo()
 #>  [5] highr_0.11       tidyselect_1.2.1 blob_1.2.4       scales_1.3.0    
 #>  [9] fastmap_1.2.0    yaml_2.3.8       R6_2.5.1         generics_0.1.3  
 #> [13] munsell_0.5.1    DBI_1.2.3        pillar_1.9.0     tzdb_0.4.0      
-#> [17] rlang_1.1.3      utf8_1.2.4       cachem_1.1.0     stringi_1.8.4   
-#> [21] xfun_0.44        bit64_4.0.5      memoise_2.0.1    timechange_0.3.0
-#> [25] cli_3.6.2        withr_3.0.0      magrittr_2.0.3   grid_4.4.1      
-#> [29] hms_1.1.3        lifecycle_1.0.4  vctrs_0.6.5      evaluate_0.23   
+#> [17] rlang_1.1.4      utf8_1.2.4       cachem_1.1.0     stringi_1.8.4   
+#> [21] xfun_0.45        bit64_4.0.5      memoise_2.0.1    timechange_0.3.0
+#> [25] cli_3.6.3        withr_3.0.0      magrittr_2.0.3   grid_4.4.1      
+#> [29] hms_1.1.3        lifecycle_1.0.4  vctrs_0.6.5      evaluate_0.24.0 
 #> [33] glue_1.7.0       fansi_1.0.6      colorspace_2.1-0 tools_4.4.1     
 #> [37] pkgconfig_2.0.3
 ```
