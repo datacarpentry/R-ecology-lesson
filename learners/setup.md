@@ -2,12 +2,17 @@
 title: Setup
 ---
 
+## Preparations
 
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
+Data Carpentry's teaching is hands-on, and to follow this lesson
+learners must have R and RStudio installed on their computers. They also need
+to be able to install a number of R packages, create directories, and download
+files.
 
-Setup instructions live in this document. Please specify the tools and the data sets the learner needs to have installed. If you want to hide different setup instructions, you can use a `solution` tag.
-
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+To avoid troubleshooting during the lesson, learners should follow the
+instructions below to download and install everything beforehand.
+If the computer is managed by their organization's IT department
+they might need help from an IT administrator.
 
 ### Install R and RStudio
 
@@ -16,11 +21,10 @@ R and RStudio are two separate pieces of software:
 * **R** is a programming language and software used to run code written in R.
 * **RStudio** is an integrated development environment (IDE) that makes using R easier. In this course we use RStudio to interact with R. 
   
-If you don't already have R and RStudio installed, follow the instructions for your operating system below. You have to install R before you install RStudio. 
+If you don't already have R and RStudio installed, follow the instructions for your operating system below.
+You have to install R before you install RStudio. 
 
-<br>
-
-:::::::::::::::: solution
+::::::: spoiler
 
 ## For Windows
 
@@ -33,7 +37,7 @@ If you don't already have R and RStudio installed, follow the instructions for y
   
 :::::::::::::::::::::::::
 
-:::::::::::::::: solution
+:::::::::::::::: spoiler
 
 ## For MacOS
 
@@ -46,9 +50,9 @@ If you don't already have R and RStudio installed, follow the instructions for y
 * Double click the file to install RStudio
 * Once it's installed, open RStudio to make sure it works and you don't get any error messages.
 
-:::::::::::::::::::::::::
+::::::::::::::::
 
-:::::::::::::::: solution
+::::::: spoiler
 
 ## For Linux 
 
@@ -61,7 +65,7 @@ If you don't already have R and RStudio installed, follow the instructions for y
 * Double click the file to install RStudio
 * Once it's installed, open RStudio to make sure it works and you don't get any error messages.
 
-:::::::::::::::::::::::::
+::::::::::::::::
 
 ### Update R and RStudio
 
@@ -123,3 +127,4 @@ The data files for the lesson can be downloaded manually:
 
  - [cleaned data](../episodes/data/cleaned/surveys_complete_77_89.csv) and 
  - [zip file of raw data](../episodes/data/new_data.zip).
+
