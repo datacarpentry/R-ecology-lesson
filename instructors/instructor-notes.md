@@ -4,6 +4,18 @@ title: Instructor notes
 root: .
 ---
 
+## Workshop Timing
+
+In a two half-day format, you could probably complete the "Intro to R and RStudio" and "ggplot2" lessons, and make it about halfway through the "Exploring and understanding data" episode in the first half-day.
+
+We do not recommend splitting the workshop into episodes 1 and 2 on the first half-day and 3 and 4 on the second half-day, as we have found this leaves excess time on the first day and requires rushing or skipping content on the second day.
+
+**Instructor Notes below this line were written for
+[the original Data Carpentry lesson](https://datacarpentry.org/R-ecology-lesson),
+and may not be relevant to this redesigned version.**
+
+---
+
 ## Dataset
 
 The data used for this lesson are in the figshare repository at:
@@ -94,8 +106,8 @@ font, R will try to load a different font. This can be done with
 
 Save yourself some aggrevation, and have everyone check and see if they can
 install all these packages before you start the first day.
-See the "Preparations" section on the homepage of the course website for
-package installation instructions.
+See the "Install required R packages" section on the homepage of the course
+website for package installation instructions.
 
 Sometimes learners are unable to install the **`tidyverse`** package.
 In that case, they can try to install the individual packages that are actually
@@ -243,5 +255,3 @@ maintainers by email or
 For a more in-depth coverage of topics of the workshops, you may want to read
 "[R for Data Science](https://r4ds.had.co.nz/)" by Hadley Wickham and Garrett
 Grolemund.
-
-

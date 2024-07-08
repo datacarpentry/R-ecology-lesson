@@ -1,0 +1,107 @@
+name: Pilot Workshop Feedback
+description: Share feedback from a pilot workshop of this lesson.
+title: "[Pilot workshop feedback]: "
+labels: ["type:discussion"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for teaching this lesson and sharing feedback! 
+        Please answer the questions below, 
+        and note that feedback submitted with this form will be publicly visible.
+  - type: textarea
+    id: workshop
+    attributes:
+      label: 1. Workshop details
+      description: |
+        Tell us about the pilot workshop. 
+        When and where did it take place? Who hosted it? Who were the Instructors? 
+        How many Learners were there? What the background of the Learners e.g. their career stage, domain, prior knowledge of the lesson topic, etc?
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: |
+        ## Instructor Feedback
+  - type: textarea
+    id: instructor-up
+    attributes:
+      label: 2. What did the Instructors find worked well when teaching the lesson? 
+      description: |
+        What was good about the content and/or the design of the lesson?
+    validations:
+      required: true
+  - type: textarea
+    id: instructor-down
+    attributes:
+      label: 3. What did the Instructors find that could be improved in the lesson?
+    validations:
+      required: true
+  - type: textarea
+    id: instructor-other
+    attributes:
+      label: 4. Do the Instructors have any other feedback on the lesson?
+  - type: dropdown
+    id: time
+    attributes:
+      label: 5. Were the Instructors able to teach the whole lesson in the time available?
+      options:
+        - "Not sure"
+        - "Yes"
+        - "No"
+    validations:
+      required: true
+  - type: input
+    id: time-details
+    attributes:
+      label: 6. Tell us more about the lesson duration
+      description: |
+        If the Instructors were not able to teach the complete lesson in the time available, how much time did they have and how far through the lesson did they get? What content, if any, did they skip when teaching the lesson?
+        If they were able to teach the whole lesson, how much time did it take?
+        If an episode-by-episode breakdown of the time taken was recorded, please share it here.
+  - type: dropdown  
+    id: relative-evaluation
+    attributes:
+      label: 7. If the Instructors have also taught the official version of the _Data Analysis and Visualization with R for Ecologists_ lesson, how do they think this redesigned version compares to it?
+      options:
+        - "This version is no better or worse than the current official version."
+        - "This version is an improvement on the current version."
+        - "This version is worse than the current version."
+  - type: markdown
+    attributes:
+      value: |
+        ## Learner Feedback
+  - type: textarea
+    id: learner-feedback
+    attributes:
+      label: 8. Please share any feedback collected from Learners during the lesson pilot.
+      description: |
+        Feel free to exclude any feedback that is specific to the Instructors, venue, etc, or about other lessons taught at the workshop.
+  - type: markdown
+    attributes:
+      value: |
+        ## SQL databases and R
+        This lesson does not include content teaching interaction with relational databases from R.
+  - type: textarea
+    id: sql-feedback
+    attributes:
+      label: 9. How did the Instructors feel that this absence affected the overall usefulness of the lesson?
+  - type: dropdown  
+    id: sql-likert
+    attributes:
+      label: 10. How important do you think it is that content about R and databases be added back into this redesigned lesson?
+      options:
+        - "Very important"
+        - "Important"
+        - "Neutral"
+        - "Unimportant"
+        - "Very unimportant"
+  - type: markdown
+    attributes:
+      value: |
+        ## Conclusion
+  - type: textarea
+    id: other
+    attributes:
+      label: 11. Is there anything else you would like to tell us?
+      

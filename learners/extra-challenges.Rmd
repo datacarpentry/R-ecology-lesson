@@ -1,0 +1,83 @@
+---
+title: "Extra Challenges"
+teaching: 45
+exercises: 3
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(dpi = 200, out.height = 600, out.width = 600, R.options = list(max.print = 100))
+```
+
+```{r load-tidyverse-package, message=FALSE}
+library(tidyverse)
+surveys <- read_csv("data/cleaned/surveys_complete_77_89.csv")
+```
+
+::::::::::::::::::::::::::::::::::::: challenge 
+
+## Challenge: `ggplot2` syntax
+
+There are some issues with these `ggplot2` examples. Can you figure out what is wrong with each one?
+
+```{r, eval=FALSE}
+ggplot(data = surveys, 
+       mapping = aes(x = weight, y = hindfoot_length, color = "blue")) +
+  geom_point()
+```
+
+
+:::::::::::::::::::::::: solution 
+
+Our points don't actually turn out blue, because we defined the color inside of `aes()`. `aes()` is used for translating variables from the data into plot elements, like color. There is no variable in the data called "blue".
+
+::::::::::::::::::::::::
+
+```{r, eval=FALSE}
+ggplot(data = surveys, 
+       mapping = aes(x = "weight", y = "hindfoot_length")) +
+  geom_point()
+```
+
+:::::::::::::::::::::::: solution 
+
+Variable names inside `aes()` should not be wrapped in quotes.
+
+::::::::::::::::::::::::
+
+```{r, eval=FALSE}
+ggplot(data = surveys, 
+       mapping = aes(x = weight, y = hindfoot_length)) 
+  + geom_point()
+```
+
+:::::::::::::::::::::::: solution 
+
+When adding things like `geom_` or `scale_` functions to a `ggplot()`, you have to end a line with `+`, not begin a line with it.
+
+::::::::::::::::::::::::
+
+```{r, eval=FALSE}
+ggplot(data = surveys, x = weight, y = hindfoot_length) +
+  geom_point()
+```
+
+:::::::::::::::::::::::: solution 
+
+When translating variables from the data, like `weight` and `hindfoot_length`, to elements of the plot, like `x` and `y`, you must put them inside `aes()`.
+
+::::::::::::::::::::::::
+
+```{r, eval=FALSE}
+ggplot(data = surveys, 
+       mapping = aes(x = weight, y = hindfoot_length, color = species_id)) +
+  geom_point() +
+  scale_color_continuous(type = "viridis")
+```
+
+:::::::::::::::::::::::: solution 
+
+`species_id` is a categorical variable, but `scale_color_continuous()` supplies a continuous color scale. `scale_color_discrete()` would give a discrete/categorical scale.
+
+::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::
