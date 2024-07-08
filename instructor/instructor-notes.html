@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<title>Data Analysis and Visualisation in R for Ecologists: Instructor Notes</title>
+<title>Data Analysis and Visualization in R for Ecologists: Instructor Notes</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="../assets/themetoggle.js"></script><link rel="stylesheet" type="text/css" href="../assets/styles.css">
 <script src="../assets/scripts.js" type="text/javascript"></script><!-- mathjax --><script type="text/x-mathjax-config">
@@ -65,7 +65,7 @@
           </ul>
 </li>
       </div>
-      
+
       <div class="dropdown" id="instructor-dropdown">
         <button class="btn btn-secondary dropdown-toggle bordered-button" type="button" id="dropdownMenu1" data-bs-toggle="dropdown" aria-expanded="false">
           <i aria-hidden="true" class="icon" data-feather="eye"></i> Instructor View <i data-feather="chevron-down"></i>
@@ -85,7 +85,7 @@
       <img class="small-logo" alt="Data Carpentry" src="../assets/images/data-logo-sm.svg">
 </div>
     <div class="lesson-title-md">
-      Data Analysis and Visualisation in R for Ecologists
+      Data Analysis and Visualization in R for Ecologists
     </div>
     <div class="search-icon-sm">
       <!-- TODO: do not show until we have search
@@ -96,7 +96,7 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 <li class="nav-item">
           <span class="lesson-title">
-            Data Analysis and Visualisation in R for Ecologists
+            Data Analysis and Visualization in R for Ecologists
           </span>
         </li>
         <li class="nav-item">
@@ -133,7 +133,7 @@
   </div>
 <!--/div.container-fluid -->
 </nav><div class="col-md-12 mobile-title">
-  Data Analysis and Visualisation in R for Ecologists
+  Data Analysis and Visualization in R for Ecologists
 </div>
 
 <aside class="col-md-12 lesson-progress"><div style="width: %" class="percentage">
@@ -204,7 +204,7 @@
 <!--div.sidenav-view-selector -->
             </div>
 <!--/div.col -->
-      
+
             <hr>
 </div>
 <!--/div.mobile-row -->
@@ -223,10 +223,10 @@
                   <div class="accordion accordion-flush" id="accordionFlush1">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading1">
-        <a href="index.html">Data Analysis and Visualization in R for Ecologists</a>
+        <a href="index.html">Summary and Schedule</a>
     </div>
 <!--/div.accordion-header-->
-        
+
   </div>
 <!--/div.accordion-item-->
 </div>
@@ -235,10 +235,10 @@
 <div class="accordion accordion-flush" id="accordionFlush2">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading2">
-        <a href="00-before-we-start.html">1. Before we start</a>
+        <a href="introduction-r-rstudio.html">1. Introduction to R and RStudio</a>
     </div>
 <!--/div.accordion-header-->
-        
+
   </div>
 <!--/div.accordion-item-->
 </div>
@@ -247,10 +247,10 @@
 <div class="accordion accordion-flush" id="accordionFlush3">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading3">
-        <a href="01-intro-to-r.html">2. Introduction to R</a>
+        <a href="visualizing-ggplot.html">2. Data visualization with ggplot2</a>
     </div>
 <!--/div.accordion-header-->
-        
+
   </div>
 <!--/div.accordion-item-->
 </div>
@@ -259,10 +259,10 @@
 <div class="accordion accordion-flush" id="accordionFlush4">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading4">
-        <a href="02-starting-with-data.html">3. Starting with data</a>
+        <a href="how-r-thinks-about-data.html">3. Exploring and understanding data</a>
     </div>
 <!--/div.accordion-header-->
-        
+
   </div>
 <!--/div.accordion-item-->
 </div>
@@ -271,34 +271,10 @@
 <div class="accordion accordion-flush" id="accordionFlush5">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading5">
-        <a href="03-dplyr.html">4. Manipulating, analyzing and exporting data with tidyverse</a>
+        <a href="working-with-data.html">4. Working with data</a>
     </div>
 <!--/div.accordion-header-->
-        
-  </div>
-<!--/div.accordion-item-->
-</div>
-<!--/div.accordion-flush-->
 
-<div class="accordion accordion-flush" id="accordionFlush6">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading6">
-        <a href="04-visualization-ggplot2.html">5. Data visualization with ggplot2</a>
-    </div>
-<!--/div.accordion-header-->
-        
-  </div>
-<!--/div.accordion-item-->
-</div>
-<!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush7">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading7">
-        <a href="05-r-and-databases.html">6. SQL databases and R</a>
-    </div>
-<!--/div.accordion-header-->
-        
   </div>
 <!--/div.accordion-item-->
 </div>
@@ -337,11 +313,11 @@
             </div>
             <hr class="half-width resources">
 <a href="../instructor/aio.html">See all in one page</a>
-            
+
 
             <hr class="d-none d-sm-block d-md-none">
 <div class="d-grid gap-1">
-            
+
             </div>
           </div>
 <!-- /div.accordion -->
@@ -360,7 +336,23 @@
         <h1>Instructor Notes</h1>
         
 
-<section id="dataset"><h2 class="section-heading">Dataset<a class="anchor" aria-label="anchor" href="#dataset"></a>
+<section><h2 class="section-heading" id="workshop-timing">Workshop Timing<a class="anchor" aria-label="anchor" href="#workshop-timing"></a>
+<a class="anchor" aria-label="anchor" href="#workshop-timing"></a>
+</h2>
+<hr class="half-width">
+<p>In a two half-day format, you could probably complete the “Intro to R
+and RStudio” and “ggplot2” lessons, and make it about halfway through
+the “Exploring and understanding data” episode in the first
+half-day.</p>
+<p>We do not recommend splitting the workshop into episodes 1 and 2 on
+the first half-day and 3 and 4 on the second half-day, as we have found
+this leaves excess time on the first day and requires rushing or
+skipping content on the second day.</p>
+<p><strong>Instructor Notes below this line were written for <a href="https://datacarpentry.org/R-ecology-lesson" class="external-link">the original Data
+Carpentry lesson</a>, and may not be relevant to this redesigned
+version.</strong></p>
+<hr></section><section><h2 class="section-heading" id="dataset">Dataset<a class="anchor" aria-label="anchor" href="#dataset"></a>
+<a class="anchor" aria-label="anchor" href="#dataset"></a>
 </h2>
 <hr class="half-width">
 <p>The data used for this lesson are in the figshare repository at: <a href="https://doi.org/10.6084/m9.figshare.1314459" class="external-link">https://doi.org/10.6084/m9.figshare.1314459</a></p>
@@ -380,7 +372,8 @@ practice of automating the download. If the learners haven’t created the
 <code>data/</code> directory and/or are not in the correct working
 directory, the <code>download.file</code> command will produce an error.
 Therefore, it is important to use the stickies at this point.</p>
-</section><section id="the-handout"><h2 class="section-heading">The handout<a class="anchor" aria-label="anchor" href="#the-handout"></a>
+</section><section><h2 class="section-heading" id="the-handout">The handout<a class="anchor" aria-label="anchor" href="#the-handout"></a>
+<a class="anchor" aria-label="anchor" href="#the-handout"></a>
 </h2>
 <hr class="half-width">
 <p>The <a href="../files/code-handout.R">code handout</a> (a link to
@@ -393,7 +386,8 @@ unfamiliar with R’s syntax. We encourage you to distribute it to the
 learners at the beginning of the lesson. As an instructor, we encourage
 you to do the live coding directly in this file, so the participants can
 follow along.</p>
-</section><section id="r-version"><h2 class="section-heading">R Version<a class="anchor" aria-label="anchor" href="#r-version"></a>
+</section><section><h2 class="section-heading" id="r-version">R Version<a class="anchor" aria-label="anchor" href="#r-version"></a>
+<a class="anchor" aria-label="anchor" href="#r-version"></a>
 </h2>
 <hr class="half-width">
 <p>With the release of R 4.0.0 in early 2020, an important change has
@@ -412,7 +406,8 @@ regardless of the R version.</p>
 <p>Nevertheless, it is recommended that learners install a version of R
 ≥4.0.0, and instructors and helpers should be aware of this potential
 source of error.</p>
-</section><section id="rstudio-and-multiple-r-installs"><h2 class="section-heading">RStudio and Multiple R Installs<a class="anchor" aria-label="anchor" href="#rstudio-and-multiple-r-installs"></a>
+</section><section><h2 class="section-heading" id="rstudio-and-multiple-r-installs">RStudio and Multiple R Installs<a class="anchor" aria-label="anchor" href="#rstudio-and-multiple-r-installs"></a>
+<a class="anchor" aria-label="anchor" href="#rstudio-and-multiple-r-installs"></a>
 </h2>
 <hr class="half-width">
 <p>Some learners may have previous R installations. On Mac, if a new
@@ -429,7 +424,8 @@ install it. If it is present, you will need to set the symbolic link to
 Current to point to the 4.0.x directory:</p>
 <pre><code>ln -s /Library/Frameworks/R.framework/Versions/3.6.x /Library/Frameworks/R.framework/Version/Current</code></pre>
 <p>Then restart RStudio.</p>
-</section><section id="issues-with-fonts-on-macos"><h2 class="section-heading">Issues with Fonts on MacOS<a class="anchor" aria-label="anchor" href="#issues-with-fonts-on-macos"></a>
+</section><section><h2 class="section-heading" id="issues-with-fonts-on-macos">Issues with Fonts on MacOS<a class="anchor" aria-label="anchor" href="#issues-with-fonts-on-macos"></a>
+<a class="anchor" aria-label="anchor" href="#issues-with-fonts-on-macos"></a>
 </h2>
 <hr class="half-width">
 <p>On older versions of MacOS, it may happen that axis labels do not
@@ -443,18 +439,20 @@ workaround is to change the default theme for the R session, so that
 ggplot uses a <em>serif</em> font. Since Arial is a <em>sans-serif</em>
 font, R will try to load a different font. This can be done with
 <code>theme_update(text = element_text(family = "serif"))</code>.</p>
-</section><section id="required-packages"><h2 class="section-heading">Required packages<a class="anchor" aria-label="anchor" href="#required-packages"></a>
+</section><section><h2 class="section-heading" id="required-packages">Required packages<a class="anchor" aria-label="anchor" href="#required-packages"></a>
+<a class="anchor" aria-label="anchor" href="#required-packages"></a>
 </h2>
 <hr class="half-width">
 <p>Save yourself some aggrevation, and have everyone check and see if
 they can install all these packages before you start the first day. See
-the “Preparations” section on the homepage of the course website for
-package installation instructions.</p>
+the “Install required R packages” section on the homepage of the course
+website for package installation instructions.</p>
 <p>Sometimes learners are unable to install the
 <strong><code>tidyverse</code></strong> package. In that case, they can
 try to install the individual packages that are actually needed:</p>
 <pre><code><span><span class="fu">install.packages</span><span class="op">(</span><span class="fu">c</span><span class="op">(</span><span class="st">"readr"</span>, <span class="st">"lubridate"</span>, <span class="st">"dplyr"</span>, <span class="st">"tidyr"</span>, <span class="st">"ggplot2"</span>, <span class="st">"dbplyr"</span><span class="op">)</span><span class="op">)</span></span></code></pre>
-</section><section id="narrative"><h2 class="section-heading">Narrative<a class="anchor" aria-label="anchor" href="#narrative"></a>
+</section><section><h2 class="section-heading" id="narrative">Narrative<a class="anchor" aria-label="anchor" href="#narrative"></a>
+<a class="anchor" aria-label="anchor" href="#narrative"></a>
 </h2>
 <hr class="half-width">
 <div class="section level3">
@@ -575,13 +573,15 @@ workshop for learners interested in learning more about the topics or
 for instructors to answer questions from the workshop participants.</li>
 </ul>
 </div>
-</section><section id="potential-issues-solutions"><h2 class="section-heading">Potential issues &amp; solutions<a class="anchor" aria-label="anchor" href="#potential-issues-solutions"></a>
+</section><section><h2 class="section-heading" id="potential-issues-solutions">Potential issues &amp; solutions<a class="anchor" aria-label="anchor" href="#potential-issues-solutions"></a>
+<a class="anchor" aria-label="anchor" href="#potential-issues-solutions"></a>
 </h2>
 <hr class="half-width">
 <p>As it stands, the solutions to all the challenges are commented out
 in the Rmd files. If you want to double check your answer, you can look
 at the source code of the Rmd files on GitHub.</p>
-</section><section id="technical-tips-and-tricks"><h2 class="section-heading">Technical Tips and Tricks<a class="anchor" aria-label="anchor" href="#technical-tips-and-tricks"></a>
+</section><section><h2 class="section-heading" id="technical-tips-and-tricks">Technical Tips and Tricks<a class="anchor" aria-label="anchor" href="#technical-tips-and-tricks"></a>
+<a class="anchor" aria-label="anchor" href="#technical-tips-and-tricks"></a>
 </h2>
 <hr class="half-width">
 <p>Show how to use the ‘zoom’ button to blow up graphs without
@@ -615,7 +615,8 @@ setting your working directory <code>setwd("/somedirectory")</code> and
 if needed creating a directory within your script
 <code>dir.create("/some_new_directory")</code>, or simply creating it
 within a file explorer works if short on time.</p>
-</section><section id="other-resources"><h2 class="section-heading">Other Resources<a class="anchor" aria-label="anchor" href="#other-resources"></a>
+</section><section><h2 class="section-heading" id="other-resources">Other Resources<a class="anchor" aria-label="anchor" href="#other-resources"></a>
+<a class="anchor" aria-label="anchor" href="#other-resources"></a>
 </h2>
 <hr class="half-width">
 <p>If you encounter a problem during a workshop, feel free to contact
@@ -624,15 +625,45 @@ an issue</a>.</p>
 <p>For a more in-depth coverage of topics of the workshops, you may want
 to read “<a href="https://r4ds.had.co.nz/" class="external-link">R for Data Science</a>” by
 Hadley Wickham and Garrett Grolemund.</p>
-</section><section id="aggregate-instructor-notes"><section id="00-before-we-start"><h2 class="section-heading"><a href="00-before-we-start.html">Before we start</a></h2>
-<hr class="half-width"></section><section id="01-intro-to-r"><h2 class="section-heading"><a href="01-intro-to-r.html">Introduction to R</a></h2>
-<hr class="half-width"></section><section id="02-starting-with-data"><h2 class="section-heading"><a href="02-starting-with-data.html">Starting with data</a></h2>
-<hr class="half-width"></section><section id="03-dplyr"><h2 class="section-heading"><a href="03-dplyr.html">Manipulating, analyzing and exporting data with tidyverseData manipulation using <strong><code>dplyr</code></strong> and
-<strong><code>tidyr</code></strong>
-<a class="anchor" aria-label="anchor" href="#data-manipulation-using-dplyr-and-tidyr"></a>Exporting data<a class="anchor" aria-label="anchor" href="#exporting-data"></a></a></h2>
-<hr class="half-width"></section><section id="04-visualization-ggplot2"><h2 class="section-heading"><a href="04-visualization-ggplot2.html">Data visualization with ggplot2</a></h2>
-<hr class="half-width"></section><section id="05-r-and-databases"><h2 class="section-heading"><a href="05-r-and-databases.html">SQL databases and R</a></h2>
-<hr class="half-width"></section></section>
+</section><section id="aggregate-instructor-notes"><section id="introduction-r-rstudio"><h2 class="section-heading"><a href="introduction-r-rstudio.html">Introduction to R and RStudio</a></h2>
+<hr class="half-width">
+<h3 id="introduction-r-rstudio-headingInstructor1">
+<a href="introduction-r-rstudio.html#headingInstructor1">Instructor Note</a><a class="anchor" aria-label="anchor" href="#introduction-r-rstudio-headingInstructor1"></a>
+</h3>
+<p>You can walk through this analogy if you want, or skip over it if you
+don’t find it useful.</p>
+<hr>
+<br><h3 id="introduction-r-rstudio-headingInstructor2">
+<a href="introduction-r-rstudio.html#headingInstructor2">Instructor Note</a><a class="anchor" aria-label="anchor" href="#introduction-r-rstudio-headingInstructor2"></a>
+</h3>
+<p>If you are teaching remotely and sharing only the RStudio window, the
+new windows that pop up while creating folders will not be shared via
+Zoom. You can switch to sharing your entire screen, which will allow
+learners to see the popup windows.</p>
+<hr>
+<br></section><section id="visualizing-ggplot"><h2 class="section-heading"><a href="visualizing-ggplot.html">Data visualization with ggplot2</a></h2>
+<hr class="half-width">
+<h3 id="visualizing-ggplot-headingInstructor1">
+<a href="visualizing-ggplot.html#headingInstructor1">Instructor Note</a><a class="anchor" aria-label="anchor" href="#visualizing-ggplot-headingInstructor1"></a>
+</h3>
+<p>Probably worth mentioning that people often just say
+<strong>ggplot</strong> when referring to the package
+<code>ggplot2</code>.</p>
+<hr>
+<br></section><section id="how-r-thinks-about-data"><h2 class="section-heading"><a href="how-r-thinks-about-data.html">Exploring and understanding data</a></h2>
+<hr class="half-width"></section><section id="working-with-data"><h2 class="section-heading"><a href="working-with-data.html">Working with data</a></h2>
+<hr class="half-width">
+<h3 id="working-with-data-headingInstructor1">
+<a href="working-with-data.html#headingInstructor1">Instructor Note</a><a class="anchor" aria-label="anchor" href="#working-with-data-headingInstructor1"></a>
+</h3>
+<p>It’s worth showing the learners that you can run a
+<strong>pipeline</strong> without highlighting the whole thing. If your
+cursor is on any line of a pipeline, running that line will run the
+whole thing.</p>
+<p>You can also show that by highlighting a section of a pipeline, you
+can run only the first X steps of it.</p>
+<hr>
+<br></section></section>
 </div>
     </main>
 </div>
@@ -644,18 +675,18 @@ Hadley Wickham and Garrett Grolemund.</p>
 <div class="col-md-6">
         <p>This lesson is subject to the <a href="CODE_OF_CONDUCT.html">Code of Conduct</a></p>
         <p>
-        
-        <a href="https://github.com/datacarpentry/R-ecology-lesson/edit/main/README.md" class="external-link">Edit on GitHub</a>
-        
+
+        <a href="https://github.com/datacarpentry/R-ecology-lesson-alternative/edit/main/README.md" class="external-link">Edit on GitHub</a>
+
 	
-        | <a href="https://github.com/datacarpentry/R-ecology-lesson/blob/main/CONTRIBUTING.md" class="external-link">Contributing</a>
-        | <a href="https://github.com/datacarpentry/R-ecology-lesson/" class="external-link">Source</a></p>
-				<p><a href="https://github.com/datacarpentry/R-ecology-lesson/blob/main/CITATION" class="external-link">Cite</a> | <a href="mailto:curriculum@carpentries.org">Contact</a> | <a href="https://carpentries.org/about/" class="external-link">About</a></p>
+        | <a href="https://github.com/datacarpentry/R-ecology-lesson-alternative/blob/main/CONTRIBUTING.md" class="external-link">Contributing</a>
+        | <a href="https://github.com/datacarpentry/R-ecology-lesson-alternative/" class="external-link">Source</a></p>
+				<p><a href="https://github.com/datacarpentry/R-ecology-lesson-alternative/blob/main/CITATION" class="external-link">Cite</a> | <a href="mailto:team@carpentries.org">Contact</a> | <a href="https://carpentries.org/about/" class="external-link">About</a></p>
 			</div>
 			<div class="col-md-6">
-        
+
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
-        
+
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
         <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.16.5" class="external-link">sandpaper (0.16.5)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.6" class="external-link">pegboard (0.7.6)</a>, and <a href="https://github.com/carpentries/varnish/tree/1.0.3" class="external-link">varnish (1.0.3)</a></p>
 			</div>
@@ -670,18 +701,18 @@ Hadley Wickham and Garrett Grolemund.</p>
     {
   "@context": "https://schema.org",
   "@type": "TrainingMaterial",
-  "@id": "https://datacarpentry.github.io/R-ecology-lesson/instructor/instructor-notes.html",
+  "@id": "https://datacarpentry.github.io/R-ecology-lesson-alternative/instructor/instructor-notes.html",
   "inLanguage": "en",
   "dct:conformsTo": "https://bioschemas.org/profiles/TrainingMaterial/1.0-RELEASE",
   "description": "A Carpentries Lesson teaching foundational data and coding skills to researchers worldwide",
-  "keywords": "software, data, lesson, The Carpentries",
+  "keywords": "ggplot2, tidyverse, data-visualization, data-visualisation, data-wrangling, data-carpentry, R",
   "name": "Instructor Notes",
   "creativeWorkStatus": "active",
-  "url": "https://datacarpentry.github.io/R-ecology-lesson/instructor/instructor-notes.html",
-  "identifier": "https://datacarpentry.github.io/R-ecology-lesson/instructor/instructor-notes.html",
+  "url": "https://datacarpentry.github.io/R-ecology-lesson-alternative/instructor/instructor-notes.html",
+  "identifier": "https://datacarpentry.github.io/R-ecology-lesson-alternative/instructor/instructor-notes.html",
   "dateCreated": "2015-04-02",
-  "dateModified": "2024-07-02",
-  "datePublished": "2024-07-02"
+  "dateModified": "2024-07-08",
+  "datePublished": "2024-07-08"
 }
 
   </script><script>

@@ -1,111 +1,135 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lesson/00-before-we-start.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson-alternative/00-before-we-start.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lesson/01-intro-to-r.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson-alternative/01-intro-to-r.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lesson/02-starting-with-data.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson-alternative/02-starting-with-data.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lesson/03-dplyr.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson-alternative/03-dplyr.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lesson/04-visualization-ggplot2.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson-alternative/04-visualization-ggplot2.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lesson/05-r-and-databases.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson-alternative/05-r-and-databases.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lesson/404.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson-alternative/404.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lesson/CITATION.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson-alternative/CITATION.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lesson/CONDUCT.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson-alternative/CONDUCT.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lesson/LICENSE.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson-alternative/LICENSE.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lesson/NEWS.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson-alternative/NEWS.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lesson/aio.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson-alternative/aio.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lesson/images.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson-alternative/how-r-thinks-about-data.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lesson/index.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson-alternative/images.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lesson/instructor/00-before-we-start.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson-alternative/index.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lesson/instructor/01-intro-to-r.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson-alternative/instructor/00-before-we-start.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lesson/instructor/02-starting-with-data.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson-alternative/instructor/01-intro-to-r.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lesson/instructor/03-dplyr.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson-alternative/instructor/02-starting-with-data.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lesson/instructor/04-visualization-ggplot2.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson-alternative/instructor/03-dplyr.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lesson/instructor/05-r-and-databases.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson-alternative/instructor/04-visualization-ggplot2.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lesson/instructor/404.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson-alternative/instructor/05-r-and-databases.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lesson/instructor/CITATION.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson-alternative/instructor/404.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lesson/instructor/CONDUCT.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson-alternative/instructor/CITATION.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lesson/instructor/LICENSE.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson-alternative/instructor/CONDUCT.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lesson/instructor/NEWS.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson-alternative/instructor/LICENSE.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lesson/instructor/aio.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson-alternative/instructor/NEWS.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lesson/instructor/images.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson-alternative/instructor/aio.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lesson/instructor/index.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson-alternative/instructor/how-r-thinks-about-data.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lesson/instructor/instructor-notes.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson-alternative/instructor/images.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lesson/instructor/key-points.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson-alternative/instructor/index.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lesson/instructor/profiles.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson-alternative/instructor/instructor-notes.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lesson/instructor/reference.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson-alternative/instructor/introduction-r-rstudio.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lesson/instructor-notes.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson-alternative/instructor/key-points.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lesson/key-points.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson-alternative/instructor/profiles.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lesson/profiles.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson-alternative/instructor/reference.html</loc>
   </url>
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lesson/reference.html</loc>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson-alternative/instructor/visualizing-ggplot.html</loc>
+  </url>
+  <url>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson-alternative/instructor/working-with-data.html</loc>
+  </url>
+  <url>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson-alternative/instructor-notes.html</loc>
+  </url>
+  <url>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson-alternative/introduction-r-rstudio.html</loc>
+  </url>
+  <url>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson-alternative/key-points.html</loc>
+  </url>
+  <url>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson-alternative/profiles.html</loc>
+  </url>
+  <url>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson-alternative/reference.html</loc>
+  </url>
+  <url>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson-alternative/visualizing-ggplot.html</loc>
+  </url>
+  <url>
+    <loc>https://datacarpentry.github.io/R-ecology-lesson-alternative/working-with-data.html</loc>
   </url>
 </urlset>
