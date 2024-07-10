@@ -27,7 +27,7 @@ life_cycle: 'stable'
 license: 'CC-BY 4.0'
 
 # Link to the source repository for this lesson
-source: 'https://github.com/datacarpentry/R-ecology-lesson-alternative'
+source: 'https://github.com/datacarpentry/R-ecology-lesson'
 
 # Default branch of your lesson
 branch: 'main'
