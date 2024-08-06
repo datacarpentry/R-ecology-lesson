@@ -1,24 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lesson/00-before-we-start.html</loc>
-  </url>
-  <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lesson/01-intro-to-r.html</loc>
-  </url>
-  <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lesson/02-starting-with-data.html</loc>
-  </url>
-  <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lesson/03-dplyr.html</loc>
-  </url>
-  <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lesson/04-visualization-ggplot2.html</loc>
-  </url>
-  <url>
-    <loc>https://datacarpentry.github.io/R-ecology-lesson/05-r-and-databases.html</loc>
-  </url>
-  <url>
     <loc>https://datacarpentry.github.io/R-ecology-lesson/404.html</loc>
   </url>
   <url>
