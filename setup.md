@@ -89,12 +89,12 @@ While this may sound scary, it is **far more common** to run into issues due to 
 
 ### Install required R packages
 
-During the course we will need a number of R packages. Packages contain useful R code written by other people. We will use the packages `tidyverse`, `lubridate`, and `ratdat`. 
+During the course we will need a number of R packages. Packages contain useful R code written by other people. We will use the packages `tidyverse`, and `ratdat`. 
 
 To try to install these packages, open RStudio and copy and paste the following command into the console window (look for a blinking cursor on the bottom left), then press the <kbd>Enter</kbd> (Windows and Linux) or <kbd>Return</kbd> (MacOS) to execute the command.
 
 ```r
-install.packages(c("tidyverse", "lubridate", "ratdat"))
+install.packages(c("tidyverse", "ratdat"))
 ```
 
 Alternatively, you can install the packages using RStudio's graphical user interface by going to `Tools > Install Packages` and typing the names of the packages separated by a comma.
@@ -105,7 +105,6 @@ When the installation has finished, you can try to load the packages by pasting 
 
 ```r
 library(tidyverse)
-library(lubridate)
 library(ratdat)
 ```
 
