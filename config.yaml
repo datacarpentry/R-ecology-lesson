@@ -79,3 +79,8 @@ profiles:
 #
 # This space below is where custom yaml items (e.g. pinning
 # sandpaper and varnish versions) should live
+
+url: 'https://datacarpentry.org/R-ecology-lesson'
+analytics: carpentries
+lang: en
+
