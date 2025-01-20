@@ -11,6 +11,6 @@
 "episodes/working-with-data.Rmd" "42ea54827a097a06f4e60b18737a141c" "site/built/working-with-data.md" "2025-01-20"
 "instructors/instructor-notes.md" "0f95610c81b48dc8e7a7add0c5693f39" "site/built/instructor-notes.md" "2025-01-20"
 "learners/reference.md" "d64102b12c29b96d29ace337ac32746d" "site/built/reference.md" "2025-01-20"
-"learners/setup.md" "a969eaae8367fd6884ca5248c4500725" "site/built/setup.md" "2025-01-20"
+"learners/setup.md" "715d204d4f0eb3bde591f25d20be600c" "site/built/setup.md" "2025-01-20"
 "profiles/learner-profiles.md" "60b93493cf1da06dfd63255d73854461" "site/built/learner-profiles.md" "2025-01-20"
 "renv/profiles/lesson-requirements/renv.lock" "942d20a8c6fa06ce98ca04fce79439a9" "site/built/renv.lock" "2025-01-20"
