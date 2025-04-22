@@ -255,7 +255,7 @@ complete_old$year
  [61] 1977 1977 1977 1977 1977 1977 1977 1977 1977 1977 1977 1977 1977 1977 1977
  [76] 1977 1977 1977 1977 1977 1977 1977 1977 1977 1977 1977 1977 1977 1977 1977
  [91] 1977 1977 1977 1977 1977 1977 1977 1977 1977 1977
- [ reached getOption("max.print") -- omitted 16778 entries ]
+ [ reached 'max' / getOption("max.print") -- omitted 16778 entries ]
 ```
 
 What we get back is a whole bunch of numbers, the entries in the `year` column printed out in order.
