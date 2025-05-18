@@ -1,0 +1,61 @@
+## Data
+
+Data is from the paper S. K. Morgan Ernest, Thomas J. Valone, and James
+H. Brown. 2009. Long-term monitoring and experimental manipulation of a
+Chihuahuan Desert ecosystem near Portal, Arizona, USA. Ecology 90:1708.
+
+[https://esapubs.org/archive/ecol/E090/118/](https://esapubs.org/archive/ecol/E090/118/)
+
+A simplified version of this data, suitable for teaching is available on
+[figshare](https://doi.org/10.6084/m9.figshare.1314459.v5).
+
+## Lessons
+
+The first workshop was run at NESCent on May 8-9, 2014 with the development and
+instruction of lessons by Karen Cranston, Hilmar Lapp, Tracy Teal, and Ethan
+White and contributions from Deb Paul and Mike Smorul.
+
+Original materials adapted from SWC Python lessons by Sarah Supp. John Blischak
+led the continued development of materials with contributions from Gavin
+Simpson, Tracy Teal, Greg Wilson, Diego Barneche, Stephen Turner, and Karthik
+Ram. This original material has been modified and expanded by François
+Michonneau.
+
+The **`dplyr`** lesson was created by Kara Woo, who copied and modified and
+modified from Jeff
+Hollister's [materials](https://usepa.github.io/introR/2015/01/14/03-Clean/).
+
+The **`ggplot2`** lesson was initially created by Mateusz Kuzak, Diana Marek,
+and Hedi Peterson, during a Hackathon in Espoo, Finland on March 16-17, 2015,
+sponsored by the [ELIXIR project](https://elixir-europe.org/).
+
+You can cite this Data Carpentry lesson as follow:
+
+Michonneau F, Teal T, Fournier A, Seok B, Obeng A, Pawlik AN, Conrado AC, Woo K, Lijnzaad
+P, Hart T, White EP, Marwick B, Bolker B, Jordan KL, Ashander J, Dashnow H, Hertweck K,
+Cuesta SM, Becker EA, Guillou S, Shiklomanov A, Klinges D, Odom GJ, Jean M, Mislan KAS,
+Johnson K, Jahn N, Mannheimer S, Pederson S, Pletzer A, Fouilloux A, Switzer C, Bahlai C,
+Li D, Kerchner D, Rodriguez-Sanchez F, Rajeg GPW, Ye H, Tavares H, Leinweber K, Peck K,
+Lepore ML, Hancock S, Sandmann T, Hodges T, Tirok K, Jean M, Bailey A, von Hardenberg A,
+Theobold A, Wright A, Basu A, Johnson C, Voter C, Hulshof C, Bouquin D, Quinn D,
+Vanichkina D, Wilson E, Strauss E, Bledsoe E, Gan E, Fishman D, Boehm F, Daskalova G,
+Tavares H, Kaupp J, Dunic J, Keane J, Stachelek J, Herr JR, Millar J, Lotterhos K,
+Cranston K, Direk K, Tylén K, Chatzidimitriou K, Deer L, Tarkowski L, Chiapello M, Burle
+M, Ankenbrand M, Czapanskiy M, Moreno M, Culshaw-Maurer M, Koontz M, Weisner M, Johnston
+M, Carchedi N, Burge OR, Harrison P, Humburg P, Pauloo R, Peek R, Elahi R, Cortijo S,
+sfn_brt, Umashankar S, Goswami S, Sumedh, Yanco S, Webster T, Reiter T, Pearse W, Li Y
+(2025). “datacarpentry/R-ecology-lesson: Data Carpentry: Data Analysis and Visualization
+in R for Ecologists, June 2019.” doi:10.5281/zenodo.3264888
+<https://doi.org/10.5281/zenodo.3264888>, <https://datacarpentry.org/R-ecology-lesson/>.
+
+or as a BibTeX entry:
+
+@Misc{,
+  author = {François Michonneau and Tracy Teal and Auriel Fournier and Brian Seok and Adam Obeng and Aleksandra Natalia Pawlik and Ana Costa Conrado and Kara Woo and Philip Lijnzaad and Ted Hart and Ethan P White and Ben Marwick and Ben Bolker and Kari L Jordan and Jaime Ashander and Harriet Dashnow and Kate Hertweck and Sergio Martínez Cuesta and Erin Alison Becker and Stéphane Guillou and Alexey Shiklomanov and David Klinges and Gabriel J. Odom and Martin Jean and K. A. S. Mislan and Kayla Johnson and Najko Jahn and Sara Mannheimer and Steve Pederson and Alex Pletzer and Anne Fouilloux and Callin Switzer and Christie Bahlai and Daijiang Li and Dan Kerchner and Francisco Rodriguez-Sanchez and Gede Primahadi Wijaya Rajeg and Hao Ye and Hugo Tavares and Katrin Leinweber and Kayla Peck and Mauro Luciano Lepore and Stacey Hancock and Thomas Sandmann and Toby Hodges and Katrin Tirok and Martin Jean and Alistair Bailey and Achaz {von Hardenberg} and Allison Theobold and April Wright and Arindam Basu and Carolina Johnson and Carolyn Voter and Catherine Hulshof and Daina Bouquin and Danielle Quinn and Darya Vanichkina and Earle Wilson and Eli Strauss and Ellen Bledsoe and Emilia Gan and Dmytro Fishman and Fred Boehm and Gergana Daskalova and Hugo Tavares and Jake Kaupp and Jillian Dunic and Jonathan Keane and Joseph Stachelek and Joshua R. Herr and Justin Millar and Katie Lotterhos and Karen Cranston and Kenan Direk and Kristian Tylén and Kyriakos Chatzidimitriou and Lachlan Deer and Leszek Tarkowski and Marco Chiapello and Marie-Helene Burle and Markus Ankenbrand and Max Czapanskiy and Melissa Moreno and Michael Culshaw-Maurer and Michael Koontz and Michael Weisner and Myfanwy Johnston and Nick Carchedi and Olivia Rata Burge and Paul Harrison and Peter Humburg and Richard Pauloo and Ryan Peek and Robin Elahi and Sandra Cortijo and {sfn_brt} and Shivshankar Umashankar and Shubhang Goswami and {Sumedh} and Scott Yanco and Tara Webster and Taylor Reiter and Will Pearse and Ye Li},
+  title = {datacarpentry/R-ecology-lesson: Data Carpentry: Data Analysis and Visualization in R for Ecologists, June 2019},
+  editor = {Ana Costa Conrado and Auriel M.V. Fournier and Brian Seok and Francois Michonneau},
+  month = {May},
+  year = {2025},
+  url = {https://datacarpentry.org/R-ecology-lesson/},
+  doi = {10.5281/zenodo.3264888},
+}
