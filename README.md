@@ -41,7 +41,8 @@ If you don't already have a Slack account with the Carpentries, you can
 
 ## Maintainers
 
-* [Nikki Gentle](https://github.com/gentlelab2016)
-* [Doug Joubert](https://github.com/doujouDC)
-* [Elif Dede Yildirim](https://github.com/elifdy)
+* [Hugo Gruson](https://github.com/Bisaloo)
+* [Carolyn Koehn](https://github.com/CarolynKoehn)
+* [Teofil Nakov](https://github.com/teofiln)
+* [Elizabeth Stregger](https://github.com/estregger)
 
