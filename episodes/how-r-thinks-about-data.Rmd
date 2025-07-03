@@ -87,7 +87,7 @@ Finally, learning to search for help is probably the most useful skill for any R
 
 Many of the answers you find will be from a website called Stack Overflow, where people ask programming questions and others provide answers. It is generally poor form to ask duplicate questions, so before you decide to post your own, do some thorough searching to see if it has been answered before (it likely has). If you do decide to post a question on Stack Overflow, or any other help forum, you will want to create a **reproducible example** or **reprex**. If you are asking a complicated question requiring your own data and a whole bunch of code, people probably won't be able or willing to help you. However, if you can hone in on the specific thing you want help with, and create a minimal example using smaller, fake data, it will be much easier for others to help you. If you search `how to make a reproducible example in R`, you will find some great resources to help you out.
 
-### Generative AI Help
+#### Generative AI Help
 
 ::::::::::::::::::::::::::::: instructor
 
