@@ -13,6 +13,9 @@ The initial effort towards this redesign was done by [Michael Culshaw-Maurer](ht
 
 The lesson starts with information about the R programming language and the RStudio interface. It then moves to loading in data and exploring how to visualise it with ggplot2. The next episode takes learners through an exploration of data frames and some common data cleaning operations, before discussing vectors and factors. The final episode introduces the flow of data in R, and how to combine operations to select, filter, and mutate a data frame.
 
+Illustrations from the previous version of this lesson are now available in the
+[carpentries/commons](https://github.com/carpentries/commons/tree/main/illustrations/) repository.
+
 ## Providing feedback on this lesson
 
 If you teach this redesigned lesson, please [open an issue](https://github.com/datacarpentry/R-ecology-lesson/issues/new) on this repository to share your experience. 
