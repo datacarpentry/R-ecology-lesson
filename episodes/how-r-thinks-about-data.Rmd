@@ -82,7 +82,7 @@ If you are ever unsure, it never hurts to explicitly name an argument.
 
 To learn more about a function, you can type a `?` in front of the name of the function, which will bring up the official documentation for that function:
 
-```{r}
+```{r, head-help}
 ?head
 ```
 
@@ -604,8 +604,7 @@ You will be naming a of objects in R, and there are a few common naming rules an
 - avoid dots `.` in names, as they have a special meaning in R, and may be confusing to others
 - two common formats are `snake_case` and `camelCase`
 - be consistent, at least within a script, ideally within a whole project
-- you can use a style guide like [Google's](https://google.github.io/styleguide/Rguide.xml) or
-  [tidyverse's](https://style.tidyverse.org/)
+- you can use a style guide like [Google's](https://google.github.io/styleguide/Rguide.xml) or [tidyverse's](https://style.tidyverse.org/)
 
 ::::::::::::::::::::::::::::::::::::: keypoints
 
