@@ -56,7 +56,7 @@ You have to install R before you install RStudio.
 
 ## For Linux
 
-* Click on your distribution in the [Linux folder of the CRAN website](https://cran.r-project.org/bin/linux/).
+* Click on your distribution in the [Linux folder of the CRAN website](https://cran.r-project.org/bin/linux/). Linux Mint users should follow instructions for Ubuntu.
 * Go through the instructions for your distribution to install R.
 * Go to the [RStudio download page](https://www.rstudio.com/products/rstudio/download/#download)
 * Select the relevant installer for your Linux system (Ubuntu/Debian or Fedora)
