@@ -65,13 +65,19 @@ You have to install R before you install RStudio.
 
 If you already have R and RStudio installed, first check if your R version is up to date:
 
-- When you open RStudio your R version will be printed in the console on the bottom left. Alternatively, you can type `sessionInfo()` into the console. If your R version is 4.0.0 or later, you don't need to update R for this lesson. If your version of R is older than that, download and install the latest version of R from the R project website [for Windows](https://cran.r-project.org/bin/windows/base/), [for MacOS](https://cran.r-project.org/bin/macosx/), or [for Linux](https://cran.r-project.org/bin/linux/)
+- When you open RStudio your R version will be printed in the console on the bottom left.
+  Alternatively, you can type `sessionInfo()` into the console.
+  If your R version is 4.0.0 or later, you don't need to update R for this lesson.
+  If your version of R is older than that, download and install the latest version of R from the R project website [for Windows](https://cran.r-project.org/bin/windows/base/), [for MacOS](https://cran.r-project.org/bin/macosx/), or [for Linux](https://cran.r-project.org/bin/linux/)
 - It is not necessary to remove old versions of R from your system, but if you wish to do so you can check [How do I uninstall R?](https://cran.r-project.org/bin/windows/base/rw-FAQ.html#How-do-I-UNinstall-R_003f)
-- After installing a new version of R, you will have to reinstall all your packages with the new version. For Windows, there is a package called `installr` that can help you with upgrading your R version and migrate your package library. A similar package called `pacman` can help with updating R packages across
+- After installing a new version of R, you will have to reinstall all your packages with the new version.
+  For Windows, there is a package called `installr` that can help you with upgrading your R version and migrate your package library.
+  A similar package called `pacman` can help with updating R packages across
   To update RStudio to the latest version, open RStudio and click on
-  `Help > Check for Updates`. If a new version is available follow the
-  instruction on screen. By default, RStudio will also automatically notify you
-  of new versions every once in a while.
+  `Help > Check for Updates`.
+  If a new version is available follow the
+  instruction on screen.
+  By default, RStudio will also automatically notify you of new versions every once in a while.
 
 ::::::::::::::::::::::::::::: callout
 
@@ -130,4 +136,3 @@ The data files for the lesson can be downloaded manually:
 
 - [cleaned data](../episodes/data/cleaned/surveys_complete_77_89.csv) and
 - [zip file of raw data](../episodes/data/new_data.zip).
-

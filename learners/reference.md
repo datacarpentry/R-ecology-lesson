@@ -100,5 +100,3 @@ Cheat sheet of functions used in the lessons
 - `inner_join()`  # perform an inner join between two tables
 - `src_sqlite()` # connect dplyr to a SQLite database file
 - `copy_to()`     # copy a data frame as a table into a database
-
-
