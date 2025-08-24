@@ -10,6 +10,6 @@
 "episodes/working-with-data.Rmd" "42ea54827a097a06f4e60b18737a141c" "site/built/working-with-data.md" "2025-08-14"
 "instructors/instructor-notes.md" "0f95610c81b48dc8e7a7add0c5693f39" "site/built/instructor-notes.md" "2025-08-14"
 "learners/reference.md" "d64102b12c29b96d29ace337ac32746d" "site/built/reference.md" "2025-08-14"
-"learners/setup.md" "715d204d4f0eb3bde591f25d20be600c" "site/built/setup.md" "2025-08-14"
+"learners/setup.md" "98650869257d79f3410ee75506ae828e" "site/built/setup.md" "2025-08-24"
 "profiles/learner-profiles.md" "60b93493cf1da06dfd63255d73854461" "site/built/learner-profiles.md" "2025-08-14"
 "renv/profiles/lesson-requirements/renv.lock" "fd3fed4977c304b5ed382474ad715b4e" "site/built/renv.lock" "2025-08-14"
