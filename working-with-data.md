@@ -23,9 +23,7 @@ exercises: 4
 <!--   - ungroup -->
 <!-- - pivot_wider -->
 <!-- - exporting data -->
-
 <!-- Challenge ideas: -->
-
 <!-- - plotting a time series using the date -->
 <!-- - predicting # of rows before pivoting -->
 <!--   - important to plan out reshaping steps in advance -->
@@ -40,8 +38,8 @@ exercises: 4
 <!--   - what will happen if you group by weight? -->
 <!--   - an operation that requires group_by and mutate -->
 <!--   - an operation that requires multiple group_by steps -->
-  
-:::::::::::::::::::::::::::::::::::::: questions 
+
+:::::::::::::::::::::::::::::::::::::: questions
 
 - How do you manipulate tabular data in R?
 
@@ -59,7 +57,6 @@ exercises: 4
 - Export data to a CSV file.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
-  
 
 
 
@@ -70,19 +67,29 @@ library(tidyverse)
 
 ## Importing data
 
-Up until this point, we have been working with the `complete_old` dataframe contained in the `ratdat` package. However, you typically won't access data from an R package; it is much more common to access data files stored somewhere on your computer. We are going to download a CSV file containing the surveys data to our computer, which we will then read into R.
+Up until this point, we have been working with the `complete_old` dataframe contained in the `ratdat` package.
+However, you typically won't access data from an R package; it is much more common to access data files stored somewhere on your computer.
+We are going to download a CSV file containing the surveys data to our computer, which we will then read into R.
 
 Click this link to download the file: <https://datacarpentry.org/R-ecology-lesson/data/cleaned/surveys_complete_77_89.csv>.
 
-You will be prompted to save the file on your computer somewhere. Save it inside the `cleaned` data folder, which is in the `data` folder in your `R-Ecology-Workshop` folder. Once it's inside our project, we will be able to point R towards it.
+You will be prompted to save the file on your computer somewhere.
+Save it inside the `cleaned` data folder, which is in the `data` folder in your `R-Ecology-Workshop` folder.
+Once it's inside our project, we will be able to point R towards it.
 
 #### File paths
 
-When we reference other files from an R script, we need to give R precise instructions on where those files are. We do that using something called a **file path**. It looks something like this: `"Documents/Manuscripts/Chapter_2.txt"`. This path would tell your computer how to get from whatever folder contains the `Documents` folder all the way to the `.txt` file.
+When we reference other files from an R script, we need to give R precise instructions on where those files are.
+We do that using something called a **file path**.
+It looks something like this: `"Documents/Manuscripts/Chapter_2.txt"`.
+This path would tell your computer how to get from whatever folder contains the `Documents` folder all the way to the `.txt` file.
 
-There are two kinds of paths: **absolute** and **relative**. Absolute paths are specific to a particular computer, whereas relative paths are relative to a certain folder. Because we are keeping all of our work in the `R-Ecology-Workshop` folder, all of our paths can be relative to this folder.
+There are two kinds of paths: **absolute** and **relative**.
+Absolute paths are specific to a particular computer, whereas relative paths are relative to a certain folder.
+Because we are keeping all of our work in the `R-Ecology-Workshop` folder, all of our paths can be relative to this folder.
 
-Now, let's read our CSV file into R and store it in an object named `surveys`. We will use the `read_csv` function from the `tidyverse`'s `readr` package, and the argument we give will be the **relative path** to the CSV file.
+Now, let's read our CSV file into R and store it in an object named `surveys`.
+We will use the `read_csv` function from the `tidyverse`'s `readr` package, and the argument we give will be the **relative path** to the CSV file.
 
 
 ``` r
@@ -102,19 +109,26 @@ dbl (7): record_id, month, day, year, plot_id, hindfoot_length, weight
 
 :::::::::::::::::::::::::::::::::::::::::: callout
 
-Typing out paths can be error prone, so we can utilize a keyboard shortcut. Inside the parentheses of `read_csv()`, type out a pair of quotes and put your cursor between them. Then hit <kbd>Tab</kbd>. A small menu showing your folders and files should show up. You can use the <kbd>↑</kbd> and <kbd>↓</kbd> keys to move through the options, or start typing to narrow them down. You can hit <kbd>Enter</kbd> to select a file or folder, and hit <kbd>Tab</kbd> again to continue building the file path. This might take a bit of getting used to, but once you get the hang of it, it will speed up writing file paths and reduce the number of mistakes you make.
+Typing out paths can be error prone, so we can utilize a keyboard shortcut.
+Inside the parentheses of `read_csv()`, type out a pair of quotes and put your cursor between them.
+Then hit <kbd>Tab</kbd>.
+A small menu showing your folders and files should show up.
+You can use the <kbd>↑</kbd> and <kbd>↓</kbd> keys to move through the options, or start typing to narrow them down.
+You can hit <kbd>Enter</kbd> to select a file or folder, and hit <kbd>Tab</kbd> again to continue building the file path.
+This might take a bit of getting used to, but once you get the hang of it, it will speed up writing file paths and reduce the number of mistakes you make.
 
 ::::::::::::::::::::::::::::::::::::::::::
 
-You may have noticed a bit of feedback from R when you ran the last line of code. We got some useful information about the CSV file we read in. We can see:
+You may have noticed a bit of feedback from R when you ran the last line of code.
+We got some useful information about the CSV file we read in.
+We can see:
 
 - the number of rows and columns
 - the **delimiter** of the file, which is how values are separated, a comma `","`
 - a set of columns that were **parsed** as various vector types
   - the file has 6 character columns and 7 numeric columns
   - we can see the names of the columns for each type
-  
- 
+
 When working with the output of a new function, it's often a good idea to check the `class()`:
 
 
@@ -126,29 +140,45 @@ class(surveys)
 [1] "spec_tbl_df" "tbl_df"      "tbl"         "data.frame" 
 ```
 
-Whoa! What is this thing? It has multiple classes? Well, it's called a `tibble`, and it is the `tidyverse` version of a data.frame. It *is* a data.frame, but with some added perks. It prints out a little more nicely, it highlights `NA` values and negative values in red, and it will generally communicate with you more (in terms of warnings and errors, which is a good thing).
+Whoa!
+What is this thing?
+It has multiple classes?
+Well, it's called a `tibble`, and it is the `tidyverse` version of a data.frame.
+It *is* a data.frame, but with some added perks.
+It prints out a little more nicely, it highlights `NA` values and negative values in red, and it will generally communicate with you more (in terms of warnings and errors, which is a good thing).
 
 :::::::::::::::::::::::::::::::::::::::::: callout
 
 **`tidyverse` vs. base R**
 
-As we begin to delve more deeply into the `tidyverse`, we should briefly pause to mention some of the reasons for focusing on the `tidyverse` set of tools. In R, there are often many ways to get a job done, and there are other approaches that can accomplish tasks similar to the `tidyverse`.
+As we begin to delve more deeply into the `tidyverse`, we should briefly pause to mention some of the reasons for focusing on the `tidyverse` set of tools.
+In R, there are often many ways to get a job done, and there are other approaches that can accomplish tasks similar to the `tidyverse`.
 
-The phrase **base R** is used to refer to approaches that utilize functions contained in R's default packages. We have already used some base R functions, such as `str()`, `head()`, and `mean()`, and we will be using more scattered throughout this lesson. However, there are some key base R approaches we will not be teaching. These include square bracket subsetting and base plotting. You may come across code written by other people that looks like `surveys[1:10, 2]` or `plot(surveys$weight, surveys$hindfoot_length)`, which are base R commands. If you're interested in learning more about these approaches, you can check out other Carpentries lessons like the [Software Carpentry Programming with R](https://swcarpentry.github.io/r-novice-inflammation/) lesson.
+The phrase **base R** is used to refer to approaches that utilize functions contained in R's default packages.
+We have already used some base R functions, such as `str()`, `head()`, and `mean()`, and we will be using more scattered throughout this lesson.
+However, there are some key base R approaches we will not be teaching.
+These include square bracket subsetting and base plotting.
+You may come across code written by other people that looks like `surveys[1:10, 2]` or `plot(surveys$weight, surveys$hindfoot_length)`, which are base R commands.
+If you're interested in learning more about these approaches, you can check out other Carpentries lessons like the [Software Carpentry Programming with R](https://swcarpentry.github.io/r-novice-inflammation/) lesson.
 
-We choose to teach the `tidyverse` set of packages because they share a similar syntax and philosophy, making them consistent and producing highly readable code. They are also very flexible and powerful, with a growing number of packages designed according to similar principles and to work well with the rest of the packages. The `tidyverse` packages tend to have very clear documentation and wide array of learning materials that tend to be written with novice users in mind. Finally, the `tidyverse` has only continued to grow, and has strong support from RStudio, which implies that these approaches will be relevant into the future.
+We choose to teach the `tidyverse` set of packages because they share a similar syntax and philosophy, making them consistent and producing highly readable code.
+They are also very flexible and powerful, with a growing number of packages designed according to similar principles and to work well with the rest of the packages.
+The `tidyverse` packages tend to have very clear documentation and wide array of learning materials that tend to be written with novice users in mind.
+Finally, the `tidyverse` has only continued to grow, and has strong support from RStudio, which implies that these approaches will be relevant into the future.
 
 ::::::::::::::::::::::::::::::::::::::::::
 
 ## Manipulating data
 
-One of the most important skills for working with data in R is the ability to manipulate, modify, and reshape data. The `dplyr` and `tidyr` packages in the `tidyverse` provide a series of powerful functions for many common data manipulation tasks.
+One of the most important skills for working with data in R is the ability to manipulate, modify, and reshape data.
+The `dplyr` and `tidyr` packages in the `tidyverse` provide a series of powerful functions for many common data manipulation tasks.
 
 We'll start off with two of the most commonly used `dplyr` functions: `select()`, which selects certain columns of a data.frame, and `filter()`, which filters out rows according to certain criteria.
 
 :::::::::::::::::::::::::::::::::::::::::: callout
 
-Between `select()` and `filter()`, it can be hard to remember which operates on columns and which operates on rows. `sele`**`c`**`t()` has a **c** for **c**olumns and `filte`**`r`**`()` has an **r** for **r**ows.
+Between `select()` and `filter()`, it can be hard to remember which operates on columns and which operates on rows.
+`sele`**`c`**`t()` has a **c** for **c**olumns and `filte`**`r`**`()` has an **r** for **r**ows.
 
 ::::::::::::::::::::::::::::::::::::::::::
 
@@ -205,7 +235,8 @@ select(surveys, -record_id, -year)
 # ℹ 2 more variables: taxa <chr>, plot_type <chr>
 ```
 
-`select()` also works with numeric vectors for the order of the columns. To select the 3rd, 4th, 5th, and 10th columns, we could run the following code:
+`select()` also works with numeric vectors for the order of the columns.
+To select the 3rd, 4th, 5th, and 10th columns, we could run the following code:
 
 
 ``` r
@@ -229,9 +260,11 @@ select(surveys, c(3:5, 10))
 # ℹ 16,868 more rows
 ```
 
-You should be careful when using this method, since you are being less explicit about which columns you want. However, it can be useful if you have a data.frame with many columns and you don't want to type out too many names.
+You should be careful when using this method, since you are being less explicit about which columns you want.
+However, it can be useful if you have a data.frame with many columns and you don't want to type out too many names.
 
-Finally, you can select columns based on whether they match a certain criteria by using the `where()` function. If we want all numeric columns, we can ask to `select` all the columns `where` the class `is numeric`:
+Finally, you can select columns based on whether they match a certain criteria by using the `where()` function.
+If we want all numeric columns, we can ask to `select` all the columns `where` the class `is numeric`:
 
 
 ``` r
@@ -283,7 +316,8 @@ select(surveys, where(anyNA))
 
 #### `filter()`
 
-The `filter()` function is used to select rows that meet certain criteria. To get all the rows where the value of `year` is equal to 1985, we would run the following:
+The `filter()` function is used to select rows that meet certain criteria.
+To get all the rows where the value of `year` is equal to 1985, we would run the following:
 
 
 ``` r
@@ -308,7 +342,10 @@ filter(surveys, year == 1985)
 # ℹ 4 more variables: genus <chr>, species <chr>, taxa <chr>, plot_type <chr>
 ```
 
-The `==` sign means "is equal to". There are several other operators we can use: >, >=, <, <=, and != (not equal to). Another useful operator is `%in%`, which asks if the value on the lefthand side is found anywhere in the vector on the righthand side. For example, to get rows with specific `species_id` values, we could run:
+The `==` sign means "is equal to".
+There are several other operators we can use: >, >=, \<, \<=, and !\= (not equal to).
+Another useful operator is `%in%`, which asks if the value on the lefthand side is found anywhere in the vector on the righthand side.
+For example, to get rows with specific `species_id` values, we could run:
 
 
 ``` r
@@ -333,7 +370,9 @@ filter(surveys, species_id %in% c("RM", "DO"))
 # ℹ 4 more variables: genus <chr>, species <chr>, taxa <chr>, plot_type <chr>
 ```
 
-We can also use multiple conditions in one `filter()` statement. Here we will get rows with a year less than or equal to 1988 and whose hindfoot length values are not `NA`. The `!` before the `is.na()` function means "not".
+We can also use multiple conditions in one `filter()` statement.
+Here we will get rows with a year less than or equal to 1988 and whose hindfoot length values are not `NA`.
+The `!` before the `is.na()` function means "not".
 
 
 ``` r
@@ -357,7 +396,6 @@ filter(surveys, year <= 1988 & !is.na(hindfoot_length))
 # ℹ 12,769 more rows
 # ℹ 4 more variables: genus <chr>, species <chr>, taxa <chr>, plot_type <chr>
 ```
-
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
@@ -389,7 +427,9 @@ surveys_selected <- select(surveys, year, month, species_id, plot_id)
 
 ## The pipe: `%>%`
 
-What happens if we want to both `select()` and `filter()` our data? We have a couple options. First, we could use **nested** functions:
+What happens if we want to both `select()` and `filter()` our data?
+We have a couple options.
+First, we could use **nested** functions:
 
 
 ``` r
@@ -414,9 +454,12 @@ filter(select(surveys, -day), month >= 7)
 # ℹ 3 more variables: species <chr>, taxa <chr>, plot_type <chr>
 ```
 
-R will evaluate statements from the inside out. First, `select()` will operate on the `surveys` data.frame, removing the column `day`. The resulting data.frame is then used as the first argument for `filter()`, which selects rows with a month greater than or equal to 7.
+R will evaluate statements from the inside out.
+First, `select()` will operate on the `surveys` data.frame, removing the column `day`.
+The resulting data.frame is then used as the first argument for `filter()`, which selects rows with a month greater than or equal to 7.
 
-Nested functions can be very difficult to read with only a few functions, and nearly impossible when many functions are done at once. An alternative approach is to create **intermediate** objects:
+Nested functions can be very difficult to read with only a few functions, and nearly impossible when many functions are done at once.
+An alternative approach is to create **intermediate** objects:
 
 
 ``` r
@@ -444,7 +487,9 @@ filter(surveys_noday, month >= 7)
 
 This approach is easier to read, since we can see the steps in order, but after enough steps, we are left with a cluttered mess of intermediate objects, often with confusing names.
 
-An elegant solution to this problem is an operator called the **pipe**, which looks like `%>%`. You can insert it by using the keyboard shortcut <kbd>Shift+Cmd+M</kbd> (Mac) or <kbd>Shift+Ctrl+M</kbd> (Windows). Here's how you could use a pipe to select and filter in one step:
+An elegant solution to this problem is an operator called the **pipe**, which looks like `%>%`.
+You can insert it by using the keyboard shortcut <kbd>Shift+Cmd+M</kbd> (Mac) or <kbd>Shift+Ctrl+M</kbd> (Windows).
+Here's how you could use a pipe to select and filter in one step:
 
 
 ``` r
@@ -471,13 +516,21 @@ surveys %>%
 # ℹ 3 more variables: species <chr>, taxa <chr>, plot_type <chr>
 ```
 
-What it does is take the thing on the lefthand side and insert it as the first argument of the function on the righthand side. By putting each of our functions onto a new line, we can build a nice, readable **pipeline**. It can be useful to think of this as a little assembly line for our data. It starts at the top and gets piped into a `select()` function, and it comes out modified somewhat. It then gets sent into the `filter()` function, where it is further modified, and then the final product gets printed out to our console. It can also be helpful to think of `%>%` as meaning "and then". Since many `tidyverse` functions have verbs for names, a pipeline can be read like a sentence.
-
+What it does is take the thing on the lefthand side and insert it as the first argument of the function on the righthand side.
+By putting each of our functions onto a new line, we can build a nice, readable **pipeline**.
+It can be useful to think of this as a little assembly line for our data.
+It starts at the top and gets piped into a `select()` function, and it comes out modified somewhat.
+It then gets sent into the `filter()` function, where it is further modified, and then the final product gets printed out to our console.
+It can also be helpful to think of `%>%` as meaning "and then".
+Since many `tidyverse` functions have verbs for names, a pipeline can be read like a sentence.
 
 :::::::::::::::::::::::::::::::::::::::::::: instructor
-It's worth showing the learners that you can run a **pipeline** without highlighting the whole thing. If your cursor is on any line of a pipeline, running that line will run the whole thing.
+
+It's worth showing the learners that you can run a **pipeline** without highlighting the whole thing.
+If your cursor is on any line of a pipeline, running that line will run the whole thing.
 
 You can also show that by highlighting a section of a pipeline, you can run only the first X steps of it.
+
 ::::::::::::::::::::::::::::::::::::::::::::
 
 If we want to store this final product as an object, we use an assignment arrow at the start:
@@ -489,13 +542,17 @@ surveys_sub <- surveys %>%
   filter(month >= 7)
 ```
 
-A good approach is to build a pipeline step by step prior to assignment. You add functions to the pipeline as you go, with the results printing in the console for you to view. Once you're satisfied with your final result, go back and add the assignment arrow statement at the start. This approach is very interactive, allowing you to see the results of each step as you build the pipeline, and produces nicely readable code.
+A good approach is to build a pipeline step by step prior to assignment.
+You add functions to the pipeline as you go, with the results printing in the console for you to view.
+Once you're satisfied with your final result, go back and add the assignment arrow statement at the start.
+This approach is very interactive, allowing you to see the results of each step as you build the pipeline, and produces nicely readable code.
 
 ::::::::::::::::::::::::::::::::::::: challenge
 
 ## Challenge 2: Using pipes
 
-Use the surveys data to make a data.frame that has the columns `record_id`, `month`, and `species_id`, with data from the year 1988. Use a pipe between the function calls.
+Use the surveys data to make a data.frame that has the columns `record_id`, `month`, and `species_id`, with data from the year 1988.
+Use a pipe between the function calls.
 
 :::::::::::::::::::::::: solution
 
@@ -506,15 +563,17 @@ surveys_1988 <- surveys %>%
   select(record_id, month, species_id)
 ```
 
-Make sure to `filter()` before you `select()`. You need to use the `year` column for filtering rows, but it is discarded in the `select()` step. You also need to make sure to use `==` instead of `=` when you are filtering rows where `year` is equal to 1988.
+Make sure to `filter()` before you `select()`.
+You need to use the `year` column for filtering rows, but it is discarded in the `select()` step.
+You also need to make sure to use `==` instead of `=` when you are filtering rows where `year` is equal to 1988.
 
 ::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-
 ## Making new columns with `mutate()`
 
-Another common task is creating a new column based on values in existing columns. For example, we could add a new column that has the weight in kilograms instead of grams:
+Another common task is creating a new column based on values in existing columns.
+For example, we could add a new column that has the weight in kilograms instead of grams:
 
 
 ``` r
@@ -541,7 +600,8 @@ surveys %>%
 #   weight_kg <dbl>
 ```
 
-You can create multiple columns in one `mutate()` call, and they will get created in the order you write them. This means you can even reference the first new column in the second new column:
+You can create multiple columns in one `mutate()` call, and they will get created in the order you write them.
+This means you can even reference the first new column in the second new column:
 
 
 ``` r
@@ -571,7 +631,10 @@ surveys %>%
 
 <!-- This next part could definitely be moved to the next lesson if need be -->
 
-We can also use multiple columns to create a single column. For example, it's often good practice to keep the components of a date in separate columns until necessary, as we've done here. This is because programs like Excel can do automatic things with dates in a way that is not reproducible and sometimes hard to notice. However, now that we are working in R, we can safely put together a date column.
+We can also use multiple columns to create a single column.
+For example, it's often good practice to keep the components of a date in separate columns until necessary, as we've done here.
+This is because programs like Excel can do automatic things with dates in a way that is not reproducible and sometimes hard to notice.
+However, now that we are working in R, we can safely put together a date column.
 
 To put together the columns into something that looks like a date, we can use the `paste()` function, which takes arguments of the items to paste together, as well as the argument `sep`, which is the character used to separate the items.
 
@@ -600,7 +663,8 @@ surveys %>%
 #   date <chr>
 ```
 
-Since our new column gets moved all the way to the end, it doesn't end up printing out. We can use the `relocate()` function to put it after our `year` column:
+Since our new column gets moved all the way to the end, it doesn't end up printing out.
+We can use the `relocate()` function to put it after our `year` column:
 
 
 ``` r
@@ -628,7 +692,12 @@ surveys %>%
 #   plot_type <chr>
 ```
 
-Now we can see that we have a character column that contains our date string. However, it's not truly a date column. Dates are a type of numeric variable with a defined, ordered scale. To turn this column into a proper date, we will use a function from the `tidyverse`'s `lubridate` package, which has lots of useful functions for working with dates. The function `ymd()` will parse a date string that has the order year-month-day. Let's load the package and use `ymd()`.
+Now we can see that we have a character column that contains our date string.
+However, it's not truly a date column.
+Dates are a type of numeric variable with a defined, ordered scale.
+To turn this column into a proper date, we will use a function from the `tidyverse`'s `lubridate` package, which has lots of useful functions for working with dates.
+The function `ymd()` will parse a date string that has the order year-month-day.
+Let's load the package and use `ymd()`.
 
 
 ``` r
@@ -687,7 +756,8 @@ surveys %>%
 
 <!-- This isn't strictly necessary to show, but I think it's good to reenforce what a pipe is really doing, and it's actually a useful approach with more complex mutates -->
 
-Now we can see that our `date` column has the type `date` as well. In this example, we created our column with two separate lines in `mutate()`, but we can combine them into one:
+Now we can see that our `date` column has the type `date` as well.
+In this example, we created our column with two separate lines in `mutate()`, but we can combine them into one:
 
 
 ``` r
@@ -743,13 +813,14 @@ surveys %>%
 #   species <chr>, taxa <chr>, plot_type <chr>
 ```
 
-::::::::::::::::::::::::::::::::::::: challenge 
+::::::::::::::::::::::::::::::::::::: challenge
 
 ## Challenge 3: Plotting date
 
-Because the `ggplot()` function takes the data as its first argument, you can actually pipe data straight into `ggplot()`. Try building a pipeline that creates the date column and plots weight across date.
+Because the `ggplot()` function takes the data as its first argument, you can actually pipe data straight into `ggplot()`.
+Try building a pipeline that creates the date column and plots weight across date.
 
-:::::::::::::::::::::::: solution 
+:::::::::::::::::::::::: solution
 
 
 ``` r
@@ -774,9 +845,13 @@ This isn't necessarily the most useful plot, but we will learn some techniques t
 
 ## The split-apply-combine approach
 
-Many data analysis tasks can be achieved using the split-apply-combine approach: you split the data into groups, apply some analysis to each group, and combine the results in some way. `dplyr` has a few convenient functions to enable this approach, the main two being `group_by()` and `summarize()`.
+Many data analysis tasks can be achieved using the split-apply-combine approach: you split the data into groups, apply some analysis to each group, and combine the results in some way.
+`dplyr` has a few convenient functions to enable this approach, the main two being `group_by()` and `summarize()`.
 
-`group_by()` takes a data.frame and the name of one or more columns with categorical values that define the groups. `summarize()` then collapses each group into a one-row summary of the group, giving you back a data.frame with one row per group. The syntax for `summarize()` is similar to `mutate()`, where you define new columns based on values of other columns. Let's try calculating the mean weight of all our animals by sex.
+`group_by()` takes a data.frame and the name of one or more columns with categorical values that define the groups.
+`summarize()` then collapses each group into a one-row summary of the group, giving you back a data.frame with one row per group.
+The syntax for `summarize()` is similar to `mutate()`, where you define new columns based on values of other columns.
+Let's try calculating the mean weight of all our animals by sex.
 
 
 ``` r
@@ -794,7 +869,10 @@ surveys %>%
 3 <NA>         74.0
 ```
 
-You can see that the mean weight for males is slightly higher than for females, but that animals whose sex is unknown have much higher weights. This is probably due to small sample size, but we should check to be sure. Like `mutate()`, we can define multiple columns in one `summarize()` call. The function `n()` will count the number of rows in each group.
+You can see that the mean weight for males is slightly higher than for females, but that animals whose sex is unknown have much higher weights.
+This is probably due to small sample size, but we should check to be sure.
+Like `mutate()`, we can define multiple columns in one `summarize()` call.
+The function `n()` will count the number of rows in each group.
 
 
 ``` r
@@ -813,7 +891,9 @@ surveys %>%
 3 <NA>         74.0  1300
 ```
 
-You will often want to create groups based on multiple columns. For example, we might be interested in the mean weight of every species + sex combination. All we have to do is add another column to our `group_by()` call.
+You will often want to create groups based on multiple columns.
+For example, we might be interested in the mean weight of every species + sex combination.
+All we have to do is add another column to our `group_by()` call.
 
 
 ``` r
@@ -846,7 +926,14 @@ surveys %>%
 # ℹ 57 more rows
 ```
 
-Our resulting data.frame is much larger, since we have a greater number of groups. We also see a strange value showing up in our `mean_weight` column: `NaN`. This stands for "Not a Number", and it often results from trying to do an operation a vector with zero entries. How can a vector have zero entries? Well, if a particular group (like the AB species ID + `NA` sex group) has **only** `NA` values for weight, then the `na.rm = T` argument in `mean()` will remove **all** the values prior to calculating the mean. The result will be a value of `NaN`. Since we are not particularly interested in these values, let's add a step to our pipeline to remove rows where weight is `NA` **before** doing any other steps. This means that any groups with only `NA` values will disappear from our data.frame before we formally create the groups with `group_by()`.
+Our resulting data.frame is much larger, since we have a greater number of groups.
+We also see a strange value showing up in our `mean_weight` column: `NaN`.
+This stands for "Not a Number", and it often results from trying to do an operation a vector with zero entries.
+How can a vector have zero entries?
+Well, if a particular group (like the AB species ID + `NA` sex group) has **only** `NA` values for weight, then the `na.rm = T` argument in `mean()` will remove **all** the values prior to calculating the mean.
+The result will be a value of `NaN`.
+Since we are not particularly interested in these values, let's add a step to our pipeline to remove rows where weight is `NA` **before** doing any other steps.
+This means that any groups with only `NA` values will disappear from our data.frame before we formally create the groups with `group_by()`.
 
 
 ``` r
@@ -880,7 +967,9 @@ surveys %>%
 # ℹ 36 more rows
 ```
 
-That looks better! It's often useful to take a look at the results in some order, like the lowest mean weight to highest. We can use the `arrange()` function for that:
+That looks better!
+It's often useful to take a look at the results in some order, like the lowest mean weight to highest.
+We can use the `arrange()` function for that:
 
 
 ``` r
@@ -950,14 +1039,17 @@ surveys %>%
 # ℹ 36 more rows
 ```
 
-You may have seen several messages saying `summarise() has grouped output by 'species_id'. You can override using the .groups argument.` These are warning you that your resulting data.frame has retained some group structure, which means any subsequent operations on that data.frame will happen at the group level. If you look at the resulting data.frame printed out in your console, you will see these lines:
+You may have seen several messages saying `summarise() has grouped output by 'species_id'. You can override using the .groups argument.`
+These are warning you that your resulting data.frame has retained some group structure, which means any subsequent operations on that data.frame will happen at the group level.
+If you look at the resulting data.frame printed out in your console, you will see these lines:
 
 ```
 # A tibble: 46 × 4
 # Groups:   species_id [18]
 ```
 
-They tell us we have a data.frame with 46 rows, 4 columns, and a group variable `species_id`, for which there are 18 groups. We will see something similar if we use `group_by()` alone:
+They tell us we have a data.frame with 46 rows, 4 columns, and a group variable `species_id`, for which there are 18 groups.
+We will see something similar if we use `group_by()` alone:
 
 
 ``` r
@@ -984,7 +1076,10 @@ surveys %>%
 # ℹ 4 more variables: genus <chr>, species <chr>, taxa <chr>, plot_type <chr>
 ```
 
-What we get back is the entire `surveys` data.frame, but with the grouping variables added: 67 groups of `species_id` + `sex` combinations. Groups are often maintained throughout a pipeline, and if you assign the resulting data.frame to a new object, it will also have those groups. This can lead to confusing results if you forget about the grouping and want to carry out operations on the whole data.frame, not by group. Therefore, it is a good habit to remove the groups at the end of a pipeline containing `group_by()`:
+What we get back is the entire `surveys` data.frame, but with the grouping variables added: 67 groups of `species_id` + `sex` combinations.
+Groups are often maintained throughout a pipeline, and if you assign the resulting data.frame to a new object, it will also have those groups.
+This can lead to confusing results if you forget about the grouping and want to carry out operations on the whole data.frame, not by group.
+Therefore, it is a good habit to remove the groups at the end of a pipeline containing `group_by()`:
 
 
 ``` r
@@ -1021,7 +1116,9 @@ surveys %>%
 
 Now our data.frame just says `# A tibble: 46 × 4` at the top, with no groups.
 
-While it is common that you will want to get the one-row-per-group summary that `summarise()` provides, there are times where you want to calculate a per-group value but keep all the rows in your data.frame. For example, we might want to know the mean weight for each species ID + sex combination, and then we might want to know how far from that mean value each observation in the group is. For this, we can use `group_by()` and `mutate()` together:
+While it is common that you will want to get the one-row-per-group summary that `summarise()` provides, there are times where you want to calculate a per-group value but keep all the rows in your data.frame.
+For example, we might want to know the mean weight for each species ID + sex combination, and then we might want to know how far from that mean value each observation in the group is.
+For this, we can use `group_by()` and `mutate()` together:
 
 
 ``` r
@@ -1052,7 +1149,9 @@ surveys %>%
 #   mean_weight <dbl>, weight_diff <dbl>
 ```
 
-Since we get all our columns back, the new columns are at the very end and don't print out in the console. Let's use `select()` to just look at the columns of interest. Inside `select()` we can use the `contains()` function to get any column containing the word "weight" in the name:
+Since we get all our columns back, the new columns are at the very end and don't print out in the console.
+Let's use `select()` to just look at the columns of interest.
+Inside `select()` we can use the `contains()` function to get any column containing the word "weight" in the name:
 
 
 ``` r
@@ -1082,15 +1181,17 @@ surveys %>%
 # ℹ 15,176 more rows
 ```
 
-What happens with the `group_by()` + `mutate()` combination is similar to using `summarize()`: for each group, the mean weight is calculated. However, instead of reporting only one row per group, the mean weight for each group is added to each row in that group. For each row in a group (like DM species ID + M sex), you will see the same value in `mean_weight`.
+What happens with the `group_by()` + `mutate()` combination is similar to using `summarize()`: for each group, the mean weight is calculated.
+However, instead of reporting only one row per group, the mean weight for each group is added to each row in that group.
+For each row in a group (like DM species ID + M sex), you will see the same value in `mean_weight`.
 
-::::::::::::::::::::::::::::::::::::: challenge 
+::::::::::::::::::::::::::::::::::::: challenge
 
 ## Challenge 4: Making a time series
 
 1. Use the split-apply-combine approach to make a `data.frame` that counts the total number of animals of each sex caught on each day in the `surveys` data.
 
-:::::::::::::::::::::::: solution 
+:::::::::::::::::::::::: solution
 
 
 ``` r
@@ -1116,7 +1217,7 @@ surveys_daily_counts <- surveys %>%
 
 2. Now use the data.frame you just made to plot the daily number of animals of each sex caught over time. It's up to you what `geom` to use, but a `line` plot might be a good choice. You should also think about how to differentiate which data corresponds to which sex.
 
-:::::::::::::::::::::::: solution 
+:::::::::::::::::::::::: solution
 
 
 ``` r
@@ -1133,7 +1234,8 @@ surveys_daily_counts %>%
 
 ## Reshaping data with `tidyr`
 
-Let's say we are interested in comparing the mean weights of each species across our different plots. We can begin this process using the `group_by()` + `summarize()` approach:
+Let's say we are interested in comparing the mean weights of each species across our different plots.
+We can begin this process using the `group_by()` + `summarize()` approach:
 
 
 ``` r
@@ -1171,9 +1273,15 @@ sp_by_plot
 # ℹ 290 more rows
 ```
 
-That looks great, but it is a bit difficult to compare values across plots. It would be nice if we could reshape this data.frame to make those comparisons easier. Well, the `tidyr` package from the `tidyverse` has a pair of functions that allow you to reshape data by pivoting it: `pivot_wider()` and `pivot_longer()`. `pivot_wider()` will make the data wider, which means increasing the number of columns and reducing the number of rows. `pivot_longer()` will do the opposite, reducing the number of columns and increasing the number of rows.
+That looks great, but it is a bit difficult to compare values across plots.
+It would be nice if we could reshape this data.frame to make those comparisons easier.
+Well, the `tidyr` package from the `tidyverse` has a pair of functions that allow you to reshape data by pivoting it: `pivot_wider()` and `pivot_longer()`.
+`pivot_wider()` will make the data wider, which means increasing the number of columns and reducing the number of rows.
+`pivot_longer()` will do the opposite, reducing the number of columns and increasing the number of rows.
 
-In this case, it might be nice to create a data.frame where each species has its own row, and each plot has its own column containing the mean weight for a given species. We will use `pivot_wider()` to reshape our data in this way. It takes 3 arguments:
+In this case, it might be nice to create a data.frame where each species has its own row, and each plot has its own column containing the mean weight for a given species.
+We will use `pivot_wider()` to reshape our data in this way.
+It takes 3 arguments:
 
 1. the name of the data.frame
 2. `names_from`: which column should be used to generate the names of the new columns?
@@ -1183,7 +1291,8 @@ Any columns not used for `names_from` or `values_from` will not be pivoted.
 
 ![](fig/pivot_wider.png){alt='Diagram depicting the behavior of `pivot_wider()` on a small tabular dataset.'}
 
-In our case, we want the new columns to be named from our `plot_id` column, with the values coming from the `mean_weight` column. We can pipe our data.frame right into `pivot_wider()` and add those two arguments:
+In our case, we want the new columns to be named from our `plot_id` column, with the values coming from the `mean_weight` column.
+We can pipe our data.frame right into `pivot_wider()` and add those two arguments:
 
 
 ``` r
@@ -1222,11 +1331,18 @@ sp_by_plot_wide
 #   `19` <dbl>, `20` <dbl>, `22` <dbl>, `23` <dbl>, `24` <dbl>
 ```
 
-Now we've got our reshaped data.frame. There are a few things to notice. First, we have a new column for each `plot_id` value. There is one old column left in the data.frame: `species_id`. It wasn't used in `pivot_wider()`, so it stays, and now contains a single entry for each unique `species_id` value. 
+Now we've got our reshaped data.frame.
+There are a few things to notice.
+First, we have a new column for each `plot_id` value.
+There is one old column left in the data.frame: `species_id`.
+It wasn't used in `pivot_wider()`, so it stays, and now contains a single entry for each unique `species_id` value.
 
-Finally, a lot of `NA`s have appeared. Some species aren't found in every plot, but because a data.frame has to have a value in every row and every column, an `NA` is inserted. We can double-check this to verify what is going on. 
+Finally, a lot of `NA`s have appeared.
+Some species aren't found in every plot, but because a data.frame has to have a value in every row and every column, an `NA` is inserted.
+We can double-check this to verify what is going on.
 
-Looking in our new pivoted data.frame, we can see that there is an `NA` value for the species `BA` in plot `1`. Let's take our `sp_by_plot` data.frame and look for the `mean_weight` of that species + plot combination.
+Looking in our new pivoted data.frame, we can see that there is an `NA` value for the species `BA` in plot `1`.
+Let's take our `sp_by_plot` data.frame and look for the `mean_weight` of that species + plot combination.
 
 
 ``` r
@@ -1240,13 +1356,18 @@ sp_by_plot %>%
 # ℹ 3 variables: species_id <chr>, plot_id <dbl>, mean_weight <dbl>
 ```
 
-We get back 0 rows. There is no `mean_weight` for the species `BA` in plot `1`. This either happened because no `BA` were ever caught in plot `1`, or because every `BA` caught in plot `1` had an `NA` weight value and all the rows got removed when we used `filter(!is.na(weight))` in the process of making `sp_by_plot`. Because there are no rows with that species + plot combination, in our pivoted data.frame, the value gets filled with `NA`.
+We get back 0 rows.
+There is no `mean_weight` for the species `BA` in plot `1`.
+This either happened because no `BA` were ever caught in plot `1`, or because every `BA` caught in plot `1` had an `NA` weight value and all the rows got removed when we used `filter(!is.na(weight))` in the process of making `sp_by_plot`.
+Because there are no rows with that species + plot combination, in our pivoted data.frame, the value gets filled with `NA`.
 
-There is another `pivot_` function that does the opposite, moving data from a wide to long format, called `pivot_longer()`. It takes 3 arguments: `cols` for the columns you want to pivot, `names_to` for the name of the new column which will contain the old column names, and `values_to` for the name of the new column which will contain the old values.
+There is another `pivot_` function that does the opposite, moving data from a wide to long format, called `pivot_longer()`.
+It takes 3 arguments: `cols` for the columns you want to pivot, `names_to` for the name of the new column which will contain the old column names, and `values_to` for the name of the new column which will contain the old values.
 
 ![](fig/pivot_longer.png){alt='Diagram depicting the behavior of `pivot_longer()` on a small tabular dataset.'}
 
-We can pivot our new wide data.frame to a long format using `pivot_longer()`. We want to pivot all the columns except `species_id`, and we will use `PLOT` for the new column of plot IDs, and `MEAN_WT` for the new column of mean weight values.
+We can pivot our new wide data.frame to a long format using `pivot_longer()`.
+We want to pivot all the columns except `species_id`, and we will use `PLOT` for the new column of plot IDs, and `MEAN_WT` for the new column of mean weight values.
 
 
 ``` r
@@ -1272,7 +1393,8 @@ sp_by_plot_wide %>%
 # ℹ 422 more rows
 ```
 
-One thing you will notice is that all those `NA` values that got generated when we pivoted wider. However, we can filter those out, which gets us back to the same data as `sp_by_plot`, before we pivoted it wider.
+One thing you will notice is that all those `NA` values that got generated when we pivoted wider.
+However, we can filter those out, which gets us back to the same data as `sp_by_plot`, before we pivoted it wider.
 
 
 ``` r
@@ -1303,9 +1425,11 @@ Data are often recorded in spreadsheets in a wider format, but lots of `tidyvers
 
 ## Exporting data
 
-Let's say we want to send the wide version of our `sb_by_plot` data.frame to a colleague who doesn't use R. In this case, we might want to save it as a CSV file.
+Let's say we want to send the wide version of our `sb_by_plot` data.frame to a colleague who doesn't use R.
+In this case, we might want to save it as a CSV file.
 
-First, we might want to modify the names of the columns, since right now they are bare numbers, which aren't very informative. Luckily, `pivot_wider()` has an argument `names_prefix` which will allow us to add "plot_" to the start of each column.
+First, we might want to modify the names of the columns, since right now they are bare numbers, which aren't very informative.
+Luckily, `pivot_wider()` has an argument `names_prefix` which will allow us to add "plot\_" to the start of each column.
 
 
 ``` r
@@ -1343,7 +1467,8 @@ sp_by_plot %>%
 #   plot_23 <dbl>, plot_24 <dbl>
 ```
 
-That looks better! Let's save this data.frame as a new object.
+That looks better!
+Let's save this data.frame as a new object.
 
 
 ``` r
@@ -1383,7 +1508,8 @@ surveys_sp
 #   plot_23 <dbl>, plot_24 <dbl>
 ```
 
-Now we can save this data.frame to a CSV using the `write_csv()` function from the `readr` package. The first argument is the name of the data.frame, and the second is the path to the new file we want to create, including the file extension `.csv`.
+Now we can save this data.frame to a CSV using the `write_csv()` function from the `readr` package.
+The first argument is the name of the data.frame, and the second is the path to the new file we want to create, including the file extension `.csv`.
 
 
 ``` r
@@ -1392,7 +1518,7 @@ write_csv(surveys_sp, "data/cleaned/surveys_meanweight_species_plot.csv")
 
 If we go look into our `data/cleaned_data` folder, we will see this new CSV file.
 
-::::::::::::::::::::::::::::::::::::: keypoints 
+::::::::::::::::::::::::::::::::::::: keypoints
 
 - use `filter()` to subset rows and `select()` to subset columns
 - build up pipelines one step at a time before assigning the result
