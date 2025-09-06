@@ -242,8 +242,7 @@ We call these instructions *commands*, and we tell the computer to follow the in
 ### Console vs. script
 
 You can run commands directly in the R console, or you can write them into an R script.
-It may help to think of working in the console vs.
-working in a script as something like cooking.
+It may help to think of working in the console vs. working in a script as something like cooking.
 The console is like making up a new recipe, but not writing anything down.
 You can carry out a series of steps and produce a nice, tasty dish at the end.
 However, because you didn't write anything down, it's harder to figure out exactly what you did, and in what order.

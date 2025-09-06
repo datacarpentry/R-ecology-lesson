@@ -368,8 +368,7 @@ ggplot(data = complete_old, mapping = aes(x = plot_type, y = hindfoot_length)) +
   geom_point(alpha = 0.2)
 ```
 
-Uh oh...
-all our points for a given `x` axis category fall exactly on a line, which isn't very useful.
+Uh oh... all our points for a given `x` axis category fall exactly on a line, which isn't very useful.
 We can shift to using `geom_jitter()`, which will add points with a bit of random noise added to the positions to prevent this from happening.
 
 ```{r boxplot-jitter, warning=FALSE}

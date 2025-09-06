@@ -159,8 +159,7 @@ Other ethical concerns have also been raised, such as reports that workers were 
 
 ### Knowing more about our data.frame
 
-Let's get back to investigating our `complete_old` data.
-frame.
+Let's get back to investigating our `complete_old` data.frame.
 We can get some useful summaries of each variable using the `summary()` function:
 
 ```{r}
@@ -174,16 +173,13 @@ str(complete_old)
 ```
 
 We get quite a bit of useful information here.
-First, we are told that we have a data.
-frame of `r nrow(complete_old)` observations, or rows, and `r ncol(complete_old)` variables, or columns.
+First, we are told that we have a data.frame of `r nrow(complete_old)` observations, or rows, and `r ncol(complete_old)` variables, or columns.
 
 Next, we get a bit of information on each variable, including its type (`int` or `chr`) and a quick peek at the first 10 values.
 You might ask why there is a `$` in front of each variable.
-This is because the `$` is an operator that allows us to select individual columns from a data.
-frame.
+This is because the `$` is an operator that allows us to select individual columns from a data.frame.
 
-The `$` operator also allows you to use tab-completion to quickly select which variable you want from a given data.
-frame.
+The `$` operator also allows you to use tab-completion to quickly select which variable you want from a given data.frame.
 For example, to get the `year` variable, we can type `complete_old$` and then hit <kbd>Tab</kbd>.
 We get a list of the variables that we can move through with up and down arrow keys.
 Hit <kbd>Enter</kbd> when you reach `year`, which should finish this code:
@@ -196,15 +192,11 @@ What we get back is a whole bunch of numbers, the entries in the `year` column p
 
 ## Vectors: the building block of data
 
-You might have noticed that our last result looked different from when we printed out the `complete_old` data.
-frame itself.
-That's because it is not a data.
-frame, it is a **vector**.
+You might have noticed that our last result looked different from when we printed out the `complete_old` data.frame itself.
+That's because it is not a data.frame, it is a **vector**.
 A vector is a 1-dimensional series of values, in this case a vector of numbers representing years.
 
-Data.
-frames are made up of vectors; each column in a data.
-frame is a vector.
+Data.frames are made up of vectors; each column in a data.frame is a vector.
 Vectors are the basic building blocks of all data in R.
 Basically, everything in R is a vector, a bunch of vectors stitched together in some way, or a function.
 Understanding how vectors work is crucial to understanding how R treats data, so we will spend some time learning about them.
@@ -220,8 +212,7 @@ There are 4 main types of vectors (also known as *atomic vectors*):
 4. `"logical"` for `TRUE` and `FALSE`, which can also be represented as `T` and `F`. In other contexts, these may be referred to as "Boolean" data.
 
 Vectors can only be of a **single type**.
-Since each column in a data.
-frame is a vector, this means an accidental character following a number, like `29,` can change the type of the whole vector.
+Since each column in a data.frame is a vector, this means an accidental character following a number, like `29,` can change the type of the whole vector.
 Mixing up vector types is one of the most common mistakes in R, and it can be tricky to figure out.
 It's often very useful to check the types of vectors.
 
@@ -450,8 +441,7 @@ quantile(complete_old$hindfoot_length,
 
 ## Building with vectors
 
-We have now seen vectors in a few different forms: as columns in a data.
-frame and as single vectors.
+We have now seen vectors in a few different forms: as columns in a data.frame and as single vectors.
 However, they can be manipulated into lots of other shapes and forms.
 Some other common forms are:
 

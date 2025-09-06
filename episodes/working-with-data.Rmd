@@ -217,8 +217,7 @@ filter(surveys, year == 1985)
 ```
 
 The `==` sign means "is equal to".
-There are several other operators we can use: >, >=, \<, \<=, and !
-\= (not equal to).
+There are several other operators we can use: >, >=, \<, \<=, and !\= (not equal to).
 Another useful operator is `%in%`, which asks if the value on the lefthand side is found anywhere in the vector on the righthand side.
 For example, to get rows with specific `species_id` values, we could run:
 
@@ -735,8 +734,7 @@ sp_by_plot %>%
 ```
 
 That looks better!
-Let's save this data.
-frame as a new object.
+Let's save this data.frame as a new object.
 
 ```{r assign-pivot-wider}
 surveys_sp <- sp_by_plot %>% 

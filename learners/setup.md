@@ -73,8 +73,7 @@ If you already have R and RStudio installed, first check if your R version is up
 - After installing a new version of R, you will have to reinstall all your packages with the new version.
   For Windows, there is a package called `installr` that can help you with upgrading your R version and migrate your package library.
   A similar package called `pacman` can help with updating R packages across
-  To update RStudio to the latest version, open RStudio and click on
-  `Help > Check for Updates`.
+  To update RStudio to the latest version, open RStudio and click on `Help > Check for Updates`.
   If a new version is available follow the
   instruction on screen.
   By default, RStudio will also automatically notify you of new versions every once in a while.

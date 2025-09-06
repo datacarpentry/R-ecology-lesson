@@ -51,12 +51,12 @@ Nevertheless, it is recommended that learners install a version of R ≥4.0.0, a
 ## RStudio and Multiple R Installs
 
 Some learners may have previous R installations.
-On Mac, if a new install is performed, the learner's system will create a symbolic link, pointing to the new install as 'Current.
-' Sometimes this process does not occur, and, even though a new R is installed and can be accessed via the R console, RStudio does not find it.
+On Mac, if a new install is performed, the learner's system will create a symbolic link, pointing to the new install as 'Current.'
+Sometimes this process does not occur, and, even though a new R is installed and can be accessed via the R console, RStudio does not find it.
 The net result of this is that the learner's RStudio will be running an older R install.
 This will cause package installations to fail.
 This can be fixed at the terminal.
-First, check for the appropriate R installation in the library;
+First, check for the appropriate R installation in the library:
 
 ```
 ls -l /Library/Frameworks/R.framework/Versions/
@@ -99,34 +99,29 @@ install.packages(c("readr", "lubridate", "dplyr", "tidyr", "ggplot2", "dbplyr"))
 
 ### Before we start
 
-- The main goal here is to help the learners be comfortable with the RStudio
-  interface.
-  We use RStudio because it helps make using R more organized and
-  user friendly.
+- The main goal here is to help the learners be comfortable with the RStudio interface.
+  We use RStudio because it helps make using R more organized and user friendly.
 - The "Why learning R?" section contains suggestions of what you could tell your learners about the benefits of learning R.
   However, it's best if you can talk here about what has worked for you personally.
 - Go very slowly in the "Getting setup section". Make sure everyone is following along (remind learners to use the stickies).
   Plan with the helpers at this point to go around the room, and be available to help.
   It's important to make sure that learners are in the correct working directory, and that they create a `data_raw`  (all lowercase) subfolder.
-- The seeking help section is relatively long, and while it's useful to
-  demonstrate a couple of ways to get help from within R, you may want to mostly point the workshop participants to this useful reference so that they can refer to it after the workshop.
+- The seeking help section is relatively long, and while it's useful to demonstrate a couple of ways to get help from within R, you may want to mostly point the workshop participants to this useful reference so that they can refer to it after the workshop.
 - In the "where to ask for help section?", you may want to emphasize the first point about how workshops are a great way to create community of learners that can help each others during and after the workshop.
 
 ### Intro to R
 
-- When going over the section on assignments, make sure to pause for at least 30 seconds when asking "What do you think is the
-  current content of the object weight\_lb? 126.5 or 220?".
+- When going over the section on assignments, make sure to pause for at least 30 seconds when asking "What do you think is the current content of the object weight\_lb? 126.5 or 220?".
   For learners with no programming experience, this is a new and important concept.
-- Given that the concept of missing data is an important feature of the R
-  language, it is worth spending enough time on it.
+- Given that the concept of missing data is an important feature of the R language, it is worth spending enough time on it.
 
 ### Starting with data
 
 The two main goals for this lessons are:
 
 - To make sure that learners are comfortable with working with data frames, and can use the bracket notation to select slices/columns
-- To expose learners to factors. Their behavior is not necessarily intuitive,
-  and so it is important that they are guided through it the first time they are exposed to it.
+- To expose learners to factors. 
+  Their behavior is not necessarily intuitive, and so it is important that they are guided through it the first time they are exposed to it.
   The content of the lesson should be enough for learners to avoid common mistakes with them.
 - If the learners are not familiar with the ecology terminology used in the data set, it might be a good idea to briefly review it here.
   Especially the terms *genus* and *plot* have caused some confusion to learners in the past.
@@ -140,18 +135,15 @@ The two main goals for this lessons are:
 - After this lesson students should be familiar with the spread() and gather() functions available in tidyr
 - While working with the example for mutate(), it is difficult to see the "weight" columns on a zoomed in RStudio screen.
   Including a select() command to select the columns "weight\_kg" and "weight\_lb" makes it easier to view how the "weight" columns are changed.
-- It is crucial that learners use the function `read_csv()` from tidyverse,
-  not `read.csv()` from base R.
+- It is crucial that learners use the function `read_csv()` from tidyverse, not `read.csv()` from base R.
   Using the wrong function will cause unexpected results further down the line, especially in the section on working with factors.
-- Note: If students end up with 30521 rows for `surveys_complete` instead of
-  the expected 30463 rows at the end of the chapter, then they have likely used `read.csv()` and not `read_csv()` to import the data.
-- When explaining `view()`, consider mentioning that is a function of the
-  **`tibble`** package, and that the base function `View()` can also be used to view a data frame.
+- Note: If students end up with 30521 rows for `surveys_complete` instead of the expected 30463 rows at the end of the chapter, then they have likely used `read.csv()` and not `read_csv()` to import the data.
+- When explaining `view()`, consider mentioning that is a function of the **`tibble`** package, and that the base function `View()` can also be used to view a data frame.
 
 ### Visualizing data
 
 - This lesson is a broad overview of ggplot2 and focuses on (1) getting familiar with the layering system of ggplot2, (2) using the argument `group` in the `aes()` function, (3) basic customization of the plots.
-- It maybe worthwhile to mention that we can also specify colors by color HEX code (<http://colorbrewer2.org>)
+- It maybe worthwhile to mention that we can also specify colors by color HEX code (<https://colorbrewer2.org>)
   ```
   ggplot(data = surveys_complete, mapping = aes(x = weight, y = hindfoot_length)) +
       geom_point(alpha = 0.1, color = "#FF0000")
@@ -159,13 +151,10 @@ The two main goals for this lessons are:
 
 ### R and SQL
 
-- Ideally this lesson is best taught at the end of the workshop (as a capstone example) to illustrate how the tools covered can integrate with each
-  others.
-  Depending on the audience, and the pace of the workshop, it can be
-  shown as a demonstration rather than a typically lesson.
+- Ideally this lesson is best taught at the end of the workshop (as a capstone example) to illustrate how the tools covered can integrate with others.
+  Depending on the audience, and the pace of the workshop, it can be shown as a demonstration rather than a typically lesson.
 - The explanation of how dplyr's verb syntax is translated into SQL statements, and the section on laziness are optional and don't need to be taught in detail during a workshop.
-  They can be useful after a workshop for learners interested in learning more about the topics or for instructors to answer questions from
-  the workshop participants.
+  They can be useful after a workshop for learners interested in learning more about the topics or for instructors to answer questions from the workshop participants.
 
 ## Potential issues \& solutions
 
