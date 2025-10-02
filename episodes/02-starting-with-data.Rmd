@@ -1,6 +1,6 @@
 ---
 title: Working with data in the tidyverse
-author: Data Carpentry contributors.& Nathaniel Porter
+author: Data Carpentry contributors & Nathaniel Porter
 teaching: 20
 exercises: 10
 ---
@@ -9,7 +9,12 @@ exercises: 10
 source("setup.R")
 ```
 
-------------------------------------------------------------------------
+:::::::::::::::::::::::::::::::::::::: questions 
+
+- How do you work with tabular data in R
+- Why use the tidyverse to wrangle data?
+
+::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: objectives
 

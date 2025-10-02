@@ -12,6 +12,13 @@ source("setup.R")
 surveys_complete <- read_csv(file = "data_raw/portal_data_joined.csv", col_types = cols()) %>% drop_na(weight, hindfoot_length, sex) %>% group_by(species_id) %>% filter(n() >= 50) %>% ungroup()
 ```
 
+:::::::::::::::::::::::::::::::::::::: questions 
+
+- How do you make plots using R?
+- How do you customize and modify plots?
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
 ::::::::::::::::::::::::::::::::::::: objectives
 
 - Produce scatter plots and boxplots using `ggplot2`.
