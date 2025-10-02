@@ -1,20 +1,36 @@
 ---
+title: "Data Analysis and Visualization in R for Ecologists"
+author: François Michonneau & Auriel Fournier (Lesson Maintainers)
 site: sandpaper::sandpaper_site
 ---
 
-:::::::::::::::::::::::::: callout
+<p></p>
 
-## This lesson changed a lot recently!
+<div style="text-align: center; margin-top: 30px; margin-bottom: 30px;">
 
-You may notice some big changes in the content of this lesson since you last visited. 
+![](episodes/fig/DC-logo-vision.png){alt=""}
 
-[The Data Carpentry Ecology Curriculum Advisory Committee recently approved this redesigned version of the lesson for adoption into the curriculum](https://carpentries.org/blog/2024/03/dc-r-ecology-adoption/)! It replaced [the previous version](https://doi.org/10.5281/zenodo.12684301) in the curriculum in July 2024.
+</div>
 
-::::::::::::::::::::::::::::::::::
+<p></p>
 
-Data Carpentry’s aim is to teach researchers basic concepts, skills, and tools for working with data so that they can get more done in less time, and with less pain. The lessons below were designed for those interested in working with ecology data in R.
+Data Carpentry's aim is to teach researchers basic concepts, skills,
+and tools for working with data so that they can get more done in less
+time, and with less pain. The lessons below were designed for those interested
+in working with ecology data in R.
 
-This is an introduction to R designed for participants with no programming experience. This lesson can be taught in a day (~ 6 hours). It starts with information about the R programming language and the RStudio interface. It then moves to loading in data and exploring how to visualise it with ggplot2. The next episode takes learners through an exploration of data frames and some common data cleaning operations, before discussing vectors and factors. The final episode introduces the flow of data in R, and how to combine operations to select, filter, and mutate a data frame.
+This is an introduction to R designed for participants with no programming
+experience. These lessons adapt a 6-hour curriculum down to between 2 and 3 hours. 
+They start withsome basic information about R syntax, the RStudio interface, and move throughhow to import CSV files, the structure of data frames, how to deal with factors,
+how to add/remove rows and columns, how to calculate summary statistics from a
+data frame, and a brief introduction to plotting. Because it's shortened, you may
+want to look at the [original lesson](https://datacarpentry.org/R-ecology-lesson/index.html) for more detail and additional concepts (such as 
+working with databases).
 
-This lesson assumes no prior knowledge of R or RStudio and no programming experience.
+This lesson assumes no prior knowledge of R or RStudio and no programming
+experience.
 
+## Contributors
+
+The list of contributors to the original lesson is available [in the citation page](https://datacarpentry.org/R-ecology-lesson/CITATION). It has been adapted
+by Nathaniel D. Porter and Jesse Sadler (Virginia Tech University Libraries).
