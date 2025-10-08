@@ -1,7 +1,7 @@
 ---
 title: "Working with data"
 teaching: 120
-exercises: 4
+exercises: 0
 ---
 
 <!-- - importing complete_old CSV -->
