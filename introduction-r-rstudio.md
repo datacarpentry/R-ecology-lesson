@@ -16,8 +16,6 @@ exercises: 0
 - Understand the difference between R and RStudio
 - Describe the purpose of the different RStudio panes
 - Organize files and directories into R Projects
-- Use the RStudio help interface to get help with R functions
-- Be able to format questions to get help in the broader R community
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 

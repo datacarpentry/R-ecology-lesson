@@ -17,6 +17,8 @@ exercises: 3
 - Use vectors as function arguments
 - Create and convert factors
 - Understand how R assigns values to objects
+- Use the RStudio help interface to get help with R functions
+- Be able to format questions to get help in the broader R community
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
