@@ -1,7 +1,9 @@
 ---
 title: "Working with data"
+# FIXME: 'teaching' timing is inclusive of 'exercises' timing. 
+# We should split it at some point.
 teaching: 120
-exercises: 4
+exercises: 0
 ---
 
 <!-- - importing complete_old CSV -->
