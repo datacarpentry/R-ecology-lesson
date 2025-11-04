@@ -1,7 +1,9 @@
 ---
 title: "Data visualization with ggplot2"
+# FIXME: 'teaching' timing is inclusive of 'exercises' timing. 
+# We should split it at some point.
 teaching: 90
-exercises: 4
+exercises: 0
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions 

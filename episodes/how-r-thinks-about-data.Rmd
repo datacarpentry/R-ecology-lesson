@@ -1,7 +1,9 @@
 ---
 title: "Exploring and understanding data"
+# FIXME: 'teaching' timing is inclusive of 'exercises' timing. 
+# We should split it at some point.
 teaching: 60
-exercises: 3
+exercises: 0
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions 
