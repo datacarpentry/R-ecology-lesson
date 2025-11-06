@@ -29,7 +29,6 @@ exercises: 0
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(dpi = 200, out.height = 600, out.width = 600, R.options = list(max.print = 100))
-set.seed(20251007)
 ```
 
 We are going to be using **functions** from the **`ggplot2`** package to create visualizations of data. Functions are predefined bits of code that automate more complicated actions. R itself has many built-in functions, but we can access many more by loading other **packages** of functions and data into R.
