@@ -45,7 +45,8 @@ directory
 ```
 
 ``` error
-Error in file(con, "r"): cannot open the connection
+Error in `file()`:
+! cannot open the connection
 ```
 
 or as a BibTeX entry:
@@ -57,7 +58,8 @@ directory
 ```
 
 ``` error
-Error in file(con, "r"): cannot open the connection
+Error in `file()`:
+! cannot open the connection
 ```
 
 
