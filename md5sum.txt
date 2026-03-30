@@ -1,6 +1,6 @@
 "file" "checksum" "built" "date"
 "CITATION.Rmd" "98c744817354e3830f876dfc7fa90a5a" "site/built/CITATION.md" "2026-03-03"
-"CODE_OF_CONDUCT.md" "ee42ccc02a38bfdb396be319bef30d61" "site/built/CODE_OF_CONDUCT.md" "2026-03-03"
+"CODE_OF_CONDUCT.md" "7bb26142060923d42e9fe93b6a93e94e" "site/built/CODE_OF_CONDUCT.md" "2026-03-30"
 "LICENSE.md" "4593e1c8e5f6a6cb7f60655f2ea329e3" "site/built/LICENSE.md" "2026-03-03"
 "config.yaml" "489e11f69bbb975dd51e5d3476c3f410" "site/built/config.yaml" "2026-03-03"
 "index.md" "6070f89de6e6593bfb47dae5316cec7e" "site/built/index.md" "2026-03-03"
