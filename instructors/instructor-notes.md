@@ -253,5 +253,5 @@ maintainers by email or
 [open an issue](https://github.com/fishtree-attempt/R-ecology-lesson/issues/new).
 
 For a more in-depth coverage of topics of the workshops, you may want to read
-"[R for Data Science](https://r4ds.had.co.nz/)" by Hadley Wickham and Garrett
+"[R for Data Science (2e)](https://r4ds.hadley.nz)" by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett
 Grolemund.
