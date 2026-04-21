@@ -823,8 +823,12 @@ surveys %>%
 ```
 
 ``` output
-`summarise()` has grouped output by 'species_id'. You can override using the
-`.groups` argument.
+`summarise()` has regrouped the output.
+ℹ Summaries were computed grouped by species_id and sex.
+ℹ Output is grouped by species_id.
+ℹ Use `summarise(.groups = "drop_last")` to silence this message.
+ℹ Use `summarise(.by = c(species_id, sex))` for per-operation grouping
+  (`?dplyr::dplyr_by`) instead.
 ```
 
 ``` output
@@ -857,8 +861,12 @@ surveys %>%
 ```
 
 ``` output
-`summarise()` has grouped output by 'species_id'. You can override using the
-`.groups` argument.
+`summarise()` has regrouped the output.
+ℹ Summaries were computed grouped by species_id and sex.
+ℹ Output is grouped by species_id.
+ℹ Use `summarise(.groups = "drop_last")` to silence this message.
+ℹ Use `summarise(.by = c(species_id, sex))` for per-operation grouping
+  (`?dplyr::dplyr_by`) instead.
 ```
 
 ``` output
@@ -892,8 +900,12 @@ surveys %>%
 ```
 
 ``` output
-`summarise()` has grouped output by 'species_id'. You can override using the
-`.groups` argument.
+`summarise()` has regrouped the output.
+ℹ Summaries were computed grouped by species_id and sex.
+ℹ Output is grouped by species_id.
+ℹ Use `summarise(.groups = "drop_last")` to silence this message.
+ℹ Use `summarise(.by = c(species_id, sex))` for per-operation grouping
+  (`?dplyr::dplyr_by`) instead.
 ```
 
 ``` output
@@ -927,8 +939,12 @@ surveys %>%
 ```
 
 ``` output
-`summarise()` has grouped output by 'species_id'. You can override using the
-`.groups` argument.
+`summarise()` has regrouped the output.
+ℹ Summaries were computed grouped by species_id and sex.
+ℹ Output is grouped by species_id.
+ℹ Use `summarise(.groups = "drop_last")` to silence this message.
+ℹ Use `summarise(.by = c(species_id, sex))` for per-operation grouping
+  (`?dplyr::dplyr_by`) instead.
 ```
 
 ``` output
@@ -997,8 +1013,12 @@ surveys %>%
 ```
 
 ``` output
-`summarise()` has grouped output by 'species_id'. You can override using the
-`.groups` argument.
+`summarise()` has regrouped the output.
+ℹ Summaries were computed grouped by species_id and sex.
+ℹ Output is grouped by species_id.
+ℹ Use `summarise(.groups = "drop_last")` to silence this message.
+ℹ Use `summarise(.by = c(species_id, sex))` for per-operation grouping
+  (`?dplyr::dplyr_by`) instead.
 ```
 
 ``` output
@@ -1100,8 +1120,12 @@ surveys_daily_counts <- surveys %>%
 ```
 
 ``` output
-`summarise()` has grouped output by 'date'. You can override using the
-`.groups` argument.
+`summarise()` has regrouped the output.
+ℹ Summaries were computed grouped by date and sex.
+ℹ Output is grouped by date.
+ℹ Use `summarise(.groups = "drop_last")` to silence this message.
+ℹ Use `summarise(.by = c(date, sex))` for per-operation grouping
+  (`?dplyr::dplyr_by`) instead.
 ```
 
 ``` r
@@ -1144,8 +1168,12 @@ sp_by_plot <- surveys %>%
 ```
 
 ``` output
-`summarise()` has grouped output by 'species_id'. You can override using the
-`.groups` argument.
+`summarise()` has regrouped the output.
+ℹ Summaries were computed grouped by species_id and plot_id.
+ℹ Output is grouped by species_id.
+ℹ Use `summarise(.groups = "drop_last")` to silence this message.
+ℹ Use `summarise(.by = c(species_id, plot_id))` for per-operation grouping
+  (`?dplyr::dplyr_by`) instead.
 ```
 
 ``` r
