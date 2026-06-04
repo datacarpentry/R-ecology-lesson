@@ -4,21 +4,6 @@ title: Learners' Reference
 
 Cheat sheet of functions used in the lessons
 
-## Lesson 1 -- Introduction to R
-
-- `sqrt()`    # calculate the square root
-- `round()`   # round a number
-- `args()`    # find what arguments a function takes
-- `length()`  # how many elements are in a particular vector
-- `class() `  # the class (the type of element) of an object
-- `str() `    # an overview of the object and the elements it contains
-- `c() `      # create vector; add elements to vector
-- `[  ]`    # extract and subset vector
-- `%in% `     # to test if a value is found in a vector
-- `is.na()`   # test if there are missing values
-- `na.omit()` # Returns the object with incomplete cases removed
-- `complete.cases()`\# elements which are complete cases
-
 ## Lesson 2 -- Starting with data
 
 - `download.file() ` # download files from the internet to your computer
@@ -85,20 +70,4 @@ Cheat sheet of functions used in the lessons
 - `/`   # arrange ggplots vertically
 - `plot_layout()`  # set width and height of individual plots in a patchwork of plots
 - `ggsave()` # save a ggplot
-
-## Lesson 5 -- SQL databases and R
-
-- `dir.create()` # create a directory
-- `download.file() ` # download files from the internet to your computer
-- `dbConnect()` # create a connection to a database
-- `SQLite()` # connect to a SQLite database
-- `src_dbi()` # connect dplyr to a DBI-compatible database file
-- `tbl`         # connect to a table within a database
-- `sql()` # combine character vectors into a single SQL expression
-- `show_query()` # show which SQL commands are sent to the database
-- `collect()`     # retrieve all the results from the database
-- `inner_join()`  # perform an inner join between two tables
-- `src_sqlite()` # connect dplyr to a SQLite database file
-- `copy_to()`     # copy a data frame as a table into a database
-
 

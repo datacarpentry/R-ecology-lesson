@@ -2,19 +2,16 @@
 site: sandpaper::sandpaper_site
 ---
 
-:::::::::::::::::::::::::: callout
+This lesson introduces `ggplot2` for learners with basic R experience. It is designed as a short, focused session (approximately 2 hours).
 
-## This lesson changed a lot recently!
+The lesson assumes familiarity with the R language and the RStudio interface. It begins by introducing the grammar of graphics, which underpins how `ggplot2` constructs plots. Using the built-in `mpg` dataset, learners will explore how to create different types of visualisations and how the choice of plot depends on the question being asked.
 
-You may notice some big changes in the content of this lesson since you last visited. 
+This lesson focuses on the fundamentals of data visualisation using ggplot2. While examples may reference how plots are used in statistical contexts, it does not cover statistical analysis.
 
-[The Data Carpentry Ecology Curriculum Advisory Committee recently approved this redesigned version of the lesson for adoption into the curriculum](https://carpentries.org/blog/2024/03/dc-r-ecology-adoption/)! It replaced [the previous version](https://doi.org/10.5281/zenodo.12684301) in the curriculum in July 2024.
+:::::::::::::::::::::::::::::::::::::::::: prereq
 
-::::::::::::::::::::::::::::::::::
+Participants should have completed an introductory R course (e.g. [R for Reproducible Scientific Analysis](https://swcarpentry.github.io/r-novice-gapminder/index.html) or have equivalent experience. This includes familiarity with RStudio, running scripts, and working with data frames.
 
-Data Carpentry’s aim is to teach researchers basic concepts, skills, and tools for working with data so that they can get more done in less time, and with less pain. The lessons below were designed for those interested in working with ecology data in R.
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
-This is an introduction to R designed for participants with no programming experience. This lesson can be taught in a day (~ 6 hours). It starts with information about the R programming language and the RStudio interface. It then moves to loading in data and exploring how to visualise it with ggplot2. The next episode takes learners through an exploration of data frames and some common data cleaning operations, before discussing vectors and factors. The final episode introduces the flow of data in R, and how to combine operations to select, filter, and mutate a data frame.
-
-This lesson assumes no prior knowledge of R or RStudio and no programming experience.
 
