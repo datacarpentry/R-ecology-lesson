@@ -240,22 +240,22 @@ summary(complete_old)
  3rd Qu.:12659   3rd Qu.: 9.000   3rd Qu.:23.0   3rd Qu.:1987   3rd Qu.:17.00  
  Max.   :16878   Max.   :12.000   Max.   :31.0   Max.   :1989   Max.   :24.00  
                                                                                
-  species_id            sex            hindfoot_length     weight      
- Length:16878       Length:16878       Min.   : 6.00   Min.   :  4.00  
- Class :character   Class :character   1st Qu.:21.00   1st Qu.: 24.00  
- Mode  :character   Mode  :character   Median :35.00   Median : 42.00  
-                                       Mean   :31.98   Mean   : 53.22  
-                                       3rd Qu.:37.00   3rd Qu.: 53.00  
-                                       Max.   :70.00   Max.   :278.00  
-                                       NA's   :2733    NA's   :1692    
-    genus             species              taxa            plot_type        
- Length:16878       Length:16878       Length:16878       Length:16878      
- Class :character   Class :character   Class :character   Class :character  
- Mode  :character   Mode  :character   Mode  :character   Mode  :character  
-                                                                            
-                                                                            
-                                                                            
-                                                                            
+     species_id           sex        hindfoot_length     weight      
+ Length   :16878   Length   :16878   Min.   : 6.00   Min.   :  4.00  
+ N.unique :   36   N.unique :    3   1st Qu.:21.00   1st Qu.: 24.00  
+ N.blank  :  357   N.blank  : 1300   Median :35.00   Median : 42.00  
+ Min.nchar:    0   Min.nchar:    0   Mean   :31.98   Mean   : 53.22  
+ Max.nchar:    2   Max.nchar:    1   3rd Qu.:37.00   3rd Qu.: 53.00  
+                                     Max.   :70.00   Max.   :278.00  
+                                     NAs    :2733    NAs    :1692    
+       genus            species             taxa           plot_type    
+ Length   :16878   Length   :16878   Length   :16878   Length   :16878  
+ N.unique :   23   N.unique :   30   N.unique :    4   N.unique :    5  
+ N.blank  :    0   N.blank  :    0   N.blank  :    0   N.blank  :    0  
+ Min.nchar:    6   Min.nchar:    3   Min.nchar:    4   Min.nchar:    7  
+ Max.nchar:   16   Max.nchar:   15   Max.nchar:    7   Max.nchar:   25  
+ NAs      :  357   NAs      :  357   NAs      :  357                    
+                                                                        
 ```
 
 And, as we have already done, we can use `str()` to look at the structure of an object:
