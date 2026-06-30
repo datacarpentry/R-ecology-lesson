@@ -138,7 +138,7 @@ What can we say about the relationship between city fuel efficiency and displace
 
 :::::::::::::::  solution
 
-```{r ggplot-with-aes-geom-cty, eval=FALSE, fig.alt="Scatter plot of displacement vs city fuel efficiency with data points."}}
+```{r ggplot-with-aes-geom-cty, eval=FALSE, fig.alt="Scatter plot of displacement vs city fuel efficiency with data points."}
 ggplot(data = mpg, 
        mapping = aes(x = displ, y = cty )) + 
   geom_point()
@@ -177,7 +177,7 @@ The general trend seems to indicate a decrease in fuel efficiency as engine disp
 The `ggsave()` function allows you to save a plot created with `ggplot2` quickly and easily with just a filename:
 
 ```{r save}
-ggsave(filename = "my_ggplot.png")
+ggsave(filename = "fig/my_ggplot.png")
 ```
 
 Notice that we did not provide any additional arguments to `ggsave()`.
@@ -187,7 +187,7 @@ Notice that we did not provide any additional arguments to `ggsave()`.
 
 In this episode, we introduced the grammar of graphics and the core components of ggplot2: data, aesthetic mappings, and geometric layers. Using these components, we created our first plot with `geom_point()` and explored how variables can be mapped to visual properties such as colour. 
 
-In the next episodes, we will build on these basics to explore our dataset in more detail. We will use a selection commonly used **geoms** to examine relationships between variables, the distribution of individual variables, differences between groups, and the composition of our data.
+In the next episodes, we will build on these basics to explore our dataset in more detail. We will use a selection of commonly used **geoms** to examine relationships between variables, the distribution of individual variables, differences between groups, and the composition of our data.
 
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
