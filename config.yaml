@@ -63,7 +63,7 @@ episodes:
 #- visualizing-ggplot.Rmd
 #- how-r-thinks-about-data.Rmd
 #- working-with-data.Rmd
-- 01_ggplot2_essentials
+- 01_ggplot2_essentials.Rmd
 
 # Information for Learners
 learners:
