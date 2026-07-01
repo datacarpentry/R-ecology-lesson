@@ -72,7 +72,7 @@ Using this information, which variables might you choose to explore a relationsh
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## Challenge 1: Know your data
+## Know your data
 
 Before creating any plots, it’s useful to briefly explore the dataset to understand what variables are available and what they represent.
 
@@ -130,7 +130,7 @@ In the rest of this lesson, we will build on this foundation to create different
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## Challenge 2 Aesthetic Mappings
+## Aesthetic Mappings
 
 Modify the example so that the plot shows how city fuel efficiency relates to engine displacement.
 
@@ -140,7 +140,7 @@ What can we say about the relationship between city fuel efficiency and displace
 
 ```{r ggplot-with-aes-geom-cty, eval=FALSE, fig.alt="Scatter plot of displacement vs city fuel efficiency with data points."}
 ggplot(data = mpg, 
-       mapping = aes(x = displ, y = cty )) + 
+       mapping = aes(x = displ, y = cty)) + 
   geom_point()
 ```
 
@@ -148,29 +148,6 @@ ggplot(data = mpg,
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-:::::::::::::::::::::::::::::::::::::::  challenge
-
-## Challenge 3 Aesthetic Mappings - add colour
-
-In the previous examples we've used the `aes` function to tell the scatter plot **geom** about the **x** and **y** locations of each point.
-
-Another *aesthetic* property we can modify is the *colour* of the points.
-
-Modify the code from the previous challenge to **colour** the points by the "year"
-column. 
-
-- What trends do you see in the data? 
-- Are they what you expected?
-
-:::::::::::::::  solution
-
-The solution presented below adds the argument `colour = year` to the call of the `aes()` function. 
-
-The general trend seems to indicate a decrease in fuel efficiency as engine displacement increases. Cars built in year 2008 appear to have higher fuel efficiency overall than cars.
-
-:::::::::::::::::::::::::
-  
-::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Saving the plot
 

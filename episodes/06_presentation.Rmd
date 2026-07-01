@@ -1,0 +1,177 @@
+---
+title: Communicating Results
+teaching: 20
+exercises: 15
+source: Rmd
+---
+  
+::::::::::::::::::::::::::::::::::::::: objectives
+
+- Use `facet_wrap()` to create multiple panels from a grouped dataset
+- Add informative titles and axis labels with `labs()`
+- Improve readability by rotating crowded axis labels with `theme()`
+- Refine an existing plot to better communicate a message
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+  
+:::::::::::::::::::::::::::::::::::::::: questions
+
+- How can we make plots easier to interpret?
+- When is it helpful to split a plot into multiple panels?
+- How can labels improve communication?
+  
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+So far we've focused on creating plots to answer different questions:
+
+- Relationships
+- Distributions
+- Group comparisons
+- Composition
+
+The final step is communication.
+
+Even when a plot contains useful information, it may be difficult to read or interpret. ggplot2 provides tools that help us organise information and make plots clearer for our audience.
+
+## Improving labels
+
+Let's start with a plot we've seen before:
+
+```{r bar-class, eval=FALSE, fig.alt="Bar plot of highway fuel efficiency for each class of vehicle."}
+ggplot(data = mpg, mapping = aes(x = class)) +
+  geom_bar()
+```
+
+The plot communicates the data, but the labels come directly from the dataset.
+
+We can make the plot more informative using `labs()`:
+
+```{r bar-class-labs, eval=FALSE, fig.alt="Bar plot of highway fuel efficiency for each class of vehicle."}
+ggplot(data = mpg, mapping = aes(x = class)) +
+  geom_bar() +
+  labs(
+    x = "Vehicle class",
+    y = "Count",
+    title = "Number of vehicles by class"
+  )
+```
+  
+### What changed?
+
+- The x-axis now has a clearer description.
+- The y-axis describes what is being measured.
+- The plot has a descriptive title.
+
+Good labels help readers understand a plot without needing to inspect the underlying code or dataset.
+
+## Splitting plots with facets
+
+Sometimes a single plot contains too much information.
+
+In our composition episode, we examined vehicle classes and drive type:
+
+```{r bar-hwy-comp, eval=FALSE, fig.alt="Bar plot showing the number of mpg observations for each class of vehicle ."}
+ggplot(data = mpg, mapping = aes(x = class, fill = drv)) +
+  geom_bar()
+```
+
+Instead of showing everything in one panel, we can create a separate panel for each drive type:
+
+```{r bar-hwy-facet, eval=FALSE, fig.alt="Bar plot showing the number of mpg observations for each class of vehicle. Each drive type has its own panel."}
+ggplot(data = mpg, mapping = aes(x = class)) +
+  geom_bar() +
+  facet_wrap(~ drv)
+```
+
+### What happened?
+
+- A separate plot is created for each drive type.
+- All panels use the same scale.
+- Comparing patterns between groups becomes easier.
+
+Faceting is useful when:
+
+- Several groups overlap in a single plot
+- You want to compare patterns between groups
+- Colour alone is not enough to separate information
+
+:::::::::::::::::::::::::::::::::::::::  challenge
+
+## Facet Plot Interpretation
+
+- Which drive type includes the most vehicle classes?
+- Are some vehicle classes only found in one panel?
+- Is the pattern easier to interpret than the single combined plot? 
+
+:::::::::::::::  solution
+
+Answers may vary.
+
+
+:::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+
+## Improving readability
+
+Sometimes labels become crowded.
+
+Consider the facet plot we just created. Notice that the x-axis labels are becoming crowded and difficult to read. How can we fix that?
+
+We can rotate axis text to make it easier to read:
+
+```{r bar-hwy-facet-lab, eval=FALSE, fig.alt="Bar plot showing the number of mpg observations for each class of vehicle. Each drive type has its own panel. Labels are rotated 45 degrees to improve readability."}
+ggplot(data = mpg, mapping = aes(x = class)) +
+  geom_bar() +
+  facet_wrap(~ drv) +
+  theme(axis.text.x = element_text(angle = 45))
+```
+
+Rotating labels prevents overlapping text, improves readability, and requires only a small modification.
+
+
+:::::::::::::::::::::::::::::::::::::::  challenge
+
+## Make a plot publication-ready
+
+Choose one plot from a previous episode.
+
+Improve it by:
+
+- Adding a title
+- Improving axis labels
+- Rotating labels if necessary
+
+:::::::::::::::  solution
+
+Answers may vary.
+
+```{r bar-hwy-facet-ch, eval=FALSE, fig.alt="Bar plot showing the number of mpg observations for each class of vehicle. Each drive type has its own panel."}
+ggplot(data = mpg, aes(x = class, fill = drv)) +
+  geom_bar(position = "fill") +
+  labs(
+    title = "Drive type composition by vehicle class",
+    x = "Vehicle class",
+    y = "Proportion"
+  ) +
+  theme(axis.text.x = element_text(angle = 45))
+```
+
+:::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+In this episode, we focused on communicating information clearly using labels, facets, and simple formatting improvements. Throughout this workshop, we have used `ggplot2` to explore relationships, distributions, group comparisons, and composition. Clear communication helps ensure those visualisations can be understood and used by others.
+
+
+:::::::::::::::::::::::::::::::::::::::: keypoints
+
+- `labs()` adds informative titles and axis labels
+- `facet_wrap()` creates a panel for each group
+- Faceting can make complex plots easier to interpret
+- Small theme adjustments can improve readability
+- Effective visualisation includes clear communication, not just correct code
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+

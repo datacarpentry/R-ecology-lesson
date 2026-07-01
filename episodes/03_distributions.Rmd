@@ -1,0 +1,241 @@
+---
+title: Bar Charts and Distributions
+teaching: 20
+exercises: 10
+source: Rmd
+---
+  
+::::::::::::::::::::::::::::::::::::::: objectives
+
+- Create density plots to explore the distribution of a single variable
+- Map a categorical variable to fill to compare distributions
+- Describe distributions in terms of shape, spread, and overlap
+- Recognise how density plots and histograms represent the same idea
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+  
+:::::::::::::::::::::::::::::::::::::::: questions
+
+- How can we explore a single variable in ggplot2?
+- What does the shape of a variable’s distribution tell us?
+- How can we compare distributions across groups?
+  
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+In the previous episode, we used scatterplots to explore relationships between two variables.
+
+Now we’re going to shift focus and instead of asking, _How do two variables relate?_, we ask, _What does one variable look like on its own?_. This is called a **distribution**.
+
+## What is a distribution?
+
+So far, we’ve been looking at relationships between variables. Now we’re going to focus on a single variable at a time.
+
+A **distribution** tells us:
+
+- What values occur
+- How often they occur
+- How those values are spread out
+
+## Visualising a distribution
+
+We’ll start by looking at highway fuel efficiency (`hwy`) in the mpg dataset. 
+
+
+```{r dens-hwy, eval=FALSE, fig.alt="Density plot of highway fuel efficiency."}
+ggplot(data = mpg, mapping = aes(x = hwy)) +
+  geom_density()
+```
+
+If we map a single variable (`hwy`) to the x-axis, `geom_density()` creates a smooth curve. The height shows where values are more common.
+
+## Interpreting a distribution
+
+When reading a distribution, focus on:
+
+- **Shape**
+    - Is it symmetric or skewed left or right?
+    - One peak or multiple?
+- **Spread**
+    - Are values tightly clustered or widely spread out?
+- **Concentration**
+    - Where do most values fall?
+    
+:::::::::::::::::::::::::::::::::::::::  challenge
+
+## Distribution Interpretation
+
+Describe the distribution of highway fuel efficiency.
+
+What else can we say about this plot?
+
+:::::::::::::::  solution
+
+Answers may vary.
+
+In this plot there appears to be two peaks: one at approximately 15 hwy miles and a second higher peak at 26 hwy. We can see most cars cluster around the mid-range of highway fuel efficiency, with fewer cars at very high values.
+
+Not much we can say without more information.
+
+:::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::::  challenge
+
+## City Fuel Efficiency Density plot
+
+Create a density plot of city fuel efficiency (`cty`).
+
+- How does it compare to `hwy`?
+- Does it look more or less spread out?
+
+:::::::::::::::  solution
+
+Answers may vary. 
+
+City fuel efficiency has a single cluster of vehicles at around 15-17 mpg with  wide width and shorter tail.
+
+```{r dens-cty, eval=FALSE, fig.alt="Density plot of city fuel efficiency."}
+ggplot(data = mpg, mapping = aes(x = cty)) +
+  geom_density()
+```
+
+:::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+## Comparing distributions with groups
+
+Just like in the relationships episode, we can use **aesthetics** to reveal more information.
+
+Here, we’ll compare fuel efficiency across vehicle `class`:
+
+```{r dens-hwy-class, eval=FALSE, fig.alt="Density plot of highway fuel efficiency filled with colour for each class."}
+ggplot(data = mpg, mapping = aes(x = hwy, fill = class)) +
+  geom_density()
+```
+
+
+When we set `fill` to `class` each class gets its own distribution.
+The curves overlap so we can compare them directly. 
+
+Notice how some groups overlap heavily — this can make comparisons harder.
+
+:::::::::::::::::::::::::::::::::::::::  challenge
+
+## Group Plot Interpretation
+
+- Which vehicle class tends to have higher fuel efficiency?
+- Which class has the widest spread?
+- Which classes look similar or very different? 
+
+:::::::::::::::  solution
+
+Answers may vary.
+
+Compact cars have the highest highway fuel efficiency.
+
+There are not as many compacts in the dataset as there are 2seaters and midsize vehicles.
+
+Subcompacts have the widest spread.
+
+Many of the curves are similar.
+
+:::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::::  challenge
+
+## Distribution of Classes Interpretation
+
+Create a density plot of city fuel efficiency (`cty`) for different classes of vehicles.
+
+- How does it compare to `hwy`?
+- Does it look more or less spread out?
+
+:::::::::::::::  solution
+
+Answer may vary.
+
+```{r dens-cty-class, eval=FALSE, fig.alt="Density plot of city fuel efficiency filled with colour for each class."}
+ggplot(data = mpg, mapping = aes(x = cty, fill = class)) +
+  geom_density()
+```
+
+:::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+
+## Why density plots?
+
+Density plots are useful because they:
+
+- Show the overall shape clearly
+- Are smooth, reducing noise
+- Make comparisons easier when multiple groups overlap
+
+
+## Histograms
+
+A **histogram** shows the same idea differently:
+
+```{r hwy-hist, eval=FALSE, fig.alt="Density plot of highway fuel efficiency with data points."}
+ggplot(data = mpg, mapping = aes(x = hwy)) +
+  geom_histogram()
+```
+
+Unlike density plots, histograms depend on how the data are split into **bins**. Instead of a smooth curve, values are grouped into bars that show counts in each bin.
+
+:::::::::::::::::::::::::::::::::::::::::  callout
+
+## Same distribution, different representation
+
+The appearance depends on how bins are chosen.
+
+Density plots are often easier to compare.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::::  challenge
+
+## Colour histogram by class (optional)
+
+Use `class` to colour the histogram. 
+
+Hint: use `aes()`.
+
+What problems do you notice compared to density plots?
+
+:::::::::::::::  solution
+
+Most learners will move the `fill` argument directly from the ggplot layer to the `geom_histogram()` layer. This will break unless you use the `aes()` function to map each class.
+
+```{r dens-cty-class-fill, eval=FALSE, fig.alt="Density plot of city fuel efficiency filled with colour for each class."}
+ggplot(data = mpg, mapping = aes(x = cty)) +
+  geom_histogram(aes(fill = class))
+```
+
+:::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+In this episode, we shifted from exploring relationships between variables to understanding individual variables through their distributions.
+
+We used density plots to visualise how values are spread, and extended what we learned about aesthetic mappings by using fill to compare distributions across vehicle classes.
+
+This introduced an important idea: while mappings like fill can add insight, they can also introduce overlap and complexity, especially as the number of groups increases.
+
+In the next episode, we’ll build on this by looking more closely at how ggplot2 handles groups, and how we can control and organise them to make our visualisations clearer and more informative.
+
+:::::::::::::::::::::::::::::::::::::::: keypoints
+
+- A distribution describes how a single variable’s values are spread.
+- `geom_density()` creates a smooth representation of that distribution.
+- Mapping `fill` allows comparison across groups.
+- Focus on shape, spread, and overlap
+- Histograms show the same idea, but with binned counts instead of a smooth curve.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
