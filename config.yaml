@@ -64,6 +64,11 @@ episodes:
 #- how-r-thinks-about-data.Rmd
 #- working-with-data.Rmd
 - 01_ggplot2_essentials.Rmd
+- 02_relationships.Rmd
+- 03_distributions.Rmd
+- 04_groups.Rmd
+- 05_composition.Rmd
+- 06_presentation.Rmd
 
 # Information for Learners
 learners:
