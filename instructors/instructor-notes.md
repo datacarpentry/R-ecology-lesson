@@ -67,7 +67,7 @@ and instructors and helpers should be aware of this potential source of error.
 
 ## RStudio and Posit
 
-Before 2022, the term RStudio referred to both the RStudio IDE and the RStudio company. In 2022, [RStudio Public Benefit Company became Posit Public Benefit Company]("https://posit.co/blog/rstudio-is-becoming-posit"). Many RStudio links redirect to the relevant page on the Posit site. The Open Source RStudio IDE is downloaded from Posit. Links and language in this lesson have been updated.
+Before 2022, the term RStudio referred to both the RStudio IDE and the RStudio company. In 2022, [RStudio Public Benefit Company became Posit Public Benefit Company](https://posit.co/blog/rstudio-is-becoming-posit). Many RStudio links redirect to the relevant page on the Posit site. The Open Source RStudio IDE is downloaded from Posit. Links and language in this lesson have been updated.
 
 ## RStudio and Multiple R Installs
 
