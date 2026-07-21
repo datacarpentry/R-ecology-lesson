@@ -30,8 +30,8 @@ You have to install R before you install RStudio.
 
 * Download R from the [CRAN website](https://cran.r-project.org/bin/windows/base/release.htm).
 * Run the `.exe` file that was just downloaded
-* Go to the [RStudio download page](https://www.rstudio.com/products/rstudio/download/#download)
-* Under *Installers* select **Windows Vista 10/11 - RSTUDIO-xxxx.yy.z-zzz.exe** (where x = year, y = month, and z represent version numbers)
+* Go to the [RStudio download section of the RStudio User Guide](https://forum.posit.co/c/rstudio-ide/9) on the Posit site
+* Under *Installers* select **Windows - RSTUDIO-xxxx.yy.z-zzz.exe** (where x = year, y = month, and z represent version numbers)
 * Double click the file to install it
 * Once it's installed, open RStudio to make sure it works and you don't get any error messages.
   
@@ -45,7 +45,7 @@ You have to install R before you install RStudio.
 * Select the `.pkg` file for the latest R version
 * Double click on the downloaded file to install R
 * It is also a good idea to install [XQuartz](https://www.xquartz.org/) (needed by some packages)
-* Go to the [RStudio download page](https://www.rstudio.com/products/rstudio/download/#download)
+* Go to the [RStudio download section of the RStudio User Guide](https://forum.posit.co/c/rstudio-ide/9) on the Posit site
 * Under *Installers* select **Mac OS 13+ - RSTUDIO-xxxx.yy.z-zzz.dmg** (where x = year, y = month, and z represent version numbers)
 * Double click the file to install RStudio
 * Once it's installed, open RStudio to make sure it works and you don't get any error messages.
@@ -58,7 +58,7 @@ You have to install R before you install RStudio.
 
 * Click on your distribution in the [Linux folder of the CRAN website](https://cran.r-project.org/bin/linux/). Linux Mint users should follow instructions for Ubuntu.
 * Go through the instructions for your distribution to install R.
-* Go to the [RStudio download page](https://www.rstudio.com/products/rstudio/download/#download)
+* Go to the [RStudio download section of the RStudio User Guide](https://forum.posit.co/c/rstudio-ide/9) on the Posit site
 * Select the relevant installer for your Linux system (Ubuntu/Debian or Fedora)
 * Double click the file to install RStudio
 * Once it's installed, open RStudio to make sure it works and you don't get any error messages.
