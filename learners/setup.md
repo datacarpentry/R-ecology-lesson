@@ -45,7 +45,7 @@ You have to install R before you install RStudio.
 * Select the `.pkg` file for the latest R version
 * Double click on the downloaded file to install R
 * It is also a good idea to install [XQuartz](https://www.xquartz.org/) (needed by some packages)
-* Go to the [RStudio download section of the RStudio User Guide](https://forum.posit.co/c/rstudio-ide/9) on the Posit site
+* Go to the [RStudio download section of the RStudio User Guide](https://docs.posit.co/ide/user/#direct-downloads-open-source) on the Posit site
 * Under *Installers* select **Mac OS 13+ - RSTUDIO-xxxx.yy.z-zzz.dmg** (where x = year, y = month, and z represent version numbers)
 * Double click the file to install RStudio
 * Once it's installed, open RStudio to make sure it works and you don't get any error messages.
