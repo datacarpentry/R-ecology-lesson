@@ -30,7 +30,7 @@ You have to install R before you install RStudio.
 
 * Download R from the [CRAN website](https://cran.r-project.org/bin/windows/base/release.htm).
 * Run the `.exe` file that was just downloaded
-* Go to the [RStudio download section of the RStudio User Guide](https://docs.posit.co/ide/user/#direct-downloads-open-source on the Posit site
+* Go to the [RStudio download section of the RStudio User Guide](https://docs.posit.co/ide/user/#direct-downloads-open-source) on the Posit site
 * Under *Installers* select **Windows - RSTUDIO-xxxx.yy.z-zzz.exe** (where x = year, y = month, and z represent version numbers)
 * Double click the file to install it
 * Once it's installed, open RStudio to make sure it works and you don't get any error messages.
