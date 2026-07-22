@@ -103,7 +103,7 @@ Some languages, like Python, require certain spacing or indentation for code to 
 
 To build a plot, we will use a basic template that can be used for different types of plots:
 
-```r
+```
 ggplot(data = <DATA>, mapping = aes(<MAPPINGS>)) + <GEOM_FUNCTION>()
 ```
 
