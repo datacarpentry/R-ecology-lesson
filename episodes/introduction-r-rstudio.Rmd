@@ -23,7 +23,7 @@ exercises: 0
 
 R refers to a programming language as well as the software that runs R code.
 
-[RStudio](https://rstudio.com) is a software interface that can make it easier to write R scripts and interact with the R software. It's a very popular platform, and RStudio also maintains the [`tidyverse`](https://www.tidyverse.org/) series of packages we will use in this lesson.
+[RStudio](https://posit.co/products/open-source/rstudio) from Posit is a software interface that can make it easier to write R scripts and interact with the R software. It's a very popular platform, and RStudio also maintains the [`tidyverse`](https://www.tidyverse.org/) series of packages we will use in this lesson.
 
 ## Why learn R?
 
@@ -87,7 +87,7 @@ R has well-developed plotting capabilities, and the `ggplot2` package is one of,
 
 ### R has a large and welcoming community
 
-Thousands of people use R daily. Many of them are willing to help you through mailing lists and websites such as [Stack Overflow](https://stackoverflow.com/), or on the [RStudio community](https://community.rstudio.com/).
+Thousands of people use R daily. Many of them are willing to help you through mailing lists and websites such as [Stack Overflow](https://stackoverflow.com/), or on the [RStudio IDE category of the Posit Community](https://forum.posit.co/c/rstudio-ide/9).
 
 Since R is very popular among researchers, most of the help communities and learning materials are aimed towards other researchers. Python is a similar language to R, and can accomplish many of the same tasks, but is widely used by software developers and software engineers, so Python resources and communities are not as oriented towards researchers.
   
