@@ -3,7 +3,7 @@
 [![Slack Status](https://img.shields.io/badge/Slack_Channel-DC_Ecology_R-E01563.svg)](https://carpentries.slack.com/messages/C9X9EC405)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3264888.svg)](https://doi.org/10.5281/zenodo.3264888)
 
-Quick test 6
+Update README for testing comment diff
 
 # _Data Carpentry: R for data analysis and visualization of Ecological Data_
 
