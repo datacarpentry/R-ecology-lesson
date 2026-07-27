@@ -172,7 +172,7 @@ jobs:
       - name: "Comment on PR"
         id: comment-diff
         if: steps.dl.outputs.success == 'true'
-        uses: carpentries/actions/comment-diff@main
+        uses: carpentries/actions/comment-diff@frog-commentdiff-race-1
         with:
           pr: ${{ env.NR }}
           path: ${{ github.workspace }}/diff.md
