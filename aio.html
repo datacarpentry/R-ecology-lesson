@@ -328,7 +328,7 @@
         
 <section id="aio-introduction-r-rstudio"><p>Content from <a href="introduction-r-rstudio.html">Introduction to R and RStudio</a></p>
 <hr>
-<p>Last updated on 2026-06-16 |
+<p>Last updated on 2026-07-28 |
 
         <a href="https://github.com/datacarpentry/R-ecology-lesson/edit/main/episodes/introduction-r-rstudio.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -367,11 +367,11 @@
 <hr class="half-width">
 <p>R refers to a programming language as well as the software that runs
 R code.</p>
-<p><a href="https://rstudio.com" class="external-link">RStudio</a> is a software interface
-that can make it easier to write R scripts and interact with the R
-software. It’s a very popular platform, and RStudio also maintains the
-<a href="https://www.tidyverse.org/" class="external-link"><code>tidyverse</code></a> series
-of packages we will use in this lesson.</p>
+<p><a href="https://posit.co/products/open-source/rstudio" class="external-link">RStudio</a>
+from Posit is a software interface that can make it easier to write R
+scripts and interact with the R software. It’s a very popular platform,
+and RStudio also maintains the <a href="https://www.tidyverse.org/" class="external-link"><code>tidyverse</code></a> series of
+packages we will use in this lesson.</p>
 </section><section><h2 class="section-heading" id="why-learn-r">Why learn R?<a class="anchor" aria-label="anchor" href="#why-learn-r"></a>
 </h2>
 <hr class="half-width">
@@ -499,7 +499,8 @@ of plotting software available today. We will begin learning to use
 <h3 id="r-has-a-large-and-welcoming-community">R has a large and welcoming community<a class="anchor" aria-label="anchor" href="#r-has-a-large-and-welcoming-community"></a>
 </h3>
 <p>Thousands of people use R daily. Many of them are willing to help you
-through mailing lists and websites such as <a href="https://stackoverflow.com/" class="external-link">Stack Overflow</a>, or on the <a href="https://community.rstudio.com/" class="external-link">RStudio community</a>.</p>
+through mailing lists and websites such as <a href="https://stackoverflow.com/" class="external-link">Stack Overflow</a>, or on the <a href="https://forum.posit.co/c/rstudio-ide/9" class="external-link">RStudio IDE category of
+the Posit Community</a>.</p>
 <p>Since R is very popular among researchers, most of the help
 communities and learning materials are aimed towards other researchers.
 Python is a similar language to R, and can accomplish many of the same
@@ -786,7 +787,7 @@ R</li>
 </div>
 </section></section><section id="aio-visualizing-ggplot"><p>Content from <a href="visualizing-ggplot.html">Data visualization with ggplot2</a></p>
 <hr>
-<p>Last updated on 2026-06-16 |
+<p>Last updated on 2026-07-28 |
 
         <a href="https://github.com/datacarpentry/R-ecology-lesson/edit/main/episodes/visualizing-ggplot.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -981,11 +982,7 @@ readability.</p>
 </div>
 <p>To build a plot, we will use a basic template that can be used for
 different types of plots:</p>
-<div class="codewrapper sourceCode" id="cb7">
-<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode r" tabindex="0"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1" aria-label="code-block-7-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="sc">&lt;</span>DATA<span class="sc">&gt;</span>, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="sc">&lt;</span>MAPPINGS<span class="sc">&gt;</span>)) <span class="sc">+</span> <span class="er">&lt;</span>GEOM_FUNCTION<span class="sc">&gt;</span>()</span></code></pre>
-</div>
+<pre><code>ggplot(data = &lt;DATA&gt;, mapping = aes(&lt;MAPPINGS&gt;)) + &lt;GEOM_FUNCTION&gt;()</code></pre>
 <p>We use the <code>ggplot()</code> function to create a plot. In order
 to tell it what data to use, we need to specify the <code>data</code>
 <strong>argument</strong>. An argument is an input that a function
@@ -5202,8 +5199,8 @@ thoughtfully</li>
   "url": "https://datacarpentry.org/R-ecology-lesson/aio.html",
   "identifier": "https://datacarpentry.org/R-ecology-lesson/aio.html",
   "dateCreated": "2015-04-02",
-  "dateModified": "2026-07-21",
-  "datePublished": "2026-07-21"
+  "dateModified": "2026-07-28",
+  "datePublished": "2026-07-28"
 }
 
   </script><script>
