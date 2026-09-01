@@ -888,7 +888,7 @@ x
 [1] 25
 ```
 
-You will be naming a of objects in R, and there are a few common naming rules and conventions:
+You will be naming a lot of objects in R, and there are a few common naming rules and conventions:
 
 - make names clear without being too long
   - `wkg` is probably too short
