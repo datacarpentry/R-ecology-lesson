@@ -409,12 +409,12 @@ ggplot(data = complete_old, mapping = aes(x = plot_type, y = hindfoot_length)) +
 
 <img src="fig/visualizing-ggplot-rendered-boxplot-jitter-1.png" alt="" width="600" height="600" style="display: block; margin: auto;" />
 
-You may have noticed that some of our data points are now appearing on our plot twice: the outliers are plotted as black points from `geom_boxplot()`, but they are also plotted with `geom_jitter()`. Since we don't want to represent these data multiple times in the same form (points), we can stop `geom_boxplot()` from plotting them. We do this by setting the `outlier.shape` argument to `NA`, which means the outliers don't have a shape to be plotted.
+You may have noticed that some of our data points are now appearing on our plot twice: the outliers are plotted as black points from `geom_boxplot()`, but they are also plotted with `geom_jitter()`. Since we don't want to represent these data multiple times in the same form (points), we can stop `geom_boxplot()` from plotting them. We do this by setting the `outliers` argument to `FALSE`, which means the outliers don't have a shape to be plotted.
 
 
 ``` r
 ggplot(data = complete_old, mapping = aes(x = plot_type, y = hindfoot_length)) +
-  geom_boxplot(outlier.shape = NA) +
+  geom_boxplot(outliers = FALSE) +
   geom_jitter(alpha = 0.2)
 ```
 
@@ -425,7 +425,7 @@ Just as before, we can map `plot_type` to `color` by putting it inside `aes()`.
 
 ``` r
 ggplot(data = complete_old, mapping = aes(x = plot_type, y = hindfoot_length, color = plot_type)) +
-  geom_boxplot(outlier.shape = NA) +
+  geom_boxplot(outliers = FALSE) +
   geom_jitter(alpha = 0.2)
 ```
 
@@ -438,7 +438,7 @@ If we want to limit the mapping to a single `geom`, we can put the mapping into 
 
 ``` r
 ggplot(data = complete_old, mapping = aes(x = plot_type, y = hindfoot_length)) +
-  geom_boxplot(outlier.shape = NA) +
+  geom_boxplot(outliers = FALSE) +
   geom_jitter(aes(color = plot_type), alpha = 0.2)
 ```
 
@@ -450,7 +450,7 @@ Now our points are colored according to `plot_type`, but the boxplots are all th
 ``` r
 ggplot(data = complete_old, mapping = aes(x = plot_type, y = hindfoot_length)) +
   geom_jitter(aes(color = plot_type), alpha = 0.2) +
-  geom_boxplot(outlier.shape = NA)
+  geom_boxplot(outliers = FALSE)
 ```
 
 <img src="fig/visualizing-ggplot-rendered-reverse-layers-1.png" alt="" width="600" height="600" style="display: block; margin: auto;" />
@@ -461,7 +461,7 @@ Now we have the opposite problem! The white `fill` of the boxplots completely ob
 ``` r
 ggplot(data = complete_old, mapping = aes(x = plot_type, y = hindfoot_length)) +
   geom_jitter(aes(color = plot_type), alpha = 0.2) +
-  geom_boxplot(outlier.shape = NA, fill = NA)
+  geom_boxplot(outliers = FALSE, fill = NA)
 ```
 
 <img src="fig/visualizing-ggplot-rendered-fill-na-1.png" alt="" width="600" height="600" style="display: block; margin: auto;" />
@@ -523,7 +523,7 @@ We will create an object called `myplot`. If you run the name of the `ggplot2` o
 ``` r
 myplot <- ggplot(data = complete_old, mapping = aes(x = plot_type, y = hindfoot_length)) +
   geom_jitter(aes(color = plot_type), alpha = 0.2) +
-  geom_boxplot(outlier.shape = NA, fill = NA)
+  geom_boxplot(outliers = FALSE, fill = NA)
 
 myplot
 ```
@@ -606,7 +606,7 @@ Because there are so many possible arguments to the `theme()` function, it can s
 
 You may have noticed that we have used 3 different approaches to getting rid of something in `ggplot`: 
 
-- `outlier.shape = NA` to remove the outliers from our boxplot
+- `outliers = FALSE` to remove the outliers from our boxplot
 - `panel.grid.major.x = element_blank()` to remove the x grid lines
 - `legend.position = "none"` to remove our legend
 
