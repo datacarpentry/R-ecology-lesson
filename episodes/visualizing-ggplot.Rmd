@@ -319,7 +319,7 @@ ggplot(data = complete_old, mapping = aes(x = plot_type, y = hindfoot_length)) +
   geom_jitter(alpha = 0.2)
 ```
 
-You may have noticed that some of our data points are now appearing on our plot twice: the outliers are plotted as black points from `geom_boxplot()`, but they are also plotted with `geom_jitter()`. Since we don't want to represent these data multiple times in the same form (points), we can stop `geom_boxplot()` from plotting them. We do this by setting the `outliers` argument to `FALSE`, which means the outliers don't have a shape to be plotted.
+You may have noticed that some of our data points are now appearing on our plot twice: the outliers are plotted as black points from `geom_boxplot()`, but they are also plotted with `geom_jitter()`. Since we don't want to represent these data multiple times in the same form (points), we can stop `geom_boxplot()` from plotting them. We do this by setting the `outliers` argument to `FALSE`.
 
 ```{r boxplot-outliers, warning = F}
 ggplot(data = complete_old, mapping = aes(x = plot_type, y = hindfoot_length)) +
