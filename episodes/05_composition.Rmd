@@ -95,6 +95,12 @@ Notice that the overall height of each bar has not changed. We have simply divid
 
 Answers may vary.
 
+- Front-wheel drive (f) and four-wheel drive (4) vehicles are the most common overall.
+- SUVs are dominated by four-wheel drive vehicles.
+- Compact and midsize vehicles are mostly front-wheel drive.
+- Two-seaters are almost entirely rear-wheel drive (r).
+- Some classes are strongly associated with a single drive type, while others contain a mixture of drive types.
+
 :::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -133,6 +139,12 @@ This makes it easier to compare composition between classes, regardless of how m
 :::::::::::::::  solution
 
 Answers may vary.
+
+- The y-axis now shows proportions rather than counts.
+- Every bar has height 1 (100%) because each bar represents the entire class.
+- SUVs are almost entirely four-wheel drive.
+- Two-seaters are almost entirely rear-wheel drive.
+- Compact and midsize vehicles have similar compositions, being dominated by front-wheel drive.
 
 :::::::::::::::::::::::::
 

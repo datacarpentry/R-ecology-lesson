@@ -113,12 +113,13 @@ Faceting is useful when:
 
 - Which drive type includes the most vehicle classes?
 - Are some vehicle classes only found in one panel?
-- Is the pattern easier to interpret than the single combined plot? 
+- Is the pattern easier to interpret than the single combined plot? Why?
 
 :::::::::::::::  solution
 
-Answers may vary.
-
+- The front-wheel-drive panel contains the largest variety of vehicle classes.
+- Some vehicle classes appear predominantly in a single panel, such as two-seaters in rear-wheel drive and many SUVs in four-wheel drive.
+- The faceted version is easier to interpret because overlapping colours are eliminated and each drive type can be examined independently.
 
 :::::::::::::::::::::::::
 

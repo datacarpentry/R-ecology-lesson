@@ -67,7 +67,11 @@ ggplot(data = mpg,
 
 :::::::::::::::  solution
 
-Answers may vary.
+- Vehicle classes form distinct clusters.
+- SUVs and pickups generally have larger engines (higher displ) and lower city fuel efficiency (cty).
+- Compact and subcompact cars generally have smaller engines and higher fuel efficiency.
+- The overall negative relationship between engine size and fuel efficiency becomes clearer because we can see which vehicle classes - occupy different regions of the plot.
+- The pattern is largely what we would expect: larger vehicle classes tend to be less fuel efficient than smaller vehicle classes.
 
 :::::::::::::::::::::::::
   
