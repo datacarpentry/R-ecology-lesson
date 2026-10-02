@@ -29,7 +29,7 @@ In this lesson, we will use the `ggplot2` package, a widely used system for crea
 
 - **Data** are the data that you, the user, provide.
 
-- **Aesthetic Mappings ** are what connect the data to the graphics. They tell `ggplot()` how to use your data to affect how the graph looks, such as changing what is plotted on the X or Y axis, or the size or color of different data points.
+- **Aesthetic Mappings ** are what connect the data to the graphics. They tell `ggplot()` how to use your data to affect how the graph looks, such as changing what is plotted on the X or Y axis, or the size or colour of different data points.
 
 - **Geometric objects (geoms)** are the parts of the plot that we can see, such as points, lines, or bars. Each **geom** creates a different type of plot (e.g. scatter plots, histograms, bar charts). In `ggplot2`, plots are built up in layers, with each geom added as new layer.
 
