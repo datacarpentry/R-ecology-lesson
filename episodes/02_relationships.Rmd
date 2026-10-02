@@ -1,5 +1,5 @@
 ---
-title: Scatterplots and Relationships
+title: Explore Relationships
 teaching: 20
 exercises: 10
 source: Rmd

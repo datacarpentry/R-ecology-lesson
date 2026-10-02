@@ -1,5 +1,5 @@
 ---
-title: Bar Charts and Distributions
+title: Understand Distributions
 teaching: 20
 exercises: 10
 source: Rmd

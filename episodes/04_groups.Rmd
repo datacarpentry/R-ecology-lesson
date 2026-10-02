@@ -1,5 +1,5 @@
 ---
-title: Comparing Groups
+title: Compare Groups
 teaching: 25
 exercises: 20
 source: Rmd

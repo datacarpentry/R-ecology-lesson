@@ -1,5 +1,5 @@
 ---
-title: Composition 
+title: Explore Composition 
 teaching: 25
 exercises: 20
 source: Rmd
