@@ -158,7 +158,7 @@ Reuse what we already know and use `fill` to colour each class to help visually 
 
 ```{r box-hwy-class-colour, fig.alt="Boxplot of highway fuel efficiency."}
 ggplot(data = mpg, 
-       mapping = aes(x=class, y = hwy, fill = class)) +
+       mapping = aes(x = class, y = hwy, fill = class)) +
   geom_boxplot()
 ```
 
