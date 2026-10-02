@@ -196,12 +196,11 @@ Density plots are useful because they:
  
 ## Histograms
 
-
-So far, we've used density plots to visualise distributions. Density plots are a smooth summary of the data.
+So far, we've used density plots to visualise distributions. Density plots provide a smooth view of the data.
 
 Another common way to display a distribution is with a **histogram**.  Instead of drawing a smooth curve, a histogram groups values into bins and counts how many observations fall into each bin.
 
-```{r hwy-hist, fig.alt="Density plot of highway fuel efficiency with data points."}
+```{r hwy-hist, fig.alt="Histogram of highway fuel efficiency with the default 30 bins."}
 ggplot(data = mpg, 
        mapping = aes(x = hwy)) +
   geom_histogram()
