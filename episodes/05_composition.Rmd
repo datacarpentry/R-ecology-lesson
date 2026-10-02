@@ -111,8 +111,12 @@ So far, we’ve shown counts.
 
 Sometimes we care about proportions instead — how large each part is relative to the whole.
 
-To show proportions instead of counts , add `position = "fill"` as an argument to `geom_bar()`:
+To show proportions instead of counts, add `position = "fill"` as an argument to `geom_bar()`.
 
+The position argument controls how the stacked sections are arranged.
+
+- position = "stack" (the default) shows counts.
+- position = "fill" rescales each bar so it has the same height (100%), allowing us to compare proportions.
 
 ```{r bar-hwy-prop, fig.alt="Bar plot showing the proportion of mpg observations for each class of vehicle and drive type."}
 ggplot(data = mpg, 
