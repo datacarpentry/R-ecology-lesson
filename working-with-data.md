@@ -763,7 +763,7 @@ Warning: Removed 1692 rows containing missing values or values outside the scale
 (`geom_point()`).
 ```
 
-<img src="fig/working-with-data-rendered-date-plot-challenge-answer-1.png" alt="" width="600" height="600" style="display: block; margin: auto;" />
+<img src="fig/working-with-data-rendered-date-plot-challenge-answer-1.png" alt="Scatter plot of jittered, highly transparent points of weight against survey date, showing weights over the years with no clear trend." width="600" height="600" style="display: block; margin: auto;" />
 
 This isn't necessarily the most useful plot, but we will learn some techniques that will help produce nice time series plots
 
@@ -1148,7 +1148,7 @@ surveys_daily_counts %>%
   geom_line()
 ```
 
-<img src="fig/working-with-data-rendered-time-series-challenge-answer-1.png" alt="" width="600" height="600" style="display: block; margin: auto;" />
+<img src="fig/working-with-data-rendered-time-series-challenge-answer-1.png" alt="Line plot of the daily number of animals caught over time, with one line per sex coloured by sex." width="600" height="600" style="display: block; margin: auto;" />
 
 ::::::::::::::::::::::::
 
